@@ -1,11 +1,11 @@
-##Load other packages that might be needed in this tutorial
+##Load other packages that are needed
 library(igraph)
 library(rgl)
 library(tidyverse)
 
 # functions needed to infer food webs
 source("lib/pfim.R")
-source("lib/nice.R")
+source("lib/niche.R")
 
 # Data sources ----
 # Data frame listing taxon names and life habits. 
