@@ -50,3 +50,6 @@ rsconnect/
 
 # MacOS nonsense
 .DS_Store
+
+# everyone needs scrap paper
+_scrap.R
