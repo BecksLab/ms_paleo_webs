@@ -6,7 +6,7 @@ The code itself is very utilitarian and simply uses a (modified) subset of the d
 
 ## General use
 
-This work has been developed within the `R` projects environment and it is possible to instantiate the pjoject through `paleo_webs.Rproj`. Additionally, so as to maintain reproducibility, this project uses `{renv}`for dependency management and it is possible to download and install the relevant package versions by running `renv::restore()`.
+This work has been developed within the `R` projects environment and it is possible to instantiate the project through `paleo_webs.Rproj`. Additionally, so as to maintain reproducibility, this project uses `{renv}`for dependency management and it is possible to download and install the relevant package versions by running `renv::restore()`.
 
 ## Folder and file structure
 
