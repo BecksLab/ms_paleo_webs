@@ -14,8 +14,7 @@ source("lib/niche.R")
 
 ex_taxonlist_g1 <- read.csv("data/G1_guilds.csv")
 
-#Four column df listing rules for feasible interactions. 
-# Follow column naming format when using your own files.
+#Four column df listing rules for feasible interactions.
 ex_traitrules <- read.csv("data/feeding_rules.csv")
 
 ##Infer the food web using pfim model ----
@@ -30,6 +29,4 @@ pfim_web <- pfim(data = ex_taxonlist_g1,
 
 ##Infer the food web using niche model ----
 
-niche_web <- niche_model(nrow(ex_taxonlist_g1),
-                 0.1 #Print names of any taxa that have been removed
-)
+niche_web <- niche_model(nrow(ex_taxonlist_g1), 0.1)
