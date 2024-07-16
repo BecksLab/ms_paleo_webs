@@ -11,3 +11,7 @@ This work has been developed within the `R` projects environment and it is possi
 ## Folder and file structure
 
 Data files are stored in `data/` which includes the trait data and feeding rules needed for the pfim model. Functions needed to implement the different models can be found in `lib/` and the actual workflow in `scripts/`.
+
+## Manuscript
+
+In addition to containing the code and data needed this repository also hosts the associated 'manuscript'. This manuscript is written using the `quarto` platform - for which the is an [online tutorial](https://quarto.org/docs/manuscripts/).
