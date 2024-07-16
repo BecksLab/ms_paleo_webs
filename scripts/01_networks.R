@@ -12,7 +12,7 @@ source("lib/niche.R")
 # Taxon names must correspond to interaction data, and trait column names and
 # levels must correspond to trait rules.
 
-ex_taxonlist_g1 <- read.csv("data/G1_guilds.csv")
+ex_taxonlist_g1 <- read.csv("data/community_1.csv")
 
 #Four column df listing rules for feasible interactions.
 ex_traitrules <- read.csv("data/feeding_rules.csv")
