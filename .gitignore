@@ -53,3 +53,14 @@ rsconnect/
 
 # everyone needs scrap paper
 _scrap.R
+
+# quarto
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+/.quarto/
+
+/agujournal2019.cls
+/trackchanges.sty
+
+/.luarc.json
