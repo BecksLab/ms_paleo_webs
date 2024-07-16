@@ -26,3 +26,5 @@ ggplot(networks,
   facet_wrap(vars(measure),
              scales = 'free') +
   theme_classic()
+
+ggsave("figures/plot1.png")
