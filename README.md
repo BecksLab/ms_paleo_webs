@@ -2,7 +2,7 @@
 
 A small little toy repo to act as a template to play around with some of the functionality afforded to us through GitHub.
 
-The code itself is very utilitarian and simply uses a (modified) subset of the dataset from Dunhill et. al., (in prep) to construct food webs using the Paleo Food web Inference Model (PFIM, Shaw et. al., 2024) and the niche model (Williams and Martinez, 2000). We then compare the computed connectance and number of links for the same community by the different models.
+The code itself is very utilitarian and simply uses a (modified) subset of the dataset from Dunhill et. al., (in prep) to construct food webs using the Paleo Food web Inference Model (PFIM, Shaw et. al., 2024) and the niche model (Williams and Martinez, 2000).
 
 ## General use
 
@@ -10,8 +10,4 @@ This work has been developed within the `R` projects environment and it is possi
 
 ## Folder and file structure
 
-Data files are stored in `data/` which includes the trait data and feeding rules needed for the pfim model. Functions needed to implement the different models can be found in `lib/` and the actual workflow in `scripts/`.
-
-## Manuscript
-
-In addition to containing the code and data needed this repository also hosts the associated 'manuscript'. This manuscript is written using the `quarto` platform - for which the is an [online tutorial](https://quarto.org/docs/manuscripts/).
+The code workflow is contained in the `scripts/` folder, with each file being numbered sequentially. Additional functions that are needed to run some of the models are contained in the `lib/` folder, each model is contained within its own file and additional helper functions are in `lib/internals.R`.
