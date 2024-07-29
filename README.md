@@ -11,3 +11,7 @@ This work has been developed within the `R` projects environment and it is possi
 ## Folder and file structure
 
 The code workflow is contained in the `scripts/` folder, with each file being numbered sequentially. Additional functions that are needed to run some of the models are contained in the `lib/` folder, each model is contained within its own file and additional helper functions are in `lib/internals.R`.
+
+## Associated manuscript
+
+Link to google doc: [https://docs.google.com/document/d/1Hxh1nWtgir2b5HIpmqKjHzFzLRC9vJLTPtHNR5Z_hiE/edit?usp=sharing](https://docs.google.com/document/d/1Hxh1nWtgir2b5HIpmqKjHzFzLRC9vJLTPtHNR5Z_hiE/edit?usp=sharing)
