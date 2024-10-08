@@ -35,3 +35,4 @@ data/clean/
 /trackchanges.sty
 
 /.luarc.json
+.vscode/settings.json
