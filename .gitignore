@@ -23,6 +23,7 @@ _scrap.R
 
 # ignore raw data folder to keep private
 data/raw/
+data/clean/
 
 # quarto
 .ipynb_checkpoints
