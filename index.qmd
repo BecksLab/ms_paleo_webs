@@ -1,0 +1,43 @@
+---
+title: "Unveiling the Complexity of Food Webs: A Comprehensive Overview of Definitions, Scales, and Mechanisms"
+author:
+  - name: Tanya Strydom
+    id: ts
+    orcid: 0000-0001-6067-1349
+    corresponding: true
+    email: t.strydom@sheffield.ac.uk
+    role: 
+    - conceptualization: lead
+    - methodology: supporting
+    affiliation:
+      - id: sheffield
+        name: School of Biosciences, University of Sheffield, Sheffield, UK
+  - name: Andrew P. Beckerman
+    id: apb
+    orcid: 0000-0002-7859-8394
+    corresponding: false
+    role: 
+    - conceptualization: lead
+    - methodology: supporting
+    affiliations:
+      - ref: sheffield
+funding: "The author(s) received no specific funding for this work. Well they did I just haven't done the homework"
+keywords:
+  - food web
+  - network construction
+  - scientific ignorance
+abstract: |
+  Food webs are a useful abstraction and representation of the feeding links between species in a community and are used to infer many ecosystem level processes. However, the different theories, mechanisms, and criteria that underpin how a food web is defined and, ultimately, constructed means that not all food webs are representing the same ecological process. Here we present a synthesis of the different assumptions, scales and mechanisms that are used to define different ecological networks ranging from metawebs (an inventory of all potential interactions) to fully realised networks (interactions that occur within a given community over a certain timescale). Illuminating the assumptions, scales, and mechanisms of network inference allows a formal categorisation of how to use networks to answer key ecological and conservation questions and defines guidelines to prevent unintentional misuse or misinterpretation.
+date: last-modified
+bibliography: references.bib
+citation:
+  container-title: TREE (one can dream...)
+number-sections: true
+---
+
+Add the new toarcian @dunhill2024
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
