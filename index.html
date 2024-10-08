@@ -11,7 +11,7 @@
 <meta name="dcterms.date" content="2024-10-08">
 <meta name="keywords" content="food web, network construction, scientific ignorance">
 
-<title>Unveiling the Complexity of Food Webs: A Comprehensive Overview of Definitions, Scales, and Mechanisms</title>
+<title>Methods for Reconstructing Paleo Food Webs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,9 +64,38 @@ div.csl-indent {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta name="citation_title" content="Unveiling the Complexity of Food Webs: A Comprehensive Overview of Definitions, Scales, and Mechanisms">
-<meta name="citation_abstract" content="Food webs are a useful abstraction and representation of the feeding links between species in a community and are used to infer many ecosystem level processes. However, the different theories, mechanisms, and criteria that underpin how a food web is defined and, ultimately, constructed means that not all food webs are representing the same ecological process. Here we present a synthesis of the different assumptions, scales and mechanisms that are used to define different ecological networks ranging from metawebs (an inventory of all potential interactions) to fully realised networks (interactions that occur within a given community over a certain timescale). Illuminating the assumptions, scales, and mechanisms of network inference allows a formal categorisation of how to use networks to answer key ecological and conservation questions and defines guidelines to prevent unintentional misuse or misinterpretation.
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta name="citation_title" content="Methods for Reconstructing Paleo Food Webs">
+<meta name="citation_abstract" content="TODO.
 ">
 <meta name="citation_keywords" content="food web,network construction,scientific ignorance">
 <meta name="citation_author" content="Tanya Strydom">
@@ -76,8 +105,16 @@ div.csl-indent {
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-10-08">
 <meta name="citation_language" content="en">
-<meta name="citation_journal_title" content="TREE (one can dream...)">
+<meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
+<meta name="citation_reference" content="citation_title=Shortcomings of reusing species interaction networks created by different sets of researchers;,citation_author=Chris Brimacombe;,citation_author=Korryn Bodner;,citation_author=Matthew Michalska-Smith;,citation_author=Timothée Poisot;,citation_author=Marie-Josée Fortin;,citation_publication_date=2023-03;,citation_cover_date=2023-03;,citation_year=2023;,citation_fulltext_html_url=https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002068;,citation_issue=4;,citation_doi=10.1371/journal.pbio.3002068;,citation_volume=21;,citation_language=en;,citation_journal_title=PLOS Biology;">
+<meta name="citation_reference" content="citation_title=A framework for reconstructing ancient food webs using functional trait data;,citation_abstract=Food webs provide quantitative insights into the structure and dynamics of ecological communities. Previous work has shown their utility in understanding community responses to modern and ancient perturbations, including anthropogenic change and mass extinctions. However, few ancient food webs have been reconstructed due to difficulties assessing trophic interactions amongst extinct species derived from an incomplete fossil record. We present and assess the Paleo Food web Inference Model (PFIM). PFIM uses functional trait data–predictive of interactions in modern ecosystems and commonly available for fossil organisms–to reconstruct ancient food webs. We test the model by (i) applying it to four modern ecosystems with empirical constrained food webs to directly compare PFIM-constructed networks to their empirical counterparts, (ii) by carefully comparing discrepancies between PFIM-inferred and empirical webs in one of those systems, and (iii) by comparing networks describing feasible trophic interactions (&amp;amp;amp;quot;feasible webs&amp;quot;) with networks to which we superimpose characteristic interaction distributions derived from modern theory (&quot;realized webs&quot;). As a proof of concept, we then apply the method to faunal data from two Cambrian fossil deposits to reconstruct ancient trophic systems. PFIM-inferred feasible food webs successfully predict ~70% of trophic interactions across four modern systems. Furthermore, inferred food webs with enforced interaction distributions (i.e., realized webs) accurately predict ~90% of interactions. Comparisons with a global database of trophic interactions and other food web models, suggest that under sampling of empirical webs accounts for up to 21% of the remaining differences between PFIM and empirical food webs. Food webs can be reasonably approximated by inferring trophic interactions based upon life habit traits. This study provides the foundation to use trait-based inference models across the fossil record to examine ancient food webs and community evolution.;,citation_author=Jack O. Shaw;,citation_author=Alexander M. Dunhill;,citation_author=Andrew P. Beckerman;,citation_author=Jennifer A. Dunne;,citation_author=Pincelli M. Hull;,citation_publication_date=2024-01;,citation_cover_date=2024-01;,citation_year=2024;,citation_doi=10.1101/2024.01.30.578036;,citation_language=en-US;,citation_publisher=bioRxiv;">
+<meta name="citation_reference" content="citation_title=Extinction cascades and catastrophe in ancient food webs;,citation_author=Peter D. Roopnarine;,citation_publication_date=2006;,citation_cover_date=2006;,citation_year=2006;,citation_fulltext_html_url=https://www.jstor.org/stable/4096814;,citation_issue=1;,citation_volume=32;,citation_journal_title=Paleobiology;">
+<meta name="citation_reference" content="citation_title=Size, foraging, and food web structure;,citation_author=Owen L. Petchey;,citation_author=Andrew P. Beckerman;,citation_author=Jens O. Riede;,citation_author=Philip H. Warren;,citation_publication_date=2008-03-18;,citation_cover_date=2008-03-18;,citation_year=2008;,citation_fulltext_html_url=https://pnas.org/doi/full/10.1073/pnas.0710672105;,citation_issue=11;,citation_doi=10.1073/pnas.0710672105;,citation_volume=105;,citation_language=en;,citation_journal_title=Proceedings of the National Academy of Sciences;">
+<meta name="citation_reference" content="citation_title=Modeling food webs: Exploring unexplained structure using latent traits.;,citation_author=Rudolf&nbsp;Philippe Rohr;,citation_author=Heike Scherer;,citation_author=Patrik Kehrli;,citation_author=Christian Mazza;,citation_author=Louis-Félix Bersier;,citation_publication_date=2010-08;,citation_cover_date=2010-08;,citation_year=2010;,citation_fulltext_html_url=https://www.journals.uchicago.edu/doi/10.1086/653667;,citation_issue=2;,citation_doi=10.1086/653667;,citation_volume=176;,citation_journal_title=The American Naturalist;">
+<meta name="citation_reference" content="citation_title=Collapse of an ecological network in ancient egypt;,citation_author=Justin D. Yeakel;,citation_author=Mathias M. Pires;,citation_author=Lars Rudolf;,citation_author=Nathaniel J. Dominy;,citation_author=Paul L. Koch;,citation_author=Paulo R. Guimarães;,citation_author=Thilo Gross;,citation_publication_date=2014-10;,citation_cover_date=2014-10;,citation_year=2014;,citation_issue=40;,citation_doi=10.1073/pnas.1408471111;,citation_volume=111;,citation_journal_title=PNAS;">
+<meta name="citation_reference" content="citation_title=Simple rules yield complex food webs;,citation_author=Richard J. Williams;,citation_author=Neo D. Martinez;,citation_publication_date=2000-03;,citation_cover_date=2000-03;,citation_year=2000;,citation_fulltext_html_url=https://www.nature.com/articles/35004572;,citation_issue=6774;,citation_doi=10.1038/35004572;,citation_volume=404;,citation_language=en;,citation_journal_title=Nature;">
+<meta name="citation_reference" content="citation_title=Success and its limits among structural models of complex food webs;,citation_author=Richard J. Williams;,citation_author=Neo D. Martinez;,citation_publication_date=2008-05;,citation_cover_date=2008-05;,citation_year=2008;,citation_issue=3;,citation_doi=10.1111/j.1365-2656.2008.01362.x;,citation_volume=77;,citation_language=eng;,citation_journal_title=The Journal of Animal Ecology;">
 </head>
 
 <body>
@@ -85,7 +122,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Unveiling the Complexity of Food Webs: A Comprehensive Overview of Definitions, Scales, and Mechanisms</h1>
+      <h1 class="title">Methods for Reconstructing Paleo Food Webs</h1>
           </div>
 
     
@@ -133,7 +170,7 @@ div.csl-indent {
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p>Food webs are a useful abstraction and representation of the feeding links between species in a community and are used to infer many ecosystem level processes. However, the different theories, mechanisms, and criteria that underpin how a food web is defined and, ultimately, constructed means that not all food webs are representing the same ecological process. Here we present a synthesis of the different assumptions, scales and mechanisms that are used to define different ecological networks ranging from metawebs (an inventory of all potential interactions) to fully realised networks (interactions that occur within a given community over a certain timescale). Illuminating the assumptions, scales, and mechanisms of network inference allows a formal categorisation of how to use networks to answer key ecological and conservation questions and defines guidelines to prevent unintentional misuse or misinterpretation.</p>
+        <p>TODO.</p>
       </div>
     </div>
 
@@ -152,7 +189,13 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
+  <li><a href="#why-build-paleo-food-webs" id="toc-why-build-paleo-food-webs" class="nav-link active" data-scroll-target="#why-build-paleo-food-webs"><span class="header-section-number">0.1</span> Why build paleo food webs?</a></li>
+  <li><a href="#how-do-we-do-it" id="toc-how-do-we-do-it" class="nav-link" data-scroll-target="#how-do-we-do-it"><span class="header-section-number">0.2</span> How do we do it?</a></li>
+  <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">0.3</span> Understanding how networks are different</a></li>
+  <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">0.4</span> Challenges specific to paleo communities/networks</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">0.5</span> Dataset Overview</a></li>
+  <li><a href="#methods-to-use" id="toc-methods-to-use" class="nav-link" data-scroll-target="#methods-to-use"><span class="header-section-number">0.6</span> Methods to use</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </div>
@@ -165,44 +208,112 @@ div.csl-indent {
   
 
 
-<p>Add the new toarcian <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span></p>
+<section id="why-build-paleo-food-webs" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="why-build-paleo-food-webs"><span class="header-section-number">0.1</span> Why build paleo food webs?</h2>
+<ul>
+<li><p>Because its interesting?</p></li>
+<li><p>Value in using hindcasting to aid in forecasting. <em>e.g.,</em> the Toarcian ms <span class="citation" data-cites="dunhill2024">(<a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a>)</span> shows how we can use these paleo communities to understand trophic-level responses to extinctions.</p></li>
+</ul>
+</section>
+<section id="how-do-we-do-it" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="how-do-we-do-it"><span class="header-section-number">0.2</span> How do we do it?</h2>
+<ul>
+<li><p>There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.</p></li>
+<li><p>There are a handful that have been developed specifically in the context of paleo settings <em>e.g.,</em> TODO but we can also talk about those that might have been developed/tested in contemporary settings but still have applicability in paleo ones.</p></li>
+<li><p>Different underlying theory though</p>
+<ul>
+<li>Focus here on the idea of different ‘currencies’ but also aggregations - energy vs compatibility.</li>
+</ul></li>
+<li><p>Insert brief overview of the different methods as they pertain to approach (so the T4T triangle)</p></li>
+<li><p>Challenges we face (even in contemporary settings)?</p>
+<ul>
+<li>keep high level - I think the argument here should fall more in the data trade offs…</li>
+</ul></li>
+</ul>
+</section>
+<section id="understanding-how-networks-are-different" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="understanding-how-networks-are-different"><span class="header-section-number">0.3</span> Understanding how networks are different</h2>
+<p>It is important to be aware that networks can be configured in different ways depending on how the interactions are defined (Strydom, in prep). Basically we have metawebs, which represent <em>potential</em> interactions, and realised networks, which represent the subset of potential that are realised as a result of community and environmental context.</p>
+</section>
+<section id="challenges-specific-to-paleo-communitiesnetworks" class="level2" data-number="0.4">
+<h2 data-number="0.4" class="anchored" data-anchor-id="challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">0.4</span> Challenges specific to paleo communities/networks</h2>
+<p>Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific ‘parts’ of an individual (hard and bone-y bits), this means we don’t have a complete picture of the physical traits of species <em>e.g.,</em> no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no <em>real</em> idea of spatial arrangements, compounded that fossils aren’t necessarily conserved/found ‘in situ’ but can be moved (<em>e.g.,</em> alluvial deposits). Methodologically speaking some tools that ‘learn’ from contemporary communities (<em>e.g.,</em> Strydom, Caron) will become ‘worse’ the further one goes back in time since species then look very different from now but can still be useful for ‘recent’ communities (<em>e.g.,</em> fricke).</p>
+</section>
+<section id="dataset-overview" class="level2" data-number="0.5">
+<h2 data-number="0.5" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">0.5</span> Dataset Overview</h2>
+<ul>
+<li><p>Species</p></li>
+<li><p>Time/space</p></li>
+<li><p>And probably some other paleo things that will be relevant…</p></li>
+</ul>
+</section>
+<section id="methods-to-use" class="level2" data-number="0.6">
+<h2 data-number="0.6" class="anchored" data-anchor-id="methods-to-use"><span class="header-section-number">0.6</span> Methods to use</h2>
+<p><strong>Paleo food web inference model</strong> (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links.</p>
+<p><strong>Allometric diet breadth model</strong> (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>): The ADBM is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
+<p><span id="eq-adbm"><span class="math display">\[
+K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(\lambda_{ij}\)</span> is the handling time, which is the product of the attack rate <span class="math inline">\(A_{i}\)</span> and resource density <span class="math inline">\(N_{i}\)</span>, <span class="math inline">\(E_{i}\)</span> is the energy content of the resource and <span class="math inline">\(H_{ij}\)</span> is the ratio handling time, with the relationship being dependent on the ratio of predator and prey bodymass as follows:</p>
+<p><span class="math display">\[
+H_{ij} = \frac{h}{b - \frac{M_{i}}{M_{j}}} if \frac{M_{i}}{M_{j}} &lt; b
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+H_{ij} = \infty \geq b
+\]</span></p>
+<p>Refer to <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> for more details as to how these different terms are parametrised.</p>
+<p><strong>Body size ratio model</strong> <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span>: Determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
+<p><span class="math display">\[
+P_{ij} = \frac{p}{1+p}
+\]</span></p>
+<p>where</p>
+<p><span id="eq-bodymass"><span class="math display">\[
+p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
+\tag{2}\]</span></span></p>
+<p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\delta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
+<p><strong>Niche model</strong> <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span>: The niche model introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
+</section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-dunhill2024" class="csl-entry" role="listitem">
 Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispin T. S. Little, and Andrew P. Beckerman. 2024. <span>“Extinction Cascades, Community Collapse, and Recovery Across a Mesozoic Hyperthermal Event.”</span> <em>Nature Communications</em> 15 (1): 8599. <a href="https://doi.org/10.1038/s41467-024-53000-2">https://doi.org/10.1038/s41467-024-53000-2</a>.
 </div>
+<div id="ref-petchey2008" class="csl-entry" role="listitem">
+Petchey, Owen L., Andrew P. Beckerman, Jens O. Riede, and Philip H. Warren. 2008. <span>“Size, Foraging, and Food Web Structure.”</span> <em>Proceedings of the National Academy of Sciences</em> 105 (11): 4191–96. <a href="https://doi.org/10.1073/pnas.0710672105">https://doi.org/10.1073/pnas.0710672105</a>.
+</div>
+<div id="ref-rohr2010" class="csl-entry" role="listitem">
+Rohr, Rudolf&nbsp;Philippe, Heike Scherer, Patrik Kehrli, Christian Mazza, and Louis-Félix Bersier. 2010. <span>“Modeling Food Webs: Exploring Unexplained Structure Using Latent Traits.”</span> <em>The American Naturalist</em> 176 (2): 170–77. <a href="https://doi.org/10.1086/653667">https://doi.org/10.1086/653667</a>.
+</div>
+<div id="ref-roopnarine2006" class="csl-entry" role="listitem">
+Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
+</div>
+<div id="ref-shaw2024" class="csl-entry" role="listitem">
+Shaw, Jack O., Alexander M. Dunhill, Andrew P. Beckerman, Jennifer A. Dunne, and Pincelli M. Hull. 2024. <span>“A Framework for Reconstructing Ancient Food Webs Using Functional Trait Data.”</span> bioRxiv. <a href="https://doi.org/10.1101/2024.01.30.578036">https://doi.org/10.1101/2024.01.30.578036</a>.
+</div>
+<div id="ref-williams2000" class="csl-entry" role="listitem">
+Williams, Richard J., and Neo D. Martinez. 2000. <span>“Simple Rules Yield Complex Food Webs.”</span> <em>Nature</em> 404 (6774): 180–83. <a href="https://doi.org/10.1038/35004572">https://doi.org/10.1038/35004572</a>.
+</div>
+<div id="ref-williams2008" class="csl-entry" role="listitem">
+———. 2008. <span>“Success and its limits among structural models of complex food webs.”</span> <em>The Journal of Animal Ecology</em> 77 (3): 512–19. <a href="https://doi.org/10.1111/j.1365-2656.2008.01362.x">https://doi.org/10.1111/j.1365-2656.2008.01362.x</a>.
+</div>
+<div id="ref-yeakel2014" class="csl-entry" role="listitem">
+Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. Koch, Paulo R. Guimarães, and Thilo Gross. 2014. <span>“Collapse of an Ecological Network in Ancient Egypt.”</span> <em>PNAS</em> 111 (40): 14472–77. <a href="https://doi.org/10.1073/pnas.1408471111">https://doi.org/10.1073/pnas.1408471111</a>.
+</div>
 </div>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2024,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
-  title = {Unveiling the {Complexity} of {Food} {Webs:} {A}
-    {Comprehensive} {Overview} of {Definitions,} {Scales,} and
-    {Mechanisms}},
+  title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
   date = {2024-10-08},
   langid = {en},
-  abstract = {Food webs are a useful abstraction and representation of
-    the feeding links between species in a community and are used to
-    infer many ecosystem level processes. However, the different
-    theories, mechanisms, and criteria that underpin how a food web is
-    defined and, ultimately, constructed means that not all food webs
-    are representing the same ecological process. Here we present a
-    synthesis of the different assumptions, scales and mechanisms that
-    are used to define different ecological networks ranging from
-    metawebs (an inventory of all potential interactions) to fully
-    realised networks (interactions that occur within a given community
-    over a certain timescale). Illuminating the assumptions, scales, and
-    mechanisms of network inference allows a formal categorisation of
-    how to use networks to answer key ecological and conservation
-    questions and defines guidelines to prevent unintentional misuse or
-    misinterpretation.}
+  abstract = {TODO.}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Strydom, Tanya, and Andrew P. Beckerman. 2024. <span>“Unveiling the
-Complexity of Food Webs: A Comprehensive Overview of Definitions,
-Scales, and Mechanisms.”</span> TREE (One Can Dream...). October 8,
-2024.
+Strydom, Tanya, and Andrew P. Beckerman. 2024. <span>“Methods for
+Reconstructing Paleo Food Webs.”</span> TBD. October 8, 2024.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
