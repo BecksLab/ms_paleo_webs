@@ -9,7 +9,7 @@ Random.seed!(66)
 
 # create trait dataframe
 # get the name of all communities
-matrix_names = readdir(joinpath("data", "clean", "trait"))
+matrix_names = readdir("../data/clean/trait")
 matrix_names = replace.(matrix_names, ".csv" => "")
 
 # get the traits data
@@ -25,7 +25,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(
         CSV.File.(
-            joinpath("data", "clean", "trait", "$file_name.csv"),
+            joinpath("../data/clean/trait", "$file_name.csv"),
         ),
     )
     append!(traits, df)
@@ -34,13 +34,13 @@ end
 traits = unique(traits)
 
 # Extinction sequence
-matrix_names = readdir(joinpath("data", "processed", "networks"))
+matrix_names = readdir("../data/processed/networks")
 
 for i in eachindex(matrix_names)
 
     # Import predicted network 
     file_name = matrix_names[i]
-    df = load_object("data/processed/networks/$file_name")
+    df = load_object("../data/processed/networks/$file_name")
 
     # select only the pre extinction community
     pre_comm = df[occursin.("pre", df.id), :]
