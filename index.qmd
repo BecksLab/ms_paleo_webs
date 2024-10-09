@@ -35,13 +35,13 @@ citation:
 number-sections: true
 ---
 
-## Why build paleo food webs?
+# Why build paleo food webs?
 
 -   Because its interesting?
 
 -   Value in using hindcasting to aid in forecasting. *e.g.,* the Toarcian ms [@dunhill2024] shows how we can use these paleo communities to understand trophic-level responses to extinctions.
 
-## How do we do it?
+# How do we do it?
 
 -   There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.
 
@@ -57,15 +57,15 @@ number-sections: true
 
     -   keep high level - I think the argument here should fall more in the data trade offs...
 
-## Understanding how networks are different
+# Understanding how networks are different
 
 It is important to be aware that networks can be configured in different ways depending on how the interactions are defined (Strydom, in prep). Basically we have metawebs, which represent *potential* interactions, and realised networks, which represent the subset of potential that are realised as a result of community and environmental context.
 
-## Challenges specific to paleo communities/networks
+# Challenges specific to paleo communities/networks
 
 Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* Strydom, Caron) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* fricke).
 
-## Dataset Overview
+# Dataset Overview
 
 -   Species
 
@@ -73,7 +73,7 @@ Although there are a suite of tools and methods that have been developed to pred
 
 -   And probably some other paleo things that will be relevant...
 
-## Methods to use
+# Methods to use
 
 **Paleo food web inference model** (PFIM; @shaw2024): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links.
 
@@ -112,6 +112,14 @@ $$ {#eq-bodymass}
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha = 1.41$, $\delta = 3.75$, and $\gamma = 1.87$.
 
 **Niche model** [@williams2000]: The niche model introduces the idea that species interactions are based on the 'feeding niche' of a species. Broadly, all species are randomly assigned a 'feeding niche' range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species' niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the 'complexity' of the niche model does not improve on its ability to generate a more ecologically 'correct' network [@williams2008].
+
+# Results
+
+## Comparing predicted networks
+
+[stuff](figures/summary.png){#fig-summary}
+
+## Comparing inference
 
 # References {.unnumbered}
 
