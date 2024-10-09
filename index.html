@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.23">
+<meta name="generator" content="quarto-1.6.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2024-10-08">
+<meta name="dcterms.date" content="2024-10-09">
 <meta name="keywords" content="food web, network construction, scientific ignorance">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -100,10 +100,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction,scientific ignorance">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2024-10-08">
-<meta name="citation_cover_date" content="2024-10-08">
+<meta name="citation_publication_date" content="2024-10-09">
+<meta name="citation_cover_date" content="2024-10-09">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-10-08">
+<meta name="citation_online_date" content="2024-10-09">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -156,7 +156,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">October 8, 2024</p>
+              <p class="date">October 9, 2024</p>
             </div>
           </div>
           
@@ -189,12 +189,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-build-paleo-food-webs" id="toc-why-build-paleo-food-webs" class="nav-link active" data-scroll-target="#why-build-paleo-food-webs"><span class="header-section-number">0.1</span> Why build paleo food webs?</a></li>
-  <li><a href="#how-do-we-do-it" id="toc-how-do-we-do-it" class="nav-link" data-scroll-target="#how-do-we-do-it"><span class="header-section-number">0.2</span> How do we do it?</a></li>
-  <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">0.3</span> Understanding how networks are different</a></li>
-  <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">0.4</span> Challenges specific to paleo communities/networks</a></li>
-  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">0.5</span> Dataset Overview</a></li>
-  <li><a href="#methods-to-use" id="toc-methods-to-use" class="nav-link" data-scroll-target="#methods-to-use"><span class="header-section-number">0.6</span> Methods to use</a></li>
+  <li><a href="#why-build-paleo-food-webs" id="toc-why-build-paleo-food-webs" class="nav-link active" data-scroll-target="#why-build-paleo-food-webs"><span class="header-section-number">1</span> Why build paleo food webs?</a></li>
+  <li><a href="#how-do-we-do-it" id="toc-how-do-we-do-it" class="nav-link" data-scroll-target="#how-do-we-do-it"><span class="header-section-number">2</span> How do we do it?</a></li>
+  <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">3</span> Understanding how networks are different</a></li>
+  <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">5</span> Dataset Overview</a></li>
+  <li><a href="#methods-to-use" id="toc-methods-to-use" class="nav-link" data-scroll-target="#methods-to-use"><span class="header-section-number">6</span> Methods to use</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">7</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#comparing-predicted-networks" id="toc-comparing-predicted-networks" class="nav-link" data-scroll-target="#comparing-predicted-networks"><span class="header-section-number">7.1</span> Comparing predicted networks</a></li>
+  <li><a href="#comparing-inference" id="toc-comparing-inference" class="nav-link" data-scroll-target="#comparing-inference"><span class="header-section-number">7.2</span> Comparing inference</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -208,15 +213,15 @@ window.Quarto = {
   
 
 
-<section id="why-build-paleo-food-webs" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="why-build-paleo-food-webs"><span class="header-section-number">0.1</span> Why build paleo food webs?</h2>
+<section id="why-build-paleo-food-webs" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Why build paleo food webs?</h1>
 <ul>
 <li><p>Because its interesting?</p></li>
 <li><p>Value in using hindcasting to aid in forecasting. <em>e.g.,</em> the Toarcian ms <span class="citation" data-cites="dunhill2024">(<a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a>)</span> shows how we can use these paleo communities to understand trophic-level responses to extinctions.</p></li>
 </ul>
 </section>
-<section id="how-do-we-do-it" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="how-do-we-do-it"><span class="header-section-number">0.2</span> How do we do it?</h2>
+<section id="how-do-we-do-it" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> How do we do it?</h1>
 <ul>
 <li><p>There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.</p></li>
 <li><p>There are a handful that have been developed specifically in the context of paleo settings <em>e.g.,</em> TODO but we can also talk about those that might have been developed/tested in contemporary settings but still have applicability in paleo ones.</p></li>
@@ -231,24 +236,24 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="understanding-how-networks-are-different" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="understanding-how-networks-are-different"><span class="header-section-number">0.3</span> Understanding how networks are different</h2>
+<section id="understanding-how-networks-are-different" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Understanding how networks are different</h1>
 <p>It is important to be aware that networks can be configured in different ways depending on how the interactions are defined (Strydom, in prep). Basically we have metawebs, which represent <em>potential</em> interactions, and realised networks, which represent the subset of potential that are realised as a result of community and environmental context.</p>
 </section>
-<section id="challenges-specific-to-paleo-communitiesnetworks" class="level2" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">0.4</span> Challenges specific to paleo communities/networks</h2>
+<section id="challenges-specific-to-paleo-communitiesnetworks" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</h1>
 <p>Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific ‘parts’ of an individual (hard and bone-y bits), this means we don’t have a complete picture of the physical traits of species <em>e.g.,</em> no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no <em>real</em> idea of spatial arrangements, compounded that fossils aren’t necessarily conserved/found ‘in situ’ but can be moved (<em>e.g.,</em> alluvial deposits). Methodologically speaking some tools that ‘learn’ from contemporary communities (<em>e.g.,</em> Strydom, Caron) will become ‘worse’ the further one goes back in time since species then look very different from now but can still be useful for ‘recent’ communities (<em>e.g.,</em> fricke).</p>
 </section>
-<section id="dataset-overview" class="level2" data-number="0.5">
-<h2 data-number="0.5" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">0.5</span> Dataset Overview</h2>
+<section id="dataset-overview" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Dataset Overview</h1>
 <ul>
 <li><p>Species</p></li>
 <li><p>Time/space</p></li>
 <li><p>And probably some other paleo things that will be relevant…</p></li>
 </ul>
 </section>
-<section id="methods-to-use" class="level2" data-number="0.6">
-<h2 data-number="0.6" class="anchored" data-anchor-id="methods-to-use"><span class="header-section-number">0.6</span> Methods to use</h2>
+<section id="methods-to-use" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Methods to use</h1>
 <p><strong>Paleo food web inference model</strong> (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links.</p>
 <p><strong>Allometric diet breadth model</strong> (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>): The ADBM is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
 <p><span id="eq-adbm"><span class="math display">\[
@@ -273,6 +278,16 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 \tag{2}\]</span></span></p>
 <p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\delta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
 <p><strong>Niche model</strong> <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span>: The niche model introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
+</section>
+<section id="results" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
+<section id="comparing-predicted-networks" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="comparing-predicted-networks"><span class="header-section-number">7.1</span> Comparing predicted networks</h2>
+<p><a href="figures/summary.png" id="fig-summary">stuff</a></p>
+</section>
+<section id="comparing-inference" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="comparing-inference"><span class="header-section-number">7.2</span> Comparing inference</h2>
+</section>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
@@ -307,13 +322,13 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2024,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2024-10-08},
+  date = {2024-10-09},
   langid = {en},
   abstract = {TODO.}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2024. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. October 8, 2024.
+Reconstructing Paleo Food Webs.”</span> TBD. October 9, 2024.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
