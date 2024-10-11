@@ -39,6 +39,8 @@ size_files <- list.files(path = "data/raw", pattern = "size.csv", full.names = T
 for (i in seq_along(size_files)) {
    
    df <- read.csv(size_files[i])  %>%
+   # standardise strings
+   mutate(species = str_replace_all(species, " ", "_")) %>%
    select(species, Height..interpreted., Length..interpreted.)  %>%
    group_by(species)  %>%
    summarise(height = mean(Height..interpreted.),
