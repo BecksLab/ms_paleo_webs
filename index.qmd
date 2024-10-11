@@ -121,6 +121,10 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ## Comparing inference
 
+## Extinctions
+
+![stuff](figures/extinction.png){#fig-extinction}
+
 # References {.unnumbered}
 
 ::: {#refs}
