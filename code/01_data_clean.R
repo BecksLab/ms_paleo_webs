@@ -40,6 +40,9 @@ for (i in seq_along(size_files)) {
    
    df <- read.csv(size_files[i])  %>%
    # standardise strings
+   # first all punctuation = GONE
+   mutate(species = str_replace_all(species, "[:punct:]", "")) %>% 
+   # then all whitespace
    mutate(species = str_replace_all(species, " ", "_")) %>%
    select(species, Height..interpreted., Length..interpreted.)  %>%
    group_by(species)  %>%
