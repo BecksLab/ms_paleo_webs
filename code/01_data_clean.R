@@ -5,7 +5,11 @@ trait_files <- list.files(path = "data/raw", pattern = "traits.csv", full.names 
 
 for (i in seq_along(trait_files)) {
 
-    df <- read.csv(trait_files[i])  %>%
+    df <- read.csv(trait_files[i])   %>%
+   # standardise strings
+   # mutate(species = str_replace_all(species, "[:punct:]", "")) %>% 
+   # then all whitespace
+   mutate(species = str_replace_all(species, " ", "_")) %>%
         # standardise strings
         mutate_all(~str_replace_all(., "-", "_"))  %>%
         # remove for now
@@ -40,8 +44,7 @@ for (i in seq_along(size_files)) {
    
    df <- read.csv(size_files[i])  %>%
    # standardise strings
-   # first all punctuation = GONE
-   mutate(species = str_replace_all(species, "[:punct:]", "")) %>% 
+   # mutate(species = str_replace_all(species, "[:punct:]", "")) %>% 
    # then all whitespace
    mutate(species = str_replace_all(species, " ", "_")) %>%
    select(species, Height..interpreted., Length..interpreted.)  %>%
