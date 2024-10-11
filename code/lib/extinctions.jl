@@ -9,11 +9,12 @@ _species_removal(N::SpeciesInteractionNetwork, end_richness::Int64)
     Internal function that does the species removal simulations
 """
 function _species_removal(network_series::Vector{SpeciesInteractionNetwork{<:Partiteness, <:Binary}}, 
-                          extinction_list::Vector{String},
+                          extinction_list::Vector{Symbol},
                           end_richness::Int64)
 
     for (i, sp_to_remove) in enumerate(extinction_list)
-        species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
+        N = network_series[i]
+        species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(N))
         K = subgraph(N, species_to_keep)
         K = simplify(K)
         push!(network_series, K)
@@ -38,7 +39,7 @@ function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
         throw(ArgumentError("Richness of staring community is less than final community"))
     end
 
-    extinction_list = StatsBase.shuffle(SpeciesInteractionNetworks.species(N))
+    extinction_list = StatsBase.shuffle(species(N))
     network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}()
     # push initial network
     push!(network_series, deepcopy(N))
