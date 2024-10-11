@@ -50,7 +50,7 @@ for i in eachindex(matrix_names)
 
     # generate extinction sequence
 
-    N = extinction(pre_comm.network[1], post_rich)
+    extinction_series = extinction(pre_comm.network[1], post_rich)
 
-    return _network_summary(N)
+    return _network_summary(extinction_series[end])
 end
