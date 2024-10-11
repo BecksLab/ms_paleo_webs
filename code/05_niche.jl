@@ -1,5 +1,6 @@
 using CSV
 using DataFrames
+using JLD2
 using SpeciesInteractionNetworks
 
 include("lib/internals.jl")

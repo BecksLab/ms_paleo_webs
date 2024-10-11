@@ -1,6 +1,7 @@
 using CSV
 using DataFrames
 using Distributions
+using JLD2
 using SpeciesInteractionNetworks
 
 include("lib/adbm/adbm.jl")

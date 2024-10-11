@@ -1,7 +1,9 @@
 using CSV
 using DataFrames
+using JLD2
 
 include("lib/extinctions.jl")
+include("lib/internals.jl")
 
 # set seed
 import Random
