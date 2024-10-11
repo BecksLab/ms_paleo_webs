@@ -4,6 +4,29 @@ using SpeciesInteractionNetworks
 using StatsBase
 
 """
+_species_removal(N::SpeciesInteractionNetwork, end_richness::Int64)
+
+    Internal function that does the species removal simulations
+"""
+function _species_removal(network_series::Vector{SpeciesInteractionNetwork{<:Partiteness, <:Binary}}, 
+                          extinction_list::Vector{String},
+                          end_richness::Int64)
+
+    for (i, sp_to_remove) in enumerate(extinction_list)
+        species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
+        K = subgraph(N, species_to_keep)
+        K = simplify(K)
+        push!(network_series, K)
+        if richness(K) <= end_richness
+            break
+        else
+            continue
+        end
+    end
+    return network_series
+end
+
+"""
 extinction(N::SpeciesInteractionNetwork, end_richness::Int64)
 
     Function to simulate random, cascading extinctions of an initial network `N` until 
@@ -12,27 +35,15 @@ extinction(N::SpeciesInteractionNetwork, end_richness::Int64)
 function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, 
                     end_richness::Int64)
     if richness(N) <= end_richness
-        throw(ArgumentError("Richness of final community is less than starting community"))
+        throw(ArgumentError("Richness of staring community is less than final community"))
     end
 
-    network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}(undef, richness(N)+1)
-    network_series[1] = deepcopy(N)
-    final_network = deepcopy(N)
     extinction_list = StatsBase.shuffle(SpeciesInteractionNetworks.species(N))
+    network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}()
+    # push initial network
+    push!(network_series, deepcopy(N))
 
-    for (i, sp_to_remove) in enumerate(extinction_list)
-            species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
-            K = subgraph(N, species_to_keep)
-            K = simplify(K)
-            network_series[i+1] = K
-        if richness(K) <= end_richness
-            final_network = K
-            break
-        else
-            continue
-        end
-    end
-    return final_network
+    return _species_removal(network_series, extinction_list, end_richness)
 end
 
 """
@@ -52,23 +63,11 @@ function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
         throw(ArgumentError("Species in the network do not match those specified in `extinction_list`"))
     end
 
-    network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}(undef, richness(N)+1)
-    network_series[1] = deepcopy(N)
-    final_network = deepcopy(N)
+    network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}()
+    # push initial network
+    push!(network_series, deepcopy(N))
 
-    for (i, sp_to_remove) in enumerate(extinction_list)
-            species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
-            K = subgraph(N, species_to_keep)
-            K = simplify(K)
-            network_series[i+1] = K
-        if richness(K) <= end_richness
-            final_network = K
-            break
-        else
-            continue
-        end
-    end
-    return final_network
+    return _species_removal(network_series, extinction_list, end_richness)
 end
 
 
