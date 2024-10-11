@@ -90,7 +90,7 @@ function _PFIM_network(PFIMcommunity::Vector{PFIMspecies})
         end
 
     # create SpeciesInteractionNetwork
-    nodes = Unipartite(getproperty.(PFIMcommunity, :species))
+    nodes = Unipartite(Symbol.(getproperty.(PFIMcommunity, :species)))
     edges = Binary(int_matrix)
     network = SpeciesInteractionNetwork(nodes, edges)
     return network, int_matrix

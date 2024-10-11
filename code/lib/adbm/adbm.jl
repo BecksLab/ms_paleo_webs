@@ -204,6 +204,6 @@ function adbmmodel(df::DataFrame, parameters::Dict{Symbol,Any}, biomass::Vector{
         end
     end
     edges = Binary(adbmMAT)
-    nodes = Unipartite(df.species) # return actual species name metadata
+    nodes = Unipartite(Symbol.(df.species)) # return actual species name metadata
     return SpeciesInteractionNetworks.SpeciesInteractionNetwork(nodes, edges)
 end
