@@ -75,3 +75,6 @@ for i in eachindex(matrix_names)
             push!(extinction_results, D)
     end
 end
+
+# write summaries as .csv
+CSV.write("../data/processed/extinctions.csv", extinction_results[:,setdiff(names(extinction_results), ["network"])])
