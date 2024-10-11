@@ -36,3 +36,4 @@ data/clean/
 
 /.luarc.json
 .vscode/settings.json
+code/_scrap.jl
