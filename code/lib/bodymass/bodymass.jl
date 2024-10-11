@@ -13,7 +13,8 @@ using SpeciesInteractionNetworks
     Impliments the Bodymass-ratio model as per Roht et al. (2010), 
     however does not include the latent trait variables. α, β, and γ 
     paramters are set to those used by Yeakel (2014) and so only
-    requires a species list and their bodymass.
+    requires a species list and their bodymass and returns a 
+    `SpeciesInteractionNetwork`.
     
     #### References
     
