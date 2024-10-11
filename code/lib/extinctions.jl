@@ -1,15 +1,16 @@
+using DataFrames
 using DataFramesMeta
 using SpeciesInteractionNetworks
 using StatsBase
 
 """
-extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, end_richness::Int64)
+extinction(N::SpeciesInteractionNetwork, end_richness::Int64)
 
-    Function to simulate secondary extinctions using an initial network N unitl the richness is 
-    less than or equal to that specified by `end_richness`.
+    Function to simulate random, cascading extinctions of an initial network `N` until 
+    the richness is less than or equal to that specified by `end_richness`.
 """
-
-function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, end_richness::Int64)
+function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, 
+                    end_richness::Int64)
     if richness(N) <= end_richness
         throw(ArgumentError("Richness of final community is less than starting community"))
     end
@@ -17,10 +18,9 @@ function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, end_ri
     network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}(undef, richness(N)+1)
     network_series[1] = deepcopy(N)
     final_network = deepcopy(N)
-    # order of species to remove
-    extinction_sequence = StatsBase.shuffle(SpeciesInteractionNetworks.species(N))
+    extinction_list = StatsBase.shuffle(SpeciesInteractionNetworks.species(N))
 
-    for (i, sp_to_remove) in enumerate(extinction_sequence)
+    for (i, sp_to_remove) in enumerate(extinction_list)
             species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
             K = subgraph(N, species_to_keep)
             K = simplify(K)
@@ -36,58 +36,68 @@ function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, end_ri
 end
 
 """
-_extinction_sequence(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, end_richness::Int64)
+extinction(N::SpeciesInteractionNetwork, extinction_list::Vector{String}, end_richness::Int64)
 
-    Determine the order of species extinction based on the desired mechanism.
+    Function to simulate cascading extinctions of an initial network `N` until the richness
+    is less than or equal to that specified by `end_richness`. The order of species removal
+    (extinction) is specified by `extinction_list`
 """
+function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, 
+                    extinction_list::Vector{String}, 
+                    end_richness::Int64)
+    if richness(N) <= end_richness
+        throw(ArgumentError("Richness of final community is less than starting community"))
+    end
+    if !issubset(species(N), extinction_list)
+        throw(ArgumentError("Species in the network do not match those specified in `extinction_list`"))
+    end
 
-function _extinction_sequence(
-    N::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
-    mechanism::String;
-    traits::DataFrame = DataFrame(A = [1, 2])
+    network_series = Vector{SpeciesInteractionNetwork{<:Partiteness,<:Binary}}(undef, richness(N)+1)
+    network_series[1] = deepcopy(N)
+    final_network = deepcopy(N)
+
+    for (i, sp_to_remove) in enumerate(extinction_list)
+            species_to_keep = filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(network_series[i]))
+            K = subgraph(N, species_to_keep)
+            K = simplify(K)
+            network_series[i+1] = K
+        if richness(K) <= end_richness
+            final_network = K
+            break
+        else
+            continue
+        end
+    end
+    return final_network
+end
+
+
+"""
+extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame)
+
+    Determine the order of species extinction for categorical traits. Using a specified hierarchy
+"""
+function extinction_sequence(
+    hierarchy::Vector{String},
+    trait_data::DataFrame
     )
-
     # data checks
-    if mechanism ∉ ["random", "size_descend", "size_ascend", "tiering_descend", "tiering_ascend", "motility_fast_non", "motility_non_fast", "generality_ascend", "generality_descend", "vulnerability_ascend", "vulnerability_descend"]
-        error("$(mechanim) is not a recognised extinction mechanim")
-    end
-    if mechanism ∈ ["size_descend", "size_ascend", "tiering_descend", "tiering_ascend", "motility_fast_non", "motility_non_fast"]
-        for (i, v) in enumerate(["species", "motility", "tiering", "feeding", "size"])
-            if v ∉ names(traits)
-                error("Missing $(v) variable as a column in DataFrame, add or rename")
-            end
-        end
-        if SpeciesInteractionNetworks.species(N) ∉ names(traits)
-            error("Not all species in network N are listed in the traits data")
-        end
+    if !issubset(String.(trait_data.trait), hierarchy)
+        error("Not all traits in `traits_data` are listed in `hierarchy`")
     end
 
-    if mechanism == "random"
-        spp_list = StatsBase.shuffle(SpeciesInteractionNetworks.species(N))
-    elseif mechanism == "size_descend"
-        order = ["very_large", "large", "medium", "small", "tiny"]
-        @rorderby traits findfirst(==(:size), order)
-        spp_list = Symbol.(df.species)
-    elseif mechanism == "size_ascend"
-        order = ["tiny", "small", "medium", "large", "very_large"]
-        @rorderby traits findfirst(==(:size), order)
-        spp_list = Symbol.(df.species)
-    elseif mechanism == "tiering_descend"
-    elseif mechanism == "tiering_ascend"
-    elseif mechanism == "motility_fast_non"
-    elseif mechanism == "motility_non_fast"
-    elseif mechanism == "generality_ascend"
-        gen = SpeciesInteractionNetworks.generality(N)
-        spp_list = keys(sort(gen; byvalue = true))
-    elseif mechanism == "generality_descend"
-        spp_list = gen = SpeciesInteractionNetworks.generality(N)
-        keys(sort(gen; byvalue = true, rev=true))
-    elseif mechanism == "vulnerability_ascend"
-        vul = vulnerability(N)
-        spp_list = keys(sort(vul; byvalue = true))
-    else mechanism == "vulnerability_descend"
-        vul = vulnerability(N)
-        spp_list = keys(sort(vul; byvalue = true, rev=true))
-    end
-    return spp_list
+    df = @rorderby trait_data findfirst(==(:trait), hierarchy)
+    return String.(df.species)
+end
+
+"""
+extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame)
+
+    Determine the order of species extinction for numeric traits.
+"""
+function extinction_sequence(
+    trait_dict::Dict{String, Int64};
+    ascending::Bool=false
+    )
+    return keys(sort(trait_dict; byvalue = true, rev=ascending))
 end
