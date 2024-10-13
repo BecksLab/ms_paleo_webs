@@ -25,7 +25,8 @@ df = list.files(path = "data/processed/", pattern = ".csv", full.names = TRUE) %
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
-ggplot(df,
+summary <-
+    ggplot(df,
         aes(x = factor(`id`), 
             y = stat_val, 
             colour = model,
@@ -43,6 +44,7 @@ ggplot(df,
             axis.ticks.x = element_blank())
 
 ggsave("figures/summary.png",
+       summary,
        width = 9000,
        height = 5000,
        units = "px",
@@ -61,26 +63,22 @@ df_ext <- read_csv("data/processed/extinctions/extinctions.csv") %>%
         pivot_longer(
             cols = -c(id, model), 
             names_to = "stat",
-            values_to = "stat_val")
+            values_to = "stat_val") %>% 
+        filter(id == "pre") %>% 
+        mutate(id = "post") %>% 
+        rbind(.,
+              df %>%
+                filter(id == "pre"))
 
-df_ext$id <- ordered(df_ext$id, levels=c("pre", "during"))
+df_ext$id <- ordered(df_ext$id, levels = c("pre", "during", "post"))
 
-ggplot(df_ext,
-        aes(x = factor(`id`), 
+summary +
+    geom_line(data = df_ext,
+            aes(x = factor(`id`),
             y = stat_val, 
             colour = model,
-            group = model)) +
-    geom_line() +
-    geom_point() +
-    facet_wrap(vars(stat),
-                scales = 'free') +
-    scale_size(guide = 'none') +
-    theme_classic() +
-    xlab("time") +
-    ylab("value") +
-    theme(panel.border = element_rect(colour = 'black',
-                                      fill = "#ffffff00"),
-            axis.ticks.x = element_blank())
+            group = model),
+            linetype = "dashed")
 
 ggsave("figures/extinction.png",
        width = 9000,

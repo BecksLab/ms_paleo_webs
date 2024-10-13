@@ -19,6 +19,7 @@
 
 }
 
-\caption{\label{fig-extinction}stuff}
+\caption{\label{fig-extinction}Dashed line indicates the extinction
+simulation results (post value, start values are estimated)}
 
 \end{figure}

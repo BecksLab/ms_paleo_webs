@@ -123,7 +123,7 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ## Extinctions
 
-![stuff](figures/extinction.png){#fig-extinction}
+![Dashed line indicates the extinction simulation results (post value, start values are estimated)](figures/extinction.png){#fig-extinction}
 
 # References {.unnumbered}
 
