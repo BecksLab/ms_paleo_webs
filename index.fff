@@ -19,7 +19,23 @@
 
 }
 
-\caption{\label{fig-extinction}Dashed line indicates the extinction
-simulation results (post value, start values are estimated)}
+\caption{\label{fig-extinction}Dashed line indicates the (mean)
+extinction simulation results (post value, start values are those
+estimated by the relevant model)}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\includegraphics{figures/extinction_all_results.png}
+
+}
+
+\caption{\label{fig-extinction}Dark line indicates mean extinction
+simulation results the lighter lines show each model individually, which
+is also denoted by linetype}
 
 \end{figure}

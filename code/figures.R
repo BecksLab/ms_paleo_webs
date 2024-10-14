@@ -53,7 +53,7 @@ ggsave("figures/summary.png",
 #### Extinctions ####
 
 df_ext <- read_csv("data/processed/extinctions/extinctions.csv") %>% 
-        select(-c(id, links, richness, extinction_mechanism)) %>% 
+        select(-c(id, links, richness)) %>% 
         # to get the ratio
         mutate(ratio = top/basal,
                 top = NULL,
@@ -61,26 +61,73 @@ df_ext <- read_csv("data/processed/extinctions/extinctions.csv") %>%
                 id = time,
                 time = NULL) %>%
         pivot_longer(
-            cols = -c(id, model), 
+            cols = -c(id, model, extinction_mechanism), 
             names_to = "stat",
-            values_to = "stat_val") %>% 
+            values_to = "end_val") %>% 
         filter(id == "pre") %>% 
         mutate(id = "post") %>% 
-        rbind(.,
+        left_join(.,
               df %>%
-                filter(id == "pre"))
+                filter(id == "pre") %>% 
+                select(-id)) %>% 
+        mutate(xstart = "pre",
+                xend = id,
+                start_val = stat_val,
+                stat_val = NULL,
+                id = NULL)
 
-df_ext$id <- ordered(df_ext$id, levels = c("pre", "during", "post"))
+df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
+df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
+
+df_ext_summ <-
+        df_ext %>%
+                select(model, stat, end_val, start_val) %>% 
+                pivot_longer(cols = c(end_val, start_val)) %>% 
+                group_by(model, stat, name) %>% 
+                summarise(y = mean(value)) %>%
+                mutate(name = ifelse(name == "end_val",
+                "post",
+                "pre"))
 
 summary +
-    geom_line(data = df_ext,
-            aes(x = factor(`id`),
-            y = stat_val, 
-            colour = model,
+    geom_line(data = df_ext_summ,
+            aes(x = factor(name),
+            y = y, 
             group = model),
             linetype = "dashed")
 
 ggsave("figures/extinction.png",
+       width = 9000,
+       height = 6000,
+       units = "px",
+       dpi = 600)
+
+ggplot() +
+    geom_segment(data = df_ext,
+            aes(x = xstart,
+            y = start_val, 
+            xend = xend,
+            yend = end_val,
+            colour = model,
+            group = model,
+            linetype = extinction_mechanism),
+        alpha = 0.3) +
+    geom_line(data = df_ext_summ,
+                aes(x = factor(name),
+                y = y,
+                colour = model,
+            group = model)) +
+    facet_wrap(vars(stat),
+                scales = 'free') +
+    scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("time") +
+    ylab("value") +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+            axis.ticks.x = element_blank())
+
+ggsave("figures/extinction_all_results.png",
        width = 9000,
        height = 5000,
        units = "px",

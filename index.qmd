@@ -123,7 +123,9 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ## Extinctions
 
-![Dashed line indicates the extinction simulation results (post value, start values are estimated)](figures/extinction.png){#fig-extinction}
+![Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model)](figures/extinction.png){#fig-extinction}
+
+![Dark line indicates mean extinction simulation results the lighter lines show each model individually, which is also denoted by linetype](figures/extinction_all_results.png){#fig-extinction}
 
 # References {.unnumbered}
 
