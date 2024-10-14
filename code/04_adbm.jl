@@ -20,20 +20,12 @@ trait_names = readdir("../data/clean/trait")
 trait_names = replace.(trait_names, ".csv" => "")
 
 for i in eachindex(size_names)
-    
+
     size_file = size_names[i]
     trait_file = trait_names[i]
-    bodymass = DataFrame(
-        CSV.File.(
-            joinpath("../data/clean/size", "$size_file.csv"),
-        ),
-    )
+    bodymass = DataFrame(CSV.File.(joinpath("../data/clean/size", "$size_file.csv"),))
     bodymass = rename(bodymass, :size => :bodymass)
-    trait = DataFrame(
-        CSV.File.(
-            joinpath("../data/clean/trait", "$trait_file.csv"),
-        ),
-    )
+    trait = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$trait_file.csv"),))
 
     df = innerjoin(trait, bodymass, on = :species)
 
@@ -49,4 +41,7 @@ end
 # write summaries as .csv
 CSV.write("../data/processed/topology_adbm.csv", topology)
 # write networks as object
-save_object("../data/processed/networks/adbm_networks.jlds", topology[:, ["id", "model", "network"]])
+save_object(
+    "../data/processed/networks/adbm_networks.jlds",
+    topology[:, ["id", "model", "network"]],
+)

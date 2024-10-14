@@ -24,7 +24,7 @@ function adbm_parameters(
     Hmethod::Symbol = :ratio,
     Nmethod::Symbol = :original,
 )
-    
+
     # data checks
     if "tiering" ∉ names(df)
         error("Missing $(v) variable as a column in DataFrame, add or rename")

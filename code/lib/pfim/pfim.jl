@@ -86,8 +86,8 @@ function _PFIM_network(PFIMcommunity::Vector{PFIMspecies})
 
     # data check
     if sum(int_matrix) == 0
-            error("No viable interactions for this community")
-        end
+        error("No viable interactions for this community")
+    end
 
     # create SpeciesInteractionNetwork
     nodes = Unipartite(Symbol.(getproperty.(PFIMcommunity, :species)))
@@ -154,5 +154,5 @@ function PFIM(data::DataFrame; y::Float64 = 2.5, downsample::Bool = true)
     end
 
     return network
-    
+
 end

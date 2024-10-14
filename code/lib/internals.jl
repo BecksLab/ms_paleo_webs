@@ -68,7 +68,9 @@ function model_summary(
 
     # data checks
     if model_name ∉ ["bodymassratio", "pfim", "niche", "adbm"]
-        error("Invalid value for model_name -- must be one of bodymassratio, pfim, niche, or adbm")
+        error(
+            "Invalid value for model_name -- must be one of bodymassratio, pfim, niche, or adbm",
+        )
     end
     if model_name ∈ ["bodymassratio", "adbm"] && length(bodymass) != length(df.species)
         error("Invalid length for bodymass -- must be length $(length(df.species))")

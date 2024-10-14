@@ -19,13 +19,9 @@ matrix_names = readdir("../data/clean/trait")
 matrix_names = replace.(matrix_names, ".csv" => "")
 
 for i in eachindex(matrix_names)
-    
+
     file_name = matrix_names[i]
-    df = DataFrame(
-        CSV.File.(
-            joinpath("../data/clean/trait", "$file_name.csv"),
-        ),
-    )
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
 
     d = model_summary(df, file_name, "niche"; connectance = Co)
 
@@ -36,4 +32,7 @@ end
 # write summaries as .csv
 CSV.write("../data/processed/topology_niche.csv", topology)
 # write networks as object
-save_object("../data/processed/networks/niche_networks.jlds", topology[:, ["id", "model", "network"]])
+save_object(
+    "../data/processed/networks/niche_networks.jlds",
+    topology[:, ["id", "model", "network"]],
+)
