@@ -25,7 +25,6 @@ funding: "The author(s) received no specific funding for this work. Well they di
 keywords:
   - food web
   - network construction
-  - scientific ignorance
 abstract: |
   TODO.
 date: last-modified
