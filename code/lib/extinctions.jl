@@ -55,7 +55,7 @@ extinction(N::SpeciesInteractionNetwork, extinction_list::Vector{String}, end_ri
     (extinction) is specified by `extinction_list`
 """
 function extinction(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, 
-                    extinction_list::Vector{String}, 
+                    extinction_list::Vector{Symbol}, 
                     end_richness::Int64)
     if richness(N) <= end_richness
         throw(ArgumentError("Richness of final community is less than starting community"))
@@ -96,8 +96,8 @@ extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame)
     Determine the order of species extinction for numeric traits.
 """
 function extinction_sequence(
-    trait_dict::Dict{String, Int64};
+    trait_dict::Dict{Symbol, Int64};
     ascending::Bool=false
     )
-    return keys(sort(trait_dict; byvalue = true, rev=ascending))
+    return collect(keys(sort(trait_dict; byvalue = true, rev=ascending)))
 end

@@ -36,6 +36,7 @@ end
 traits = unique(traits)
 
 # Extinction sequence
+
 # for results
 extinction_results = topo_df()
 # add addition column
@@ -60,7 +61,7 @@ for i in eachindex(matrix_names)
             # get post extinction richness
             post_rich = richness(df[occursin.("post", df.id), :network][1])
 
-            # generate extinction sequence
+            # random extinction
             extinction_series = extinction(pre_comm.network[1], post_rich)
     
             # summarise extinction network
@@ -68,11 +69,34 @@ for i in eachindex(matrix_names)
     
             # append additional info
             D[:model] = pre_comm.model[1]
-            D[:extinction_mechanism] = "Random"
+            D[:extinction_mechanism] = "random"
             D[:id] = pre_comm.id[1]
             D[:time] = j
-    
+
+            # send to results
             push!(extinction_results, D)
+
+            # numeric extinctions
+            for k in ["generality", "vulnerability"]
+
+                f = getfield(Main, Symbol(k))
+
+                extinction_list = extinction_sequence(f(pre_comm.network[1]))
+
+                # generate extinction sequence
+                extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
+    
+                # summarise extinction network
+                D = _network_summary(extinction_series[end])
+    
+                # append additional info
+                D[:model] = pre_comm.model[1]
+                D[:extinction_mechanism] = k
+                D[:id] = pre_comm.id[1]
+                D[:time] = j
+    
+                push!(extinction_results, D)
+            end
     end
 end
 
