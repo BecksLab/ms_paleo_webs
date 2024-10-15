@@ -90,7 +90,7 @@ for i in eachindex(matrix_names)
         # categorical extinctions
         # note we cant do this with the niche model...
         if pre_comm.model[1] != "niche"
-            for k in eachindex(hierarchies)
+            for k in eachindex(hierarchies[1])
 
                 trait_data = traits[:, [:species, hierarchies[1][k]]]
                 rename!(trait_data, hierarchies[1][k] => :trait)
