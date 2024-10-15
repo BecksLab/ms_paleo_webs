@@ -1,7 +1,8 @@
 library(here)
 library(tidyverse)
 
-here("code")
+# set path to code sub dir
+setwd(here("code"))
 
 # clean traits data
 trait_files <- list.files(path = "../data/raw", pattern = "traits.csv", full.names = TRUE)
