@@ -20,10 +20,16 @@ function _species_removal(
             filter(sp -> sp != sp_to_remove, SpeciesInteractionNetworks.species(N))
         K = subgraph(N, species_to_keep)
         K = simplify(K)
-        push!(network_series, K)
-        if richness(K) <= end_richness
+        # end if target richness reached
+        if richness(K) == end_richness
+            push!(network_series, K)
             break
+        # if richenss below target then we break without pushing
+        elseif richness(K) < end_richness
+            break
+        # continue removing species
         else
+            push!(network_series, K)
             continue
         end
     end
@@ -95,7 +101,7 @@ function extinction_sequence(hierarchy::Vector{String}, trait_data::DataFrame)
     end
 
     df = @rorderby trait_data findfirst(==(:trait), hierarchy)
-    return String.(df.species)
+    return Symbol.(df.species)
 end
 
 """
