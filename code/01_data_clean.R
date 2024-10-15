@@ -1,7 +1,10 @@
+library(here)
 library(tidyverse)
 
+here("code")
+
 # clean traits data
-trait_files <- list.files(path = "data/raw", pattern = "traits.csv", full.names = TRUE)
+trait_files <- list.files(path = "../data/raw", pattern = "traits.csv", full.names = TRUE)
 
 for (i in seq_along(trait_files)) {
   
@@ -29,7 +32,8 @@ for (i in seq_along(trait_files)) {
       # same for feeding
       feeding = case_when(
         feeding == "microcarnivore" ~ "carnivore",
-        TRUE ~ as.character(feeding)))
+        TRUE ~ as.character(feeding))) %>% 
+    filter(species != "Hemigordius_baoqingensis")
   
   # write as clean data
   write.csv(df, str_replace(trait_files[i], "raw.", "clean/trait/"),
@@ -38,7 +42,7 @@ for (i in seq_along(trait_files)) {
 
 # clean size data
 
-size_files <- list.files(path = "data/raw", pattern = "size.csv", full.names = TRUE)
+size_files <- list.files(path = "../data/raw", pattern = "size.csv", full.names = TRUE)
 
 for (i in seq_along(size_files)) {
   
@@ -47,6 +51,8 @@ for (i in seq_along(size_files)) {
     # mutate(species = str_replace_all(species, "[:punct:]", "")) %>% 
     # then all whitespace
     mutate(species = str_replace_all(species, " ", "_")) %>%
+    # standardise strings
+    mutate_all(~str_replace_all(., "-", "_")) %>%
     select(species, Height..interpreted., Length..interpreted.)  %>%
     group_by(species)  %>%
     summarise(height = mean(Height..interpreted.),
@@ -77,5 +83,3 @@ list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>
   distinct() %>%
   write.csv(., "../data/clean/extinction/traits.csv",
             row.names = FALSE)
-
-
