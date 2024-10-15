@@ -1,10 +1,14 @@
+library(here)
 library(readr)
 library(scales)
 library(tidyverse)
 
+# set path to code sub dir
+setwd(here("code"))
+
 #### Structure ####
 
-df <- list.files(path = "data/processed/", pattern = ".csv", full.names = TRUE) %>% 
+df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>% 
   select(-c(network, richness)) %>% 
@@ -39,11 +43,12 @@ summary <-
   theme_classic() +
   xlab("time") +
   ylab("value") +
+  coord_cartesian(clip = "off") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
 
-ggsave("figures/summary.png",
+ggsave("../figures/summary.png",
        summary,
        width = 9000,
        height = 5000,
@@ -52,7 +57,7 @@ ggsave("figures/summary.png",
 
 #### Extinctions ####
 
-df_ext <- read_csv("data/processed/extinctions/extinctions.csv") %>% 
+df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>% 
   select(-c(id, links, richness)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
@@ -96,7 +101,7 @@ summary +
                 group = model),
             linetype = "dashed")
 
-ggsave("figures/extinction.png",
+ggsave("../figures/extinction.png",
        width = 9000,
        height = 6000,
        units = "px",
@@ -123,11 +128,12 @@ ggplot() +
   theme_classic() +
   xlab("time") +
   ylab("value") +
+  coord_cartesian(clip = "off") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
 
-ggsave("figures/extinction_all_results.png",
+ggsave("../figures/extinction_all_results.png",
        width = 9000,
        height = 5000,
        units = "px",
