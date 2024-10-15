@@ -52,7 +52,7 @@ for (i in seq_along(size_files)) {
     # then all whitespace
     mutate(species = str_replace_all(species, " ", "_")) %>%
     # standardise strings
-    mutate_all(~str_replace_all(., "-", "_")) %>%
+    mutate(species = str_replace_all(species, "-", "_")) %>%
     select(species, Height..interpreted., Length..interpreted.)  %>%
     group_by(species)  %>%
     summarise(height = mean(Height..interpreted.),
