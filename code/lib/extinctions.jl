@@ -90,14 +90,19 @@ end
 
 
 """
-extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame)
+extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame; descending::Bool = false)
 
     Determine the order of species extinction for categorical traits. Using a specified hierarchy
 """
-function extinction_sequence(hierarchy::Vector{String}, trait_data::DataFrame)
+function extinction_sequence(hierarchy::Vector{String}, trait_data::DataFrame; descending::Bool = false)
     # data checks
     if !issubset(String.(trait_data.trait), hierarchy)
         error("Not all traits in `traits_data` are listed in `hierarchy`")
+    end
+
+    # reverse order of trait hierarchy if descending is true
+    if descending == true
+        hierarchy = reverse(hierarchy)
     end
 
     df = @rorderby trait_data findfirst(==(:trait), hierarchy)
