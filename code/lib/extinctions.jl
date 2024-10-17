@@ -110,10 +110,10 @@ function extinction_sequence(hierarchy::Vector{String}, trait_data::DataFrame; d
 end
 
 """
-extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame)
+extinction_sequence(hierarchy::Vector{Any}, trait_data::DataFrame; descending::Bool = false)
 
     Determine the order of species extinction for numeric traits.
 """
-function extinction_sequence(trait_dict::Dict{Symbol,Int64}; ascending::Bool = false)
-    return collect(keys(sort(trait_dict; byvalue = true, rev = ascending)))
+function extinction_sequence(trait_dict::Dict{Symbol,Int64}; descending::Bool = false)
+    return collect(keys(sort(trait_dict; byvalue = true, rev = descending)))
 end
