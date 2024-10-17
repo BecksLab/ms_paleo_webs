@@ -121,6 +121,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Graph embedding and transfer learning can help predict potential species interaction networks despite data limitations;,citation_author=Tanya Strydom;,citation_author=Salomé Bouskila;,citation_author=Francis Banville;,citation_author=Ceres Barros;,citation_author=Dominique Caron;,citation_author=Maxwell J. Farrell;,citation_author=Marie-Josée Fortin;,citation_author=Benjamin Mercier;,citation_author=Laura J. Pollock;,citation_author=Rogini Runghen;,citation_author=Giulio V. Dalla Riva;,citation_author=Timothée Poisot;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14228;,citation_issue=12;,citation_doi=10.1111/2041-210X.14228;,citation_volume=14;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
 <meta name="citation_reference" content="citation_title=Addressing the Eltonian shortfall with trait-based interaction models;,citation_author=Dominique Caron;,citation_author=Luigi Maiorano;,citation_author=Wilfried Thuiller;,citation_author=Laura J. Pollock;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.13966;,citation_issue=4;,citation_doi=10.1111/ele.13966;,citation_volume=25;,citation_language=en;,citation_journal_title=Ecology Letters;">
 <meta name="citation_reference" content="citation_title=Collapse of terrestrial mammal food webs since the Late Pleistocene;,citation_author=Evan C. Fricke;,citation_author=Chia Hsieh;,citation_author=Owen Middleton;,citation_author=Daniel Gorczynski;,citation_author=Caroline D. Cappello;,citation_author=Oscar Sanisidro;,citation_author=John Rowan;,citation_author=Jens-Christian Svenning;,citation_author=Lydia Beaudrot;,citation_publication_date=2022-08-26;,citation_cover_date=2022-08-26;,citation_year=2022;,citation_fulltext_html_url=http://dx.doi.org/10.1126/science.abn4012;,citation_issue=6609;,citation_doi=10.1126/science.abn4012;,citation_volume=377;,citation_language=en;,citation_journal_title=Science;">
+<meta name="citation_reference" content="citation_title=Ecological Modelling of Paleocommunity Food Webs;,citation_author=Peter D Roopnarine;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_language=en;,citation_inbook_title=undefined;">
 </head>
 
 <body>
@@ -269,7 +270,7 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 <div aria-describedby="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
+<col style="width: 26%">
 <col style="width: 28%">
 <col style="width: 45%">
 </colgroup>
@@ -306,7 +307,7 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 </div>
 </figure>
 </div>
-<p><strong>Paleo food web inference model</strong> (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links.</p>
+<p><strong>Paleo food web inference model</strong> (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Peter D. Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links. It is worth mentioning that this approach is similar to that developed by <span class="citation" data-cites="roopnarine2017">Peter D. Roopnarine (<a href="#ref-roopnarine2017" role="doc-biblioref">2017</a>)</span> with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.</p>
 <p><strong>Allometric diet breadth model</strong> (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>): The ADBM is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
 <p><span id="eq-adbm"><span class="math display">\[
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
@@ -386,6 +387,9 @@ Petchey, Owen L., Andrew P. Beckerman, Jens O. Riede, and Philip H. Warren. 2008
 </div>
 <div id="ref-rohr2010" class="csl-entry" role="listitem">
 Rohr, Rudolf&nbsp;Philippe, Heike Scherer, Patrik Kehrli, Christian Mazza, and Louis-Félix Bersier. 2010. <span>“Modeling Food Webs: Exploring Unexplained Structure Using Latent Traits.”</span> <em>The American Naturalist</em> 176 (2): 170–77. <a href="https://doi.org/10.1086/653667">https://doi.org/10.1086/653667</a>.
+</div>
+<div id="ref-roopnarine2017" class="csl-entry" role="listitem">
+Roopnarine, Peter D. 2017. <span>“Ecological Modelling of Paleocommunity Food Webs.”</span> In, 201–26. University of Chicago Press.
 </div>
 <div id="ref-roopnarine2006" class="csl-entry" role="listitem">
 Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
@@ -841,7 +845,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

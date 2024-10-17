@@ -331,9 +331,9 @@ species then look very different from now but can still be useful for
 \section{Methods to use}\label{methods-to-use}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2560}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2880}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4560}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2877}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4521}}@{}}
 \caption{A summary of the different families of tools that can be used
 to generate paleo food webs.}\label{tbl-models}\tabularnewline
 \toprule\noalign{}
@@ -372,7 +372,12 @@ species pair. If all conditions are met for the different rule classes
 then an interaction is deemed to be feasible. The original work put
 forward in Shaw et al. (2024) also includes a `downsampling' step
 developed by Roopnarine (2006) that uses a power law, defined by the
-link distribution, to `prune' down some of the links.
+link distribution, to `prune' down some of the links. It is worth
+mentioning that this approach is similar to that developed by Roopnarine
+(2017) with the exception that Shaw does not specifically bin species
+into guilds, and so we choose to use the method developed by Shaw since
+both methods should produce extremely similar networks as they are built
+on the same underlying philosophy.
 
 \textbf{Allometric diet breadth model} (ADBM; Petchey et al. (2008)):
 The ADBM is rooted in feeding theory and allocates the links between
@@ -530,6 +535,10 @@ Modeling food webs: Exploring unexplained structure using latent traits.
 Roopnarine, P. D. (2006). Extinction cascades and catastrophe in ancient
 food webs. \emph{Paleobiology}, \emph{32}(1), 1--19.
 \url{https://www.jstor.org/stable/4096814}
+
+\bibitem[\citeproctext]{ref-roopnarine2017}
+Roopnarine, P. D. (2017). \emph{Ecological Modelling of Paleocommunity
+Food Webs} (pp. 201--226). University of Chicago Press.
 
 \bibitem[\citeproctext]{ref-shaw2024}
 Shaw, J. O., Dunhill, A. M., Beckerman, A. P., Dunne, J. A., \& Hull, P.
