@@ -89,7 +89,7 @@ df_ext_summ <-
   select(model, stat, end_val, start_val) %>% 
   pivot_longer(cols = c(end_val, start_val)) %>% 
   group_by(model, stat, name) %>% 
-  summarise(y = mean(value)) %>%
+  summarise(y = mean(value, na.rm = TRUE)) %>%
   mutate(name = ifelse(name == "end_val",
                        "post",
                        "pre"))
