@@ -64,52 +64,57 @@ for i in eachindex(matrix_names)
         # send to results
         push!(extinction_results, D)
 
-        # numeric extinctions
-        for k in ["generality", "vulnerability"]
+        # need to simulate for both 'orders' of traits/hierarchies
+        # where true is descending and false is ascending
+        for descending in [true, false]
+        
+            # numeric extinctions
+            for k in ["generality", "vulnerability"]
 
-            # turn into function
-            f = getfield(Main, Symbol(k))
+                # turn into function
+                f = getfield(Main, Symbol(k))
 
-            extinction_list = extinction_sequence(f(pre_comm.network[1]))
+                extinction_list = extinction_sequence(f(pre_comm.network[1]); descending)
 
-            # generate extinction sequence
-            extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
-
-            # summarise extinction network
-            D = _network_summary(extinction_series[end])
-
-            # append additional info
-            D[:model] = pre_comm.model[1]
-            D[:extinction_mechanism] = k
-            D[:id] = pre_comm.id[1]
-            D[:time] = j
-
-            push!(extinction_results, D)
-        end
-
-        # categorical extinctions
-        # note we cant do this with the niche model...
-        if pre_comm.model[1] != "niche"
-            for k in eachindex(hierarchies[1])
-
-                trait_data = traits[:, [:species, hierarchies[1][k]]]
-                rename!(trait_data, hierarchies[1][k] => :trait)
-    
-                extinction_list = extinction_sequence(hierarchies[2][k], trait_data)
-    
                 # generate extinction sequence
                 extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
-    
+
                 # summarise extinction network
                 D = _network_summary(extinction_series[end])
-    
+
                 # append additional info
                 D[:model] = pre_comm.model[1]
-                D[:extinction_mechanism] = string(hierarchies[1][k])
+                D[:extinction_mechanism] = join([k, ifelse(descending, "descending", "ascending")], "_")
                 D[:id] = pre_comm.id[1]
                 D[:time] = j
-    
+
                 push!(extinction_results, D)
+            end
+
+            # categorical extinctions
+            # note we cant do this with the niche model...
+            if pre_comm.model[1] != "niche"
+                for k in eachindex(hierarchies[1])
+
+                    trait_data = traits[:, [:species, hierarchies[1][k]]]
+                    rename!(trait_data, hierarchies[1][k] => :trait)
+                
+                    extinction_list = extinction_sequence(hierarchies[2][k], trait_data; descending)
+                
+                    # generate extinction sequence
+                    extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
+                
+                    # summarise extinction network
+                    D = _network_summary(extinction_series[end])
+                
+                    # append additional info
+                    D[:model] = pre_comm.model[1]
+                    D[:extinction_mechanism] = join([string(hierarchies[1][k]), ifelse(descending, "descending", "ascending")], "_")
+                    D[:id] = pre_comm.id[1]
+                    D[:time] = j
+                
+                    push!(extinction_results, D)
+                end
             end
         end
     end
