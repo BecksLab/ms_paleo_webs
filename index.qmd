@@ -62,7 +62,7 @@ It is important to be aware that networks can be configured in different ways de
 
 # Challenges specific to paleo communities/networks
 
-Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* Strydom, Caron) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* fricke).
+Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022).
 
 # Dataset Overview
 
@@ -73,6 +73,15 @@ Although there are a suite of tools and methods that have been developed to pred
 -   And probably some other paleo things that will be relevant...
 
 # Methods to use
+
+| Model                          | Predicts                           | Notes                                                   |
+|--------------------------------|------------------------------------|---------------------------------------------------------|
+| Allometric diet breadth model  | Realised network                   |                                                         |
+| Body size ratio model          | Metaweb (?)                        |                                                         |
+| Niche model                    | Structural network                 | Is not species specific - cannot apply species metadata |
+| Paleo food web inference model | Realised network (if downsampling) |                                                         |
+
+: A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
 **Paleo food web inference model** (PFIM; @shaw2024): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links.
 
@@ -124,7 +133,7 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ![Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model)](figures/extinction.png){#fig-extinction}
 
-![Dark line indicates mean extinction simulation results the lighter lines show each model individually, which is also denoted by linetype](figures/extinction_all_results.png){#fig-extinction}
+![Dark line indicates mean extinction simulation results the lighter lines show each model individually, which is also denoted by linetype](figures/extinction_all_results.png)
 
 # References {.unnumbered}
 
