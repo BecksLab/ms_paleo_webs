@@ -1,8 +1,9 @@
 using CSV
 using DataFrames
+using Extinctions
 using JLD2
+using SpeciesInteractionNetworks
 
-include("lib/extinctions.jl")
 include("lib/internals.jl")
 
 # set seed
@@ -74,7 +75,7 @@ for i in eachindex(matrix_names)
                 # turn into function
                 f = getfield(Main, Symbol(k))
 
-                extinction_list = extinction_sequence(f(pre_comm.network[1]); descending)
+                extinction_list = extinctionsequence(f(pre_comm.network[1]); descending)
 
                 # generate extinction sequence
                 extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
@@ -99,7 +100,7 @@ for i in eachindex(matrix_names)
                     trait_data = traits[:, [:species, hierarchies[1][k]]]
                     rename!(trait_data, hierarchies[1][k] => :trait)
                 
-                    extinction_list = extinction_sequence(hierarchies[2][k], trait_data; descending)
+                    extinction_list = extinctionsequence(hierarchies[2][k], trait_data; descending)
                 
                     # generate extinction sequence
                     extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)

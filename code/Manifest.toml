@@ -2,7 +2,7 @@
 
 julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "cf0342c7a9ffc3a266eccc83a33e0a542d3abc8a"
+project_hash = "0755fc9b3367431a341bf186fa1c0d3c27107c64"
 
 [[deps.AliasTables]]
 deps = ["PtrArrays", "Random"]
@@ -170,6 +170,14 @@ version = "0.1.10"
 git-tree-sha1 = "81023caa0021a41712685887db1fc03db26f41f5"
 uuid = "411431e0-e8b7-467b-b5e0-f676ba4f2910"
 version = "0.1.4"
+
+[[deps.Extinctions]]
+deps = ["DataFrames", "DataFramesMeta", "SpeciesInteractionNetworks", "StatsBase"]
+git-tree-sha1 = "85715aa226a0cf4acc08475fa6a76cbadf993d9b"
+repo-rev = "main"
+repo-url = "https://github.com/TanyaS08/Extinctions.jl"
+uuid = "cd114cb6-7982-4017-a01c-1032758e0eff"
+version = "0.1.0"
 
 [[deps.FileIO]]
 deps = ["Pkg", "Requires", "UUIDs"]
