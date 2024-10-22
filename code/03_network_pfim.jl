@@ -39,6 +39,8 @@ save_object(
 
 # repeat but without downsampling (i.e., metawebs)
 
+topology = topo_df();
+
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
@@ -58,6 +60,44 @@ CSV.write(
 )
 # write networks as object
 save_object(
-    "../data/processed/networks/pfim_metawebs.jlds",
+    "../data/processed/networks/pfim_networks_metaweb.jlds",
+    topology[:, ["id", "model", "network"]],
+)
+
+# now we try with numeric size and not categorical
+
+size_names = readdir("../data/clean/size")
+size_names = replace.(size_names, ".csv" => "")
+
+topology = topo_df();
+
+for i in eachindex(matrix_names)
+
+    file_name = matrix_names[i]
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+
+    size_file = size_names[i]
+    bodymass = DataFrame(CSV.File.(joinpath("../data/clean/size", "$size_file.csv"),))
+
+    # remove categorical sizes
+    select!(df, Not([:size]))
+    # replace with continuous
+    df = innerjoin(df, bodymass, on = :species)
+
+    d = model_summary(df, file_name, "pfim")
+
+    d[:model] = "pfim_size"
+    push!(topology, d)
+
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/topology_pfim_size.csv",
+    topology[:, setdiff(names(topology), ["network"])],
+)
+# write networks as object
+save_object(
+    "../data/processed/networks/pfim_networks_size.jlds",
     topology[:, ["id", "model", "network"]],
 )
