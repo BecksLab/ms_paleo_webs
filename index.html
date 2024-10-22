@@ -122,6 +122,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Addressing the Eltonian shortfall with trait-based interaction models;,citation_author=Dominique Caron;,citation_author=Luigi Maiorano;,citation_author=Wilfried Thuiller;,citation_author=Laura J. Pollock;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.13966;,citation_issue=4;,citation_doi=10.1111/ele.13966;,citation_volume=25;,citation_language=en;,citation_journal_title=Ecology Letters;">
 <meta name="citation_reference" content="citation_title=Collapse of terrestrial mammal food webs since the Late Pleistocene;,citation_author=Evan C. Fricke;,citation_author=Chia Hsieh;,citation_author=Owen Middleton;,citation_author=Daniel Gorczynski;,citation_author=Caroline D. Cappello;,citation_author=Oscar Sanisidro;,citation_author=John Rowan;,citation_author=Jens-Christian Svenning;,citation_author=Lydia Beaudrot;,citation_publication_date=2022-08-26;,citation_cover_date=2022-08-26;,citation_year=2022;,citation_fulltext_html_url=http://dx.doi.org/10.1126/science.abn4012;,citation_issue=6609;,citation_doi=10.1126/science.abn4012;,citation_volume=377;,citation_language=en;,citation_journal_title=Science;">
 <meta name="citation_reference" content="citation_title=Ecological Modelling of Paleocommunity Food Webs;,citation_author=Peter D Roopnarine;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_language=en;,citation_inbook_title=undefined;">
+<meta name="citation_reference" content="citation_title=Autecology and the Filling of Ecospace: Key Metazoan Radiations;,citation_author=Richard K. Bambach;,citation_author=Andrew M. Bush;,citation_author=Douglas H. Erwin;,citation_publication_date=2007;,citation_cover_date=2007;,citation_year=2007;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1475-4983.2006.00611.x;,citation_issue=1;,citation_doi=10.1111/j.1475-4983.2006.00611.x;,citation_volume=50;,citation_language=en;,citation_journal_title=Palaeontology;">
 </head>
 
 <body>
@@ -201,7 +202,17 @@ window.Quarto = {
   <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">3</span> Understanding how networks are different</a></li>
   <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</a></li>
   <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">5</span> Dataset Overview</a></li>
-  <li><a href="#methods-to-use" id="toc-methods-to-use" class="nav-link" data-scroll-target="#methods-to-use"><span class="header-section-number">6</span> Methods to use</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">6</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models"><span class="header-section-number">6.1</span> Models</a>
+  <ul class="collapse">
+  <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model"><span class="header-section-number">6.1.1</span> Paleo food web inference model</a></li>
+  <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model"><span class="header-section-number">6.1.2</span> Allometric diet breadth model</a></li>
+  <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model"><span class="header-section-number">6.1.3</span> Body size ratio model</a></li>
+  <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model"><span class="header-section-number">6.1.4</span> Niche model</a></li>
+  </ul></li>
+  <li><a href="#assessing-model-performance" id="toc-assessing-model-performance" class="nav-link" data-scroll-target="#assessing-model-performance"><span class="header-section-number">6.2</span> Assessing model performance</a></li>
+  </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">7</span> Results</a>
   <ul class="collapse">
   <li><a href="#comparing-predicted-networks" id="toc-comparing-predicted-networks" class="nav-link" data-scroll-target="#comparing-predicted-networks"><span class="header-section-number">7.1</span> Comparing predicted networks</a></li>
@@ -250,7 +261,7 @@ window.Quarto = {
 </section>
 <section id="challenges-specific-to-paleo-communitiesnetworks" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</h1>
-<p>Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific ‘parts’ of an individual (hard and bone-y bits), this means we don’t have a complete picture of the physical traits of species <em>e.g.,</em> no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no <em>real</em> idea of spatial arrangements, compounded that fossils aren’t necessarily conserved/found ‘in situ’ but can be moved (<em>e.g.,</em> alluvial deposits). Methodologically speaking some tools that ‘learn’ from contemporary communities (<em>e.g.,</em> <span class="citation" data-cites="strydom2023">Strydom et al. (<a href="#ref-strydom2023" role="doc-biblioref">2023</a>)</span>, <span class="citation" data-cites="caron2022">Caron et al. (<a href="#ref-caron2022" role="doc-biblioref">2022</a>)</span>) will become ‘worse’ the further one goes back in time since species then look very different from now but can still be useful for ‘recent’ communities (<em>e.g.,</em> <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span>).</p>
+<p>Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific ‘parts’ of an individual (hard and bone-y bits), this means we don’t have a complete picture of the physical traits of species <em>e.g.,</em> no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no <em>real</em> idea of spatial arrangements, compounded that fossils aren’t necessarily conserved/found ‘in situ’ but can be moved (<em>e.g.,</em> alluvial deposits). Methodologically speaking some tools that ‘learn’ from contemporary communities (<em>e.g.,</em> <span class="citation" data-cites="strydom2023">Strydom et al. (<a href="#ref-strydom2023" role="doc-biblioref">2023</a>)</span>, <span class="citation" data-cites="caron2022">Caron et al. (<a href="#ref-caron2022" role="doc-biblioref">2022</a>)</span>) will become ‘worse’ the further one goes back in time since species then look very different from now but can still be useful for ‘recent’ communities (<em>e.g.,</em> <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span>). Something about the intersectionality of the data we don’t have for paleo communities and the data we need for some of the different modelling approaches.</p>
 </section>
 <section id="dataset-overview" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Dataset Overview</h1>
@@ -260,8 +271,10 @@ window.Quarto = {
 <li><p>And probably some other paleo things that will be relevant…</p></li>
 </ul>
 </section>
-<section id="methods-to-use" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Methods to use</h1>
+<section id="methods" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Methods</h1>
+<section id="models" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="models"><span class="header-section-number">6.1</span> Models</h2>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -270,7 +283,7 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 <div aria-describedby="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 26%">
+<col style="width: 25%">
 <col style="width: 28%">
 <col style="width: 45%">
 </colgroup>
@@ -307,8 +320,20 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 </div>
 </figure>
 </div>
-<p><strong>Paleo food web inference model</strong> (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Peter D. Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links. It is worth mentioning that this approach is similar to that developed by <span class="citation" data-cites="roopnarine2017">Peter D. Roopnarine (<a href="#ref-roopnarine2017" role="doc-biblioref">2017</a>)</span> with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.</p>
-<p><strong>Allometric diet breadth model</strong> (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>): The ADBM is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
+<section id="paleo-food-web-inference-model" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="paleo-food-web-inference-model"><span class="header-section-number">6.1.1</span> Paleo food web inference model</h3>
+<p>The Paleo food web inference model (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Peter D. Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links. It is worth mentioning that this approach is similar to that developed by <span class="citation" data-cites="roopnarine2017">Peter D. Roopnarine (<a href="#ref-roopnarine2017" role="doc-biblioref">2017</a>)</span> with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.</p>
+<section id="defining-organism-ecologies-feeding-interactions-and-trophic-guilds" class="level4" data-number="6.1.1.1">
+<h4 data-number="6.1.1.1" class="anchored" data-anchor-id="defining-organism-ecologies-feeding-interactions-and-trophic-guilds"><span class="header-section-number">6.1.1.1</span> Defining organism ecologies, feeding interactions and trophic guilds</h4>
+<blockquote class="blockquote">
+<p>This is currently verbatim from the Dunhill ms…</p>
+</blockquote>
+<p>Modes of life were defined for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>. Ecological traits were assigned based on interpretations from the published literature which are largely based on functional morphology and information from extant relatives. Information on the body size of each species was also recorded by summarising mean specimen sizes from the section into a categorical classification. The following ecological characteristics were recorded for each fossil species; motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm). Size categories are defined by the longest axis of the fossil, estimates of tracemaker size from trace fossils based on literature accounts, or by extrapolating the total length for belemnites from the preserved guard using established approaches78,79.</p>
+</section>
+</section>
+<section id="allometric-diet-breadth-model" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="allometric-diet-breadth-model"><span class="header-section-number">6.1.2</span> Allometric diet breadth model</h3>
+<p>The Allometric diet breadth model (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
 <p><span id="eq-adbm"><span class="math display">\[
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
 \tag{1}\]</span></span></p>
@@ -321,7 +346,10 @@ H_{ij} = \frac{h}{b - \frac{M_{i}}{M_{j}}} if \frac{M_{i}}{M_{j}} &lt; b
 H_{ij} = \infty \geq b
 \]</span></p>
 <p>Refer to <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> for more details as to how these different terms are parametrised.</p>
-<p><strong>Body size ratio model</strong> <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span>: Determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
+</section>
+<section id="body-size-ratio-model" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="body-size-ratio-model"><span class="header-section-number">6.1.3</span> Body size ratio model</h3>
+<p>The body size ratio model <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span> determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = \frac{p}{1+p}
 \]</span></p>
@@ -330,7 +358,16 @@ P_{ij} = \frac{p}{1+p}
 p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
 \tag{2}\]</span></span></p>
 <p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\delta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
-<p><strong>Niche model</strong> <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span>: The niche model introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
+</section>
+<section id="niche-model" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="niche-model"><span class="header-section-number">6.1.4</span> Niche model</h3>
+<p>The niche model <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span> introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
+</section>
+</section>
+<section id="assessing-model-performance" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="assessing-model-performance"><span class="header-section-number">6.2</span> Assessing model performance</h2>
+<p>blah blah</p>
+</section>
 </section>
 <section id="results" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
@@ -373,6 +410,9 @@ Figure&nbsp;2: Dashed line indicates the (mean) extinction simulation results (p
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bambach2007" class="csl-entry" role="listitem">
+Bambach, Richard K., Andrew M. Bush, and Douglas H. Erwin. 2007. <span>“Autecology and the Filling of Ecospace: Key Metazoan Radiations.”</span> <em>Palaeontology</em> 50 (1): 1–22. <a href="https://doi.org/10.1111/j.1475-4983.2006.00611.x">https://doi.org/10.1111/j.1475-4983.2006.00611.x</a>.
+</div>
 <div id="ref-caron2022" class="csl-entry" role="listitem">
 Caron, Dominique, Luigi Maiorano, Wilfried Thuiller, and Laura J. Pollock. 2022. <span>“Addressing the Eltonian Shortfall with Trait-Based Interaction Models.”</span> <em>Ecology Letters</em> 25 (4): 889–99. <a href="https://doi.org/10.1111/ele.13966">https://doi.org/10.1111/ele.13966</a>.
 </div>
@@ -845,7 +885,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
