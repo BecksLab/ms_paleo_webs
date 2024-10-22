@@ -1,0 +1,4 @@
+id,model,richness,connectance,complexity,distance,basal,top,S1,S2,S4,S5
+during_traits,pfim_metaweb,54,0.20713305898491083,0.3750669865282428,2.0,42.0,0.0,0.0,0.0,0.0,0.0
+post_traits,pfim_metaweb,53,0.21075115699537203,0.4545950966510089,2.0,38.0,7.0,0.0,0.0,0.0,0.0
+pre_traits,pfim_metaweb,355,0.06858163062884348,0.49303045057612077,2.0,327.0,18.0,0.0,0.0,0.0,0.0
