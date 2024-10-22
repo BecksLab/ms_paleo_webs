@@ -117,9 +117,9 @@ ggplot() +
                    group = model,
                    linetype = extinction_mechanism),
                alpha = 0.3) +
-  geom_line(data = df_ext_summ,
-            aes(x = factor(name),
-                y = y,
+  geom_line(data = df %>% filter(id != "during"),
+            aes(x = factor(id),
+                y = stat_val,
                 colour = model,
                 group = model)) +
   facet_wrap(vars(stat),
