@@ -7,7 +7,7 @@ include(joinpath("rules.jl"))
 mutable struct PFIMspecies
     species::Symbol
     feeding_trait::feeding
-    size_trait::sizes
+    size_trait::Union{sizes, Number}
     motility_trait::motility
     tiering_trait::tier
 end
@@ -26,16 +26,30 @@ function _pfim_community(data::DataFrame)
 
     PFIMcommunity = Array{PFIMspecies,1}(undef, nrow(data))
 
-    for i in eachindex(PFIMcommunity)
-        _PFIMsp = PFIMspecies(
-            Symbol(data.species[i]),
-            getfield(Main, Symbol(data.feeding[i]))(),
-            getfield(Main, Symbol(data.size[i]))(),
-            getfield(Main, Symbol(data.motility[i]))(),
-            getfield(Main, Symbol(data.tiering[i]))(),
-        )
-        PFIMcommunity[i] = _PFIMsp
+    if typeof(data.size[1]) == String7
+        for i in eachindex(PFIMcommunity)
+            _PFIMsp = PFIMspecies(
+                Symbol(data.species[i]),
+                getfield(Main, Symbol(data.feeding[i]))(),
+                getfield(Main, Symbol(data.size[i]))(),
+                getfield(Main, Symbol(data.motility[i]))(),
+                getfield(Main, Symbol(data.tiering[i]))(),
+            )
+            PFIMcommunity[i] = _PFIMsp
+        end
+    else
+        for i in eachindex(PFIMcommunity)
+            _PFIMsp = PFIMspecies(
+                Symbol(data.species[i]),
+                getfield(Main, Symbol(data.feeding[i]))(),
+                data.size[i],
+                getfield(Main, Symbol(data.motility[i]))(),
+                getfield(Main, Symbol(data.tiering[i]))(),
+            )
+            PFIMcommunity[i] = _PFIMsp
+        end
     end
+
     return PFIMcommunity
 end
 
@@ -49,18 +63,34 @@ end
 """
 function _pfim_link(consumer::PFIMspecies, resource::PFIMspecies)
 
-    # sum outcomes from the four rules
-    trait_sum =
-        feeding_rules(consumer.feeding_trait, resource.feeding_trait) +
-        motility_rules(consumer.motility_trait, resource.motility_trait) +
-        tiering_rules(consumer.tiering_trait, resource.tiering_trait) +
-        size_rules(consumer.size_trait, resource.size_trait)
+    # check if size categorical
+    if consumer.size_trait isa sizes 
+        # sum outcomes from the four rules
+        trait_sum =
+            feeding_rules(consumer.feeding_trait, resource.feeding_trait) +
+            motility_rules(consumer.motility_trait, resource.motility_trait) +
+            tiering_rules(consumer.tiering_trait, resource.tiering_trait) +
+            size_rules(consumer.size_trait, resource.size_trait)
 
-    # if all conditions are met (sums to 4) then link is present
-    if trait_sum == 4
-        link = 1
+        # if all conditions are met (sums to 4) then link is present
+        if trait_sum == 4
+            link = 1
+        else
+            link = 0
+        end
     else
-        link = 0
+        # sum outcomes from the non-size rules
+        trait_sum =
+            feeding_rules(consumer.feeding_trait, resource.feeding_trait) +
+            motility_rules(consumer.motility_trait, resource.motility_trait) +
+            tiering_rules(consumer.tiering_trait, resource.tiering_trait)
+    
+            # if all conditions are met and size resource <= consumer
+            if trait_sum == 3 && resource.size_trait <= consumer.size_trait
+                link = 1
+            else
+                link = 0
+            end
     end
     return link
 end
@@ -144,7 +174,7 @@ function PFIM(data::DataFrame; y::Float64 = 2.5, downsample::Bool = true)
                 end
             end
         end
-        # make probabanilistic
+        # make probabalistic
         prob_matrix = prob_matrix ./ maximum(prob_matrix)
 
         edges = Probabilistic(prob_matrix)
