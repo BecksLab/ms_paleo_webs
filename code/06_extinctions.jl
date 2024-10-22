@@ -43,7 +43,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = load_object("../data/processed/networks/$file_name")
 
-    # now we loop throuhg the different time periods
+    # now we loop through the different time periods
     for j in ["pre", "during"]
         # select only the relevant community
         pre_comm = df[occursin.(j, df.id), :]
