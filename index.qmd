@@ -62,7 +62,7 @@ It is important to be aware that networks can be configured in different ways de
 
 # Challenges specific to paleo communities/networks
 
-Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022).
+Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022). Something about the intersectionality of the data we don't have for paleo communities and the data we need for some of the different modelling approaches.
 
 # Dataset Overview
 
@@ -72,10 +72,12 @@ Although there are a suite of tools and methods that have been developed to pred
 
 -   And probably some other paleo things that will be relevant...
 
-# Methods to use
+# Methods
+
+## Models
 
 | Model                          | Predicts                           | Notes                                                   |
-|-------------------|---------------------|---------------------------------|
+|--------------------------------|------------------------------------|---------------------------------------------------------|
 | Allometric diet breadth model  | Realised network                   |                                                         |
 | Body size ratio model          | Metaweb (?)                        |                                                         |
 | Niche model                    | Structural network                 | Is not species specific - cannot apply species metadata |
@@ -83,9 +85,19 @@ Although there are a suite of tools and methods that have been developed to pred
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
-**Paleo food web inference model** (PFIM; @shaw2024): uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.
+### Paleo food web inference model 
 
-**Allometric diet breadth model** (ADBM; @petchey2008): The ADBM is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet ($K$) is defined as follows:
+The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.
+
+#### Defining organism ecologies, feeding interactions and trophic guilds
+
+> This is currently verbatim from the Dunhill ms...
+
+Modes of life were defined for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007]. Ecological traits were assigned based on interpretations from the published literature which are largely based on functional morphology and information from extant relatives. Information on the body size of each species was also recorded by summarising mean specimen sizes from the section into a categorical classification. The following ecological characteristics were recorded for each fossil species; motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm). Size categories are defined by the longest axis of the fossil, estimates of tracemaker size from trace fossils based on literature accounts, or by extrapolating the total length for belemnites from the preserved guard using established approaches78,79.
+
+### Allometric diet breadth model
+
+The Allometric diet breadth model (ADBM; @petchey2008) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet ($K$) is defined as follows:
 
 $$
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
@@ -105,7 +117,9 @@ $$
 
 Refer to @petchey2008 for more details as to how these different terms are parametrised.
 
-**Body size ratio model** [@rohr2010]: Determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:
+### Body size ratio model
+
+The body size ratio model [@rohr2010] determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:
 
 $$
 P_{ij} = \frac{p}{1+p}
@@ -119,7 +133,13 @@ $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha = 1.41$, $\delta = 3.75$, and $\gamma = 1.87$.
 
-**Niche model** [@williams2000]: The niche model introduces the idea that species interactions are based on the 'feeding niche' of a species. Broadly, all species are randomly assigned a 'feeding niche' range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species' niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the 'complexity' of the niche model does not improve on its ability to generate a more ecologically 'correct' network [@williams2008].
+### Niche model
+
+The niche model [@williams2000] introduces the idea that species interactions are based on the 'feeding niche' of a species. Broadly, all species are randomly assigned a 'feeding niche' range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species' niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the 'complexity' of the niche model does not improve on its ability to generate a more ecologically 'correct' network [@williams2008].
+
+## Assessing model performance
+
+blah blah
 
 # Results
 
