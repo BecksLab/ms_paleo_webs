@@ -27,7 +27,7 @@ function adbm_parameters(
 
     # data checks
     if "tiering" ∉ names(df)
-        error("Missing $(v) variable as a column in DataFrame, add or rename")
+        error("Missing tiering as a column in DataFrame, add or rename")
     end
 
     parameters = Dict{Symbol,Any}(
