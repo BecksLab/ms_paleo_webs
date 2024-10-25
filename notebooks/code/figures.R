@@ -21,7 +21,10 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
   pivot_longer(
     cols = -c(id, model), 
     names_to = "stat",
-    values_to = "stat_val")
+    values_to = "stat_val") %>% 
+  group_by(id, model, stat) %>% 
+  mutate(stat_val = mean(stat_val, na.rm = TRUE),
+         sd = sd(stat_val, na.rm = TRUE))
 
 summary <-
   ggplot() +
