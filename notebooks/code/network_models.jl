@@ -1,6 +1,7 @@
 using CSV
 using DataFrames
 using JLD2
+using ProgressMeter
 using SpeciesInteractionNetworks
 
 # set seed
@@ -51,27 +52,33 @@ topology = topo_df();
 # connectance (for Niche model)
 Co = 0.1
 
-for i in 1:nrow(nz_summaries)
+# number of networks to generate
+n_reps = 10
 
-    site = nz_summaries.id[i]
-    spp_rich = nz_summaries.richness[i]
+@showprogress for _ = 1:n_reps
+    for i in 1:nrow(nz_summaries)
 
-    prods = filter(:id => x -> x == site, producer)
-    comm = filter(Symbol("food.web") => x -> x == site, comm_data)
-
-    df = innerjoin(comm, prods, on = :species)
-
-    # adbm
-    d = model_summary(df, site, "adbm"; bodymass = df.bodymass, biomass = df.abundance)
-    push!(topology, d)
-    # niche
-    d = model_summary(df, site, "niche"; connectance = Co)
-    push!(topology, d)
-    # bodymass
-    d = model_summary(df, site, "bodymassratio"; bodymass = df.bodymass)
-    push!(topology, d)
-
+        site = nz_summaries.id[i]
+        spp_rich = nz_summaries.richness[i]
+    
+        prods = filter(:id => x -> x == site, producer)
+        comm = filter(Symbol("food.web") => x -> x == site, comm_data)
+    
+        df = innerjoin(comm, prods, on = :species)
+    
+        # adbm
+        d = model_summary(df, site, "adbm"; bodymass = df.bodymass, biomass = df.abundance)
+        push!(topology, d)
+        # niche
+        d = model_summary(df, site, "niche"; connectance = Co)
+        push!(topology, d)
+        # bodymass
+        d = model_summary(df, site, "bodymassratio"; bodymass = df.bodymass)
+        push!(topology, d)
+    
+    end
 end
+
 
 # write summaries as .csv
 CSV.write("../notebooks/data/processed/topology_models.csv",
