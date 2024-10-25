@@ -26,8 +26,7 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
   mutate(stat_val = mean(stat_val, na.rm = TRUE),
          sd = sd(stat_val, na.rm = TRUE))
 
-summary <-
-  ggplot() +
+ggplot() +
   geom_point(data = df %>% filter(model == "real"),
                 aes(x = stat_val, 
                     y = id),
@@ -47,7 +46,6 @@ summary <-
                                     fill = "#ffffff00"))
 
 ggsave("../figures/summary.png",
-       summary,
        width = 9000,
        height = 6000,
        units = "px",
@@ -80,7 +78,7 @@ mod_nets <- read_csv("../data/processed/topology_models.csv") %>%
     reframe(model_mu = mean(stat_val, na.rm = TRUE),
             model_sd = sd(stat_val, na.rm = TRUE)) %>% 
 left_join(., real_nets) %>% 
-mutate(z_score = (real_mu - model_mu))
+mutate(z_score = (real_mu - model_mu)/model_sd)
 
 
 ggplot(mod_nets) +
