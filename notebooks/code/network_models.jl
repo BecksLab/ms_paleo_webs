@@ -50,10 +50,10 @@ end
 topology = topo_df();
 
 # connectance (for Niche model)
-Co = 0.1
+Co = 0.1;
 
 # number of networks to generate
-n_reps = 100
+n_reps = 100;
 
 @showprogress for _ = 1:n_reps
     for i in 1:nrow(nz_summaries)
