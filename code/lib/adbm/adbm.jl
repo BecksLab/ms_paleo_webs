@@ -199,7 +199,7 @@ function adbmmodel(df::DataFrame, parameters::Dict{Symbol,Any}, biomass::Vector{
         if !parameters[:is_producer][j]
             if biomass[j] > 0.0
                 feeding = _get_feeding_links(E, λ, H, biomass, j)
-                adbmMAT[j, feeding] .= 0.8;
+                adbmMAT[j, feeding] .= 0.9;
             end
         end
     end
