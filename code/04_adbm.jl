@@ -29,8 +29,8 @@ for i in eachindex(size_names)
 
     df = innerjoin(trait, bodymass, on = :species)
 
-    # create some mock abundance/biomass values
-    biomass = rand(Truncated(Normal(0, 1), 0, 10), nrow(df))
+    # create some mock abundance/biomass values using a *very* basic scaling law
+    biomass = df.bodymass.^(-3/4)
 
     d = model_summary(df, trait_file, "adbm"; bodymass = df.bodymass, biomass = biomass)
 
