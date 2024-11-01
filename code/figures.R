@@ -25,7 +25,12 @@ df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRU
     str_detect(id, "^.*pre.*$") ~ "pre",
     str_detect(id, "^.*during.*$") ~ "post",
     str_detect(id, "^.*post.*$") ~ "during",
-    TRUE ~ as.character(id)))
+    TRUE ~ as.character(id)),
+       stat = case_when(stat == "S1" ~ "No. of linear chains",
+                        stat == "S2" ~ "No. of omnivory motifs",
+                        stat == "S4" ~ "No. of apparent competition motifs",
+                        stat == "S5" ~ "No. of direct competition motifs",
+                        .default = as.character(stat)))
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
@@ -79,7 +84,12 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
          xend = id,
          start_val = stat_val,
          stat_val = NULL,
-         id = NULL)
+         id = NULL,
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          .default = as.character(stat)))
 
 df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
 df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
