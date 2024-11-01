@@ -198,7 +198,7 @@
 1%
 }%
 }
-\date{2024-10-29}
+\date{2024-11-01}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -336,9 +336,9 @@ approaches.
 \subsection{Models}\label{models}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2560}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2880}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4560}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2877}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4521}}@{}}
 \caption{A summary of the different families of tools that can be used
 to generate paleo food webs.}\label{tbl-models}\tabularnewline
 \toprule\noalign{}
@@ -491,7 +491,45 @@ generate a more ecologically `correct' network (Williams \& Martinez,
 \subsection{Assessing model
 performance}\label{assessing-model-performance}
 
-blah blah
+\begin{itemize}
+\item
+  \textbf{Links:} to determine if the number of links are `correct' we
+  use \emph{connectance}
+\item
+  \emph{Shape:} to determine if the `shape' of the network is correct we
+  are looking at the ratio of `top':`basal' species (where `top' species
+  are those that have a vulnerability of 0 and `basal' species have a
+  generality of 0) as well as the distance to base from one of the top
+  species (this will represent the shortest path but a large discrepancy
+  between the real and predicted network would be indicative that the
+  model is not predicting a similar `shape'). This will allow is to see
+  if the models construct tall `pencil' vs flat `pancake' networks
+  (Beckerman 2024, pers comms).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A small (\textless{} 1) number will thus be indicative of a
+    `bottom-heavy' network and the opposite for larger numbers
+  \end{itemize}
+\item
+  \textbf{Structure:} to determine if we are capturing some higher level
+  of `structure' we are using SVD entropy (Strydom et al., 2021)
+\item
+  \emph{Motifs:} We can extract the motifs (Milo et al., 2002; Stouffer
+  et al., 2007), namely:
+
+  \begin{itemize}
+  \item
+    S1: Number of linear chains
+  \item
+    S2: Number of omnivory motifs
+  \item
+    S4: Number of apparent competition motifs
+  \item
+    S5: Number of direct competition motifs
+  \end{itemize}
+\end{itemize}
 
 \section{Results}\label{results}
 
@@ -571,6 +609,12 @@ Collapse of terrestrial mammal food webs since the Late Pleistocene.
 \emph{Science}, \emph{377}(6609), 1008--1011.
 \url{https://doi.org/10.1126/science.abn4012}
 
+\bibitem[\citeproctext]{ref-milo2002}
+Milo, R., Shen-Orr, S., Itzkovitz, S., Kashtan, N., Chklovskii, D., \&
+Alon, U. (2002). Network motifs: Simple building blocks of complex
+networks. \emph{Science}, \emph{298}(5594), 824--827.
+\url{https://doi.org/10.1126/science.298.5594.824}
+
 \bibitem[\citeproctext]{ref-petchey2008}
 Petchey, O. L., Beckerman, A. P., Riede, J. O., \& Warren, P. H. (2008).
 Size, foraging, and food web structure. \emph{Proceedings of the
@@ -598,6 +642,13 @@ M. (2024). \emph{A framework for reconstructing ancient food webs using
 functional trait data} (p. 2024.01.30.578036). bioRxiv.
 \url{https://doi.org/10.1101/2024.01.30.578036}
 
+\bibitem[\citeproctext]{ref-stouffer2007}
+Stouffer, D. B., Camacho, J., Jiang, W., \& Nunes Amaral, L. A. (2007).
+Evidence for the existence of a robust pattern of prey selection in food
+webs. \emph{Proceedings of the Royal Society B: Biological Sciences},
+\emph{274}(1621), 1931--1940.
+\url{https://doi.org/10.1098/rspb.2007.0571}
+
 \bibitem[\citeproctext]{ref-strydom2023}
 Strydom, T., Bouskila, S., Banville, F., Barros, C., Caron, D., Farrell,
 M. J., Fortin, M.-J., Mercier, B., Pollock, L. J., Runghen, R., Dalla
@@ -605,6 +656,12 @@ Riva, G. V., \& Poisot, T. (2023). Graph embedding and transfer learning
 can help predict potential species interaction networks despite data
 limitations. \emph{Methods in Ecology and Evolution}, \emph{14}(12),
 2917--2930. \url{https://doi.org/10.1111/2041-210X.14228}
+
+\bibitem[\citeproctext]{ref-strydom2021}
+Strydom, T., Dalla Riva, G. V., \& Poisot, T. (2021). SVD entropy
+reveals the high complexity of ecological networks. \emph{Frontiers in
+Ecology and Evolution}, \emph{9}.
+\url{https://doi.org/10.3389/fevo.2021.623141}
 
 \bibitem[\citeproctext]{ref-williams2000}
 Williams, R. J., \& Martinez, N. D. (2000). Simple rules yield complex
