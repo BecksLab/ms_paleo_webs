@@ -24,7 +24,12 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
     values_to = "stat_val") %>% 
   group_by(id, model, stat) %>% 
   mutate(stat_val = mean(stat_val, na.rm = TRUE),
-         sd = sd(stat_val, na.rm = TRUE))
+         sd = sd(stat_val, na.rm = TRUE),
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          .default = as.character(stat)))
 
 ggplot() +
   geom_point(data = df %>% filter(model == "real"),
@@ -78,7 +83,12 @@ mod_nets <- read_csv("../data/processed/topology_models.csv") %>%
     reframe(model_mu = mean(stat_val, na.rm = TRUE),
             model_sd = sd(stat_val, na.rm = TRUE)) %>% 
 left_join(., real_nets) %>% 
-mutate(z_score = (real_mu - model_mu)/model_sd)
+mutate(z_score = (real_mu - model_mu)/model_sd,
+       stat = case_when(stat == "S1" ~ "No. of linear chains",
+                        stat == "S2" ~ "No. of omnivory motifs",
+                        stat == "S4" ~ "No. of apparent competition motifs",
+                        stat == "S5" ~ "No. of direct competition motifs",
+                        .default = as.character(stat)))
 
 
 ggplot(mod_nets) +
