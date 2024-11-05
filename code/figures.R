@@ -59,7 +59,7 @@ summary <-
 
 ggsave("../figures/summary.png",
        summary,
-       width = 9000,
+       width = 11000,
        height = 5000,
        units = "px",
        dpi = 600)
@@ -121,7 +121,7 @@ summary +
             linetype = "dashed")
 
 ggsave("../figures/extinction.png",
-       width = 9000,
+       width = 11000,
        height = 6000,
        units = "px",
        dpi = 600)
@@ -153,7 +153,7 @@ ggplot() +
         axis.ticks.x = element_blank())
 
 ggsave("../figures/extinction_all_results.png",
-       width = 9000,
+       width = 11000,
        height = 5000,
        units = "px",
        dpi = 600)
