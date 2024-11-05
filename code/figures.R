@@ -11,6 +11,10 @@ setwd(here("code"))
 df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>% 
+  mutate(S1 = S1/richness^3,
+         S2 = S2/richness^3,
+         S4 = S4/richness^3,
+         S5 = S5/richness^3) %>% 
   select(-c(network, richness)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
@@ -63,6 +67,11 @@ ggsave("../figures/summary.png",
 #### Extinctions ####
 
 df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>% 
+  bind_rows %>% 
+  mutate(S1 = S1/richness^3,
+         S2 = S2/richness^3,
+         S4 = S4/richness^3,
+         S5 = S5/richness^3) %>% 
   select(-c(id, links, richness)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
@@ -75,7 +84,12 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
     names_to = "stat",
     values_to = "end_val") %>% 
   filter(id == "pre") %>% 
-  mutate(id = "post") %>% 
+  mutate(id = "post",
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          .default = as.character(stat))) %>% 
   left_join(.,
             df %>%
               filter(id == "pre") %>% 
@@ -84,12 +98,7 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
          xend = id,
          start_val = stat_val,
          stat_val = NULL,
-         id = NULL,
-         stat = case_when(stat == "S1" ~ "No. of linear chains",
-                          stat == "S2" ~ "No. of omnivory motifs",
-                          stat == "S4" ~ "No. of apparent competition motifs",
-                          stat == "S5" ~ "No. of direct competition motifs",
-                          .default = as.character(stat)))
+         id = NULL)
 
 df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
 df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
