@@ -10,7 +10,6 @@ setwd(here("notebooks/code"))
 
 df <- read_csv("../data/processed/nz_summary.csv") %>% 
   mutate(model = "real") %>% 
-  select(-links) %>% 
   rbind(.,
         read_csv("../data/processed/topology_models.csv")) %>% 
   select(-richness) %>% 
@@ -51,13 +50,13 @@ ggplot() +
                                     fill = "#ffffff00"))
 
 ggsave("../figures/summary.png",
-       width = 9000,
+       width = 11000,
        height = 6000,
        units = "px",
        dpi = 600)
 
 real_nets <- read_csv("../data/processed/nz_summary.csv") %>% 
-  select(-c(links, richness)) %>% 
+  select(-richness) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
          top = NULL,
@@ -106,4 +105,8 @@ ggplot(mod_nets) +
     theme(panel.border = element_rect(colour = 'black',
                                       fill = "#ffffff00"))
 
-ggsave("../figures/zscore.png")
+ggsave("../figures/zscore.png",
+       width = 11000,
+       height = 6000,
+       units = "px",
+       dpi = 600)
