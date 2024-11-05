@@ -1,5 +1,7 @@
 # General sundry internal functions
 
+using Statistics
+
 """
 _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
 
@@ -30,17 +32,21 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     A = _get_matrix(N)
 
-    gen = SpeciesInteractionNetworks.generality(N)
-    ind_maxgen = findmax(collect(values(gen)))[2]
+    _gen = SpeciesInteractionNetworks.generality(N)
+    gen = collect(values(_gen))
+    vul = collect(values(SpeciesInteractionNetworks.vulnerability(N)))
+    ind_maxgen = findmax(gen)[2]
 
     D = Dict{Symbol,Any}(
         :richness => richness(N),
         :links => links(N),
         :connectance => connectance(N),
         :complexity => complexity(N),
-        :distance => distancetobase(N, collect(keys(gen))[ind_maxgen]),
+        :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :basal => sum(vec(sum(A, dims = 2) .== 0)),
         :top => sum(vec(sum(A, dims = 1) .== 0)),
+        :generality => std(gen),
+        :vulnerability => std(vul),
         :S1 => length(findmotif(motifs(Unipartite, 3)[1], N)),
         :S2 => length(findmotif(motifs(Unipartite, 3)[2], N)),
         :S4 => length(findmotif(motifs(Unipartite, 3)[4], N)),
@@ -103,6 +109,8 @@ function model_summary(
     D[:distance] = d[:distance]
     D[:basal] = d[:basal]
     D[:top] = d[:top]
+    D[:generality] = d[:generality]
+    D[:vulnerability] = d[:vulnerability]
     D[:S1] = d[:S1]
     D[:S2] = d[:S2]
     D[:S4] = d[:S4]
@@ -126,6 +134,8 @@ function topo_df()
         distance = Float64[],
         basal = Float64[],
         top = Float64[],
+        generality = Float64[],
+        vulnerability = Float64[],
         S1 = Float64[],
         S2 = Float64[],
         S4 = Float64[],
