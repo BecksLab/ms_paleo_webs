@@ -11,7 +11,7 @@ setwd(here("code"))
 df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>% 
-  mutate(across(matches("S[[:digit:]]"), ~.x/richness^3)) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   select(-c(network, richness)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
@@ -65,7 +65,7 @@ ggsave("../figures/summary.png",
 
 df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>% 
   bind_rows %>% 
-  mutate(across(matches("S[[:digit:]]"), ~.x/richness^3)) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   select(-c(id, links, richness)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
