@@ -8,7 +8,7 @@ author:
     email: t.strydom@sheffield.ac.uk
     role: 
     - conceptualization: lead
-    - methodology: supporting
+    - methodology: lead
     affiliation:
       - id: sheffield
         name: School of Biosciences, University of Sheffield, Sheffield, UK
