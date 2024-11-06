@@ -77,7 +77,7 @@ Although there are a suite of tools and methods that have been developed to pred
 ## Models
 
 | Model                          | Predicts                           | Notes                                                   |
-|-------------------|---------------------|---------------------------------|
+|-------------------|---------------------|--------------------------------|
 | Allometric diet breadth model  | Realised network                   |                                                         |
 | Body size ratio model          | Metaweb (?)                        |                                                         |
 | Niche model                    | Structural network                 | Is not species specific - cannot apply species metadata |
@@ -139,37 +139,37 @@ The niche model [@williams2000] introduces the idea that species interactions ar
 
 ## Assessing model performance
 
--   **Links:** to determine if the number of links are 'correct' we use *connectance*
+In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
 
--   *Shape:* to determine if the 'shape' of the network is correct we are looking at the ratio of 'top':'basal' species (where 'top' species are those that have a vulnerability of 0 and 'basal' species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar 'shape'). This will allow is to see if the models construct tall 'pencil' vs flat 'pancake' networks (Beckerman 2024, pers comms).
+### Meta network properties
 
-    -   A small (\< 1) number will thus be indicative of a 'bottom-heavy' network and the opposite for larger numbers
+**Connectance** [@martinez1992] has been shown to be the feature of networks that underpin a series of other properties and function [@strydom2021b] and so it is perhaps the most important structural attribute for a model to be able to retrieve correctly. Additionally we consider the **complexity** of networks by calculating their SVD entropy (this gives us an estimate of the physical as opposed to behavioural complexity of networks; @strydom2021).
 
--   **Structure:** to determine if we are capturing some higher level of 'structure' we are using SVD entropy [@strydom2021]
+### Meso network properties
 
--   *Motifs:* We can extract the motifs [@milo2002; @stouffer2007], namely:
+Motifs represent smaller subset of interactions between three species, and are argued to capture dynamics that are likely to be ecologically relevant [@milo2002; @stouffer2007]. Here we specifically look at the number of **linear chains**, **omnivory**, **apparent competition**, and **direct competition** motifs. In the broader context the ability of a model in being able to capture these smaller motifs will inform as to its suitability of use understanding the more dynamic component of network ecology.
 
-    -   S1: Number of linear chains
+### Micro network properties
 
-    -   S2: Number of omnivory motifs
+The number of interactions established (**generality**) or received (**vulnerability**) by each species [@schoener1989], are (broadly) indicative of consumer-resource relationships and diet breadth of species [ref]. Although this is usually determined at the species level the standard deviation of the generality and vulnerability of species is often used when benchmarking predicted networks [*e.g.,* @williams2008; @petchey2008].
 
-    -   S4: Number of apparent competition motifs
+The **specificity** of species in a network is measured as a function of the proportion of resources they effectively use [@poisot2012]
 
-    -   S5: Number of direct competition motifs
+> **Shape:** to determine if the 'shape' of the network is correct we are looking at the ratio of 'top':'basal' species (where 'top' species are those that have a vulnerability of 0 and 'basal' species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar 'shape'). This will allow is to see if the models construct tall 'pencil' vs flat 'pancake' networks (Beckerman 2024, pers comms). A small (\< 1) number will thus be indicative of a 'bottom-heavy' network and the opposite for larger numbers
 
 # Results
 
 ## Comparing predicted networks
 
-![stuff](figures/summary.png){#fig-summary}
+![stuff... For display purposes the counts for the different motifs are log transformed](figures/summary.png){#fig-summary}
 
 ## Comparing inference
 
 ## Extinctions
 
-![Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model)](figures/extinction.png){#fig-extinction}
+![Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model). For display purposes the counts for the different motifs are log transformed](figures/extinction.png){#fig-extinction}
 
-![Dark line indicates 'real' extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype](figures/extinction_all_results.png)
+![Dark line indicates 'real' extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed](figures/extinction_all_results.png)
 
 # References {.unnumbered}
 
