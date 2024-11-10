@@ -1,5 +1,6 @@
 # General sundry internal functions
 
+using SpeciesInteractionNetworks
 using Statistics
 
 """
@@ -24,6 +25,15 @@ function _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 end
 
 """
+    maxrank(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary}}
+
+Returns the maximum possible rank of a Bipartite Network
+"""
+function maxrank(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
+    return minimum(size(N))
+end
+
+"""
 _network_summary(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
 
     returns the 'summary statistics' for a network
@@ -42,6 +52,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :links => links(N),
         :connectance => connectance(N),
         :complexity => complexity(N),
+        :deficiency => ((maxrank(N) - rank(N)) / maxrank(N)),
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :basal => sum(vec(sum(A, dims = 2) .== 0)),
         :top => sum(vec(sum(A, dims = 1) .== 0)),
@@ -106,6 +117,7 @@ function model_summary(
     D[:richness] = d[:richness]
     D[:connectance] = d[:connectance]
     D[:complexity] = d[:complexity]
+    D[:deficiency] = d[:deficiency]
     D[:distance] = d[:distance]
     D[:basal] = d[:basal]
     D[:top] = d[:top]
@@ -130,6 +142,7 @@ function topo_df()
         model = String[],
         richness = Int64[],
         connectance = Float64[],
+        deficiency = Float64[],
         complexity = Float64[],
         distance = Float64[],
         basal = Float64[],
