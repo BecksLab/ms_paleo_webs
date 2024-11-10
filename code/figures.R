@@ -67,8 +67,7 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
   select(-c(id, links, richness)) %>% 
   # to get the ratio
-  mutate(ratio = top/basal,
-         top = NULL,
+  mutate(top = NULL,
          basal = NULL,
          id = time,
          time = NULL) %>%
