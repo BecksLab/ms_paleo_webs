@@ -14,8 +14,7 @@ df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRU
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
   select(-c(network, richness)) %>% 
   # to get the ratio
-  mutate(ratio = top/basal,
-         top = NULL,
+  mutate(top = NULL,
          basal = NULL) %>%
   pivot_longer(
     cols = -c(id, model), 

@@ -5,6 +5,7 @@ include(joinpath("types.jl"))
 # feeding rules
 feeding_rules(consumer::T1, resource::T2) where {T1<:feeding,T2<:feeding} = 0
 feeding_rules(consumer::carnivore, resource::T) where {T<:feeding} = 1
+feeding_rules(consumer::grazer_carnivore, resource::suspension) = 1
 feeding_rules(consumer::scavenger, resource::T) where {T<:feeding} = 1
 feeding_rules(consumer::parasitic, resource::T) where {T<:feeding} = 1
 feeding_rules(consumer::parasitic, resource::parasitic) = 1

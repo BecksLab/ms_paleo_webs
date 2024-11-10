@@ -101,3 +101,34 @@ save_object(
     "../data/processed/networks/pfim_networks_size.jlds",
     topology[:, ["id", "model", "network"]],
 )
+
+# and finally remove scavengers and parasites
+
+topology = topo_df();
+
+for i in eachindex(matrix_names)
+
+    file_name = matrix_names[i]
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+
+    # remove parasites and scavengers
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger"], df)
+
+    d = model_summary(df, file_name, "pfim", downsample = false)
+
+    d[:model] = "pfim_no_scav"
+    push!(topology, d)
+
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/topology_pfim_no_scav.csv",
+    topology[:, setdiff(names(topology), ["network"])],
+)
+# write networks as object
+save_object(
+    "../data/processed/networks/pfim_networks_no_scav.jlds",
+    topology[:, ["id", "model", "network"]],
+)
+
