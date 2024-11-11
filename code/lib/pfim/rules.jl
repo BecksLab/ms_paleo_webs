@@ -4,11 +4,21 @@ include(joinpath("types.jl"))
 
 # feeding rules
 feeding_rules(consumer::T1, resource::T2) where {T1<:feeding,T2<:feeding} = 0
+feeding_rules(consumer::carnivore, resource::producer) = 0
 feeding_rules(consumer::carnivore, resource::T) where {T<:feeding} = 1
 feeding_rules(consumer::grazer_carnivore, resource::suspension) = 1
 feeding_rules(consumer::scavenger, resource::T) where {T<:feeding} = 1
+feeding_rules(consumer::scavenger, resource::producer) = 0
 feeding_rules(consumer::parasitic, resource::T) where {T<:feeding} = 1
 feeding_rules(consumer::parasitic, resource::parasitic) = 1
+feeding_rules(consumer::parasitic, resource::producer) = 0
+feeding_rules(consumer::deposit_surficial, resource::producer) = 1
+feeding_rules(consumer::deposit_mining, resource::producer) = 1
+feeding_rules(consumer::deposit_mining_chemosymbiotic, resource::producer) = 1
+feeding_rules(consumer::suspension, resource::producer) = 1
+feeding_rules(consumer::suspension_chemosymbiotic, resource::producer) = 1
+feeding_rules(consumer::grazer_omnivore, resource::producer) = 1
+feeding_rules(consumer::grazer_herbivore, resource::producer) = 1
 
 # motility rules
 motility_rules(consumer::T1, resource::T2) where {T1<:motility,T2<:motility} = 0
@@ -38,6 +48,7 @@ tiering_rules(consumer::shallow_infaunal, resource::semi_infaunal) = 1
 tiering_rules(consumer::shallow_infaunal, resource::deep_infaunal) = 1
 tiering_rules(consumer::deep_infaunal, resource::semi_infaunal) = 1
 tiering_rules(consumer::deep_infaunal, resource::shallow_infaunal) = 1
+tiering_rules(consumer::T, resource::primary) where {T<:tier} = 1
 
 # size rules
 size_rules(consumer::T1, resource::T2) where {T1<:sizes,T2<:sizes} = 0

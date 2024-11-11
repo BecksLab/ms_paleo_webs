@@ -17,6 +17,7 @@ struct suspension <: feeding end
 struct suspension_chemosymbiotic <: feeding end
 struct parasitic <: feeding end
 struct scavenger <: feeding end
+struct producer <: feeding end
 
 """
 motility <: PFIM
@@ -48,6 +49,7 @@ struct epifaunal_surficial <: tier end
 struct semi_infaunal <: tier end
 struct shallow_infaunal <: tier end
 struct deep_infaunal <: tier end
+struct primary <: tier end
 
 """
 sizes <: PFIM

@@ -132,3 +132,38 @@ save_object(
     topology[:, ["id", "model", "network"]],
 )
 
+# repeat but without downsampling (i.e., metawebs) with basal node
+
+topology = topo_df();
+
+for i in eachindex(matrix_names)
+
+    file_name = matrix_names[i]
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+
+    _basal = Dict{Symbol,Any}()
+    _basal[:species] = "basal"
+    _basal[:feeding] = "producer"
+    _basal[:motility] = "non_motile"
+    _basal[:tiering] = "primary"
+    _basal[:size] = "tiny"
+
+    push!(df, _basal)
+
+    d = model_summary(df, file_name, "pfim")
+
+    d[:model] = "pfim_basal"
+    push!(topology, d)
+
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/topology_pfim_basal.csv",
+    topology[:, setdiff(names(topology), ["network"])],
+)
+# write networks as object
+save_object(
+    "../data/processed/networks/pfim_networks_basal.jlds",
+    topology[:, ["id", "model", "network"]],
+)
