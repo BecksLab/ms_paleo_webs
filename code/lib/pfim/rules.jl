@@ -21,7 +21,6 @@ motility_rules(consumer::slow_moving, resource::slow_moving) = 1
 motility_rules(consumer::slow_moving, resource::non_motile) = 0
 motility_rules(consumer::facultative, resource::facultative) = 1
 motility_rules(consumer::facultative, resource::non_motile) = 1
-motility_rules(consumer::grazer_carnivore, resource::suspension) = 1
 
 # tiering rules
 tiering_rules(consumer::T1, resource::T2) where {T1<:tier,T2<:tier} = 0
