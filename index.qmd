@@ -72,6 +72,8 @@ Although there are a suite of tools and methods that have been developed to pred
 
 -   And probably some other paleo things that will be relevant...
 
+![It would be very sexy if we could get a figure that looks something like this together...](figures/data_mock.png)
+
 # Methods
 
 ## Models
