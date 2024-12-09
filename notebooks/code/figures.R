@@ -10,10 +10,10 @@ setwd(here("notebooks/code"))
 
 df <- read_csv("../data/processed/nz_summary.csv") %>% 
   mutate(model = "real") %>% 
-  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   rbind(.,
         read_csv("../data/processed/topology_models.csv")) %>% 
   select(-richness) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
          top = NULL,
@@ -58,6 +58,7 @@ ggsave("../figures/summary.png",
 
 real_nets <- read_csv("../data/processed/nz_summary.csv") %>% 
   select(-richness) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   # to get the ratio
   mutate(ratio = top/basal,
          top = NULL,
@@ -70,7 +71,8 @@ real_nets <- read_csv("../data/processed/nz_summary.csv") %>%
     reframe(real_mu = mean(stat_val, na.rm = TRUE))
 
 mod_nets <- read_csv("../data/processed/topology_models.csv") %>% 
-  select(-richness) %>% 
+  select(-richness)  %>% 
+  mutate(across(matches("S[[:digit:]]"), log))%>% 
   # to get the ratio
   mutate(ratio = top/basal,
          top = NULL,
