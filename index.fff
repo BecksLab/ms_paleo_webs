@@ -1,12 +1,11 @@
-\begin{figure}
+\begin{figure}[H]
 
-\centering{
-
-\includegraphics{figures/summary.png}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{figures/data_mock.png}}
 
 }
 
-\caption{\label{fig-summary}stuff}
+\caption{It would be very sexy if we could get a figure that looks
+something like this together\ldots{}}
 
 \end{figure}
 \efloatseparator
@@ -15,25 +14,41 @@
 
 \centering{
 
-\includegraphics{figures/extinction.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/summary.png}}
+
+}
+
+\caption{\label{fig-summary}stuff\ldots{} For display purposes the
+counts for the different motifs are log transformed}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/extinction.png}}
 
 }
 
 \caption{\label{fig-extinction}Dashed line indicates the (mean)
 extinction simulation results (post value, start values are those
-estimated by the relevant model)}
+estimated by the relevant model). For display purposes the counts for
+the different motifs are log transformed}
 
 \end{figure}
 \efloatseparator
  
 \begin{figure}[H]
 
-{\centering \includegraphics{figures/extinction_all_results.png}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{figures/extinction_all_results.png}}
 
 }
 
 \caption{Dark line indicates `real' extinction simulation results the
 lighter lines show each model individually, which is also denoted by the
-linetype}
+linetype. For display purposes the counts for the different motifs are
+log transformed}
 
 \end{figure}

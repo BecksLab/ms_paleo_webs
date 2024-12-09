@@ -10,6 +10,7 @@ setwd(here("notebooks/code"))
 
 df <- read_csv("../data/processed/nz_summary.csv") %>% 
   mutate(model = "real") %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   rbind(.,
         read_csv("../data/processed/topology_models.csv")) %>% 
   select(-richness) %>% 
