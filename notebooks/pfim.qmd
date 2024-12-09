@@ -1,0 +1,31 @@
+---
+title: "SuppMat 2: Comparing different PFIM configurations"
+authors:
+  - name: Tanya Strydom
+    id: ts
+    orcid: 0000-0001-6067-1349
+abstract: |
+  An overview of the different pfim configurations and what impact that has on the resulting networks
+date: last-modified
+bibliography: ../references.bib
+---
+
+# Different pfim configurations
+
+## Maximal Rules
+
+An extremely subdivided-nuanced set of traits and feeding rules
+
+## Minimal Rules
+
+Lumping some of the different traits in order to have fewer feeding rules. 
+
+## Guild/trophic species
+
+Taking away the taxonomic specification and taking a 'functional' approach
+
+# Downstream effects of the different configurations
+
+Redundancy? Structure? Basal node?
+
+# Downsampling
