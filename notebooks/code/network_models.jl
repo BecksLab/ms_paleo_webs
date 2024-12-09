@@ -15,8 +15,8 @@ include("../../code/lib/internals.jl")
 
 # import datasets
 #nz_summaries = DataFrame(CSV.File("../notebooks/data/processed/nz_summary.csv"))
-nz_networks = load_object("notebooks/data/raw/nz_networks.jlds")
-comm_data = DataFrame(CSV.File("notebooks/data/raw/taxa_dry_weight_abundance.csv"))
+nz_networks = load_object("../data/raw/nz_networks.jlds")
+comm_data = DataFrame(CSV.File("../data/raw/taxa_dry_weight_abundance.csv"))
 rename!(comm_data, :dw => :bodymass)
 rename!(comm_data, Symbol("no.m2") => :abundance)
 rename!(comm_data, :taxa  => :species)
@@ -35,6 +35,7 @@ for i in eachindex(nz_networks)
    D[:richness] = d[:richness]
    D[:connectance] = d[:connectance]
    D[:complexity] = d[:complexity]
+   D[:deficiency] = d[:deficiency]
    D[:distance] = d[:distance]
    D[:basal] = d[:basal]
    D[:top] = d[:top]
@@ -50,7 +51,7 @@ for i in eachindex(nz_networks)
 end
 
 # write summaries as .csv
-CSV.write("notebooks/data/processed/nz_summary.csv",
+CSV.write("../data/processed/nz_summary.csv",
             nz_summaries[:, setdiff(names(nz_summaries), ["model", "network"])])
 
 # side quest: find 'producer' species
@@ -110,5 +111,5 @@ end
 
 
 # write summaries as .csv
-CSV.write("../notebooks/data/processed/topology_models.csv",
+CSV.write("../data/processed/topology_models.csv",
     topology[:, setdiff(names(topology), ["network"])])
