@@ -26,6 +26,8 @@ Taking away the taxonomic specification and taking a 'functional' approach
 
 # Downstream effects of the different configurations
 
+![TODO.](figures/summary_pfim.png)
+
 Redundancy? Structure? Basal node?
 
 # Downsampling
