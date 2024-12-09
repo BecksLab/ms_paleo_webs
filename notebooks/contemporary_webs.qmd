@@ -15,3 +15,8 @@ Playing around with using the @pomeranz2018 dataset because they have most of th
 ![Something about X marking the spot... anyway that's the real value and coloured points indicate the predicted value.](figures/summary.png)
 
 ![Z-score. Its a bit janky because its 1:1 (one prediction for each site) but it gives one an idea?](figures/zscore.png)
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
