@@ -84,3 +84,20 @@ list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>
   distinct() %>%
   write.csv(., "../data/clean/extinction/traits.csv",
             row.names = FALSE)
+
+# create a trophic community (collapse all species with the same traits)
+
+trait_files <- list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE)
+
+for (i in seq_along(trait_files)) {
+
+  read.csv(trait_files[i]) %>%
+    group_by(feeding, motility, tiering, size) %>% 
+    distinct() %>%
+    write.csv(., "../data/clean/extinction/traits.csv",
+              row.names = FALSE)
+
+  # write as clean data
+  write.csv(df, str_replace(trait_files[i], "trait", "trophic"),
+            row.names = FALSE)
+}
