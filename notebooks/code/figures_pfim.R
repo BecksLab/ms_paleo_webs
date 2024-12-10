@@ -12,7 +12,7 @@ df <- list.files(path = "../../data/processed/", pattern = ".csv", full.names = 
   lapply(read_csv) %>% 
   bind_rows %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(network, richness, distance)) %>% 
+  select(-c(network, distance)) %>% 
   filter(str_detect(model, "^.*pfim.*$")) %>%
   # remove
   mutate(top = NULL,
