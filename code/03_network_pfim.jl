@@ -84,7 +84,7 @@ for i in eachindex(matrix_names)
     # replace with continuous
     df = innerjoin(df, bodymass, on = :species)
 
-    d = model_summary(df, file_name, "pfim")
+    d = model_summary(df, file_name, "pfim", downsample = false)
 
     d[:model] = "pfim_size"
     push!(topology, d)
@@ -150,7 +150,7 @@ for i in eachindex(matrix_names)
 
     push!(df, _basal)
 
-    d = model_summary(df, file_name, "pfim")
+    d = model_summary(df, file_name, "pfim", downsample = false)
 
     d[:model] = "pfim_basal"
     push!(topology, d)
