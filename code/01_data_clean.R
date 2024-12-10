@@ -91,11 +91,9 @@ trait_files <- list.files(path = "../data/clean/trait", pattern = ".csv", full.n
 
 for (i in seq_along(trait_files)) {
 
-  read.csv(trait_files[i]) %>%
+  df <- read.csv(trait_files[i]) %>%
     group_by(feeding, motility, tiering, size) %>% 
-    distinct() %>%
-    write.csv(., "../data/clean/extinction/traits.csv",
-              row.names = FALSE)
+    distinct()
 
   # write as clean data
   write.csv(df, str_replace(trait_files[i], "trait", "trophic"),
