@@ -79,14 +79,15 @@ function model_summary(
     model_name::String;
     bodymass::Vector{Float64} = [0.0, 0.0],
     connectance::Float64 = 0.1,
+    links::Int64 = 10,
     biomass::Vector{Float64} = [0.0, 0.0],
     downsample::Bool = true,
 )
 
     # data checks
-    if model_name ∉ ["bodymassratio", "pfim", "niche", "adbm"]
+    if model_name ∉ ["bodymassratio", "pfim", "niche", "adbm", "random"]
         error(
-            "Invalid value for model_name -- must be one of bodymassratio, pfim, niche, or adbm",
+            "Invalid value for model_name -- must be one of bodymassratio, pfim, niche, random, or adbm",
         )
     end
     if model_name ∈ ["bodymassratio", "adbm"] && length(bodymass) != length(df.species)
@@ -104,6 +105,8 @@ function model_summary(
         N = PFIM(df; downsample = downsample)
     elseif model_name == "niche"
         N = structuralmodel(NicheModel, nrow(df), connectance)
+    elseif model_name == "random"
+        N = randommodel(nrow(df), links)
     else
         model_name == "adbm"
         parameters = adbm_parameters(df, bodymass)
