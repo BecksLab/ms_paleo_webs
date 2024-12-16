@@ -47,7 +47,7 @@ levs = c("Macro", "Meso", "Micro")
 
 for (i in seq_along(plot_list)) {
   
-  plot_list[[i]] <- ggplot(df%>% 
+  plot_list[[i]] <- ggplot(df %>% 
               filter(level == levs[i]),
        aes(x = factor(`id`), 
            y = stat_val, 
