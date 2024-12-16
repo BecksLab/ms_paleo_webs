@@ -38,7 +38,7 @@ df <- list.files(path = "../data/processed/", pattern = ".csv", full.names = TRU
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random"))
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
@@ -117,7 +117,7 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random"))
 
 df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
 df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
