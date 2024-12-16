@@ -1,5 +1,6 @@
 library(RColorBrewer)
 library(here)
+library(patchwork)
 library(readr)
 library(scales)
 library(tidyverse)
@@ -16,7 +17,7 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
   select(-richness) %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
   # to get the ratio
-  mutate(ratio = top/basal,
+  mutate(distance = NULL,
          top = NULL,
          basal = NULL) %>%
   pivot_longer(
@@ -30,30 +31,48 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
                           stat == "S2" ~ "No. of omnivory motifs",
                           stat == "S4" ~ "No. of apparent competition motifs",
                           stat == "S5" ~ "No. of direct competition motifs",
-                          .default = as.character(stat)))
+                          .default = as.character(stat))) %>%
+  mutate(level = case_when(
+    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
+    .default = "Meso"
+  ))
 
-ggplot() +
-  geom_point(data = df %>% filter(model == "real"),
+plot_list <- vector(mode = "list", length = 3)
+levs = c("Macro", "Meso", "Micro")
+
+for (i in seq_along(plot_list)) {
+  
+  plot_list[[i]] <- ggplot() +
+  geom_point(data = df %>% filter(model == "real") %>% filter(level == levs[i]),
                 aes(x = stat_val, 
                     y = id),
                 shape = 4,
                 size = 3) +
-  geom_point(data = df %>% filter(model != "real"),
+  geom_point(data = df %>% filter(model != "real") %>% filter(level == levs[i]),
                 aes(x = stat_val, 
                     y = id,
                     colour = model)) +
   facet_wrap(vars(stat),
-             scales = 'free') +
+             scales = 'free',
+             ncol = 2) +
   theme_classic() +
+  labs(title = levs[i]) +
   xlab("value") +
   ylab("site") +
+  scale_colour_brewer(palette = "Dark2") +
   coord_cartesian(clip = "off") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"))
+}
 
-ggsave("../figures/summary.png",
-       width = 11000,
-       height = 6000,
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 2, 1))
+
+ggsave("../figures/summary_contemporary.png",
+       width = 5000,
+       height = 8000,
        units = "px",
        dpi = 600)
 
