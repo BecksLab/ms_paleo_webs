@@ -20,7 +20,7 @@ An extremely subdivided-nuanced set of traits and feeding rules
 
 Lumping some of the different traits in order to have fewer feeding rules. 
 
-## Guild/trophic species
+## Trophic species
 
 Taking away the taxonomic specification and taking a 'functional' approach
 

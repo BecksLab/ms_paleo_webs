@@ -1,3 +1,4 @@
+library(RColorBrewer)
 library(here)
 library(readr)
 library(scales)
@@ -49,6 +50,7 @@ ggplot(df,
   xlab("time") +
   ylab("value") +
   coord_cartesian(clip = "off") +
+  scale_colour_brewer(palette = "Dark2") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
