@@ -1,5 +1,6 @@
 library(RColorBrewer)
 library(here)
+library(patchwork)
 library(readr)
 library(scales)
 library(tidyverse)
@@ -32,11 +33,22 @@ df <- list.files(path = "../../data/processed/", pattern = ".csv", full.names = 
                         stat == "S2" ~ "No. of omnivory motifs",
                         stat == "S4" ~ "No. of apparent competition motifs",
                         stat == "S5" ~ "No. of direct competition motifs",
-                        .default = as.character(stat)))
+                        .default = as.character(stat))) %>%
+  mutate(level = case_when(
+    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
+    .default = "Meso"
+  ))
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
-ggplot(df,
+plot_list <- vector(mode = "list", length = 3)
+levs = c("Macro", "Meso", "Micro")
+
+for (i in seq_along(plot_list)) {
+  
+  plot_list[[i]] <- ggplot(df%>% 
+              filter(level == levs[i]),
        aes(x = factor(`id`), 
            y = stat_val, 
            colour = model,
@@ -51,12 +63,18 @@ ggplot(df,
   ylab("value") +
   coord_cartesian(clip = "off") +
   scale_colour_brewer(palette = "Dark2") +
+  labs(title = levs[i]) +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
+}
+
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 2, 1))
 
 ggsave("../figures/summary_pfim.png",
-       width = 11000,
-       height = 6000,
+       width = 4500,
+       height = 7000,
        units = "px",
        dpi = 600)
