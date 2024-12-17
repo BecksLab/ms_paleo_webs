@@ -11,6 +11,7 @@ Random.seed!(66)
 # import model libs
 include("../../code/lib/bodymass/bodymass.jl")
 include("../../code/lib/adbm/adbm.jl")
+include("../../code/lib/random/random.jl")
 include("../../code/lib/internals.jl")
 
 # import datasets
@@ -95,6 +96,8 @@ n_reps = 1000;
         comm = filter(Symbol("food.web") => x -> x == site, comm_data)
     
         df = innerjoin(comm, prods, on = :species)
+
+        links = round(Int, Co*(nrow(df)^2))
     
         # adbm
         d = model_summary(df, site, "adbm"; bodymass = df.bodymass, biomass = df.abundance)
@@ -104,6 +107,9 @@ n_reps = 1000;
         push!(topology, d)
         # bodymass
         d = model_summary(df, site, "bodymassratio"; bodymass = df.bodymass)
+        push!(topology, d)
+        # random
+        d = model_summary(df, site, "random"; links = links)
         push!(topology, d)
     
     end

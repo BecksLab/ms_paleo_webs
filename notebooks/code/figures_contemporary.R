@@ -1,6 +1,6 @@
-library(RColorBrewer)
 library(here)
 library(patchwork)
+library(RColorBrewer)
 library(readr)
 library(scales)
 library(tidyverse)
@@ -16,7 +16,6 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
         read_csv("../data/processed/topology_models.csv")) %>% 
   select(-richness) %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  # to get the ratio
   mutate(distance = NULL,
          top = NULL,
          basal = NULL) %>%
@@ -35,8 +34,7 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
-    .default = "Meso"
-  ))
+    .default = "Meso"))
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
@@ -80,7 +78,7 @@ real_nets <- read_csv("../data/processed/nz_summary.csv") %>%
   select(-richness) %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
   # to get the ratio
-  mutate(ratio = top/basal,
+  mutate(distance = NULL,
          top = NULL,
          basal = NULL) %>%
   pivot_longer(
@@ -91,10 +89,10 @@ real_nets <- read_csv("../data/processed/nz_summary.csv") %>%
     reframe(real_mu = mean(stat_val, na.rm = TRUE))
 
 mod_nets <- read_csv("../data/processed/topology_models.csv") %>% 
-  select(-richness)  %>% 
-  mutate(across(matches("S[[:digit:]]"), log))%>% 
+  select(-richness) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
   # to get the ratio
-  mutate(ratio = top/basal,
+  mutate(distance = NULL,
          top = NULL,
          basal = NULL) %>%
   pivot_longer(
@@ -104,16 +102,21 @@ mod_nets <- read_csv("../data/processed/topology_models.csv") %>%
     group_by(model, stat, id) %>% 
     reframe(model_mu = mean(stat_val, na.rm = TRUE),
             model_sd = sd(stat_val, na.rm = TRUE)) %>% 
-left_join(., real_nets) %>% 
-mutate(z_score = (real_mu - model_mu)/model_sd,
+   left_join(., real_nets) %>% 
+   mutate(z_score = (real_mu - model_mu)/model_sd,
        stat = case_when(stat == "S1" ~ "No. of linear chains",
                         stat == "S2" ~ "No. of omnivory motifs",
                         stat == "S4" ~ "No. of apparent competition motifs",
                         stat == "S5" ~ "No. of direct competition motifs",
-                        .default = as.character(stat)))
+                        .default = as.character(stat))) %>%
+   mutate(level = case_when(
+    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
+    .default = "Meso"))
 
+for (i in seq_along(plot_list)) {
 
-ggplot(mod_nets) +
+  plot_list[[i]] <-  ggplot(mod_nets %>% filter(level == levs[i])) +
     geom_vline(aes(xintercept = 0)) +
     geom_histogram(aes(x = z_score,
                     fill = model),
@@ -122,14 +125,22 @@ ggplot(mod_nets) +
     facet_grid(rows = vars(model),
                 cols = vars(stat),
                 scales = "free") +
-    scale_fill_discrete(guide = 'none') +
+    scale_fill_brewer(palette = "Dark2") +
     coord_cartesian(expand = FALSE, clip = "off") +
     theme_classic() +
+    labs(title = levs[i]) +
     theme(panel.border = element_rect(colour = 'black',
-                                      fill = "#ffffff00"))
+                                      fill = "#ffffff00"),
+          legend.position = 'none')
+  
+}
 
-ggsave("../figures/zscore.png",
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(1, 1, 1))
+
+ggsave("../figures/zscore_contemporary.png",
        width = 11000,
-       height = 6000,
+       height = 17000,
        units = "px",
        dpi = 600)
