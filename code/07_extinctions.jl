@@ -37,6 +37,12 @@ select!(extinction_results, Not(:network))
 
 matrix_names = readdir("../data/processed/networks")
 
+filter!(!=("pfim_networks_basal.jlds"), matrix_names)
+filter!(!=("pfim_networks_trophic.jlds"), matrix_names)
+filter!(!=("pfim_networks_size.jlds"), matrix_names)
+filter!(!=("pfim_networks_metaweb.jlds"), matrix_names)
+filter!(!=("pfim_networks_no_scav.jlds"), matrix_names)
+
 for i in eachindex(matrix_names)
 
     # import predicted network for specific model
@@ -93,8 +99,8 @@ for i in eachindex(matrix_names)
             end
 
             # categorical extinctions
-            # note we cant do this with the niche model...
-            if pre_comm.model[1] != "niche"
+            # note we can't do this with the niche model...
+            if pre_comm.model[1] ∉ ["niche"]
                 for k in eachindex(hierarchies[1])
 
                     trait_data = traits[:, [:species, hierarchies[1][k]]]

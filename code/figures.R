@@ -124,29 +124,42 @@ df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
 
 df_ext_summ <-
   df_ext %>%
-  select(model, stat, end_val, start_val) %>% 
+  select(model, stat, end_val, start_val, level) %>% 
   pivot_longer(cols = c(end_val, start_val)) %>% 
-  group_by(model, stat, name) %>% 
+  group_by(model, stat, name, level) %>% 
   summarise(y = mean(value, na.rm = TRUE)) %>%
   mutate(name = ifelse(name == "end_val",
                        "post",
                        "pre"))
 
-summary +
-  geom_line(data = df_ext_summ,
+ext_plot_list <- vector(mode = "list", length = 3)
+
+for (i in seq_along(ext_plot_list)) {
+  
+  ext_plot_list[[i]] <- plot_list[[i]] +
+    geom_line(data = df_ext_summ %>% 
+              filter(level == levs[i]),
             aes(x = factor(name),
                 y = y, 
                 group = model),
             linetype = "dashed")
+}
+
+ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 2, 1))
 
 ggsave("../figures/extinction.png",
-       width = 11000,
-       height = 6000,
+       width = 4500,
+       height = 7000,
        units = "px",
        dpi = 600)
 
-ggplot() +
-  geom_segment(data = df_ext,
+for (i in seq_along(ext_plot_list)) {
+  
+  ext_plot_list[[i]] <- ggplot() +
+  geom_segment(data = df_ext %>% 
+              filter(level == levs[i]),
                aes(x = xstart,
                    y = start_val, 
                    xend = xend,
@@ -155,24 +168,33 @@ ggplot() +
                    group = model,
                    linetype = extinction_mechanism),
                alpha = 0.3) +
-  geom_line(data = df %>% filter(id != "during"),
+  geom_line(data = df %>% filter(id != "during")%>% 
+              filter(level == levs[i]),
             aes(x = factor(id),
                 y = stat_val,
                 colour = model,
                 group = model)) +
   facet_wrap(vars(stat),
-             scales = 'free') +
+             scales = 'free',
+             ncol = 2) +
   scale_size(guide = 'none') +
   theme_classic() +
   xlab("time") +
   ylab("value") +
   coord_cartesian(clip = "off") +
+  scale_colour_brewer(palette = "Dark2") +
+  labs(title = levs[i]) +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
+}
+
+ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 2, 1))
 
 ggsave("../figures/extinction_all_results.png",
-       width = 11000,
-       height = 5000,
+       width = 4500,
+       height = 7000,
        units = "px",
        dpi = 600)
