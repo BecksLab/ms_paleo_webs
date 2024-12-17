@@ -16,8 +16,9 @@ randommodel(S::Int64, L::Int64)
 
     Graphs.jl TODO
 """
-function randommodel(S::Int64, L::Int64)
+function randommodel(species::Any, L::Int64)
 
+    S = length(species)
     N = erdos_renyi(S, L)
 
     # empty matrix
@@ -32,6 +33,6 @@ function randommodel(S::Int64, L::Int64)
     end
 
     edges = Binary(edges)
-    nodes = Unipartite(edges)
+    nodes = Unipartite(Symbol.(species))
     return SpeciesInteractionNetworks.SpeciesInteractionNetwork(nodes, edges)
 end

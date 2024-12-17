@@ -106,7 +106,7 @@ function model_summary(
     elseif model_name == "niche"
         N = structuralmodel(NicheModel, nrow(df), connectance)
     elseif model_name == "random"
-        N = randommodel(nrow(df), links)
+        N = randommodel(df.species, links)
     else
         model_name == "adbm"
         parameters = adbm_parameters(df, bodymass)
