@@ -102,7 +102,7 @@ save_object(
     topology[:, ["id", "model", "network"]],
 )
 
-# and finally remove scavengers and parasites
+# remove scavengers and parasites
 
 topology = topo_df();
 
