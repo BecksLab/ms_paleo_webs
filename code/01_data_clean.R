@@ -81,6 +81,7 @@ list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>
                              str_detect(tiering, "^.*epifaunal.*$") ~ "epifaunal",
                              TRUE ~ as.character(tiering))
          ) %>%
+  group_by(species, motility, tiering, size) %>% 
   distinct() %>%
   write.csv(., "../data/clean/extinction/traits.csv",
             row.names = FALSE)
