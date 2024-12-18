@@ -30,7 +30,7 @@ for i in eachindex(matrix_names)
 end
 
 # write summaries as .csv
-CSV.write("../data/processed/topology_niche.csv", topology)
+CSV.write("../data/processed/topology/topology_niche.csv", topology)
 # write networks as object
 save_object(
     "../data/processed/networks/niche_networks.jlds",

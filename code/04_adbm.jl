@@ -39,7 +39,7 @@ for i in eachindex(size_names)
 end
 
 # write summaries as .csv
-CSV.write("../data/processed/topology_adbm.csv", topology)
+CSV.write("../data/processed/topology/topology_adbm.csv", topology)
 # write networks as object
 save_object(
     "../data/processed/networks/adbm_networks.jlds",

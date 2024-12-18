@@ -27,7 +27,7 @@ for i in eachindex(matrix_names)
 end
 
 # write summaries as .csv
-CSV.write("../data/processed/topology_bodymassratio.csv", topology)
+CSV.write("../data/processed/topology/topology_bodymassratio.csv", topology)
 # write networks as object
 save_object(
     "../data/processed/networks/bodymassratio_networks.jlds",

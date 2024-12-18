@@ -28,7 +28,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim.csv",
+    "../data/processed/topology/topology_pfim.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
@@ -55,7 +55,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim_metaweb.csv",
+    "../data/processed/topology/topology_pfim_metaweb.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
@@ -93,7 +93,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim_size.csv",
+    "../data/processed/topology/topology_pfim_size.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
@@ -123,7 +123,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim_no_scav.csv",
+    "../data/processed/topology/topology_pfim_no_scav.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
@@ -159,7 +159,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim_basal.csv",
+    "../data/processed/topology/topology_pfim_basal.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
@@ -190,7 +190,7 @@ end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology_pfim_trophic.csv",
+    "../data/processed/topology/topology_pfim_trophic.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object

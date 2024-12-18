@@ -32,7 +32,7 @@ for i in eachindex(matrix_names)
 end
 
 # write summaries as .csv
-CSV.write("../data/processed/topology_random.csv", topology)
+CSV.write("../data/processed/topology/topology_random.csv", topology)
 # write networks as object
 save_object(
     "../data/processed/networks/random_networks.jlds",
