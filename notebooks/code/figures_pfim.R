@@ -10,7 +10,7 @@ setwd(here("notebooks/code"))
 
 #### Structure ####
 
-df <- list.files(path = "../../data/processed/", pattern = ".csv", full.names = TRUE) %>% 
+df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
