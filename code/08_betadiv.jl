@@ -58,5 +58,10 @@ for time ∈ ["pre", "during", "post"]
             push!(β_div, b)
         end  
     end
-    
 end
+
+# write outputs as .csv
+CSV.write(
+    "../data/processed/beta_div/beta_div.csv",
+    β_div,
+)
