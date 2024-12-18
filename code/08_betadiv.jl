@@ -7,38 +7,56 @@ using SpeciesInteractionNetworks
 include("lib/internals.jl")
 
 β_div = DataFrame(
-    model = String[],
     left = String[],
     right = String[],
     β_int = Int64[],
     β_spp = Int64[],
+    links_left = Int64[],
+    links_right = Int64[],
 )
 
 matrix_names = readdir("../data/processed/networks")
 
-for i in eachindex(matrix_names)
+# this can for sure be done more elegantly but brute force for now...
+filter!(!=("pfim_networks_basal.jlds"), matrix_names)
+filter!(!=("pfim_networks_trophic.jlds"), matrix_names)
+filter!(!=("pfim_networks_size.jlds"), matrix_names)
+filter!(!=("pfim_networks_metaweb.jlds"), matrix_names)
+filter!(!=("pfim_networks_no_scav.jlds"), matrix_names)
 
-    # import predicted network for specific model
-    file_name = matrix_names[i]
-    df = load_object("../data/processed/networks/$file_name")
+# same comment RE elegance
+networks = load_object(joinpath("../data/processed/networks/", matrix_names[1]))
 
-    # for each combination of datasets
-    for (x, y) in combinations(["pre", "during", "post"], 2)
-        
-        U = df[occursin.(x, df.id), :network][1]
-        V = df[occursin.(y, df.id), :network][1]
-        β_int = SpeciesInteractionNetworks.betadiversity(βS,U,V)
-        β_spp = SpeciesInteractionNetworks.betadiversity(βWN,U,V)
+for i in 2:5
+    append!(networks, load_object(joinpath("../data/processed/networks/", matrix_names[i])))
+end
 
-        # cllate
-        b = Dict{Symbol,Any}()
-        b[:model] = df.model[1]
-        b[:left] = x
-        b[:right] = y
-        b[:β_int] = β_int.shared
-        b[:β_spp] = β_spp.shared
+for time ∈ ["pre", "during", "post"]
 
-        # send to results
-        push!(β_div, b)
-    end  
+    df = networks[occursin.(time, networks.id), :]
+
+    for i in eachindex(matrix_names)
+
+        # for each combination of datasets
+        for (x, y) in combinations(unique(networks[:,:model]), 2)
+            
+            U = df[occursin.(x, df.model), :network][1]
+            V = df[occursin.(y, df.model), :network][1]
+            β_spp = SpeciesInteractionNetworks.betadiversity(βS,U,V)
+            β_int = SpeciesInteractionNetworks.betadiversity(βWN,U,V)
+    
+            # collate
+            b = Dict{Symbol,Any}()
+            b[:left] = x
+            b[:right] = y
+            b[:β_int] = β_int.shared
+            b[:β_spp] = β_spp.shared
+            b[:links_left] = links(U)
+            b[:links_right] = links(V)
+    
+            # send to results
+            push!(β_div, b)
+        end  
+    end
+    
 end
