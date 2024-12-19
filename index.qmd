@@ -159,6 +159,10 @@ The **specificity** of species in a network is measured as a function of the pro
 
 > **Shape:** to determine if the 'shape' of the network is correct we are looking at the ratio of 'top':'basal' species (where 'top' species are those that have a vulnerability of 0 and 'basal' species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar 'shape'). This will allow is to see if the models construct tall 'pencil' vs flat 'pancake' networks (Beckerman 2024, pers comms). A small (\< 1) number will thus be indicative of a 'bottom-heavy' network and the opposite for larger numbers
 
+## Interaction
+
+**Interaction turnover** [@poisot2012] tells us which interactions are 'conserved' (shared) across the networks from the same period but constructed using different models.
+
 # Results
 
 ## Comparing predicted networks
