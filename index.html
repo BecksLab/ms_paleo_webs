@@ -136,6 +136,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=A comparative study of ecological specialization estimators;,citation_author=Timothée Poisot;,citation_author=Elsa Canard;,citation_author=Nicolas Mouquet;,citation_author=Michael E. Hochberg;,citation_publication_date=2012-01-19;,citation_cover_date=2012-01-19;,citation_year=2012;,citation_fulltext_html_url=http://dx.doi.org/10.1111/j.2041-210X.2011.00174.x;,citation_issue=3;,citation_doi=10.1111/j.2041-210x.2011.00174.x;,citation_volume=3;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
 <meta name="citation_reference" content="citation_title=Food Webs From the Small to the Large: The Robert H. MacArthur Award Lecture;,citation_author=Thomas W. Schoener;,citation_publication_date=1989-12;,citation_cover_date=1989-12;,citation_year=1989;,citation_fulltext_html_url=http://dx.doi.org/10.2307/1938088;,citation_issue=6;,citation_doi=10.2307/1938088;,citation_volume=70;,citation_language=en;,citation_journal_title=Ecology;">
 <meta name="citation_reference" content="citation_title=ATNr: Allometric Trophic Network models in R;,citation_author=Benoit Gauzens;,citation_author=Ulrich Brose;,citation_author=Eva Delmas;,citation_author=Emilio Berti;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14212;,citation_issue=11;,citation_doi=10.1111/2041-210X.14212;,citation_volume=14;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
+<meta name="citation_reference" content="citation_title=Animal diversity and ecosystem functioning in dynamic food webs;,citation_author=Florian D. Schneider;,citation_author=Ulrich Brose;,citation_author=Björn C. Rall;,citation_author=Christian Guill;,citation_publication_date=2016-10-05;,citation_cover_date=2016-10-05;,citation_year=2016;,citation_fulltext_html_url=https://www.nature.com/articles/ncomms12718;,citation_issue=1;,citation_doi=10.1038/ncomms12718;,citation_volume=7;,citation_language=en;,citation_journal_title=Nature Communications;">
 </head>
 
 <body>
@@ -387,7 +388,7 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 </section>
 <section id="l-matrix" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">6.1.4</span> L matrix</h3>
-<p>For now we can link to thATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
+<p>For now we can link to thATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. <span class="citation" data-cites="schneider2016">Schneider et al. (<a href="#ref-schneider2016" role="doc-biblioref">2016</a>)</span> Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
 \]</span></p>
@@ -509,6 +510,9 @@ Roopnarine, Peter D. 2017. <span>“Ecological Modelling of Paleocommunity Food 
 </div>
 <div id="ref-roopnarine2006" class="csl-entry" role="listitem">
 Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
+</div>
+<div id="ref-schneider2016" class="csl-entry" role="listitem">
+Schneider, Florian D., Ulrich Brose, Björn C. Rall, and Christian Guill. 2016. <span>“Animal Diversity and Ecosystem Functioning in Dynamic Food Webs.”</span> <em>Nature Communications</em> 7 (1): 12718. <a href="https://doi.org/10.1038/ncomms12718">https://doi.org/10.1038/ncomms12718</a>.
 </div>
 <div id="ref-schoener1989" class="csl-entry" role="listitem">
 Schoener, Thomas W. 1989. <span>“Food Webs From the Small to the Large: The Robert H. MacArthur Award Lecture.”</span> <em>Ecology</em> 70 (6): 1559–89. <a href="https://doi.org/10.2307/1938088">https://doi.org/10.2307/1938088</a>.
