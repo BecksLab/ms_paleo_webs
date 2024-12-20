@@ -137,7 +137,7 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ### L matrix
 
-For now we can link to thATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
+For now we can link to thATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. @schneider2016 Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
 
 $$
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
