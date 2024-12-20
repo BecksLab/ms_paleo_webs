@@ -4,7 +4,7 @@ using Distributions
 using JLD2
 using SpeciesInteractionNetworks
 
-include("lib/adbm/adbm.jl")
+include("lib/lmatrix/lmatrix.jl")
 include("lib/internals.jl")
 
 # set seed
