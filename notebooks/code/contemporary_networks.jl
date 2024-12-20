@@ -11,6 +11,7 @@ Random.seed!(66)
 # import model libs
 include("../../code/lib/bodymass/bodymass.jl")
 include("../../code/lib/adbm/adbm.jl")
+include("../../code/lib/lmatrix/lmatrix.jl")
 include("../../code/lib/random/random.jl")
 include("../../code/lib/internals.jl")
 
@@ -98,6 +99,7 @@ n_reps = 1000;
         df = innerjoin(comm, prods, on = :species)
 
         links = round(Int, Co*(nrow(df)^2))
+        is_producer = map(==("producer"), string.(df.tiering))
     
         # adbm
         d = model_summary(df, site, "adbm"; bodymass = df.bodymass, biomass = df.abundance)
@@ -107,6 +109,9 @@ n_reps = 1000;
         push!(topology, d)
         # bodymass
         d = model_summary(df, site, "bodymassratio"; bodymass = df.bodymass)
+        push!(topology, d)
+        # lmatrix
+        d = model_summary(df, site, "lmatrix"; bodymass = df.bodymass, is_producer = is_producer)
         push!(topology, d)
         # random
         d = model_summary(df, site, "random"; links = links)
