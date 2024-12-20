@@ -461,10 +461,10 @@ different terms are parametrised.
 \subsubsection{Body size ratio model}\label{body-size-ratio-model}
 
 The body size ratio model (Rohr et al., 2010) determines feeding
-interactions using the ratio between consumer and resource body sizes -
-which supposedly stems from niche theory (still trying to reconcile that
-myself). The probability of a link existing between a consumer and
-resource (in its most basic form) is defined as follows:
+interactions using the ratio between consumer (\(M_{i}\)) and resource
+(\(M_{j}\)) body sizes - which supposedly stems from niche theory (still
+trying to reconcile that). The probability of a link existing between a
+consumer and resource (in its most basic form) is defined as follows:
 
 \[
 P_{ij} = \frac{p}{1+p}
@@ -484,6 +484,29 @@ parameters \(\alpha\), \(\delta\), and \(\gamma\) using a GLM but we
 will use the parameters from Yeakel et al. (2014), which was `trained'
 on the Serengeti food web data and are as follows: \(\alpha = 1.41\),
 \(\delta = 3.75\), and \(\gamma = 1.87\).
+
+\subsubsection{L matrix}\label{l-matrix}
+
+For now we can link to thATNr package (Gauzens et al., 2023) until I can
+find a more suitable manuscript that breaks down this construction
+method. Interactions are determined by allometric rules (ratio of
+consumer (\(M_{i}\)) and resource (\(M_{j}\)) body sizes) and a Ricker
+function as defined by \(R_{opt}\) and \(\gamma\) and returns The
+probability of a link (\(P_{ij}\)) existing between a consumer and
+resource, and is defined as follows:
+
+\[
+P_{ij} = (L \times \exp(1 - L))^{\gamma}
+\]
+
+where
+
+\[
+L = \frac{M_{i}}{M_{j} \times R_{opt}}
+\]
+
+It is also possible to apply a threshold value to \(P_{ij}\), whereby
+any probabilities below that threshold are set to zero.
 
 \subsubsection{Niche model}\label{niche-model}
 
@@ -670,6 +693,12 @@ D., Sanisidro, O., Rowan, J., Svenning, J.-C., \& Beaudrot, L. (2022).
 Collapse of terrestrial mammal food webs since the Late Pleistocene.
 \emph{Science}, \emph{377}(6609), 1008--1011.
 \url{https://doi.org/10.1126/science.abn4012}
+
+\bibitem[\citeproctext]{ref-gauzens2023}
+Gauzens, B., Brose, U., Delmas, E., \& Berti, E. (2023). ATNr:
+Allometric Trophic Network models in R. \emph{Methods in Ecology and
+Evolution}, \emph{14}(11), 2766--2773.
+\url{https://doi.org/10.1111/2041-210X.14212}
 
 \bibitem[\citeproctext]{ref-martinez1992}
 Martinez, N. D. (1992). Constant connectance in community food webs.

@@ -135,6 +135,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=A roadmap towards predicting species interaction networks (across space and time);,citation_author=Tanya Strydom;,citation_author=Michael D. Catchen;,citation_author=Francis Banville;,citation_author=Dominique Caron;,citation_author=Gabriel Dansereau;,citation_author=Philippe Desjardins-Proulx;,citation_author=Norma R. Forero-Muñoz;,citation_author=Gracielle Higino;,citation_author=Benjamin Mercier;,citation_author=Andrew Gonzalez;,citation_author=Dominique Gravel;,citation_author=Laura Pollock;,citation_author=Timothée Poisot;,citation_publication_date=2021-11;,citation_cover_date=2021-11;,citation_year=2021;,citation_issue=1837;,citation_doi=10.1098/rstb.2021.0063;,citation_volume=376;,citation_journal_title=Philosophical Transactions of the Royal Society B: Biological Sciences;,citation_publisher=Royal Society;">
 <meta name="citation_reference" content="citation_title=A comparative study of ecological specialization estimators;,citation_author=Timothée Poisot;,citation_author=Elsa Canard;,citation_author=Nicolas Mouquet;,citation_author=Michael E. Hochberg;,citation_publication_date=2012-01-19;,citation_cover_date=2012-01-19;,citation_year=2012;,citation_fulltext_html_url=http://dx.doi.org/10.1111/j.2041-210X.2011.00174.x;,citation_issue=3;,citation_doi=10.1111/j.2041-210x.2011.00174.x;,citation_volume=3;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
 <meta name="citation_reference" content="citation_title=Food Webs From the Small to the Large: The Robert H. MacArthur Award Lecture;,citation_author=Thomas W. Schoener;,citation_publication_date=1989-12;,citation_cover_date=1989-12;,citation_year=1989;,citation_fulltext_html_url=http://dx.doi.org/10.2307/1938088;,citation_issue=6;,citation_doi=10.2307/1938088;,citation_volume=70;,citation_language=en;,citation_journal_title=Ecology;">
+<meta name="citation_reference" content="citation_title=ATNr: Allometric Trophic Network models in R;,citation_author=Benoit Gauzens;,citation_author=Ulrich Brose;,citation_author=Eva Delmas;,citation_author=Emilio Berti;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14212;,citation_issue=11;,citation_doi=10.1111/2041-210X.14212;,citation_volume=14;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
 </head>
 
 <body>
@@ -221,7 +222,8 @@ window.Quarto = {
   <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model"><span class="header-section-number">6.1.1</span> Paleo food web inference model</a></li>
   <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model"><span class="header-section-number">6.1.2</span> Allometric diet breadth model</a></li>
   <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model"><span class="header-section-number">6.1.3</span> Body size ratio model</a></li>
-  <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model"><span class="header-section-number">6.1.4</span> Niche model</a></li>
+  <li><a href="#l-matrix" id="toc-l-matrix" class="nav-link" data-scroll-target="#l-matrix"><span class="header-section-number">6.1.4</span> L matrix</a></li>
+  <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model"><span class="header-section-number">6.1.5</span> Niche model</a></li>
   </ul></li>
   <li><a href="#assessing-model-performance" id="toc-assessing-model-performance" class="nav-link" data-scroll-target="#assessing-model-performance"><span class="header-section-number">6.2</span> Assessing model performance</a>
   <ul class="collapse">
@@ -373,7 +375,7 @@ H_{ij} = \infty \geq b
 </section>
 <section id="body-size-ratio-model" class="level3" data-number="6.1.3">
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="body-size-ratio-model"><span class="header-section-number">6.1.3</span> Body size ratio model</h3>
-<p>The body size ratio model <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span> determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
+<p>The body size ratio model <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span> determines feeding interactions using the ratio between consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes - which supposedly stems from niche theory (still trying to reconcile that). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = \frac{p}{1+p}
 \]</span></p>
@@ -383,8 +385,20 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 \tag{2}\]</span></span></p>
 <p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\delta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
 </section>
-<section id="niche-model" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="niche-model"><span class="header-section-number">6.1.4</span> Niche model</h3>
+<section id="l-matrix" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">6.1.4</span> L matrix</h3>
+<p>For now we can link to thATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
+<p><span class="math display">\[
+P_{ij} = (L \times \exp(1 - L))^{\gamma}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+L = \frac{M_{i}}{M_{j} \times R_{opt}}
+\]</span></p>
+<p>It is also possible to apply a threshold value to <span class="math inline">\(P_{ij}\)</span>, whereby any probabilities below that threshold are set to zero.</p>
+</section>
+<section id="niche-model" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="niche-model"><span class="header-section-number">6.1.5</span> Niche model</h3>
 <p>The niche model <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span> introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
 </section>
 </section>
@@ -471,6 +485,9 @@ Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispi
 </div>
 <div id="ref-fricke2022" class="csl-entry" role="listitem">
 Fricke, Evan C., Chia Hsieh, Owen Middleton, Daniel Gorczynski, Caroline D. Cappello, Oscar Sanisidro, John Rowan, Jens-Christian Svenning, and Lydia Beaudrot. 2022. <span>“Collapse of Terrestrial Mammal Food Webs Since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
+</div>
+<div id="ref-gauzens2023" class="csl-entry" role="listitem">
+Gauzens, Benoit, Ulrich Brose, Eva Delmas, and Emilio Berti. 2023. <span>“ATNr: Allometric Trophic Network Models in R.”</span> <em>Methods in Ecology and Evolution</em> 14 (11): 2766–73. <a href="https://doi.org/10.1111/2041-210X.14212">https://doi.org/10.1111/2041-210X.14212</a>.
 </div>
 <div id="ref-martinez1992" class="csl-entry" role="listitem">
 Martinez, Neo D. 1992. <span>“Constant Connectance in Community Food Webs.”</span> <em>The American Naturalist</em> 139 (6): 1208–18. <a href="http://www.jstor.org/stable/2462337">http://www.jstor.org/stable/2462337</a>.
