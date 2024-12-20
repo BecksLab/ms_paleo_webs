@@ -98,7 +98,7 @@ n_reps = 1000;
     
         df = innerjoin(comm, prods, on = :species)
 
-        links = round(Int, Co*(nrow(df)^2))
+        links = SpeciesInteractionNetworks.links(nz_networks[i].network)
         is_producer = map(==("producer"), string.(df.tiering))
     
         # adbm
