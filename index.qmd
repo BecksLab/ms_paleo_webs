@@ -78,12 +78,12 @@ Although there are a suite of tools and methods that have been developed to pred
 
 ## Models
 
-| Model                          | Predicts                           | Notes                                                   |
+| Model | Predicts | Notes |
 |-------------------|---------------------|--------------------------------|
-| Allometric diet breadth model  | Realised network                   |                                                         |
-| Body size ratio model          | Metaweb (?)                        |                                                         |
-| Niche model                    | Structural network                 | Is not species specific - cannot apply species metadata |
-| Paleo food web inference model | Realised network (if downsampling) |                                                         |
+| Allometric diet breadth model | Realised network |  |
+| Body size ratio model | Metaweb (?) |  |
+| Niche model | Structural network | Is not species specific - cannot apply species metadata |
+| Paleo food web inference model | Realised network (if downsampling) |  |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
@@ -121,7 +121,7 @@ Refer to @petchey2008 for more details as to how these different terms are param
 
 ### Body size ratio model
 
-The body size ratio model [@rohr2010] determines feeding interactions using the ratio between consumer and resource body sizes - which supposedly stems from niche theory (still trying to reconcile that myself). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:
+The body size ratio model [@rohr2010] determines feeding interactions using the ratio between consumer ($M_{i}$) and resource ($M_{j}$) body sizes - which supposedly stems from niche theory (still trying to reconcile that). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:
 
 $$
 P_{ij} = \frac{p}{1+p}
@@ -134,6 +134,22 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha = 1.41$, $\delta = 3.75$, and $\gamma = 1.87$.
+
+### L matrix
+
+For now we can link to thATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
+
+$$
+P_{ij} = (L \times \exp(1 - L))^{\gamma}
+$$
+
+where
+
+$$
+L = \frac{M_{i}}{M_{j} \times R_{opt}}
+$$
+
+It is also possible to apply a threshold value to $P_{ij}$, whereby any probabilities below that threshold are set to zero.
 
 ### Niche model
 
