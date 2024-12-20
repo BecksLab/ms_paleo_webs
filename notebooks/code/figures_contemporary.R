@@ -23,14 +23,17 @@ df <- read_csv("../data/processed/nz_summary.csv") %>%
     cols = -c(id, model), 
     names_to = "stat",
     values_to = "stat_val") %>% 
-  group_by(id, model, stat) %>% 
+  group_by(id, model, stat) %>%
+  distinct() %>% 
   mutate(stat_val = mean(stat_val, na.rm = TRUE),
          sd = sd(stat_val, na.rm = TRUE),
          stat = case_when(stat == "S1" ~ "No. of linear chains",
                           stat == "S2" ~ "No. of omnivory motifs",
                           stat == "S4" ~ "No. of apparent competition motifs",
                           stat == "S5" ~ "No. of direct competition motifs",
-                          .default = as.character(stat))) %>%
+                          .default = as.character(stat))) %>% 
+  group_by(id, model, stat) %>%
+  distinct() %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
@@ -42,26 +45,28 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot() +
-  geom_point(data = df %>% filter(model == "real") %>% filter(level == levs[i]),
-                aes(x = stat_val, 
-                    y = id),
-                shape = 4,
-                size = 3) +
-  geom_point(data = df %>% filter(model != "real") %>% filter(level == levs[i]),
-                aes(x = stat_val, 
-                    y = id,
-                    colour = model)) +
-  facet_wrap(vars(stat),
-             scales = 'free',
-             ncol = 2) +
-  theme_classic() +
-  labs(title = levs[i]) +
-  xlab("value") +
-  ylab("site") +
-  scale_colour_brewer(palette = "Dark2") +
-  coord_cartesian(clip = "off") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"))
+    geom_point(data = df %>% filter(model == "real") %>% filter(level == levs[i]),
+               aes(x = stat_val, 
+                   y = id),
+               shape = 4,
+               size = 3) +
+    geom_point(data = df %>% filter(model != "real") %>% filter(level == levs[i]),
+               aes(x = stat_val, 
+                   y = id,
+                   colour = model,
+                   fill = model),
+               alpha = 0.6) +
+    facet_wrap(vars(stat),
+               scales = 'free',
+               ncol = 2) +
+    theme_classic() +
+    labs(title = levs[i]) +
+    xlab("value") +
+    ylab("site") +
+    scale_colour_brewer(palette = "Dark2") +
+    coord_cartesian(clip = "off") +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"))
 }
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
@@ -85,8 +90,8 @@ real_nets <- read_csv("../data/processed/nz_summary.csv") %>%
     cols = -c(id), 
     names_to = "stat",
     values_to = "stat_val") %>% 
-    group_by(stat, id) %>% 
-    reframe(real_mu = mean(stat_val, na.rm = TRUE))
+  group_by(stat, id) %>% 
+  reframe(real_mu = mean(stat_val, na.rm = TRUE))
 
 mod_nets <- read_csv("../data/processed/topology_models.csv") %>% 
   select(-richness) %>% 
@@ -99,32 +104,32 @@ mod_nets <- read_csv("../data/processed/topology_models.csv") %>%
     cols = -c(id, model), 
     names_to = "stat",
     values_to = "stat_val") %>% 
-    group_by(model, stat, id) %>% 
-    reframe(model_mu = mean(stat_val, na.rm = TRUE),
-            model_sd = sd(stat_val, na.rm = TRUE)) %>% 
-   left_join(., real_nets) %>% 
-   mutate(z_score = (real_mu - model_mu)/model_sd,
-       stat = case_when(stat == "S1" ~ "No. of linear chains",
-                        stat == "S2" ~ "No. of omnivory motifs",
-                        stat == "S4" ~ "No. of apparent competition motifs",
-                        stat == "S5" ~ "No. of direct competition motifs",
-                        .default = as.character(stat))) %>%
-   mutate(level = case_when(
+  group_by(model, stat, id) %>% 
+  reframe(model_mu = mean(stat_val, na.rm = TRUE),
+          model_sd = sd(stat_val, na.rm = TRUE)) %>% 
+  left_join(., real_nets) %>% 
+  mutate(z_score = (real_mu - model_mu)/model_sd,
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          .default = as.character(stat))) %>%
+  mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"))
 
 for (i in seq_along(plot_list)) {
-
+  
   plot_list[[i]] <-  ggplot(mod_nets %>% filter(level == levs[i])) +
     geom_vline(aes(xintercept = 0)) +
     geom_histogram(aes(x = z_score,
-                    fill = model),
-                colour = "#ffffff00",
-                alpha = 0.7) +
+                       fill = model),
+                   colour = "#ffffff00",
+                   alpha = 0.7) +
     facet_grid(rows = vars(model),
-                cols = vars(stat),
-                scales = "free") +
+               cols = vars(stat),
+               scales = "free") +
     scale_fill_brewer(palette = "Dark2") +
     coord_cartesian(expand = FALSE, clip = "off") +
     theme_classic() +
