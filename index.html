@@ -230,8 +230,8 @@ window.Quarto = {
   <li><a href="#macro-network-properties" id="toc-macro-network-properties" class="nav-link" data-scroll-target="#macro-network-properties"><span class="header-section-number">6.2.1</span> Macro network properties</a></li>
   <li><a href="#meso-network-properties" id="toc-meso-network-properties" class="nav-link" data-scroll-target="#meso-network-properties"><span class="header-section-number">6.2.2</span> Meso network properties</a></li>
   <li><a href="#micro-network-properties" id="toc-micro-network-properties" class="nav-link" data-scroll-target="#micro-network-properties"><span class="header-section-number">6.2.3</span> Micro network properties</a></li>
+  <li><a href="#interactions" id="toc-interactions" class="nav-link" data-scroll-target="#interactions"><span class="header-section-number">6.2.4</span> Interactions</a></li>
   </ul></li>
-  <li><a href="#interaction" id="toc-interaction" class="nav-link" data-scroll-target="#interaction"><span class="header-section-number">6.3</span> Interaction</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">7</span> Results</a>
   <ul class="collapse">
@@ -383,7 +383,7 @@ P_{ij} = \frac{p}{1+p}
 <p><span id="eq-bodymass"><span class="math display">\[
 p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
 \tag{2}\]</span></span></p>
-<p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\delta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
+<p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;2</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha\)</span> = 1.41, <span class="math inline">\(\delta\)</span> = 3.75, and <span class="math inline">\(\gamma\)</span> = 1.87.</p>
 </section>
 <section id="l-matrix" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">6.1.4</span> L matrix</h3>
@@ -421,10 +421,10 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 <p><strong>Shape:</strong> to determine if the ‘shape’ of the network is correct we are looking at the ratio of ‘top’:‘basal’ species (where ‘top’ species are those that have a vulnerability of 0 and ‘basal’ species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar ‘shape’). This will allow is to see if the models construct tall ‘pencil’ vs flat ‘pancake’ networks (Beckerman 2024, pers comms). A small (&lt; 1) number will thus be indicative of a ‘bottom-heavy’ network and the opposite for larger numbers</p>
 </blockquote>
 </section>
-</section>
-<section id="interaction" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="interaction"><span class="header-section-number">6.3</span> Interaction</h2>
+<section id="interactions" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="interactions"><span class="header-section-number">6.2.4</span> Interactions</h3>
 <p><strong>Interaction turnover</strong> <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span> tells us which interactions are ‘conserved’ (shared) across the networks from the same period but constructed using different models.</p>
+</section>
 </section>
 </section>
 <section id="results" class="level1" data-number="7">
