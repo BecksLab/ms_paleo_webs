@@ -82,12 +82,13 @@ function model_summary(
     links::Int64 = 10,
     biomass::Vector{Float64} = [0.0, 0.0],
     downsample::Bool = true,
+    is_producer::Vector{Bool} = [true, false],
 )
 
     # data checks
-    if model_name ∉ ["bodymassratio", "pfim", "niche", "adbm", "random"]
+    if model_name ∉ ["bodymassratio", "pfim", "niche", "adbm", "random", "lmatrix"]
         error(
-            "Invalid value for model_name -- must be one of bodymassratio, pfim, niche, random, or adbm",
+            "Invalid value for model_name -- must be one of bodymassratio, pfim, niche, random, lmatrix, or adbm",
         )
     end
     if model_name ∈ ["bodymassratio", "adbm"] && length(bodymass) != length(df.species)
@@ -107,6 +108,9 @@ function model_summary(
         N = structuralmodel(NicheModel, nrow(df), connectance)
     elseif model_name == "random"
         N = randommodel(df.species, links)
+    elseif model_name == "lmatrix"
+        N = lmatrix(df.species, bodymass, is_producer)
+        N = randomdraws(N) # from probabalistic to binary
     else
         model_name == "adbm"
         parameters = adbm_parameters(df, bodymass)

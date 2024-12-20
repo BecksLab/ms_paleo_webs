@@ -1,5 +1,6 @@
 library(RColorBrewer)
 library(here)
+library(patchwork)
 library(readr)
 library(scales)
 library(tidyverse)
@@ -38,7 +39,7 @@ df <- list.files(path = "../data/processed/topology/", pattern = ".csv", full.na
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random", "lmatrix"))
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
@@ -117,7 +118,7 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random", "lmatrix"))
 
 df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
 df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
