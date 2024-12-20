@@ -11,7 +11,8 @@ using SpeciesInteractionNetworks
     threshold::Float64,
 )
 
-    A port of the ATNr L matrix function from Gauzens et al. (2023). 
+    A port of the ATNr L matrix function from Gauzens et al. (2023) based
+    on the original descriptions from Schneider et al. (2016). 
     Interactions are determined by allometric rules and a Ricker function 
     defined by `Ropt` and `γ` and returns a probabilistic 
     `SpeciesInteractionNetwork`. `Ropt`, `γ`, and `threshold` use the ATNr
@@ -25,6 +26,10 @@ using SpeciesInteractionNetworks
     Gauzens, B., Brose U., Delmas E., and Berti E. 2023. “ATNr: Allometric 
     Trophic Network Models in R.” Methods in Ecology and Evolution 14 (11): 
     2766–73. https://doi.org/10.1111/2041-210X.14212.
+
+    Schneider, Florian D., Ulrich Brose, Björn C. Rall, and Christian Guill.
+    2016. “Animal Diversity and Ecosystem Functioning in Dynamic Food Webs.”
+    Nature Communications 7 (1): 12718. https://doi.org/10.1038/ncomms12718.
 
 """
 function lmatrix(
@@ -46,7 +51,7 @@ function lmatrix(
             for j = 1:S
                 l = bodymass[i] / (bodymass[j] * Ropt)
                 L = (l * exp(1 - l)) ^γ
-                if L ≥ threshold
+                if L > threshold
                     prob_matrix[i, j] = L
                 end
             end
