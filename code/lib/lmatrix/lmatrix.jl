@@ -22,15 +22,9 @@ using SpeciesInteractionNetworks
     
     #### References
     
-    Rohr, R.P., H. Scherer, P. Kehrli, C. Mazza, and L-F. Bersier. 2010. 
-    “Modeling Food Webs: Exploring Unexplained Structure Using Latent 
-    Traits.” The American Naturalist 176 (2): 170–77. 
-    https://doi.org/10.1086/653667.
-
-    Yeakel, J.D., M.M. Pires, L. Rudolf, N.J. Dominy, P.L. Koch, P.R. 
-    Guimarães, and T. Gross. 2014. “Collapse of an Ecological Network in 
-    Ancient Egypt.” PNAS 111 (40): 14472–77. 
-    https://doi.org/10.1073/pnas.1408471111.
+    Gauzens, B., Brose U., Delmas E., and Berti E. 2023. “ATNr: Allometric 
+    Trophic Network Models in R.” Methods in Ecology and Evolution 14 (11): 
+    2766–73. https://doi.org/10.1111/2041-210X.14212.
 
 """
 function lmatrix(
