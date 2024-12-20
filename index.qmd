@@ -133,7 +133,7 @@ $$
 p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
 $$ {#eq-bodymass}
 
-The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha = 1.41$, $\delta = 3.75$, and $\gamma = 1.87$.
+The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha$ = 1.41, $\delta$ = 3.75, and $\gamma$ = 1.87.
 
 ### L matrix
 
@@ -175,7 +175,7 @@ The **specificity** of species in a network is measured as a function of the pro
 
 > **Shape:** to determine if the 'shape' of the network is correct we are looking at the ratio of 'top':'basal' species (where 'top' species are those that have a vulnerability of 0 and 'basal' species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar 'shape'). This will allow is to see if the models construct tall 'pencil' vs flat 'pancake' networks (Beckerman 2024, pers comms). A small (\< 1) number will thus be indicative of a 'bottom-heavy' network and the opposite for larger numbers
 
-## Interaction
+### Interactions
 
 **Interaction turnover** [@poisot2012] tells us which interactions are 'conserved' (shared) across the networks from the same period but constructed using different models.
 
