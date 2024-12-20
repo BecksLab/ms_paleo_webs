@@ -10,9 +10,9 @@ using SpeciesInteractionNetworks
     γ::Float64,
 )
 
-    Impliments the Bodymass-ratio model as per Roht et al. (2010), 
+    Implements the Bodymass-ratio model as per Rohr et al. (2010), 
     however does not include the latent trait variables. α, β, and γ 
-    paramters are set to those used by Yeakel (2014) and so only
+    parameters are set to those used by Yeakel (2014) and so only
     requires a species list and their bodymass and returns a 
     `SpeciesInteractionNetwork`.
     
