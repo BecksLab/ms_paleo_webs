@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2024-12-20">
+    <meta name="dcterms.date" content="2025-01-02">
 
     <title>SuppMat 2: Comparing different PFIM configurations</title>
     <style>
@@ -20,7 +20,27 @@
         margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
         vertical-align: middle;
       }
-    </style>
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+        margin-bottom: 0em;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
 
     <style>
       body.hypothesis-enabled #quarto-embed-header {
@@ -131,7 +151,7 @@
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>  
+</script>   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
       </head>
 
   <body class="quarto-notebook">
@@ -165,7 +185,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">December 20, 2024</p>
+              <p class="date">January 2, 2025</p>
             </div>
           </div>
           
@@ -179,7 +199,7 @@
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p>An overview of the different pfim configurations and what impact that has on the resulting networks</p>
+        <p>An overview of the different PFIM configurations and what impact that has on the resulting network structure</p>
       </div>
     </div>
 
@@ -192,14 +212,26 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#different-pfim-configurations" id="toc-different-pfim-configurations" class="nav-link active" data-scroll-target="#different-pfim-configurations">Different pfim configurations</a>
+  <li><a href="#how-we-specify-rules" id="toc-how-we-specify-rules" class="nav-link active" data-scroll-target="#how-we-specify-rules">How we specify rules</a>
   <ul class="collapse">
   <li><a href="#maximal-rules" id="toc-maximal-rules" class="nav-link" data-scroll-target="#maximal-rules">Maximal Rules</a></li>
   <li><a href="#minimal-rules" id="toc-minimal-rules" class="nav-link" data-scroll-target="#minimal-rules">Minimal Rules</a></li>
-  <li><a href="#trophic-species" id="toc-trophic-species" class="nav-link" data-scroll-target="#trophic-species">Trophic species</a></li>
+  <li><a href="#size-rules" id="toc-size-rules" class="nav-link" data-scroll-target="#size-rules">Size Rules</a></li>
   </ul></li>
-  <li><a href="#downstream-effects-of-the-different-configurations" id="toc-downstream-effects-of-the-different-configurations" class="nav-link" data-scroll-target="#downstream-effects-of-the-different-configurations">Downstream effects of the different configurations</a></li>
+  <li><a href="#how-we-specify-species" id="toc-how-we-specify-species" class="nav-link" data-scroll-target="#how-we-specify-species">How we specify species</a>
+  <ul class="collapse">
+  <li><a href="#trophic-species" id="toc-trophic-species" class="nav-link" data-scroll-target="#trophic-species">Trophic species</a></li>
+  <li><a href="#including-non-trophic-species" id="toc-including-non-trophic-species" class="nav-link" data-scroll-target="#including-non-trophic-species">Including ‘non-trophic’ species</a></li>
+  </ul></li>
+  <li><a href="#assumptions-on-structure" id="toc-assumptions-on-structure" class="nav-link" data-scroll-target="#assumptions-on-structure">Assumptions on structure</a>
+  <ul class="collapse">
+  <li><a href="#including-a-basal-node" id="toc-including-a-basal-node" class="nav-link" data-scroll-target="#including-a-basal-node">Including a basal node</a></li>
   <li><a href="#downsampling" id="toc-downsampling" class="nav-link" data-scroll-target="#downsampling">Downsampling</a></li>
+  </ul></li>
+  <li><a href="#downstream-effects-of-the-different-configurations" id="toc-downstream-effects-of-the-different-configurations" class="nav-link" data-scroll-target="#downstream-effects-of-the-different-configurations">Downstream effects of the different configurations</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -207,19 +239,82 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="different-pfim-configurations" class="level1">
-<h1>Different pfim configurations</h1>
-<section id="maximal-rules" class="level2">
-<h2 class="anchored" data-anchor-id="maximal-rules">Maximal Rules</h2>
+       <p>One of the challenges with the PFIM is that there are many ways to formalise the mechanistic rules that determine feeding interactions. What is unclear is how the different rule sets may impact/alter the resulting network structure. Here the aim is to identify some of the broader philosophical ‘groups’/approaches to defining the mechanistic rules within the PFIM and comparing the resulting network that they construct.</p>
+<section id="how-we-specify-rules" class="level2">
+<h2 class="anchored" data-anchor-id="how-we-specify-rules">How we specify rules</h2>
+<section id="maximal-rules" class="level3">
+<h3 class="anchored" data-anchor-id="maximal-rules">Maximal Rules</h3>
 <p>An extremely subdivided-nuanced set of traits and feeding rules</p>
 </section>
-<section id="minimal-rules" class="level2">
-<h2 class="anchored" data-anchor-id="minimal-rules">Minimal Rules</h2>
+<section id="minimal-rules" class="level3">
+<h3 class="anchored" data-anchor-id="minimal-rules">Minimal Rules</h3>
 <p>Lumping some of the different traits in order to have fewer feeding rules.</p>
 </section>
-<section id="trophic-species" class="level2">
-<h2 class="anchored" data-anchor-id="trophic-species">Trophic species</h2>
-<p>Taking away the taxonomic specification and taking a ‘functional’ approach</p>
+<section id="size-rules" class="level3">
+<h3 class="anchored" data-anchor-id="size-rules">Size Rules</h3>
+<div class="callout callout-style-simple callout-important no-icon callout-titled" title="Size data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Size data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Currently we are defining all species as squares (<em>i.e.,</em> <span class="math inline">\(length \times breadth\)</span>) and it will be good if the Leeds team can modify this to reflect taxonomy/species geometry better…</p>
+</div>
+</div>
+<p>Instead of using categorical size classes as per <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> we <em>could</em> use the estimated sizes of different species. As is the norm <span class="citation" data-cites="petchey2008">(<em>e.g.,</em> <a href="#ref-petchey2008" role="doc-biblioref">Petchey et al. 2008</a>)</span> we can define the ‘size rule’ so that consumers must be larger than their resource. In theory moving from categorical to continuous sizes for species would give a more stringent set of size-based feeding rules and we might expect there to be a decrease in the number of links between species.</p>
+</section>
+</section>
+<section id="how-we-specify-species" class="level2">
+<h2 class="anchored" data-anchor-id="how-we-specify-species">How we specify species</h2>
+<section id="trophic-species" class="level3">
+<h3 class="anchored" data-anchor-id="trophic-species">Trophic species</h3>
+<div class="callout callout-style-simple callout-important no-icon callout-titled" title="Taxonomic Guilds">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Taxonomic Guilds
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a similar fashion to lumping species based on their diets we could also group species as taxonomic guilds - again here guidance from the Leeds team would be beneficial.</p>
+</div>
+</div>
+<p>Because there are many species that might have the exact same set of traits (and thus the exact same set of feeding links) we can instead ‘collapse’ species to represent trophic species. Theoretically this would remove all ‘redundant’ links in the system BUT it comes at the cost that we lose the species specificity we would have with other networks.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Identifying trophic species">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Identifying trophic species
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I simply grouped species that had the exact same set of traits as we expect species with the same sets of traits to fulfil the same set of feeding rules.</p>
+</div>
+</div>
+</section>
+<section id="including-non-trophic-species" class="level3">
+<h3 class="anchored" data-anchor-id="including-non-trophic-species">Including ‘non-trophic’ species</h3>
+<p>The inclusion of parasites and scavengers represents the inclusion of links that ‘operate’ in a way that is different from the traditional definition of a feeding link. Scavengers are not actively removing individuals from a population but are rather capitalising on ‘dead’ biomass and (generally) for a scavenger the taxonomic identity/ traits of a species <em>i.e.,</em> the basis for feeding rules is fundamentally different. Parasites could arguably be viewed the same as herbivores — BUT they are usually highly specialised and complicate our understanding of food webs since they will typically not be predated upon <em>i.e.,</em> will have a low degree of vulnerability and will create a lot of short chains in the network <em>e.g.,</em> parasites of herbivores would be ‘top predators’ since they would not be predated on by other species</p>
+<p>In conclusion although scavengers and parasites are present in communities there are not 100% compatible with the traditional definition of a food web - especially in the way that PFIM specifies feeding rules.</p>
+</section>
+</section>
+<section id="assumptions-on-structure" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-on-structure">Assumptions on structure</h2>
+<section id="including-a-basal-node" class="level3">
+<h3 class="anchored" data-anchor-id="including-a-basal-node">Including a basal node</h3>
+<p><span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> includes a basal node in their networks. Philosophically having a rooted network (basal node) does not make sense in the PFIM space of defining feeding rules. However there is an argument to be had that having a rooted network allows one to ‘protect’ the basal species in the network.</p>
+</section>
+<section id="downsampling" class="level3">
+<h3 class="anchored" data-anchor-id="downsampling">Downsampling</h3>
+<p>Although PFIM as a network generating tool falls firmly within the metaweb space there is the argument to be had that owing to the coarse granularity of paleo communities (aggregated over large spatial and time scales) means that the resulting networks is ‘over represented’. This begs the question of if we should be downsampling these metawebs to have them represent a slightly more ‘ecologically plausible’ network configuration. <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> developed a downsampling approach that removes links between species based on the generality of a species.</p>
 </section>
 </section>
 <section id="downstream-effects-of-the-different-configurations" class="level1">
@@ -230,10 +325,21 @@
 <figcaption>TODO.</figcaption>
 </figure>
 </div>
-<p>Redundancy? Structure? Basal node?</p>
+<p>Redundancy? Structure?</p>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-petchey2008" class="csl-entry" role="listitem">
+Petchey, Owen L., Andrew P. Beckerman, Jens O. Riede, and Philip H. Warren. 2008. <span>“Size, Foraging, and Food Web Structure.”</span> <em>Proceedings of the National Academy of Sciences</em> 105 (11): 4191–96. <a href="https://doi.org/10.1073/pnas.0710672105">https://doi.org/10.1073/pnas.0710672105</a>.
+</div>
+<div id="ref-roopnarine2006" class="csl-entry" role="listitem">
+Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
+</div>
+<div id="ref-shaw2024" class="csl-entry" role="listitem">
+Shaw, Jack O., Alexander M. Dunhill, Andrew P. Beckerman, Jennifer A. Dunne, and Pincelli M. Hull. 2024. <span>“A Framework for Reconstructing Ancient Food Webs Using Functional Trait Data.”</span> bioRxiv. <a href="https://doi.org/10.1101/2024.01.30.578036">https://doi.org/10.1101/2024.01.30.578036</a>.
+</div>
+</div>
 </section>
-<section id="downsampling" class="level1">
-<h1>Downsampling</h1>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
