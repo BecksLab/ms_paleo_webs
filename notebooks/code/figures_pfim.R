@@ -1,8 +1,10 @@
-library(RColorBrewer)
+library(ggfortify)
 library(here)
 library(patchwork)
+library(RColorBrewer)
 library(readr)
 library(scales)
+library(stats)
 library(tidyverse)
 
 # set path to code sub dir
@@ -29,11 +31,11 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
     str_detect(id, "^.*during.*$") ~ "post",
     str_detect(id, "^.*post.*$") ~ "during",
     TRUE ~ as.character(id)),
-       stat = case_when(stat == "S1" ~ "No. of linear chains",
-                        stat == "S2" ~ "No. of omnivory motifs",
-                        stat == "S4" ~ "No. of apparent competition motifs",
-                        stat == "S5" ~ "No. of direct competition motifs",
-                        .default = as.character(stat))) %>%
+    stat = case_when(stat == "S1" ~ "No. of linear chains",
+                     stat == "S2" ~ "No. of omnivory motifs",
+                     stat == "S4" ~ "No. of apparent competition motifs",
+                     stat == "S5" ~ "No. of direct competition motifs",
+                     .default = as.character(stat))) %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
@@ -48,25 +50,25 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
-              filter(level == levs[i]),
-       aes(x = factor(`id`), 
-           y = stat_val, 
-           colour = model,
-           group = model)) +
-  geom_line() +
-  geom_point() +
-  facet_wrap(vars(stat),
-             scales = 'free') +
-  scale_size(guide = 'none') +
-  theme_classic() +
-  xlab("time") +
-  ylab("value") +
-  coord_cartesian(clip = "off") +
-  scale_colour_brewer(palette = "Dark2") +
-  labs(title = levs[i]) +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+                             filter(level == levs[i]),
+                           aes(x = factor(`id`), 
+                               y = stat_val, 
+                               colour = model,
+                               group = model)) +
+    geom_line() +
+    geom_point() +
+    facet_wrap(vars(stat),
+               scales = 'free') +
+    scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("time") +
+    ylab("value") +
+    coord_cartesian(clip = "off") +
+    scale_colour_brewer(palette = "Dark2") +
+    labs(title = levs[i]) +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+          axis.ticks.x = element_blank())
 }
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
@@ -76,5 +78,34 @@ plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
 ggsave("../figures/summary_pfim.png",
        width = 4500,
        height = 7000,
+       units = "px",
+       dpi = 600)
+
+
+#### PCA ####
+
+df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
+  select(-c(network, distance)) %>% 
+  filter(str_detect(model, "^.*pfim.*$")) %>%
+  # remove
+  mutate(top = NULL,
+         basal = NULL) %>%
+  drop_na()
+
+pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
+
+autoplot(pca_res, data = df_pca, colour = 'model', shape = 'id', size = 4, alpha = 0.7) +
+  theme_classic() +
+  scale_colour_brewer(palette = "Dark2") +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
+ggsave("../figures/pca_pfim.png",
+       width = 4500,
+       height = 4000,
        units = "px",
        dpi = 600)
