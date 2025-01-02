@@ -5,29 +5,69 @@ authors:
     id: ts
     orcid: 0000-0001-6067-1349
 abstract: |
-  An overview of the different pfim configurations and what impact that has on the resulting networks
+  An overview of the different PFIM configurations and what impact that has on the resulting network structure
 date: last-modified
 bibliography: ../references.bib
 ---
 
-# Different pfim configurations
+One of the challenges with the PFIM is that there are many ways to formalise the mechanistic rules that determine feeding interactions. What is unclear is how the different rule sets may impact/alter the resulting network structure. Here the aim is to identify some of the broader philosophical 'groups'/approaches to defining the mechanistic rules within the PFIM and comparing the resulting network that they construct.
 
-## Maximal Rules
+## How we specify rules
+
+### Maximal Rules
 
 An extremely subdivided-nuanced set of traits and feeding rules
 
-## Minimal Rules
+### Minimal Rules
 
 Lumping some of the different traits in order to have fewer feeding rules. 
 
-## Trophic species
+### Size Rules
 
-Taking away the taxonomic specification and taking a 'functional' approach
+::: {.callout-important title="Size data"}
+
+Currently we are defining all species as squares (*i.e.,* $length \times breadth$) and it will be good if the Leeds team can modify this to reflect taxonomy/species geometry better...
+:::
+
+Instead of using categorical size classes as per @shaw2024 we *could* use the estimated sizes of different species. As is the norm [*e.g.,* @petchey2008] we can define the 'size rule' so that consumers must be larger than their resource. In theory moving from categorical to continuous sizes for species would give a more stringent set of size-based feeding rules and we might expect there to be a decrease in the number of links between species.
+
+## How we specify species
+
+### Trophic species
+
+::: {.callout-important title="Taxonomic Guilds"}
+
+In a similar fashion to lumping species based on their diets we could also group species as taxonomic guilds - again here guidance from the Leeds team would be beneficial.
+:::
+
+Because there are many species that might have the exact same set of traits (and thus the exact same set of feeding links) we can instead 'collapse' species to represent trophic species. Theoretically this would remove all 'redundant' links in the system BUT it comes at the cost that we lose the species specificity we would have with other networks.
+
+
+::: {.callout-tip title="Identifying trophic species"}
+
+I simply grouped species that had the exact same set of traits as we expect species with the same sets of traits to fulfil the same set of feeding rules.
+:::
+
+### Including 'non-trophic' species
+
+The inclusion of parasites and scavengers represents the inclusion of links that 'operate' in a way that is different from the traditional definition of a feeding link. Scavengers are not actively removing individuals from a population but are rather capitalising on 'dead' biomass and (generally) for a scavenger the taxonomic identity/ traits of a species *i.e.,* the basis for feeding rules is fundamentally different. Parasites could arguably be viewed the same as herbivores --- BUT they are usually highly specialised and complicate our understanding of food webs since they will typically not be predated upon *i.e.,* will have a low degree of vulnerability and will create a lot of short chains in the network *e.g.,* parasites of herbivores would be 'top predators' since they would not be predated on by other species
+
+In conclusion although scavengers and parasites are present in communities there are not 100% compatible with the traditional definition of a food web - especially in the way that PFIM specifies feeding rules.
+
+## Assumptions on structure
+
+### Including a basal node
+
+@shaw2024 includes a basal node in their networks. Philosophically having a rooted network (basal node) does not make sense in the PFIM space of defining feeding rules. However there is an argument to be had that having a rooted network allows one to 'protect' the basal species in the network. 
+
+### Downsampling
+
+Although PFIM as a network generating tool falls firmly within the metaweb space there is the argument to be had that owing to the coarse granularity of paleo communities (aggregated over large spatial and time scales) means that the resulting networks is 'over represented'. This begs the question of if we should be downsampling these metawebs to have them represent a slightly more 'ecologically plausible' network configuration. @roopnarine2006 developed a downsampling approach that removes links between species based on the generality of a species.
 
 # Downstream effects of the different configurations
 
 ![TODO.](figures/summary_pfim.png)
 
-Redundancy? Structure? Basal node?
+Redundancy? Structure?
 
-# Downsampling
+## References
