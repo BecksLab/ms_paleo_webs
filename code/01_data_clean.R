@@ -80,7 +80,7 @@ list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>
          tiering = case_when(str_detect(tiering, "^.*infaunal.*$") ~ "infaunal",
                              str_detect(tiering, "^.*epifaunal.*$") ~ "epifaunal",
                              TRUE ~ as.character(tiering))
-         ) %>%
+  ) %>%
   group_by(species, motility, tiering, size) %>% 
   distinct() %>%
   write.csv(., "../data/clean/extinction/traits.csv",
@@ -93,21 +93,21 @@ trait_files <- list.files(path = "../data/clean/trait", pattern = ".csv", full.n
 all_spp <- trait_files %>%
   lapply(read_csv) %>%
   bind_rows %>%
-    select(-species) %>%
-    group_by(feeding, motility, tiering, size) %>% 
-    distinct() %>%
-    ungroup() %>%
-    mutate(species = paste0("sp_", row_number()))
+  select(-species) %>%
+  group_by(feeding, motility, tiering, size) %>% 
+  distinct() %>%
+  ungroup() %>%
+  mutate(species = paste0("sp_", row_number()))
 
 for (i in seq_along(trait_files)) {
-
+  
   df <- read.csv(trait_files[i]) %>%
     select(-species) %>%
     group_by(feeding, motility, tiering, size) %>% 
     distinct() %>% 
     ungroup() %>%
     left_join(all_spp)
-
+  
   # write as clean data
   write.csv(df, str_replace(trait_files[i], "trait", "trophic"),
             row.names = FALSE)
