@@ -5,7 +5,9 @@ library(igraph)
 # set path to code sub dir
 setwd(here())
 
-df <- read.csv(here("data/raw/feeding_rules.csv"))
+df <- read.csv(here("data/raw/feeding_rules.csv")) %>%
+  mutate_all(~str_replace_all(., "nonmotile", "non_motile")) %>%
+  mutate_all(~str_replace_all(., "-", "_")) 
 
 traits_classes <- df %>%
   select(trait_type_resource) %>%
@@ -13,6 +15,10 @@ traits_classes <- df %>%
   pull()
 
 #### Maximal traits ####
+
+# write rules .csv
+write.csv(df, here("data/clean/feeding_rules/feeding_rules_maximal.csv"),
+          row.names = FALSE)
 
 trait_networks <- vector(mode = "list", length = 4)
 
@@ -67,6 +73,10 @@ df_min <- df %>%
                                     TRUE ~ as.character(trait_consumer))) %>%
   distinct()
 
+# write rules .csv
+write.csv(df_min, here("data/clean/feeding_rules/feeding_rules_minimum.csv"),
+          row.names = FALSE)
+
 trait_networks <- vector(mode = "list", length = 4)
 
 for (i in seq_along(traits_classes)) {
@@ -105,6 +115,10 @@ df_scav <- df_min %>%
   filter(!str_detect(trait_resource, "scavenger")) %>%
   filter(!str_detect(trait_resource, "parasitic")) %>%
   distinct()
+
+# write rules .csv
+write.csv(df_scav, here("data/clean/feeding_rules/feeding_rules_noscavs.csv"),
+          row.names = FALSE)
 
 trait_networks <- vector(mode = "list", length = 4)
 
