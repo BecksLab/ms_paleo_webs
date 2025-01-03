@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.7.5">
+    <meta name="generator" content="quarto-1.6.33">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -139,10 +139,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ff4371ef257df69894857e99c6ad0d06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7bfb9ce031f0150bcdd0059ffcd3ab40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-999f58d7018542847c6ca8fcd8d3f2df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -246,11 +246,25 @@
 <h2 class="anchored" data-anchor-id="how-we-specify-rules">How we specify rules</h2>
 <section id="maximal-rules" class="level3">
 <h3 class="anchored" data-anchor-id="maximal-rules">Maximal Rules</h3>
-<p>An extremely subdivided-nuanced set of traits and feeding rules</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/feeding_rules/maximal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="An extremely subdivided-nuanced set of traits and feeding rules"><img src="../figures/feeding_rules/maximal.png" class="img-fluid figure-img" alt="An extremely subdivided-nuanced set of traits and feeding rules"></a></p>
+<figcaption>An extremely subdivided-nuanced set of traits and feeding rules</figcaption>
+</figure>
+</div>
 </section>
 <section id="minimal-rules" class="level3">
 <h3 class="anchored" data-anchor-id="minimal-rules">Minimal Rules</h3>
-<p>Lumping some of the different traits in order to have fewer feeding rules.</p>
+<div id="fig-minimal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/feeding_rules/minimal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Lumping some of the different traits in order to have fewer feeding rules."><img src="../figures/feeding_rules/minimal.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Lumping some of the different traits in order to have fewer feeding rules.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="size-rules" class="level3">
 <h3 class="anchored" data-anchor-id="size-rules">Size Rules</h3>
@@ -268,6 +282,16 @@ Size data
 </div>
 </div>
 <p>Instead of using categorical size classes as per <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> we <em>could</em> use the estimated sizes of different species. As is the norm <span class="citation" data-cites="petchey2008">(<em>e.g.,</em> <a href="#ref-petchey2008" role="doc-biblioref">Petchey et al. 2008</a>)</span> we can define the ‘size rule’ so that consumers must be larger than their resource. In theory moving from categorical to continuous sizes for species would give a more stringent set of size-based feeding rules and we might expect there to be a decrease in the number of links between species.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>For this exercise I have used the same feeding rules as the ‘minimal’ example, except that size is now treated as an if statement</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="how-we-specify-species" class="level2">
@@ -306,6 +330,12 @@ Identifying trophic species
 <h3 class="anchored" data-anchor-id="including-non-trophic-species">Including ‘non-trophic’ species</h3>
 <p>The inclusion of parasites and scavengers represents the inclusion of links that ‘operate’ in a way that is different from the traditional definition of a feeding link. Scavengers are not actively removing individuals from a population but are rather capitalising on ‘dead’ biomass and (generally) for a scavenger the taxonomic identity/ traits of a species <em>i.e.,</em> the basis for feeding rules is fundamentally different. Parasites could arguably be viewed the same as herbivores — BUT they are usually highly specialised and complicate our understanding of food webs since they will typically not be predated upon <em>i.e.,</em> will have a low degree of vulnerability and will create a lot of short chains in the network <em>e.g.,</em> parasites of herbivores would be ‘top predators’ since they would not be predated on by other species</p>
 <p>In conclusion although scavengers and parasites are present in communities there are not 100% compatible with the traditional definition of a food web - especially in the way that PFIM specifies feeding rules.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/feeding_rules/no_scav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="TODO"><img src="../figures/feeding_rules/no_scav.png" class="img-fluid figure-img" alt="TODO"></a></p>
+<figcaption>TODO</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="assumptions-on-structure" class="level2">
@@ -325,7 +355,7 @@ Identifying trophic species
 <h3 class="anchored" data-anchor-id="different-structural-features">Different structural features</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/summary_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="TODO."><img src="figures/summary_pfim.png" class="img-fluid figure-img" alt="TODO."></a></p>
+<p><a href="figures/summary_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="TODO."><img src="figures/summary_pfim.png" class="img-fluid figure-img" alt="TODO."></a></p>
 <figcaption>TODO.</figcaption>
 </figure>
 </div>
@@ -334,7 +364,7 @@ Identifying trophic species
 <h3 class="anchored" data-anchor-id="overall-similarityclustering">Overall similarity/clustering</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/pca_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."><img src="figures/pca_pfim.png" class="img-fluid figure-img" alt="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."></a></p>
+<p><a href="figures/pca_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."><img src="figures/pca_pfim.png" class="img-fluid figure-img" alt="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."></a></p>
 <figcaption>Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…).</figcaption>
 </figure>
 </div>
@@ -438,6 +468,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -548,6 +580,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
