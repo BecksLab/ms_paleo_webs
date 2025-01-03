@@ -77,6 +77,7 @@ function model_summary(
     df::DataFrame,
     community_id::Any,
     model_name::String;
+    feeding_rules::DataFrame = DataFrame(a=1:4, b=["M", "F", "F", "M"]),
     bodymass::Vector{Float64} = [0.0, 0.0],
     connectance::Float64 = 0.1,
     links::Int64 = 10,
@@ -103,7 +104,7 @@ function model_summary(
         N = bmratio(df.species, bodymass)
         N = randomdraws(N) # from probabalistic to binary
     elseif model_name == "pfim"
-        N = PFIM(df; downsample = downsample)
+        N = PFIM(df, feeding_rules; downsample = downsample)
     elseif model_name == "niche"
         N = structuralmodel(NicheModel, nrow(df), connectance)
     elseif model_name == "random"

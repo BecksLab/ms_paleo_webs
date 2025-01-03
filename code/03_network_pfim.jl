@@ -12,28 +12,31 @@ Random.seed!(66)
 topology = topo_df();
 
 # get the name of all communities
-matrix_names = readdir("../data/clean/trait")
+matrix_names = readdir("../data/clean/trait_minimum")
 matrix_names = replace.(matrix_names, ".csv" => "")
+
+feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_minimum.csv"))
 
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
-    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait_maximal", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim")
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
+    d[:model] = "pfim_maximal"
     push!(topology, d)
 
 end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology/topology_pfim.csv",
+    "../data/processed/topology/topology_pfim_maximal.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
 save_object(
-    "../data/processed/networks/pfim_networks.jlds",
+    "../data/processed/networks/pfim_maximal_networks.jlds",
     topology[:, ["id", "model", "network"]],
 )
 
@@ -41,26 +44,28 @@ save_object(
 
 topology = topo_df();
 
+feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_minimum.csv"))
+
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
-    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim", downsample = false)
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
-    d[:model] = "pfim_metaweb"
+    d[:model] = "pfim_minimum"
     push!(topology, d)
 
 end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology/topology_pfim_metaweb.csv",
+    "../data/processed/topology/topology_pfim_minimum.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
 save_object(
-    "../data/processed/networks/pfim_networks_metaweb.jlds",
+    "../data/processed/networks/pfim_minimum_networks.jlds",
     topology[:, ["id", "model", "network"]],
 )
 
@@ -106,15 +111,17 @@ save_object(
 
 topology = topo_df();
 
+feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_noscavs.csv"))
+
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
-    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
     # remove parasites and scavengers
     filter!(row -> row.feeding ∉ ["parasitic", "scavenger"], df)
 
-    d = model_summary(df, file_name, "pfim", downsample = false)
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
     d[:model] = "pfim_no_scav"
     push!(topology, d)
