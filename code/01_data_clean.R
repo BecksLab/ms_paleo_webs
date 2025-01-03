@@ -21,24 +21,41 @@ for (i in seq_along(trait_files)) {
     # change motiliy class - we can remove this later
     mutate(motility = case_when( 
       motility == "nonmotile" ~ "non_motile",
-      TRUE ~ as.character(motility)))  %>%
-    # divorce feeding from size
+      TRUE ~ as.character(motility))) %>% 
+    # removes species with no size data
+    filter(species != "Hemigordius_baoqingensis") %>%
+    # assign size class to species
     mutate(size = case_when(
-      str_detect(size, "^.*small.*$") ~ "small",
-      str_detect(size, "^.*large.*$") ~ "large",
-      str_detect(size, "^.*medium.*$") ~ "medium",
-      str_detect(size, "^.*tiny.*$") ~ "tiny",
       species == "Hemigordius baoqingensis" ~ "medium",
-      TRUE ~ as.character(size)),
-      # same for feeding
-      feeding = case_when(
-        feeding == "microcarnivore" ~ "carnivore",
-        TRUE ~ as.character(feeding))) %>% 
-    filter(species != "Hemigordius_baoqingensis")
+      TRUE ~ as.character(size))) %>%
+    # return primary and zooplankton
+    add_row(species = "primary", feeding = "primary_feeding", 
+            motility = "primary_motility", tiering = "primary_tiering", 
+            size = "primary_size") %>%
+    add_row(species = "zooplankton", feeding = "zooplankton_feeding", 
+            motility = "zooplankton_motility", tiering = "zooplankton_tiering", 
+            size = "zooplankton_size")
   
   # write as clean data
-  write.csv(df, str_replace(trait_files[i], "raw.", "clean/trait/"),
+  write.csv(df, str_replace(trait_files[i], "raw.", "clean/trait_maximal/"),
             row.names = FALSE)
+  
+  df  %>%
+    # combine some trait classes
+    mutate(tiering = case_when(tiering == "shallow_infaunal" ~ "infaunal",
+                               tiering == "deep_infaunal" ~ "infaunal",
+                               str_detect(tiering, "^.*epifaunal.*$") ~ "epifaunal",
+                               TRUE ~ as.character(tiering)),
+           feeding = case_when(str_detect(feeding, "^.*deposit.*$") ~ "herbivore",
+                               str_detect(feeding, "^.*suspension.*$") ~ "herbivore",
+                               str_detect(feeding, "grazer_herbivore") ~ "herbivore",
+                               TRUE ~ as.character(feeding)),
+           motility = case_when(motility == "non-motile_attached" ~ "attached",
+                                motility == "non-motile_byssate" ~ "attached",
+                                TRUE ~ as.character(motility))) %>%
+    # write as clean data
+    write.csv(., str_replace(trait_files[i], "raw.", "clean/trait_minimum/"),
+              row.names = FALSE)
 }
 
 # clean size data
@@ -69,7 +86,7 @@ for (i in seq_along(size_files)) {
 
 # create simple traits df for extinction sims
 
-list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>% 
+list.files(path = "../data/clean/trait_maximal", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>%
   select(-feeding) %>%
@@ -88,7 +105,7 @@ list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE) %>
 
 # create a trophic community (collapse all species with the same traits)
 
-trait_files <- list.files(path = "../data/clean/trait", pattern = ".csv", full.names = TRUE)
+trait_files <- list.files(path = "../data/clean/trait_minimum", pattern = ".csv", full.names = TRUE)
 
 all_spp <- trait_files %>%
   lapply(read_csv) %>%
@@ -109,6 +126,6 @@ for (i in seq_along(trait_files)) {
     left_join(all_spp)
   
   # write as clean data
-  write.csv(df, str_replace(trait_files[i], "trait", "trophic"),
+  write.csv(df, str_replace(trait_files[i], "trait_minimum", "trophic"),
             row.names = FALSE)
 }
