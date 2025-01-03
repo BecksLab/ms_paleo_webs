@@ -228,10 +228,12 @@
   <li><a href="#including-a-basal-node" id="toc-including-a-basal-node" class="nav-link" data-scroll-target="#including-a-basal-node">Including a basal node</a></li>
   <li><a href="#downsampling" id="toc-downsampling" class="nav-link" data-scroll-target="#downsampling">Downsampling</a></li>
   </ul></li>
-  <li><a href="#downstream-effects-of-the-different-configurations" id="toc-downstream-effects-of-the-different-configurations" class="nav-link" data-scroll-target="#downstream-effects-of-the-different-configurations">Downstream effects of the different configurations</a>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#different-structural-features" id="toc-different-structural-features" class="nav-link" data-scroll-target="#different-structural-features">Different structural features</a></li>
+  <li><a href="#overall-similarityclustering" id="toc-overall-similarityclustering" class="nav-link" data-scroll-target="#overall-similarityclustering">Overall similarity/clustering</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </div>
@@ -317,15 +319,28 @@ Identifying trophic species
 <p>Although PFIM as a network generating tool falls firmly within the metaweb space there is the argument to be had that owing to the coarse granularity of paleo communities (aggregated over large spatial and time scales) means that the resulting networks is ‘over represented’. This begs the question of if we should be downsampling these metawebs to have them represent a slightly more ‘ecologically plausible’ network configuration. <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> developed a downsampling approach that removes links between species based on the generality of a species.</p>
 </section>
 </section>
-<section id="downstream-effects-of-the-different-configurations" class="level1">
-<h1>Downstream effects of the different configurations</h1>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="different-structural-features" class="level3">
+<h3 class="anchored" data-anchor-id="different-structural-features">Different structural features</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="figures/summary_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="TODO."><img src="figures/summary_pfim.png" class="img-fluid figure-img" alt="TODO."></a></p>
 <figcaption>TODO.</figcaption>
 </figure>
 </div>
+</section>
+<section id="overall-similarityclustering" class="level3">
+<h3 class="anchored" data-anchor-id="overall-similarityclustering">Overall similarity/clustering</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/pca_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."><img src="figures/pca_pfim.png" class="img-fluid figure-img" alt="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."></a></p>
+<figcaption>Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…).</figcaption>
+</figure>
+</div>
 <p>Redundancy? Structure?</p>
+</section>
+</section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
@@ -339,7 +354,6 @@ Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancie
 Shaw, Jack O., Alexander M. Dunhill, Andrew P. Beckerman, Jennifer A. Dunne, and Pincelli M. Hull. 2024. <span>“A Framework for Reconstructing Ancient Food Webs Using Functional Trait Data.”</span> bioRxiv. <a href="https://doi.org/10.1101/2024.01.30.578036">https://doi.org/10.1101/2024.01.30.578036</a>.
 </div>
 </div>
-</section>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

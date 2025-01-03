@@ -64,9 +64,15 @@ In conclusion although scavengers and parasites are present in communities there
 
 Although PFIM as a network generating tool falls firmly within the metaweb space there is the argument to be had that owing to the coarse granularity of paleo communities (aggregated over large spatial and time scales) means that the resulting networks is 'over represented'. This begs the question of if we should be downsampling these metawebs to have them represent a slightly more 'ecologically plausible' network configuration. @roopnarine2006 developed a downsampling approach that removes links between species based on the generality of a species.
 
-# Downstream effects of the different configurations
+## Results
+
+### Different structural features
 
 ![TODO.](figures/summary_pfim.png)
+
+### Overall similarity/clustering
+
+![Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear...).](figures/pca_pfim.png)
 
 Redundancy? Structure?
 
