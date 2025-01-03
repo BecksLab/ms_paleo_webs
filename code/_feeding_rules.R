@@ -47,32 +47,24 @@ dev.off()
 #### Minimal traits ####
 
 df_min <- df %>%
-  mutate(trait_resource = case_when(trait_resource == "epifaunal_erect" ~ "epifaunal",
-                                    trait_resource == "epifaunal_surficial" ~ "epifaunal",
-                                    trait_resource == "shallow-infaunal" ~ "infaunal",
+  mutate(trait_resource = case_when(trait_resource == "shallow-infaunal" ~ "infaunal",
                                     trait_resource == "deep-infaunal" ~ "infaunal",
+                                    str_detect(trait_resource, "^.*epifaunal.*$") ~ "epifaunal",
                                     trait_resource == "non-motile_attached" ~ "attached",
                                     trait_resource == "non-motile_byssate" ~ "attached",
-                                    trait_resource == "deposit_surficial" ~ "herbivore",
-                                    trait_resource == "deposit_mining" ~ "herbivore",
-                                    trait_resource == "deposit_mining_chemosymbiotic" ~ "herbivore",
-                                    trait_resource == "grazer_herbivore" ~ "herbivore",
-                                    trait_resource == "suspension" ~ "herbivore",
-                                    trait_resource == "suspension_chemosymbiotic" ~ "herbivore",
-                                    .default = trait_resource),
-         trait_consumer = case_when(trait_consumer == "epifaunal_erect" ~ "epifaunal",
-                                    trait_consumer == "epifaunal_surficial" ~ "epifaunal",
-                                    trait_consumer == "shallow-infaunal" ~ "infaunal",
+                                    str_detect(trait_resource, "^.*deposit.*$") ~ "herbivore",
+                                    str_detect(trait_resource, "^.*suspension.*$") ~ "herbivore",
+                                    str_detect(trait_resource, "grazer_herbivore") ~ "herbivore",
+                                    TRUE ~ as.character(trait_resource)),
+         trait_consumer = case_when(trait_consumer == "shallow-infaunal" ~ "infaunal",
                                     trait_consumer == "deep-infaunal" ~ "infaunal",
+                                    str_detect(trait_consumer, "^.*epifaunal.*$") ~ "epifaunal",
                                     trait_consumer == "non-motile_attached" ~ "attached",
                                     trait_consumer == "non-motile_byssate" ~ "attached",
-                                    trait_consumer == "deposit_surficial" ~ "herbivore",
-                                    trait_consumer == "deposit_mining" ~ "herbivore",
-                                    trait_consumer == "deposit_mining_chemosymbiotic" ~ "herbivore",
-                                    trait_consumer == "grazer_herbivore" ~ "herbivore",
-                                    trait_consumer == "suspension" ~ "herbivore",
-                                    trait_consumer == "suspension_chemosymbiotic" ~ "herbivore",
-                                    .default = trait_consumer)) %>%
+                                    str_detect(trait_consumer, "^.*deposit.*$") ~ "herbivore",
+                                    str_detect(trait_consumer, "^.*suspension.*$") ~ "herbivore",
+                                    str_detect(trait_consumer, "grazer_herbivore") ~ "herbivore",
+                                    TRUE ~ as.character(trait_consumer))) %>%
   distinct()
 
 trait_networks <- vector(mode = "list", length = 4)
