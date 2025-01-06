@@ -17,23 +17,44 @@ function _PFIM_network(trait_data::DataFrame, feeding_rules::DataFrame)
         for res in 1:nrow(trait_data)
             consumer = trait_data[cons,:]
             resource = trait_data[res,:]
+            traits = unique(collect(feeding_rules.trait_type_resource))
     
             # keep record if rule is met or not
             tally = 0
-    
-            for i in Symbol.(unique(collect(feeding_rules.trait_type_resource)))
-                consumer_trait = consumer[i]
-                resource_trait = resource[i]
-                resources = filter(:trait_consumer => x -> x == consumer_trait, feeding_rules).trait_resource
-                if resource_trait ∈ resources
-                    tally = tally + 1
+
+            if eltype(trait_data.size) == String31
+                for i in Symbol.(traits)
+                    consumer_trait = consumer[i]
+                    resource_trait = resource[i]
+                    resources = filter(:trait_consumer => x -> x == consumer_trait, feeding_rules).trait_resource
+                    if resource_trait ∈ resources
+                        tally = tally + 1
+                    end
+                end
+        
+                # only add link if all 4 rules are met
+                if tally == 4
+                    int_matrix[cons, res] = 1
+                end
+            else
+                if consumer.size >= resource.size
+                    for i in Symbol.(traits[1:3])
+                        consumer_trait = consumer[i]
+                        resource_trait = resource[i]
+                        resources = filter(:trait_consumer => x -> x == consumer_trait, feeding_rules).trait_resource
+                        if resource_trait ∈ resources
+                            tally = tally + 1
+                        end
+                    end
+            
+                    # only add link if all 3 rules are met
+                    if tally == 3
+                        int_matrix[cons, res] = 1
+                    end
                 end
             end
     
-            # only add link if all 4 rules are met
-            if tally == 4
-                int_matrix[cons, res] = 1
-            end
+
     
         end
     end
