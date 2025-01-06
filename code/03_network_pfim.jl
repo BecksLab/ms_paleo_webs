@@ -87,17 +87,19 @@ topology = topo_df();
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
-    df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
+
+    # remove primary node
+    filter!(row -> row.species ∉ ["feeding"], df)
 
     size_file = size_names[i]
     bodymass = DataFrame(CSV.File.(joinpath("../data/clean/size", "$size_file.csv"),))
 
-    # remove categorical sizes
     select!(df, Not([:size]))
     # replace with continuous
     df = innerjoin(df, bodymass, on = :species)
 
-    d = model_summary(df, file_name, "pfim", downsample = false)
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
     d[:model] = "pfim_size"
     push!(topology, d)
