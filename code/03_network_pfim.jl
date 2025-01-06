@@ -193,7 +193,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trophic", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim", downsample = false)
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
     d[:model] = "pfim_trophic"
     push!(topology, d)
