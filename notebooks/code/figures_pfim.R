@@ -55,8 +55,8 @@ for (i in seq_along(plot_list)) {
                                y = stat_val, 
                                colour = model,
                                group = model)) +
-    geom_line() +
-    geom_point() +
+    geom_line(alpha = 0.7) +
+    geom_point(alpha = 0.7) +
     facet_wrap(vars(stat),
                scales = 'free') +
     scale_size(guide = 'none') +
