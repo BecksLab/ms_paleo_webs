@@ -244,3 +244,35 @@ save_object(
     "../data/processed/networks/pfim_minimum_downsample_networks.jlds",
     topology[:, ["id", "model", "network"]],
 )
+
+# downsample maximal
+
+topology = topo_df();
+
+feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_maximal.csv"))
+
+for i in eachindex(matrix_names)
+
+    file_name = matrix_names[i]
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trait_maximal", "$file_name.csv"),))
+
+    # remove parasites and scavengers
+    filter!(row -> row.species ∉ ["primary"], df)
+
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = true)
+
+    d[:model] = "pfim_maximal_downsample"
+    push!(topology, d)
+
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/topology/topology_pfim_maximal_downsample.csv",
+    topology[:, setdiff(names(topology), ["network"])],
+)
+# write networks as object
+save_object(
+    "../data/processed/networks/pfim_maximal_downsample_networks.jlds",
+    topology[:, ["id", "model", "network"]],
+)
