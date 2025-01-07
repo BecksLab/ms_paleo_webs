@@ -16,7 +16,6 @@ matrix_names = readdir("../data/clean/trait_maximal")
 matrix_names = replace.(matrix_names, ".csv" => "")
 
 # maximal feeding rules
-
 feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_maximal.csv"))
 
 for i in eachindex(matrix_names)
@@ -182,10 +181,10 @@ save_object(
     topology[:, ["id", "model", "network"]],
 )
 
-# trophic species
+# trophic species - minimum rules
 
 # get the name of all communities
-matrix_names = readdir("../data/clean/trophic")
+matrix_names = readdir("../data/clean/trophic_minimum")
 matrix_names = replace.(matrix_names, ".csv" => "")
 
 topology = topo_df();
@@ -193,23 +192,57 @@ topology = topo_df();
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
-    df = DataFrame(CSV.File.(joinpath("../data/clean/trophic", "$file_name.csv"),))
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_minimum", "$file_name.csv"),))
 
     d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
 
-    d[:model] = "pfim_trophic"
+    d[:model] = "pfim_trophic_minimum"
     push!(topology, d)
 
 end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology/topology_pfim_trophic.csv",
+    "../data/processed/topology/topology_pfim_trophic_minimum.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
 save_object(
-    "../data/processed/networks/pfim_networks_trophic.jlds",
+    "../data/processed/networks/pfim_networks_trophic_minimum.jlds",
+    topology[:, ["id", "model", "network"]],
+)
+
+# trophic species - maximal rules
+
+# get the name of all communities
+matrix_names = readdir("../data/clean/trophic_maximal")
+matrix_names = replace.(matrix_names, ".csv" => "")
+
+# maximal feeding rules
+feeding_rules = DataFrame(CSV.File("../data/clean/feeding_rules/feeding_rules_maximal.csv"))
+
+topology = topo_df();
+
+for i in eachindex(matrix_names)
+
+    file_name = matrix_names[i]
+    df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_maximal", "$file_name.csv"),))
+
+    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+
+    d[:model] = "pfim_trophic_maximal"
+    push!(topology, d)
+
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/topology/topology_pfim_trophic_maximal.csv",
+    topology[:, setdiff(names(topology), ["network"])],
+)
+# write networks as object
+save_object(
+    "../data/processed/networks/pfim_networks_trophic_maximal.jlds",
     topology[:, ["id", "model", "network"]],
 )
 

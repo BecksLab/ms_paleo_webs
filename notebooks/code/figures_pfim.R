@@ -64,7 +64,7 @@ for (i in seq_along(plot_list)) {
     xlab("time") +
     ylab("value") +
     coord_cartesian(clip = "off") +
-    scale_colour_brewer(palette = "Dark2") +
+    #scale_colour_brewer(palette = "Dark2") +
     labs(title = levs[i]) +
     theme(panel.border = element_rect(colour = 'black',
                                       fill = "#ffffff00"),
@@ -99,7 +99,7 @@ pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
 
 autoplot(pca_res, data = df_pca, colour = 'model', shape = 'id', size = 4, alpha = 0.7) +
   theme_classic() +
-  scale_colour_brewer(palette = "Dark2") +
+  #scale_colour_brewer(palette = "Dark2") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
