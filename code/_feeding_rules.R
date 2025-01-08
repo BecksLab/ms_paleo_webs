@@ -65,6 +65,10 @@ df_min <- df %>%
                                     str_detect(trait_resource, "^.*deposit.*$") ~ "herbivore",
                                     str_detect(trait_resource, "^.*suspension.*$") ~ "herbivore",
                                     str_detect(trait_resource, "grazer_herbivore") ~ "herbivore",
+                                    str_detect(trait_resource, "^.*large.*$") ~ "large",
+                                    str_detect(trait_resource, "^.*medium.*$") ~ "medium",
+                                    str_detect(trait_resource, "^.*small.*$") ~ "small",
+                                    str_detect(trait_resource, "^.*tiny.*$") ~ "tiny",
                                     TRUE ~ as.character(trait_resource)),
          trait_consumer = case_when(trait_consumer == "shallow-infaunal" ~ "infaunal",
                                     trait_consumer == "deep-infaunal" ~ "infaunal",
@@ -74,6 +78,10 @@ df_min <- df %>%
                                     str_detect(trait_consumer, "^.*deposit.*$") ~ "herbivore",
                                     str_detect(trait_consumer, "^.*suspension.*$") ~ "herbivore",
                                     str_detect(trait_consumer, "grazer_herbivore") ~ "herbivore",
+                                    str_detect(trait_consumer, "^.*large.*$") ~ "large",
+                                    str_detect(trait_consumer, "^.*medium.*$") ~ "medium",
+                                    str_detect(trait_consumer, "^.*small.*$") ~ "small",
+                                    str_detect(trait_consumer, "^.*tiny.*$") ~ "tiny",
                                     TRUE ~ as.character(trait_consumer))) %>%
   distinct()
 
