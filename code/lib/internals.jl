@@ -29,7 +29,7 @@ end
 
 Returns the maximum possible rank of a Bipartite Network
 """
-function maxrank(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
+function maxrank(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     return minimum(size(N))
 end
 
@@ -77,7 +77,7 @@ function model_summary(
     df::DataFrame,
     community_id::Any,
     model_name::String;
-    feeding_rules::DataFrame = DataFrame(a=1:4, b=["M", "F", "F", "M"]),
+    feeding_rules::DataFrame = DataFrame(a = 1:4, b = ["M", "F", "F", "M"]),
     bodymass::Vector{Float64} = [0.0, 0.0],
     connectance::Float64 = 0.1,
     links::Int64 = 10,

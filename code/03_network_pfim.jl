@@ -26,7 +26,13 @@ for i in eachindex(matrix_names)
     # remove parasites and scavengers
     filter!(row -> row.species ∉ ["primary"], df)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_maximal"
     push!(topology, d)
@@ -58,7 +64,13 @@ for i in eachindex(matrix_names)
     # remove parasites and scavengers
     filter!(row -> row.species ∉ ["primary"], df)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_minimum"
     push!(topology, d)
@@ -98,7 +110,13 @@ for i in eachindex(matrix_names)
     # replace with continuous
     df = innerjoin(df, bodymass, on = :species)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_size"
     push!(topology, d)
@@ -130,7 +148,13 @@ for i in eachindex(matrix_names)
     # remove parasites and scavengers
     filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_no_scav"
     push!(topology, d)
@@ -163,7 +187,13 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_basal"
     push!(topology, d)
@@ -194,7 +224,13 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_minimum", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_trophic_minimum"
     push!(topology, d)
@@ -228,7 +264,13 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_maximal", "$file_name.csv"),))
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = false)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = false,
+    )
 
     d[:model] = "pfim_trophic_maximal"
     push!(topology, d)
@@ -260,7 +302,13 @@ for i in eachindex(matrix_names)
     # remove parasites and scavengers
     filter!(row -> row.species ∉ ["primary"], df)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = true)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = true,
+    )
 
     d[:model] = "pfim_minimum_downsample"
     push!(topology, d)
@@ -292,7 +340,13 @@ for i in eachindex(matrix_names)
     # remove parasites and scavengers
     filter!(row -> row.species ∉ ["primary"], df)
 
-    d = model_summary(df, file_name, "pfim"; feeding_rules = feeding_rules, downsample = true)
+    d = model_summary(
+        df,
+        file_name,
+        "pfim";
+        feeding_rules = feeding_rules,
+        downsample = true,
+    )
 
     d[:model] = "pfim_maximal_downsample"
     push!(topology, d)

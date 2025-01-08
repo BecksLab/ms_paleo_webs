@@ -12,13 +12,13 @@ function _PFIM_network(trait_data::DataFrame, feeding_rules::DataFrame)
 
     S = nrow(trait_data)
     int_matrix = zeros(Bool, (S, S))
-    
-    for cons in 1:nrow(trait_data)
-        for res in 1:nrow(trait_data)
-            consumer = trait_data[cons,:]
-            resource = trait_data[res,:]
+
+    for cons = 1:nrow(trait_data)
+        for res = 1:nrow(trait_data)
+            consumer = trait_data[cons, :]
+            resource = trait_data[res, :]
             traits = unique(collect(feeding_rules.trait_type_resource))
-    
+
             # keep record if rule is met or not
             tally = 0
 
@@ -26,12 +26,16 @@ function _PFIM_network(trait_data::DataFrame, feeding_rules::DataFrame)
                 for i in Symbol.(traits)
                     consumer_trait = consumer[i]
                     resource_trait = resource[i]
-                    resources = filter(:trait_consumer => x -> x == consumer_trait, feeding_rules).trait_resource
+                    resources =
+                        filter(
+                            :trait_consumer => x -> x == consumer_trait,
+                            feeding_rules,
+                        ).trait_resource
                     if resource_trait ∈ resources
                         tally = tally + 1
                     end
                 end
-        
+
                 # only add link if all 4 rules are met
                 if tally == 4
                     int_matrix[cons, res] = 1
@@ -41,24 +45,28 @@ function _PFIM_network(trait_data::DataFrame, feeding_rules::DataFrame)
                     for i in Symbol.(traits[1:3])
                         consumer_trait = consumer[i]
                         resource_trait = resource[i]
-                        resources = filter(:trait_consumer => x -> x == consumer_trait, feeding_rules).trait_resource
+                        resources =
+                            filter(
+                                :trait_consumer => x -> x == consumer_trait,
+                                feeding_rules,
+                            ).trait_resource
                         if resource_trait ∈ resources
                             tally = tally + 1
                         end
                     end
-            
+
                     # only add link if all 3 rules are met
                     if tally == 3
                         int_matrix[cons, res] = 1
                     end
                 end
             end
-    
 
-    
+
+
         end
     end
-    
+
     nodes = Unipartite(Symbol.(trait_data.species))
     edges = Binary(int_matrix)
     network = SpeciesInteractionNetwork(nodes, edges)
@@ -78,35 +86,35 @@ end
 
 """
 function _downsample(network, matrix, y)
-    
+
     link_dist = zeros(Float64, richness(network))
     spp = species(network)
     S = richness(network)
 
-            # get link distribution
-            for i in eachindex(spp)
-                sp = spp[i]
-                r = generality(network, sp)
-                E = exp(log(S) * (y - 1) / y)
-                link_dist[i] = exp(r / E)
+    # get link distribution
+    for i in eachindex(spp)
+        sp = spp[i]
+        r = generality(network, sp)
+        E = exp(log(S) * (y - 1) / y)
+        link_dist[i] = exp(r / E)
+    end
+
+    # create probabilistic int matrix
+    prob_matrix = zeros(AbstractFloat, (S, S))
+    for i in axes(matrix, 1)
+        for j in axes(matrix, 2)
+            if matrix[i, j] == true
+                prob_matrix[i, j] = link_dist[i]
             end
-    
-            # create probabilistic int matrix
-            prob_matrix = zeros(AbstractFloat, (S, S))
-            for i in axes(matrix, 1)
-                for j in axes(matrix, 2)
-                    if matrix[i, j] == true
-                        prob_matrix[i, j] = link_dist[i]
-                    end
-                end
-            end
-            # make probabalistic
-            prob_matrix = prob_matrix ./ maximum(prob_matrix)
-    
-            edges = Probabilistic(prob_matrix)
-            nodes = Unipartite(spp)
-            N = SpeciesInteractionNetwork(nodes, edges)
-            return randomdraws(N)
+        end
+    end
+    # make probabalistic
+    prob_matrix = prob_matrix ./ maximum(prob_matrix)
+
+    edges = Probabilistic(prob_matrix)
+    nodes = Unipartite(spp)
+    N = SpeciesInteractionNetwork(nodes, edges)
+    return randomdraws(N)
 end
 
 """
@@ -123,7 +131,12 @@ end
     Ancient Food Webs Using Functional Trait Data.” 
     https://doi.org/10.1101/2024.01.30.578036.
 """
-function PFIM(trait_data::DataFrame, feeding_rules::DataFrame; y::Float64 = 2.5, downsample::Bool = true)
+function PFIM(
+    trait_data::DataFrame,
+    feeding_rules::DataFrame;
+    y::Float64 = 2.5,
+    downsample::Bool = true,
+)
 
     # data checks
     for (i, v) in enumerate(["species", "motility", "tiering", "feeding", "size"])

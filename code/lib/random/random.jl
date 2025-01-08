@@ -24,10 +24,10 @@ function randommodel(species::Any, L::Int64)
     # empty matrix
     edges = zeros(Bool, (S, S))
 
-    for i in 1:S
+    for i = 1:S
         if length(N.fadjlist[i]) > 0
             for j in eachindex(N.fadjlist[i])
-                edges[i,j] = 1
+                edges[i, j] = 1
             end
         end
     end

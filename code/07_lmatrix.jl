@@ -29,8 +29,14 @@ for i in eachindex(size_names)
 
     df = innerjoin(trait, bodymass, on = :species)
     is_producer = map(==("producer"), string.(df.tiering))
-    
-    d = model_summary(df, trait_file, "lmatrix"; bodymass = df.bodymass, is_producer = is_producer)
+
+    d = model_summary(
+        df,
+        trait_file,
+        "lmatrix";
+        bodymass = df.bodymass,
+        is_producer = is_producer,
+    )
 
     push!(topology, d)
 

@@ -21,8 +21,9 @@ hierarchies = [
     [
         ["tiny", "small", "medium", "large"],
         ["non_motile", "facultative", "slow", "fast"],
-        ["infaunal", "epifaunal", "nektonic", "pelagic"]
-    ]]
+        ["infaunal", "epifaunal", "nektonic", "pelagic"],
+    ],
+]
 
 # Extinction sequence
 
@@ -74,7 +75,7 @@ for i in eachindex(matrix_names)
         # need to simulate for both 'orders' of traits/hierarchies
         # where true is descending and false is ascending
         for descending in [true, false]
-        
+
             # numeric extinctions
             for k in ["generality", "vulnerability"]
 
@@ -84,14 +85,16 @@ for i in eachindex(matrix_names)
                 extinction_list = extinctionsequence(f(pre_comm.network[1]); descending)
 
                 # generate extinction sequence
-                extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
+                extinction_series =
+                    extinction(pre_comm.network[1], extinction_list, post_rich)
 
                 # summarise extinction network
                 D = _network_summary(extinction_series[end])
 
                 # append additional info
                 D[:model] = pre_comm.model[1]
-                D[:extinction_mechanism] = join([k, ifelse(descending, "descending", "ascending")], "_")
+                D[:extinction_mechanism] =
+                    join([k, ifelse(descending, "descending", "ascending")], "_")
                 D[:id] = pre_comm.id[1]
                 D[:time] = j
 
@@ -105,21 +108,29 @@ for i in eachindex(matrix_names)
 
                     trait_data = traits[:, [:species, hierarchies[1][k]]]
                     rename!(trait_data, hierarchies[1][k] => :trait)
-                
-                    extinction_list = extinctionsequence(hierarchies[2][k], trait_data; descending)
-                
+
+                    extinction_list =
+                        extinctionsequence(hierarchies[2][k], trait_data; descending)
+
                     # generate extinction sequence
-                    extinction_series = extinction(pre_comm.network[1], extinction_list, post_rich)
-                
+                    extinction_series =
+                        extinction(pre_comm.network[1], extinction_list, post_rich)
+
                     # summarise extinction network
                     D = _network_summary(extinction_series[end])
-                
+
                     # append additional info
                     D[:model] = pre_comm.model[1]
-                    D[:extinction_mechanism] = join([string(hierarchies[1][k]), ifelse(descending, "descending", "ascending")], "_")
+                    D[:extinction_mechanism] = join(
+                        [
+                            string(hierarchies[1][k]),
+                            ifelse(descending, "descending", "ascending"),
+                        ],
+                        "_",
+                    )
                     D[:id] = pre_comm.id[1]
                     D[:time] = j
-                
+
                     push!(extinction_results, D)
                 end
             end

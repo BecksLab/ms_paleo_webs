@@ -27,7 +27,7 @@ filter!(!=("pfim_networks_no_scav.jlds"), matrix_names)
 # same comment RE elegance
 networks = load_object(joinpath("../data/processed/networks/", matrix_names[1]))
 
-for i in 2:5
+for i = 2:5
     append!(networks, load_object(joinpath("../data/processed/networks/", matrix_names[i])))
 end
 
@@ -38,13 +38,13 @@ for time ∈ ["pre", "during", "post"]
     for i in eachindex(matrix_names)
 
         # for each combination of datasets
-        for (x, y) in combinations(unique(networks[:,:model]), 2)
-            
+        for (x, y) in combinations(unique(networks[:, :model]), 2)
+
             U = df[occursin.(x, df.model), :network][1]
             V = df[occursin.(y, df.model), :network][1]
-            β_spp = SpeciesInteractionNetworks.betadiversity(βS,U,V)
-            β_int = SpeciesInteractionNetworks.betadiversity(βWN,U,V)
-    
+            β_spp = SpeciesInteractionNetworks.betadiversity(βS, U, V)
+            β_int = SpeciesInteractionNetworks.betadiversity(βWN, U, V)
+
             # collate
             b = Dict{Symbol,Any}()
             b[:left] = x
@@ -53,15 +53,12 @@ for time ∈ ["pre", "during", "post"]
             b[:β_spp] = β_spp.shared
             b[:links_left] = links(U)
             b[:links_right] = links(V)
-    
+
             # send to results
             push!(β_div, b)
-        end  
+        end
     end
 end
 
 # write outputs as .csv
-CSV.write(
-    "../data/processed/beta_div/beta_div.csv",
-    β_div,
-)
+CSV.write("../data/processed/beta_div/beta_div.csv", β_div)

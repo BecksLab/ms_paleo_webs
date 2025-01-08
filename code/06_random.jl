@@ -24,7 +24,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait", "$file_name.csv"),))
 
-    links = floor(Int, Co*(nrow(df)^2))
+    links = floor(Int, Co * (nrow(df)^2))
     d = model_summary(df, file_name, "random"; links = links)
 
     push!(topology, d)

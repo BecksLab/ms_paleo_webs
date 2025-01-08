@@ -44,13 +44,13 @@ function lmatrix(
     S = length(species)
 
     prob_matrix = zeros(AbstractFloat, (S, S))
-    
+
     for i = 1:S
         # only assess if consumer is not a producer
         if !is_producer[i]
             for j = 1:S
                 l = bodymass[i] / (bodymass[j] * Ropt)
-                L = (l * exp(1 - l)) ^γ
+                L = (l * exp(1 - l))^γ
                 if L > threshold
                     prob_matrix[i, j] = L
                 end
