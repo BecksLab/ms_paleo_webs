@@ -16,8 +16,6 @@ for (i in seq_along(trait_files)) {
     mutate(species = str_replace_all(species, " ", "_")) %>%
     # standardise strings
     mutate_all(~str_replace_all(., "-", "_"))  %>%
-    # remove for now
-    filter(!(feeding %in% c("primary", "zooplankton")))  %>%
     # change motiliy class - we can remove this later
     mutate(motility = case_when( 
       motility == "nonmotile" ~ "non_motile",
@@ -27,14 +25,7 @@ for (i in seq_along(trait_files)) {
     # assign size class to species
     mutate(size = case_when(
       species == "Hemigordius baoqingensis" ~ "medium",
-      TRUE ~ as.character(size))) %>%
-    # return primary and zooplankton
-    add_row(species = "primary", feeding = "primary_feeding", 
-            motility = "primary_motility", tiering = "primary_tiering", 
-            size = "primary_size") %>%
-    add_row(species = "zooplankton", feeding = "zooplankton_feeding", 
-            motility = "zooplankton_motility", tiering = "zooplankton_tiering", 
-            size = "zooplankton_size")
+      TRUE ~ as.character(size)))
   
   # write as clean data
   write.csv(df, str_replace(trait_files[i], "raw.", "clean/trait_maximal/"),
@@ -52,7 +43,11 @@ for (i in seq_along(trait_files)) {
                                TRUE ~ as.character(feeding)),
            motility = case_when(motility == "non-motile_attached" ~ "attached",
                                 motility == "non-motile_byssate" ~ "attached",
-                                TRUE ~ as.character(motility))) %>%
+                                TRUE ~ as.character(motility)),
+           size = case_when(str_detect(size, "^.*large.*$") ~ "large",
+                            str_detect(size, "^.*medium.*$") ~ "medium",
+                            str_detect(size, "^.*small.*$") ~ "small",
+                            str_detect(size, "^.*tiny.*$") ~ "tiny")) %>%
     # write as clean data
     write.csv(., str_replace(trait_files[i], "raw.", "clean/trait_minimum/"),
               row.names = FALSE)
