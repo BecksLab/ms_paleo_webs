@@ -1,6 +1,7 @@
 #library
 library(here)
 library(igraph)
+library(tidyverse)
 
 # set path to code sub dir
 setwd(here())
@@ -26,7 +27,10 @@ for (i in seq_along(traits_classes)) {
   
   df_sub <- df %>%
     filter(trait_type_resource == traits_classes[i]) %>%
-    select(trait_resource, trait_consumer)
+    select(trait_resource, trait_consumer) %>%
+    # remove primary node
+    filter(!str_detect(trait_consumer, "primary")) %>%
+    filter(!str_detect(trait_resource, "primary"))
   
   # create data:
   links <- data.frame(
@@ -83,7 +87,10 @@ for (i in seq_along(traits_classes)) {
   
   df_sub <- df_min %>%
     filter(trait_type_resource == traits_classes[i]) %>%
-    select(trait_resource, trait_consumer)
+    select(trait_resource, trait_consumer) %>%
+    # remove primary node
+    filter(!str_detect(trait_consumer, "primary")) %>%
+    filter(!str_detect(trait_resource, "primary"))
   
   # create data:
   links <- data.frame(
@@ -126,7 +133,10 @@ for (i in seq_along(traits_classes)) {
   
   df_sub <- df_scav %>%
     filter(trait_type_resource == traits_classes[i]) %>%
-    select(trait_resource, trait_consumer)
+    select(trait_resource, trait_consumer) %>%
+    # remove primary node
+    filter(!str_detect(trait_consumer, "primary")) %>%
+    filter(!str_detect(trait_resource, "primary"))
   
   # create data:
   links <- data.frame(
