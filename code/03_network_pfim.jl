@@ -23,7 +23,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_maximal", "$file_name.csv"),))
 
-    # remove parasites and scavengers
+    # remove # primary species
     filter!(row -> row.species ∉ ["primary"], df)
 
     d = model_summary(
@@ -61,7 +61,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    # remove parasites and scavengers
+    # remove # primary species
     filter!(row -> row.species ∉ ["primary"], df)
 
     d = model_summary(
@@ -299,7 +299,7 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    # remove parasites and scavengers
+    # primary species
     filter!(row -> row.species ∉ ["primary"], df)
 
     d = model_summary(
