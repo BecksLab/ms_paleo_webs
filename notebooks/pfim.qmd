@@ -12,13 +12,22 @@ bibliography: ../references.bib
 
 One of the challenges with the PFIM is that there are many ways to formalise the mechanistic rules that determine feeding interactions. What is unclear is how the different rule sets may impact/alter the resulting network structure. Here the aim is to identify some of the broader philosophical 'groups'/approaches to defining the mechanistic rules within the PFIM and comparing the resulting network that they construct.
 
+::: {.callout-important title="A note on traits/rules"}
+
+The rules/traits used here may not reflect the most recent iterations and changes but still represent a general idea of how the different ways we define rules/traits will affect the resulting network structure.
+:::
+
 ## How we specify rules
 
 ### Maximal Rules
 
-![An extremely subdivided-nuanced set of traits and feeding rules](../figures/feeding_rules/maximal.png)
+This approach focuses on hyper specific traits for the different species. This allows the user to 'force' specific feeding rules and make sure that they are met. For example if looking at the size classes we can see that there are additional traits added to the size classes to ensure that *e.g.,* microcarnivores both consume and are consumed by the correct species
+
+![An extremely subdivided-nuanced set of traits and feeding rules. Not arrows represent the direction of 'energy flow' *i.e.,* the consumer trait is the one that the arrow is pointing towards.](../figures/feeding_rules/maximal.png)
 
 ### Minimal Rules
+
+Here we take a minimalist approach to defining the traits of species so that there are no 'equivalent' traits that are actually synonyms since they have the same feeding rules as well as 'forcing' certain feeding patterns.
 
 ![Lumping some of the different traits in order to have fewer feeding rules. ](../figures/feeding_rules/minimal.png){#fig-minimal}
 
@@ -59,7 +68,7 @@ The inclusion of parasites and scavengers represents the inclusion of links that
 
 In conclusion although scavengers and parasites are present in communities there are not 100% compatible with the traditional definition of a food web - especially in the way that PFIM specifies feeding rules.
 
-![TODO](../figures/feeding_rules/no_scav.png)
+![Here we use the same minimum feeding rules but remove all traits (and species) related to scavenging or parasitism](../figures/feeding_rules/no_scav.png)
 
 ## Assumptions on structure
 
@@ -73,13 +82,22 @@ Although PFIM as a network generating tool falls firmly within the metaweb space
 
 ## Results
 
+::: {.callout-tip title="Networks created"}
+
+Unless otherwise stated all networks use the minimum feeding rules and are a 'metaweb' - *i.e.,* they are not downsampled.
+:::
+
 ### Different structural features
 
-![TODO.](figures/summary_pfim.png)
+Broadly speaking we observe the same 'patterns' over time for the different networks and values are not grossly different (eye test). Often we do see the trophic networks deviating a bit from this generalisation but that makes sense since the communities are more 'contracted'.
+
+![Note that the shapes represent the different time periods.](figures/summary_pfim.png)
 
 ### Overall similarity/clustering
 
-![Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear...).](figures/pca_pfim.png)
+It might also be useful to compare the networks as a 'whole' *i.e.,* looking at all traits at the same time. Again we see the trophic networks clustering (to be expected). Interestingly the 'pre communities' tend to cluster which I take to mean that the differences between time frames is a stronger signal than the different network construction approaches (broadly).
+
+![Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reason why still remains unclear...). Note that the shapes represent the different time periods.](figures/pca_pfim.png)
 
 Redundancy? Structure?
 

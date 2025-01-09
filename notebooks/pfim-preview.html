@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2025-01-08">
+    <meta name="dcterms.date" content="2025-01-09">
 
     <title>SuppMat 2: Comparing different PFIM configurations</title>
     <style>
@@ -185,7 +185,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">January 8, 2025</p>
+              <p class="date">January 9, 2025</p>
             </div>
           </div>
           
@@ -242,19 +242,34 @@
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
        <p>One of the challenges with the PFIM is that there are many ways to formalise the mechanistic rules that determine feeding interactions. What is unclear is how the different rule sets may impact/alter the resulting network structure. Here the aim is to identify some of the broader philosophical ‘groups’/approaches to defining the mechanistic rules within the PFIM and comparing the resulting network that they construct.</p>
+<div class="callout callout-style-simple callout-important no-icon callout-titled" title="A note on traits/rules">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A note on traits/rules
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The rules/traits used here may not reflect the most recent iterations and changes but still represent a general idea of how the different ways we define rules/traits will affect the resulting network structure.</p>
+</div>
+</div>
 <section id="how-we-specify-rules" class="level2">
 <h2 class="anchored" data-anchor-id="how-we-specify-rules">How we specify rules</h2>
 <section id="maximal-rules" class="level3">
 <h3 class="anchored" data-anchor-id="maximal-rules">Maximal Rules</h3>
+<p>This approach focuses on hyper specific traits for the different species. This allows the user to ‘force’ specific feeding rules and make sure that they are met. For example if looking at the size classes we can see that there are additional traits added to the size classes to ensure that <em>e.g.,</em> microcarnivores both consume and are consumed by the correct species</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../figures/feeding_rules/maximal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="An extremely subdivided-nuanced set of traits and feeding rules"><img src="../figures/feeding_rules/maximal.png" class="img-fluid figure-img" alt="An extremely subdivided-nuanced set of traits and feeding rules"></a></p>
-<figcaption>An extremely subdivided-nuanced set of traits and feeding rules</figcaption>
+<p><a href="../figures/feeding_rules/maximal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="An extremely subdivided-nuanced set of traits and feeding rules. Not arrows represent the direction of ‘energy flow’ i.e., the consumer trait is the one that the arrow is pointing towards."><img src="../figures/feeding_rules/maximal.png" class="img-fluid figure-img" alt="An extremely subdivided-nuanced set of traits and feeding rules. Not arrows represent the direction of ‘energy flow’ i.e., the consumer trait is the one that the arrow is pointing towards."></a></p>
+<figcaption>An extremely subdivided-nuanced set of traits and feeding rules. Not arrows represent the direction of ‘energy flow’ <em>i.e.,</em> the consumer trait is the one that the arrow is pointing towards.</figcaption>
 </figure>
 </div>
 </section>
 <section id="minimal-rules" class="level3">
 <h3 class="anchored" data-anchor-id="minimal-rules">Minimal Rules</h3>
+<p>Here we take a minimalist approach to defining the traits of species so that there are no ‘equivalent’ traits that are actually synonyms since they have the same feeding rules as well as ‘forcing’ certain feeding patterns.</p>
 <div id="fig-minimal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -332,8 +347,8 @@ Identifying trophic species
 <p>In conclusion although scavengers and parasites are present in communities there are not 100% compatible with the traditional definition of a food web - especially in the way that PFIM specifies feeding rules.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../figures/feeding_rules/no_scav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="TODO"><img src="../figures/feeding_rules/no_scav.png" class="img-fluid figure-img" alt="TODO"></a></p>
-<figcaption>TODO</figcaption>
+<p><a href="../figures/feeding_rules/no_scav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Here we use the same minimum feeding rules but remove all traits (and species) related to scavenging or parasitism"><img src="../figures/feeding_rules/no_scav.png" class="img-fluid figure-img" alt="Here we use the same minimum feeding rules but remove all traits (and species) related to scavenging or parasitism"></a></p>
+<figcaption>Here we use the same minimum feeding rules but remove all traits (and species) related to scavenging or parasitism</figcaption>
 </figure>
 </div>
 </section>
@@ -351,21 +366,36 @@ Identifying trophic species
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" title="Networks created">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Networks created
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unless otherwise stated all networks use the minimum feeding rules and are a ‘metaweb’ - <em>i.e.,</em> they are not downsampled.</p>
+</div>
+</div>
 <section id="different-structural-features" class="level3">
 <h3 class="anchored" data-anchor-id="different-structural-features">Different structural features</h3>
+<p>Broadly speaking we observe the same ‘patterns’ over time for the different networks and values are not grossly different (eye test). Often we do see the trophic networks deviating a bit from this generalisation but that makes sense since the communities are more ‘contracted’.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/summary_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="TODO."><img src="figures/summary_pfim.png" class="img-fluid figure-img" alt="TODO."></a></p>
-<figcaption>TODO.</figcaption>
+<p><a href="figures/summary_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Note that the shapes represent the different time periods."><img src="figures/summary_pfim.png" class="img-fluid figure-img" alt="Note that the shapes represent the different time periods."></a></p>
+<figcaption>Note that the shapes represent the different time periods.</figcaption>
 </figure>
 </div>
 </section>
 <section id="overall-similarityclustering" class="level3">
 <h3 class="anchored" data-anchor-id="overall-similarityclustering">Overall similarity/clustering</h3>
+<p>It might also be useful to compare the networks as a ‘whole’ <em>i.e.,</em> looking at all traits at the same time. Again we see the trophic networks clustering (to be expected). Interestingly the ‘pre communities’ tend to cluster which I take to mean that the differences between time frames is a stronger signal than the different network construction approaches (broadly).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/pca_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."><img src="figures/pca_pfim.png" class="img-fluid figure-img" alt="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…)."></a></p>
-<figcaption>Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reseaon why still remains unclear…).</figcaption>
+<p><a href="figures/pca_pfim.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reason why still remains unclear…). Note that the shapes represent the different time periods."><img src="figures/pca_pfim.png" class="img-fluid figure-img" alt="Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reason why still remains unclear…). Note that the shapes represent the different time periods."></a></p>
+<figcaption>Bog standard PCA using the different structural features of the networks (excluding motifs because they introduce a lot of NAs and the reason why still remains unclear…). Note that the shapes represent the different time periods.</figcaption>
 </figure>
 </div>
 <p>Redundancy? Structure?</p>
