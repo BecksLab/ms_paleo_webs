@@ -3,6 +3,7 @@ library(here)
 library(patchwork)
 library(readr)
 library(scales)
+library(stats)
 library(tidyverse)
 
 # set path to code sub dir
@@ -29,17 +30,17 @@ df <- list.files(path = "../data/processed/topology/", pattern = ".csv", full.na
     str_detect(id, "^.*during.*$") ~ "post",
     str_detect(id, "^.*post.*$") ~ "during",
     TRUE ~ as.character(id)),
-       stat = case_when(stat == "S1" ~ "No. of linear chains",
-                        stat == "S2" ~ "No. of omnivory motifs",
-                        stat == "S4" ~ "No. of apparent competition motifs",
-                        stat == "S5" ~ "No. of direct competition motifs",
-                        .default = as.character(stat))) %>%
+    stat = case_when(stat == "S1" ~ "No. of linear chains",
+                     stat == "S2" ~ "No. of omnivory motifs",
+                     stat == "S4" ~ "No. of apparent competition motifs",
+                     stat == "S5" ~ "No. of direct competition motifs",
+                     .default = as.character(stat))) %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random", "lmatrix"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix"))
 
 df$id <- ordered(df$id, levels=c("pre", "during", "post"))
 
@@ -49,26 +50,26 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
-              filter(level == levs[i]),
-       aes(x = factor(`id`), 
-           y = stat_val, 
-           colour = model,
-           group = model)) +
-  geom_line() +
-  geom_point() +
-  facet_wrap(vars(stat),
-             scales = 'free',
-             ncol = 2) +
-  scale_size(guide = 'none') +
-  theme_classic() +
-  xlab("time") +
-  ylab("value") +
-  coord_cartesian(clip = "off") +
-  scale_colour_brewer(palette = "Dark2") +
-  labs(title = levs[i]) +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+                             filter(level == levs[i]),
+                           aes(x = factor(`id`), 
+                               y = stat_val, 
+                               colour = model,
+                               group = model)) +
+    geom_line() +
+    geom_point() +
+    facet_wrap(vars(stat),
+               scales = 'free',
+               ncol = 2) +
+    scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("time") +
+    ylab("value") +
+    coord_cartesian(clip = "off") +
+    scale_colour_brewer(palette = "Dark2") +
+    labs(title = levs[i]) +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+          axis.ticks.x = element_blank())
 }
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
@@ -118,7 +119,7 @@ df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>%
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim", "random", "lmatrix"))
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix"))
 
 df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
 df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
@@ -139,11 +140,11 @@ for (i in seq_along(ext_plot_list)) {
   
   ext_plot_list[[i]] <- plot_list[[i]] +
     geom_line(data = df_ext_summ %>% 
-              filter(level == levs[i]),
-            aes(x = factor(name),
-                y = y, 
-                group = model),
-            linetype = "dashed")
+                filter(level == levs[i]),
+              aes(x = factor(name),
+                  y = y, 
+                  group = model),
+              linetype = "dashed")
 }
 
 ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
@@ -159,35 +160,35 @@ ggsave("../figures/extinction.png",
 for (i in seq_along(ext_plot_list)) {
   
   ext_plot_list[[i]] <- ggplot() +
-  geom_segment(data = df_ext %>% 
-              filter(level == levs[i]),
-               aes(x = xstart,
-                   y = start_val, 
-                   xend = xend,
-                   yend = end_val,
-                   colour = model,
-                   group = model,
-                   linetype = extinction_mechanism),
-               alpha = 0.3) +
-  geom_line(data = df %>% filter(id != "during")%>% 
-              filter(level == levs[i]),
-            aes(x = factor(id),
-                y = stat_val,
-                colour = model,
-                group = model)) +
-  facet_wrap(vars(stat),
-             scales = 'free',
-             ncol = 2) +
-  scale_size(guide = 'none') +
-  theme_classic() +
-  xlab("time") +
-  ylab("value") +
-  coord_cartesian(clip = "off") +
-  scale_colour_brewer(palette = "Dark2") +
-  labs(title = levs[i]) +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+    geom_segment(data = df_ext %>% 
+                   filter(level == levs[i]),
+                 aes(x = xstart,
+                     y = start_val, 
+                     xend = xend,
+                     yend = end_val,
+                     colour = model,
+                     group = model,
+                     linetype = extinction_mechanism),
+                 alpha = 0.3) +
+    geom_line(data = df %>% filter(id != "during")%>% 
+                filter(level == levs[i]),
+              aes(x = factor(id),
+                  y = stat_val,
+                  colour = model,
+                  group = model)) +
+    facet_wrap(vars(stat),
+               scales = 'free',
+               ncol = 2) +
+    scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("time") +
+    ylab("value") +
+    coord_cartesian(clip = "off") +
+    scale_colour_brewer(palette = "Dark2") +
+    labs(title = levs[i]) +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+          axis.ticks.x = element_blank())
 }
 
 ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
@@ -197,5 +198,38 @@ ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
 ggsave("../figures/extinction_all_results.png",
        width = 4500,
        height = 7000,
+       units = "px",
+       dpi = 600)
+
+#### PCA ####
+
+df_pca <- list.files(path = "../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
+  select(-c(network, distance)) %>% 
+  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix")) %>%
+  # remove
+  mutate(top = NULL,
+         basal = NULL,
+         id = case_when(
+           str_detect(id, "^.*pre.*$") ~ "pre",
+           str_detect(id, "^.*during.*$") ~ "post",
+           str_detect(id, "^.*post.*$") ~ "during",
+           TRUE ~ as.character(id))) %>%
+  drop_na()
+
+pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
+
+autoplot(pca_res, data = df_pca, colour = 'model', shape = 'id', size = 4, alpha = 0.7) +
+  theme_classic() +
+  #scale_colour_brewer(palette = "Dark2") +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
+ggsave("../figures/pca.png",
+       width = 4500,
+       height = 4000,
        units = "px",
        dpi = 600)
