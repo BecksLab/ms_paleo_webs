@@ -26,16 +26,15 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
     names_to = "stat",
     values_to = "stat_val")  %>% 
   # standardise names
-  mutate(id = case_when(
-    str_detect(id, "^.*pre.*$") ~ "pre",
-    str_detect(id, "^.*during.*$") ~ "post",
-    str_detect(id, "^.*post.*$") ~ "during",
-    TRUE ~ as.character(id)),
-    stat = case_when(stat == "S1" ~ "No. of linear chains",
-                     stat == "S2" ~ "No. of omnivory motifs",
-                     stat == "S4" ~ "No. of apparent competition motifs",
-                     stat == "S5" ~ "No. of direct competition motifs",
-                     .default = as.character(stat))) %>%
+  mutate(id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
+                        str_detect(id, "^.*during.*$") ~ "post",
+                        str_detect(id, "^.*post.*$") ~ "during",
+                        TRUE ~ as.character(id)),
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          .default = as.character(stat))) %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
@@ -92,7 +91,11 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
   filter(str_detect(model, "^.*pfim.*$")) %>%
   # remove
   mutate(top = NULL,
-         basal = NULL) %>%
+         basal = NULL,
+         id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
+                        str_detect(id, "^.*during.*$") ~ "post",
+                        str_detect(id, "^.*post.*$") ~ "during",
+                        TRUE ~ as.character(id))) %>%
   drop_na()
 
 pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
