@@ -32,8 +32,8 @@ df <- list.files(path = "../data/processed/topology/", pattern = ".csv", full.na
     TRUE ~ as.character(id)),
     stat = case_when(stat == "S1" ~ "No. of linear chains",
                      stat == "S2" ~ "No. of omnivory motifs",
-                     stat == "S4" ~ "No. of apparent competition motifs",
-                     stat == "S5" ~ "No. of direct competition motifs",
+                     stat == "S5" ~ "No. of apparent competition motifs",
+                     stat == "S4" ~ "No. of direct competition motifs",
                      .default = as.character(stat))) %>%
   mutate(level = case_when(
     stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
