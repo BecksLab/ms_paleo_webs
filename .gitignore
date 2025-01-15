@@ -53,3 +53,5 @@ docs/
 # R
 code/.Rhistory
 .Rproj.user
+.Rhistory
+.Rapp.history
