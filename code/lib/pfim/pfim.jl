@@ -152,6 +152,6 @@ function PFIM(
         network = _downsample(network, matrix, y)
     end
 
-    return network
+    return simplify(network)
 
 end
