@@ -158,7 +158,7 @@ fit <- envfit(ord, df_pca[c(1,16:18)], perm = 9999)
 
 
 png(file = "../figures/pca_pfim.png",
-    width = 3500, height = 3500, units = "px", res = 300)
+    width = 3000, height = 3000, units = "px", res = 300)
 # plot it
 plot(ord, 'sites')
 plot(fit)
