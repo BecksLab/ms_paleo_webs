@@ -6,6 +6,7 @@ library(readr)
 library(scales)
 library(stats)
 library(tidyverse)
+library(vegan)
 
 # set path to code sub dir
 setwd(here("notebooks/code"))
@@ -16,7 +17,7 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
   lapply(read_csv) %>% 
   bind_rows %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(network, distance)) %>% 
+  select(-c(network, deficiency)) %>% 
   filter(str_detect(model, "^.*pfim.*$")) %>%
   # remove
   mutate(top = NULL,
@@ -32,11 +33,12 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
                         TRUE ~ as.character(id)),
          stat = case_when(stat == "S1" ~ "No. of linear chains",
                           stat == "S2" ~ "No. of omnivory motifs",
-                          stat == "S5" ~ "No. of apparent competition motifs",
-                          stat == "S4" ~ "No. of direct competition motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          stat == "distance" ~ "chain length",
                           .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
+    stat %in% c("richness", "chain length", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   ))
@@ -80,35 +82,87 @@ ggsave("../figures/summary_pfim.png",
        units = "px",
        dpi = 600)
 
+#### Redundancy ####
+
+df_redun <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>% 
+  select(-network) %>%
+  filter(str_detect(model, "^.*pfim.*$")) %>%
+  mutate(links = round((connectance * richness^2), 0),
+         redundancy = links - (richness - 1),
+         id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
+                        str_detect(id, "^.*during.*$") ~ "post",
+                        str_detect(id, "^.*post.*$") ~ "during",
+                        TRUE ~ as.character(id)),
+         model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
+                                 TRUE ~ "minmum"),
+         species = case_when(str_detect(model, "trophic") ~ "trophic",
+                             TRUE ~ "taxonomic"),
+         downsample = case_when(str_detect(model, "downsample") ~ "downsample",
+                                TRUE ~ "metaweb"),
+         model_simple = str_replace_all(model, "_(minimum|maximal|trophic)", ""))
+
+df_redun$id <- ordered(df_redun$id, levels=c("pre", "during", "post"))
+  
+ggplot(df_redun,
+       aes(x = factor(`id`), 
+           y = log(redundancy), 
+           colour = model_simple,
+           group = model,
+           linetype = species)) +
+  geom_line(alpha = 0.7) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(vars(model_broad)) +
+  scale_size(guide = 'none') +
+  theme_classic() +
+  xlab("time") +
+  ylab("log(redundancy)") +
+  coord_cartesian(clip = "off") +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
+ggsave("../figures/redundancy_pfim.png",
+       width = 4500,
+       height = 3500,
+       units = "px",
+       dpi = 600)
 
 #### PCA ####
 
 df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows %>% 
-  mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(network, distance)) %>% 
+  select(-c(network)) %>% 
   filter(str_detect(model, "^.*pfim.*$")) %>%
   # remove
   mutate(top = NULL,
          basal = NULL,
+         links = round((connectance * richness^2), 0),
+         redundancy = links - (richness - 1),,
          id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
                         str_detect(id, "^.*during.*$") ~ "post",
                         str_detect(id, "^.*post.*$") ~ "during",
-                        TRUE ~ as.character(id))) %>%
+                        TRUE ~ as.character(id)),
+         model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
+                                 TRUE ~ "minmum"),
+         species = case_when(str_detect(model, "trophic") ~ "trophic",
+                             TRUE ~ "taxonomic"),
+         downsample = case_when(str_detect(model, "downsample") ~ "downsample",
+                                TRUE ~ "metaweb")) %>%
   drop_na()
 
-pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
+ord <- metaMDS(log1p(df_pca[3:15]))
+fit <- envfit(ord, df_pca[c(1,16:18)], perm = 9999)
 
-autoplot(pca_res, data = df_pca, colour = 'model', shape = 'id', size = 4, alpha = 0.7) +
-  theme_classic() +
-  #scale_colour_brewer(palette = "Dark2") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
 
-ggsave("../figures/pca_pfim.png",
-       width = 4500,
-       height = 4000,
-       units = "px",
-       dpi = 600)
+png(file = "../figures/pca_pfim.png",
+    width = 3500, height = 3500, units = "px", res = 300)
+# plot it
+plot(ord, 'sites')
+plot(fit)
+plot(fit, p.max = 0.05, col = "red")
+dev.off()
+
+
