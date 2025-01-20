@@ -104,7 +104,7 @@ df_redun <- list.files(path = "../../data/processed/topology/", pattern = ".csv"
          model_simple = str_replace_all(model, "_(minimum|maximal|trophic)", ""))
 
 df_redun$id <- ordered(df_redun$id, levels=c("pre", "during", "post"))
-  
+
 ggplot(df_redun,
        aes(x = factor(`id`), 
            y = log(redundancy), 

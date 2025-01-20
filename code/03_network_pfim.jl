@@ -24,7 +24,7 @@ for i in eachindex(matrix_names)
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_maximal", "$file_name.csv"),))
 
     # remove # primary species
-    filter!(row -> row.species ∉ ["primary"], df)
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     d = model_summary(
         df,
@@ -62,7 +62,7 @@ for i in eachindex(matrix_names)
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
     # remove # primary species
-    filter!(row -> row.species ∉ ["primary"], df)
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     d = model_summary(
         df,
@@ -101,7 +101,7 @@ for i in eachindex(matrix_names)
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
     # remove primary node
-    filter!(row -> row.species ∉ ["feeding"], df)
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     size_file = size_names[i]
     bodymass = DataFrame(CSV.File.(joinpath("../data/clean/size", "$size_file.csv"),))
@@ -145,8 +145,8 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    # remove parasites and scavengers
-    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
+    # keep parasites and scavengers
+    filter!(row -> row.feeding ∉ ["primary_feeding"], df)
 
     d = model_summary(
         df,
@@ -156,19 +156,19 @@ for i in eachindex(matrix_names)
         downsample = false,
     )
 
-    d[:model] = "pfim_no_scav"
+    d[:model] = "pfim_with_scav"
     push!(topology, d)
 
 end
 
 # write summaries as .csv
 CSV.write(
-    "../data/processed/topology/topology_pfim_no_scav.csv",
+    "../data/processed/topology/topology_pfim_with_scav.csv",
     topology[:, setdiff(names(topology), ["network"])],
 )
 # write networks as object
 save_object(
-    "../data/processed/networks/pfim_networks_no_scav.jlds",
+    "../data/processed/networks/pfim_networks_with_scav.jlds",
     topology[:, ["id", "model", "network"]],
 )
 
@@ -186,6 +186,9 @@ for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
+
+    # remove parasites and scavengers
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger"], df)
 
     d = model_summary(
         df,
@@ -223,6 +226,9 @@ for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_minimum", "$file_name.csv"),))
+
+    # remove parasites and scavengers
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     d = model_summary(
         df,
@@ -264,6 +270,9 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trophic_maximal", "$file_name.csv"),))
 
+    # remove parasites and scavengers
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
+
     d = model_summary(
         df,
         file_name,
@@ -299,8 +308,8 @@ for i in eachindex(matrix_names)
     file_name = matrix_names[i]
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_minimum", "$file_name.csv"),))
 
-    # primary species
-    filter!(row -> row.species ∉ ["primary"], df)
+    # remove parasites and scavengers
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     d = model_summary(
         df,
@@ -338,7 +347,7 @@ for i in eachindex(matrix_names)
     df = DataFrame(CSV.File.(joinpath("../data/clean/trait_maximal", "$file_name.csv"),))
 
     # remove parasites and scavengers
-    filter!(row -> row.species ∉ ["primary"], df)
+    filter!(row -> row.feeding ∉ ["parasitic", "scavenger", "primary_feeding"], df)
 
     d = model_summary(
         df,
