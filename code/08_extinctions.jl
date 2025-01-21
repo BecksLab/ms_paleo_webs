@@ -39,10 +39,9 @@ select!(extinction_results, Not(:network))
 matrix_names = readdir("../data/processed/networks")
 
 filter!(!=("pfim_networks_basal.jlds"), matrix_names)
-filter!(!=("pfim_networks_trophic.jlds"), matrix_names)
 filter!(!=("pfim_networks_size.jlds"), matrix_names)
-filter!(!=("pfim_networks_metaweb.jlds"), matrix_names)
-filter!(!=("pfim_networks_no_scav.jlds"), matrix_names)
+filter!(!=("pfim_networks_trophic_minimum.jlds"), matrix_names)
+filter!(!=("pfim_networks_trophic_maximal.jlds"), matrix_names)
 
 for i in eachindex(matrix_names)
 
@@ -108,6 +107,9 @@ for i in eachindex(matrix_names)
 
                     trait_data = traits[:, [:species, hierarchies[1][k]]]
                     rename!(trait_data, hierarchies[1][k] => :trait)
+
+                    # only include species that have the desired traits
+                    filter!(:trait => x -> x ∈ hierarchies[2][k], trait_data)
 
                     extinction_list =
                         extinctionsequence(hierarchies[2][k], trait_data; descending)
