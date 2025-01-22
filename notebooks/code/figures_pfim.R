@@ -36,7 +36,14 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
                           stat == "S4" ~ "No. of apparent competition motifs",
                           stat == "S5" ~ "No. of direct competition motifs",
                           stat == "distance" ~ "chain length",
-                          .default = as.character(stat))) %>%
+                          .default = as.character(stat)),
+         model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
+                                 TRUE ~ "minmum"),
+         species = case_when(str_detect(model, "trophic") ~ "trophic",
+                             TRUE ~ "taxonomic"),
+         downsample = case_when(str_detect(model, "downsample") ~ "downsample",
+                                TRUE ~ "metaweb"),
+         model_simple = str_replace_all(model, "_(minimum|maximal)", "")) %>%
   mutate(level = case_when(
     stat %in% c("richness", "chain length", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
@@ -54,7 +61,8 @@ for (i in seq_along(plot_list)) {
                              filter(level == levs[i]),
                            aes(x = factor(`id`), 
                                y = stat_val, 
-                               colour = model,
+                               colour = model_simple,
+                               linetype =  model_broad,
                                group = model)) +
     geom_line(alpha = 0.7) +
     geom_point(alpha = 0.7) +
