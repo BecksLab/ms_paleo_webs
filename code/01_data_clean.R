@@ -98,6 +98,25 @@ list.files(path = "../data/clean/trait_maximal", pattern = ".csv", full.names = 
   write.csv(., "../data/clean/extinction/traits.csv",
             row.names = FALSE)
 
+# create simple traits df for extinction sims - but for the trophic species
+
+list.files(path = "../data/clean/trophic_maximal", pattern = ".csv", full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>%
+  select(-feeding) %>%
+  mutate(motility = case_when(str_detect(motility, "^.*non_motile.*$") ~ "non_motile",
+                              motility == "slow_moving" ~ "slow",
+                              motility == "fast_moving" ~ "fast",
+                              TRUE ~ as.character(motility)),
+         tiering = case_when(str_detect(tiering, "^.*infaunal.*$") ~ "infaunal",
+                             str_detect(tiering, "^.*epifaunal.*$") ~ "epifaunal",
+                             TRUE ~ as.character(tiering))
+  ) %>%
+  group_by(species, motility, tiering, size) %>% 
+  distinct() %>%
+  write.csv(., "../data/clean/extinction/traits_trophic.csv",
+            row.names = FALSE)
+
 # create a minimum trophic community (collapse all species with the same traits)
 
 trait_files <- list.files(path = "../data/clean/trait_minimum", pattern = ".csv", full.names = TRUE)
