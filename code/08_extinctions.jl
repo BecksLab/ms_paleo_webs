@@ -12,6 +12,7 @@ Random.seed!(66)
 
 # get the traits data
 traits = DataFrame(CSV.File("../data/clean/extinction/traits.csv"))
+traits_trophic = DataFrame(CSV.File("../data/clean/extinction/traits_trophic.csv"))
 
 # specify hierarchies
 hierarchies = [
@@ -37,11 +38,6 @@ extinction_results[!, :links] = Int64[]
 select!(extinction_results, Not(:network))
 
 matrix_names = readdir("../data/processed/networks")
-
-filter!(!=("pfim_networks_basal.jlds"), matrix_names)
-filter!(!=("pfim_networks_size.jlds"), matrix_names)
-filter!(!=("pfim_networks_trophic_minimum.jlds"), matrix_names)
-filter!(!=("pfim_networks_trophic_maximal.jlds"), matrix_names)
 
 for i in eachindex(matrix_names)
 
@@ -105,7 +101,13 @@ for i in eachindex(matrix_names)
             if pre_comm.model[1] ∉ ["niche"]
                 for k in eachindex(hierarchies[1])
 
-                    trait_data = traits[:, [:species, hierarchies[1][k]]]
+                    # select the correct traits matrix depending on nodes (species vs trophic)
+                    if occursin.("trophic", file_name)
+                        trait_data = traits_trophic[:, [:species, hierarchies[1][k]]]
+                    else
+                        trait_data = traits[:, [:species, hierarchies[1][k]]]
+                    end
+
                     rename!(trait_data, hierarchies[1][k] => :trait)
 
                     # only include species that have the desired traits
