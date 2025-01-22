@@ -39,7 +39,7 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
                           .default = as.character(stat)),
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
                                  TRUE ~ "minmum"),
-         species = case_when(str_detect(model, "trophic") ~ "trophic",
+         node = case_when(str_detect(model, "trophic") ~ "trophic",
                              TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
                                 TRUE ~ "metaweb"),
@@ -62,7 +62,7 @@ for (i in seq_along(plot_list)) {
                            aes(x = factor(`id`), 
                                y = stat_val, 
                                colour = model_simple,
-                               linetype =  model_broad,
+                               linetype = model_broad,
                                group = model)) +
     geom_line(alpha = 0.7) +
     geom_point(alpha = 0.7) +
