@@ -28,8 +28,8 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
     values_to = "stat_val")  %>% 
   # standardise names
   mutate(id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
-                        str_detect(id, "^.*during.*$") ~ "post",
-                        str_detect(id, "^.*post.*$") ~ "during",
+                        str_detect(id, "^.*during.*$") ~ "during",
+                        str_detect(id, "^.*post.*$") ~ "post",
                         TRUE ~ as.character(id)),
          stat = case_when(stat == "S1" ~ "No. of linear chains",
                           stat == "S2" ~ "No. of omnivory motifs",
@@ -92,8 +92,8 @@ df_redun <- list.files(path = "../../data/processed/topology/", pattern = ".csv"
   mutate(links = round((connectance * richness^2), 0),
          redundancy = links - (richness - 1),
          id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
-                        str_detect(id, "^.*during.*$") ~ "post",
-                        str_detect(id, "^.*post.*$") ~ "during",
+                        str_detect(id, "^.*during.*$") ~ "during",
+                        str_detect(id, "^.*post.*$") ~ "post",
                         TRUE ~ as.character(id)),
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
                                  TRUE ~ "minmum"),
@@ -141,13 +141,12 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
          basal = NULL,
          links = round((connectance * richness^2), 0),
          redundancy = links - (richness - 1),,
-         id = case_when(str_detect(id, "^.*pre.*$") ~ "pre",
-                        str_detect(id, "^.*during.*$") ~ "post",
-                        str_detect(id, "^.*post.*$") ~ "during",
-                        TRUE ~ as.character(id)),
+         id = case_when(str_detect(id, "^.*pre.*$") ~ 1,
+                        str_detect(id, "^.*during.*$") ~ 2,
+                        str_detect(id, "^.*post.*$") ~ 3),
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
                                  TRUE ~ "minmum"),
-         species = case_when(str_detect(model, "trophic") ~ "trophic",
+         node = case_when(str_detect(model, "trophic") ~ "trophic",
                              TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
                                 TRUE ~ "metaweb")) %>%
@@ -156,13 +155,36 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
 ord <- metaMDS(log1p(df_pca[3:15]))
 fit <- envfit(ord, df_pca[c(1,16:18)], perm = 9999)
 
+df_pca <-
+  cbind(df_pca, ord[["points"]])
 
-png(file = "../figures/pca_pfim.png",
-    width = 3000, height = 3000, units = "px", res = 300)
-# plot it
-plot(ord, 'sites')
-plot(fit)
-plot(fit, p.max = 0.05, col = "red")
-dev.off()
+ggplot() +
+  geom_point(data = df_pca,
+             aes(x = MDS1,
+                 y = MDS2,
+                 colour = node)) +
+  geom_segment(aes(x = 0, y = 0, 
+                   xend = fit[["vectors"]][["arrows"]][1], 
+                   yend = fit[["vectors"]][["arrows"]][2]),
+               colour = "black",
+               arrow = arrow(length = unit(0.03, "npc"))) +
+  geom_text(aes(label = "time", 
+                x = fit[["vectors"]][["arrows"]][1], 
+                y = fit[["vectors"]][["arrows"]][2]), 
+            nudge_x = 0.15,
+            colour = "black") +
+  theme_classic()
+
+ggsave("../figures/pca_pfim.png",
+       width = 4500,
+       height = 3500,
+       units = "px",
+       dpi = 600)
+
+#### Extinctions ####
+
+df_ext <- read_csv("../../data/processed/extinctions/extinctions.csv") %>% 
+  filter(str_detect(model, "^.*pfim.*$")) %>%
+  filter(str_detect(model, "(minimum|maximal|trophic)"))
 
 
