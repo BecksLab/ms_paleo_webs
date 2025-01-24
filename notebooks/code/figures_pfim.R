@@ -40,7 +40,7 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
                                  TRUE ~ "minmum"),
          node = case_when(str_detect(model, "trophic") ~ "trophic",
-                             TRUE ~ "taxonomic"),
+                          TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
                                 TRUE ~ "metaweb"),
          model_simple = str_replace_all(model, "_(minimum|maximal)", "")) %>%
@@ -155,7 +155,7 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
                                  TRUE ~ "minmum"),
          node = case_when(str_detect(model, "trophic") ~ "trophic",
-                             TRUE ~ "taxonomic"),
+                          TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
                                 TRUE ~ "metaweb"),
          model_simple = str_replace_all(model, "_(minimum|maximal|trophic)", "")) %>%
@@ -176,7 +176,7 @@ ggplot() +
                  size = as.factor(id)),
              alpha = 0.5) +
   geom_segment(aes(x = 0, y = 0, 
-                   xend = fit[["vectors"]][["arrows"]][1], 
+                   xend = c(fit[["vectors"]][["arrows"]][1]), 
                    yend = fit[["vectors"]][["arrows"]][2]),
                colour = "black",
                arrow = arrow(length = unit(0.03, "npc"))) +
@@ -196,7 +196,92 @@ ggsave("../figures/pca_pfim.png",
 #### Extinctions ####
 
 df_ext <- read_csv("../../data/processed/extinctions/extinctions.csv") %>% 
-  filter(str_detect(model, "^.*pfim.*$")) %>%
-  filter(str_detect(model, "(minimum|maximal|trophic)"))
+  filter(str_detect(model, "^.*pfim.*$")) %>% 
+  mutate(across(matches("S[[:digit:]]"), log)) %>% 
+  mutate(top = NULL,
+         basal = NULL,
+         id = time,
+         time = NULL) %>%
+  pivot_longer(
+    cols = -c(id, model, extinction_mechanism), 
+    names_to = "stat",
+    values_to = "end_val") %>% 
+  filter(id == "pre") %>% 
+  mutate(id = "post",
+         stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S4" ~ "No. of apparent competition motifs",
+                          stat == "S5" ~ "No. of direct competition motifs",
+                          stat == "distance" ~ "chain length",
+                          .default = as.character(stat))) %>% 
+  inner_join(.,
+             list.files(path = "../../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
+               lapply(read_csv) %>% 
+               bind_rows %>% 
+               select(-network) %>%
+               filter(str_detect(model, "^.*pfim.*$")) %>%
+               mutate(links = round((connectance * richness^2), 0),
+                      redundancy = links - (richness - 1),
+                      id = case_when(str_detect(id, "^.*pre.*$") ~ 1,
+                                     str_detect(id, "^.*during.*$") ~ 2,
+                                     str_detect(id, "^.*post.*$") ~ 3))  %>%
+               filter(id == 1) %>%
+               filter(redundancy == max(redundancy) | redundancy == min(redundancy)) %>% 
+               select(-id) %>%
+               pivot_longer(
+                 cols = -c(model), 
+                 names_to = "stat",
+                 values_to = "stat_val"),
+             mutate(stat = case_when(stat == "S1" ~ "No. of linear chains",
+                                     stat == "S2" ~ "No. of omnivory motifs",
+                                     stat == "S4" ~ "No. of apparent competition motifs",
+                                     stat == "S5" ~ "No. of direct competition motifs",
+                                     stat == "distance" ~ "chain length",
+                                     .default = as.character(stat))))%>%
+  mutate(level = case_when(
+    stat %in% c("richness", "chain length", "complexity", "connectance") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
+    .default = "Meso"
+  )) %>% 
+  mutate(xstart = "pre",
+         xend = id,
+         start_val = stat_val,
+         stat_val = NULL,
+         id = NULL)
 
+df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
+df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
 
+ext_plot_list <- vector(mode = "list", length = 3)
+levs = c("Macro", "Meso", "Micro")
+
+for (i in seq_along(ext_plot_list)) {
+  
+  ext_plot_list[[i]] <- ggplot() +
+    geom_segment(data = df_ext %>% 
+                   filter(level == levs[i]),
+                 aes(x = xstart,
+                     y = start_val, 
+                     xend = xend,
+                     yend = end_val,
+                     colour = model,
+                     group = model,
+                     linetype = extinction_mechanism),
+                 alpha = 0.3) +
+    facet_wrap(vars(stat),
+               scales = 'free',
+               ncol = 2) +
+    scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("time") +
+    ylab("value") +
+    coord_cartesian(clip = "off") +
+    labs(title = levs[i]) +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+          axis.ticks.x = element_blank())
+}
+
+ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 2, 1))
