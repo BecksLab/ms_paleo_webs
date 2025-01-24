@@ -43,7 +43,7 @@ df <- list.files(path = "../../data/processed/topology/", pattern = ".csv", full
                              TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
                                 TRUE ~ "metaweb"),
-         model_simple = str_replace_all(model, "_(minimum|maximal)", "")) %>%
+         model_simple = str_replace_all(model, "_(minimum|maximal|downsample)", "")) %>%
   mutate(level = case_when(
     stat %in% c("richness", "chain length", "complexity", "connectance") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
@@ -58,6 +58,7 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
+                             filter(downsample != "downsample") %>%
                              filter(level == levs[i]),
                            aes(x = factor(`id`), 
                                y = stat_val, 
@@ -153,14 +154,19 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
                         str_detect(id, "^.*during.*$") ~ 2,
                         str_detect(id, "^.*post.*$") ~ 3),
          model_broad = case_when(str_detect(model, "maximal") ~ "maximal",
-                                 TRUE ~ "minmum"),
+                                 TRUE ~ "minimum"),
          node = case_when(str_detect(model, "trophic") ~ "trophic",
                              TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
-                                TRUE ~ "metaweb")) %>%
-  drop_na()
+                                TRUE ~ "metaweb"),
+         model_simple = str_replace_all(model, "_(minimum|maximal|downsample)", "")) %>%
+  drop_na() %>%
+  filter(node == "taxonomic") %>%
+  filter(model_simple == "pfim")
 
-ord <- metaMDS(log1p(df_pca[3:15]))
+ord <- metaMDS(df_pca[3:15],
+               distance = "bray",
+               k = 2)
 fit <- envfit(ord, df_pca[c(1,16:18)], perm = 9999)
 
 df_pca <-
@@ -170,7 +176,10 @@ ggplot() +
   geom_point(data = df_pca,
              aes(x = MDS1,
                  y = MDS2,
-                 colour = node)) +
+                 shape = downsample,
+                 colour = model_broad,
+                 size = as.factor(id)),
+             alpha = 0.4) +
   geom_segment(aes(x = 0, y = 0, 
                    xend = fit[["vectors"]][["arrows"]][1], 
                    yend = fit[["vectors"]][["arrows"]][2]),

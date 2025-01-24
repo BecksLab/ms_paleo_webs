@@ -69,10 +69,10 @@ for j in eachindex(model_names)
                 )
 
                 if downsample == true
-                    d[:model] = join([model, "downsample"], "_")
+                    d[:model] = join([model, feeding, "downsample"], "_")
                     push!(topology, d)
                 else
-                    d[:model] = model
+                    d[:model] = join([model, feeding], "_")
                     push!(topology, d)
                 end
             end
