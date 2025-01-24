@@ -157,7 +157,8 @@ df_pca <- list.files(path = "../../data/processed/topology/", pattern = ".csv", 
          node = case_when(str_detect(model, "trophic") ~ "trophic",
                              TRUE ~ "taxonomic"),
          downsample = case_when(str_detect(model, "downsample") ~ "downsample",
-                                TRUE ~ "metaweb")) %>%
+                                TRUE ~ "metaweb"),
+         model_simple = str_replace_all(model, "_(minimum|maximal|trophic)", "")) %>%
   drop_na()
 
 ord <- metaMDS(log1p(df_pca[3:15]))
@@ -170,7 +171,10 @@ ggplot() +
   geom_point(data = df_pca,
              aes(x = MDS1,
                  y = MDS2,
-                 colour = node)) +
+                 colour = model_simple,
+                 shape = node,
+                 size = as.factor(id)),
+             alpha = 0.5) +
   geom_segment(aes(x = 0, y = 0, 
                    xend = fit[["vectors"]][["arrows"]][1], 
                    yend = fit[["vectors"]][["arrows"]][2]),
@@ -184,8 +188,8 @@ ggplot() +
   theme_classic()
 
 ggsave("../figures/pca_pfim.png",
-       width = 4500,
-       height = 3500,
+       width = 3500,
+       height = 2500,
        units = "px",
        dpi = 600)
 
