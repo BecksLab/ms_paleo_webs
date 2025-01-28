@@ -193,6 +193,27 @@ ggsave("../figures/pca_pfim.png",
        units = "px",
        dpi = 600)
 
+### PCA - feature selection ####
+
+library(corrplot)
+
+M = cor(df_pca[3:15])
+corrplot(M, method = 'number')
+
+pca <- prcomp(scale(df_pca[3:15] %>% select(-S2)),center = TRUE)
+
+plot(pca, type="l")
+summary(pca)
+
+biplot(pca,scale=0, cex=.7)
+
+library(FactoMineR)
+
+res.pca = PCA(df_pca[3:15] %>% select(-S2), scale.unit=TRUE, ncp=5, graph=T)
+res.pca$var$contrib
+summary(res.pca)
+
+
 #### Extinctions ####
 
 df_ext <- read_csv("../../data/processed/extinctions/extinctions.csv") %>% 
