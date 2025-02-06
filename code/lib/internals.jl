@@ -104,7 +104,7 @@ function model_summary(
         N = bmratio(df.species, bodymass)
         N = randomdraws(N) # from probabalistic to binary
     elseif model_name == "pfim"
-        N = PFIM(df, feeding_rules; downsample = downsample)
+        N = pfim.PFIM(df, feeding_rules; downsample = downsample)
     elseif model_name == "niche"
         N = structuralmodel(NicheModel, nrow(df), connectance)
     elseif model_name == "random"

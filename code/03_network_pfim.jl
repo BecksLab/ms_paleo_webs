@@ -1,8 +1,8 @@
 using CSV
 using DataFrames
 using JLD2
+using pfim
 
-include("lib/pfim/pfim.jl")
 include("lib/internals.jl")
 
 # set seed
