@@ -11,7 +11,7 @@ _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
 """
 function _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
-    species = richness(N)
+    species = SpeciesInteractionNetworks.richness(N)
     n = zeros(Int64, (species, species))
     for i in axes(n, 1)
         for j in axes(n, 2)
@@ -48,7 +48,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     ind_maxgen = findmax(gen)[2]
 
     D = Dict{Symbol,Any}(
-        :richness => richness(N),
+        :richness => SpeciesInteractionNetworks.richness(N),
         :links => links(N),
         :connectance => connectance(N),
         :complexity => complexity(N),
