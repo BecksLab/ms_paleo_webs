@@ -11,38 +11,26 @@ setwd(here("code"))
 
 #### Structure ####
 
-df <- list.files(path = "../data/processed/topology/", pattern = ".csv", full.names = TRUE) %>% 
-  lapply(read_csv) %>% 
-  bind_rows %>% 
-  mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(network, richness)) %>% 
+df <- read_csv("../data/processed/topology.csv") %>%
+  mutate(across(matches("S[[:digit:]]"), log),
+         top = top / richness,
+         basal = basal / richness) %>%
   # to get the ratio
-  mutate(top = NULL,
-         basal = NULL,
-         distance = NULL) %>%
   pivot_longer(
-    cols = -c(id, model), 
+    cols = -c(location, model, time),
     names_to = "stat",
-    values_to = "stat_val")  %>% 
+    values_to = "stat_val") %>%
   # standardise names
-  mutate(id = case_when(
-    str_detect(id, "^.*pre.*$") ~ "pre",
-    str_detect(id, "^.*during.*$") ~ "post",
-    str_detect(id, "^.*post.*$") ~ "during",
-    TRUE ~ as.character(id)),
-    stat = case_when(stat == "S1" ~ "No. of linear chains",
-                     stat == "S2" ~ "No. of omnivory motifs",
-                     stat == "S5" ~ "No. of apparent competition motifs",
-                     stat == "S4" ~ "No. of direct competition motifs",
-                     .default = as.character(stat))) %>%
+  mutate(stat = case_when(stat == "S1" ~ "No. of linear chains",
+                          stat == "S2" ~ "No. of omnivory motifs",
+                          stat == "S5" ~ "No. of apparent competition motifs",
+                          stat == "S4" ~ "No. of direct competition motifs",
+                          .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
-    stat %in% c("generality", "vulnerability") ~ "Micro",
+    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance") ~ "Macro",
+    stat %in% c("generality", "vulnerability", "top", "basal") ~ "Micro",
     .default = "Meso"
-  )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix"))
-
-df$id <- ordered(df$id, levels=c("pre", "during", "post"))
+  ))
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
@@ -50,13 +38,14 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
-                             filter(level == levs[i]),
-                           aes(x = factor(`id`), 
-                               y = stat_val, 
-                               colour = model,
-                               group = model)) +
-    geom_line() +
-    geom_point() +
+                             filter(level == levs[i]) %>%
+                             filter(time <= 3),
+                           aes(x = time,
+                               y = stat_val,
+                               colour = model)) +
+    geom_smooth(alpha = 0.3,
+                weight = 0.5, 
+                se = FALSE) +
     facet_wrap(vars(stat),
                scales = 'free',
                ncol = 2) +
@@ -74,7 +63,7 @@ for (i in seq_along(plot_list)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 2, 1))
+  plot_layout(height = c(2, 1, 1))
 
 ggsave("../figures/summary.png",
        width = 4500,
