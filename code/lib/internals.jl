@@ -21,7 +21,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :richness => richness(N),
         :links => links(N),
         :connectance => connectance(N),
-        :diameter => diameter(N),
+        :diameter => _diameter(N),
         :complexity => complexity(N),
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :basal => sum(vec(sum(A, dims = 2) .== 0)),
@@ -68,12 +68,12 @@ function _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 end
 
 """
-diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+_diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     Calculates the diameter of a food web. Where diameter is the longest 
     shortest path between two nodes
 """
-function diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+function _diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     # extract species names
     spp = species(N)
