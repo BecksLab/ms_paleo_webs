@@ -20,7 +20,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     D = Dict{Symbol,Any}(
         :richness => richness(N),
         :links => links(N),
-        :connectance => connectance(N),
+        :connectance => SpeciesInteractionNetworks.connectance(N),
         :diameter => _diameter(N),
         :complexity => complexity(N),
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
