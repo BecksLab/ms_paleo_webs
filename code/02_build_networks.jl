@@ -100,9 +100,11 @@ for i in eachindex(matrix_names)
                     :location => str_cats[1],
                     :network => N,
                     )
-            
-                push!(networks, d)
 
+                # only push if network exists
+                if richness(N) > 0
+                    push!(networks, d)
+                end
             end
         end
     end
