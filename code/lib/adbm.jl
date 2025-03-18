@@ -62,7 +62,7 @@ function adbm_parameters(
     parameters[:costMat] = ones(Float64, (S, S))
 
     # Identify producers - based on tiering class
-    is_producer = df.tiering .== "producer"
+    is_producer = df.tiering .== "primary"
     parameters[:is_producer] = is_producer
 
     # add bodymass
