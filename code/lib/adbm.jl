@@ -185,7 +185,7 @@ function adbmmodel(df::DataFrame, parameters::Dict{Symbol,Any}, biomass::Vector{
 
     S = nrow(df)
 
-    adbmMAT = zeros(AbstractFloat, (S, S))
+    adbmMAT = zeros(Bool, (S, S))
     adbmTerms = _get_adbm_terms(S, parameters, biomass)
     E = adbmTerms[:E]
     λ = adbmTerms[:λ]
@@ -194,14 +194,14 @@ function adbmmodel(df::DataFrame, parameters::Dict{Symbol,Any}, biomass::Vector{
         if !parameters[:is_producer][j]
             if biomass[j] > 0.0
                 feeding = _get_feeding_links(E, λ, H, biomass, j)
-                adbmMAT[j, feeding] .= 0.9
+                adbmMAT[j, feeding] .= 1
             end
         end
     end
 
 
-    edges = Probabilistic(adbmMAT)
+    edges = Binary(adbmMAT)
     nodes = Unipartite(Symbol.(df.species)) # return actual species name metadata
     N = SpeciesInteractionNetworks.SpeciesInteractionNetwork(nodes, edges)
-    return randomdraws(N)
+    return N
 end
