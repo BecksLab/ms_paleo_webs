@@ -35,7 +35,7 @@ code/_scrap.jl
 
 # ignore raw data folder to keep private
 data/raw/
-data/clean/
+/data/extinction
 
 # quarto
 .ipynb_checkpoints
