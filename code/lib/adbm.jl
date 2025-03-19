@@ -20,15 +20,10 @@ function adbm_parameters(
     hi::Float64 = 1.0,
     hj::Float64 = 1.0,
     n::Float64 = 1.0,
-    ni::Float64 = 0.75,
+    ni::Float64 = -0.75,
     Hmethod::Symbol = :ratio,
     Nmethod::Symbol = :original,
 )
-
-    # data checks
-    if "tiering" ∉ names(df)
-        error("Missing tiering as a column in DataFrame, add or rename")
-    end
 
     parameters = Dict{Symbol,Any}(
         :e => e,
