@@ -21,6 +21,7 @@ topology = DataFrame(
     top = Float64[],
     generality = Float64[],
     vulnerability = Float64[],
+    redundancy = Float64[],
     S1 = Float64[],
     S2 = Float64[],
     S4 = Float64[],

@@ -28,6 +28,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :top => sum(vec(sum(A, dims = 1) .== 0)),
         :generality => std(gen),
         :vulnerability => std(vul),
+        :redundancy => (links(N) - (richness(N) - 1)),
         :S1 => length(findmotif(motifs(Unipartite, 3)[1], N)),
         :S2 => length(findmotif(motifs(Unipartite, 3)[2], N)),
         :S4 => length(findmotif(motifs(Unipartite, 3)[4], N)),

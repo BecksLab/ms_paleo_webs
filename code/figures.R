@@ -27,7 +27,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance") ~ "Macro",
+    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance", "redundancy") ~ "Macro",
     stat %in% c("generality", "vulnerability", "top", "basal") ~ "Micro",
     .default = "Meso"
   ))
