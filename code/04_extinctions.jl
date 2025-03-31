@@ -11,8 +11,12 @@ import Random
 Random.seed!(66)
 
 # get the traits data
-traits = DataFrame(CSV.File("../data/clean/extinction/traits.csv"))
-traits_trophic = DataFrame(CSV.File("../data/clean/extinction/traits_trophic.csv"))
+traits = readdir("data/extinction")
+
+# import networks
+networks = load_object("data/processed/networks.jlds")
+# select only pre extinction networks
+subset!(networks, :time => ByRow(x -> x == 1))
 
 # specify hierarchies
 hierarchies = [
@@ -28,22 +32,28 @@ hierarchies = [
 
 # Extinction sequence
 
-# for results
-extinction_results = topo_df()
-# add addition column
-extinction_results[!, :time] = String[]
-extinction_results[!, :extinction_mechanism] = String[]
-extinction_results[!, :links] = Int64[]
-# remove unused columns
-select!(extinction_results, Not(:network))
+for i in eachindex(traits)
 
-matrix_names = readdir("../data/processed/networks")
+    # import the trait df
+    file_name = traits[i]
+    df = CSV.read("data/extinction/$file_name", DataFrame)
+    
+    # get relevant info from slug
+    str_cats = split(file_name, r"_")
+    location = str_cats[1]
 
-for i in eachindex(matrix_names)
+    Ns = subset(networks, :location => ByRow(x -> x == location))
 
-    # import predicted network for specific model
-    file_name = matrix_names[i]
-    df = load_object("../data/processed/networks/$file_name")
+    for j in 1:nrow(Ns)
+        
+        # select correct network
+        N = networks.network[j]
+
+        # random extinction
+        extinction_series = extinction(N)
+        robustness(extinction_series)
+
+    end
 
     # now we loop through the different time periods
     for j in ["pre", "during"]
@@ -52,8 +62,7 @@ for i in eachindex(matrix_names)
         # get post extinction richness
         post_rich = richness(df[occursin.("post", df.id), :network][1])
 
-        # random extinction
-        extinction_series = extinction(pre_comm.network[1], post_rich)
+        
 
         # summarise extinction network
         D = _network_summary(extinction_series[end])
