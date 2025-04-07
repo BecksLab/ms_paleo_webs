@@ -46,10 +46,9 @@ for i in eachindex(matrix_names)
     # import data frame
     df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
 
-    select!(df, [:Guild, :motility_detail, :tiering, :feeding, :size])
+    select!(df, [:Guild, :motility, :tiering, :feeding, :size])
 
     rename!(df, :Guild => :species)
-    rename!(df, :motility_detail => :motility)
 
     # specify if producer (basal node)
     is_producer = map(==("primary"), string.(df.tiering))
