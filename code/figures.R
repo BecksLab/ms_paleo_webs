@@ -41,9 +41,8 @@ for (i in seq_along(plot_list)) {
                              filter(level == levs[i]),
                            aes(x = time,
                                y = stat_val,
-                               colour = model,,
-                               group = model)) +
-    geom_line() +
+                               colour = model)) +
+    geom_boxplot(position=position_dodge(1)) +
     facet_wrap(vars(stat),
                scales = 'free',
                ncol = 2) +
