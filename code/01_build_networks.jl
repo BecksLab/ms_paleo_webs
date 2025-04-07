@@ -82,7 +82,6 @@ for i in eachindex(matrix_names)
             N = randommodel(df.species, links)
         elseif model == "lmatrix"
             N = lmatrix(df.species, bodymass, is_producer)
-            N = randomdraws(N) # from probabilistic to binary
         else model == "adbm"
             parameters = adbm_parameters(df, bodymass)
             N = adbmmodel(df, parameters, biomass)
