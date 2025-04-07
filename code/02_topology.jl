@@ -9,7 +9,6 @@ networks = load_object("data/processed/networks.jlds")
 
 topology = DataFrame(
     model = String[],
-    location = String[],
     time = Any[],
     richness = Int64[],
     links = Int64[],
@@ -33,7 +32,6 @@ for i in 1:nrow(networks)
     d = _network_summary(networks.network[i])
 
     d[:model] = networks.model[i]
-    d[:location] = networks.location[i]
     d[:time] = networks.time[i]
 
     push!(topology, d)
