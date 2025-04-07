@@ -33,10 +33,6 @@ code/Manifest.toml
 _scrap.R
 code/_scrap.jl
 
-# ignore raw data folder to keep private
-data/raw/
-/data/extinction
-
 # quarto
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
