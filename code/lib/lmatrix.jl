@@ -43,7 +43,7 @@ function lmatrix(
 
     S = length(species)
 
-    prob_matrix = zeros(AbstractFloat, (S, S))
+    prob_matrix = zeros(Bool, (S, S))
 
     for i = 1:S
         # only assess if consumer is not a producer
@@ -52,13 +52,13 @@ function lmatrix(
                 l = bodymass[i] / (bodymass[j] * Ropt)
                 L = (l * exp(1 - l))^γ
                 if L > threshold
-                    prob_matrix[i, j] = L
+                    prob_matrix[i, j] = 1
                 end
             end
         end
     end
 
-    edges = Probabilistic(prob_matrix)
+    edges = Binary(prob_matrix)
     nodes = Unipartite(Symbol.(species))
     return SpeciesInteractionNetwork(nodes, edges)
 end
