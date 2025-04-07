@@ -17,7 +17,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
          basal = basal / richness) %>%
   # to get the ratio
   pivot_longer(
-    cols = -c(location, model, time),
+    cols = -c(model, time),
     names_to = "stat",
     values_to = "stat_val") %>%
   # standardise names
@@ -38,14 +38,12 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
-                             filter(level == levs[i]) %>%
-                             filter(time <= 3),
+                             filter(level == levs[i]),
                            aes(x = time,
                                y = stat_val,
-                               colour = model)) +
-    geom_smooth(alpha = 0.3,
-                weight = 0.5, 
-                se = FALSE) +
+                               colour = model,,
+                               group = model)) +
+    geom_line() +
     facet_wrap(vars(stat),
                scales = 'free',
                ncol = 2) +
