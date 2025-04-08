@@ -100,7 +100,7 @@ df = CSV.read("data/raw/G1_Guilds.csv", DataFrame)
         
             # categorical extinctions
             # note we can't do this with the niche model...
-            if networks.model[1] ∉ ["niche"]
+            if networks.model[j] ∉ ["niche"]
                 for k in eachindex(hierarchies[1])
                 
                     # select the correct traits matrix depending on nodes (species vs trophic)
