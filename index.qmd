@@ -91,12 +91,6 @@ Although there are a suite of tools and methods that have been developed to pred
 
 The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.
 
-#### Defining organism ecologies, feeding interactions and trophic guilds
-
-> This is currently verbatim from the Dunhill ms...
-
-Modes of life were defined for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007]. Ecological traits were assigned based on interpretations from the published literature which are largely based on functional morphology and information from extant relatives. Information on the body size of each species was also recorded by summarising mean specimen sizes from the section into a categorical classification. The following ecological characteristics were recorded for each fossil species; motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm). Size categories are defined by the longest axis of the fossil, estimates of tracemaker size from trace fossils based on literature accounts, or by extrapolating the total length for belemnites from the preserved guard using established approaches.
-
 ### Allometric diet breadth model
 
 The Allometric diet breadth model (ADBM; @petchey2008) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet ($K$) is defined as follows:
@@ -178,6 +172,20 @@ The **specificity** of species in a network is measured as a function of the pro
 ### Interactions
 
 **Interaction turnover** [@poisot2012] tells us which interactions are 'conserved' (shared) across the networks from the same period but constructed using different models.
+
+### Robustness
+
+$R_{50}$ see @jonsson2015
+
+## Dataset
+
+#### Fossil record data
+
+Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (\~185 Ma) to the upper Toarcian (\~175 Ma) of the Cleveland Basin [see @dunhill2024 for a more comprehensive overview]. The data set consists of a subset of four broad time periods, or assemblages, which are treated as communities of interacting organisms; pre-extinction, post-extinction, early recovery, and late recovery.
+
+#### Defining modes of life (traits)
+
+We used the modes of life (traits) as identified in @dunhill2024, who defined the motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].
 
 # Results
 
