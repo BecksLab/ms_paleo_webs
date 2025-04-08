@@ -217,7 +217,11 @@ window.Quarto = {
   <li><a href="#how-do-we-do-it" id="toc-how-do-we-do-it" class="nav-link" data-scroll-target="#how-do-we-do-it"><span class="header-section-number">2</span> How do we do it?</a></li>
   <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">3</span> Understanding how networks are different</a></li>
   <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</a></li>
-  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">5</span> Dataset Overview</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">5</span> Dataset Overview</a>
+  <ul class="collapse">
+  <li><a href="#species-occurence" id="toc-species-occurence" class="nav-link" data-scroll-target="#species-occurence"><span class="header-section-number">5.1</span> Species occurence</a></li>
+  <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">5.2</span> Defining modes of life (traits)</a></li>
+  </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">6</span> Methods</a>
   <ul class="collapse">
   <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models"><span class="header-section-number">6.1</span> Models</a>
@@ -236,7 +240,6 @@ window.Quarto = {
   <li><a href="#interactions" id="toc-interactions" class="nav-link" data-scroll-target="#interactions"><span class="header-section-number">6.2.4</span> Interactions</a></li>
   <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">6.2.5</span> Robustness</a></li>
   </ul></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">6.3</span> Dataset</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">7</span> Results</a>
   <ul class="collapse">
@@ -290,17 +293,14 @@ window.Quarto = {
 </section>
 <section id="dataset-overview" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Dataset Overview</h1>
-<ul>
-<li><p>Species</p></li>
-<li><p>Time/space</p></li>
-<li><p>And probably some other paleo things that will be relevant…</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="figures/data_mock.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="It would be very sexy if we could get a figure that looks something like this together…"><img src="figures/data_mock.png" class="img-fluid figure-img" alt="It would be very sexy if we could get a figure that looks something like this together…"></a></p>
-<figcaption>It would be very sexy if we could get a figure that looks something like this together…</figcaption>
-</figure>
-</div>
+<section id="species-occurence" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="species-occurence"><span class="header-section-number">5.1</span> Species occurence</h2>
+<p>Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(see <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> for a more comprehensive overview)</span>. The data set consists of a subset of four broad time periods, or assemblages, which are treated as communities of interacting organisms; pre-extinction, post-extinction, early recovery, and late recovery.</p>
+</section>
+<section id="defining-modes-of-life-traits" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">5.2</span> Defining modes of life (traits)</h2>
+<p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined the motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.It would be very sexy if we could get a figure that looks something like this together…</p>
+</section>
 </section>
 <section id="methods" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Methods</h1>
@@ -428,17 +428,6 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 <p><span class="math inline">\(R_{50}\)</span> see <span class="citation" data-cites="jonsson2015">Jonsson et al. (<a href="#ref-jonsson2015" role="doc-biblioref">2015</a>)</span></p>
 </section>
 </section>
-<section id="dataset" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="dataset"><span class="header-section-number">6.3</span> Dataset</h2>
-<section id="fossil-record-data" class="level4" data-number="6.3.0.1">
-<h4 data-number="6.3.0.1" class="anchored" data-anchor-id="fossil-record-data"><span class="header-section-number">6.3.0.1</span> Fossil record data</h4>
-<p>Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(see <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> for a more comprehensive overview)</span>. The data set consists of a subset of four broad time periods, or assemblages, which are treated as communities of interacting organisms; pre-extinction, post-extinction, early recovery, and late recovery.</p>
-</section>
-<section id="defining-modes-of-life-traits" class="level4" data-number="6.3.0.2">
-<h4 data-number="6.3.0.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">6.3.0.2</span> Defining modes of life (traits)</h4>
-<p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined the motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.</p>
-</section>
-</section>
 </section>
 <section id="results" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
@@ -447,7 +436,7 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 <div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: stuff… For display purposes the counts for the different motifs are log transformed"><img src="figures/summary.png" class="img-fluid figure-img"></a>
+<a href="figures/summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: stuff… For display purposes the counts for the different motifs are log transformed"><img src="figures/summary.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: stuff… For display purposes the counts for the different motifs are log transformed
@@ -463,7 +452,7 @@ Figure&nbsp;1: stuff… For display purposes the counts for the different motifs
 <div id="fig-extinction" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-extinction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/extinction.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model). For display purposes the counts for the different motifs are log transformed"><img src="figures/extinction.png" class="img-fluid figure-img"></a>
+<a href="figures/extinction.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model). For display purposes the counts for the different motifs are log transformed"><img src="figures/extinction.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extinction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Dashed line indicates the (mean) extinction simulation results (post value, start values are those estimated by the relevant model). For display purposes the counts for the different motifs are log transformed
@@ -472,7 +461,7 @@ Figure&nbsp;2: Dashed line indicates the (mean) extinction simulation results (p
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="figures/extinction_all_results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Dark line indicates ‘real’ extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed"><img src="figures/extinction_all_results.png" class="img-fluid figure-img" alt="Dark line indicates ‘real’ extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed"></a></p>
+<p><a href="figures/extinction_all_results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Dark line indicates ‘real’ extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed"><img src="figures/extinction_all_results.png" class="img-fluid figure-img" alt="Dark line indicates ‘real’ extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed"></a></p>
 <figcaption>Dark line indicates ‘real’ extinction simulation results the lighter lines show each model individually, which is also denoted by the linetype. For display purposes the counts for the different motifs are log transformed</figcaption>
 </figure>
 </div>
