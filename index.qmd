@@ -66,13 +66,13 @@ Although there are a suite of tools and methods that have been developed to pred
 
 # Dataset Overview
 
--   Species
+## Species occurence
 
--   Time/space
+Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (\~185 Ma) to the upper Toarcian (\~175 Ma) of the Cleveland Basin [see @dunhill2024 for a more comprehensive overview]. The data set consists of a subset of four broad time periods, or assemblages, which are treated as communities of interacting organisms; pre-extinction, post-extinction, early recovery, and late recovery.
 
--   And probably some other paleo things that will be relevant...
+## Defining modes of life (traits)
 
-![It would be very sexy if we could get a figure that looks something like this together...](figures/data_mock.png)
+We used the modes of life (traits) as identified in @dunhill2024, who defined the motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].It would be very sexy if we could get a figure that looks something like this together...
 
 # Methods
 
@@ -176,16 +176,6 @@ The **specificity** of species in a network is measured as a function of the pro
 ### Robustness
 
 $R_{50}$ see @jonsson2015
-
-## Dataset
-
-#### Fossil record data
-
-Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (\~185 Ma) to the upper Toarcian (\~175 Ma) of the Cleveland Basin [see @dunhill2024 for a more comprehensive overview]. The data set consists of a subset of four broad time periods, or assemblages, which are treated as communities of interacting organisms; pre-extinction, post-extinction, early recovery, and late recovery.
-
-#### Defining modes of life (traits)
-
-We used the modes of life (traits) as identified in @dunhill2024, who defined the motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].
 
 # Results
 
