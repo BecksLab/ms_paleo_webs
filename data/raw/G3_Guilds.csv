@@ -27,4 +27,4 @@ Serpulid_1,serpulid,nonmotile_attached,nonmotile,nonmotile,surficial,epifaunal,s
 Soft_2,soft_indet,slow_crawler,slow,motile,surficial,epifaunal,grazer,,herbivore,small,light,NA,NA
 Soft_4,soft_indet,slow_crawler,slow,motile,shallow_infaunal,infaunal,mining,,detritivore,small,light,NA,NA
 Soft_5,soft_indet,slow_crawler,slow,motile,deep_infaunal,infaunal,suspension,,suspension,small,light,NA,NA
-BASAL NODE,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary
+BASAL_NODE,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary,primary

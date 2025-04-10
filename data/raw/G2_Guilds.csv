@@ -19,4 +19,4 @@ Gastropod_1,gastropod,slow_crawler,slow,motile,surficial,epifaunal,grazer,,herbi
 Serpulid_1,serpulid,nonmotile_attached,nonmotile,nonmotile,surficial,epifaunal,suspension,,suspension,small,moderate,1,very_rare
 Soft_2,soft_indet,slow_crawler,slow,motile,surficial,epifaunal,grazer,,herbivore,small,light,NA,NA
 Soft_4,soft_indet,slow_crawler,slow,motile,shallow_infaunal,infaunal,mining,,detritivore,small,light,NA,NA
-BASAL NODE,primary,primary,primary,primary,primary,primary,primary,,primary,primary,primary,primary,primary
+BASAL_NODE,primary,primary,primary,primary,primary,primary,primary,,primary,primary,primary,primary,primary
