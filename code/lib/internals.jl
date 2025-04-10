@@ -77,15 +77,13 @@ _diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 function _diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     # extract species names
-    spp = species(N)
+    spp = SpeciesInteractionNetworks.species(N)
     # empty vector for storing shortest path for each spp
     shortpath = zeros(Int64, length(spp))
 
     # get shortest path
     for i in eachindex(spp)
-
         shortpath[i] = length(shortestpath(N, spp[i]))
-
     end
 
     # return max shortest path
@@ -93,3 +91,55 @@ function _diameter(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 end
 
 _parser(x) = parse(Int, x)
+
+"""
+add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+
+    Add a single basal node to networks for which there are multiple
+    producer (generality of zero) species
+"""
+function add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+
+    # find producer spp (gen == 0)
+    gen = SpeciesInteractionNetworks.generality(N)
+    filter!(v -> last(v) == 0, gen)
+
+    # only add basal node if the number of species with gen 0 > 1
+    if length(gen) > 1
+
+        # get current interactions
+        intxns = interactions(N)
+
+        # create producer-BASAL_SPP interactions tuple
+        producer_spp = collect(keys(gen))
+        prod_basal = tuple.(producer_spp, :BASAL_NODE, true)
+
+        # combine current and producer-BASAL_SPP interactions
+        interactions_all = vcat(intxns, prod_basal)
+
+        # build new network architecture
+
+        # add BASAL_NODE to spp list
+        spp = SpeciesInteractionNetworks.species(N)
+        push!(spp,:BASAL_NODE)
+        nodes2 = Unipartite(spp)
+
+        # create empty edgelist
+        edges2 = Binary(zeros(Bool, (richness(nodes2,1), richness(nodes2, 2))))
+
+        # new empty network
+        network2 = SpeciesInteractionNetwork(nodes2, edges2)
+    
+        # add interactions using interactions_all
+        for i in eachindex(interactions_all)
+            network2[(interactions_all[i][1], interactions_all[i][2])...] = true
+        end
+        return network2
+    elseif isempty(gen)
+        @warn ("No producer species, original network returned")
+        return N
+    else
+        @warn ("No BASAL_NODE added as network is already rooted by a single node, original network returned")
+        return N
+    end
+end
