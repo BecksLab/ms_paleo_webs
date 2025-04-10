@@ -57,6 +57,8 @@ df = CSV.read("data/raw/G1_Guilds.csv", DataFrame)
         # select correct network
         N = networks.network[j]
 
+        N = add_basal(N)
+
         # random extinction
         extinction_series = extinction(N; protect = :basal)
 
@@ -75,11 +77,8 @@ df = CSV.read("data/raw/G1_Guilds.csv", DataFrame)
 
             # numeric extinctions
             for k in ["generality", "vulnerability"]
-                # turn into function
-                f = getfield(Main, Symbol(k))
-                extinction_list = extinctionsequence(f(N); descending = descending)
-                # generate extinction sequence
-                extinction_series = extinction(N, extinction_list; protect = :basal)
+
+                extinction_series = extinction(N, k, descending)
 
                 # send results to data frame
                 d = Dict{Symbol,Any}(
