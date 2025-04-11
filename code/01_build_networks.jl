@@ -31,12 +31,7 @@ feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
 connectance = 0.1
 
 # df to store networks
-networks = DataFrame(
-    model = String[], 
-    time = Any[],
-    network = Any[],
-    n_rep = Any[],
-);
+networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
 
 # number of network reps
 n_reps = 100
@@ -60,22 +55,25 @@ for i in eachindex(matrix_names)
     # specify if producer (basal node)
     is_producer = map(==("primary"), string.(df.tiering))
 
-    for j in 1:n_reps
-        
+    for j = 1:n_reps
+
         # create some synthetic bodysize data (based on some distributions)
         y = collect(String, df.size)
 
-        bodymass = (y -> y == "tiny" ? rand(Uniform(0.1, 0.3)) :
+        bodymass =
+            (
+                y ->
+                    y == "tiny" ? rand(Uniform(0.1, 0.3)) :
                     y == "small" ? rand(Uniform(0.2, 0.5)) :
                     y == "medium" ? rand(Uniform(0.4, 0.7)) :
                     y == "large" ? rand(Uniform(0.6, 0.9)) :
                     y == "very_large" ? rand(Uniform(0.8, 1.1)) :
-                    y == "gigantic" ? rand(Uniform(1.0, 1.3)) :
-                    y).(y)
+                    y == "gigantic" ? rand(Uniform(1.0, 1.3)) : y
+            ).(y)
 
         # create some mock abundance/biomass values using a *very* basic scaling law
         biomass = bodymass .^ (-3 / 4)
-        
+
         for model ∈ ["adbm", "bodymassratio", "lmatrix", "niche", "pfim", "random"]
 
             if model == "bodymassratio"
@@ -90,7 +88,8 @@ for i in eachindex(matrix_names)
                 N = randommodel(df.species, links)
             elseif model == "lmatrix"
                 N = lmatrix(df.species, bodymass, is_producer)
-            else model == "adbm"
+            else
+                model == "adbm"
                 parameters = adbm_parameters(df, bodymass)
                 N = adbmmodel(df, parameters, biomass)
             end
@@ -99,7 +98,8 @@ for i in eachindex(matrix_names)
                 :model => model,
                 :time => str_cats[1],
                 :network => N,
-                :n_rep => j)
+                :n_rep => j,
+            )
 
             # only push if network exists
             if richness(N) > 0
@@ -110,7 +110,4 @@ for i in eachindex(matrix_names)
 end
 
 # write networks as object
-save_object(
-    "data/processed/networks.jlds",
-    networks,
-)
+save_object("data/processed/networks.jlds", networks)

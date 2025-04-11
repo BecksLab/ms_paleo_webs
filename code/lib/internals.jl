@@ -121,15 +121,15 @@ function add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
         # add BASAL_NODE to spp list
         spp = SpeciesInteractionNetworks.species(N)
-        push!(spp,:BASAL_NODE)
+        push!(spp, :BASAL_NODE)
         nodes2 = Unipartite(spp)
 
         # create empty edgelist
-        edges2 = Binary(zeros(Bool, (richness(nodes2,1), richness(nodes2, 2))))
+        edges2 = Binary(zeros(Bool, (richness(nodes2, 1), richness(nodes2, 2))))
 
         # new empty network
         network2 = SpeciesInteractionNetwork(nodes2, edges2)
-    
+
         # add interactions using interactions_all
         for i in eachindex(interactions_all)
             network2[(interactions_all[i][1], interactions_all[i][2])...] = true
@@ -139,7 +139,9 @@ function add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         @warn ("No producer species, original network returned")
         return N
     else
-        @warn ("No BASAL_NODE added as network is already rooted by a single node, original network returned")
+        @warn (
+            "No BASAL_NODE added as network is already rooted by a single node, original network returned"
+        )
         return N
     end
 end
@@ -148,17 +150,17 @@ end
     Calculates the R50 for a series of networks. That is the proportion of primary extinction that result in
     50% of species going extinct
 """
-function R50(Ns::Vector{T}) where {T <: SpeciesInteractionNetwork}
+function R50(Ns::Vector{T}) where {T<:SpeciesInteractionNetwork}
 
     # get intital richness
     init_rich = richness(Ns[1])
 
     # 50% initial richness
-    e50 = floor(Int, 0.5*init_rich)
+    e50 = floor(Int, 0.5 * init_rich)
 
     # get first index in network series that is equal to or less than e50
     net_in = findfirst(x -> x <= e50, richness.(Ns))
 
     # return R50
-    return net_in/init_rich
+    return net_in / init_rich
 end

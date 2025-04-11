@@ -19,7 +19,8 @@ adbm_networks = load_object("data/processed/networks/adbm_networks.jlds")
 
 N = adbm_networks.network[1]
 
-N_niche = structuralmodel(NicheModel, SpeciesInteractionNetworks.richness(N), connectance(N))
+N_niche =
+    structuralmodel(NicheModel, SpeciesInteractionNetworks.richness(N), connectance(N))
 
 fw_adbm = Foodweb(_get_matrix(N))
 fw_niche = Foodweb(_get_matrix(N_niche))

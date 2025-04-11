@@ -27,8 +27,8 @@ topology = DataFrame(
     S5 = Float64[],
 );
 
-for i in 1:nrow(networks)
-    
+for i = 1:nrow(networks)
+
     d = _network_summary(networks.network[i])
 
     d[:model] = networks.model[i]
@@ -38,7 +38,4 @@ for i in 1:nrow(networks)
 end
 
 # write summaries as .csv
-CSV.write(
-    "data/processed/topology.csv",
-    topology,
-)
+CSV.write("data/processed/topology.csv", topology)

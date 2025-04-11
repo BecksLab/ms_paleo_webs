@@ -40,32 +40,29 @@ topology = DataFrame(
     rep = Int64[],
 );
 
-for i in 1:nrow(extinctions)
+for i = 1:nrow(extinctions)
 
     _ext_seq = extinctions.extinction_seq[i]
 
     if length(_ext_seq) > 1
 
-        net_ind = findfirst(x -> x<post_rich, richness.(_ext_seq))
+        net_ind = findfirst(x -> x < post_rich, richness.(_ext_seq))
 
         # this is to catch networks that 
         if typeof(net_ind) == Int64 && richness(_ext_seq[net_ind]) > 0
 
             d = _network_summary(_ext_seq[net_ind])
-    
+
             d[:model] = extinctions.model[i]
             d[:extinction_mechanism] = extinctions.extinction_mechanism[i]
             d[:robustness] = robustness(_ext_seq)
             d[:r50] = R50(_ext_seq)
             d[:rep] = i
-    
+
             push!(topology, d)
         end
     end
 end
 
 # write summaries as .csv
-CSV.write(
-    "data/processed/extinction_topology.csv",
-    topology,
-)
+CSV.write("data/processed/extinction_topology.csv", topology)
