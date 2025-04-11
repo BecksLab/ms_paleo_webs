@@ -28,7 +28,7 @@ hierarchies = [
     [
         ["tiny", "small", "medium", "large", "very_large", "gigantic"],
         ["non_motile", "motile"],
-        ["suspension", "herbivore", "detritivore", "predator"],
+        ["infaunal", "epifaunal", "pelagic"],
         ["heavy", "moderate", "light"],
     ],
 ]
