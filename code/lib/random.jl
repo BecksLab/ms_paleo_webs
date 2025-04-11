@@ -34,5 +34,6 @@ function randommodel(species::Any, L::Int64)
 
     edges = Binary(edges)
     nodes = Unipartite(Symbol.(species))
-    return SpeciesInteractionNetworks.SpeciesInteractionNetwork(nodes, edges)
+    N = SpeciesInteractionNetworks.SpeciesInteractionNetwork(nodes, edges)
+    return simplify(N)
 end
