@@ -70,67 +70,57 @@ ggsave("../figures/summary.png",
 
 #### Extinctions ####
 
-df_ext <- read_csv("../data/processed/extinctions/extinctions.csv") %>% 
-  bind_rows %>% 
-  mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(id, links, richness)) %>% 
+df_ext <- read_csv("../data/processed/extinction_topology.csv") %>%
+  mutate(across(matches("S[[:digit:]]"), log),
+         top = top / richness,
+         basal = basal / richness) %>%
   # to get the ratio
-  mutate(top = NULL,
-         basal = NULL,
-         id = time,
-         time = NULL,
-         distance = NULL) %>%
   pivot_longer(
-    cols = -c(id, model, extinction_mechanism), 
+    cols = -c(model, extinction_mechanism, rep),
     names_to = "stat",
-    values_to = "end_val") %>% 
-  filter(id == "pre") %>% 
-  mutate(id = "post",
-         stat = case_when(stat == "S1" ~ "No. of linear chains",
+    values_to = "stat_val") %>%
+  # standardise names
+  mutate(stat = case_when(stat == "S1" ~ "No. of linear chains",
                           stat == "S2" ~ "No. of omnivory motifs",
-                          stat == "S4" ~ "No. of apparent competition motifs",
-                          stat == "S5" ~ "No. of direct competition motifs",
+                          stat == "S5" ~ "No. of apparent competition motifs",
+                          stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>% 
-  left_join(.,
-            df %>%
-              filter(id == "pre") %>% 
-              select(-id)) %>% 
-  mutate(xstart = "pre",
-         xend = id,
-         start_val = stat_val,
-         stat_val = NULL,
-         id = NULL) %>%
   mutate(level = case_when(
-    stat %in% c("richness", "deficiency", "complexity", "connectance") ~ "Macro",
-    stat %in% c("generality", "vulnerability") ~ "Micro",
+    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance", "redundancy") ~ "Macro",
+    stat %in% c("generality", "vulnerability", "top", "basal") ~ "Micro",
     .default = "Meso"
-  )) %>%
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix"))
-
-df_ext$xstart <- ordered(df_ext$xstart, levels = c("pre", "during", "post"))
-df_ext$xend <- ordered(df_ext$xend, levels = c("pre", "during", "post"))
+  ))
 
 df_ext_summ <-
   df_ext %>%
-  select(model, stat, end_val, start_val, level) %>% 
-  pivot_longer(cols = c(end_val, start_val)) %>% 
-  group_by(model, stat, name, level) %>% 
-  summarise(y = mean(value, na.rm = TRUE)) %>%
-  mutate(name = ifelse(name == "end_val",
-                       "post",
-                       "pre"))
+  group_by(model, stat, level, extinction_mechanism) %>% 
+  summarise(y = mean(stat_val, na.rm = TRUE))
 
 ext_plot_list <- vector(mode = "list", length = 3)
 
 for (i in seq_along(ext_plot_list)) {
   
-  ext_plot_list[[i]] <- plot_list[[i]] +
-    geom_line(data = df_ext_summ %>% 
-                filter(level == levs[i]),
-              aes(x = factor(name),
-                  y = y, 
-                  group = model),
-              linetype = "dashed")
+  ext_plot_list[[i]] <- 
+    ggplot(data = df_ext %>% 
+             filter(extinction_mechanism == "random") %>%
+             filter(level == levs[i])) +
+    geom_boxplot(aes(x = model,
+                     y = stat_val, 
+                     colour = model)) +
+    facet_wrap(vars(stat),
+               scales = 'free',
+               ncol = 2) +
+  scale_size(guide = 'none') +
+    theme_classic() +
+    xlab("extinction mechanism") +
+    ylab("value") +
+    coord_cartesian(clip = "off") +
+    scale_colour_brewer(palette = "Dark2") +
+    labs(title = levs[i]) +
+    theme(panel.border = element_rect(colour = 'black',
+                                      fill = "#ffffff00"),
+          axis.ticks.x = element_blank(),
+          axis.text.x = element_blank())
 }
 
 ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
@@ -139,9 +129,16 @@ ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
 
 ggsave("../figures/extinction.png",
        width = 4500,
-       height = 7000,
+       height = 9000,
        units = "px",
        dpi = 600)
+
+read_csv("../data/processed/extinction_topology.csv") %>%
+  group_by(model, extinction_mechanism) %>% 
+  count() %>%
+  ggplot(., aes(x=extinction_mechanism, y=n, fill=model))  +
+  scale_fill_brewer(palette = "Dark2")+ 
+  geom_bar(position="dodge", stat="identity")
 
 for (i in seq_along(ext_plot_list)) {
   
