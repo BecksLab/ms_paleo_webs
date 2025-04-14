@@ -102,7 +102,7 @@ for (i in seq_along(ext_plot_list)) {
   
   ext_plot_list[[i]] <- 
     ggplot(data = df_ext %>% 
-             filter(extinction_mechanism == "random") %>%
+             #filter(extinction_mechanism == "random") %>%
              filter(level == levs[i])) +
     geom_boxplot(aes(x = model,
                      y = stat_val, 
@@ -110,7 +110,7 @@ for (i in seq_along(ext_plot_list)) {
     facet_wrap(vars(stat),
                scales = 'free',
                ncol = 2) +
-  scale_size(guide = 'none') +
+    scale_size(guide = 'none') +
     theme_classic() +
     xlab("extinction mechanism") +
     ylab("value") +
@@ -133,6 +133,7 @@ ggsave("../figures/extinction.png",
        units = "px",
        dpi = 600)
 
+# groups plot
 read_csv("../data/processed/extinction_topology.csv") %>%
   group_by(model, extinction_mechanism) %>% 
   count() %>%
@@ -140,25 +141,33 @@ read_csv("../data/processed/extinction_topology.csv") %>%
   scale_fill_brewer(palette = "Dark2")+ 
   geom_bar(position="dodge", stat="identity")
 
+
+ext_lins =
+  df %>%
+  filter(time %in% c("G1", "G2")) %>%
+  mutate(known = "known") %>%
+  rbind(df_ext %>%
+          mutate(time = "G2",
+                 known = "simulated",
+                 rep = NULL,
+                 extinction_mechanism = NULL)) %>%
+  rbind(df %>%
+          filter(time == "G1") %>%
+          mutate(known = "simulated")) %>%
+  group_by(model, time, stat, level, known) %>%
+  summarise(stat_val = mean(stat_val, na.rm = TRUE)) %>%
+  filter(stat != "robustness") %>%
+  filter(stat != "r50")
+
 for (i in seq_along(ext_plot_list)) {
   
-  ext_plot_list[[i]] <- ggplot() +
-    geom_segment(data = df_ext %>% 
-                   filter(level == levs[i]),
-                 aes(x = xstart,
-                     y = start_val, 
-                     xend = xend,
-                     yend = end_val,
-                     colour = model,
-                     group = model,
-                     linetype = extinction_mechanism),
-                 alpha = 0.3) +
-    geom_line(data = df %>% filter(id != "during")%>% 
-                filter(level == levs[i]),
-              aes(x = factor(id),
+  ext_plot_list[[i]] <- ggplot(ext_lins %>% 
+                                 filter(level == levs[i])) +
+    geom_line(aes(x = time,
                   y = stat_val,
                   colour = model,
-                  group = model)) +
+                  group = paste(model, known),
+                  linetype = known)) +
     facet_wrap(vars(stat),
                scales = 'free',
                ncol = 2) +
@@ -176,7 +185,7 @@ for (i in seq_along(ext_plot_list)) {
 
 ext_plot_list[[1]] / ext_plot_list[[2]] / ext_plot_list[[3]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 2, 1))
+  plot_layout(height = c(2, 1, 1))
 
 ggsave("../figures/extinction_all_results.png",
        width = 4500,
