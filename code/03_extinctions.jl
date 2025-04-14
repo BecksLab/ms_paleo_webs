@@ -52,6 +52,9 @@ rename!(df, :motility_simple => :motility)
 rename!(df, :tiering_simple => :tiering)
 rename!(df, :feeding_simple => :feeding)
 
+# remove BASAL_NODE for now...
+filter!(:species => x -> x != "BASAL_NODE", df)
+
 # number of extinction sims
 ext_reps = 10
 
