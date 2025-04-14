@@ -81,9 +81,11 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined th
 | Model | Predicts | Notes |
 |-------------------|---------------------|--------------------------------|
 | Allometric diet breadth model | Realised network |  |
-| Body size ratio model | Metaweb (?) |  |
+| Body size ratio model | Metaweb |  |
 | Niche model | Structural network | Is not species specific - cannot apply species metadata |
-| Paleo food web inference model | Realised network (if downsampling) |  |
+| Paleo food web inference model | Metaweb |  |
+| Random model | Structural network |  |
+| l-matrix | Realised network |  |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
