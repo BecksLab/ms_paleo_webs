@@ -49,7 +49,7 @@ for i in eachindex(matrix_names)
 
     rename!(df, :Guild => :species)
 
-    # remove BASAL_NODE fro now...
+    # remove BASAL_NODE for now...
     filter!(:species => x -> x != "BASAL_NODE", df)
 
     # specify if producer (basal node)
@@ -63,12 +63,12 @@ for i in eachindex(matrix_names)
         bodymass =
             (
                 y ->
-                    y == "tiny" ? rand(Uniform(0.1, 0.3)) :
-                    y == "small" ? rand(Uniform(0.2, 0.5)) :
-                    y == "medium" ? rand(Uniform(0.4, 0.7)) :
-                    y == "large" ? rand(Uniform(0.6, 0.9)) :
-                    y == "very_large" ? rand(Uniform(0.8, 1.1)) :
-                    y == "gigantic" ? rand(Uniform(1.0, 1.3)) : y
+                    y == "tiny" ? rand(Uniform(0.1, 10.0)) :
+                    y == "small" ? rand(Uniform(10.0, 50.0)) :
+                    y == "medium" ? rand(Uniform(50.0, 100.0)) :
+                    y == "large" ? rand(Uniform(100.0, 300.0)) :
+                    y == "very_large" ? rand(Uniform(300.0, 500.0)) :
+                    y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
             ).(y)
 
         # create some mock abundance/biomass values using a *very* basic scaling law
