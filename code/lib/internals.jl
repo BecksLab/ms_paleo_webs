@@ -145,22 +145,3 @@ function add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         return N
     end
 end
-
-"""
-    Calculates the R50 for a series of networks. That is the proportion of primary extinction that result in
-    50% of species going extinct
-"""
-function R50(Ns::Vector{T}) where {T<:SpeciesInteractionNetwork}
-
-    # get intital richness
-    init_rich = richness(Ns[1])
-
-    # 50% initial richness
-    e50 = floor(Int, 0.5 * init_rich)
-
-    # get first index in network series that is equal to or less than e50
-    net_in = findfirst(x -> x <= e50, richness.(Ns))
-
-    # return R50
-    return net_in / init_rich
-end
