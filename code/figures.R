@@ -156,7 +156,7 @@ ext_lins =
           mutate(known = "simulated")) %>%
   group_by(model, time, stat, level, known) %>%
   summarise(stat_val = mean(stat_val, na.rm = TRUE)) %>%
-  filter(stat != "robustness") %>%
+  filter(stat != "resilience") %>%
   filter(stat != "r50")
 
 for (i in seq_along(ext_plot_list)) {
