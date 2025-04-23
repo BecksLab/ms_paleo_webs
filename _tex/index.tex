@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-04-15}
+\date{2025-04-23}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -382,40 +382,65 @@ we could get a figure that looks something like this together\ldots{}
 \subsection{Models}\label{models}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2639}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2917}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4444}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \caption{A summary of the different families of tools that can be used
 to generate paleo food webs.}\label{tbl-models}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Model
+Model family
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Predicts
+Assumptions
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Notes
+`Limitation'
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Network type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key reference
 \end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Model
+Model family
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Predicts
+Assumptions
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Notes
+`Limitation'
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Network type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key reference
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Allometric diet breadth model & Realised network & \\
-Body size ratio model & Metaweb & \\
-Niche model & Structural network & Is not species specific - cannot
-apply species metadata \\
-Paleo food web inference model & Metaweb & \\
-Random model & Structural network & \\
-l-matrix & Realised network & \\
+random & Links are randomly distributed within a network & parameter
+assumptions, species agnostic & structural network &
+(\textbf{erdos2022?}) \\
+niche & Networks are interval, species can be ordered on a `niche axis'
+& parameter assumptions, species agnostic & structural network &
+(\textbf{williamsSuccessItsLimits2008?}) \\
+allometric diet breadth model (ADBM) & Interactions are determined by
+energetic costs & does not account for forbidden links in terms of trait
+compatibility, assumptions on body size and biomass (abundance) from
+fossil data & realised network & Petchey et al. (2008) \\
+l-matrix & Interactions inferred using allometric rules (ratio of body
+sizes between predator and prey) & does not account for forbidden links
+in terms of trait compatibility, assumptions on body size from fossil
+data & realised network & Schneider et al. (2016) \\
+paleo food web inference model (PFIM) & Interactions can be inferred by
+a mechanistic framework/relationships & Assumption mades as to the
+feeding mechanisms, need to elucidate traits from models (although this
+is a way smaller issue) & metaweb & Shaw et al. (2024) \\
+body size ratio model & Interactions inferred using allometric rules
+(ratio of body sizes between predator and prey) & does not account for
+forbidden links in terms of evolutionary compatibility, assumptions on
+body size from fossil data & metaweb?? & Rohr et al. (2010) \\
 \end{longtable}
 
 \subsubsection{Paleo food web inference
@@ -498,8 +523,8 @@ on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
 
 \subsubsection{L matrix}\label{l-matrix}
 
-For now we can link to thATNr package (Gauzens et al., 2023) until I can
-find a more suitable manuscript that breaks down this construction
+For now we can link to the ATNr package (Gauzens et al., 2023) until I
+can find a more suitable manuscript that breaks down this construction
 method. Schneider et al. (2016) Interactions are determined by
 allometric rules (ratio of consumer (\(M_{i}\)) and resource (\(M_{j}\))
 body sizes) and a Ricker function as defined by \(R_{opt}\) and

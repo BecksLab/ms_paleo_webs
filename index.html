@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.7.28">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-04-15">
+<meta name="dcterms.date" content="2025-04-23">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -54,7 +54,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-5969b9817b206770ea340465a80d02b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -104,10 +104,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-04-15">
-<meta name="citation_cover_date" content="2025-04-15">
+<meta name="citation_publication_date" content="2025-04-23">
+<meta name="citation_cover_date" content="2025-04-23">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-04-15">
+<meta name="citation_online_date" content="2025-04-23">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -139,6 +139,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=ATNr: Allometric Trophic Network models in R;,citation_author=Benoit Gauzens;,citation_author=Ulrich Brose;,citation_author=Eva Delmas;,citation_author=Emilio Berti;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14212;,citation_issue=11;,citation_doi=10.1111/2041-210X.14212;,citation_volume=14;,citation_language=en;,citation_journal_title=Methods in Ecology and Evolution;">
 <meta name="citation_reference" content="citation_title=Animal diversity and ecosystem functioning in dynamic food webs;,citation_author=Florian D. Schneider;,citation_author=Ulrich Brose;,citation_author=Björn C. Rall;,citation_author=Christian Guill;,citation_publication_date=2016-10-05;,citation_cover_date=2016-10-05;,citation_year=2016;,citation_fulltext_html_url=https://www.nature.com/articles/ncomms12718;,citation_issue=1;,citation_doi=10.1038/ncomms12718;,citation_volume=7;,citation_language=en;,citation_journal_title=Nature Communications;">
 <meta name="citation_reference" content="citation_title=The reliability of R50 as a measure of vulnerability of food webs to sequential species deletions;,citation_author=Tomas Jonsson;,citation_author=Sofia Berg;,citation_author=Alexander Pimenov;,citation_author=Catherine Palmer;,citation_author=Mark Emmerson;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/oik.01588;,citation_issue=4;,citation_doi=10.1111/oik.01588;,citation_volume=124;,citation_language=en;,citation_journal_title=Oikos;">
+<meta name="citation_reference" content="citation_title=On random graphs. i.;,citation_author=P. Erdős;,citation_author=A. Rényi;,citation_publication_date=1959-07-01;,citation_cover_date=1959-07-01;,citation_year=1959;,citation_fulltext_html_url=http://dx.doi.org/10.5486/PMD.1959.6.3-4.12;,citation_issue=3-4;,citation_doi=10.5486/pmd.1959.6.3-4.12;,citation_volume=6;,citation_journal_title=Publicationes Mathematicae Debrecen;">
 </head>
 
 <body class="quarto-light">
@@ -180,7 +181,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 15, 2025</p>
+              <p class="date">April 23, 2025</p>
             </div>
           </div>
           
@@ -314,47 +315,63 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 <div aria-describedby="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 29%">
-<col style="width: 44%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Model</th>
-<th>Predicts</th>
-<th>Notes</th>
+<th>Model family</th>
+<th>Assumptions</th>
+<th>‘Limitation’</th>
+<th>Network type</th>
+<th>Key reference</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Allometric diet breadth model</td>
-<td>Realised network</td>
-<td></td>
+<td>random</td>
+<td>Links are randomly distributed within a network</td>
+<td>parameter assumptions, species agnostic</td>
+<td>structural network</td>
+<td><span class="citation" data-cites="erdos2022">(<a href="#ref-erdos2022" role="doc-biblioref"><strong>erdos2022?</strong></a>)</span></td>
 </tr>
 <tr class="even">
-<td>Body size ratio model</td>
-<td>Metaweb</td>
-<td></td>
+<td>niche</td>
+<td>Networks are interval, species can be ordered on a ‘niche axis’</td>
+<td>parameter assumptions, species agnostic</td>
+<td>structural network</td>
+<td><span class="citation" data-cites="williamsSuccessItsLimits2008">(<a href="#ref-williamsSuccessItsLimits2008" role="doc-biblioref"><strong>williamsSuccessItsLimits2008?</strong></a>)</span></td>
 </tr>
 <tr class="odd">
-<td>Niche model</td>
-<td>Structural network</td>
-<td>Is not species specific - cannot apply species metadata</td>
-</tr>
-<tr class="even">
-<td>Paleo food web inference model</td>
-<td>Metaweb</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Random model</td>
-<td>Structural network</td>
-<td></td>
+<td>allometric diet breadth model (ADBM)</td>
+<td>Interactions are determined by energetic costs</td>
+<td>does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data</td>
+<td>realised network</td>
+<td><span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span></td>
 </tr>
 <tr class="even">
 <td>l-matrix</td>
-<td>Realised network</td>
-<td></td>
+<td>Interactions inferred using allometric rules (ratio of body sizes between predator and prey)</td>
+<td>does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data</td>
+<td>realised network</td>
+<td><span class="citation" data-cites="schneider2016">Schneider et al. (<a href="#ref-schneider2016" role="doc-biblioref">2016</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>paleo food web inference model (PFIM)</td>
+<td>Interactions can be inferred by a mechanistic framework/relationships</td>
+<td>Assumption mades as to the feeding mechanisms, need to elucidate traits from models (although this is a way smaller issue)</td>
+<td>metaweb</td>
+<td><span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span></td>
+</tr>
+<tr class="even">
+<td>body size ratio model</td>
+<td>Interactions inferred using allometric rules (ratio of body sizes between predator and prey)</td>
+<td>does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data</td>
+<td>metaweb??</td>
+<td><span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +412,7 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 </section>
 <section id="l-matrix" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">6.1.4</span> L matrix</h3>
-<p>For now we can link to thATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. <span class="citation" data-cites="schneider2016">Schneider et al. (<a href="#ref-schneider2016" role="doc-biblioref">2016</a>)</span> Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
+<p>For now we can link to the ATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. <span class="citation" data-cites="schneider2016">Schneider et al. (<a href="#ref-schneider2016" role="doc-biblioref">2016</a>)</span> Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
 \]</span></p>
@@ -561,7 +578,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-04-15},
+  date = {2025-04-23},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -589,7 +606,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. April 15, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. April 23, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
