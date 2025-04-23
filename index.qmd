@@ -78,14 +78,14 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined th
 
 ## Models
 
-| Model | Predicts | Notes |
-|-------------------|---------------------|--------------------------------|
-| Allometric diet breadth model | Realised network |  |
-| Body size ratio model | Metaweb |  |
-| Niche model | Structural network | Is not species specific - cannot apply species metadata |
-| Paleo food web inference model | Metaweb |  |
-| Random model | Structural network |  |
-| l-matrix | Realised network |  |
+| Model family | Assumptions | 'Limitation' | Network type | Key reference |
+|------------|------------|------------|------------|------------|
+| random | Links are randomly distributed within a network | parameter assumptions, species agnostic | structural network | @erdos2022 |
+| niche | Networks are interval, species can be ordered on a 'niche axis' | parameter assumptions, species agnostic | structural network | @williamsSuccessItsLimits2008 |
+| allometric diet breadth model (ADBM) | Interactions are determined by energetic costs | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
+| l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data | realised network | @schneider2016 |
+| paleo food web inference model (PFIM) | Interactions can be inferred by a mechanistic framework/relationships | Assumption mades as to the feeding mechanisms, need to elucidate traits from models (although this is a way smaller issue) | metaweb | @shaw2024 |
+| body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
@@ -133,7 +133,7 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 ### L matrix
 
-For now we can link to thATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. @schneider2016 Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
+For now we can link to the ATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. @schneider2016 Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
 
 $$
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
