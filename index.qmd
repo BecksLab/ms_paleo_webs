@@ -80,14 +80,14 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined fo
 
 Here we present six different models (\@tbl-models) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements are 'paleo friendly'.
 
-| Model family | Assumptions | 'Limitation' | Network type | Key reference |
-|------------|------------|------------|------------|------------|
-| random | Links are randomly distributed within a network | parameter assumptions, species agnostic | structural network | @erdos2022 |
-| niche | Networks are interval, species can be ordered on a 'niche axis' | parameter assumptions, species agnostic | structural network | @williamsSuccessItsLimits2008 |
-| allometric diet breadth model (ADBM) | Interactions are determined by energetic costs | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
-| l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data | realised network | @schneider2016 |
-| paleo food web inference model (PFIM) | Interactions can be inferred by a mechanistic framework/relationships | Assumption made as to the feeding mechanisms, need to elucidate traits from models (although this is a way smaller issue) | metaweb | @shaw2024 |
-| body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
+| Model family | Assumptions | Data needs | 'Limitation' | Network type | Key reference |
+|------------|------------|------------|------------|------------|------------|
+| random | Links are randomly distributed within a network | richness, number of links | parameter assumptions, species agnostic | structural network | @erdos2022 |
+| niche | Networks are interval, species can be ordered on a 'niche axis' | richness, connectance | parameter assumptions, species agnostic | structural network | @williamsSuccessItsLimits2008 |
+| allometric diet breadth model (ADBM) | Interactions are determined by energetic costs | body mass, biomass (abundance) | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
+| l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass, number of producer species | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data, assumptions as to the number of producer species | realised network | @schneider2016 |
+| paleo food web inference model (PFIM) | Interactions can be inferred by a mechanistic framework/relationships | feeding traits for taxa, mechanistic feeding rules | Assumption made as to the feeding mechanisms, need to elucidate traits from models (although this is a way smaller issue) | metaweb | @shaw2024 |
+| body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
