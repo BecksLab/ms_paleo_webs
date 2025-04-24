@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-04-23}
+\date{2025-04-24}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -274,7 +274,8 @@ network construction%
 
 \begin{itemize}
 \item
-  Because its interesting?
+  Because its interesting? Point to works that showcase how we can learn
+  form the past and inform on the current but possibly also the future
 \item
   Value in using hindcasting to aid in forecasting. \emph{e.g.,} the
   Toarcian ms (Dunhill et al., 2024) shows how we can use these paleo
@@ -320,10 +321,15 @@ different}\label{understanding-how-networks-are-different}
 
 It is important to be aware that networks can be configured in different
 ways depending on how the interactions are defined (Strydom, in prep).
-Basically we have metawebs, which represent \emph{potential}
-interactions, and realised networks, which represent the subset of
+Basically we have metawebs (which represent \emph{potential}
+interactions), realised networks (which represent the subset of
 potential that are realised as a result of community and environmental
-context.
+context), and structural networks (species agnostic networks that are
+structurally informative). Here also talk about the implications of
+these different networks types - different uses and capturing different
+processes. Speciifcally link this to models - \emph{i.e.,} different
+models have been developed to construct a \emph{specific} network
+representation.
 
 \section{Challenges specific to paleo
 communities/networks}\label{challenges-specific-to-paleo-communitiesnetworks}
@@ -351,42 +357,52 @@ about the intersectionality of the data we don't have for paleo
 communities and the data we need for some of the different modelling
 approaches.
 
-\section{Dataset Overview}\label{dataset-overview}
+\section{Methods}\label{methods}
 
-\subsection{Species occurence}\label{species-occurence}
+\subsection{Dataset Overview}\label{dataset-overview}
+
+\subsubsection{Species occurrence}\label{species-occurrence}
 
 Here we use the fossil occurrence data over an interval extends from the
 upper Pliensbachian (\textasciitilde185 Ma) to the upper Toarcian
 (\textasciitilde175 Ma) of the Cleveland Basin (see Dunhill et al., 2024
 for a more comprehensive overview). The data set consists of a subset of
-four broad time periods, or assemblages, which are treated as
-communities of interacting organisms; pre-extinction, post-extinction,
-early recovery, and late recovery.
+four broad time periods (pre-extinction, post-extinction, early
+recovery, and late recovery). The assemblages are treated as communities
+of interacting organisms. Something about the total number of taxa as
+well as numbers per a time period? Probbaly also make a comment that
+this is a `deep time' community we are looking at.
 
-\subsection{Defining modes of life
+\subsubsection{Defining modes of life
 (traits)}\label{defining-modes-of-life-traits}
 
 We used the modes of life (traits) as identified in Dunhill et al.
-(2024), who defined the motility (fast, slow, facultative, non-motile),
-tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal,
-deep infaunal), feeding (predator, suspension feeder, deposit feeder,
-mining, grazer), and size: gigantic (\textgreater500 mm), very large
-(\textgreater300--500 mm), large (\textgreater100--300 mm), medium
+(2024), who defined four traits: motility (fast, slow, facultative,
+non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow
+infaunal, deep infaunal), feeding (predator, suspension feeder, deposit
+feeder, mining, grazer), and size: gigantic (\textgreater500 mm), very
+large (\textgreater300--500 mm), large (\textgreater100--300 mm), medium
 (\textgreater50--100 mm), small (\textgreater10--50 mm), tiny (≤10 mm),
 for each fossil species based on the ecological traits defined in the
 Bambach ecospace model (Bambach et al., 2007).It would be very sexy if
 we could get a figure that looks something like this together\ldots{}
 
-\section{Methods}\label{methods}
-
 \subsection{Models}\label{models}
 
+Here we present six different models (@tbl-models) that can be used to
+construct food webs for both this specific community but are also
+broadly suited to paleo network prediction. These models span all facets
+of the network representation space (metaweb, realised, and structural
+network) and are suitable for an array of different paleo communities as
+the data requirements are `paleo friendly'.
+
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \caption{A summary of the different families of tools that can be used
 to generate paleo food webs.}\label{tbl-models}\tabularnewline
 \toprule\noalign{}
@@ -394,6 +410,8 @@ to generate paleo food webs.}\label{tbl-models}\tabularnewline
 Model family
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Assumptions
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Data needs
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 `Limitation'
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -409,6 +427,8 @@ Model family
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Assumptions
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Data needs
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 `Limitation'
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Network type
@@ -419,46 +439,75 @@ Key reference
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-random & Links are randomly distributed within a network & parameter
-assumptions, species agnostic & structural network &
-(\textbf{erdos2022?}) \\
+random & Links are randomly distributed within a network & richness,
+number of links & parameter assumptions, species agnostic & structural
+network & Erdős \& Rényi (1959) \\
 niche & Networks are interval, species can be ordered on a `niche axis'
-& parameter assumptions, species agnostic & structural network &
-(\textbf{williamsSuccessItsLimits2008?}) \\
+& richness, connectance & parameter assumptions, species agnostic &
+structural network & (\textbf{williamsSuccessItsLimits2008?}) \\
 allometric diet breadth model (ADBM) & Interactions are determined by
-energetic costs & does not account for forbidden links in terms of trait
-compatibility, assumptions on body size and biomass (abundance) from
-fossil data & realised network & Petchey et al. (2008) \\
+energetic costs & body mass, biomass (abundance) & does not account for
+forbidden links in terms of trait compatibility, assumptions on body
+size and biomass (abundance) from fossil data & realised network &
+Petchey et al. (2008) \\
 l-matrix & Interactions inferred using allometric rules (ratio of body
-sizes between predator and prey) & does not account for forbidden links
-in terms of trait compatibility, assumptions on body size from fossil
-data & realised network & Schneider et al. (2016) \\
+sizes between predator and prey) & body mass, number of producer species
+& does not account for forbidden links in terms of trait compatibility,
+assumptions on body size from fossil data, assumptions as to the number
+of producer species & realised network & Schneider et al. (2016) \\
 paleo food web inference model (PFIM) & Interactions can be inferred by
-a mechanistic framework/relationships & Assumption mades as to the
-feeding mechanisms, need to elucidate traits from models (although this
-is a way smaller issue) & metaweb & Shaw et al. (2024) \\
+a mechanistic framework/relationships & feeding traits for taxa,
+mechanistic feeding rules & Assumption made as to the feeding
+mechanisms, need to elucidate traits from models (although this is a way
+smaller issue) & metaweb & Shaw et al. (2024) \\
 body size ratio model & Interactions inferred using allometric rules
-(ratio of body sizes between predator and prey) & does not account for
-forbidden links in terms of evolutionary compatibility, assumptions on
-body size from fossil data & metaweb?? & Rohr et al. (2010) \\
+(ratio of body sizes between predator and prey) & body mass & does not
+account for forbidden links in terms of evolutionary compatibility,
+assumptions on body size from fossil data & metaweb?? & Rohr et al.
+(2010) \\
 \end{longtable}
 
-\subsubsection{Paleo food web inference
-model}\label{paleo-food-web-inference-model}
+\subsubsection{Random model}\label{random-model}
 
-The Paleo food web inference model (PFIM; Shaw et al. (2024)) uses a
-series of rules for a set of trait categories (such as habitat and body
-size) to determine if an interaction can feasibly occur between a
-species pair. If all conditions are met for the different rule classes
-then an interaction is deemed to be feasible. The original work put
-forward in Shaw et al. (2024) also includes a `downsampling' step
-developed by Roopnarine (2006) that uses a power law, defined by the
-link distribution, to `prune' down some of the links. It is worth
-mentioning that this approach is similar to that developed by Roopnarine
-(2017) with the exception that Shaw does not specifically bin species
-into guilds, and so we choose to use the method developed by Shaw since
-both methods should produce extremely similar networks as they are built
-on the same underlying philosophy.
+The Erdős--Rényi random graph model (Erdős \& Rényi, 1959) uniformly at
+random assigns an \(L\) number of links to an \(S\) number of nodes
+(species richness). From an ecological perspective this model assumes
+that the interactions between species occurs regardless of the identity
+of the species (\emph{i.e.,} species have no agency) and links are
+randomly distributed throughout the network. This creates a food web
+that is as free as possible from biological structuring while
+maintaining the expected richness \emph{(}\(S\)) and connectance
+(\(L/S^2\))
+
+\begin{quote}
+We could theoretically use the other `null models' BUT I feel like in
+the context of constructing a network for a given community the
+Erdős--Rényi is the better choice than the other models that (IMO) are
+more suited to hypothesis testing e.g.~do observed networks differ from
+the null network\ldots{}
+\end{quote}
+
+\subsubsection{Niche model}\label{niche-model}
+
+The niche model (Williams \& Martinez, 2000) introduces the idea that
+species interactions are based on the `feeding niche' of a species.
+Broadly, all species are randomly assigned a `feeding niche' range and
+all species that fall in this range can be consumed by that species
+(thereby allowing for cannibalism). The niche of each species is
+randomly assigned and the range of each species' niche is (in part)
+constrained by the specified connectance (\(Co\)) of the network. The
+niche model has also been modified, although it appears that adding to
+the `complexity' of the niche model does not improve on its ability to
+generate a more ecologically `correct' network (Williams \& Martinez,
+2008).
+
+Each of \(S\) species assigned a `niche value' parameter \(n_i\) drawn
+uniformly from the interval {[}0,1{]}. Species \(i\) consumes all
+species falling in a range (\(r_i\)) that is placed by uniformly drawing
+the center of the range (\(c_i\)) from \([ \frac{r_i}{2}, n_i ]\) The
+size of \(r_i\) is assigned by using a beta function to randomly draw
+values from {[}0,1{]} whose expected value is \(2 \times Co\) and then
+multiplying that value by \(n_i\) to obtain the desired \(Co\).
 
 \subsubsection{Allometric diet breadth
 model}\label{allometric-diet-breadth-model}
@@ -471,9 +520,9 @@ number of links in a network but also the arrangement of these links
 based on the diet breadth of a species, where the diet (\(K\)) is
 defined as follows:
 
-\begin{equation}\phantomsection\label{eq-adbm}{
+\[
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
-}\end{equation}
+\]
 
 where \(\lambda_{ij}\) is the handling time, which is the product of the
 attack rate \(A_{i}\) and resource density \(N_{i}\), \(E_{i}\) is the
@@ -493,33 +542,6 @@ H_{ij} = \infty \geq b
 
 Refer to Petchey et al. (2008) for more details as to how these
 different terms are parametrised.
-
-\subsubsection{Body size ratio model}\label{body-size-ratio-model}
-
-The body size ratio model (Rohr et al., 2010) determines feeding
-interactions using the ratio between consumer (\(M_{i}\)) and resource
-(\(M_{j}\)) body sizes - which supposedly stems from niche theory (still
-trying to reconcile that). The probability of a link existing between a
-consumer and resource (in its most basic form) is defined as follows:
-
-\[
-P_{ij} = \frac{p}{1+p}
-\]
-
-where
-
-\begin{equation}\phantomsection\label{eq-bodymass}{
-p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
-}\end{equation}
-
-The original latent-trait model developed by Rohr et al. (2010) also
-included an additional latent trait term \(v_{i} \delta f_{j}\) however
-for simplicity we will use Equation~\ref{eq-bodymass} as per Yeakel et
-al. (2014) Based on Rohr et al. (2010) it is possible to estimate the
-parameters \(\alpha\), \(\delta\), and \(\gamma\) using a GLM but we
-will use the parameters from Yeakel et al. (2014), which was `trained'
-on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
-\(\delta\) = 3.75, and \(\gamma\) = 1.87.
 
 \subsubsection{L matrix}\label{l-matrix}
 
@@ -544,19 +566,49 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 It is also possible to apply a threshold value to \(P_{ij}\), whereby
 any probabilities below that threshold are set to zero.
 
-\subsubsection{Niche model}\label{niche-model}
+\subsubsection{Paleo food web inference
+model}\label{paleo-food-web-inference-model}
 
-The niche model (Williams \& Martinez, 2000) introduces the idea that
-species interactions are based on the `feeding niche' of a species.
-Broadly, all species are randomly assigned a `feeding niche' range and
-all species that fall in this range can be consumed by that species
-(thereby allowing for cannibalism). The niche of each species is
-randomly assigned and the range of each species' niche is (in part)
-constrained by the specified connectance of the network. The niche model
-has also been modified, although it appears that adding to the
-`complexity' of the niche model does not improve on its ability to
-generate a more ecologically `correct' network (Williams \& Martinez,
-2008).
+The Paleo food web inference model (PFIM; Shaw et al. (2024)) uses a
+series of rules for a set of trait categories (such as habitat and body
+size) to determine if an interaction can feasibly occur between a
+species pair. If all conditions are met for the different rule classes
+then an interaction is deemed to be feasible. The original work put
+forward in Shaw et al. (2024) also includes a `downsampling' step
+developed by Roopnarine (2006) that uses a power law, defined by the
+link distribution, to `prune' down some of the links. It is worth
+mentioning that this approach is similar to that developed by Roopnarine
+(2017) with the exception that Shaw does not specifically bin species
+into guilds, and so we choose to use the method developed by Shaw since
+both methods should produce extremely similar networks as they are built
+on the same underlying philosophy.
+
+\subsubsection{Body size ratio model}\label{body-size-ratio-model}
+
+The body size ratio model (Rohr et al., 2010) determines feeding
+interactions using the ratio between consumer (\(M_{i}\)) and resource
+(\(M_{j}\)) body sizes - which supposedly stems from niche theory (still
+trying to reconcile that). The probability of a link existing between a
+consumer and resource (in its most basic form) is defined as follows:
+
+\[
+P_{ij} = \frac{p}{1+p}
+\]
+
+where
+
+\begin{equation}\phantomsection\label{eq-bodymass}{
+p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
+}\end{equation}
+
+The original latent-trait model developed by Rohr et al. (2010) also
+included an additional latent trait term \(v_{i} \delta f_{j}\) however
+for simplicity we will use Equation~\ref{eq-bodymass} as per Yeakel et
+al. (2014) . Based on Rohr et al. (2010) it is possible to estimate the
+parameters \(\alpha\), \(\delta\), and \(\gamma\) using a GLM but we
+will use the parameters from Yeakel et al. (2014), which was `trained'
+on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
+\(\delta\) = 3.75, and \(\gamma\) = 1.87.
 
 \subsection{Assessing model
 performance}\label{assessing-model-performance}
@@ -726,6 +778,11 @@ T. S., \& Beckerman, A. P. (2024). Extinction cascades, community
 collapse, and recovery across a Mesozoic hyperthermal event.
 \emph{Nature Communications}, \emph{15}(1), 8599.
 \url{https://doi.org/10.1038/s41467-024-53000-2}
+
+\bibitem[\citeproctext]{ref-erdos1959}
+Erdős, P., \& Rényi, A. (1959). On random graphs. i. \emph{Publicationes
+Mathematicae Debrecen}, \emph{6}(3-4), 290--297.
+\url{https://doi.org/10.5486/pmd.1959.6.3-4.12}
 
 \bibitem[\citeproctext]{ref-fricke2022}
 Fricke, E. C., Hsieh, C., Middleton, O., Gorczynski, D., Cappello, C.
