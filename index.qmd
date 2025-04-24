@@ -78,7 +78,7 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined fo
 
 ## Models
 
-Here we present six different models (\@tbl-models) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements are 'paleo friendly'.
+Here we present six different models (@tbl-models) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements are 'paleo friendly'.
 
 | Model family | Assumptions | Data needs | 'Limitation' | Network type | Key reference |
 |------------|------------|------------|------------|------------|------------|
