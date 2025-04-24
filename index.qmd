@@ -165,6 +165,24 @@ The original latent-trait model developed by @rohr2010 also included an addition
 
 In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
 
+| Label | Definition | Scale | Reference (for maths), can make footnotes probs |
+|-----------------|-----------------------|-----------------|-----------------|
+| Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | Macro |  |
+| GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @williams2008 |
+| LinkSD | Normalized standard deviation of links (number of consumers plus resources per taxon) | Micro |  |
+| Richness | Number of nodes in the network | Macro |  |
+| TL | Prey-weighted trophic level averaged across taxa | Macro | @williams2004 |
+| VulSD | Normalized standard deviation of vulnerability of a species standardized by $L/S$ | Micro |  |
+| Diameter | Diameter can also be measured as the average of the distances between each pair of nodes in the network | Macro | @delmas2018 |
+| $\rho$ | Spectral radius is a a conceptual analog to nestedness (and more appropriate for unipartite networks). It is defined as the absolute value of the largest real part of the eigenvalues of the *undirected* adjacency matrix | Macro | @staniczenko2013 |
+| Complexity | SVD complexity of a network, defined as the Pielou entropy of its singular values | Macro | @strydom2021 |
+| S1 | Number of linear chains | Meso | @milo2002; @stouffer2007 |
+| S2 | Number of omnivory motifs | Meso | @milo2002; @stouffer2007 |
+| S4 | Number of apparent competition motifs | Meso | @milo2002; @stouffer2007 |
+| S5 | Number of direct competition motifs | Meso | @milo2002; @stouffer2007 |
+
+: An informative caption about the different network properties {#tbl-properties}
+
 ### Macro network properties
 
 **Connectance** [@martinez1992] has been shown to be the feature of networks that underpin a series of other properties and function [@strydom2021b] and so it is perhaps the most important structural attribute for a model to be able to retrieve correctly. Additionally we consider the **complexity** of networks by calculating their SVD entropy (this gives us an estimate of the physical as opposed to behavioural complexity of networks; @strydom2021), we could also look at the rank/rank deficiency of networks which (theoretically) represents the number fo unique interaction strategies in the network [@strydom2021], which may be specifically interesting in terms of looking at pre and post extinction but also as a way to unpack 'functional redundancy' that some models may introduce.
