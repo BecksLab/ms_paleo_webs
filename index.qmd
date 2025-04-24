@@ -82,7 +82,7 @@ Here we present six different models (\@tbl-models) that can be used to construc
 
 | Model family | Assumptions | Data needs | 'Limitation' | Network type | Key reference |
 |------------|------------|------------|------------|------------|------------|
-| random | Links are randomly distributed within a network | richness, number of links | parameter assumptions, species agnostic | structural network | @erdos2022 |
+| random | Links are randomly distributed within a network | richness, number of links | parameter assumptions, species agnostic | structural network | @erdos1959 |
 | niche | Networks are interval, species can be ordered on a 'niche axis' | richness, connectance | parameter assumptions, species agnostic | structural network | @williamsSuccessItsLimits2008 |
 | allometric diet breadth model (ADBM) | Interactions are determined by energetic costs | body mass, biomass (abundance) | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
 | l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass, number of producer species | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data, assumptions as to the number of producer species | realised network | @schneider2016 |
