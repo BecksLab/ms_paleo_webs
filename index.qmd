@@ -91,6 +91,12 @@ Here we present six different models (\@tbl-models) that can be used to construc
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
+### Random model
+
+The Erdős–Rényi random graph model [@erdos1959] uniformly at random assigns an $M$ number of links to an $n$ number of nodes. From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (*i.e.,* species have no agency) and links are randomly distributed throughout the network.
+
+> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network...
+
 ### Paleo food web inference model
 
 The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.
