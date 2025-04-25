@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-04-24}
+\date{2025-04-25}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -389,12 +389,12 @@ we could get a figure that looks something like this together\ldots{}
 
 \subsection{Models}\label{models}
 
-Here we present six different models (@tbl-models) that can be used to
-construct food webs for both this specific community but are also
-broadly suited to paleo network prediction. These models span all facets
-of the network representation space (metaweb, realised, and structural
-network) and are suitable for an array of different paleo communities as
-the data requirements are `paleo friendly'.
+Here we present six different models (Table~\ref{tbl-models}) that can
+be used to construct food webs for both this specific community but are
+also broadly suited to paleo network prediction. These models span all
+facets of the network representation space (metaweb, realised, and
+structural network) and are suitable for an array of different paleo
+communities as the data requirements are `paleo friendly'.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
@@ -627,6 +627,70 @@ assessing how well models recover network structure (Allesina et al.,
 clearly be tied to broader aspects of network function or capturing a
 ecological process.
 
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2297}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3108}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2297}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2297}}@{}}
+\caption{An informative caption about the different network
+properties}\label{tbl-properties}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Label
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reference (for maths), can make footnotes probs
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Label
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reference (for maths), can make footnotes probs
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Connectance & \(L/S^2\), where \(S\) is the number of species and \(L\)
+the number of links & Macro & \\
+GenSD & Normalized standard deviation of generality of a species
+standardized by \(L/S\) & Micro & Williams \& Martinez (2008) \\
+LinkSD & Normalized standard deviation of links (number of consumers
+plus resources per taxon) & Micro & \\
+Richness & Number of nodes in the network & Macro & \\
+TL & Prey-weighted trophic level averaged across taxa & Macro & Williams
+\& Martinez (2004) \\
+VulSD & Normalized standard deviation of vulnerability of a species
+standardized by \(L/S\) & Micro & \\
+Diameter & Diameter can also be measured as the average of the distances
+between each pair of nodes in the network & Macro & Delmas et al.
+(2018) \\
+\(\rho\) & Spectral radius is a a conceptual analog to nestedness (and
+more appropriate for unipartite networks). It is defined as the absolute
+value of the largest real part of the eigenvalues of the
+\emph{undirected} adjacency matrix & Macro & Staniczenko et al.
+(2013) \\
+Complexity & SVD complexity of a network, defined as the Pielou entropy
+of its singular values & Macro & Strydom, Dalla Riva, et al. (2021) \\
+S1 & Number of linear chains & Meso & Milo et al. (2002); Stouffer et
+al. (2007) \\
+S2 & Number of omnivory motifs & Meso & Milo et al. (2002); Stouffer et
+al. (2007) \\
+S4 & Number of apparent competition motifs & Meso & Milo et al. (2002);
+Stouffer et al. (2007) \\
+S5 & Number of direct competition motifs & Meso & Milo et al. (2002);
+Stouffer et al. (2007) \\
+\end{longtable}
+
 \subsubsection{Macro network properties}\label{macro-network-properties}
 
 \textbf{Connectance} (Martinez, 1992) has been shown to be the feature
@@ -858,6 +922,11 @@ M. (2024). \emph{A framework for reconstructing ancient food webs using
 functional trait data} (p. 2024.01.30.578036). bioRxiv.
 \url{https://doi.org/10.1101/2024.01.30.578036}
 
+\bibitem[\citeproctext]{ref-staniczenko2013}
+Staniczenko, P. P. A., Kopp, J. C., \& Allesina, S. (2013). The ghost of
+nestedness in ecological networks. \emph{Nature Communications},
+\emph{4}(1), 1391. \url{https://doi.org/10.1038/ncomms2422}
+
 \bibitem[\citeproctext]{ref-stouffer2007}
 Stouffer, D. B., Camacho, J., Jiang, W., \& Nunes Amaral, L. A. (2007).
 Evidence for the existence of a robust pattern of prey selection in food
@@ -892,6 +961,12 @@ Ecology and Evolution}, \emph{9}.
 Williams, R. J., \& Martinez, N. D. (2000). Simple rules yield complex
 food webs. \emph{Nature}, \emph{404}(6774), 180--183.
 \url{https://doi.org/10.1038/35004572}
+
+\bibitem[\citeproctext]{ref-williams2004}
+Williams, R. J., \& Martinez, N. D. (2004). Stabilization of chaotic and
+non-permanent food-web dynamics. \emph{The European Physical Journal B -
+Condensed Matter}, \emph{38}(2), 297--303.
+\url{https://doi.org/10.1140/epjb/e2004-00122-1}
 
 \bibitem[\citeproctext]{ref-williams2008}
 Williams, R. J., \& Martinez, N. D. (2008). Success and its limits among
