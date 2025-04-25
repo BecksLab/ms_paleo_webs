@@ -17,18 +17,19 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     vul = collect(values(SpeciesInteractionNetworks.vulnerability(N)))
     ind_maxgen = findmax(gen)[2]
 
+    L = links(N)
+    S = richness(N)
+    l_s = L / S
+
     D = Dict{Symbol,Any}(
         :richness => richness(N),
-        :links => links(N),
         :connectance => SpeciesInteractionNetworks.connectance(N),
         :diameter => _diameter(N),
         :complexity => complexity(N),
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
-        :basal => sum(vec(sum(A, dims = 2) .== 0)),
-        :top => sum(vec(sum(A, dims = 1) .== 0)),
-        :generality => std(gen),
-        :vulnerability => std(vul),
-        :redundancy => (links(N) - (richness(N) - 1)),
+        :generality => std(gen) / l_s,
+        :vulnerability => std(vul) / l_s,
+        :redundancy => (L - (S - 1)),
         :S1 => length(findmotif(motifs(Unipartite, 3)[1], N)),
         :S2 => length(findmotif(motifs(Unipartite, 3)[2], N)),
         :S4 => length(findmotif(motifs(Unipartite, 3)[4], N)),

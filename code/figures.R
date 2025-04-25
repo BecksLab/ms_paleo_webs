@@ -12,9 +12,7 @@ setwd(here("code"))
 #### Structure ####
 
 df <- read_csv("../data/processed/topology.csv") %>%
-  mutate(across(matches("S[[:digit:]]"), log),
-         top = top / richness,
-         basal = basal / richness) %>%
+  mutate(across(matches("S[[:digit:]]"), log)) %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, time),
@@ -27,8 +25,8 @@ df <- read_csv("../data/processed/topology.csv") %>%
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance", "redundancy") ~ "Macro",
-    stat %in% c("generality", "vulnerability", "top", "basal") ~ "Micro",
+    stat %in% c("richness", "complexity", "connectance", "diameter", "distance", "redundancy") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   ))
 
@@ -60,7 +58,7 @@ for (i in seq_along(plot_list)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 1, 1))
+  plot_layout(height = c(4, 2, 1))
 
 ggsave("../figures/summary.png",
        width = 4500,
@@ -71,9 +69,7 @@ ggsave("../figures/summary.png",
 #### Extinctions ####
 
 df_ext <- read_csv("../data/processed/extinction_topology.csv") %>%
-  mutate(across(matches("S[[:digit:]]"), log),
-         top = top / richness,
-         basal = basal / richness) %>%
+  mutate(across(matches("S[[:digit:]]"), log)) %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, extinction_mechanism, rep),
@@ -86,8 +82,8 @@ df_ext <- read_csv("../data/processed/extinction_topology.csv") %>%
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>% 
   mutate(level = case_when(
-    stat %in% c("richness", "complexity", "connectance", "links", "diameter", "distance", "redundancy") ~ "Macro",
-    stat %in% c("generality", "vulnerability", "top", "basal") ~ "Micro",
+    stat %in% c("richness", "complexity", "connectance", "diameter", "distance", "redundancy") ~ "Macro",
+    stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   ))
 
@@ -199,16 +195,6 @@ df_pca <- list.files(path = "../data/processed/topology/", pattern = ".csv", ful
   lapply(read_csv) %>% 
   bind_rows %>% 
   mutate(across(matches("S[[:digit:]]"), log)) %>% 
-  select(-c(network, distance)) %>% 
-  filter(model %in% c("adbm", "bodymassratio", "niche", "pfim_minimum", "random", "lmatrix")) %>%
-  # remove
-  mutate(top = NULL,
-         basal = NULL,
-         id = case_when(
-           str_detect(id, "^.*pre.*$") ~ "pre",
-           str_detect(id, "^.*during.*$") ~ "post",
-           str_detect(id, "^.*post.*$") ~ "during",
-           TRUE ~ as.character(id))) %>%
   drop_na()
 
 pca_res <- prcomp(df_pca[3:8], scale. = TRUE)
