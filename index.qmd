@@ -207,6 +207,14 @@ The **specificity** of species in a network is measured as a function of the pro
 
 $R_{50}$ see @jonsson2015
 
+## Constructing networks
+
+For each paleo community (time bin) we constructed **100** networks for each model (so 6 * 100) networks. These networks were 'simplified' to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here *e.g.,* a species classed as 'very large' would have a body mass drawn from $U(300, 500)$. This was repeated for each run to add variation to the networks constructed. For the PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was set to **0.1**. For each network we calculated the properties listed in @tbl-properties 
+
+### Network extinctions
+
+
+
 # Results
 
 ## Comparing predicted networks
