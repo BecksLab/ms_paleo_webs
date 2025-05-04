@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-04-25}
+\date{2025-05-04}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -756,6 +756,24 @@ period but constructed using different models.
 \subsubsection{Robustness}\label{robustness}
 
 \(R_{50}\) see Jonsson et al. (2015)
+
+\subsection{Constructing networks}\label{constructing-networks}
+
+For each paleo community (time bin) we constructed \textbf{100} networks
+for each model (so 6 * 100) networks. These networks were `simplified'
+to removed any disconnected species. In total 2400 networks were
+constructed. When a quantitative measure of body size is needed (ADBM,
+bodymassratio, lmatrix) we drew a body mass for each species from a
+uniform distribution. The ranges were defined by the different size
+classes as discussed in insert cross ref to correct subsection here
+\emph{e.g.,} a species classed as `very large' would have a body mass
+drawn from \(U(300, 500)\). This was repeated for each run to add
+variation to the networks constructed. For the PFIM networks were
+downsampled (see relevant section). For both the random and niche model
+the desired connectance was set to \textbf{0.1}. For each network we
+calculated the properties listed in Table~\ref{tbl-properties}
+
+\subsubsection{Network extinctions}\label{network-extinctions}
 
 \section{Results}\label{results}
 

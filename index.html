@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.8.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-04-25">
+<meta name="dcterms.date" content="2025-05-04">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -54,10 +54,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-443ac161e34e8c1eedb78f958e3d9213.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-403b266e0422bd1d9cb7916029ba2e74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-665e19a24cf68db1dcb49e6775500a3f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -104,10 +104,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-04-25">
-<meta name="citation_cover_date" content="2025-04-25">
+<meta name="citation_publication_date" content="2025-05-04">
+<meta name="citation_cover_date" content="2025-05-04">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-04-25">
+<meta name="citation_online_date" content="2025-05-04">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -183,7 +183,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 25, 2025</p>
+              <p class="date">May 4, 2025</p>
             </div>
           </div>
           
@@ -243,6 +243,10 @@ window.Quarto = {
   <li><a href="#micro-network-properties" id="toc-micro-network-properties" class="nav-link" data-scroll-target="#micro-network-properties"><span class="header-section-number">5.3.3</span> Micro network properties</a></li>
   <li><a href="#interactions" id="toc-interactions" class="nav-link" data-scroll-target="#interactions"><span class="header-section-number">5.3.4</span> Interactions</a></li>
   <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">5.3.5</span> Robustness</a></li>
+  </ul></li>
+  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">5.4</span> Constructing networks</a>
+  <ul class="collapse">
+  <li><a href="#network-extinctions" id="toc-network-extinctions" class="nav-link" data-scroll-target="#network-extinctions"><span class="header-section-number">5.4.1</span> Network extinctions</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">6</span> Results</a>
@@ -580,6 +584,13 @@ Table&nbsp;2: An informative caption about the different network properties
 <p><span class="math inline">\(R_{50}\)</span> see <span class="citation" data-cites="jonsson2015">Jonsson et al. (<a href="#ref-jonsson2015" role="doc-biblioref">2015</a>)</span></p>
 </section>
 </section>
+<section id="constructing-networks" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">5.4</span> Constructing networks</h2>
+<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run to add variation to the networks constructed. For the PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was set to <strong>0.1</strong>. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
+<section id="network-extinctions" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="network-extinctions"><span class="header-section-number">5.4.1</span> Network extinctions</h3>
+</section>
+</section>
 </section>
 <section id="results" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Results</h1>
@@ -712,7 +723,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-04-25},
+  date = {2025-05-04},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -740,7 +751,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. April 25, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. May 4, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
