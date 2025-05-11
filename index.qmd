@@ -95,7 +95,7 @@ Here we present six different models (@tbl-models) that can be used to construct
 
 The Erdős–Rényi random graph model [@erdos1959] uniformly at random assigns an $L$ number of links to an $S$ number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (*i.e.,* species have no agency) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness *(*$S$) and connectance ($L/S^2$)
 
-> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network...
+> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network... Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes
 
 ### Niche model
 
