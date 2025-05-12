@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.1">
+<meta name="generator" content="quarto-1.8.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-05-04">
+<meta name="dcterms.date" content="2025-05-12">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -54,10 +54,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-443ac161e34e8c1eedb78f958e3d9213.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-19cd9126a9a9c64aacb03dc90954a64a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-665e19a24cf68db1dcb49e6775500a3f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ca70f74b74e2275f8dd713be1c9e30d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -82,7 +82,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -104,10 +104,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-05-04">
-<meta name="citation_cover_date" content="2025-05-04">
+<meta name="citation_publication_date" content="2025-05-12">
+<meta name="citation_cover_date" content="2025-05-12">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-05-04">
+<meta name="citation_online_date" content="2025-05-12">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -183,7 +183,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">May 4, 2025</p>
+              <p class="date">May 12, 2025</p>
             </div>
           </div>
           
@@ -398,7 +398,7 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="random-model"><span class="header-section-number">5.2.1</span> Random model</h3>
 <p>The Erdős–Rényi random graph model <span class="citation" data-cites="erdos1959">(<a href="#ref-erdos1959" role="doc-biblioref">Erdős and Rényi 1959</a>)</span> uniformly at random assigns an <span class="math inline">\(L\)</span> number of links to an <span class="math inline">\(S\)</span> number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (<em>i.e.,</em> species have no agency) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness <em>(</em><span class="math inline">\(S\)</span>) and connectance (<span class="math inline">\(L/S^2\)</span>)</p>
 <blockquote class="blockquote">
-<p>We could theoretically use the other ‘null models’ BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g.&nbsp;do observed networks differ from the null network…</p>
+<p>We could theoretically use the other ‘null models’ BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g.&nbsp;do observed networks differ from the null network… Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes</p>
 </blockquote>
 </section>
 <section id="niche-model" class="level3" data-number="5.2.2">
@@ -723,7 +723,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-05-04},
+  date = {2025-05-12},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -751,7 +751,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. May 4, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. May 12, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
