@@ -87,7 +87,7 @@ for j = 1:nrow(networks)
             # numeric extinctions
             for k in ["generality", "vulnerability"]
 
-                extinction_series = extinction(N, k, descending)
+                extinction_series = extinction(N, k, descending; protect = :basal)
 
                 # send results to data frame
                 d = Dict{Symbol,Any}(
