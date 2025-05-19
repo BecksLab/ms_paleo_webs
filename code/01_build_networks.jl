@@ -80,7 +80,7 @@ for i in eachindex(matrix_names)
                 N = bmratio(df.species, bodymass)
                 N = randomdraws(N) # from probabilistic to binary
             elseif model == "pfim"
-                N = pfim.PFIM(df, feeding_rules; downsample = true)
+                N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "niche"
                 N = structuralmodel(NicheModel, nrow(df), connectance)
             elseif model == "random"
