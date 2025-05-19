@@ -168,11 +168,11 @@ In terms of wanting to asses and compare across the different models it is benef
 | Label | Definition | Scale | Reference (for maths), can make footnotes probs |
 |-----------------|-----------------------|-----------------|-----------------|
 | Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | Macro |  |
-| GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @williams2008 |
+| GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @wwilliams2000 |
 | LinkSD | Normalized standard deviation of links (number of consumers plus resources per taxon) | Micro |  |
 | Richness | Number of nodes in the network | Macro |  |
 | TL | Prey-weighted trophic level averaged across taxa | Macro | @williams2004 |
-| VulSD | Normalized standard deviation of vulnerability of a species standardized by $L/S$ | Micro |  |
+| VulSD | Normalized standard deviation of vulnerability of a species standardized by $L/S$ | Micro | @williams2000 |
 | Diameter | Diameter can also be measured as the average of the distances between each pair of nodes in the network | Macro | @delmas2018 |
 | $\rho$ | Spectral radius is a a conceptual analog to nestedness (and more appropriate for unipartite networks). It is defined as the absolute value of the largest real part of the eigenvalues of the *undirected* adjacency matrix | Macro | @staniczenko2013 |
 | Complexity | SVD complexity of a network, defined as the Pielou entropy of its singular values | Macro | @strydom2021 |
