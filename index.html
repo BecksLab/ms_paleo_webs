@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.9">
+<meta name="generator" content="quarto-1.8.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-05-20">
+<meta name="dcterms.date" content="2025-05-23">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -55,10 +55,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b7b7c51884a1ad4150cbdc0ccb967560.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-09b140d2d032adf2aedb8b099be3ee13.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e009ce3d617a7fd459a2d9e231b8ab08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4f15e34fd272a5a1117e5e78c98d3e39.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -105,10 +105,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-05-20">
-<meta name="citation_cover_date" content="2025-05-20">
+<meta name="citation_publication_date" content="2025-05-23">
+<meta name="citation_cover_date" content="2025-05-23">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-05-20">
+<meta name="citation_online_date" content="2025-05-23">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -184,7 +184,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">May 20, 2025</p>
+              <p class="date">May 23, 2025</p>
             </div>
           </div>
           
@@ -221,40 +221,47 @@ window.Quarto = {
   <li><a href="#how-do-we-do-it" id="toc-how-do-we-do-it" class="nav-link" data-scroll-target="#how-do-we-do-it"><span class="header-section-number">2</span> How do we do it?</a></li>
   <li><a href="#understanding-how-networks-are-different" id="toc-understanding-how-networks-are-different" class="nav-link" data-scroll-target="#understanding-how-networks-are-different"><span class="header-section-number">3</span> Understanding how networks are different</a></li>
   <li><a href="#challenges-specific-to-paleo-communitiesnetworks" id="toc-challenges-specific-to-paleo-communitiesnetworks" class="nav-link" data-scroll-target="#challenges-specific-to-paleo-communitiesnetworks"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">5</span> Methods</a>
+  <li><a href="#interactionfood-web-prediction-modelstools" id="toc-interactionfood-web-prediction-modelstools" class="nav-link" data-scroll-target="#interactionfood-web-prediction-modelstools"><span class="header-section-number">5</span> Interaction/food web prediction models/tools</a>
   <ul class="collapse">
-  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">5.1</span> Dataset Overview</a>
+  <li><a href="#structural-models" id="toc-structural-models" class="nav-link" data-scroll-target="#structural-models"><span class="header-section-number">5.1</span> Structural models</a>
   <ul class="collapse">
-  <li><a href="#species-occurrence" id="toc-species-occurrence" class="nav-link" data-scroll-target="#species-occurrence"><span class="header-section-number">5.1.1</span> Species occurrence</a></li>
-  <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">5.1.2</span> Defining modes of life (traits)</a></li>
+  <li><a href="#random-model" id="toc-random-model" class="nav-link" data-scroll-target="#random-model"><span class="header-section-number">5.1.1</span> Random model</a></li>
+  <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model"><span class="header-section-number">5.1.2</span> Niche model</a></li>
+  <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model"><span class="header-section-number">5.1.3</span> Allometric diet breadth model</a></li>
+  <li><a href="#l-matrix" id="toc-l-matrix" class="nav-link" data-scroll-target="#l-matrix"><span class="header-section-number">5.1.4</span> L matrix</a></li>
   </ul></li>
-  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models"><span class="header-section-number">5.2</span> Models</a>
+  <li><a href="#interaction-predictions" id="toc-interaction-predictions" class="nav-link" data-scroll-target="#interaction-predictions"><span class="header-section-number">5.2</span> Interaction predictions</a>
   <ul class="collapse">
-  <li><a href="#random-model" id="toc-random-model" class="nav-link" data-scroll-target="#random-model"><span class="header-section-number">5.2.1</span> Random model</a></li>
-  <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model"><span class="header-section-number">5.2.2</span> Niche model</a></li>
-  <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model"><span class="header-section-number">5.2.3</span> Allometric diet breadth model</a></li>
-  <li><a href="#l-matrix" id="toc-l-matrix" class="nav-link" data-scroll-target="#l-matrix"><span class="header-section-number">5.2.4</span> L matrix</a></li>
-  <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model"><span class="header-section-number">5.2.5</span> Paleo food web inference model</a></li>
-  <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model"><span class="header-section-number">5.2.6</span> Body size ratio model</a></li>
-  </ul></li>
-  <li><a href="#assessing-model-performance" id="toc-assessing-model-performance" class="nav-link" data-scroll-target="#assessing-model-performance"><span class="header-section-number">5.3</span> Assessing model performance</a>
-  <ul class="collapse">
-  <li><a href="#macro-network-properties" id="toc-macro-network-properties" class="nav-link" data-scroll-target="#macro-network-properties"><span class="header-section-number">5.3.1</span> Macro network properties</a></li>
-  <li><a href="#meso-network-properties" id="toc-meso-network-properties" class="nav-link" data-scroll-target="#meso-network-properties"><span class="header-section-number">5.3.2</span> Meso network properties</a></li>
-  <li><a href="#micro-network-properties" id="toc-micro-network-properties" class="nav-link" data-scroll-target="#micro-network-properties"><span class="header-section-number">5.3.3</span> Micro network properties</a></li>
-  <li><a href="#interactions" id="toc-interactions" class="nav-link" data-scroll-target="#interactions"><span class="header-section-number">5.3.4</span> Interactions</a></li>
-  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">5.3.5</span> Robustness</a></li>
-  </ul></li>
-  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">5.4</span> Constructing networks</a>
-  <ul class="collapse">
-  <li><a href="#network-extinctions" id="toc-network-extinctions" class="nav-link" data-scroll-target="#network-extinctions"><span class="header-section-number">5.4.1</span> Network extinctions</a></li>
+  <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model"><span class="header-section-number">5.2.1</span> Paleo food web inference model</a></li>
+  <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model"><span class="header-section-number">5.2.2</span> Body size ratio model</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">6</span> Results</a>
+  <li><a href="#aims" id="toc-aims" class="nav-link" data-scroll-target="#aims"><span class="header-section-number">6</span> Aims…</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">7</span> Methods</a>
   <ul class="collapse">
-  <li><a href="#comparing-predicted-networks" id="toc-comparing-predicted-networks" class="nav-link" data-scroll-target="#comparing-predicted-networks"><span class="header-section-number">6.1</span> Comparing predicted networks</a></li>
-  <li><a href="#comparing-inference" id="toc-comparing-inference" class="nav-link" data-scroll-target="#comparing-inference"><span class="header-section-number">6.2</span> Comparing inference</a></li>
-  <li><a href="#extinctions" id="toc-extinctions" class="nav-link" data-scroll-target="#extinctions"><span class="header-section-number">6.3</span> Extinctions</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">7.1</span> Dataset Overview</a>
+  <ul class="collapse">
+  <li><a href="#species-occurrence" id="toc-species-occurrence" class="nav-link" data-scroll-target="#species-occurrence"><span class="header-section-number">7.1.1</span> Species occurrence</a></li>
+  <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">7.1.2</span> Defining modes of life (traits)</a></li>
+  </ul></li>
+  <li><a href="#assessing-structural-differences" id="toc-assessing-structural-differences" class="nav-link" data-scroll-target="#assessing-structural-differences"><span class="header-section-number">7.2</span> Assessing structural differences</a>
+  <ul class="collapse">
+  <li><a href="#macro-network-properties" id="toc-macro-network-properties" class="nav-link" data-scroll-target="#macro-network-properties"><span class="header-section-number">7.2.1</span> Macro network properties</a></li>
+  <li><a href="#meso-network-properties" id="toc-meso-network-properties" class="nav-link" data-scroll-target="#meso-network-properties"><span class="header-section-number">7.2.2</span> Meso network properties</a></li>
+  <li><a href="#micro-network-properties" id="toc-micro-network-properties" class="nav-link" data-scroll-target="#micro-network-properties"><span class="header-section-number">7.2.3</span> Micro network properties</a></li>
+  </ul></li>
+  <li><a href="#assessing-pairwise-interaction-differences" id="toc-assessing-pairwise-interaction-differences" class="nav-link" data-scroll-target="#assessing-pairwise-interaction-differences"><span class="header-section-number">7.3</span> Assessing pairwise interaction differences</a></li>
+  <li><a href="#assessing-network-inference" id="toc-assessing-network-inference" class="nav-link" data-scroll-target="#assessing-network-inference"><span class="header-section-number">7.4</span> Assessing network inference</a>
+  <ul class="collapse">
+  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">7.4.1</span> Robustness</a></li>
+  </ul></li>
+  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">7.5</span> Constructing networks</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">8</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#comparing-predicted-networks" id="toc-comparing-predicted-networks" class="nav-link" data-scroll-target="#comparing-predicted-networks"><span class="header-section-number">8.1</span> Comparing predicted networks</a></li>
+  <li><a href="#comparing-inference" id="toc-comparing-inference" class="nav-link" data-scroll-target="#comparing-inference"><span class="header-section-number">8.2</span> Comparing inference</a></li>
+  <li><a href="#extinctions" id="toc-extinctions" class="nav-link" data-scroll-target="#extinctions"><span class="header-section-number">8.3</span> Extinctions</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -299,23 +306,10 @@ window.Quarto = {
 <section id="challenges-specific-to-paleo-communitiesnetworks" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Challenges specific to paleo communities/networks</h1>
 <p>Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased [REF] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific ‘parts’ of an individual (hard and bone-y bits), this means we don’t have a complete picture of the physical traits of species <em>e.g.,</em> no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no <em>real</em> idea of spatial arrangements, compounded that fossils aren’t necessarily conserved/found ‘in situ’ but can be moved (<em>e.g.,</em> alluvial deposits). Methodologically speaking some tools that ‘learn’ from contemporary communities (<em>e.g.,</em> <span class="citation" data-cites="strydom2023">Strydom et al. (<a href="#ref-strydom2023" role="doc-biblioref">2023</a>)</span>, <span class="citation" data-cites="caron2022">Caron et al. (<a href="#ref-caron2022" role="doc-biblioref">2022</a>)</span>) will become ‘worse’ the further one goes back in time since species then look very different from now but can still be useful for ‘recent’ communities (<em>e.g.,</em> <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span>). Something about the intersectionality of the data we don’t have for paleo communities and the data we need for some of the different modelling approaches.</p>
-<p>Here we do this because it lets us unpack the nuances of what the different network representation. Meta v real. Distribution vs identity of links. Inferred results - deviation from results and extended Toarcian redux.</p>
 </section>
-<section id="methods" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Methods</h1>
-<section id="dataset-overview" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">5.1</span> Dataset Overview</h2>
-<section id="species-occurrence" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="species-occurrence"><span class="header-section-number">5.1.1</span> Species occurrence</h3>
-<p>Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(see <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> for a more comprehensive overview)</span>. The data set consists of a subset of four broad time periods (pre-extinction, post-extinction, early recovery, and late recovery). The assemblages are treated as communities of interacting organisms. Something about the total number of taxa as well as numbers per a time period? Probbaly also make a comment that this is a ‘deep time’ community we are looking at.</p>
-</section>
-<section id="defining-modes-of-life-traits" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">5.1.2</span> Defining modes of life (traits)</h3>
-<p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.It would be very sexy if we could get a figure that looks something like this together…</p>
-</section>
-</section>
-<section id="models" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="models"><span class="header-section-number">5.2</span> Models</h2>
+<section id="interactionfood-web-prediction-modelstools" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Interaction/food web prediction models/tools</h1>
+<p>Here we should take the time to go in and just articulate that there are nuance and differences in terms of predicting interactions vs predicting networks. Once it is finally on a preprint server we can obviously link to the T4T stuff…</p>
 <p>Here we present six different models (<a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a>) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements are ‘paleo friendly’.</p>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -396,20 +390,22 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 </div>
 </figure>
 </div>
-<section id="random-model" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="random-model"><span class="header-section-number">5.2.1</span> Random model</h3>
+<section id="structural-models" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="structural-models"><span class="header-section-number">5.1</span> Structural models</h2>
+<section id="random-model" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="random-model"><span class="header-section-number">5.1.1</span> Random model</h3>
 <p>The Erdős–Rényi random graph model <span class="citation" data-cites="erdos1959">(<a href="#ref-erdos1959" role="doc-biblioref">Erdős and Rényi 1959</a>)</span> uniformly at random assigns an <span class="math inline">\(L\)</span> number of links to an <span class="math inline">\(S\)</span> number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (<em>i.e.,</em> species have no agency) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness <em>(</em><span class="math inline">\(S\)</span>) and connectance (<span class="math inline">\(L/S^2\)</span>)</p>
 <blockquote class="blockquote">
 <p>We could theoretically use the other ‘null models’ BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g.&nbsp;do observed networks differ from the null network… Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes</p>
 </blockquote>
 </section>
-<section id="niche-model" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="niche-model"><span class="header-section-number">5.2.2</span> Niche model</h3>
+<section id="niche-model" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="niche-model"><span class="header-section-number">5.1.2</span> Niche model</h3>
 <p>The niche model <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Richard J. Williams and Martinez 2000</a>)</span> introduces the idea that species interactions are based on the ‘feeding niche’ of a species. Broadly, all species are randomly assigned a ‘feeding niche’ range and all species that fall in this range can be consumed by that species (thereby allowing for cannibalism). The niche of each species is randomly assigned and the range of each species’ niche is (in part) constrained by the specified connectance (<span class="math inline">\(Co\)</span>) of the network. The niche model has also been modified, although it appears that adding to the ‘complexity’ of the niche model does not improve on its ability to generate a more ecologically ‘correct’ network <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Richard J. Williams and Martinez 2008</a>)</span>.</p>
 <p>Each of <span class="math inline">\(S\)</span> species assigned a ‘niche value’ parameter <span class="math inline">\(n_i\)</span> drawn uniformly from the interval [0,1]. Species <span class="math inline">\(i\)</span> consumes all species falling in a range (<span class="math inline">\(r_i\)</span>) that is placed by uniformly drawing the center of the range (<span class="math inline">\(c_i\)</span>) from <span class="math inline">\([ \frac{r_i}{2}, n_i ]\)</span> The size of <span class="math inline">\(r_i\)</span> is assigned by using a beta function to randomly draw values from [0,1] whose expected value is <span class="math inline">\(2 \times Co\)</span> and then multiplying that value by <span class="math inline">\(n_i\)</span> to obtain the desired <span class="math inline">\(Co\)</span>.</p>
 </section>
-<section id="allometric-diet-breadth-model" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="allometric-diet-breadth-model"><span class="header-section-number">5.2.3</span> Allometric diet breadth model</h3>
+<section id="allometric-diet-breadth-model" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="allometric-diet-breadth-model"><span class="header-section-number">5.1.3</span> Allometric diet breadth model</h3>
 <p>The Allometric diet breadth model (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet (<span class="math inline">\(K\)</span>) is defined as follows:</p>
 <p><span class="math display">\[
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
@@ -424,8 +420,8 @@ H_{ij} = \infty \geq b
 \]</span></p>
 <p>Refer to <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> for more details as to how these different terms are parametrised.</p>
 </section>
-<section id="l-matrix" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">5.2.4</span> L matrix</h3>
+<section id="l-matrix" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="l-matrix"><span class="header-section-number">5.1.4</span> L matrix</h3>
 <p>For now we can link to the ATNr package <span class="citation" data-cites="gauzens2023">(<a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span> until I can find a more suitable manuscript that breaks down this construction method. <span class="citation" data-cites="schneider2016">Schneider et al. (<a href="#ref-schneider2016" role="doc-biblioref">2016</a>)</span> Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
@@ -436,12 +432,15 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 \]</span></p>
 <p>It is also possible to apply a threshold value to <span class="math inline">\(P_{ij}\)</span>, whereby any probabilities below that threshold are set to zero.</p>
 </section>
-<section id="paleo-food-web-inference-model" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="paleo-food-web-inference-model"><span class="header-section-number">5.2.5</span> Paleo food web inference model</h3>
+</section>
+<section id="interaction-predictions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="interaction-predictions"><span class="header-section-number">5.2</span> Interaction predictions</h2>
+<section id="paleo-food-web-inference-model" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="paleo-food-web-inference-model"><span class="header-section-number">5.2.1</span> Paleo food web inference model</h3>
 <p>The Paleo food web inference model (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span> also includes a ‘downsampling’ step developed by <span class="citation" data-cites="roopnarine2006">Peter D. Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span> that uses a power law, defined by the link distribution, to ‘prune’ down some of the links. It is worth mentioning that this approach is similar to that developed by <span class="citation" data-cites="roopnarine2017">Peter D. Roopnarine (<a href="#ref-roopnarine2017" role="doc-biblioref">2017</a>)</span> with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.</p>
 </section>
-<section id="body-size-ratio-model" class="level3" data-number="5.2.6">
-<h3 data-number="5.2.6" class="anchored" data-anchor-id="body-size-ratio-model"><span class="header-section-number">5.2.6</span> Body size ratio model</h3>
+<section id="body-size-ratio-model" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="body-size-ratio-model"><span class="header-section-number">5.2.2</span> Body size ratio model</h3>
 <p>The body size ratio model <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span> determines feeding interactions using the ratio between consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes - which supposedly stems from niche theory (still trying to reconcile that). The probability of a link existing between a consumer and resource (in its most basic form) is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = \frac{p}{1+p}
@@ -453,8 +452,26 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <a href="#eq-bodymass" class="quarto-xref">Equation&nbsp;1</a> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> . Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha\)</span> = 1.41, <span class="math inline">\(\delta\)</span> = 3.75, and <span class="math inline">\(\gamma\)</span> = 1.87.</p>
 </section>
 </section>
-<section id="assessing-model-performance" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="assessing-model-performance"><span class="header-section-number">5.3</span> Assessing model performance</h2>
+</section>
+<section id="aims" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Aims…</h1>
+<p>Here we do this because it lets us unpack the nuances of what the different network representation. Firstly we want ot identify the differences between models that predict interactions (and thus metawebs), and models that predict network structure. Specifically we want to look at 1) the structural difference between all models (<em>i.e.,</em> do we see a difference in the distribution of links between networks that have the same number of nodes?) and 2) the identity of pairwise links between species pairs (<em>i.e.,</em> do different models differ in which links are present (or absent) between species pairs?) Additionally we want to establish if using networks that are constructed using different models will change the the downstream inferences that are made by repeating the work done by <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>.</p>
+</section>
+<section id="methods" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Methods</h1>
+<section id="dataset-overview" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">7.1</span> Dataset Overview</h2>
+<section id="species-occurrence" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="species-occurrence"><span class="header-section-number">7.1.1</span> Species occurrence</h3>
+<p>Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(see <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> for a more comprehensive overview)</span>. The data set consists of a subset of four broad time periods (pre-extinction, post-extinction, early recovery, and late recovery). The assemblages are treated as communities of interacting organisms. Something about the total number of taxa as well as numbers per a time period? Probbaly also make a comment that this is a ‘deep time’ community we are looking at.</p>
+</section>
+<section id="defining-modes-of-life-traits" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">7.1.2</span> Defining modes of life (traits)</h3>
+<p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.It would be very sexy if we could get a figure that looks something like this together…</p>
+</section>
+</section>
+<section id="assessing-structural-differences" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="assessing-structural-differences"><span class="header-section-number">7.2</span> Assessing structural differences</h2>
 <p>In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different ‘scales’ of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to ‘measure’ and analyse ecological networks <span class="citation" data-cites="delmas2018">(<a href="#ref-delmas2018" role="doc-biblioref">Delmas et al. 2018</a>)</span> we do still lack a clear set of guidelines for assessing how well models recover network structure <span class="citation" data-cites="allesina2008">(<a href="#ref-allesina2008" role="doc-biblioref">Allesina, Alonso, and Pascual 2008</a>)</span> and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.</p>
 <div id="tbl-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -561,43 +578,41 @@ Table&nbsp;2: An informative caption about the different network properties
 </div>
 </figure>
 </div>
-<section id="macro-network-properties" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="macro-network-properties"><span class="header-section-number">5.3.1</span> Macro network properties</h3>
+<section id="macro-network-properties" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="macro-network-properties"><span class="header-section-number">7.2.1</span> Macro network properties</h3>
 <p><strong>Connectance</strong> <span class="citation" data-cites="martinez1992">(<a href="#ref-martinez1992" role="doc-biblioref">Martinez 1992</a>)</span> has been shown to be the feature of networks that underpin a series of other properties and function <span class="citation" data-cites="strydom2021b">(<a href="#ref-strydom2021b" role="doc-biblioref">Strydom et al. 2021</a>)</span> and so it is perhaps the most important structural attribute for a model to be able to retrieve correctly. Additionally we consider the <strong>complexity</strong> of networks by calculating their SVD entropy (this gives us an estimate of the physical as opposed to behavioural complexity of networks; <span class="citation" data-cites="strydom2021">Strydom, Dalla Riva, and Poisot (<a href="#ref-strydom2021" role="doc-biblioref">2021</a>)</span>), we could also look at the rank/rank deficiency of networks which (theoretically) represents the number fo unique interaction strategies in the network <span class="citation" data-cites="strydom2021">(<a href="#ref-strydom2021" role="doc-biblioref">Strydom, Dalla Riva, and Poisot 2021</a>)</span>, which may be specifically interesting in terms of looking at pre and post extinction but also as a way to unpack ‘functional redundancy’ that some models may introduce.</p>
 </section>
-<section id="meso-network-properties" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="meso-network-properties"><span class="header-section-number">5.3.2</span> Meso network properties</h3>
+<section id="meso-network-properties" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="meso-network-properties"><span class="header-section-number">7.2.2</span> Meso network properties</h3>
 <p>Motifs represent smaller subset of interactions between three species, and are argued to capture dynamics that are likely to be ecologically relevant <span class="citation" data-cites="milo2002 stouffer2007">(<a href="#ref-milo2002" role="doc-biblioref">Milo et al. 2002</a>; <a href="#ref-stouffer2007" role="doc-biblioref">Stouffer et al. 2007</a>)</span>. Here we specifically look at the number of <strong>linear chains</strong>, <strong>omnivory</strong>, <strong>apparent competition</strong>, and <strong>direct competition</strong> motifs. In the broader context the ability of a model in being able to capture these smaller motifs will inform as to its suitability of use understanding the more dynamic component of network ecology.</p>
 </section>
-<section id="micro-network-properties" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="micro-network-properties"><span class="header-section-number">5.3.3</span> Micro network properties</h3>
+<section id="micro-network-properties" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="micro-network-properties"><span class="header-section-number">7.2.3</span> Micro network properties</h3>
 <p>The number of interactions established (<strong>generality</strong>) or received (<strong>vulnerability</strong>) by each species <span class="citation" data-cites="schoener1989">(<a href="#ref-schoener1989" role="doc-biblioref">Schoener 1989</a>)</span>, are (broadly) indicative of consumer-resource relationships and diet breadth of species [ref]. Although this is usually determined at the species level the standard deviation of the generality and vulnerability of species is often used when benchmarking predicted networks <span class="citation" data-cites="williams2008 petchey2008">(<em>e.g.,</em> <a href="#ref-williams2008" role="doc-biblioref">Richard J. Williams and Martinez 2008</a>; <a href="#ref-petchey2008" role="doc-biblioref">Petchey et al. 2008</a>)</span>.</p>
 <p>The <strong>specificity</strong> of species in a network is measured as a function of the proportion of resources they effectively use <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span></p>
-<blockquote class="blockquote">
-<p><strong>Shape:</strong> to determine if the ‘shape’ of the network is correct we are looking at the ratio of ‘top’:‘basal’ species (where ‘top’ species are those that have a vulnerability of 0 and ‘basal’ species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar ‘shape’). This will allow is to see if the models construct tall ‘pencil’ vs flat ‘pancake’ networks (Beckerman 2024, pers comms). A small (&lt; 1) number will thus be indicative of a ‘bottom-heavy’ network and the opposite for larger numbers</p>
-</blockquote>
 </section>
-<section id="interactions" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="interactions"><span class="header-section-number">5.3.4</span> Interactions</h3>
+</section>
+<section id="assessing-pairwise-interaction-differences" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="assessing-pairwise-interaction-differences"><span class="header-section-number">7.3</span> Assessing pairwise interaction differences</h2>
 <p><strong>Interaction turnover</strong> <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span> tells us which interactions are ‘conserved’ (shared) across the networks from the same period but constructed using different models.</p>
 </section>
-<section id="robustness" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="robustness"><span class="header-section-number">5.3.5</span> Robustness</h3>
+<section id="assessing-network-inference" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="assessing-network-inference"><span class="header-section-number">7.4</span> Assessing network inference</h2>
+<p>Here we will look at extinctions of the different paleo</p>
+<section id="robustness" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="robustness"><span class="header-section-number">7.4.1</span> Robustness</h3>
 <p><span class="math inline">\(R_{50}\)</span> see <span class="citation" data-cites="jonsson2015">Jonsson et al. (<a href="#ref-jonsson2015" role="doc-biblioref">2015</a>)</span></p>
 </section>
 </section>
-<section id="constructing-networks" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">5.4</span> Constructing networks</h2>
+<section id="constructing-networks" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">7.5</span> Constructing networks</h2>
 <p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run to add variation to the networks constructed. For the PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was set to <strong>0.1</strong>. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
-<section id="network-extinctions" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="network-extinctions"><span class="header-section-number">5.4.1</span> Network extinctions</h3>
 </section>
 </section>
-</section>
-<section id="results" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Results</h1>
-<section id="comparing-predicted-networks" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="comparing-predicted-networks"><span class="header-section-number">6.1</span> Comparing predicted networks</h2>
+<section id="results" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Results</h1>
+<section id="comparing-predicted-networks" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="comparing-predicted-networks"><span class="header-section-number">8.1</span> Comparing predicted networks</h2>
 <div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -609,11 +624,11 @@ Figure&nbsp;1: stuff… For display purposes the counts for the different motifs
 </figure>
 </div>
 </section>
-<section id="comparing-inference" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="comparing-inference"><span class="header-section-number">6.2</span> Comparing inference</h2>
+<section id="comparing-inference" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="comparing-inference"><span class="header-section-number">8.2</span> Comparing inference</h2>
 </section>
-<section id="extinctions" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="extinctions"><span class="header-section-number">6.3</span> Extinctions</h2>
+<section id="extinctions" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="extinctions"><span class="header-section-number">8.3</span> Extinctions</h2>
 <div id="fig-extinction" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-extinction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -725,7 +740,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-05-20},
+  date = {2025-05-23},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -753,7 +768,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. May 20, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. May 23, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

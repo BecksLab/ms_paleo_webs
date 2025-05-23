@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-05-20}
+\date{2025-05-23}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -357,42 +357,13 @@ about the intersectionality of the data we don't have for paleo
 communities and the data we need for some of the different modelling
 approaches.
 
-Here we do this because it lets us unpack the nuances of what the
-different network representation. Meta v real. Distribution vs identity
-of links. Inferred results - deviation from results and extended
-Toarcian redux.
+\section{Interaction/food web prediction
+models/tools}\label{interactionfood-web-prediction-modelstools}
 
-\section{Methods}\label{methods}
-
-\subsection{Dataset Overview}\label{dataset-overview}
-
-\subsubsection{Species occurrence}\label{species-occurrence}
-
-Here we use the fossil occurrence data over an interval extends from the
-upper Pliensbachian (\textasciitilde185 Ma) to the upper Toarcian
-(\textasciitilde175 Ma) of the Cleveland Basin (see Dunhill et al., 2024
-for a more comprehensive overview). The data set consists of a subset of
-four broad time periods (pre-extinction, post-extinction, early
-recovery, and late recovery). The assemblages are treated as communities
-of interacting organisms. Something about the total number of taxa as
-well as numbers per a time period? Probbaly also make a comment that
-this is a `deep time' community we are looking at.
-
-\subsubsection{Defining modes of life
-(traits)}\label{defining-modes-of-life-traits}
-
-We used the modes of life (traits) as identified in Dunhill et al.
-(2024), who defined four traits: motility (fast, slow, facultative,
-non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow
-infaunal, deep infaunal), feeding (predator, suspension feeder, deposit
-feeder, mining, grazer), and size: gigantic (\textgreater500 mm), very
-large (\textgreater300--500 mm), large (\textgreater100--300 mm), medium
-(\textgreater50--100 mm), small (\textgreater10--50 mm), tiny (≤10 mm),
-for each fossil species based on the ecological traits defined in the
-Bambach ecospace model (Bambach et al., 2007).It would be very sexy if
-we could get a figure that looks something like this together\ldots{}
-
-\subsection{Models}\label{models}
+Here we should take the time to go in and just articulate that there are
+nuance and differences in terms of predicting interactions vs predicting
+networks. Once it is finally on a preprint server we can obviously link
+to the T4T stuff\ldots{}
 
 Here we present six different models (Table~\ref{tbl-models}) that can
 be used to construct food webs for both this specific community but are
@@ -471,6 +442,8 @@ account for forbidden links in terms of evolutionary compatibility,
 assumptions on body size from fossil data & metaweb?? & Rohr et al.
 (2010) \\
 \end{longtable}
+
+\subsection{Structural models}\label{structural-models}
 
 \subsubsection{Random model}\label{random-model}
 
@@ -573,6 +546,8 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 It is also possible to apply a threshold value to \(P_{ij}\), whereby
 any probabilities below that threshold are set to zero.
 
+\subsection{Interaction predictions}\label{interaction-predictions}
+
 \subsubsection{Paleo food web inference
 model}\label{paleo-food-web-inference-model}
 
@@ -617,8 +592,54 @@ will use the parameters from Yeakel et al. (2014), which was `trained'
 on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
 \(\delta\) = 3.75, and \(\gamma\) = 1.87.
 
-\subsection{Assessing model
-performance}\label{assessing-model-performance}
+\section{Aims\ldots{}}\label{aims}
+
+Here we do this because it lets us unpack the nuances of what the
+different network representation. Firstly we want ot identify the
+differences between models that predict interactions (and thus
+metawebs), and models that predict network structure. Specifically we
+want to look at 1) the structural difference between all models
+(\emph{i.e.,} do we see a difference in the distribution of links
+between networks that have the same number of nodes?) and 2) the
+identity of pairwise links between species pairs (\emph{i.e.,} do
+different models differ in which links are present (or absent) between
+species pairs?) Additionally we want to establish if using networks that
+are constructed using different models will change the the downstream
+inferences that are made by repeating the work done by Dunhill et al.
+(2024).
+
+\section{Methods}\label{methods}
+
+\subsection{Dataset Overview}\label{dataset-overview}
+
+\subsubsection{Species occurrence}\label{species-occurrence}
+
+Here we use the fossil occurrence data over an interval extends from the
+upper Pliensbachian (\textasciitilde185 Ma) to the upper Toarcian
+(\textasciitilde175 Ma) of the Cleveland Basin (see Dunhill et al., 2024
+for a more comprehensive overview). The data set consists of a subset of
+four broad time periods (pre-extinction, post-extinction, early
+recovery, and late recovery). The assemblages are treated as communities
+of interacting organisms. Something about the total number of taxa as
+well as numbers per a time period? Probbaly also make a comment that
+this is a `deep time' community we are looking at.
+
+\subsubsection{Defining modes of life
+(traits)}\label{defining-modes-of-life-traits}
+
+We used the modes of life (traits) as identified in Dunhill et al.
+(2024), who defined four traits: motility (fast, slow, facultative,
+non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow
+infaunal, deep infaunal), feeding (predator, suspension feeder, deposit
+feeder, mining, grazer), and size: gigantic (\textgreater500 mm), very
+large (\textgreater300--500 mm), large (\textgreater100--300 mm), medium
+(\textgreater50--100 mm), small (\textgreater10--50 mm), tiny (≤10 mm),
+for each fossil species based on the ecological traits defined in the
+Bambach ecospace model (Bambach et al., 2007).It would be very sexy if
+we could get a figure that looks something like this together\ldots{}
+
+\subsection{Assessing structural
+differences}\label{assessing-structural-differences}
 
 In terms of wanting to asses and compare across the different models it
 is beneficial to approach this task by thinking about the different
@@ -740,25 +761,17 @@ The \textbf{specificity} of species in a network is measured as a
 function of the proportion of resources they effectively use (Poisot et
 al., 2012)
 
-\begin{quote}
-\textbf{Shape:} to determine if the `shape' of the network is correct we
-are looking at the ratio of `top':`basal' species (where `top' species
-are those that have a vulnerability of 0 and `basal' species have a
-generality of 0) as well as the distance to base from one of the top
-species (this will represent the shortest path but a large discrepancy
-between the real and predicted network would be indicative that the
-model is not predicting a similar `shape'). This will allow is to see if
-the models construct tall `pencil' vs flat `pancake' networks (Beckerman
-2024, pers comms). A small (\textless{} 1) number will thus be
-indicative of a `bottom-heavy' network and the opposite for larger
-numbers
-\end{quote}
-
-\subsubsection{Interactions}\label{interactions}
+\subsection{Assessing pairwise interaction
+differences}\label{assessing-pairwise-interaction-differences}
 
 \textbf{Interaction turnover} (Poisot et al., 2012) tells us which
 interactions are `conserved' (shared) across the networks from the same
 period but constructed using different models.
+
+\subsection{Assessing network
+inference}\label{assessing-network-inference}
+
+Here we will look at extinctions of the different paleo
 
 \subsubsection{Robustness}\label{robustness}
 
@@ -779,8 +792,6 @@ variation to the networks constructed. For the PFIM networks were
 downsampled (see relevant section). For both the random and niche model
 the desired connectance was set to \textbf{0.1}. For each network we
 calculated the properties listed in Table~\ref{tbl-properties}
-
-\subsubsection{Network extinctions}\label{network-extinctions}
 
 \section{Results}\label{results}
 
