@@ -12,7 +12,7 @@ setwd(here("code"))
 #### Structure ####
 
 df <- read_csv("../data/processed/topology.csv") %>%
-  mutate(across(matches("S[[:digit:]]"), log)) %>%
+  #mutate(across(matches("S[[:digit:]]"), log)) %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, time),

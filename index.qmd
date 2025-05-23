@@ -64,21 +64,9 @@ It is important to be aware that networks can be configured in different ways de
 
 Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022). Something about the intersectionality of the data we don't have for paleo communities and the data we need for some of the different modelling approaches.
 
-Here we do this because it lets us unpack the nuances of what the different network representation. Meta v real. Distribution vs identity of links. Inferred results - deviation from results and extended Toarcian redux.
+# Interaction/food web prediction models/tools
 
-# Methods
-
-## Dataset Overview
-
-### Species occurrence
-
-Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (\~185 Ma) to the upper Toarcian (\~175 Ma) of the Cleveland Basin [see @dunhill2024 for a more comprehensive overview]. The data set consists of a subset of four broad time periods (pre-extinction, post-extinction, early recovery, and late recovery). The assemblages are treated as communities of interacting organisms. Something about the total number of taxa as well as numbers per a time period? Probbaly also make a comment that this is a 'deep time' community we are looking at.
-
-### Defining modes of life (traits)
-
-We used the modes of life (traits) as identified in @dunhill2024, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].It would be very sexy if we could get a figure that looks something like this together...
-
-## Models
+Here we should take the time to go in and just articulate that there are nuance and differences in terms of predicting interactions vs predicting networks. Once it is finally on a preprint server we can obviously link to the T4T stuff...
 
 Here we present six different models (@tbl-models) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements are 'paleo friendly'.
 
@@ -92,6 +80,8 @@ Here we present six different models (@tbl-models) that can be used to construct
 | body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
+
+## Structural models
 
 ### Random model
 
@@ -143,6 +133,8 @@ $$
 
 It is also possible to apply a threshold value to $P_{ij}$, whereby any probabilities below that threshold are set to zero.
 
+## Interaction predictions
+
 ### Paleo food web inference model
 
 The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that Shaw does not specifically bin species into guilds, and so we choose to use the method developed by Shaw since both methods should produce extremely similar networks as they are built on the same underlying philosophy.
@@ -163,7 +155,23 @@ $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 . Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha$ = 1.41, $\delta$ = 3.75, and $\gamma$ = 1.87.
 
-## Assessing model performance
+# Aims...
+
+Here we do this because it lets us unpack the nuances of what the different network representation. Firstly we want ot identify the differences between models that predict interactions (and thus metawebs), and models that predict network structure. Specifically we want to look at 1) the structural difference between all models (*i.e.,* do we see a difference in the distribution of links between networks that have the same number of nodes?) and 2) the identity of pairwise links between species pairs (*i.e.,* do different models differ in which links are present (or absent) between species pairs?) Additionally we want to establish if using networks that are constructed using different models will change the the downstream inferences that are made by repeating the work done by @dunhill2024.
+
+# Methods
+
+## Dataset Overview
+
+### Species occurrence
+
+Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (\~185 Ma) to the upper Toarcian (\~175 Ma) of the Cleveland Basin [see @dunhill2024 for a more comprehensive overview]. The data set consists of a subset of four broad time periods (pre-extinction, post-extinction, early recovery, and late recovery). The assemblages are treated as communities of interacting organisms. Something about the total number of taxa as well as numbers per a time period? Probbaly also make a comment that this is a 'deep time' community we are looking at.
+
+### Defining modes of life (traits)
+
+We used the modes of life (traits) as identified in @dunhill2024, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].It would be very sexy if we could get a figure that looks something like this together...
+
+## Assessing structural differences
 
 In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
 
@@ -199,11 +207,13 @@ The number of interactions established (**generality**) or received (**vulnerabi
 
 The **specificity** of species in a network is measured as a function of the proportion of resources they effectively use [@poisot2012]
 
-> **Shape:** to determine if the 'shape' of the network is correct we are looking at the ratio of 'top':'basal' species (where 'top' species are those that have a vulnerability of 0 and 'basal' species have a generality of 0) as well as the distance to base from one of the top species (this will represent the shortest path but a large discrepancy between the real and predicted network would be indicative that the model is not predicting a similar 'shape'). This will allow is to see if the models construct tall 'pencil' vs flat 'pancake' networks (Beckerman 2024, pers comms). A small (\< 1) number will thus be indicative of a 'bottom-heavy' network and the opposite for larger numbers
-
-### Interactions
+## Assessing pairwise interaction differences
 
 **Interaction turnover** [@poisot2012] tells us which interactions are 'conserved' (shared) across the networks from the same period but constructed using different models.
+
+## Assessing network inference
+
+Here we will look at extinctions of the different paleo
 
 ### Robustness
 
@@ -212,10 +222,6 @@ $R_{50}$ see @jonsson2015
 ## Constructing networks
 
 For each paleo community (time bin) we constructed **100** networks for each model (so 6 * 100) networks. These networks were 'simplified' to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here *e.g.,* a species classed as 'very large' would have a body mass drawn from $U(300, 500)$. This was repeated for each run to add variation to the networks constructed. For the PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was set to **0.1**. For each network we calculated the properties listed in @tbl-properties 
-
-### Network extinctions
-
-
 
 # Results
 
