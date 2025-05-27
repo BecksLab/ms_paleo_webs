@@ -43,7 +43,7 @@ function bmratio(
     for i = 1:S
         for j = 1:S
             MR = bodymass[i] / bodymass[j]
-            p = exp(α + β * log(MR) + γ * log(MR)^2)
+            p = exp(α + β * log(MR) + γ * (log(MR))^2)
             if p / (1 - p) >= 0.0
                 prob_matrix[i, j] = p / (1 + p)
             end
