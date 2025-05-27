@@ -26,10 +26,6 @@ matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 # feeding rules
 feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
 
-# specify connectance for niche model
-# TODO could possibly have this be 'dynamic' based on the Co of other networks...
-connectance = 0.1
-
 # df to store networks
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
 
@@ -74,13 +70,17 @@ for i in eachindex(matrix_names)
         # create some mock abundance/biomass values using a *very* basic scaling law
         biomass = bodymass .^ (-3 / 4)
 
+        # specify connectance for niche model
+        # TODO could possibly have this be 'dynamic' based on the Co of other networks...
+        connectance = rand(Uniform(0.07, 0.15))
+
         for model ∈ ["adbm", "bodymassratio", "lmatrix", "niche", "pfim", "random"]
 
             if model == "bodymassratio"
                 N = bmratio(df.species, bodymass)
                 N = randomdraws(N) # from probabilistic to binary
             elseif model == "pfim"
-                N = pfim.PFIM(df, feeding_rules; downsample = false)
+                N = pfim.PFIM(df, feeding_rules; downsample = true)
             elseif model == "niche"
                 N = structuralmodel(NicheModel, nrow(df), connectance)
             elseif model == "random"
