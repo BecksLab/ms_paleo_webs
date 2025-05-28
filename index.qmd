@@ -178,7 +178,7 @@ In terms of wanting to asses and compare across the different models it is benef
 | Label | Definition | Scale | Reference (for maths), can make footnotes probs |
 |-----------------|-----------------------|-----------------|-----------------|
 | Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | Macro |  |
-| GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @wwilliams2000 |
+| GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @williams2000 |
 | LinkSD | Normalized standard deviation of links (number of consumers plus resources per taxon) | Micro |  |
 | Richness | Number of nodes in the network | Macro |  |
 | TL | Prey-weighted trophic level averaged across taxa | Macro | @williams2004 |
