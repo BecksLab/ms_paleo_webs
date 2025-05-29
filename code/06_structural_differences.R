@@ -2,6 +2,7 @@
 # libraries
 library(ggpubr)
 library(here)
+library(lme4)
 library(patchwork)
 library(rstatix)
 library(tidyverse)
@@ -33,21 +34,80 @@ df <- read_csv("../data/processed/topology.csv") %>%
   mutate(model = factor(model, ordered = TRUE, 
                         levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")))
 
-lm1 <- lm(stat_val ~ model + time, df %>% filter(stat == "connectance"))
-summary(lm1)
+comms <- unique(df$time)
+measure <- unique(df$stat)
 
-df %>% 
-  filter(stat == "generality") %>%
-  filter(time == "G1") %>%
-  wilcox_test(stat_val ~ model,
-              paired = FALSE)
+ttest_results <- tibble(
+  group1 = character(), 
+  group2 = character(),
+  p = numeric(),
+  p.adj = numeric(),
+  p.adj.signif = character(),
+  time = character(),
+  stat = character()
+)
 
-df %>% 
-  filter(stat == "generality") %>%
-  filter(time == "G1") %>%
-  t_test(stat_val ~ model,
-         var.equal = TRUE,
-         detailed = TRUE) %>% view()
+lm_results <- tibble(
+  stat_val = character(), 
+  groups = character(),
+  model = numeric(),
+  stat = numeric()
+)
+
+for (i in 1:length(comms)) {
+  for (j in 1:length(measure)) {
+    
+    
+    skip_to_next <- FALSE
+    
+    test_df <- df %>% 
+      filter(stat == measure[j]) %>%
+      filter(time == comms[i])
+    
+    # Note that print(b) fails since b doesn't exist
+    
+    tryCatch(test_df %>%
+               t_test(stat_val ~ model,
+                      var.equal = TRUE,
+                      detailed = TRUE), 
+             error = function(e) { skip_to_next <<- TRUE})
+    
+    if(skip_to_next) { next }     
+    
+    ttest_out <- test_df %>%
+      t_test(stat_val ~ model,
+             var.equal = TRUE,
+             detailed = TRUE) %>%
+      as.data.frame() %>%
+      mutate(time = comms[i],
+             stat = measure[j]) %>%
+      select(group1, group2, p, p.adj, p.adj.signif, time, stat)
+    
+    ttest_results <- rbind(ttest_results, ttest_out)
+    
+    
+    plant.lm <- df %>% 
+      filter(stat == measure[j]) %>%
+      lm(stat_val ~ model*time, data = .,)
+    plant.av <- aov(plant.lm)
+    summary(plant.av)
+    tukey.test <- HSD.test(plant.av, trt = 'model')
+    
+    
+    lm_results <- tukey.test$groups %>%
+      mutate(model = rownames(.),
+             stat = measure[j]) %>%
+      rbind(.,lm_results)
+    
+  }
+}
+
+ttest_results %>%
+  filter(p.adj.signif == "ns")
+
+ttest_results %>%
+  select(time, stat) %>%
+  distinct()
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
