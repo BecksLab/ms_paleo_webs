@@ -32,19 +32,28 @@ using SpeciesInteractionNetworks
 function bmratio(
     species::Any,
     bodymass::Vector{Float64};
-    α::Float64 = 1.41,
-    β::Float64 = 3.73,
-    γ::Float64 = 1.87,
+    α::Float64 = 1.0,
+    𝑥_opt::Float64 = -4.6,     # Optimal log(Prey/Predator) mass ratio
+    σ_𝑥::Float64 = 2.5,    # Niche width for body size ratio
 )
 
     S = length(species)
 
+    # --- Derive β and γ from 𝑥_opt and σ_𝑥 ---
+    # γ (gamma) determines the width of the niche (must be negative for a bell shape)
+    # A larger sigma_x (niche width) leads to a smaller (less negative) gamma.
+    γ = -1.0 / (2.0 * σ_𝑥^2)
+    # β (beta) determines the position of the optimum (𝑥_opt = -β / (2γ))
+    β = -2.0 * γ * 𝑥_opt
+
     prob_matrix = zeros(AbstractFloat, (S, S))
+
     for i = 1:S
         for j = 1:S
             MR = bodymass[i] / bodymass[j]
             p = exp(α + β * log(MR) + γ * (log(MR))^2)
-            if p / (1 - p) >= 0.0
+
+           if p / (1 - p) >= 0.0
                 prob_matrix[i, j] = p / (1 + p)
             end
         end
