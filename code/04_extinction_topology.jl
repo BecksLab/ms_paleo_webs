@@ -20,6 +20,7 @@ post_rich = nrow(df)
 topology = DataFrame(
     model = String[],
     extinction_mechanism = Any[],
+    n_rep = Any[],
     richness = Int64[],
     connectance = Float64[],
     diameter = Int64[],
@@ -43,7 +44,7 @@ for i = 1:nrow(extinctions)
 
     if length(_ext_seq) > 1
 
-        net_ind = findfirst(x -> x < post_rich, richness.(_ext_seq))
+        net_ind = findfirst(x -> x < post_rich, richness.(_ext_seq)) - 1
 
         # this is to catch networks that 
         if typeof(net_ind) == Int64 && richness(_ext_seq[net_ind]) > 0
@@ -51,6 +52,7 @@ for i = 1:nrow(extinctions)
             d = _network_summary(_ext_seq[net_ind])
 
             d[:model] = extinctions.model[i]
+            d[:n_rep] = extinctions.n_rep[i]
             d[:extinction_mechanism] = extinctions.extinction_mechanism[i]
             d[:resilience] = resilience(_ext_seq)
             d[:r50] = robustness(_ext_seq)
