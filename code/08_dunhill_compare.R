@@ -44,7 +44,7 @@ struct <- ggplot(df %>%
   scale_size(guide = 'none') +
   theme_classic() +
   xlab("time") +
-  ylab("value") +
+  ylab(NULL)  +
   coord_cartesian(clip = "off") +
   scale_colour_brewer(palette = "Dark2") +
   theme(panel.border = element_rect(colour = 'black',
@@ -64,7 +64,7 @@ motif <- ggplot(df %>%
   scale_size(guide = 'none') +
   theme_classic() +
   xlab("time") +
-  ylab("value") +
+  ylab(NULL) +
   coord_cartesian(clip = "off") +
   scale_colour_brewer(palette = "Dark2") +
   theme(panel.border = element_rect(colour = 'black',
@@ -100,6 +100,27 @@ mean_diff <- ggplot(df,
   geom_bar(stat="identity", position=position_dodge()) +
   coord_cartesian(clip = "off") +
   theme_classic() +
+  ylab(NULL)  +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank(),
+        legend.position = 'none')
+
+# tss scores
+
+df <- read_csv("../data/processed/extinction_tss.csv") %>%
+  group_by(model, extinction_mechanism) %>%
+  summarise(mean_tss = mean(tss))
+
+tss <-  ggplot(df,
+               aes(y = extinction_mechanism,
+                   x = mean_tss,
+                   fill = model)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  coord_cartesian(clip = "off") +
+  ylab(NULL)  +
+  theme_classic() +
   scale_fill_brewer(palette = "Dark2") +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
@@ -107,13 +128,13 @@ mean_diff <- ggplot(df,
         legend.position = 'none')
 
 
-(struct) / (mean_diff + motif)  +
+(tss + struct) / (mean_diff + motif)  +
   plot_layout(guides = 'collect') +
   plot_annotation(tag_levels = 'A')
 
 ggsave("../figures/dunhill_comp.png",
-       width = 5000,
-       height = 7000,
+       width = 7000,
+       height = 7500,
        units = "px",
        dpi = 600)
 

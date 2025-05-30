@@ -13,6 +13,11 @@ Random.seed!(66)
 # import networks object
 extinctions = load_object("data/processed/extinction_seq.jlds")
 
+# also import the 'known' netowrks for tss calcs
+networks = load_object("data/processed/networks.jlds")
+# we only care about the post extinction community
+filter!(:time => x -> x == "G2", networks)
+
 # find richness of post extinction community
 df = CSV.read("data/raw/G2_Guilds.csv", DataFrame)
 post_rich = nrow(df)
@@ -38,6 +43,13 @@ topology = DataFrame(
     rep = Int64[],
 );
 
+tss = DataFrame(
+    model = String[],
+    extinction_mechanism = Any[],
+    n_rep = Any[],
+    tss = Float64[],
+)
+
 for i = 1:nrow(extinctions)
 
     _ext_seq = extinctions.extinction_seq[i]
@@ -49,6 +61,22 @@ for i = 1:nrow(extinctions)
         # this is to catch networks that 
         if typeof(net_ind) == Int64 && richness(_ext_seq[net_ind]) > 0
 
+            # tss score
+
+            N_real = filter([:model, :n_rep] => (x, y) -> x == extinctions.model[i] && y == extinctions.n_rep[i], networks)
+
+            _tss = TSS(N_real.network[1], _ext_seq[net_ind])
+
+            t = Dict{Symbol,Any}(
+                    :model => extinctions.model[i],
+                    :extinction_mechanism => extinctions.extinction_mechanism[i],
+                    :n_rep => extinctions.n_rep[i],
+                    :tss => _tss,
+                    )
+
+            push!(tss, t)
+
+            # network topology
             d = _network_summary(_ext_seq[net_ind])
 
             d[:model] = extinctions.model[i]
@@ -65,3 +93,4 @@ end
 
 # write summaries as .csv
 CSV.write("data/processed/extinction_topology.csv", topology)
+CSV.write("data/processed/extinction_tss.csv", tss)
