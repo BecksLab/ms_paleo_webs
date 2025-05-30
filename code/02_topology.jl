@@ -10,6 +10,7 @@ networks = load_object("data/processed/networks.jlds")
 topology = DataFrame(
     model = String[],
     time = Any[],
+    n_rep = Any[],
     richness = Int64[],
     connectance = Float64[],
     diameter = Int64[],
@@ -29,6 +30,7 @@ for i = 1:nrow(networks)
     d = _network_summary(networks.network[i])
 
     d[:model] = networks.model[i]
+    d[:n_rep] = networks.n_rep[i]
     d[:time] = networks.time[i]
 
     push!(topology, d)

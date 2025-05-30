@@ -14,7 +14,7 @@ setwd(here("code"))
 
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  select(-c(richness, redundancy)) %>%
+  select(-c(richness, distance, n_rep)) %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, time),
@@ -27,7 +27,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("complexity", "connectance", "diameter", "distance") ~ "Macro",
+    stat %in% c("complexity", "connectance", "diameter", "redundancy") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
