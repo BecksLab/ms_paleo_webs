@@ -2,7 +2,8 @@
 # libraries
 library(ggpubr)
 library(here)
-library(lme4)
+library(effectsize)
+library(MASS)
 library(patchwork)
 library(rstatix)
 library(tidyverse)
@@ -33,6 +34,30 @@ df <- read_csv("../data/processed/topology.csv") %>%
   )) %>%
   mutate(model = factor(model, ordered = TRUE, 
                         levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")))
+
+dep_vars <- as.matrix(df[3:ncol(df)])
+
+
+fit <- manova(dep_vars ~ model + time, data = df)
+summary(fit)
+
+#get effect size
+effectsize::eta_squared(fit)
+
+post_hoc <- lda(df$model ~ dep_vars, CV=F)
+post_hoc
+
+# plot 
+plot_lda <- data.frame(df[, "model"], lda = predict(post_hoc)$x)
+ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
+                              size = 3,
+                              alpha = 0.5) +
+  scale_colour_brewer(palette = "Dark2") +
+  theme_classic() +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
 
 comms <- unique(df$time)
 measure <- unique(df$stat)
@@ -124,7 +149,6 @@ for (i in seq_along(plot_list)) {
                scales = 'free',
                ncol = 2) +
     scale_size(guide = 'none') +
-    theme_classic() +
     xlab("time") +
     ylab("value") +
     coord_cartesian(clip = "off") +
