@@ -82,12 +82,14 @@ for j = 1:n_reps
         # TODO could possibly have this be 'dynamic' based on the Co of other networks...
         connectance = rand(Uniform(0.07, 0.15))
 
-        for model ∈ ["adbm", "bodymassratio", "lmatrix", "niche", "pfim", "random"]
+        for model ∈ ["adbm", "bodymassratio", "lmatrix", "niche", "pfim_metaweb", "pfim_downsample", "random"]
 
             if model == "bodymassratio"
                 N = bmratio(df.species, bodymass)
                 N = randomdraws(N) # from probabilistic to binary
-            elseif model == "pfim"
+            elseif model == "pfim_metaweb"
+                N = pfim.PFIM(df, feeding_rules; downsample = false)
+            elseif model == "pfim_downsample"
                 N = pfim.PFIM(df, feeding_rules; downsample = true)
             elseif model == "niche"
                 N = structuralmodel(NicheModel, nrow(df), connectance)

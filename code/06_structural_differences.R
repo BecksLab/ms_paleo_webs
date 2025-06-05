@@ -16,6 +16,11 @@ setwd(here("code"))
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
   select(-c(richness, distance, n_rep)) %>%
+  # remove metaweb pfims
+  filter(model != "pfim_metaweb") %>%
+  # rename the remianing pfim col
+  mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
+                           .default = as.character(model))) %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, time),
@@ -57,6 +62,12 @@ ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model),
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
+
+ggsave("../figures/MANOVA_lda.png",
+       width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 600)
 
 
 comms <- unique(df$time)
