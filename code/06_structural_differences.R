@@ -20,7 +20,40 @@ df <- read_csv("../data/processed/topology.csv") %>%
   filter(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
-                           .default = as.character(model))) %>%
+                           .default = as.character(model)))
+
+dep_vars <- as.matrix(df[3:ncol(df)])
+
+
+fit <- manova(dep_vars ~ model + time, data = df)
+summary(fit)
+
+#get effect size
+effectsize::eta_squared(fit)
+
+post_hoc <- lda(df$model ~ dep_vars, CV=F)
+post_hoc
+
+# plot 
+plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
+                              levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")), 
+                       lda = predict(post_hoc)$x)
+ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
+                              size = 3,
+                              alpha = 0.3) +
+  scale_colour_brewer(palette = "Dark2") +
+  theme_classic() +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
+ggsave("../figures/MANOVA_lda.png",
+       width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 600)
+
+df <- df %>%
   # to get the ratio
   pivot_longer(
     cols = -c(model, time),
@@ -39,111 +72,6 @@ df <- read_csv("../data/processed/topology.csv") %>%
   )) %>%
   mutate(model = factor(model, ordered = TRUE, 
                         levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")))
-
-dep_vars <- as.matrix(df[3:ncol(df)])
-
-
-fit <- manova(dep_vars ~ model + time, data = df)
-summary(fit)
-
-#get effect size
-effectsize::eta_squared(fit)
-
-post_hoc <- lda(df$model ~ dep_vars, CV=F)
-post_hoc
-
-# plot 
-plot_lda <- data.frame(df[, "model"], lda = predict(post_hoc)$x)
-ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
-                              size = 3,
-                              alpha = 0.5) +
-  scale_colour_brewer(palette = "Dark2") +
-  theme_classic() +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
-
-ggsave("../figures/MANOVA_lda.png",
-       width = 5000,
-       height = 4000,
-       units = "px",
-       dpi = 600)
-
-
-comms <- unique(df$time)
-measure <- unique(df$stat)
-
-ttest_results <- tibble(
-  group1 = character(), 
-  group2 = character(),
-  p = numeric(),
-  p.adj = numeric(),
-  p.adj.signif = character(),
-  time = character(),
-  stat = character()
-)
-
-lm_results <- tibble(
-  stat_val = character(), 
-  groups = character(),
-  model = numeric(),
-  stat = numeric()
-)
-
-for (i in 1:length(comms)) {
-  for (j in 1:length(measure)) {
-    
-    
-    skip_to_next <- FALSE
-    
-    test_df <- df %>% 
-      filter(stat == measure[j]) %>%
-      filter(time == comms[i])
-    
-    # Note that print(b) fails since b doesn't exist
-    
-    tryCatch(test_df %>%
-               t_test(stat_val ~ model,
-                      var.equal = TRUE,
-                      detailed = TRUE), 
-             error = function(e) { skip_to_next <<- TRUE})
-    
-    if(skip_to_next) { next }     
-    
-    ttest_out <- test_df %>%
-      t_test(stat_val ~ model,
-             var.equal = TRUE,
-             detailed = TRUE) %>%
-      as.data.frame() %>%
-      mutate(time = comms[i],
-             stat = measure[j]) %>%
-      select(group1, group2, p, p.adj, p.adj.signif, time, stat)
-    
-    ttest_results <- rbind(ttest_results, ttest_out)
-    
-    
-    plant.lm <- df %>% 
-      filter(stat == measure[j]) %>%
-      lm(stat_val ~ model*time, data = .,)
-    plant.av <- aov(plant.lm)
-    summary(plant.av)
-    tukey.test <- HSD.test(plant.av, trt = 'model')
-    
-    
-    lm_results <- tukey.test$groups %>%
-      mutate(model = rownames(.),
-             stat = measure[j]) %>%
-      rbind(.,lm_results)
-    
-  }
-}
-
-ttest_results %>%
-  filter(p.adj.signif == "ns")
-
-ttest_results %>%
-  select(time, stat) %>%
-  distinct()
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
