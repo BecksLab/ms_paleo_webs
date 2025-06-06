@@ -9,6 +9,11 @@ setwd(here("code"))
 # import simulated data
 
 df <- read_csv("../data/processed/topology.csv") %>%
+  # remove metaweb pfims
+  filter(model != "pfim_metaweb") %>%
+  # rename the remianing pfim col
+  mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
+                           .default = as.character(model))) %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
   select(-c(distance, redundancy, complexity, diameter, n_rep)) %>%
   pivot_longer(
@@ -74,6 +79,11 @@ motif <- ggplot(df %>%
 # means abs differences between real and extinction simulations
 
 df <- read_csv("../data/processed/extinction_topology.csv") %>%
+  # remove metaweb pfims
+  filter(model != "pfim_metaweb") %>%
+  # rename the remianing pfim col
+  mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
+                           .default = as.character(model))) %>%
   select(-c(r50, rep, distance, redundancy, complexity, diameter, S1, S2, S4, S5, resilience)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
@@ -81,6 +91,11 @@ df <- read_csv("../data/processed/extinction_topology.csv") %>%
     values_to = "sim_val") %>%
   full_join(.,
             read_csv("../data/processed/topology.csv") %>%
+              # remove metaweb pfims
+              filter(model != "pfim_metaweb") %>%
+              # rename the remianing pfim col
+              mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
+                                       .default = as.character(model))) %>%
               filter(time == "G2") %>%
               select(-c(distance, redundancy, complexity, diameter, time, S1, S2, S4, S5)) %>%
               pivot_longer(
@@ -110,6 +125,11 @@ mean_diff <- ggplot(df,
 # tss scores
 
 df <- read_csv("../data/processed/extinction_tss.csv") %>%
+  # remove metaweb pfims
+  filter(model != "pfim_metaweb") %>%
+  # rename the remianing pfim col
+  mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
+                           .default = as.character(model))) %>%
   group_by(model, extinction_mechanism) %>%
   summarise(mean_tss = mean(tss))
 
