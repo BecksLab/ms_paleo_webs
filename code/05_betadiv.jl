@@ -10,7 +10,8 @@ include("lib/internals.jl")
     time = Any[],
     left = String[],
     right = String[],
-    β_int = Int64[],
+    β_int_shared = Int64[],
+    β_int_all = Int64[],
     β_spp = Int64[],
     links_left = Int64[],
     links_right = Int64[],
@@ -33,13 +34,15 @@ for i in eachindex(time_groups)
         U = df[occursin.(x, df.uniq_id), :network][1]
         V = df[occursin.(y, df.uniq_id), :network][1]
         β_spp = SpeciesInteractionNetworks.betadiversity(βS, U, V)
-        β_int = SpeciesInteractionNetworks.betadiversity(βWN, U, V)
+        β_int_all = SpeciesInteractionNetworks.betadiversity(βWN, U, V)
+        β_int_shared = SpeciesInteractionNetworks.betadiversity(βOS, U, V)
         # collate
         b = Dict{Symbol,Any}()
         b[:time] = time_groups[i]
         b[:left] = x
         b[:right] = y
-        b[:β_int] = β_int.shared
+        b[:β_int_all] = β_int_all.shared
+        b[:β_int_shared] = β_int_shared.shared
         b[:β_spp] = β_spp.shared
         b[:links_left] = links(U)
         b[:links_right] = links(V)
