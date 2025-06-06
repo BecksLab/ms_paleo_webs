@@ -229,9 +229,11 @@ For each paleo community (time bin) we constructed **100** networks for each mod
 
 ### Structure
 
-![stuff... For display purposes the counts for the different motifs are log transformed](figures/summary.png){#fig-summary}
+![stuff...](figures/summary.png){#fig-summary}
 
 ### Interaction/species turnover
+
+![stuff... % interaction shared is calculated as number shared interactions / ((number interactions left - shared interactions) + (number interactions right - shared interactions) + shared interactions). Additionally niche and random models are excluded as it is illogical since both of these models are fundamentally species agnostic](figures/beta_div.png){#fig-beta_div}
 
 ## Comparing inference
 
