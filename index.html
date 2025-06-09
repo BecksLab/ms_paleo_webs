@@ -8,7 +8,7 @@
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-06-06">
+<meta name="dcterms.date" content="2025-06-09">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-06-06">
-<meta name="citation_cover_date" content="2025-06-06">
+<meta name="citation_publication_date" content="2025-06-09">
+<meta name="citation_cover_date" content="2025-06-09">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-06-06">
+<meta name="citation_online_date" content="2025-06-09">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -185,7 +185,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">June 6, 2025</p>
+              <p class="date">June 9, 2025</p>
             </div>
           </div>
           
@@ -256,7 +256,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">7.4.1</span> Robustness</a></li>
   </ul></li>
-  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">7.5</span> Constructing networks</a></li>
+  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">7.5</span> Constructing networks</a>
+  <ul class="collapse">
+  <li><a href="#simulating-extinctions" id="toc-simulating-extinctions" class="nav-link" data-scroll-target="#simulating-extinctions"><span class="header-section-number">7.5.1</span> Simulating Extinctions</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">8</span> Results</a>
   <ul class="collapse">
@@ -610,7 +613,10 @@ Table&nbsp;2: An informative caption about the different network properties
 </section>
 <section id="constructing-networks" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">7.5</span> Constructing networks</h2>
-<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run to add variation to the networks constructed. For the PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was set to <strong>0.1</strong>. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
+<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models (adbm, bodymassratio, l-matrix) <em>i.e.,</em> an ADBM and bodymassratio network from the same rep number would have used the same bodysizes. The PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each repetition but kep consistent for both models. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
+<section id="simulating-extinctions" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="simulating-extinctions"><span class="header-section-number">7.5.1</span> Simulating Extinctions</h3>
+</section>
 </section>
 </section>
 <section id="results" class="level1" data-number="8">
@@ -622,16 +628,26 @@ Table&nbsp;2: An informative caption about the different network properties
 <div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: stuff… For display purposes the counts for the different motifs are log transformed"><img src="figures/summary.png" class="img-fluid figure-img"></a>
+<a href="figures/summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: stuff…"><img src="figures/summary.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: stuff… For display purposes the counts for the different motifs are log transformed
+Figure&nbsp;1: stuff…
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="interactionspecies-turnover" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="interactionspecies-turnover"><span class="header-section-number">8.1.2</span> Interaction/species turnover</h3>
+<div id="fig-beta_div" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-beta_div-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/beta_div.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: stuff… % interaction shared is calculated as number shared interactions / ((number interactions left - shared interactions) + (number interactions right - shared interactions) + shared interactions). Additionally niche and random models are excluded as it is illogical since both of these models are fundamentally species agnostic"><img src="figures/beta_div.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-beta_div-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: stuff… % interaction shared is calculated as number shared interactions / ((number interactions left - shared interactions) + (number interactions right - shared interactions) + shared interactions). Additionally niche and random models are excluded as it is illogical since both of these models are fundamentally species agnostic
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="comparing-inference" class="level2" data-number="8.2">
@@ -639,10 +655,10 @@ Figure&nbsp;1: stuff… For display purposes the counts for the different motifs
 <div id="fig-dunhill" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/dunhill_comp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: stuff… Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations…"><img src="figures/dunhill_comp.png" class="img-fluid figure-img"></a>
+<a href="figures/dunhill_comp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: stuff… Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations…"><img src="figures/dunhill_comp.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: stuff… Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations…
+Figure&nbsp;3: stuff… Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations…
 </figcaption>
 </figure>
 </div>
@@ -744,7 +760,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-06-06},
+  date = {2025-06-09},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -772,7 +788,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. June 6, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. June 9, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-06-06}
+\date{2025-06-09}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -788,11 +788,18 @@ bodymassratio, lmatrix) we drew a body mass for each species from a
 uniform distribution. The ranges were defined by the different size
 classes as discussed in insert cross ref to correct subsection here
 \emph{e.g.,} a species classed as `very large' would have a body mass
-drawn from \(U(300, 500)\). This was repeated for each run to add
-variation to the networks constructed. For the PFIM networks were
+drawn from \(U(300, 500)\). This was repeated for each run in order to
+add variation to the networks constructed, however the same body sizes
+were kept consistent for the relevant models (adbm, bodymassratio,
+l-matrix) \emph{i.e.,} an ADBM and bodymassratio network from the same
+rep number would have used the same bodysizes. The PFIM networks were
 downsampled (see relevant section). For both the random and niche model
-the desired connectance was set to \textbf{0.1}. For each network we
-calculated the properties listed in Table~\ref{tbl-properties}
+the desired connectance was randomly selected between the range 0.07 -
+0.15 for each repetition but kep consistent for both models. For each
+network we calculated the properties listed in
+Table~\ref{tbl-properties}
+
+\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
 
 \section{Results}\label{results}
 
@@ -809,13 +816,29 @@ networks}\label{comparing-predicted-networks}
 
 }
 
-\caption{\label{fig-summary}stuff\ldots{} For display purposes the
-counts for the different motifs are log transformed}
+\caption{\label{fig-summary}stuff\ldots{}}
 
 \end{figure}%
 
 \subsubsection{Interaction/species
 turnover}\label{interactionspecies-turnover}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/beta_div.png}}
+
+}
+
+\caption{\label{fig-beta_div}stuff\ldots{} \% interaction shared is
+calculated as number shared interactions / ((number interactions left -
+shared interactions) + (number interactions right - shared interactions)
++ shared interactions). Additionally niche and random models are
+excluded as it is illogical since both of these models are fundamentally
+species agnostic}
+
+\end{figure}%
 
 \subsection{Comparing inference}\label{comparing-inference}
 
