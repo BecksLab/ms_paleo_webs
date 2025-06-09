@@ -93,6 +93,7 @@ for (i in seq_along(plot_list)) {
     coord_cartesian(clip = "off") +
     scale_colour_brewer(palette = "Dark2") +
     labs(title = levs[i]) +
+    theme_classic() +
     theme(panel.border = element_rect(colour = 'black',
                                       fill = "#ffffff00"),
           axis.ticks.x = element_blank())

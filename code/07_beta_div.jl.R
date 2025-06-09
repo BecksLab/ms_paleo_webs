@@ -40,6 +40,7 @@ ggplot(df,
   xlab(NULL) +
   ylab("% interactions shared") +
   coord_cartesian(clip = "off") +
+  theme_classic() +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
