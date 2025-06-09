@@ -86,7 +86,6 @@ for j = 1:n_reps
 
             if model == "bodymassratio"
                 N = bmratio(df.species, bodymass)
-                N = randomdraws(N) # from probabilistic to binary
             elseif model == "pfim_metaweb"
                 N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "pfim_downsample"

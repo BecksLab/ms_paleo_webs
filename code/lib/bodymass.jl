@@ -39,15 +39,15 @@ function bmratio(
 
     S = length(species)
 
-    prob_matrix = zeros(AbstractFloat, (S, S))
+    prob_matrix = zeros(Bool, (S, S))
 
     for i = 1:S
         for j = 1:S
             MR = bodymass[i] / bodymass[j]
             p = exp(α + β * log(MR) + γ * (log(MR))^2)
 
-           if p / (1 - p) >= 0.0
-                prob_matrix[i, j] = p / (1 + p)
+           if p / (1 - p) >= 0.08
+                prob_matrix[i, j] = 1
             end
         end
     end
@@ -55,7 +55,7 @@ function bmratio(
     # make probabilistic
     # prob_matrix = prob_matrix ./ maximum(prob_matrix)
 
-    edges = Probabilistic(prob_matrix)
+    edges = Binary(prob_matrix)
     nodes = Unipartite(Symbol.(species))
     return SpeciesInteractionNetwork(nodes, edges)
 end
