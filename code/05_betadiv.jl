@@ -19,6 +19,8 @@ include("lib/internals.jl")
 
 # same comment RE elegance
 networks = load_object("data/processed/networks.jlds")
+# remove random and niche networks...
+filter!(:model => x -> x ∉ ["niche", "random"], networks)
 
 # get the different communities
 time_groups = unique(networks.time)
