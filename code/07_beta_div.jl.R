@@ -8,6 +8,12 @@ setwd(here("code"))
 # import simulated data
 
 df <- read_csv("../data/processed/beta_div.csv") %>%
+  # remove metaweb pfims
+  filter(!str_detect(left, "pfim_metaweb")) %>%
+  filter(!str_detect(right, "pfim_metaweb")) %>%
+  # rename the remianing pfim col
+  mutate(left = str_replace(left, "_downsample", ""),
+         right = str_replace(right, "_downsample", "")) %>%
   # remove all instances where niche model is present (not a fair comparison?)
   filter(!str_detect(left, "niche")) %>%
   filter(!str_detect(right, "niche")) %>%
