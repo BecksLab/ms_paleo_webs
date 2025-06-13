@@ -1,5 +1,6 @@
 # General sundry internal functions
 
+using LinearAlgebra
 using SpeciesInteractionNetworks
 using Statistics
 
@@ -30,10 +31,10 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
         :redundancy => (L - (S - 1)),
-        :S1 => length(findmotif(motifs(Unipartite, 3)[1], N)),
-        :S2 => length(findmotif(motifs(Unipartite, 3)[2], N)),
-        :S4 => length(findmotif(motifs(Unipartite, 3)[4], N)),
-        :S5 => length(findmotif(motifs(Unipartite, 3)[5], N)),
+        :S1 => length(findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)))/(richness(N)^2),
+        :S2 => length(findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N)))/(richness(N)^2),
+        :S4 => length(findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N)))/(richness(N)^2),
+        :S5 => length(findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N)))/(richness(N)^2),
     )
 
     return D
@@ -57,11 +58,11 @@ _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
 function _get_matrix(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     species = richness(N)
-    n = zeros(Int64, (species, species))
+    n = zeros(Bool, (species, species))
     for i in axes(n, 1)
         for j in axes(n, 2)
             if N.edges[i, j] == true
-                n[i, j] = 1
+                n[i, j] = true
             end
         end
     end
@@ -191,4 +192,22 @@ function TSS(N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, N_sim::S
     tss = ((tp*tn) - (fp*fn))/((tp + fn)*(fp + tn))
 
     return tss
+end
+
+"""
+remove_cannibals(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+
+    Identifies and sets cannibalistic link to zero
+"""
+function remove_cannibals(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+
+    A = _get_matrix(N)
+
+    A[diagind(A)] .= false
+
+    nodes = Unipartite(species(N))
+    edges = Binary(A)
+    network = SpeciesInteractionNetwork(nodes, edges)
+
+    return network
 end
