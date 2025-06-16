@@ -36,11 +36,24 @@ post_hoc
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                              levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")), 
+                                      levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")), 
                        lda = predict(post_hoc)$x)
-ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
-                              size = 3,
-                              alpha = 0.3) +
+
+plot_arrow <- as.data.frame(post_hoc[["scaling"]]) %>%
+  mutate(var = str_replace(row.names(.), "dep_vars", ""),
+         lda.LD1 = scale(LD1),
+         lda.LD2 = scale(LD2))
+
+
+ggplot(plot_lda) + 
+  geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
+             size = 3,
+             alpha = 0.3) +
+  geom_segment(data = plot_arrow,
+               aes(x = 0,
+                   y = 0,
+                   xend = lda.LD1,
+                   yend = lda.LD2)) +
   scale_colour_brewer(palette = "Dark2") +
   theme_classic() +
   theme(panel.border = element_rect(colour = 'black',
