@@ -47,3 +47,9 @@ read_csv("../data/dunhill/topology.csv") %>%
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
+
+ggsave("../figures/pfim_downsample.png",
+       width = 5000,
+       height = 6000,
+       units = "px",
+       dpi = 600)
