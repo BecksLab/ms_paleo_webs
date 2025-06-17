@@ -109,7 +109,7 @@ ggplot(plot_lda) +
                                     fill = "#ffffff00"),
         axis.ticks.x = element_blank())
 
-ggsave("../figures/pfim_downsample_lad.png",
+ggsave("../figures/pfim_downsample_lda.png",
        width = 10000,
        height = 6000,
        units = "px",
