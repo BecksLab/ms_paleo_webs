@@ -1,3 +1,8 @@
+library(here)
+library(effectsize)
+library(MASS)
+library(patchwork)
+library(rstatix)
 library(tidyverse)
 
 # set path to code sub dir
@@ -51,5 +56,61 @@ read_csv("../data/dunhill/topology.csv") %>%
 ggsave("../figures/pfim_downsample.png",
        width = 5000,
        height = 6000,
+       units = "px",
+       dpi = 600)
+
+
+df <- read_csv("../data/dunhill/topology.csv") %>%
+  #mutate(across(matches("S[[:digit:]]"), log)) %>%
+  select(-c(richness, distance, n_rep)) %>%
+  na.omit()
+
+dep_vars <- as.matrix(df[3:ncol(df)])
+
+
+fit <- manova(dep_vars ~ y_val + time, data = df)
+summary(fit)
+
+#get effect size
+effectsize::eta_squared(fit)
+
+post_hoc <- lda(y_val~., df[1:ncol(df)])
+post_hoc
+
+# plot 
+plot_lda <- data.frame(y_val = as.numeric(as.character(predict(post_hoc)$class)),
+                       lda = predict(post_hoc)$x,
+                       time = df$time)
+
+# predict real metaweb location
+metaweb <- read_csv("../data/processed/topology.csv") %>%
+  filter(model == "pfim_metaweb") %>%
+  select(-c(richness, distance, n_rep)) %>%
+  mutate(model = NULL) %>%
+  unique()
+
+metaweb_predict <- predict(post_hoc, metaweb)
+
+
+ggplot(plot_lda) + 
+  geom_point(aes(x = lda.LD1, 
+                 y = lda.LD2, 
+                 colour = y_val), 
+             size = 3,
+             alpha = 0.1) +
+  scale_colour_distiller(palette = "YlGnBu") +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD1,
+                 y = lda.LD2)) +
+  facet_wrap(vars(time)) +
+  theme_classic() +
+  theme(panel.border = element_rect(colour = 'black',
+                                    fill = "#ffffff00"),
+        axis.ticks.x = element_blank())
+
+ggsave("../figures/pfim_downsample_lad.png",
+       width = 5000,
+       height = 3000,
        units = "px",
        dpi = 600)
