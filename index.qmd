@@ -233,6 +233,8 @@ For each paleo community (time bin) we constructed **100** networks for each mod
 
 ### Structure
 
+Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as `network structure values ~ model + time period` and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure.
+
 ![stuff...](figures/summary.png){#fig-summary}
 
 ### Interaction/species turnover
