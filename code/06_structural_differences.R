@@ -20,7 +20,8 @@ df <- read_csv("../data/processed/topology.csv") %>%
   filter(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
-                           .default = as.character(model)))
+                           .default = as.character(model))) %>%
+  na.omit()
 
 dep_vars <- as.matrix(df[3:ncol(df)])
 
@@ -31,22 +32,36 @@ summary(fit)
 #get effect size
 effectsize::eta_squared(fit)
 
-post_hoc <- lda(df$model ~ dep_vars, CV=F)
+post_hoc <- lda(model~., select(df, -time))
 post_hoc
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
                                       levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")), 
-                       lda = predict(post_hoc)$x)
+                       lda = predict(post_hoc)$x,
+                       time = df$time)
 
 plot_arrow <- as.data.frame(post_hoc[["scaling"]]) %>%
   mutate(var = str_replace(row.names(.), "dep_vars", ""),
          lda.LD1 = scale(LD1),
          lda.LD2 = scale(LD2))
 
+metaweb <- read_csv("../data/processed/topology.csv") %>%
+  #mutate(across(matches("S[[:digit:]]"), log)) %>%
+  select(-c(richness, distance, n_rep)) %>%
+  # remove metaweb pfims
+  filter(model == "pfim_metaweb") %>%
+  na.omit() %>%
+  mutate(model = NULL) %>%
+  unique()
+  
+metaweb_predict <- predict(post_hoc, metaweb)
 
 ggplot(plot_lda) + 
-  geom_point(aes(x = lda.LD1, y = lda.LD2, colour = model), 
+  geom_point(aes(x = lda.LD1, 
+                 y = lda.LD2, 
+                 colour = model,
+                 shape = time), 
              size = 3,
              alpha = 0.3) +
   geom_segment(data = plot_arrow,
@@ -54,6 +69,11 @@ ggplot(plot_lda) +
                    y = 0,
                    xend = lda.LD1,
                    yend = lda.LD2)) +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD1,
+                 y = lda.LD2,
+                 shape = time)) +
   scale_colour_brewer(palette = "Dark2") +
   theme_classic() +
   theme(panel.border = element_rect(colour = 'black',
