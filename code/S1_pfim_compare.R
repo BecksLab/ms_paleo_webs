@@ -45,7 +45,7 @@ read_csv("../data/dunhill/topology.csv") %>%
              scales = 'free',
              ncol = 2) +
   scale_size(guide = 'none') +
-  xlab("time") +
+  xlab("y value") +
   ylab("value") +
   coord_cartesian(clip = "off") +
   theme_classic() +
@@ -110,7 +110,7 @@ ggplot(plot_lda) +
         axis.ticks.x = element_blank())
 
 ggsave("../figures/pfim_downsample_lad.png",
-       width = 5000,
-       height = 3000,
+       width = 10000,
+       height = 6000,
        units = "px",
        dpi = 600)

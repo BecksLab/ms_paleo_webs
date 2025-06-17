@@ -25,7 +25,7 @@ matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 # feeding rules
 feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
 
-for j in eachindex(dunhill_comms)
+for j in 1:2
 
     # read in edgelist
     file_name = dunhill_comms[j]
@@ -73,7 +73,7 @@ feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
 
 # number of network reps
 n_reps = 100
-y_val = collect(1.0:0.2:10.0)
+y_val = collect(1.0:0.5:50.0)
 
 topology = DataFrame(
     time = Any[],
