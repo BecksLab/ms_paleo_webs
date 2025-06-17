@@ -89,7 +89,7 @@ for j = 1:n_reps
             elseif model == "pfim_metaweb"
                 N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "pfim_downsample"
-                N = pfim.PFIM(df, feeding_rules; y = 5.0, downsample = true)
+                N = pfim.PFIM(df, feeding_rules; y = 30.0, downsample = true)
             elseif model == "niche"
                 N = structuralmodel(NicheModel, nrow(df), connectance)
             elseif model == "random"
