@@ -29,7 +29,7 @@ for i in eachindex(time_groups)
 
     df = filter(:time => x -> x == time_groups[i], networks)
     # make unique ID for making combos
-    df.uniq_id = map(join,zip(df.model, df.n_rep))
+    df.uniq_id = map(join, zip(df.model, df.n_rep))
 
     # for each combination of datasets
     for (x, y) in combinations(unique(df[:, :uniq_id]), 2)
@@ -50,7 +50,7 @@ for i in eachindex(time_groups)
         b[:links_right] = links(V)
         # send to results
         push!(β_div, b)
-    end   
+    end
 end
 
 # write outputs as .csv

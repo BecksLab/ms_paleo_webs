@@ -37,52 +37,62 @@ n_reps = 100
 
 for j = 1:n_reps
 
-        # create some synthetic bodysize data (based on some distributions)
-        # spp body sizes will be constant across communities but vary by rep
-        y = collect(String, size_classes.size)
+    # create some synthetic bodysize data (based on some distributions)
+    # spp body sizes will be constant across communities but vary by rep
+    y = collect(String, size_classes.size)
 
-        bodysize =
-            (
-                y ->
-                    y == "tiny" ? rand(Uniform(0.1, 10.0)) :
-                    y == "small" ? rand(Uniform(10.0, 50.0)) :
-                    y == "medium" ? rand(Uniform(50.0, 100.0)) :
-                    y == "large" ? rand(Uniform(100.0, 300.0)) :
-                    y == "very_large" ? rand(Uniform(300.0, 500.0)) :
-                    y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
-            ).(y)
+    bodysize = (
+        y ->
+            y == "tiny" ? rand(Uniform(0.1, 10.0)) :
+            y == "small" ? rand(Uniform(10.0, 50.0)) :
+            y == "medium" ? rand(Uniform(50.0, 100.0)) :
+            y == "large" ? rand(Uniform(100.0, 300.0)) :
+            y == "very_large" ? rand(Uniform(300.0, 500.0)) :
+            y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
+    ).(
+        y,
+    )
 
-        # add to size classes df
-        size_classes[!,:bodymass] = bodysize
-    
-        for i in eachindex(matrix_names)
-    
-            file_name = matrix_names[i]
-            # get relevant info from slug
-            str_cats = split(file_name, r"_")
-    
-            # import data frame
-            df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
-            select!(df, [:Guild, :motility, :tiering, :feeding, :size])
-            rename!(df, :Guild => :species)
-    
-            # remove BASAL_NODE for now...
-            filter!(:species => x -> x != "BASAL_NODE", df)
-    
-            # specify if producer (basal node)
-            is_producer = map(==("primary"), string.(df.tiering))
+    # add to size classes df
+    size_classes[!, :bodymass] = bodysize
 
-            # get the bodysizes of species only present in df
-            bodymass = Vector{Float64}(innerjoin(df, size_classes, on = [:species, :size]).bodymass)
+    for i in eachindex(matrix_names)
 
-            # create some mock abundance/biomass values using a *very* basic scaling law
-            biomass = bodymass .^ (-3 / 4)
+        file_name = matrix_names[i]
+        # get relevant info from slug
+        str_cats = split(file_name, r"_")
+
+        # import data frame
+        df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
+        select!(df, [:Guild, :motility, :tiering, :feeding, :size])
+        rename!(df, :Guild => :species)
+
+        # remove BASAL_NODE for now...
+        filter!(:species => x -> x != "BASAL_NODE", df)
+
+        # specify if producer (basal node)
+        is_producer = map(==("primary"), string.(df.tiering))
+
+        # get the bodysizes of species only present in df
+        bodymass =
+            Vector{Float64}(innerjoin(df, size_classes, on = [:species, :size]).bodymass)
+
+        # create some mock abundance/biomass values using a *very* basic scaling law
+        biomass = bodymass .^ (-3 / 4)
 
         # specify connectance for niche/random model
         # TODO could possibly have this be 'dynamic' based on the Co of other networks...
         connectance = rand(Uniform(0.07, 0.15))
 
-        for model ∈ ["adbm", "bodymassratio", "lmatrix", "niche", "pfim_metaweb", "pfim_downsample", "random"]
+        for model ∈ [
+            "adbm",
+            "bodymassratio",
+            "lmatrix",
+            "niche",
+            "pfim_metaweb",
+            "pfim_downsample",
+            "random",
+        ]
 
             if model == "bodymassratio"
                 N = bmratio(df.species, bodymass)

@@ -63,16 +63,20 @@ for i = 1:nrow(extinctions)
 
             # tss score
 
-            N_real = filter([:model, :n_rep] => (x, y) -> x == extinctions.model[i] && y == extinctions.n_rep[i], networks)
+            N_real = filter(
+                [:model, :n_rep] =>
+                    (x, y) -> x == extinctions.model[i] && y == extinctions.n_rep[i],
+                networks,
+            )
 
             _tss = TSS(N_real.network[1], _ext_seq[net_ind])
 
             t = Dict{Symbol,Any}(
-                    :model => extinctions.model[i],
-                    :extinction_mechanism => extinctions.extinction_mechanism[i],
-                    :n_rep => extinctions.n_rep[i],
-                    :tss => _tss,
-                    )
+                :model => extinctions.model[i],
+                :extinction_mechanism => extinctions.extinction_mechanism[i],
+                :n_rep => extinctions.n_rep[i],
+                :tss => _tss,
+            )
 
             push!(tss, t)
 

@@ -25,7 +25,7 @@ matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 # feeding rules
 feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
 
-for j in 1:2
+for j = 1:2
 
     # read in edgelist
     file_name = dunhill_comms[j]
@@ -38,7 +38,7 @@ for j in 1:2
     edgs = Binary(zeros(Bool, (length(S), length(S))))
     N_dunhill = SpeciesInteractionNetwork(nodes, edgs)
 
-    for i in 1:nrow(ints)
+    for i = 1:nrow(ints)
 
         interaction = (Symbol(ints.consumer[i]), Symbol(ints.resource[i]))
 
@@ -56,7 +56,7 @@ for j in 1:2
     N_julia = pfim.PFIM(df, feeding_rules; downsample = false)
 
     d_julia = _network_summary(N_julia)
-    
+
 end
 
 # set seed
@@ -94,30 +94,30 @@ topology = DataFrame(
 );
 
 for j = 1:n_reps
-    
-        for i in eachindex(matrix_names)
-    
-            file_name = matrix_names[i]
-            # get relevant info from slug
-            str_cats = split(file_name, r"_")
-    
-            # import data frame
-            df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
-            select!(df, [:Guild, :motility, :tiering, :feeding, :size])
-            rename!(df, :Guild => :species)
-    
-            # remove BASAL_NODE for now...
-            filter!(:species => x -> x != "BASAL_NODE", df)
-    
+
+    for i in eachindex(matrix_names)
+
+        file_name = matrix_names[i]
+        # get relevant info from slug
+        str_cats = split(file_name, r"_")
+
+        # import data frame
+        df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
+        select!(df, [:Guild, :motility, :tiering, :feeding, :size])
+        rename!(df, :Guild => :species)
+
+        # remove BASAL_NODE for now...
+        filter!(:species => x -> x != "BASAL_NODE", df)
+
         for k in eachindex(y_val)
 
-           N = pfim.PFIM(df, feeding_rules; y = y_val[k], downsample = true)
+            N = pfim.PFIM(df, feeding_rules; y = y_val[k], downsample = true)
 
-           d = _network_summary(N)
-           
-           d[:time] = str_cats[1]
-           d[:n_rep] = j
-           d[:y_val] = y_val[k]
+            d = _network_summary(N)
+
+            d[:time] = str_cats[1]
+            d[:n_rep] = j
+            d[:y_val] = y_val[k]
 
             push!(topology, d)
         end

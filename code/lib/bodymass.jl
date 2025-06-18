@@ -35,7 +35,7 @@ function bmratio(
     α::Float64 = 1.41,
     β::Float64 = 3.73,
     γ::Float64 = 1.87,
-    )
+)
 
     S = length(species)
 
@@ -46,7 +46,7 @@ function bmratio(
             MR = bodymass[i] / bodymass[j]
             p = exp(α + β * log(MR) + γ * (log(MR))^2)
 
-           if p / (1 - p) >= 0.08
+            if p / (1 - p) >= 0.08
                 prob_matrix[i, j] = 1
             end
         end

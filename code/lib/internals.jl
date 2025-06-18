@@ -31,10 +31,22 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
         :redundancy => (L - (S - 1)),
-        :S1 => length(findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)))/(richness(N)^2),
-        :S2 => length(findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N)))/(richness(N)^2),
-        :S4 => length(findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N)))/(richness(N)^2),
-        :S5 => length(findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N)))/(richness(N)^2),
+        :S1 =>
+            length(
+                findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)),
+            )/(richness(N)^2),
+        :S2 =>
+            length(
+                findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N)),
+            )/(richness(N)^2),
+        :S4 =>
+            length(
+                findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N)),
+            )/(richness(N)^2),
+        :S5 =>
+            length(
+                findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N)),
+            )/(richness(N)^2),
     )
 
     return D
@@ -165,7 +177,10 @@ TSS(N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, N_sim::SpeciesInt
     Ecology and Evolution, 12(3), e8643. https://doi.org/10.1002/ece3.8643215
 
 """
-function TSS(N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, N_sim::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
+function TSS(
+    N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
+    N_sim::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
+)
 
     # is post extinction community a subset of the pre extinction community
     species(N_real)
@@ -176,18 +191,18 @@ function TSS(N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary}, N_sim::S
 
     # what is in left not in right
     # interactions in simulated not in real
-    fp = length(setdiff(sim ,real))
+    fp = length(setdiff(sim, real))
     # interactions in real not in simulated
-    fn = length(setdiff(real ,sim))
-    
+    fn = length(setdiff(real, sim))
+
     # what is shared between real and simulated
     tp = length(intersect(sim, real))
-    
+
     # all potential links in real and simulated (all species^2 = num potential links)
     link_pot = length(union(species(N_real), species(N_sim)))^2
     # subtract all other accounted for links to get those missed
     tn = link_pot - (fp + fn + tp)
-    
+
     # eq. to get tss score
     tss = ((tp*tn) - (fp*fn))/((tp + fn)*(fp + tn))
 
