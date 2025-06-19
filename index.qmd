@@ -40,11 +40,13 @@ number-sections: true
 
 -   Value in using hindcasting to aid in forecasting. *e.g.,* the Toarcian ms [@dunhill2024] shows how we can use these paleo communities to understand trophic-level responses to extinctions.
 
-# How do we do it?
+-   Close out with the inherit challenge that we cannot observe paleo feeding interactions (barring rare instances, and often only for a limited subset of species) and so we are often using expert knowledge/mechanistic assumptions to infer links between species [\*e.g.,\* @dunne2014; @roopnarine2006].
+
+# How do we build paleo food webs?
 
 -   There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.
 
--   There are a handful that have been developed specifically in the context of paleo settings *e.g.,* TODO but we can also talk about those that might have been developed/tested in contemporary settings but still have applicability in paleo ones.
+-   There are a handful that have been developed specifically in the context of paleo settings [\*e.g.,\* @shaw2024; @roopnarine2006; @fricke2022] but we can also talk about those that might have been developed/tested in contemporary settings but still have applicability in paleo ones.
 
 -   Different underlying theory though
 
@@ -60,11 +62,11 @@ number-sections: true
 
 It is important to be aware that networks can be configured in different ways depending on how the interactions are defined (Strydom, in prep). Basically we have metawebs (which represent *potential* interactions), realised networks (which represent the subset of potential that are realised as a result of community and environmental context), and structural networks (species agnostic networks that are structurally informative). Here also talk about the implications of these different networks types - different uses and capturing different processes. Speciifcally link this to models - *i.e.,* different models have been developed to construct a *specific* network representation.
 
-# Challenges specific to paleo communities/networks
+# Challenges specific to building paleo communities/networks
 
 Although there are a suite of tools and methods that have been developed to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. Some of these include the fact that the fossil record is incomplete/preservation is biased \[REF\] which means that we have an incomplete picture of the entire community. Fossils are 2D and only represent specific 'parts' of an individual (hard and bone-y bits), this means we don't have a complete picture of the physical traits of species *e.g.,* no body mass (but yes size), behaviours, or ability to construct well resolved phylogenetic trees the deeper we go back in time. Also owing to the patchy nature of fossils one often has to aggregate over large spatial scales, and also fossils are preserved in 2D so no *real* idea of spatial arrangements, compounded that fossils aren't necessarily conserved/found 'in situ' but can be moved (*e.g.,* alluvial deposits). Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022). Something about the intersectionality of the data we don't have for paleo communities and the data we need for some of the different modelling approaches.
 
-# Interaction/food web prediction models/tools
+# Approaches to food web prediction
 
 Here we should take the time to go in and just articulate that there are nuance and differences in terms of predicting interactions vs predicting networks. Once it is finally on a preprint server we can obviously link to the T4T stuff...
 
@@ -74,10 +76,10 @@ Here we present six different models (@tbl-models) that can be used to construct
 |------------|------------|------------|------------|------------|------------|
 | random | Links are randomly distributed within a network | richness, number of links | parameter assumptions, species agnostic | structural network | @erdos1959 |
 | niche | Networks are interval, species can be ordered on a 'niche axis' | richness, connectance | parameter assumptions, species agnostic | structural network | @williams2008 |
-| allometric diet breadth model (ADBM) | Interactions are determined by energetic costs | body mass, biomass (abundance) | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
-| l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass, number of producer species | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data, assumptions as to the number of producer species | realised network | @schneider2016 |
+| allometric diet breadth model (ADBM) | Interactions are determined by energetic costs (foraging ecology) | body mass, biomass (abundance) | does not account for forbidden links in terms of trait compatibility, assumptions on body size and biomass (abundance) from fossil data | realised network | @petchey2008 |
+| l-matrix | Interactions inferred using allometric rules (ratio of body sizes between predator and prey), with links being constrained by a Ricker function | body mass, number of producer species | does not account for forbidden links in terms of trait compatibility, assumptions on body size from fossil data, assumptions as to the number of producer species | realised network | @schneider2016 |
 | paleo food web inference model (PFIM) | Interactions can be inferred by a mechanistic framework/relationships | feeding traits for taxa, mechanistic feeding rules | Assumption made as to the feeding mechanisms, need to elucidate traits from models (although this is a way smaller issue) | metaweb | @shaw2024 |
-| body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey) | body mass | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
+| body size ratio model | Interactions inferred using allometric rules (ratio of body sizes between predator and prey). :ogit of the linking probability used to further constrain links to an 'optimal size range' for prey. | body mass | does not account for forbidden links in terms of evolutionary compatibility, assumptions on body size from fossil data | metaweb?? | @rohr2010 |
 
 : A summary of the different families of tools that can be used to generate paleo food webs. {#tbl-models}
 
@@ -87,7 +89,7 @@ Here we present six different models (@tbl-models) that can be used to construct
 
 The Erdős–Rényi random graph model [@erdos1959] uniformly at random assigns an $L$ number of links to an $S$ number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (*i.e.,* species have no agency) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness *(*$S$) and connectance ($L/S^2$)
 
-> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network... Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes
+> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network... Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes and anyway one of the Null models is a derivative of Erdős–Rényi if I remember correctly.
 
 ### Niche model
 
@@ -176,7 +178,7 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined fo
 In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
 
 | Label | Definition | Scale | Reference (for maths), can make footnotes probs |
-|-----------------|---------------------|-----------------|-----------------|
+|------------------|--------------------|------------------|------------------|
 | Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | Macro |  |
 | GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @williams2000 |
 | LinkSD | Normalized standard deviation of links (number of consumers plus resources per taxon) | Micro |  |
@@ -225,8 +227,6 @@ For each paleo community (time bin) we constructed **100** networks for each mod
 
 ### Simulating Extinctions
 
-
-
 # Results
 
 ## Comparing predicted networks
@@ -244,7 +244,6 @@ Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) 
 ## Comparing inference
 
 ![stuff... Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations...](figures/dunhill_comp.png){#fig-dunhill}
-
 
 # References {.unnumbered}
 
