@@ -22,11 +22,14 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     S = richness(N)
     l_s = L / S
 
+    tls = trophic_level(N)
+
     D = Dict{Symbol,Any}(
         :richness => richness(N),
         :connectance => SpeciesInteractionNetworks.connectance(N),
         :diameter => _diameter(N),
         :complexity => complexity(N),
+        :trophic_level => findmax(collect(values(tls)))[2],
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
@@ -225,4 +228,45 @@ function remove_cannibals(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     network = SpeciesInteractionNetwork(nodes, edges)
 
     return network
+end
+
+"""
+trophic_level(N::SpeciesInteractionNetwork)
+
+    Calculates the trophic level of all species in a network using the average 
+    shortest path from the prey of species 𝑖 to a basal species
+
+    Williams, Richard J., and Neo D. Martinez. 2004. “Limits to Trophic Levels 
+    and Omnivory in Complex Food Webs: Theory and Data.” The American Naturalist 
+    163 (3): 458–68. https://doi.org/10.1086/381964.
+"""
+function trophic_level(N::SpeciesInteractionNetwork)
+
+    sp = species(N)
+
+    # dictionary for path lengths
+    pls = Dict{Any,Any}()
+
+    for i in eachindex(sp)
+
+        # prey of spp i
+        preys = collect(successors(N, sp[i]))
+
+        # only continue if species has preys...
+        if length(preys) > 0
+            # for summing each path length
+            pl_temp = 0
+            for j in eachindex(preys)
+
+                pl_temp += distancetobase(N, preys[j])
+
+                pls[sp[i]] = 2 + (1/length(sp)) * pl_temp
+                
+            end
+        else
+            pls[sp[i]] = 2
+        end
+    end
+    # return trophic level Dict
+    return pls
 end

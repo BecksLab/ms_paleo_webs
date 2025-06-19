@@ -15,6 +15,7 @@ topology = DataFrame(
     connectance = Float64[],
     diameter = Int64[],
     complexity = Float64[],
+    trophic_level = Float64[],
     distance = Float64[],
     generality = Float64[],
     vulnerability = Float64[],
