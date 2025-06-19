@@ -11,6 +11,9 @@ library(tidyverse)
 # set path to code sub dir
 setwd(here("code"))
 
+#load script that determines plotting aesthetics
+source("lib/plotting_theme.R")
+
 # import data
 
 df <- read_csv("../data/processed/topology.csv") %>%
@@ -37,7 +40,7 @@ post_hoc
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")), 
+                                      levels = c("niche", "random", "adbm", "lmatrix", "bodymassratio", "pfim")), 
                        lda = predict(post_hoc)$x,
                        time = df$time)
 
@@ -74,11 +77,10 @@ ggplot(plot_lda) +
              aes(x = lda.LD1,
                  y = lda.LD2,
                  shape = time)) +
-  scale_colour_brewer(palette = "Dark2") +
-  theme_classic() +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  figure_theme
 
 ggsave("../figures/MANOVA_lda.png",
        width = 5000,
@@ -99,12 +101,12 @@ df <- df %>%
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>%
   mutate(level = case_when(
-    stat %in% c("complexity", "connectance", "diameter", "redundancy") ~ "Macro",
+    stat %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
   mutate(model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")))
+                        levels = c("niche", "random", "adbm", "lmatrix", "bodymassratio", "pfim")))
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
@@ -121,20 +123,18 @@ for (i in seq_along(plot_list)) {
                scales = 'free',
                ncol = 2) +
     scale_size(guide = 'none') +
-    xlab("time") +
+    xlab(NULL) +
     ylab("value") +
     coord_cartesian(clip = "off") +
-    scale_colour_brewer(palette = "Dark2") +
+    scale_colour_manual(values = pal_df$c,
+                        breaks = pal_df$l) +
     labs(title = levs[i]) +
-    theme_classic() +
-    theme(panel.border = element_rect(colour = 'black',
-                                      fill = "#ffffff00"),
-          axis.ticks.x = element_blank())
+    figure_theme
 }
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 2, 1))
+  plot_layout(height = c(3, 2, 1))
 
 ggsave("../figures/summary.png",
        width = 5000,
