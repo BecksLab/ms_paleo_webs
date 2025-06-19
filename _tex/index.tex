@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-06-18}
+\date{2025-06-19}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -280,9 +280,16 @@ network construction%
   Value in using hindcasting to aid in forecasting. \emph{e.g.,} the
   Toarcian ms (Dunhill et al., 2024) shows how we can use these paleo
   communities to understand trophic-level responses to extinctions.
+\item
+  Close out with the inherit challenge that we cannot observe paleo
+  feeding interactions (barring rare instances, and often only for a
+  limited subset of species) and so we are often using expert
+  knowledge/mechanistic assumptions to infer links between species
+  (*e.g.,* Dunne et al., 2014; Roopnarine, 2006).
 \end{itemize}
 
-\section{How do we do it?}\label{how-do-we-do-it}
+\section{How do we build paleo food
+webs?}\label{how-do-we-build-paleo-food-webs}
 
 \begin{itemize}
 \item
@@ -290,9 +297,10 @@ network construction%
   specifically for the task of predicting food webs.
 \item
   There are a handful that have been developed specifically in the
-  context of paleo settings \emph{e.g.,} TODO but we can also talk about
-  those that might have been developed/tested in contemporary settings
-  but still have applicability in paleo ones.
+  context of paleo settings (Fricke et al., 2022; Roopnarine, 2006;
+  *e.g.,* Shaw et al., 2024) but we can also talk about those that might
+  have been developed/tested in contemporary settings but still have
+  applicability in paleo ones.
 \item
   Different underlying theory though
 
@@ -331,8 +339,8 @@ processes. Speciifcally link this to models - \emph{i.e.,} different
 models have been developed to construct a \emph{specific} network
 representation.
 
-\section{Challenges specific to paleo
-communities/networks}\label{challenges-specific-to-paleo-communitiesnetworks}
+\section{Challenges specific to building paleo
+communities/networks}\label{challenges-specific-to-building-paleo-communitiesnetworks}
 
 Although there are a suite of tools and methods that have been developed
 to predict species interactions and networks they will not all be
@@ -357,8 +365,8 @@ about the intersectionality of the data we don't have for paleo
 communities and the data we need for some of the different modelling
 approaches.
 
-\section{Interaction/food web prediction
-models/tools}\label{interactionfood-web-prediction-modelstools}
+\section{Approaches to food web
+prediction}\label{approaches-to-food-web-prediction}
 
 Here we should take the time to go in and just articulate that there are
 nuance and differences in terms of predicting interactions vs predicting
@@ -422,25 +430,27 @@ niche & Networks are interval, species can be ordered on a `niche axis'
 & richness, connectance & parameter assumptions, species agnostic &
 structural network & Williams \& Martinez (2008) \\
 allometric diet breadth model (ADBM) & Interactions are determined by
-energetic costs & body mass, biomass (abundance) & does not account for
-forbidden links in terms of trait compatibility, assumptions on body
-size and biomass (abundance) from fossil data & realised network &
-Petchey et al. (2008) \\
+energetic costs (foraging ecology) & body mass, biomass (abundance) &
+does not account for forbidden links in terms of trait compatibility,
+assumptions on body size and biomass (abundance) from fossil data &
+realised network & Petchey et al. (2008) \\
 l-matrix & Interactions inferred using allometric rules (ratio of body
-sizes between predator and prey) & body mass, number of producer species
-& does not account for forbidden links in terms of trait compatibility,
-assumptions on body size from fossil data, assumptions as to the number
-of producer species & realised network & Schneider et al. (2016) \\
+sizes between predator and prey), with links being constrained by a
+Ricker function & body mass, number of producer species & does not
+account for forbidden links in terms of trait compatibility, assumptions
+on body size from fossil data, assumptions as to the number of producer
+species & realised network & Schneider et al. (2016) \\
 paleo food web inference model (PFIM) & Interactions can be inferred by
 a mechanistic framework/relationships & feeding traits for taxa,
 mechanistic feeding rules & Assumption made as to the feeding
 mechanisms, need to elucidate traits from models (although this is a way
 smaller issue) & metaweb & Shaw et al. (2024) \\
 body size ratio model & Interactions inferred using allometric rules
-(ratio of body sizes between predator and prey) & body mass & does not
-account for forbidden links in terms of evolutionary compatibility,
-assumptions on body size from fossil data & metaweb?? & Rohr et al.
-(2010) \\
+(ratio of body sizes between predator and prey). :ogit of the linking
+probability used to further constrain links to an `optimal size range'
+for prey. & body mass & does not account for forbidden links in terms of
+evolutionary compatibility, assumptions on body size from fossil data &
+metaweb?? & Rohr et al. (2010) \\
 \end{longtable}
 
 \subsection{Structural models}\label{structural-models}
@@ -464,7 +474,8 @@ Erdős--Rényi is the better choice than the other models that (IMO) are
 more suited to hypothesis testing e.g.~do observed networks differ from
 the null network\ldots{} Whereas Erdős--Rényi really is just a case of
 here is a truly random network with the specified number of links and
-nodes
+nodes and anyway one of the Null models is a derivative of Erdős--Rényi
+if I remember correctly.
 \end{quote}
 
 \subsubsection{Niche model}\label{niche-model}
@@ -656,10 +667,10 @@ clearly be tied to broader aspects of network function or capturing a
 ecological process.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2361}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2917}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2361}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2361}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2432}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2703}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2432}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2432}}@{}}
 \caption{An informative caption about the different network
 properties}\label{tbl-properties}\tabularnewline
 \toprule\noalign{}
@@ -899,6 +910,13 @@ T. S., \& Beckerman, A. P. (2024). Extinction cascades, community
 collapse, and recovery across a Mesozoic hyperthermal event.
 \emph{Nature Communications}, \emph{15}(1), 8599.
 \url{https://doi.org/10.1038/s41467-024-53000-2}
+
+\bibitem[\citeproctext]{ref-dunne2014}
+Dunne, J. A., Labandeira, C. C., \& Williams, R. J. (2014). Highly
+resolved early eocene food webs show development of modern trophic
+structure after the end-cretaceous extinction. \emph{Proceedings of the
+Royal Society B: Biological Sciences}, \emph{281}(1782), 20133280.
+\url{https://doi.org/10.1098/rspb.2013.3280}
 
 \bibitem[\citeproctext]{ref-erdos1959}
 Erdős, P., \& Rényi, A. (1959). On random graphs. i. \emph{Publicationes
