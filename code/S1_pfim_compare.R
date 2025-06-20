@@ -8,6 +8,9 @@ library(tidyverse)
 # set path to code sub dir
 setwd(here("code"))
 
+#load script that determines plotting aesthetics
+source("lib/plotting_theme.R")
+
 # import data
 metaweb <- read_csv("../data/processed/topology.csv") %>%
   filter(model == "pfim_metaweb") %>%
@@ -48,10 +51,7 @@ read_csv("../data/dunhill/topology.csv") %>%
   xlab("y value") +
   ylab("value") +
   coord_cartesian(clip = "off") +
-  theme_classic() +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+  figure_theme
 
 ggsave("../figures/pfim_downsample.png",
        width = 5000,
@@ -62,7 +62,7 @@ ggsave("../figures/pfim_downsample.png",
 
 df <- read_csv("../data/dunhill/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  select(-c(richness, distance, n_rep)) %>%
+  select(-c(richness, distance, n_rep, trophic_level)) %>%
   na.omit()
 
 dep_vars <- as.matrix(df[3:ncol(df)])
@@ -74,7 +74,7 @@ summary(fit)
 #get effect size
 effectsize::eta_squared(fit)
 
-post_hoc <- lda(y_val~., df[1:ncol(df)])
+post_hoc <- lda(y_val~., df[2:ncol(df)])
 post_hoc
 
 # plot 
@@ -104,10 +104,7 @@ ggplot(plot_lda) +
              aes(x = lda.LD1,
                  y = lda.LD2)) +
   facet_wrap(vars(time)) +
-  theme_classic() +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+  figure_theme
 
 ggsave("../figures/pfim_downsample_lda.png",
        width = 10000,
