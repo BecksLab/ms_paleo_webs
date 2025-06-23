@@ -30,7 +30,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
                           stat == "S5" ~ "No. of apparent competition motifs",
                           stat == "S4" ~ "No. of direct competition motifs",
                           .default = as.character(stat))) %>%
-  mutate(level = case_when(stat %in% c("richness", "connectance", "generality", "vulnerability") ~ "struct",
+  mutate(level = case_when(stat %in% c("richness", "connectance", "generality", "vulnerability", "trophic_level") ~ "struct",
                            .default = "motif"),
          model = factor(model, ordered = TRUE, 
                         levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")),
@@ -47,14 +47,13 @@ struct <- ggplot(df %>%
              scales = 'free',
              ncol = 1) +
   scale_size(guide = 'none') +
-  theme_classic() +
   xlab("time") +
   ylab(NULL)  +
-  coord_cartesian(clip = "off") +
-  scale_colour_brewer(palette = "Dark2") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+  coord_cartesian(clip = "off")  +
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  figure_theme +
+  theme(legend.position = 'none')
 
 motif <- ggplot(df %>% 
                   filter(level == "motif"),
@@ -67,14 +66,13 @@ motif <- ggplot(df %>%
              scales = 'free',
              ncol = 1) +
   scale_size(guide = 'none') +
-  theme_classic() +
   xlab("time") +
   ylab(NULL) +
   coord_cartesian(clip = "off") +
-  scale_colour_brewer(palette = "Dark2") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank())
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  figure_theme +
+  theme(legend.position = 'none')
 
 # means abs differences between real and extinction simulations
 
@@ -97,7 +95,7 @@ df <- read_csv("../data/processed/extinction_topology.csv") %>%
               mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
                                        .default = as.character(model))) %>%
               filter(time == "G2") %>%
-              select(-c(distance, redundancy, complexity, diameter, time, S1, S2, S4, S5)) %>%
+              select(-c(distance, redundancy, complexity, diameter, time, S1, S2, S4, S5, trophic_level)) %>%
               pivot_longer(
                 cols = -c(model, n_rep),
                 names_to = "stat",
@@ -114,13 +112,10 @@ mean_diff <- ggplot(df,
                         fill = model)) +
   geom_bar(stat="identity", position=position_dodge()) +
   coord_cartesian(clip = "off") +
-  theme_classic() +
   ylab(NULL)  +
-  scale_fill_brewer(palette = "Dark2") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank(),
-        legend.position = 'none')
+  scale_fill_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  figure_theme
 
 # tss scores
 
@@ -140,12 +135,9 @@ tss <-  ggplot(df,
   geom_bar(stat="identity", position=position_dodge()) +
   coord_cartesian(clip = "off") +
   ylab(NULL)  +
-  theme_classic() +
-  scale_fill_brewer(palette = "Dark2") +
-  theme(panel.border = element_rect(colour = 'black',
-                                    fill = "#ffffff00"),
-        axis.ticks.x = element_blank(),
-        legend.position = 'none')
+  scale_fill_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  figure_theme
 
 
 (tss + struct) / (mean_diff + motif)  +
