@@ -67,11 +67,11 @@ ggplot(plot_lda) +
                  shape = time), 
              size = 3,
              alpha = 0.3) +
-  geom_segment(data = plot_arrow,
-               aes(x = 0,
-                   y = 0,
-                   xend = lda.LD1,
-                   yend = lda.LD2)) +
+  #geom_segment(data = plot_arrow,
+  #             aes(x = 0,
+  #                 y = 0,
+  #                 xend = lda.LD1,
+  #                 yend = lda.LD2)) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
              aes(x = lda.LD1,
