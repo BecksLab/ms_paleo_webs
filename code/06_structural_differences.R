@@ -80,13 +80,14 @@ ggplot(plot_lda) +
   coord_cartesian(clip = "off") +
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
+  guides(color = guide_legend(override.aes = list(alpha = 1))) +
   figure_theme
 
 ggsave("../figures/MANOVA_lda.png",
        width = 5000,
        height = 4000,
        units = "px",
-       dpi = 600)
+       dpi = 700)
 
 df <- df %>%
   # to get the ratio
