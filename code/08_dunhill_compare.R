@@ -6,6 +6,9 @@ library(tidyverse)
 # set path to code sub dir
 setwd(here("code"))
 
+#load script that determines plotting aesthetics
+source("lib/plotting_theme.R")
+
 # import simulated data
 
 df <- read_csv("../data/processed/topology.csv") %>%
