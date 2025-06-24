@@ -1,5 +1,5 @@
-
-# librares
+# libraries
+library(here)
 library(tidyverse)
 
 # set path to code sub dir
@@ -31,12 +31,13 @@ df <- read_csv("../data/processed/beta_div.csv") %>%
   mutate(shared_pct = β_int_shared/((links_left-β_int_shared) + (links_right-β_int_shared) + β_int_shared),
          model_combo = case_when(combo %in% c("pfim_pfim", "lmatrix_lmatrix", "bodymassratio_bodymassratio",
                                               "adbm_adbm") ~ "Within model",
-                                 .default = "Between model"))
+                                 .default = "Between model")) %>%
+  mutate(combo = case_when(model_combo == "Within model" ~ str_extract(combo, "^.+?(?=_)"),
+                           .default = combo))
 
 ggplot(df,
        aes(x = combo,
-           y = shared_pct*100,
-           colour = time)) + 
+           y = shared_pct*100)) + 
   geom_boxplot(position = position_dodge(1),
                outliers = FALSE,
                fill = NA) +
@@ -49,7 +50,7 @@ ggplot(df,
   theme_classic() +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+        axis.text.x = element_text(angle = 45, hjust=1))
 
 ggsave("../figures/beta_div.png",
        width = 5000,
