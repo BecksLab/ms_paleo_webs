@@ -261,7 +261,7 @@ function trophic_level(N::SpeciesInteractionNetwork)
                 pl_temp += distancetobase(N, preys[j])
 
                 pls[sp[i]] = 2 + (1/length(sp)) * pl_temp
-                
+
             end
         else
             pls[sp[i]] = 2
