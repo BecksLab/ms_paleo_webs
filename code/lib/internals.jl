@@ -33,7 +33,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
-        :redundancy => (L - (S - 1)),
+        :redundancy => (L - (S - 1))/S,
         :S1 =>
             length(
                 findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)),
