@@ -163,7 +163,7 @@ adbmmodel(df::DataFrame, parameters::Dict{Symbol,Any}, biomass::Vector{Float64})
 
   This function returns the food web based on the ADBM model of Petchey et al. 2008.
   The function takes the paramteres created by adbm_parameters and uses 
-  _get_adbm_terms and _get_feeding_links to detemine the web structure.
+  _get_adbm_terms and _get_feeding_links to determine the web structure.
 
   Note this (and all internal) functions has been ported from the 
   BioEnergeticFoodWebs.jl source code and has been (minimally) modified for the 
