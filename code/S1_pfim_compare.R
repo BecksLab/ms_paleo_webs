@@ -96,7 +96,7 @@ ggplot(plot_lda) +
   geom_point(aes(x = lda.LD1, 
                  y = lda.LD2, 
                  colour = y_val), 
-             size = 3,
+             size = 1,
              alpha = 0.1) +
   scale_colour_distiller(palette = "YlGnBu") +
   geom_point(data = data.frame(lda = metaweb_predict$x,
@@ -107,7 +107,65 @@ ggplot(plot_lda) +
   figure_theme
 
 ggsave("../figures/pfim_downsample_lda.png",
-       width = 10000,
-       height = 6000,
+       width = 6000,
+       height = 3500,
+       units = "px",
+       dpi = 600)
+
+# LDA with all network models and min-max pfim downsample
+
+df <- read_csv("../data/processed/topology.csv") %>%
+  filter(!str_detect(model, "pfim")) %>%
+  rbind(.,
+        read_csv("../data/dunhill/topology.csv") %>%
+          #mutate(across(matches("S[[:digit:]]"), log)) %>%
+          na.omit() %>%
+          filter(y_val == 2.5 | y_val == max(y_val)) %>%
+          mutate(model = paste("pfim", y_val, sep = "_"),
+                 y_val = NULL))
+
+dep_vars <- as.matrix(df[3:ncol(df)])
+
+
+fit <- manova(dep_vars ~ model + time, data = df)
+summary(fit)
+
+#get effect size
+effectsize::eta_squared(fit)
+
+post_hoc <- lda(model~., df %>% select(!c(time, n_rep)))
+post_hoc
+
+# plot 
+plot_lda <- data.frame(model = as.character(predict(post_hoc)$class),
+                       lda = predict(post_hoc)$x,
+                       time = df$time)
+
+# predict real metaweb location
+metaweb <- read_csv("../data/processed/topology.csv") %>%
+  filter(model == "pfim_metaweb") %>%
+  select(!n_rep) %>%
+  mutate(model = NULL) %>%
+  unique()
+
+metaweb_predict <- predict(post_hoc, metaweb)
+
+
+ggplot(plot_lda) + 
+  geom_point(aes(x = lda.LD1, 
+                 y = lda.LD2, 
+                 colour = model), 
+             size = 2,
+             alpha = 0.1) +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD1,
+                 y = lda.LD2)) +
+  guides(color = guide_legend(override.aes = list(alpha = 1))) +
+  figure_theme
+
+ggsave("../figures/pfim_lda_minmax.png",
+       width = 6000,
+       height = 3500,
        units = "px",
        dpi = 600)
