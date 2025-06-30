@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-06-27}
+\date{2025-06-30}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -342,28 +342,39 @@ representation.
 \section{Challenges specific to building paleo
 communities/networks}\label{challenges-specific-to-building-paleo-communitiesnetworks}
 
-Although there are a suite of tools and methods that have been developed
-to predict species interactions and networks they will not all be
-suitable for the prediction of paleo communities. Some of these include
-the fact that the fossil record is incomplete/preservation is biased
-{[}REF{]} which means that we have an incomplete picture of the entire
-community. Fossils are 2D and only represent specific `parts' of an
-individual (hard and bone-y bits), this means we don't have a complete
-picture of the physical traits of species \emph{e.g.,} no body mass (but
-yes size), behaviours, or ability to construct well resolved
-phylogenetic trees the deeper we go back in time. Also owing to the
-patchy nature of fossils one often has to aggregate over large spatial
-scales, and also fossils are preserved in 2D so no \emph{real} idea of
-spatial arrangements, compounded that fossils aren't necessarily
-conserved/found `in situ' but can be moved (\emph{e.g.,} alluvial
-deposits). Methodologically speaking some tools that `learn' from
-contemporary communities (\emph{e.g.,} Strydom et al. (2023), Caron et
-al. (2022)) will become `worse' the further one goes back in time since
-species then look very different from now but can still be useful for
-`recent' communities (\emph{e.g.,} Fricke et al. (2022)). Something
-about the intersectionality of the data we don't have for paleo
-communities and the data we need for some of the different modelling
-approaches.
+Although there has been a push for the development of tools and methods
+that allow us to predict species interactions and networks {[}see
+\emph{e.g.,} XXX for some reviews{]} they will not all be suitable for
+the prediction of paleo communities. This is primarily due to
+limitations that we are faced with in terms of the information that can
+be inferred from the fossil record (such as species traits abundances,
+and assemblages), which is needed as input data for the different
+models. The limited information available from the fossil record is
+compounded by the incomplete and biased preservation of species
+{[}REF{]}, the spatial ambiguity of fossils found in a location {[}were
+species conserved \emph{in situ} or were they there owing to geological
+processes; REF{]}, and an increasing degree of `fuzziness' the further
+one moves back in geological time {[}our understanding of both
+phylogenetic and functional trait space, REF{]}. Methodologically
+speaking some tools that `learn' from contemporary communities
+(\emph{e.g.,} Strydom et al. (2023), Caron et al. (2022)) will become
+`worse' the further one goes back in time since species then look very
+different from now but can still be useful for `recent' communities
+(\emph{e.g.,} Fricke et al. (2022)). This is not to say that it is
+impossible to construct paleo networks but rather identify that there
+are a subset of models that are probably not at all suitable for
+constructing paleo networks (\emph{e.g.,} Null models, since there are
+fully driven by abundance), other methods will be better suited
+depending on the community of interest \emph{e.g.,} for more
+contemporary communities that have modern analogs we can use methods
+rooted in phylogeny (\emph{e.g.,} Fricke et al. (2022), Strydom et al.
+(2023)) or traits (\emph{e.g.,} Caron et al. (2022)), and then there is
+the third axis which is to think about which are the assumptions that
+are made and there trade off of that. This includes thinking about both
+assumptions you are making about the actual data \emph{e.g.,} trying to
+extrapolate body size from fossil data but also assumptions across time
+\emph{e.g.,} assuming modern trait-feeding modes are the same OR that
+assumptions about network structure will hold across deep time.
 
 \section{Approaches to food web
 prediction}\label{approaches-to-food-web-prediction}
