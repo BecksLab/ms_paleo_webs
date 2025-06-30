@@ -178,7 +178,7 @@ We used the modes of life (traits) as identified in @dunhill2024, who defined fo
 In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
 
 | Label | Definition | Scale | Reference (for maths), can make footnotes probs |
-|------------------|--------------------|------------------|------------------|
+|------------------|-------------------|------------------|------------------|
 | Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | Macro |  |
 | GenSD | Normalized standard deviation of generality of a species standardized by $L/S$ | Micro | @williams2000 |
 | LinkSD | Normalized standard deviation of links (number of consumers plus resources per taxon) | Micro |  |
