@@ -62,6 +62,8 @@ number-sections: true
 
 It is important to be aware that networks can be configured in different ways depending on how the interactions are defined (Strydom, in prep). Basically we have metawebs (which represent *potential* interactions), realised networks (which represent the subset of potential that are realised as a result of community and environmental context), and structural networks (species agnostic networks that are structurally informative). Here also talk about the implications of these different networks types - different uses and capturing different processes. Speciifcally link this to models - *i.e.,* different models have been developed to construct a *specific* network representation.
 
+Think about the axes - trait-based/mechanistic model (metawebs) and then we have the statistical/theoretical models (which have their own mini axis of regression vs full theory models...
+
 Need to link to @gauzens2025 here.
 
 # Challenges specific to building paleo communities/networks
