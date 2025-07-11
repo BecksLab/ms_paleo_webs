@@ -6,8 +6,7 @@
 
 }
 
-\caption{\label{fig-summary}stuff\ldots{} For display purposes the
-counts for the different motifs are log transformed}
+\caption{\label{fig-summary}stuff\ldots{}}
 
 \end{figure}
 \efloatseparator
@@ -16,27 +15,30 @@ counts for the different motifs are log transformed}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/extinction.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/beta_div.png}}
 
 }
 
-\caption{\label{fig-extinction}Dashed line indicates the (mean)
-extinction simulation results (post value, start values are those
-estimated by the relevant model). For display purposes the counts for
-the different motifs are log transformed}
+\caption{\label{fig-beta_div}stuff\ldots{} \% interaction shared is
+calculated as number shared interactions / ((number interactions left -
+shared interactions) + (number interactions right - shared interactions)
++ shared interactions). Additionally niche and random models are
+excluded as it is illogical since both of these models are fundamentally
+species agnostic}
 
 \end{figure}
 \efloatseparator
  
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{figures/extinction_all_results.png}}
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/dunhill_comp.png}}
 
 }
 
-\caption{Dark line indicates `real' extinction simulation results the
-lighter lines show each model individually, which is also denoted by the
-linetype. For display purposes the counts for the different motifs are
-log transformed}
+\caption{\label{fig-dunhill}stuff\ldots{} Recreation of the figure from
+Dunhill 2024. Note not 100\% sold on the TSS and absolute mean
+calculations\ldots{}}
 
 \end{figure}
