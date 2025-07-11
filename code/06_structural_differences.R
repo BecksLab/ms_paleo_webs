@@ -24,7 +24,8 @@ df <- read_csv("../data/processed/topology.csv") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
                            .default = as.character(model))) %>%
-  na.omit()
+  na.omit() %>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio"))
 
 dep_vars <- as.matrix(df[3:ncol(df)])
 
@@ -40,7 +41,7 @@ post_hoc
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "adbm", "lmatrix", "bodymassratio", "pfim")), 
+                                      levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")), 
                        lda = predict(post_hoc)$x,
                        time = df$time)
 
@@ -63,8 +64,7 @@ metaweb_predict <- predict(post_hoc, metaweb)
 ggplot(plot_lda) + 
   geom_point(aes(x = lda.LD1, 
                  y = lda.LD2, 
-                 colour = model,
-                 shape = time), 
+                 colour = model), 
              size = 3,
              alpha = 0.3) +
   #geom_segment(data = plot_arrow,
@@ -75,12 +75,13 @@ ggplot(plot_lda) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
              aes(x = lda.LD1,
-                 y = lda.LD2,
-                 shape = time)) +
+                 y = lda.LD2)) +
   coord_cartesian(clip = "off") +
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
+  labs(x = "LDA 1",
+       y = "LDA 2") +
   figure_theme
 
 ggsave("../figures/MANOVA_lda.png",
@@ -106,8 +107,9 @@ df <- df %>%
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   mutate(model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "bodymassratio", "pfim")))
+                        levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")

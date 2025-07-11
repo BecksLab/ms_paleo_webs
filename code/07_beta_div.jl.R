@@ -1,4 +1,5 @@
 # libraries
+library(ggtext)
 library(here)
 library(tidyverse)
 
@@ -33,7 +34,10 @@ df <- read_csv("../data/processed/beta_div.csv") %>%
                                               "adbm_adbm") ~ "Within model",
                                  .default = "Between model")) %>%
   mutate(combo = case_when(model_combo == "Within model" ~ str_extract(combo, "^.+?(?=_)"),
-                           .default = combo))
+                           .default = combo)) %>%
+  filter(model_combo == "Between model") %>%
+  mutate(combo = str_replace(combo, "_", "-"),
+         combo = str_replace(combo, "bodymassratio", "log ratio"))
 
 ggplot(df,
        aes(x = combo,
@@ -41,19 +45,18 @@ ggplot(df,
   geom_boxplot(position = position_dodge(1),
                outliers = FALSE,
                fill = NA) +
-  facet_wrap(vars(model_combo),
-             scales = 'free_x',
-             ncol = 2) +
+  geom_jitter(data = df %>% group_by(combo) %>% slice_sample(n=100),
+              alpha = 0.2) +
   xlab(NULL) +
-  ylab("% interactions shared") +
+  ylab("% of interactions shared") +
   coord_cartesian(clip = "off") +
   theme_classic() +
   theme(panel.border = element_rect(colour = 'black',
                                     fill = "#ffffff00"),
-        axis.text.x = element_text(angle = 45, hjust=1))
+        axis.text.x = element_markdown(angle = 45, hjust=1))
 
 ggsave("../figures/beta_div.png",
-       width = 5000,
+       width = 4000,
        height = 4000,
        units = "px",
        dpi = 600)
