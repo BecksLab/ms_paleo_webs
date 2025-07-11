@@ -46,7 +46,7 @@ colors <- c("niche" = "#D760F6",
             "random" = "#B01DFF",
             "adbm" = "#F5BD63",
             "lmatrix" = "#9E8324",
-            "bodymassratio" = "#FAE2A6",
+            "log ratio" = "#FAE2A6",
             "pfim" = "#26ECC9")
 
 # Join colors with categories
