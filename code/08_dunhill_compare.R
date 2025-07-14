@@ -16,7 +16,8 @@ df <- read_csv("../data/processed/topology.csv") %>%
   filter(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
-                           .default = as.character(model))) %>%
+                           .default = as.character(model)))  %>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
   select(-c(distance, redundancy, complexity, diameter, n_rep)) %>%
   pivot_longer(
@@ -36,7 +37,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   mutate(level = case_when(stat %in% c("richness", "connectance", "generality", "vulnerability", "trophic_level") ~ "struct",
                            .default = "motif"),
          model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")),
+                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "log ratio")),
          time = str_extract(time, "\\d+"))
 
 struct <- ggplot(df %>% 
@@ -47,7 +48,7 @@ struct <- ggplot(df %>%
                      group = model)) +
   geom_line() +
   facet_wrap(vars(stat),
-             scales = 'free',
+             scales = 'free_y',
              ncol = 1) +
   scale_size(guide = 'none') +
   xlab("time") +
@@ -66,7 +67,7 @@ motif <- ggplot(df %>%
                     group = model)) +
   geom_line() +
   facet_wrap(vars(stat),
-             scales = 'free',
+             scales = 'free_y',
              ncol = 1) +
   scale_size(guide = 'none') +
   xlab("time") +
@@ -102,12 +103,13 @@ df <- read_csv("../data/processed/extinction_topology.csv") %>%
               pivot_longer(
                 cols = -c(model, n_rep),
                 names_to = "stat",
-                values_to = "real_val")) %>%
+                values_to = "real_val"))%>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   mutate(diff = real_val - sim_val) %>%
   group_by(model, extinction_mechanism) %>%
   summarise(mean_diff = abs(mean(diff, na.rm = TRUE))) %>%
   mutate(model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "bodymassratio")))
+                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "log ratio")))
 
 mean_diff <- ggplot(df,
                     aes(y = extinction_mechanism,
