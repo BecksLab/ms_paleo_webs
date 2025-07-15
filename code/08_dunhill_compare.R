@@ -37,7 +37,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   mutate(level = case_when(stat %in% c("richness", "connectance", "generality", "vulnerability", "trophic_level") ~ "struct",
                            .default = "motif"),
          model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "log ratio")),
+                        levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")),
          time = str_extract(time, "\\d+"))
 
 struct <- ggplot(df %>% 
@@ -51,11 +51,12 @@ struct <- ggplot(df %>%
              scales = 'free_y',
              ncol = 1) +
   scale_size(guide = 'none') +
-  xlab("time") +
+  xlab(NULL) +
   ylab(NULL)  +
   coord_cartesian(clip = "off")  +
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
+  scale_x_discrete(labels = c("pre", "during", "early", "late")) +
   figure_theme +
   theme(legend.position = 'none')
 
@@ -70,11 +71,12 @@ motif <- ggplot(df %>%
              scales = 'free_y',
              ncol = 1) +
   scale_size(guide = 'none') +
-  xlab("time") +
+  xlab(NULL) +
   ylab(NULL) +
   coord_cartesian(clip = "off") +
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
+  scale_x_discrete(labels = c("pre", "during", "early", "late")) +
   figure_theme +
   theme(legend.position = 'none')
 
@@ -103,13 +105,13 @@ df <- read_csv("../data/processed/extinction_topology.csv") %>%
               pivot_longer(
                 cols = -c(model, n_rep),
                 names_to = "stat",
-                values_to = "real_val"))%>%
+                values_to = "real_val")) %>%
   mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   mutate(diff = real_val - sim_val) %>%
   group_by(model, extinction_mechanism) %>%
   summarise(mean_diff = abs(mean(diff, na.rm = TRUE))) %>%
   mutate(model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "pfim", "log ratio")))
+                        levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
 
 mean_diff <- ggplot(df,
                     aes(y = extinction_mechanism,
@@ -129,7 +131,8 @@ df <- read_csv("../data/processed/extinction_tss.csv") %>%
   filter(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
-                           .default = as.character(model))) %>%
+                           .default = as.character(model)))%>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   group_by(model, extinction_mechanism) %>%
   summarise(mean_tss = mean(tss))
 
