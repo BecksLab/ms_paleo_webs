@@ -119,29 +119,35 @@ networks = load_object("data/processed/networks.jlds")
 # we only care about the metaweb pfim for now
 filter!(:model => x -> x == "pfim_metaweb", networks)
 
-# only need to cycle through the first 4
-for i in 1:4
+spread = collect(1:1:99)
 
+for i = 1:4
+    
     for l = 1:ext_reps
-
-        # remove cannibals
-        N = remove_cannibals(networks.network[i])
-    
-        # random extinction
-        Ns = extinction(N; protect = :none)
-    
         for j in eachindex(spread)
-        
-            rob = robustness(Ns; threshold = spread[j])
-        
+            
+            # remove cannibals
+            N = remove_cannibals(networks.network[i])
+            N = add_basal(N)
+
+            init_rich = richness(N)
+
+            # find target richness to have threshold % remaining
+            targ_rich = floor(Int, init_rich * spread[j]/100)
+
+
+            Ns = extinction(N; end_richness = targ_rich, protect = :none)
+
+            rob = length(Ns) / init_rich
+
             D = DataFrame(
                 time = networks.time[i],
                 threshold = spread[j],
                 robustness = rob,
                 )
-                
-            # send to results
-            append!(robustness_vals, D)
+    
+                # send to results
+                append!(robustness_vals, D)
         end
     end
 end
@@ -152,6 +158,7 @@ layer = data(robustness_vals) * mapping(:threshold, :robustness, color = :time =
 fig = draw(layer)
 
 figure = fig.figure
+save("figures/robustness_curve.png", figure)
 
 # write summaries as .csv
 CSV.write(
