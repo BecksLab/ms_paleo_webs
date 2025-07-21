@@ -125,7 +125,7 @@ function add_basal(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     if length(gen) > 1
 
         # get current interactions
-        intxns = interactions(N)
+        intxns = SpeciesInteractionNetworks.interactions(N)
 
         # create producer-BASAL_SPP interactions tuple
         producer_spp = collect(keys(gen))
