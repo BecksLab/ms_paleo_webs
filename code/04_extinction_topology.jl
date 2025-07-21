@@ -1,3 +1,5 @@
+using AlgebraOfGraphics
+using CairoMakie
 using CSV
 using DataFrames
 using Extinctions
@@ -99,3 +101,60 @@ end
 # write summaries as .csv
 CSV.write("data/processed/extinction_topology.csv", topology)
 CSV.write("data/processed/extinction_tss.csv", tss)
+
+# robustness curves
+# here we want to generate robustness curves from teh spread 1:99
+spread = collect(1:1:99)
+
+ext_reps = 500
+
+robustness_vals = DataFrame(
+    time = Any[],
+    threshold = Any[],
+    robustness = Any[],
+);
+
+# using only random extinctions
+networks = load_object("data/processed/networks.jlds")
+# we only care about the metaweb pfim for now
+filter!(:model => x -> x == "pfim_metaweb", networks)
+
+# only need to cycle through the first 4
+for i in 1:4
+
+    for l = 1:ext_reps
+
+        # remove cannibals
+        N = remove_cannibals(networks.network[i])
+    
+        # random extinction
+        Ns = extinction(N; protect = :none)
+    
+        for j in eachindex(spread)
+        
+            rob = robustness(Ns; threshold = spread[j])
+        
+            D = DataFrame(
+                time = networks.time[i],
+                threshold = spread[j],
+                robustness = rob,
+                )
+                
+            # send to results
+            append!(robustness_vals, D)
+        end
+    end
+end
+
+# robustness curves
+
+layer = data(robustness_vals) * mapping(:threshold, :robustness, color = :time => nonnumeric) * (smooth())
+fig = draw(layer)
+
+figure = fig.figure
+
+# write summaries as .csv
+CSV.write(
+    "data/processed/robustness.csv",
+    robustness_vals,
+)
