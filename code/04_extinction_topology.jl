@@ -119,8 +119,6 @@ networks = load_object("data/processed/networks.jlds")
 # we only care about the metaweb pfim for now
 filter!(:model => x -> x == "pfim_metaweb", networks)
 
-spread = collect(1:1:99)
-
 for i = 1:4
     
     for l = 1:ext_reps
@@ -136,7 +134,7 @@ for i = 1:4
             targ_rich = floor(Int, init_rich * spread[j]/100)
 
 
-            Ns = extinction(N; end_richness = targ_rich, protect = :none)
+            Ns = extinction(N; end_richness = targ_rich, protect = :none, mechanism = :secondary)
 
             rob = length(Ns) / init_rich
 
@@ -165,3 +163,5 @@ CSV.write(
     "data/processed/robustness.csv",
     robustness_vals,
 )
+
+# subgraph(N, species_to_keep)
