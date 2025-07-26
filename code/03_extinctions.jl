@@ -2,6 +2,7 @@ using CSV
 using DataFrames
 using Extinctions
 using JLD2
+using ProgressMeter
 using SpeciesInteractionNetworks
 
 include("lib/internals.jl")
@@ -56,11 +57,11 @@ rename!(df, :feeding_simple => :feeding)
 filter!(:species => x -> x != "BASAL_NODE", df)
 
 # number of extinction sims
-ext_reps = 10
+ext_reps = 50
 
-for j = 1:nrow(networks)
+@showprogress "Running extinctions" for j = 1:nrow(networks)
 
-    for l = 1:ext_reps
+    @showprogress "Running extinction rep" for l = 1:ext_reps
 
         # select correct network
         N = networks.network[j]

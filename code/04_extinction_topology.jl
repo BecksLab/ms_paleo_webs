@@ -42,7 +42,6 @@ topology = DataFrame(
     S4 = Float64[],
     S5 = Float64[],
     resilience = Float64[],
-    r50 = Any[],
     rep = Int64[],
 );
 
@@ -53,7 +52,7 @@ tss = DataFrame(
     tss = Float64[],
 )
 
-for i = 1:nrow(extinctions)
+@showprogress "Getting topology" for i = 1:nrow(extinctions)
 
     _ext_seq = extinctions.extinction_seq[i]
 
@@ -90,7 +89,6 @@ for i = 1:nrow(extinctions)
             d[:n_rep] = extinctions.n_rep[i]
             d[:extinction_mechanism] = extinctions.extinction_mechanism[i]
             d[:resilience] = resilience(_ext_seq)
-            d[:r50] = robustness(_ext_seq)
             d[:rep] = i
 
             push!(topology, d)
