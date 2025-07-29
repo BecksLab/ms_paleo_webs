@@ -3,6 +3,8 @@
 library(ggpubr)
 library(here)
 library(effectsize)
+library(ggrepel)
+library(ggtext)
 library(MASS)
 library(patchwork)
 library(rstatix)
@@ -18,7 +20,7 @@ source("lib/plotting_theme.R")
 
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  select(-c(richness, distance, n_rep)) %>%
+  dplyr::select(-c(richness, distance, n_rep)) %>%
   # remove metaweb pfims
   filter(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
@@ -36,7 +38,7 @@ summary(fit)
 #get effect size
 effectsize::eta_squared(fit)
 
-post_hoc <- lda(model~., select(df, -time))
+post_hoc <- lda(model~., dplyr::select(df, -time))
 post_hoc
 
 # plot 
@@ -52,13 +54,13 @@ plot_arrow <- as.data.frame(post_hoc[["scaling"]]) %>%
 
 metaweb <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  select(-c(richness, distance, n_rep)) %>%
+  dplyr::select(-c(richness, distance, n_rep)) %>%
   # remove metaweb pfims
   filter(model == "pfim_metaweb") %>%
   na.omit() %>%
   mutate(model = NULL) %>%
   unique()
-  
+
 metaweb_predict <- predict(post_hoc, metaweb)
 
 ggplot(plot_lda) + 
@@ -67,11 +69,6 @@ ggplot(plot_lda) +
                  colour = model), 
              size = 3,
              alpha = 0.3) +
-  #geom_segment(data = plot_arrow,
-  #             aes(x = 0,
-  #                 y = 0,
-  #                 xend = lda.LD1,
-  #                 yend = lda.LD2)) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
              aes(x = lda.LD1,
@@ -89,6 +86,21 @@ ggsave("../figures/MANOVA_lda.png",
        height = 4000,
        units = "px",
        dpi = 700)
+
+ggplot(data = plot_arrow,
+       aes(x = 0,
+           y = 0,
+           xend = lda.LD1,
+           yend = lda.LD2)) +
+  geom_segment() +
+  geom_text_repel(aes(label = var,
+                      x = lda.LD1,
+                      y = lda.LD2),
+                  max.overlaps = getOption("ggrepel.max.overlaps", default = 100))
+
+lda.pred = predict(post_hoc)
+
+ldahist(data = lda.pred$x[,1], g=df$model)
 
 df <- df %>%
   # to get the ratio
