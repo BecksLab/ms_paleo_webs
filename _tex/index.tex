@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-07-29}
+\date{2025-08-05}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -588,18 +588,20 @@ forward in Shaw et al. (2024) also includes a `downsampling' step
 developed by Roopnarine (2006) that uses a power law, defined by the
 link distribution, to `prune' down some of the links. It is worth
 mentioning that this approach is similar to that developed by Roopnarine
-(2017) with the exception that Shaw does not specifically bin species
-into guilds, and so we choose to use the method developed by Shaw since
-both methods should produce extremely similar networks as they are built
-on the same underlying philosophy.
+(2017) with the exception that Shaw et al. (2024) does not specifically
+bin species into guilds, and so we choose to use the method developed by
+Shaw et al. (2024) since both approaches should produce extremely
+similar networks as they are built on the same underlying philosophy.
 
 \subsubsection{Body size ratio model}\label{body-size-ratio-model}
 
-The body size ratio model (Rohr et al., 2010) determines feeding
-interactions using the ratio between consumer (\(M_{i}\)) and resource
-(\(M_{j}\)) body sizes - which supposedly stems from niche theory (still
-trying to reconcile that). The probability of a link existing between a
-consumer and resource (in its most basic form) is defined as follows:
+The body size ratio model (Rohr et al., 2010) determines the probability
+of feeding interactions occurring between species by using the ratio
+between the consumer (\(M_{i}\)) and resource (\(M_{j}\)) body sizes. In
+order to represent the predator-prey bodymass ratio as a `feeding niche'
+the ratio is also modified by both a \(\beta\) and \(\gamma\)
+distribution. The probability of a link existing between a consumer and
+resource (in its most basic form) is defined as follows:
 
 \[
 P_{ij} = \frac{p}{1+p}
@@ -663,8 +665,7 @@ feeder, mining, grazer), and size: gigantic (\textgreater500 mm), very
 large (\textgreater300--500 mm), large (\textgreater100--300 mm), medium
 (\textgreater50--100 mm), small (\textgreater10--50 mm), tiny (≤10 mm),
 for each fossil species based on the ecological traits defined in the
-Bambach ecospace model (Bambach et al., 2007).It would be very sexy if
-we could get a figure that looks something like this together\ldots{}
+Bambach ecospace model (Bambach et al., 2007).
 
 \subsection{Assessing structural
 differences}\label{assessing-structural-differences}
