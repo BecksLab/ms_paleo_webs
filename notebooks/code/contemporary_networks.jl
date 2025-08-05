@@ -1,6 +1,8 @@
 using CSV
 using DataFrames
+using Distributions
 using JLD2
+using pfim
 using ProgressMeter
 using SpeciesInteractionNetworks
 
@@ -9,10 +11,10 @@ import Random
 Random.seed!(66)
 
 # import model libs
-include("../../code/lib/bodymass/bodymass.jl")
-include("../../code/lib/adbm/adbm.jl")
-include("../../code/lib/lmatrix/lmatrix.jl")
-include("../../code/lib/random/random.jl")
+include("../../code/lib/bodymass.jl")
+include("../../code/lib/adbm.jl")
+include("../../code/lib/lmatrix.jl")
+include("../../code/lib/random.jl")
 include("../../code/lib/internals.jl")
 
 # import datasets
@@ -25,31 +27,35 @@ rename!(comm_data, :taxa => :species)
 
 # summarise NZ networks
 
-nz_summaries = topo_df();
+nz_summaries = DataFrame(
+    network = Any[],
+    model = Any[],
+    id = Any[],
+    richness = Int64[],
+    connectance = Float64[],
+    diameter = Int64[],
+    complexity = Float64[],
+    trophic_level = Float64[],
+    distance = Float64[],
+    generality = Float64[],
+    vulnerability = Float64[],
+    redundancy = Float64[],
+    S1 = Float64[],
+    S2 = Float64[],
+    S4 = Float64[],
+    S5 = Float64[],
+);
 
 for i in eachindex(nz_networks)
 
     d = _network_summary(nz_networks[i].network)
 
-    D = Dict{Symbol,Any}()
-    D[:id] = nz_networks[i].id
-    D[:model] = "NA"
-    D[:richness] = d[:richness]
-    D[:connectance] = d[:connectance]
-    D[:complexity] = d[:complexity]
-    D[:deficiency] = d[:deficiency]
-    D[:distance] = d[:distance]
-    D[:basal] = d[:basal]
-    D[:top] = d[:top]
-    D[:generality] = d[:generality]
-    D[:vulnerability] = d[:vulnerability]
-    D[:S1] = d[:S1]
-    D[:S2] = d[:S2]
-    D[:S4] = d[:S4]
-    D[:S5] = d[:S5]
-    D[:network] = nz_networks[i].network
+    
+    d[:model] = "NA"
+    d[:network] = nz_networks[i].network
+    d[:id] = nz_networks[i].id
 
-    push!(nz_summaries, D)
+    push!(nz_summaries, d)
 end
 
 # write summaries as .csv
@@ -76,7 +82,24 @@ for i in eachindex(nz_networks)
 end
 
 # master df
-topology = topo_df();
+topology = DataFrame(
+    network = Any[],
+    model = String[],
+    id = Any[],
+    richness = Int64[],
+    connectance = Float64[],
+    diameter = Int64[],
+    complexity = Float64[],
+    trophic_level = Float64[],
+    distance = Float64[],
+    generality = Float64[],
+    vulnerability = Float64[],
+    redundancy = Float64[],
+    S1 = Float64[],
+    S2 = Float64[],
+    S4 = Float64[],
+    S5 = Float64[],
+);
 
 # connectance (for Niche model)
 Co = 0.1;
@@ -84,7 +107,7 @@ Co = 0.1;
 # number of networks to generate
 n_reps = 1000;
 
-@showprogress for _ = 1:n_reps
+@showprogress for j = 1:n_reps
     for i = 1:nrow(nz_summaries)
 
         site = nz_summaries.id[i]
@@ -95,30 +118,45 @@ n_reps = 1000;
 
         df = innerjoin(comm, prods, on = :species)
 
-        links = SpeciesInteractionNetworks.links(nz_networks[i].network)
         is_producer = map(==("producer"), string.(df.tiering))
 
-        # adbm
-        d = model_summary(df, site, "adbm"; bodymass = df.bodymass, biomass = df.abundance)
-        push!(topology, d)
-        # niche
-        d = model_summary(df, site, "niche"; connectance = Co)
-        push!(topology, d)
-        # bodymass
-        d = model_summary(df, site, "bodymassratio"; bodymass = df.bodymass)
-        push!(topology, d)
-        # lmatrix
-        d = model_summary(
-            df,
-            site,
-            "lmatrix";
-            bodymass = df.bodymass,
-            is_producer = is_producer,
-        )
-        push!(topology, d)
-        # random
-        d = model_summary(df, site, "random"; links = links)
-        push!(topology, d)
+        bodymass = abs.(rand.(Uniform.(df.bodymass .- 0.00001, df.bodymass .+ 0.00001)))
+        biomass = df.abundance
+
+        for model ∈ [
+            "adbm",
+            "bodymassratio",
+            "lmatrix",
+            "niche",
+            "random",
+        ]
+
+            if model == "bodymassratio"
+                N = bmratio(df.species, bodymass)
+            elseif model == "niche"
+                N = structuralmodel(NicheModel, nrow(df), Co)
+            elseif model == "random"
+                links = floor(Int, Co * (nrow(df)^2))
+                N = randommodel(df.species, links)
+            elseif model == "lmatrix"
+                N = lmatrix(df.species, bodymass, is_producer)
+            else
+                model == "adbm"
+                parameters = adbm_parameters(df, bodymass)
+                N = adbmmodel(df, parameters, biomass)
+            end
+
+            d = _network_summary(N)
+
+            d[:model] = model
+            d[:network] = N
+            d[:id] = site
+
+            # only push if network exists
+            if richness(N) > 0
+                push!(topology, d)
+            end
+        end
 
     end
 end
