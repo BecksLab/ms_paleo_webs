@@ -42,19 +42,9 @@ Here we: want to identify the differences between models that predict interactio
 
 # Contextualising the prediction of paleo webs within the contemporary toolbox
 
--   There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.
+There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs. However as highlighted in Strydom (in prep) it is important that we understand what assumptions are being embedded within the network as a result of the underlying philosophy which a model was built on. Broadly we can think about models that are nested within two different schools of thought. This includes models that focus on assessing the *mechanistic* feasibility of an interaction being able to occur between two species or models that are more closely married to specific bodies of ecological *theory* - such as niche theory or foraging ecology. Broadly speaking the difference between these two modeling approaches is that mechanistic models typically asses interactions at a pairwise level but determining is an interaction is feasible between a species *pair* (extended *e.g.,* here), whereas theoretical models typically use some set of assumptions to constrain the distribution of links at the *community* scale (extended *e.g.,* here probably niche model or DBM). Models that have specifically been developed in the paleo space tend to be mechanistic models (@shaw2024; @roopnarine2006; @fricke2022) which means that there is a whole type of network that is typically not being created for paleo communities (theoretical/realised ones). However, there is an argument that the theoretical models that have been developed in contemporary settings should hold even for paleo communities since we expect the 'fundamental currencies of life' to remain constant - *e.g.,* the energetic constraints of foraging or foraging niches (is that the right way to phrase it). Somehow close this out by going from we should be able to use contemporary models we need to think about the constraints that are typically placed on us by paleo data as well as the assumptions that some of these models might require us to make (*e.g.* the niche model makes some heavy assumptions by constraining the connectance - which itself is often used as a metric to understand changes or differences in network structure).
 
--   There are a handful that have been developed specifically in the context of paleo settings [\*e.g.,\* @shaw2024; @roopnarine2006; @fricke2022] but we can also talk about those that might have been developed/tested in contemporary settings but still have applicability in paleo ones.
-
--   Different underlying theory though
-
-    -   Focus here on the idea of different 'currencies' but also aggregations - energy vs compatibility.
-
--   Insert brief overview of the different methods as they pertain to approach (so the T4T triangle)
-
--   Challenges we face (even in contemporary settings)?
-
-    -   keep high level - I think the argument here should fall more in the data trade offs...
+Introduce here that it is thus important to understand that not all contemporary models may actually be suitable for paleo contexts as the assumptions that they make (or the data that they require) may actually introduce uncertainty/errors into the resulting network rendering them of little use. As a simple example the framework developed by @fricke2022 uses phylogenetic relatedness as a way to infer interactions of Pleistocene mammals by looking at their extant relatives. Although this approach is ecologically sound (phylogenetic relatedness is also used in other approaches *e.g.,* @strydom2022) there is also an argument that the further back in evolutionary time we go (and the greater the phylogenetic distance between extant and extinct communitites become) there is more uncertainty introduced by the phylogenetic tree than what is introduced by assuming that interactions will be phylogenetically conserved. On the other side of the coin it can be very challenging to determine traits from the fossil record and so it may be instead by more pragmatic to use models that that are completely agnostic to the identity of the species and are instead concerned with the network structure (*e.g.,* the niche model developed by @williams2008). Fundamentally this means that there is a trade off between the data that is available and the type of network one is interested in creating.
 
 # Understanding how networks are different
 
@@ -64,11 +54,11 @@ Think about the axes - trait-based/mechanistic model (metawebs) and then we have
 
 Need to link to @gauzens2025 here.
 
-# Challenges specific to building paleo communities/networks
+# Challenges specific to building paleo networks
 
 Although there has been a push for the development of tools and methods that allow us to predict species interactions and networks \[see *e.g.,* XXX for some reviews\] they will not all be suitable for the prediction of paleo communities. This is primarily due to limitations that we are faced with in terms of the information that can be inferred from the fossil record (such as species traits abundances, and assemblages), which is needed as input data for the different models. The limited information available from the fossil record is compounded by the incomplete and biased preservation of species \[REF\], the spatial ambiguity of fossils found in a location \[were species conserved *in situ* or were they there owing to geological processes; REF\], and an increasing degree of 'fuzziness' the further one moves back in geological time \[our understanding of both phylogenetic and functional trait space, REF\]. Methodologically speaking some tools that 'learn' from contemporary communities (*e.g.,* @strydom2023, @caron2022) will become 'worse' the further one goes back in time since species then look very different from now but can still be useful for 'recent' communities (*e.g.,* @fricke2022). This is not to say that it is impossible to construct paleo networks but rather identify that there are a subset of models that are probably not at all suitable for constructing paleo networks (*e.g.,* Null models, since there are fully driven by abundance), other methods will be better suited depending on the community of interest *e.g.,* for more contemporary communities that have modern analogs we can use methods rooted in phylogeny (*e.g.,* @fricke2022, @strydom2023) or traits (*e.g.,* @caron2022), and then there is the third axis which is to think about which are the assumptions that are made and there trade off of that. This includes thinking about both assumptions you are making about the actual data *e.g.,* trying to extrapolate body size from fossil data but also assumptions across time *e.g.,* assuming modern trait-feeding modes are the same OR that assumptions about network structure will hold across deep time.
 
-# Approaches to food web prediction
+## Approaches to food web prediction
 
 Here we should take the time to go in and just articulate that there are nuance and differences in terms of predicting interactions vs predicting networks. Once it is finally on a preprint server we can obviously link to the T4T stuff...
 
@@ -159,9 +149,9 @@ $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 . Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha$ = 1.41, $\delta$ = 3.75, and $\gamma$ = 1.87.
 
-# Methods
+# Case study: Toarcian mass extinction event
 
-## Dataset Overview
+## Dataset overview
 
 ### Species occurrence
 
