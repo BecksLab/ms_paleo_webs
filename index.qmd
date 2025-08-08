@@ -34,15 +34,13 @@ citation:
 number-sections: true
 ---
 
-# Why build paleo food webs?
+# Why paleo food webs?
 
--   Because its interesting? Point to works that showcase how we can learn form the past and inform on the current but possibly also the future
+There has been a growing interest in the idea of using past (deep time) historic events/changes as a means to help inform current conservation decisions list some egs[@kiessling2019; @dillon2022]. The use of species interactions and networks to help us understand aspects of community composition has gained an interest in contemporary settings (eg the thullier paper and ??) and so it is perhaps unsurprising that there has been a growing interest in using paleo food webs in a similar manner [\*e.g.,\* @dunhill2024; @hao2025; @yeakel2014]. However, one of the core challenges and limitations of being able to *use* food webs to answer ecological questions is the challenge of constructing them [@jordano2016], a challenge which is compounded when using paleo data as we are limited by that which has been preserved in the fossil record and often interactions are constructed by expert opinion [\*e.g.,\* @dunne2014]. The challenges with recording species interaction networks has driven the development of a large number of models and tools that can be used to infer either species interactions [see *e.g.,* @morales-castilla2015; @pichler2023; @strydom2021 for broader reviews] or networks [see *e.g.,* @allesina2008 (it is one of the more complete review of methods IMO)]. Although progress has been made on the development of tools that are specific for constructing paleo webs [\*e.g.,\* @shaw2024; @roopnarine2006; @fricke2022] there is value in identifying a broader suite of methods that can be (appropriately) used for paleo communities (these are methods that are amenable to the data constraints that are prevalent in paleo communities in terms of both the completeness of fossil records as well as how the deeper in time we move the further away we might be moving from contemporary analogs. Secondly it should also be noted that different network construction approaches are encoding different processes (Strydom, in prep) and there is value in showcasing how the networks construct models may differ.
 
--   Value in using hindcasting to aid in forecasting. *e.g.,* the Toarcian ms [@dunhill2024] shows how we can use these paleo communities to understand trophic-level responses to extinctions.
+Here we: want to identify the differences between models that predict interactions (and thus metawebs), and models that predict network structure. Specifically we want to look at 1) the structural difference between all models (*i.e.,* do we see a difference in the distribution of links between networks that have the same number of nodes?) and 2) the identity of pairwise links between species pairs (*i.e.,* do different models differ in which links are present (or absent) between species pairs?) Additionally we want to establish if using networks that are constructed using different models will change the the downstream inferences that are made for this we use the work from @dunhill2024. as a case study
 
--   Close out with the inherit challenge that we cannot observe paleo feeding interactions (barring rare instances, and often only for a limited subset of species) and so we are often using expert knowledge/mechanistic assumptions to infer links between species [\*e.g.,\* @dunne2014; @roopnarine2006].
-
-# How do we build paleo food webs?
+# Contextualising the prediction of paleo webs within the contemporary toolbox
 
 -   There is an evolving body of work that focuses on developing tools specifically for the task of predicting food webs.
 
@@ -160,10 +158,6 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 . Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha$ = 1.41, $\delta$ = 3.75, and $\gamma$ = 1.87.
-
-# Aims...
-
-Here we do this because it lets us unpack the nuances of what the different network representation. Firstly we want ot identify the differences between models that predict interactions (and thus metawebs), and models that predict network structure. Specifically we want to look at 1) the structural difference between all models (*i.e.,* do we see a difference in the distribution of links between networks that have the same number of nodes?) and 2) the identity of pairwise links between species pairs (*i.e.,* do different models differ in which links are present (or absent) between species pairs?) Additionally we want to establish if using networks that are constructed using different models will change the the downstream inferences that are made by repeating the work done by @dunhill2024.
 
 # Methods
 
