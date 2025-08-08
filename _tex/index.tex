@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-08-05}
+\date{2025-08-08}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -270,26 +270,55 @@ network construction%
 \linenumbers
 
 
-\section{Why build paleo food webs?}\label{why-build-paleo-food-webs}
+\section{Why paleo food webs?}\label{why-paleo-food-webs}
 
-\begin{itemize}
-\item
-  Because its interesting? Point to works that showcase how we can learn
-  form the past and inform on the current but possibly also the future
-\item
-  Value in using hindcasting to aid in forecasting. \emph{e.g.,} the
-  Toarcian ms (Dunhill et al., 2024) shows how we can use these paleo
-  communities to understand trophic-level responses to extinctions.
-\item
-  Close out with the inherit challenge that we cannot observe paleo
-  feeding interactions (barring rare instances, and often only for a
-  limited subset of species) and so we are often using expert
-  knowledge/mechanistic assumptions to infer links between species
-  (*e.g.,* Dunne et al., 2014; Roopnarine, 2006).
-\end{itemize}
+There has been a growing interest in the idea of using past (deep time)
+historic events/changes as a means to help inform current conservation
+decisions list some egs(Dillon et al., 2022; Kiessling et al., 2019).
+The use of species interactions and networks to help us understand
+aspects of community composition has gained an interest in contemporary
+settings (eg the thullier paper and ??) and so it is perhaps
+unsurprising that there has been a growing interest in using paleo food
+webs in a similar manner (*e.g.,* Dunhill et al., 2024; Hao et al.,
+2025; Yeakel et al., 2014). However, one of the core challenges and
+limitations of being able to \emph{use} food webs to answer ecological
+questions is the challenge of constructing them (Jordano, 2016), a
+challenge which is compounded when using paleo data as we are limited by
+that which has been preserved in the fossil record and often
+interactions are constructed by expert opinion (*e.g.,* Dunne et al.,
+2014). The challenges with recording species interaction networks has
+driven the development of a large number of models and tools that can be
+used to infer either species interactions (see \emph{e.g.,}
+Morales-Castilla et al., 2015; Pichler \& Hartig, 2023; Strydom et al.,
+2021a for broader reviews) or networks (see \emph{e.g.,} Allesina et
+al., 2008 (it is one of the more complete review of methods IMO)).
+Although progress has been made on the development of tools that are
+specific for constructing paleo webs (Fricke et al., 2022; Roopnarine,
+2006; *e.g.,* Shaw et al., 2024) there is value in identifying a broader
+suite of methods that can be (appropriately) used for paleo communities
+(these are methods that are amenable to the data constraints that are
+prevalent in paleo communities in terms of both the completeness of
+fossil records as well as how the deeper in time we move the further
+away we might be moving from contemporary analogs. Secondly it should
+also be noted that different network construction approaches are
+encoding different processes (Strydom, in prep) and there is value in
+showcasing how the networks construct models may differ.
 
-\section{How do we build paleo food
-webs?}\label{how-do-we-build-paleo-food-webs}
+Here we: want to identify the differences between models that predict
+interactions (and thus metawebs), and models that predict network
+structure. Specifically we want to look at 1) the structural difference
+between all models (\emph{i.e.,} do we see a difference in the
+distribution of links between networks that have the same number of
+nodes?) and 2) the identity of pairwise links between species pairs
+(\emph{i.e.,} do different models differ in which links are present (or
+absent) between species pairs?) Additionally we want to establish if
+using networks that are constructed using different models will change
+the the downstream inferences that are made for this we use the work
+from Dunhill et al. (2024). as a case study
+
+\section{Contextualising the prediction of paleo webs within the
+contemporary
+toolbox}\label{contextualising-the-prediction-of-paleo-webs-within-the-contemporary-toolbox}
 
 \begin{itemize}
 \item
@@ -622,22 +651,6 @@ will use the parameters from Yeakel et al. (2014), which was `trained'
 on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
 \(\delta\) = 3.75, and \(\gamma\) = 1.87.
 
-\section{Aims\ldots{}}\label{aims}
-
-Here we do this because it lets us unpack the nuances of what the
-different network representation. Firstly we want ot identify the
-differences between models that predict interactions (and thus
-metawebs), and models that predict network structure. Specifically we
-want to look at 1) the structural difference between all models
-(\emph{i.e.,} do we see a difference in the distribution of links
-between networks that have the same number of nodes?) and 2) the
-identity of pairwise links between species pairs (\emph{i.e.,} do
-different models differ in which links are present (or absent) between
-species pairs?) Additionally we want to establish if using networks that
-are constructed using different models will change the the downstream
-inferences that are made by repeating the work done by Dunhill et al.
-(2024).
-
 \section{Methods}\label{methods}
 
 \subsection{Dataset Overview}\label{dataset-overview}
@@ -737,7 +750,7 @@ value of the largest real part of the eigenvalues of the
 \emph{undirected} adjacency matrix & Macro & Staniczenko et al.
 (2013) \\
 Complexity & SVD complexity of a network, defined as the Pielou entropy
-of its singular values & Macro & Strydom, Dalla Riva, et al. (2021) \\
+of its singular values & Macro & Strydom et al. (2021a) \\
 S1 & Number of linear chains & Meso & Milo et al. (2002); Stouffer et
 al. (2007) \\
 S2 & Number of omnivory motifs & Meso & Milo et al. (2002); Stouffer et
@@ -752,17 +765,17 @@ Stouffer et al. (2007) \\
 
 \textbf{Connectance} (Martinez, 1992) has been shown to be the feature
 of networks that underpin a series of other properties and function
-(Strydom, Catchen, et al., 2021) and so it is perhaps the most important
+(Strydom et al., 2021b) and so it is perhaps the most important
 structural attribute for a model to be able to retrieve correctly.
 Additionally we consider the \textbf{complexity} of networks by
 calculating their SVD entropy (this gives us an estimate of the physical
-as opposed to behavioural complexity of networks; Strydom, Dalla Riva,
-et al. (2021)), we could also look at the rank/rank deficiency of
-networks which (theoretically) represents the number fo unique
-interaction strategies in the network (Strydom, Dalla Riva, et al.,
-2021), which may be specifically interesting in terms of looking at pre
-and post extinction but also as a way to unpack `functional redundancy'
-that some models may introduce.
+as opposed to behavioural complexity of networks; Strydom et al.
+(2021a)), we could also look at the rank/rank deficiency of networks
+which (theoretically) represents the number fo unique interaction
+strategies in the network (Strydom et al., 2021a), which may be
+specifically interesting in terms of looking at pre and post extinction
+but also as a way to unpack `functional redundancy' that some models may
+introduce.
 
 \subsubsection{Meso network properties}\label{meso-network-properties}
 
@@ -922,6 +935,16 @@ A., Olesen, J. M., Pires, M. M., Yeakel, J. D., \& Poisot, T. (2018).
 Analysing ecological networks of species interactions. \emph{Biological
 Reviews}, 112540. \url{https://doi.org/10.1111/brv.12433}
 
+\bibitem[\citeproctext]{ref-dillon2022}
+Dillon, E. M., Pier, J. Q., Smith, J. A., Raja, N. B., Dimitrijević, D.,
+Austin, E. L., Cybulski, J. D., De Entrambasaguas, J., Durham, S. R.,
+Grether, C. M., Haldar, H. S., Kocáková, K., Lin, C.-H., Mazzini, I.,
+Mychajliw, A. M., Ollendorf, A. L., Pimiento, C., Regalado Fernández, O.
+R., Smith, I. E., \& Dietl, G. P. (2022). What is conservation
+paleobiology? Tracking 20 years of research and development.
+\emph{Frontiers in Ecology and Evolution}, \emph{10}.
+\url{https://doi.org/10.3389/fevo.2022.1031483}
+
 \bibitem[\citeproctext]{ref-dunhill2024}
 Dunhill, A. M., Zarzyczny, K., Shaw, J. O., Atkinson, J. W., Little, C.
 T. S., \& Beckerman, A. P. (2024). Extinction cascades, community
@@ -969,11 +992,29 @@ estimating food web connectance and structure with uncertainty.
 \emph{Ecology and Evolution}, \emph{12}(3), e8643.
 \url{https://doi.org/10.1002/ece3.8643}
 
+\bibitem[\citeproctext]{ref-hao2025}
+Hao, X., Holyoak, M., Zhang, Z., \& Yan, C. (2025). Global Projection of
+Terrestrial Vertebrate Food Webs Under Future Climate and Land-Use
+Changes. \emph{Global Change Biology}, \emph{31}(2), e70061.
+\url{https://doi.org/10.1111/gcb.70061}
+
 \bibitem[\citeproctext]{ref-jonsson2015}
 Jonsson, T., Berg, S., Pimenov, A., Palmer, C., \& Emmerson, M. (2015).
 The reliability of R50 as a measure of vulnerability of food webs to
 sequential species deletions. \emph{Oikos}, \emph{124}(4), 446--457.
 \url{https://doi.org/10.1111/oik.01588}
+
+\bibitem[\citeproctext]{ref-jordano2016}
+Jordano, P. (2016). Chasing Ecological Interactions. \emph{PLOS
+Biology}, \emph{14}(9), e1002559.
+\url{https://doi.org/10.1371/journal.pbio.1002559}
+
+\bibitem[\citeproctext]{ref-kiessling2019}
+Kiessling, W., Raja, N. B., Roden, V. J., Turvey, S. T., \& Saupe, E. E.
+(2019). Addressing priority questions of conservation science with
+palaeontological data. \emph{Philosophical Transactions of the Royal
+Society B: Biological Sciences}, \emph{374}(1788), 20190222.
+\url{https://doi.org/10.1098/rstb.2019.0222}
 
 \bibitem[\citeproctext]{ref-martinez1992}
 Martinez, N. D. (1992). Constant connectance in community food webs.
@@ -986,11 +1027,23 @@ Alon, U. (2002). Network motifs: Simple building blocks of complex
 networks. \emph{Science}, \emph{298}(5594), 824--827.
 \url{https://doi.org/10.1126/science.298.5594.824}
 
+\bibitem[\citeproctext]{ref-morales-castilla2015}
+Morales-Castilla, I., Matias, M. G., Gravel, D., \& Araújo, M. B.
+(2015). Inferring biotic interactions from proxies. \emph{Trends in
+Ecology \& Evolution}, \emph{30}(6), 347--356.
+\url{https://doi.org/10.1016/j.tree.2015.03.014}
+
 \bibitem[\citeproctext]{ref-petchey2008}
 Petchey, O. L., Beckerman, A. P., Riede, J. O., \& Warren, P. H. (2008).
 Size, foraging, and food web structure. \emph{Proceedings of the
 National Academy of Sciences}, \emph{105}(11), 4191--4196.
 \url{https://doi.org/10.1073/pnas.0710672105}
+
+\bibitem[\citeproctext]{ref-pichler2023}
+Pichler, M., \& Hartig, F. (2023). Machine learning and deep
+learning{\textemdash}A review for ecologists. \emph{Methods in Ecology
+and Evolution}, \emph{14}(4), 994--1016.
+\url{https://doi.org/10.1111/2041-210X.14061}
 
 \bibitem[\citeproctext]{ref-poisot2012}
 Poisot, T., Canard, E., Mouquet, N., \& Hochberg, M. E. (2012). A
@@ -1053,17 +1106,20 @@ limitations. \emph{Methods in Ecology and Evolution}, \emph{14}(12),
 \bibitem[\citeproctext]{ref-strydom2021b}
 Strydom, T., Catchen, M. D., Banville, F., Caron, D., Dansereau, G.,
 Desjardins-Proulx, P., Forero-Muñoz, N. R., Higino, G., Mercier, B.,
-Gonzalez, A., Gravel, D., Pollock, L., \& Poisot, T. (2021). A roadmap
+Gonzalez, A., Gravel, D., Pollock, L., \& Poisot, T. (2021b). A roadmap
 towards predicting species interaction networks (across space and time).
 \emph{Philosophical Transactions of the Royal Society B: Biological
 Sciences}, \emph{376}(1837), 20210063.
 \url{https://doi.org/10.1098/rstb.2021.0063}
 
 \bibitem[\citeproctext]{ref-strydom2021}
-Strydom, T., Dalla Riva, G. V., \& Poisot, T. (2021). SVD entropy
-reveals the high complexity of ecological networks. \emph{Frontiers in
-Ecology and Evolution}, \emph{9}.
-\url{https://doi.org/10.3389/fevo.2021.623141}
+Strydom, T., Catchen, M. D., Banville, F., Caron, D., Dansereau, G.,
+Desjardins-Proulx, P., Forero-Muñoz, N. R., Higino, G., Mercier, B.,
+Gonzalez, A., Gravel, D., Pollock, L., \& Poisot, T. (2021a). A roadmap
+towards predicting species interaction networks (across space and time).
+\emph{Philosophical Transactions of the Royal Society B: Biological
+Sciences}, \emph{376}(1837), 20210063.
+\url{https://doi.org/10.1098/rstb.2021.0063}
 
 \bibitem[\citeproctext]{ref-williams2000}
 Williams, R. J., \& Martinez, N. D. (2000). Simple rules yield complex
