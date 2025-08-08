@@ -320,38 +320,60 @@ from Dunhill et al. (2024). as a case study
 contemporary
 toolbox}\label{contextualising-the-prediction-of-paleo-webs-within-the-contemporary-toolbox}
 
-\begin{itemize}
-\item
-  There is an evolving body of work that focuses on developing tools
-  specifically for the task of predicting food webs.
-\item
-  There are a handful that have been developed specifically in the
-  context of paleo settings (Fricke et al., 2022; Roopnarine, 2006;
-  *e.g.,* Shaw et al., 2024) but we can also talk about those that might
-  have been developed/tested in contemporary settings but still have
-  applicability in paleo ones.
-\item
-  Different underlying theory though
+There is an evolving body of work that focuses on developing tools
+specifically for the task of predicting food webs. However as
+highlighted in Strydom (in prep) it is important that we understand what
+assumptions are being embedded within the network as a result of the
+underlying philosophy which a model was built on. Broadly we can think
+about models that are nested within two different schools of thought.
+This includes models that focus on assessing the \emph{mechanistic}
+feasibility of an interaction being able to occur between two species or
+models that are more closely married to specific bodies of ecological
+\emph{theory} - such as niche theory or foraging ecology. Broadly
+speaking the difference between these two modeling approaches is that
+mechanistic models typically asses interactions at a pairwise level but
+determining is an interaction is feasible between a species \emph{pair}
+(extended \emph{e.g.,} here), whereas theoretical models typically use
+some set of assumptions to constrain the distribution of links at the
+\emph{community} scale (extended \emph{e.g.,} here probably niche model
+or DBM). Models that have specifically been developed in the paleo space
+tend to be mechanistic models (Shaw et al. (2024); Roopnarine (2006);
+Fricke et al. (2022)) which means that there is a whole type of network
+that is typically not being created for paleo communities
+(theoretical/realised ones). However, there is an argument that the
+theoretical models that have been developed in contemporary settings
+should hold even for paleo communities since we expect the `fundamental
+currencies of life' to remain constant - \emph{e.g.,} the energetic
+constraints of foraging or foraging niches (is that the right way to
+phrase it). Somehow close this out by going from we should be able to
+use contemporary models we need to think about the constraints that are
+typically placed on us by paleo data as well as the assumptions that
+some of these models might require us to make (\emph{e.g.} the niche
+model makes some heavy assumptions by constraining the connectance -
+which itself is often used as a metric to understand changes or
+differences in network structure).
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Focus here on the idea of different `currencies' but also
-    aggregations - energy vs compatibility.
-  \end{itemize}
-\item
-  Insert brief overview of the different methods as they pertain to
-  approach (so the T4T triangle)
-\item
-  Challenges we face (even in contemporary settings)?
-
-  \begin{itemize}
-  \tightlist
-  \item
-    keep high level - I think the argument here should fall more in the
-    data trade offs\ldots{}
-  \end{itemize}
-\end{itemize}
+Introduce here that it is thus important to understand that not all
+contemporary models may actually be suitable for paleo contexts as the
+assumptions that they make (or the data that they require) may actually
+introduce uncertainty/errors into the resulting network rendering them
+of little use. As a simple example the framework developed by Fricke et
+al. (2022) uses phylogenetic relatedness as a way to infer interactions
+of Pleistocene mammals by looking at their extant relatives. Although
+this approach is ecologically sound (phylogenetic relatedness is also
+used in other approaches \emph{e.g.,} Strydom et al. (2022)) there is
+also an argument that the further back in evolutionary time we go (and
+the greater the phylogenetic distance between extant and extinct
+communitites become) there is more uncertainty introduced by the
+phylogenetic tree than what is introduced by assuming that interactions
+will be phylogenetically conserved. On the other side of the coin it can
+be very challenging to determine traits from the fossil record and so it
+may be instead by more pragmatic to use models that that are completely
+agnostic to the identity of the species and are instead concerned with
+the network structure (\emph{e.g.,} the niche model developed by
+Williams \& Martinez (2008)). Fundamentally this means that there is a
+trade off between the data that is available and the type of network one
+is interested in creating.
 
 \section{Understanding how networks are
 different}\label{understanding-how-networks-are-different}
@@ -375,7 +397,7 @@ axis of regression vs full theory models\ldots{}
 Need to link to Gauzens et al. (2025) here.
 
 \section{Challenges specific to building paleo
-communities/networks}\label{challenges-specific-to-building-paleo-communitiesnetworks}
+networks}\label{challenges-specific-to-building-paleo-networks}
 
 Although there has been a push for the development of tools and methods
 that allow us to predict species interactions and networks {[}see
@@ -411,7 +433,7 @@ extrapolate body size from fossil data but also assumptions across time
 \emph{e.g.,} assuming modern trait-feeding modes are the same OR that
 assumptions about network structure will hold across deep time.
 
-\section{Approaches to food web
+\subsection{Approaches to food web
 prediction}\label{approaches-to-food-web-prediction}
 
 Here we should take the time to go in and just articulate that there are
@@ -651,9 +673,10 @@ will use the parameters from Yeakel et al. (2014), which was `trained'
 on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
 \(\delta\) = 3.75, and \(\gamma\) = 1.87.
 
-\section{Methods}\label{methods}
+\section{Case study: Toarcian mass extinction
+event}\label{case-study-toarcian-mass-extinction-event}
 
-\subsection{Dataset Overview}\label{dataset-overview}
+\subsection{Dataset overview}\label{dataset-overview}
 
 \subsubsection{Species occurrence}\label{species-occurrence}
 
@@ -1094,6 +1117,14 @@ Evidence for the existence of a robust pattern of prey selection in food
 webs. \emph{Proceedings of the Royal Society B: Biological Sciences},
 \emph{274}(1621), 1931--1940.
 \url{https://doi.org/10.1098/rspb.2007.0571}
+
+\bibitem[\citeproctext]{ref-strydom2022}
+Strydom, T., Bouskila, S., Banville, F., Barros, C., Caron, D., Farrell,
+M. J., Fortin, M.-J., Hemming, V., Mercier, B., Pollock, L. J., Runghen,
+R., Dalla Riva, G. V., \& Poisot, T. (2022). Food web reconstruction
+through phylogenetic transfer of low-rank network representation.
+\emph{Methods in Ecology and Evolution}, \emph{13}(12).
+\url{https://doi.org/10.1111/2041-210X.13835}
 
 \bibitem[\citeproctext]{ref-strydom2023}
 Strydom, T., Bouskila, S., Banville, F., Barros, C., Caron, D., Farrell,
