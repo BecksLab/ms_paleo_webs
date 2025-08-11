@@ -161,9 +161,17 @@ Here we use the fossil occurrence data over an interval extends from the upper P
 
 We used the modes of life (traits) as identified in @dunhill2024, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (\>500 mm), very large (\>300–500 mm), large (\>100–300 mm), medium (\>50–100 mm), small (\>10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model [@bambach2007].
 
-## Assessing structural differences
+### Constructing networks
+
+For each paleo community (time bin) we constructed **100** networks for each model (so 6 \* 100) networks. These networks were 'simplified' to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here *e.g.,* a species classed as 'very large' would have a body mass drawn from $U(300, 500)$. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models (adbm, bodymassratio, l-matrix) *i.e.,* an ADBM and bodymassratio network from the same rep number would have used the same bodysizes. The PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each repetition but kep consistent for both models. For each network we calculated the properties listed in @tbl-properties
+
+### Simulating Extinctions
+
+## Do different models recover different network structures?
 
 In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different 'scales' of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to 'measure' and analyse ecological networks [@delmas2018] we do still lack a clear set of guidelines for assessing how well models recover network structure [@allesina2008] and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.
+
+Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as `network structure values ~ model + time period` and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure.
 
 | Label | Definition | Scale | Reference (for maths), can make footnotes probs |
 |------------------|-------------------|------------------|------------------|
@@ -197,9 +205,15 @@ The number of interactions established (**generality**) or received (**vulnerabi
 
 The **specificity** of species in a network is measured as a function of the proportion of resources they effectively use [@poisot2012]
 
+![stuff...](figures/summary.png){#fig-summary alt="stuff..."}
+
+And we can discuss the results and implications here...
+
 ## Assessing pairwise interaction differences
 
 **Interaction turnover** [@poisot2012] tells us which interactions are 'conserved' (shared) across the networks from the same period but constructed using different models.
+
+![stuff... % interaction shared is calculated as number shared interactions / ((number interactions left - shared interactions) + (number interactions right - shared interactions) + shared interactions). Additionally niche and random models are excluded as it is illogical since both of these models are fundamentally species agnostic](figures/beta_div.png){#fig-beta_div}
 
 ## Assessing network inference
 
@@ -209,31 +223,14 @@ Here we will look at extinctions of the different paleo TSS @gupta2022
 
 $R_{50}$ see @jonsson2015
 
-## Constructing networks
-
-For each paleo community (time bin) we constructed **100** networks for each model (so 6 \* 100) networks. These networks were 'simplified' to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here *e.g.,* a species classed as 'very large' would have a body mass drawn from $U(300, 500)$. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models (adbm, bodymassratio, l-matrix) *i.e.,* an ADBM and bodymassratio network from the same rep number would have used the same bodysizes. The PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each repetition but kep consistent for both models. For each network we calculated the properties listed in @tbl-properties
-
-### Simulating Extinctions
-
-# Results
-
-## Comparing predicted networks
-
-### Structure
-
-Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as `network structure values ~ model + time period` and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure.
-
-![stuff...](figures/summary.png){#fig-summary}
-
-### Interaction/species turnover
-
-![stuff... % interaction shared is calculated as number shared interactions / ((number interactions left - shared interactions) + (number interactions right - shared interactions) + shared interactions). Additionally niche and random models are excluded as it is illogical since both of these models are fundamentally species agnostic](figures/beta_div.png){#fig-beta_div}
-
-## Comparing inference
-
 ![stuff... Recreation of the figure from Dunhill 2024. Note not 100% sold on the TSS and absolute mean calculations...](figures/dunhill_comp.png){#fig-dunhill}
+
+# Discussion {.unnumbered}
+
+Blah blah blah
 
 # References {.unnumbered}
 
-::: {#refs}
-:::
+<div>
+
+</div>
