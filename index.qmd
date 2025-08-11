@@ -205,7 +205,7 @@ The number of interactions established (**generality**) or received (**vulnerabi
 
 The **specificity** of species in a network is measured as a function of the proportion of resources they effectively use [@poisot2012]
 
-![stuff...](figures/summary.png){#fig-summary alt="stuff..."}
+![stuff...](figures/MANOVA_lda.png){#fig-summary alt="stuff..."}
 
 And we can discuss the results and implications here...
 
