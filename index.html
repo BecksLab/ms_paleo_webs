@@ -8,7 +8,7 @@
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-08-08">
+<meta name="dcterms.date" content="2025-08-11">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-08-08">
-<meta name="citation_cover_date" content="2025-08-08">
+<meta name="citation_publication_date" content="2025-08-11">
+<meta name="citation_cover_date" content="2025-08-11">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-08-08">
+<meta name="citation_online_date" content="2025-08-11">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -198,7 +198,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">August 8, 2025</p>
+              <p class="date">August 11, 2025</p>
             </div>
           </div>
           
@@ -256,8 +256,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#species-occurrence" id="toc-species-occurrence" class="nav-link" data-scroll-target="#species-occurrence"><span class="header-section-number">5.1.1</span> Species occurrence</a></li>
   <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">5.1.2</span> Defining modes of life (traits)</a></li>
+  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">5.1.3</span> Constructing networks</a></li>
+  <li><a href="#simulating-extinctions" id="toc-simulating-extinctions" class="nav-link" data-scroll-target="#simulating-extinctions"><span class="header-section-number">5.1.4</span> Simulating Extinctions</a></li>
   </ul></li>
-  <li><a href="#assessing-structural-differences" id="toc-assessing-structural-differences" class="nav-link" data-scroll-target="#assessing-structural-differences"><span class="header-section-number">5.2</span> Assessing structural differences</a>
+  <li><a href="#do-different-models-recover-different-network-structures" id="toc-do-different-models-recover-different-network-structures" class="nav-link" data-scroll-target="#do-different-models-recover-different-network-structures"><span class="header-section-number">5.2</span> Do different models recover different network structures?</a>
   <ul class="collapse">
   <li><a href="#macro-network-properties" id="toc-macro-network-properties" class="nav-link" data-scroll-target="#macro-network-properties"><span class="header-section-number">5.2.1</span> Macro network properties</a></li>
   <li><a href="#meso-network-properties" id="toc-meso-network-properties" class="nav-link" data-scroll-target="#meso-network-properties"><span class="header-section-number">5.2.2</span> Meso network properties</a></li>
@@ -268,20 +270,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">5.4.1</span> Robustness</a></li>
   </ul></li>
-  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">5.5</span> Constructing networks</a>
-  <ul class="collapse">
-  <li><a href="#simulating-extinctions" id="toc-simulating-extinctions" class="nav-link" data-scroll-target="#simulating-extinctions"><span class="header-section-number">5.5.1</span> Simulating Extinctions</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">6</span> Results</a>
-  <ul class="collapse">
-  <li><a href="#comparing-predicted-networks" id="toc-comparing-predicted-networks" class="nav-link" data-scroll-target="#comparing-predicted-networks"><span class="header-section-number">6.1</span> Comparing predicted networks</a>
-  <ul class="collapse">
-  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure"><span class="header-section-number">6.1.1</span> Structure</a></li>
-  <li><a href="#interactionspecies-turnover" id="toc-interactionspecies-turnover" class="nav-link" data-scroll-target="#interactionspecies-turnover"><span class="header-section-number">6.1.2</span> Interaction/species turnover</a></li>
-  </ul></li>
-  <li><a href="#comparing-inference" id="toc-comparing-inference" class="nav-link" data-scroll-target="#comparing-inference"><span class="header-section-number">6.2</span> Comparing inference</a></li>
-  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/contemporary_webs-preview.html"><i class="bi bi-journal-code"></i>SuppMat 1: Comparing models using contemporary food webs</a></li></ul></div></nav>
@@ -473,10 +463,18 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <h3 data-number="5.1.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">5.1.2</span> Defining modes of life (traits)</h3>
 <p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.</p>
 </section>
+<section id="constructing-networks" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">5.1.3</span> Constructing networks</h3>
+<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models (adbm, bodymassratio, l-matrix) <em>i.e.,</em> an ADBM and bodymassratio network from the same rep number would have used the same bodysizes. The PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each repetition but kep consistent for both models. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
 </section>
-<section id="assessing-structural-differences" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="assessing-structural-differences"><span class="header-section-number">5.2</span> Assessing structural differences</h2>
+<section id="simulating-extinctions" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="simulating-extinctions"><span class="header-section-number">5.1.4</span> Simulating Extinctions</h3>
+</section>
+</section>
+<section id="do-different-models-recover-different-network-structures" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="do-different-models-recover-different-network-structures"><span class="header-section-number">5.2</span> Do different models recover different network structures?</h2>
 <p>In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different ‘scales’ of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to ‘measure’ and analyse ecological networks <span class="citation" data-cites="delmas2018">(<a href="#ref-delmas2018" role="doc-biblioref">Delmas et al. 2018</a>)</span> we do still lack a clear set of guidelines for assessing how well models recover network structure <span class="citation" data-cites="allesina2008">(<a href="#ref-allesina2008" role="doc-biblioref">Allesina, Alonso, and Pascual 2008</a>)</span> and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.</p>
+<p>Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as <code>network structure values ~ model + time period</code> and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure.</p>
 <div id="tbl-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -594,48 +592,22 @@ Table&nbsp;2: An informative caption about the different network properties
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="micro-network-properties"><span class="header-section-number">5.2.3</span> Micro network properties</h3>
 <p>The number of interactions established (<strong>generality</strong>) or received (<strong>vulnerability</strong>) by each species <span class="citation" data-cites="schoener1989">(<a href="#ref-schoener1989" role="doc-biblioref">Schoener 1989</a>)</span>, are (broadly) indicative of consumer-resource relationships and diet breadth of species [ref]. Although this is usually determined at the species level the standard deviation of the generality and vulnerability of species is often used when benchmarking predicted networks <span class="citation" data-cites="williams2008 petchey2008">(<em>e.g.,</em> <a href="#ref-williams2008" role="doc-biblioref">Richard J. Williams and Martinez 2008</a>; <a href="#ref-petchey2008" role="doc-biblioref">Petchey et al. 2008</a>)</span>.</p>
 <p>The <strong>specificity</strong> of species in a network is measured as a function of the proportion of resources they effectively use <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span></p>
-</section>
-</section>
-<section id="assessing-pairwise-interaction-differences" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="assessing-pairwise-interaction-differences"><span class="header-section-number">5.3</span> Assessing pairwise interaction differences</h2>
-<p><strong>Interaction turnover</strong> <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span> tells us which interactions are ‘conserved’ (shared) across the networks from the same period but constructed using different models.</p>
-</section>
-<section id="assessing-network-inference" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="assessing-network-inference"><span class="header-section-number">5.4</span> Assessing network inference</h2>
-<p>Here we will look at extinctions of the different paleo TSS <span class="citation" data-cites="gupta2022">Gupta, Furrer, and Petchey (<a href="#ref-gupta2022" role="doc-biblioref">2022</a>)</span></p>
-<section id="robustness" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="robustness"><span class="header-section-number">5.4.1</span> Robustness</h3>
-<p><span class="math inline">\(R_{50}\)</span> see <span class="citation" data-cites="jonsson2015">Jonsson et al. (<a href="#ref-jonsson2015" role="doc-biblioref">2015</a>)</span></p>
-</section>
-</section>
-<section id="constructing-networks" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">5.5</span> Constructing networks</h2>
-<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were ‘simplified’ to removed any disconnected species. In total 2400 networks were constructed. When a quantitative measure of body size is needed (ADBM, bodymassratio, lmatrix) we drew a body mass for each species from a uniform distribution. The ranges were defined by the different size classes as discussed in insert cross ref to correct subsection here <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models (adbm, bodymassratio, l-matrix) <em>i.e.,</em> an ADBM and bodymassratio network from the same rep number would have used the same bodysizes. The PFIM networks were downsampled (see relevant section). For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each repetition but kep consistent for both models. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
-<section id="simulating-extinctions" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="simulating-extinctions"><span class="header-section-number">5.5.1</span> Simulating Extinctions</h3>
-</section>
-</section>
-</section>
-<section id="results" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Results</h1>
-<section id="comparing-predicted-networks" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="comparing-predicted-networks"><span class="header-section-number">6.1</span> Comparing predicted networks</h2>
-<section id="structure" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="structure"><span class="header-section-number">6.1.1</span> Structure</h3>
-<p>Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as <code>network structure values ~ model + time period</code> and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure.</p>
 <div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: stuff…"><img src="figures/summary.png" class="img-fluid figure-img"></a>
+<a href="figures/MANOVA_lda.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: stuff…"><img src="figures/MANOVA_lda.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: stuff…
 </figcaption>
 </figure>
 </div>
+<p>And we can discuss the results and implications here…</p>
 </section>
-<section id="interactionspecies-turnover" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="interactionspecies-turnover"><span class="header-section-number">6.1.2</span> Interaction/species turnover</h3>
+</section>
+<section id="assessing-pairwise-interaction-differences" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="assessing-pairwise-interaction-differences"><span class="header-section-number">5.3</span> Assessing pairwise interaction differences</h2>
+<p><strong>Interaction turnover</strong> <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span> tells us which interactions are ‘conserved’ (shared) across the networks from the same period but constructed using different models.</p>
 <div id="fig-beta_div" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-beta_div-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -647,9 +619,12 @@ Figure&nbsp;2: stuff… % interaction shared is calculated as number shared inte
 </figure>
 </div>
 </section>
-</section>
-<section id="comparing-inference" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="comparing-inference"><span class="header-section-number">6.2</span> Comparing inference</h2>
+<section id="assessing-network-inference" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="assessing-network-inference"><span class="header-section-number">5.4</span> Assessing network inference</h2>
+<p>Here we will look at extinctions of the different paleo TSS <span class="citation" data-cites="gupta2022">Gupta, Furrer, and Petchey (<a href="#ref-gupta2022" role="doc-biblioref">2022</a>)</span></p>
+<section id="robustness" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="robustness"><span class="header-section-number">5.4.1</span> Robustness</h3>
+<p><span class="math inline">\(R_{50}\)</span> see <span class="citation" data-cites="jonsson2015">Jonsson et al. (<a href="#ref-jonsson2015" role="doc-biblioref">2015</a>)</span></p>
 <div id="fig-dunhill" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -662,9 +637,20 @@ Figure&nbsp;3: stuff… Recreation of the figure from Dunhill 2024. Note not 100
 </div>
 </section>
 </section>
+</section>
+<section id="discussion" class="level1 unnumbered">
+<h1 class="unnumbered">Discussion</h1>
+<p>Blah blah blah</p>
+</section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div>
+
+</div>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-allesina2008" class="csl-entry" role="listitem">
 Allesina, Stefano, David Alonso, and Mercedes Pascual. 2008. <span>“A General Model for Food Web Structure.”</span> <em>Science</em> 320 (5876): 658–61. <a href="https://doi.org/10.1126/science.1156269">https://doi.org/10.1126/science.1156269</a>.
 </div>
@@ -779,13 +765,10 @@ Williams, Richard J., and Neo D. Martinez. 2000. <span>“Simple Rules Yield Com
 <div id="ref-yeakel2014" class="csl-entry" role="listitem">
 Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. Koch, Paulo R. Guimarães, and Thilo Gross. 2014. <span>“Collapse of an Ecological Network in Ancient Egypt.”</span> <em>PNAS</em> 111 (40): 14472–77. <a href="https://doi.org/10.1073/pnas.1408471111">https://doi.org/10.1073/pnas.1408471111</a>.
 </div>
-</div>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
+</div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-08-08},
+  date = {2025-08-11},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -813,7 +796,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. August 8, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. August 11, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

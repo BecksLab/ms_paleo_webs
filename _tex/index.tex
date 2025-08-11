@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-08-08}
+\date{2025-08-11}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -703,8 +703,31 @@ large (\textgreater300--500 mm), large (\textgreater100--300 mm), medium
 for each fossil species based on the ecological traits defined in the
 Bambach ecospace model (Bambach et al., 2007).
 
-\subsection{Assessing structural
-differences}\label{assessing-structural-differences}
+\subsubsection{Constructing networks}\label{constructing-networks}
+
+For each paleo community (time bin) we constructed \textbf{100} networks
+for each model (so 6 * 100) networks. These networks were `simplified'
+to removed any disconnected species. In total 2400 networks were
+constructed. When a quantitative measure of body size is needed (ADBM,
+bodymassratio, lmatrix) we drew a body mass for each species from a
+uniform distribution. The ranges were defined by the different size
+classes as discussed in insert cross ref to correct subsection here
+\emph{e.g.,} a species classed as `very large' would have a body mass
+drawn from \(U(300, 500)\). This was repeated for each run in order to
+add variation to the networks constructed, however the same body sizes
+were kept consistent for the relevant models (adbm, bodymassratio,
+l-matrix) \emph{i.e.,} an ADBM and bodymassratio network from the same
+rep number would have used the same bodysizes. The PFIM networks were
+downsampled (see relevant section). For both the random and niche model
+the desired connectance was randomly selected between the range 0.07 -
+0.15 for each repetition but kep consistent for both models. For each
+network we calculated the properties listed in
+Table~\ref{tbl-properties}
+
+\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
+
+\subsection{Do different models recover different network
+structures?}\label{do-different-models-recover-different-network-structures}
 
 In terms of wanting to asses and compare across the different models it
 is beneficial to approach this task by thinking about the different
@@ -719,6 +742,14 @@ assessing how well models recover network structure (Allesina et al.,
 2008) and it is beneficial to use a small subset of metrics that can
 clearly be tied to broader aspects of network function or capturing a
 ecological process.
+
+Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance
+(MANOVA) as it is able to capture model differences based on the
+combined information of the multiple structural network measures. Model
+defined as
+\texttt{network\ structure\ values\ \textasciitilde{}\ model\ +\ time\ period}
+and Linear Discriminant Analysis (LDA) to determine if different models
+produced networks with differing structure.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
@@ -826,66 +857,11 @@ The \textbf{specificity} of species in a network is measured as a
 function of the proportion of resources they effectively use (Poisot et
 al., 2012)
 
-\subsection{Assessing pairwise interaction
-differences}\label{assessing-pairwise-interaction-differences}
-
-\textbf{Interaction turnover} (Poisot et al., 2012) tells us which
-interactions are `conserved' (shared) across the networks from the same
-period but constructed using different models.
-
-\subsection{Assessing network
-inference}\label{assessing-network-inference}
-
-Here we will look at extinctions of the different paleo TSS Gupta et al.
-(2022)
-
-\subsubsection{Robustness}\label{robustness}
-
-\(R_{50}\) see Jonsson et al. (2015)
-
-\subsection{Constructing networks}\label{constructing-networks}
-
-For each paleo community (time bin) we constructed \textbf{100} networks
-for each model (so 6 * 100) networks. These networks were `simplified'
-to removed any disconnected species. In total 2400 networks were
-constructed. When a quantitative measure of body size is needed (ADBM,
-bodymassratio, lmatrix) we drew a body mass for each species from a
-uniform distribution. The ranges were defined by the different size
-classes as discussed in insert cross ref to correct subsection here
-\emph{e.g.,} a species classed as `very large' would have a body mass
-drawn from \(U(300, 500)\). This was repeated for each run in order to
-add variation to the networks constructed, however the same body sizes
-were kept consistent for the relevant models (adbm, bodymassratio,
-l-matrix) \emph{i.e.,} an ADBM and bodymassratio network from the same
-rep number would have used the same bodysizes. The PFIM networks were
-downsampled (see relevant section). For both the random and niche model
-the desired connectance was randomly selected between the range 0.07 -
-0.15 for each repetition but kep consistent for both models. For each
-network we calculated the properties listed in
-Table~\ref{tbl-properties}
-
-\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
-
-\section{Results}\label{results}
-
-\subsection{Comparing predicted
-networks}\label{comparing-predicted-networks}
-
-\subsubsection{Structure}\label{structure}
-
-Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance
-(MANOVA) as it is able to capture model differences based on the
-combined information of the multiple structural network measures. Model
-defined as
-\texttt{network\ structure\ values\ \textasciitilde{}\ model\ +\ time\ period}
-and Linear Discriminant Analysis (LDA) to determine if different models
-produced networks with differing structure.
-
 \begin{figure}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/summary.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_lda.png}}
 
 }
 
@@ -893,8 +869,14 @@ produced networks with differing structure.
 
 \end{figure}%
 
-\subsubsection{Interaction/species
-turnover}\label{interactionspecies-turnover}
+And we can discuss the results and implications here\ldots{}
+
+\subsection{Assessing pairwise interaction
+differences}\label{assessing-pairwise-interaction-differences}
+
+\textbf{Interaction turnover} (Poisot et al., 2012) tells us which
+interactions are `conserved' (shared) across the networks from the same
+period but constructed using different models.
 
 \begin{figure}
 
@@ -913,7 +895,15 @@ species agnostic}
 
 \end{figure}%
 
-\subsection{Comparing inference}\label{comparing-inference}
+\subsection{Assessing network
+inference}\label{assessing-network-inference}
+
+Here we will look at extinctions of the different paleo TSS Gupta et al.
+(2022)
+
+\subsubsection{Robustness}\label{robustness}
+
+\(R_{50}\) see Jonsson et al. (2015)
 
 \begin{figure}
 
@@ -928,6 +918,11 @@ Dunhill 2024. Note not 100\% sold on the TSS and absolute mean
 calculations\ldots{}}
 
 \end{figure}%
+
+\section*{Discussion}\label{discussion}
+\addcontentsline{toc}{section}{Discussion}
+
+Blah blah blah
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
