@@ -256,10 +256,11 @@ window.Quarto = {
   <li><a href="#some-networks-dont-share-any-interactions-and-some-share-a-lot" id="toc-some-networks-dont-share-any-interactions-and-some-share-a-lot" class="nav-link" data-scroll-target="#some-networks-dont-share-any-interactions-and-some-share-a-lot"><span class="header-section-number">4.3</span> Some networks don’t share any interactions and some share a lot</a></li>
   <li><a href="#model-choice-changes-the-narrative" id="toc-model-choice-changes-the-narrative" class="nav-link" data-scroll-target="#model-choice-changes-the-narrative"><span class="header-section-number">4.4</span> Model choice changes the narrative</a>
   <ul class="collapse">
-  <li><a href="#simulating-extinctions" id="toc-simulating-extinctions" class="nav-link" data-scroll-target="#simulating-extinctions"><span class="header-section-number">4.4.1</span> Simulating Extinctions</a></li>
+  <li><a href="#trends-over-time" id="toc-trends-over-time" class="nav-link" data-scroll-target="#trends-over-time"><span class="header-section-number">4.4.1</span> Trends over time</a></li>
+  <li><a href="#inferred-extinction-drivers" id="toc-inferred-extinction-drivers" class="nav-link" data-scroll-target="#inferred-extinction-drivers"><span class="header-section-number">4.4.2</span> Inferred extinction drivers</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#discussion-need-a-catchier-heading" id="toc-discussion-need-a-catchier-heading" class="nav-link" data-scroll-target="#discussion-need-a-catchier-heading"><span class="header-section-number">5</span> Discussion (need a catchier heading)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/contemporary_webs-preview.html"><i class="bi bi-journal-code"></i>SuppMat 1: Comparing models using contemporary food webs</a></li><li><a href="notebooks/model_sumaries-preview.html"><i class="bi bi-journal-code"></i>SuppMat 1: Expanded descriptions of the food web models</a></li></ul></div></nav>
@@ -551,7 +552,7 @@ Figure&nbsp;2: stuff…
 <p>What is perhaps the most striking result in <a href="#fig-structure" class="quarto-xref">Figure&nbsp;2</a> is that although there are clear structural differences between the different models the differences are not distinct between the broader model families but rather that there is a degree of overlap between them (specifically the log ratio, PFIM, and niche models). Although the log ratio and niche models are classified as different families they are built on similar ecological background and theory and so it is perhaps not surprising that these networks capture a similar structure (the same holds for the ADBM and l-matrix models). The fact that the random model occupies a completely different space is unsurprising as it has clearly been shown that networks are non-random in nature [REF] and so we expect random models to be constructing ecologically illogical networks. What is perhaps the most interesting result is that the PFIM model constructs networks that are very similar to those that are rooted in niche-based processes despite the model being more mechanistic in nature. Not sure how to articulate but this is cool because the is <em>something</em> in network structure constraints that is straddling the trait-niche space of ecology - but also see my next point about it being ‘correct’ is still up for debate</p>
 <p>Although it is not possible to confidently identify the models that are predicting the <em>‘correct’</em> network structure the fact that a models from different families are able to recover similar structures is reassuring as it suggests that it might be possible to substitute one model for another if the input data is insufficient.</p>
 <blockquote class="blockquote">
-<p>Is it sound to try and unpack the ‘pairwise differences’ between the different structural metrics as well (or some) as this will allow us to say e.g.&nbsp;Niche and PFIM might recover the same connectance but differ in vulnerability.</p>
+<p><strong>TODO</strong> Is it sound to try and unpack the ‘pairwise differences’ between the different structural metrics as well (or some) as this will allow us to say e.g.&nbsp;Niche and PFIM might recover the same connectance but differ in vulnerability.</p>
 </blockquote>
 </section>
 </section>
@@ -569,13 +570,17 @@ Figure&nbsp;3: stuff… % interaction shared is calculated as number shared inte
 </figure>
 </div>
 <p>In <a href="#fig-beta_div" class="quarto-xref">Figure&nbsp;3</a> it is clear that some models share a large percentage of interactions <em>e.g.,</em> between ADBM and l-matrix networks and others share nothing <em>e.g.,</em> ADBM and PFIM networks. This result is unsurprising as the mechanisms that determine interactions in ADBM and l-matrix (a single trait (bodysize) + some ecological theory) is very different from the PFIM model that makes assumptions on a trait-based hierarchy.</p>
+<p>The key takeaway that this needs to lead into is thinking about diet related questions and the model that is best suited to get you there. It makes sense to contextualise this in the feasible vs realised interaction spectrum - specifically that from a ‘philosophical’ basis if you are asking questions about possible diets of species then it makes sense to use models that fall firmly in the ‘feasible’ space <em>e.g.,</em> PFIM model or even something like the <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span> model. How these results support that is that we can see the ADBM and PFIM are recovering (almost) totally different pairwise links.</p>
 </section>
 <section id="model-choice-changes-the-narrative" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="model-choice-changes-the-narrative"><span class="header-section-number">4.4</span> Model choice changes the narrative</h2>
-<section id="simulating-extinctions" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="simulating-extinctions"><span class="header-section-number">4.4.1</span> Simulating Extinctions</h3>
+<section id="simulating-extinctions" class="level4" data-number="4.4.0.1">
+<h4 data-number="4.4.0.1" class="anchored" data-anchor-id="simulating-extinctions"><span class="header-section-number">4.4.0.1</span> Simulating Extinctions</h4>
 <p>Extinctions were simulated using different plausible mechanisms based on both species traits (size, motility), their position within the network (generality, vulnerability), as well as randomly. Each network was subjected to <strong>50</strong> extinction runs for each extinction mechanisms. The extinctions themselves were cascading in nature meaning that after the target species was removed all species that no longer had any prey were also deemed as extinct (secondary extinction), checking for secondary extinctions was then repeated until there were no longer any species without prey. This represents one extinction event and only then would the proceeding target species be removed from the network and cascading extinctions assessed again. Note that for extinction simulations which use the network position of a species to determine extinction order we follow the protocol from <span class="citation" data-cites="curtsdotter2011">Curtsdotter et al. (<a href="#ref-curtsdotter2011" role="doc-biblioref">2011</a>)</span> and reassess the vulnerability/generality of each species after each extinction event to ‘redetermine’ the extinction order.</p>
-<p>Here we will look at extinctions of the different paleo TSS <span class="citation" data-cites="gupta2022">(<a href="#ref-gupta2022" role="doc-biblioref">Gupta, Furrer, and Petchey 2022</a>)</span> and <span class="math inline">\(R_{50}\)</span> <span class="citation" data-cites="jonsson2015">(<a href="#ref-jonsson2015" role="doc-biblioref">Jonsson et al. 2015</a>)</span></p>
+<p>As we are using <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span> as a case study we followed their appraoch when simulating extinctions as well as assessing which extinction mechanism results in a simulated network that most closely matches the real post extinciton network. Extinction simulations were only run on the pre extinction networks whereby species were removed until they reached the ‘target richness’, which is the richness of the post extinction community. In order to determine which extinction mechnism creates a network most similar to the post extinction network we used the (get full name of score) TSS <span class="citation" data-cites="gupta2022">(<a href="#ref-gupta2022" role="doc-biblioref">Gupta, Furrer, and Petchey 2022</a>)</span> to assess how different the pairwise interactions are between ‘simulated’ and ‘real’ post extinction communities as well as looking at the absolute differences in network structure metrics.</p>
+<blockquote class="blockquote">
+<p><strong>TODO</strong> not sure if we also want to unpack/showcase robustness <span class="math inline">\(R_{50}\)</span> <span class="citation" data-cites="jonsson2015">(<a href="#ref-jonsson2015" role="doc-biblioref">Jonsson et al. 2015</a>)</span></p>
+</blockquote>
 <div id="fig-dunhill" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -587,11 +592,27 @@ Figure&nbsp;4: stuff… Recreation of the figure from Dunhill 2024. Note not 100
 </figure>
 </div>
 </section>
+<section id="trends-over-time" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="trends-over-time"><span class="header-section-number">4.4.1</span> Trends over time</h3>
+<blockquote class="blockquote">
+<p><strong>TODO</strong> Not sure statistically speaking what the best way to unpack this is… 2-way ANOVA/ANCOVA explanation is valuable? There are intercept differences (<em>e.g.,</em> baseline average values are different; are the rankings among all three response variables the same?) and there are shape differences/similarities (<em>e.g.,</em> motifs are all the same shape but Co and Gen show some among model differences in pattern.)</p>
+</blockquote>
+<p>Visual take-away seems to suggest that we see that the values (intercepts) of the different summary statistics are different but (broadly) they are capturing the same trends. This might suggest that although we observe differences in structure (<a href="#fig-structure" class="quarto-xref">Figure&nbsp;2</a>) the general patterns still remain the same. This is good news because it means that at least the models that we have used here tend to tell us the same general story - which is worth contextualising in the space of ‘right’ vs ‘wrong’ and as long as we are not fixated on the point value but rather on understanding the trends.</p>
+</section>
+<section id="inferred-extinction-drivers" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="inferred-extinction-drivers"><span class="header-section-number">4.4.2</span> Inferred extinction drivers</h3>
+<p>Points of discussion one will be to point to the mean absolute distance and how generally the ADBM/l-matrix do really badly - high mean absolute value. And this maybe makes sense though because of how we specify extinction mechanisms (trait-based) and so it sets the body-size models are not ‘talking’ the same language. In terms of the TSS scores - not sure how we should unpack it. Individually by model family to see which model agrees with which appraoch and see if different mechanisms come out stronger? <strong>TODO</strong> still need to sanity check the TSS anyway…</p>
 </section>
 </section>
-<section id="discussion" class="level1 unnumbered">
-<h1 class="unnumbered">Discussion</h1>
-<p>Blah blah blah</p>
+</section>
+<section id="discussion-need-a-catchier-heading" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Discussion (need a catchier heading)</h1>
+<p>I want this section to be more about contextualising model choice within the bigger research question discussion - i.e.&nbsp;mapping question and model choice more tightly…</p>
+<p>Points to discuss:</p>
+<ul>
+<li>Guidlines - as a box? Can we give something concrete??</li>
+<li>How to we synthesise these results? As in should we give clear directives ot is it enough to do a bit more handwaving and have the bigger message be that model choice matters?</li>
+</ul>
 </section>
 <section id="references" class="level1 unnumbered">
 

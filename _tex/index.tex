@@ -807,10 +807,10 @@ reassuring as it suggests that it might be possible to substitute one
 model for another if the input data is insufficient.
 
 \begin{quote}
-Is it sound to try and unpack the `pairwise differences' between the
-different structural metrics as well (or some) as this will allow us to
-say e.g.~Niche and PFIM might recover the same connectance but differ in
-vulnerability.
+\textbf{TODO} Is it sound to try and unpack the `pairwise differences'
+between the different structural metrics as well (or some) as this will
+allow us to say e.g.~Niche and PFIM might recover the same connectance
+but differ in vulnerability.
 \end{quote}
 
 \subsection{Some networks don't share any interactions and some share a
@@ -856,10 +856,20 @@ interactions in ADBM and l-matrix (a single trait (bodysize) + some
 ecological theory) is very different from the PFIM model that makes
 assumptions on a trait-based hierarchy.
 
+The key takeaway that this needs to lead into is thinking about diet
+related questions and the model that is best suited to get you there. It
+makes sense to contextualise this in the feasible vs realised
+interaction spectrum - specifically that from a `philosophical' basis if
+you are asking questions about possible diets of species then it makes
+sense to use models that fall firmly in the `feasible' space
+\emph{e.g.,} PFIM model or even something like the Fricke et al. (2022)
+model. How these results support that is that we can see the ADBM and
+PFIM are recovering (almost) totally different pairwise links.
+
 \subsection{Model choice changes the
 narrative}\label{model-choice-changes-the-narrative}
 
-\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
+\paragraph{Simulating Extinctions}\label{simulating-extinctions}
 
 Extinctions were simulated using different plausible mechanisms based on
 both species traits (size, motility), their position within the network
@@ -877,8 +887,23 @@ extinction order we follow the protocol from Curtsdotter et al. (2011)
 and reassess the vulnerability/generality of each species after each
 extinction event to `redetermine' the extinction order.
 
-Here we will look at extinctions of the different paleo TSS (Gupta et
-al., 2022) and \(R_{50}\) (Jonsson et al., 2015)
+As we are using Dunhill et al. (2024) as a case study we followed their
+appraoch when simulating extinctions as well as assessing which
+extinction mechanism results in a simulated network that most closely
+matches the real post extinciton network. Extinction simulations were
+only run on the pre extinction networks whereby species were removed
+until they reached the `target richness', which is the richness of the
+post extinction community. In order to determine which extinction
+mechnism creates a network most similar to the post extinction network
+we used the (get full name of score) TSS (Gupta et al., 2022) to assess
+how different the pairwise interactions are between `simulated' and
+`real' post extinction communities as well as looking at the absolute
+differences in network structure metrics.
+
+\begin{quote}
+\textbf{TODO} not sure if we also want to unpack/showcase robustness
+\(R_{50}\) (Jonsson et al., 2015)
+\end{quote}
 
 \begin{figure}
 
@@ -894,10 +919,59 @@ calculations\ldots{}}
 
 \end{figure}%
 
-\section*{Discussion}\label{discussion}
-\addcontentsline{toc}{section}{Discussion}
+\subsubsection{Trends over time}\label{trends-over-time}
 
-Blah blah blah
+\begin{quote}
+\textbf{TODO} Not sure statistically speaking what the best way to
+unpack this is\ldots{} 2-way ANOVA/ANCOVA explanation is valuable? There
+are intercept differences (\emph{e.g.,} baseline average values are
+different; are the rankings among all three response variables the
+same?) and there are shape differences/similarities (\emph{e.g.,} motifs
+are all the same shape but Co and Gen show some among model differences
+in pattern.)
+\end{quote}
+
+Visual take-away seems to suggest that we see that the values
+(intercepts) of the different summary statistics are different but
+(broadly) they are capturing the same trends. This might suggest that
+although we observe differences in structure
+(Figure~\ref{fig-structure}) the general patterns still remain the same.
+This is good news because it means that at least the models that we have
+used here tend to tell us the same general story - which is worth
+contextualising in the space of `right' vs `wrong' and as long as we are
+not fixated on the point value but rather on understanding the trends.
+
+\subsubsection{Inferred extinction
+drivers}\label{inferred-extinction-drivers}
+
+Points of discussion one will be to point to the mean absolute distance
+and how generally the ADBM/l-matrix do really badly - high mean absolute
+value. And this maybe makes sense though because of how we specify
+extinction mechanisms (trait-based) and so it sets the body-size models
+are not `talking' the same language. In terms of the TSS scores - not
+sure how we should unpack it. Individually by model family to see which
+model agrees with which appraoch and see if different mechanisms come
+out stronger? \textbf{TODO} still need to sanity check the TSS
+anyway\ldots{}
+
+\section{Discussion (need a catchier
+heading)}\label{discussion-need-a-catchier-heading}
+
+I want this section to be more about contextualising model choice within
+the bigger research question discussion - i.e.~mapping question and
+model choice more tightly\ldots{}
+
+Points to discuss:
+
+\begin{itemize}
+\tightlist
+\item
+  Guidlines - as a box? Can we give something concrete??
+\item
+  How to we synthesise these results? As in should we give clear
+  directives ot is it enough to do a bit more handwaving and have the
+  bigger message be that model choice matters?
+\end{itemize}
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
