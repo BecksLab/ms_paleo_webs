@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-08-15}
+\date{2025-08-18}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -410,26 +410,48 @@ model developed by Williams \& Martinez (2008)). Fundamentally this
 means that there is a trade off between the data that is available and
 the type of network one is interested in creating.
 
+\begin{quote}
+this section should be a box we can link to in the intro I think. We can
+also include some key `definitions'
+\end{quote}
+
 \section{Understanding how networks are
 different}\label{understanding-how-networks-are-different}
 
 It is important to be aware that networks can be configured in different
-ways depending on how the interactions are defined (Strydom, in prep).
-Basically we have metawebs (which represent \emph{potential}
-interactions), realised networks (which represent the subset of
-potential that are realised as a result of community and environmental
-context), and structural networks (species agnostic networks that are
-structurally informative). Here also talk about the implications of
-these different networks types - different uses and capturing different
-processes. Speciifcally link this to models - \emph{i.e.,} different
-models have been developed to construct a \emph{specific} network
-representation.
+ways depending on how the interactions are defined (Strydom, in prep)
+and that the configuration of the desired network should be informed by
+the research question (Gauzens et al., 2025).
 
 Think about the axes - trait-based/mechanistic model (metawebs) and then
 we have the statistical/theoretical models (which have their own mini
-axis of regression vs full theory models\ldots{}
+axis of regression vs full theory models\ldots{} - see also
+Figure~\ref{fig-concept}). Basically we have metawebs (which represent
+\emph{potential} interactions, mechanistic networks), realised networks
+(which represent the subset of potential that are realised as a result
+of community and environmental context, theory networks), and structural
+networks (species agnostic networks that are structurally informative,
+theory networks). Here also talk about the implications of these
+different networks types - different uses and capturing different
+processes. Specifically link this to models - \emph{i.e.,} different
+models have been developed to construct a \emph{specific} network
+representation.
 
-Need to link to Gauzens et al. (2025) here.
+\paragraph{Key Definitions}\label{key-definitions}
+
+\begin{itemize}
+\tightlist
+\item
+  Metaweb:
+\item
+  Realised Network:
+\item
+  Structural Network:
+\item
+  Feasible Interactions:
+\item
+  Realised interactions:
+\end{itemize}
 
 \section{Challenges specific to building paleo
 networks}\label{challenges-specific-to-building-paleo-networks}
@@ -470,11 +492,6 @@ assumptions about network structure will hold across deep time.
 
 \subsection{Approaches to food web
 prediction}\label{approaches-to-food-web-prediction}
-
-Here we should take the time to go in and just articulate that there are
-nuance and differences in terms of predicting interactions vs predicting
-networks. Once it is finally on a preprint server we can obviously link
-to the T4T stuff\ldots{}
 
 Here we present six different models (Table~\ref{tbl-models}) that can
 be used to construct food webs for both this specific community but are
@@ -556,158 +573,6 @@ evolutionary compatibility, assumptions on body size from fossil data &
 metaweb?? & Rohr et al. (2010) \\
 \end{longtable}
 
-\subsection{Structural models}\label{structural-models}
-
-\subsubsection{Random model}\label{random-model}
-
-The Erdős--Rényi random graph model (Erdős \& Rényi, 1959) uniformly at
-random assigns an \(L\) number of links to an \(S\) number of nodes
-(species richness). From an ecological perspective this model assumes
-that the interactions between species occurs regardless of the identity
-of the species (\emph{i.e.,} species have no agency) and links are
-randomly distributed throughout the network. This creates a food web
-that is as free as possible from biological structuring while
-maintaining the expected richness \emph{(}\(S\)) and connectance
-(\(L/S^2\))
-
-\begin{quote}
-We could theoretically use the other `null models' BUT I feel like in
-the context of constructing a network for a given community the
-Erdős--Rényi is the better choice than the other models that (IMO) are
-more suited to hypothesis testing e.g.~do observed networks differ from
-the null network\ldots{} Whereas Erdős--Rényi really is just a case of
-here is a truly random network with the specified number of links and
-nodes and anyway one of the Null models is a derivative of Erdős--Rényi
-if I remember correctly.
-\end{quote}
-
-\subsubsection{Niche model}\label{niche-model}
-
-The niche model (Williams \& Martinez, 2000) introduces the idea that
-species interactions are based on the `feeding niche' of a species.
-Broadly, all species are randomly assigned a `feeding niche' range and
-all species that fall in this range can be consumed by that species
-(thereby allowing for cannibalism). The niche of each species is
-randomly assigned and the range of each species' niche is (in part)
-constrained by the specified connectance (\(Co\)) of the network. The
-niche model has also been modified, although it appears that adding to
-the `complexity' of the niche model does not improve on its ability to
-generate a more ecologically `correct' network (Williams \& Martinez,
-2008).
-
-Each of \(S\) species assigned a `niche value' parameter \(n_i\) drawn
-uniformly from the interval {[}0,1{]}. Species \(i\) consumes all
-species falling in a range (\(r_i\)) that is placed by uniformly drawing
-the center of the range (\(c_i\)) from \([ \frac{r_i}{2}, n_i ]\) The
-size of \(r_i\) is assigned by using a beta function to randomly draw
-values from {[}0,1{]} whose expected value is \(2 \times Co\) and then
-multiplying that value by \(n_i\) to obtain the desired \(Co\).
-
-\subsubsection{Allometric diet breadth
-model}\label{allometric-diet-breadth-model}
-
-The Allometric diet breadth model (ADBM; Petchey et al. (2008)) is
-rooted in feeding theory and allocates the links between species based
-on energetics, which predicts the diet of a consumer based on energy
-intake. This means that the model is focused on predicting not only the
-number of links in a network but also the arrangement of these links
-based on the diet breadth of a species, where the diet (\(K\)) is
-defined as follows:
-
-\[
-K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
-\]
-
-where \(\lambda_{ij}\) is the handling time, which is the product of the
-attack rate \(A_{i}\) and resource density \(N_{i}\), \(E_{i}\) is the
-energy content of the resource and \(H_{ij}\) is the ratio handling
-time, with the relationship being dependent on the ratio of predator and
-prey bodymass as follows:
-
-\[
-H_{ij} = \frac{h}{b - \frac{M_{i}}{M_{j}}} if \frac{M_{i}}{M_{j}} < b
-\]
-
-or
-
-\[
-H_{ij} = \infty \geq b
-\]
-
-Refer to Petchey et al. (2008) for more details as to how these
-different terms are parametrised.
-
-\subsubsection{L matrix}\label{l-matrix}
-
-For now we can link to the ATNr package (Gauzens et al., 2023) until I
-can find a more suitable manuscript that breaks down this construction
-method. Schneider et al. (2016) Interactions are determined by
-allometric rules (ratio of consumer (\(M_{i}\)) and resource (\(M_{j}\))
-body sizes) and a Ricker function as defined by \(R_{opt}\) and
-\(\gamma\) and returns The probability of a link (\(P_{ij}\)) existing
-between a consumer and resource, and is defined as follows:
-
-\[
-P_{ij} = (L \times \exp(1 - L))^{\gamma}
-\]
-
-where
-
-\[
-L = \frac{M_{i}}{M_{j} \times R_{opt}}
-\]
-
-It is also possible to apply a threshold value to \(P_{ij}\), whereby
-any probabilities below that threshold are set to zero.
-
-\subsection{Interaction predictions}\label{interaction-predictions}
-
-\subsubsection{Paleo food web inference
-model}\label{paleo-food-web-inference-model}
-
-The Paleo food web inference model (PFIM; Shaw et al. (2024)) uses a
-series of rules for a set of trait categories (such as habitat and body
-size) to determine if an interaction can feasibly occur between a
-species pair. If all conditions are met for the different rule classes
-then an interaction is deemed to be feasible. The original work put
-forward in Shaw et al. (2024) also includes a `downsampling' step
-developed by Roopnarine (2006) that uses a power law, defined by the
-link distribution, to `prune' down some of the links. It is worth
-mentioning that this approach is similar to that developed by Roopnarine
-(2017) with the exception that Shaw et al. (2024) does not specifically
-bin species into guilds, and so we choose to use the method developed by
-Shaw et al. (2024) since both approaches should produce extremely
-similar networks as they are built on the same underlying philosophy.
-
-\subsubsection{Body size ratio model}\label{body-size-ratio-model}
-
-The body size ratio model (Rohr et al., 2010) determines the probability
-of feeding interactions occurring between species by using the ratio
-between the consumer (\(M_{i}\)) and resource (\(M_{j}\)) body sizes. In
-order to represent the predator-prey bodymass ratio as a `feeding niche'
-the ratio is also modified by both a \(\beta\) and \(\gamma\)
-distribution. The probability of a link existing between a consumer and
-resource (in its most basic form) is defined as follows:
-
-\[
-P_{ij} = \frac{p}{1+p}
-\]
-
-where
-
-\begin{equation}\phantomsection\label{eq-bodymass}{
-p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
-}\end{equation}
-
-The original latent-trait model developed by Rohr et al. (2010) also
-included an additional latent trait term \(v_{i} \delta f_{j}\) however
-for simplicity we will use Equation~\ref{eq-bodymass} as per Yeakel et
-al. (2014) . Based on Rohr et al. (2010) it is possible to estimate the
-parameters \(\alpha\), \(\delta\), and \(\gamma\) using a GLM but we
-will use the parameters from Yeakel et al. (2014), which was `trained'
-on the Serengeti food web data and are as follows: \(\alpha\) = 1.41,
-\(\delta\) = 3.75, and \(\gamma\) = 1.87.
-
 \section{Case study: Toarcian mass extinction
 event}\label{case-study-toarcian-mass-extinction-event}
 
@@ -753,16 +618,27 @@ add variation to the networks constructed, however the same body sizes
 were kept consistent for the relevant models (adbm, bodymassratio,
 l-matrix) \emph{i.e.,} an ADBM and bodymassratio network from the same
 rep number would have used the same bodysizes. The PFIM networks were
-downsampled (see relevant section). For both the random and niche model
-the desired connectance was randomly selected between the range 0.07 -
-0.15 for each repetition but kep consistent for both models. For each
-network we calculated the properties listed in
+downsampled (see relevant section is S1). For both the random and niche
+model the desired connectance was randomly selected between the range
+0.07 - 0.15 for each repetition but kep consistent for both models. For
+each network we calculated the properties listed in
 Table~\ref{tbl-properties}
 
-\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
+\subsection{Models capture different network structure but in unexpected
+ways}\label{models-capture-different-network-structure-but-in-unexpected-ways}
 
-\subsection{Do different models recover different network
-structures?}\label{do-different-models-recover-different-network-structures}
+Why is structure important and what can it tell us? Broadly when we talk
+about quantifying the structure of a network we are interesting in
+capturing some aspect of how the links are distributed between nodes, or
+alternatively about properties of the nodes (specifically in terms of
+the number of links coming in to (prey) or out of (predators) the node).
+What are some things we can learn/infer from network structure: energy
+flows and fluxes {[}REF{]}, propagation of stress {[}REF{]}, roles of
+species in the community {[}REF, think trophic levels{]}. Some closing
+statement about how thus there are different facets of network structure
+and the value of understanding generally how different models differ in
+terms of the structure that they recover - link to
+Table~\ref{tbl-properties} maybe.
 
 In terms of wanting to asses and compare across the different models it
 is beneficial to approach this task by thinking about the different
@@ -778,13 +654,13 @@ assessing how well models recover network structure (Allesina et al.,
 clearly be tied to broader aspects of network function or capturing a
 ecological process.
 
-Here we used a Multivariate ANOVA or Multivariate Analysis Of Variance
-(MANOVA) as it is able to capture model differences based on the
-combined information of the multiple structural network measures. Model
-defined as
+Here we used a Multivariate Analysis Of Variance (MANOVA) as it is able
+to capture model differences based on the combined information of the
+multiple structural network measures. Model defined as
 \texttt{network\ structure\ values\ \textasciitilde{}\ model\ +\ time\ period}
 and Linear Discriminant Analysis (LDA) to determine if different models
-produced networks with differing structure.
+produced networks with differing structure. \textbf{Need to report the
+relevant effect of time in driving observed differences}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
@@ -900,18 +776,60 @@ al., 2012)
 
 }
 
-\caption{\label{fig-summary}stuff\ldots{}}
+\caption{\label{fig-structure}stuff\ldots{}}
 
 \end{figure}%
 
-And we can discuss the results and implications here\ldots{}
+What is perhaps the most striking result in Figure~\ref{fig-structure}
+is that although there are clear structural differences between the
+different models the differences are not distinct between the broader
+model families but rather that there is a degree of overlap between them
+(specifically the log ratio, PFIM, and niche models). Although the log
+ratio and niche models are classified as different families they are
+built on similar ecological background and theory and so it is perhaps
+not surprising that these networks capture a similar structure (the same
+holds for the ADBM and l-matrix models). The fact that the random model
+occupies a completely different space is unsurprising as it has clearly
+been shown that networks are non-random in nature {[}REF{]} and so we
+expect random models to be constructing ecologically illogical networks.
+What is perhaps the most interesting result is that the PFIM model
+constructs networks that are very similar to those that are rooted in
+niche-based processes despite the model being more mechanistic in
+nature. Not sure how to articulate but this is cool because the is
+\emph{something} in network structure constraints that is straddling the
+trait-niche space of ecology - but also see my next point about it being
+`correct' is still up for debate
 
-\subsection{Assessing pairwise interaction
-differences}\label{assessing-pairwise-interaction-differences}
+Although it is not possible to confidently identify the models that are
+predicting the \emph{`correct'} network structure the fact that a models
+from different families are able to recover similar structures is
+reassuring as it suggests that it might be possible to substitute one
+model for another if the input data is insufficient.
 
-\textbf{Interaction turnover} (Poisot et al., 2012) tells us which
-interactions are `conserved' (shared) across the networks from the same
-period but constructed using different models.
+\begin{quote}
+Is it sound to try and unpack the `pairwise differences' between the
+different structural metrics as well (or some) as this will allow us to
+say e.g.~Niche and PFIM might recover the same connectance but differ in
+vulnerability.
+\end{quote}
+
+\subsection{Some networks don't share any interactions and some share a
+lot}\label{some-networks-dont-share-any-interactions-and-some-share-a-lot}
+
+In addition to wanting to measure network structure researchers may also
+be interested in understanding aspects about the diets and predators of
+\emph{specific} species in a community. In this instance the interest
+should be in understanding how the pairwise links predicted between
+species pairs differ between models. Here we look ath the interaction
+turnover (Poisot et al., 2012) both within and between the different
+models. This can be thought of as the equivalent of species \(\beta\)
+turnover and tells us which interactions are `conserved' (shared) across
+the networks but only between species pairs that are shared -
+\emph{i.e.,} this turnover is only driven by interaction and not species
+turnover. Here we only compared networks that we constructed for the
+same period (as our interest is only in between model differences) and
+excluded the random and niche networks from consideration as these two
+models are essentially species agnostic.
 
 \begin{figure}
 
@@ -930,15 +848,37 @@ species agnostic}
 
 \end{figure}%
 
-\subsection{Assessing network
-inference}\label{assessing-network-inference}
+In Figure~\ref{fig-beta_div} it is clear that some models share a large
+percentage of interactions \emph{e.g.,} between ADBM and l-matrix
+networks and others share nothing \emph{e.g.,} ADBM and PFIM networks.
+This result is unsurprising as the mechanisms that determine
+interactions in ADBM and l-matrix (a single trait (bodysize) + some
+ecological theory) is very different from the PFIM model that makes
+assumptions on a trait-based hierarchy.
 
-Here we will look at extinctions of the different paleo TSS Gupta et al.
-(2022)
+\subsection{Model choice changes the
+narrative}\label{model-choice-changes-the-narrative}
 
-\subsubsection{Robustness}\label{robustness}
+\subsubsection{Simulating Extinctions}\label{simulating-extinctions}
 
-\(R_{50}\) see Jonsson et al. (2015)
+Extinctions were simulated using different plausible mechanisms based on
+both species traits (size, motility), their position within the network
+(generality, vulnerability), as well as randomly. Each network was
+subjected to \textbf{50} extinction runs for each extinction mechanisms.
+The extinctions themselves were cascading in nature meaning that after
+the target species was removed all species that no longer had any prey
+were also deemed as extinct (secondary extinction), checking for
+secondary extinctions was then repeated until there were no longer any
+species without prey. This represents one extinction event and only then
+would the proceeding target species be removed from the network and
+cascading extinctions assessed again. Note that for extinction
+simulations which use the network position of a species to determine
+extinction order we follow the protocol from Curtsdotter et al. (2011)
+and reassess the vulnerability/generality of each species after each
+extinction event to `redetermine' the extinction order.
+
+Here we will look at extinctions of the different paleo TSS (Gupta et
+al., 2022) and \(R_{50}\) (Jonsson et al., 2015)
 
 \begin{figure}
 
@@ -980,6 +920,13 @@ Caron, D., Maiorano, L., Thuiller, W., \& Pollock, L. J. (2022).
 Addressing the Eltonian shortfall with trait-based interaction models.
 \emph{Ecology Letters}, \emph{25}(4), 889--899.
 \url{https://doi.org/10.1111/ele.13966}
+
+\bibitem[\citeproctext]{ref-curtsdotter2011}
+Curtsdotter, A., Binzer, A., Brose, U., De Castro, F., Ebenman, B.,
+Eklöf, A., Riede, J. O., Thierry, A., \& Rall, B. C. (2011). Robustness
+to secondary extinctions: Comparing trait-based sequential deletions in
+static and dynamic food webs. \emph{Basic and Applied Ecology},
+\emph{12}(7), 571--580. \url{https://doi.org/10.1016/j.baae.2011.09.008}
 
 \bibitem[\citeproctext]{ref-delmas2018}
 Delmas, E., Besson, M., Brice, M.-H., Burkle, L. A., Dalla Riva, G. V.,
@@ -1023,12 +970,6 @@ D., Sanisidro, O., Rowan, J., Svenning, J.-C., \& Beaudrot, L. (2022).
 Collapse of terrestrial mammal food webs since the Late Pleistocene.
 \emph{Science}, \emph{377}(6609), 1008--1011.
 \url{https://doi.org/10.1126/science.abn4012}
-
-\bibitem[\citeproctext]{ref-gauzens2023}
-Gauzens, B., Brose, U., Delmas, E., \& Berti, E. (2023). ATNr:
-Allometric Trophic Network models in R. \emph{Methods in Ecology and
-Evolution}, \emph{14}(11), 2766--2773.
-\url{https://doi.org/10.1111/2041-210X.14212}
 
 \bibitem[\citeproctext]{ref-gauzens2025}
 Gauzens, B., Thouvenot, L., Srivastava, D. S., Kratina, P., Romero, G.
@@ -1114,10 +1055,6 @@ Modeling food webs: Exploring unexplained structure using latent traits.
 Roopnarine, P. D. (2006). Extinction cascades and catastrophe in ancient
 food webs. \emph{Paleobiology}, \emph{32}(1), 1--19.
 \url{https://www.jstor.org/stable/4096814}
-
-\bibitem[\citeproctext]{ref-roopnarine2017}
-Roopnarine, P. D. (2017). \emph{Ecological Modelling of Paleocommunity
-Food Webs} (pp. 201--226). University of Chicago Press.
 
 \bibitem[\citeproctext]{ref-schneider2016}
 Schneider, F. D., Brose, U., Rall, B. C., \& Guill, C. (2016). Animal
