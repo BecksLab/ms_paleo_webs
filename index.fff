@@ -2,11 +2,26 @@
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/summary.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/model_fams.png}}
 
 }
 
-\caption{\label{fig-summary}stuff\ldots{}}
+\caption{\label{fig-concept}This obviously needs work but a variation on
+this to try and articulate the different approaches and broadly how they
+may differ.}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_lda.png}}
+
+}
+
+\caption{\label{fig-structure}stuff\ldots{}}
 
 \end{figure}
 \efloatseparator
