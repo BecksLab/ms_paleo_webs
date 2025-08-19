@@ -62,6 +62,8 @@ $$
 
 It is also possible to apply a threshold value to $P_{ij}$, whereby any probabilities below that threshold are set to zero.
 
+Note that as for the ADBM we specify which species are considered to be 'producer' species.
+
 ## Interaction predictions
 
 ### Paleo food web inference model
