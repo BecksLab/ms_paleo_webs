@@ -14,6 +14,10 @@ using Extinctions
 using JLD2
 using SpeciesInteractionNetworks
 
+# set seed
+import Random
+Random.seed!(66)
+
 # internal functions
 include("lib/internals.jl")
 
@@ -31,6 +35,13 @@ robustness_vals = DataFrame(
     robustness = Any[],
 );
 
+auc = DataFrame(
+    protect = Any[],
+    mechanism = Any[],
+    time = Any[],
+    AUC = Any[],
+);
+
 # represents the % of species that have gone extinct (primary and secondary)
 spread = collect(1:1:99)
 
@@ -42,18 +53,28 @@ combos = [[:none; :cascade],
         [:basal; :cascade],
         [:basal; :secondary]]
         
-ext_reps = 3
+ext_reps = 500
 
-for l in 1:nrow(networks)
+for h in 1:4
 
     # remove cannibals
-    N = remove_cannibals(networks.network[l])
+    N = remove_cannibals(networks.network[h])
 
     for i = eachindex(combos)
     
         for l = 1:ext_reps
             
             Ns = extinction(N; protect = combos[i][1], mechanism = combos[i][2])
+
+             D = DataFrame(
+                    protect = combos[i][1],
+                    mechanism = combos[i][2],
+                    time = h,
+                    AUC = resilience(Ns)
+                    )
+
+            # send to results
+            append!(auc, D)
 
             for j in eachindex(spread)
 
@@ -62,7 +83,7 @@ for l in 1:nrow(networks)
                 D = DataFrame(
                     protect = combos[i][1],
                     mechanism = combos[i][2],
-                    time = networks.time[l],
+                    time = networks.time[h],
                     threshold = spread[j],
                     robustness = rob,
                     )
@@ -77,9 +98,23 @@ end
 # robustness curves
 
 layer = data(robustness_vals) * mapping(:threshold, :robustness, 
-                                        color = :protect => nonnumeric, 
+                                        color = :time, 
                                         linestyle = :mechanism,
-                                        layout = :time) * (smooth())
+                                        layout = :protect) * (smooth())
 fig = draw(layer)
 
 figure = fig.figure
+
+save("figures/robustness_compare.png", figure)
+
+# write summaries as .csv
+CSV.write(
+    "data/processed/robustness_test.csv",
+    robustness_vals,
+)
+
+# write summaries as .csv
+CSV.write(
+    "data/processed/auc_test.csv",
+    auc,
+)
