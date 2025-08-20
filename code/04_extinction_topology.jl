@@ -15,7 +15,7 @@ Random.seed!(66)
 # import networks object
 extinctions = load_object("data/processed/extinction_seq.jlds")
 
-# also import the 'known' netowrks for tss calcs
+# also import the 'known' networks for tss calcs
 networks = load_object("data/processed/networks.jlds")
 # we only care about the post extinction community
 filter!(:time => x -> x == "G2", networks)
