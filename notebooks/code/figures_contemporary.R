@@ -99,7 +99,12 @@ real_nets <- read_csv("../data/processed/nz_summary.csv") %>%
   reframe(real_mu = mean(stat_val, na.rm = TRUE))
 
 mod_nets <- read_csv("../data/processed/topology_models.csv") %>% 
-  select(-richness) %>% 
+  select(-richness) %>%
+  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>% 
+  # to get the ratio
+  mutate(distance = NULL,
+         top = NULL,
+         basal = NULL)%>% 
   pivot_longer(
     cols = -c(id, model), 
     names_to = "stat",
@@ -118,7 +123,9 @@ mod_nets <- read_csv("../data/processed/topology_models.csv") %>%
     stat %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
-  ))
+  ),
+  model = factor(model, ordered = TRUE, 
+                 levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "real")))
 
 for (i in seq_along(plot_list)) {
   
@@ -131,7 +138,7 @@ for (i in seq_along(plot_list)) {
     facet_grid(rows = vars(model),
                cols = vars(stat),
                scales = "free") +
-    scale_colour_manual(values = pal_df$c,
+    scale_fill_manual(values = pal_df$c,
                         breaks = pal_df$l)  +
     coord_cartesian(expand = FALSE, clip = "off") +
     labs(title = levs[i]) +
