@@ -155,3 +155,56 @@ CSV.write(
     "../data/processed/auc_test.csv",
     auc,
 )
+
+# robustness but we call a new extinction series for every threshold value
+
+robustness_vals = DataFrame(
+    protect = Any[],
+    mechanism = Any[],
+    time = Any[],
+    threshold = Any[],
+    robustness = Any[],
+);
+
+for h in 1:nrow(networks)
+
+    # remove cannibals
+    N = networks.network[h]
+
+    for i = eachindex(combos)
+    
+        for l = 1:ext_reps
+
+            for j in eachindex(spread)
+
+            spp = StatsBase.shuffle(species(N))
+
+            if combos[i][1] == :basal
+                filter!(x -> x != Symbol("BASAL NODE"),spp)
+            end
+
+            # pre-defined extinction sequence
+            Ns = extinction(N, spp; protect = :none, mechanism = combos[i][2])
+
+                rob = robustness(Ns; threshold = spread[j])
+            
+                D = DataFrame(
+                    protect = combos[i][1],
+                    mechanism = combos[i][2],
+                    time = networks.time[h],
+                    threshold = spread[j],
+                    robustness = rob,
+                    )
+            
+                # send to results
+                append!(robustness_vals, D)
+            end
+        end
+    end 
+end
+
+# write summaries as .csv
+CSV.write(
+    "../data/processed/robustness_many_to_many.csv",
+    robustness_vals,
+)
