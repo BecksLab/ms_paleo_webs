@@ -7,7 +7,6 @@
 # libraries
 using AlgebraOfGraphics
 using CairoMakie
-using Combinatorics
 using CSV
 using DataFrames
 using Extinctions
@@ -24,20 +23,21 @@ Random.seed!(66)
 include("lib/internals.jl")
 
 # get the name of all communities
-matrix_names = readdir("data/dunhill")
+matrix_names = readdir("../data/dunhill")
 # select only species datasets
 matrix_names = matrix_names[occursin.(r"^.*edgelist.*$", matrix_names)]
 
 # df to store networks
 networks = DataFrame(time = Any[], network = Any[]);
 
+# build networks from Dunhill edgelists
 for i in eachindex(matrix_names)
 
     file_name = matrix_names[i]
     # get relevant info from slug
     str_cats = split(file_name, r"_")
     # get interactions
-    ints = DataFrame(CSV.File.(joinpath("data/dunhill/", "$file_name")))
+    ints = DataFrame(CSV.File.(joinpath("../data/dunhill/", "$file_name")))
 
     # build network
     S = unique(vcat(ints.resource, ints.consumer))
@@ -77,9 +77,6 @@ auc = DataFrame(
 
 # represents the % of species that have gone extinct (primary and secondary)
 spread = collect(1:1:99)
-
-# first we create `ext_reps` number of extinction series for each network
-# note we do not protect the basal node
 
 combos = [[:none; :cascade],
         [:none; :secondary],
@@ -145,16 +142,16 @@ fig = draw(layer)
 
 figure = fig.figure
 
-save("figures/robustness_compare.png", figure)
+save("../figures/robustness_compare.png", figure)
 
 # write summaries as .csv
 CSV.write(
-    "data/processed/robustness_test.csv",
+    "../data/processed/robustness_test.csv",
     robustness_vals,
 )
 
 # write summaries as .csv
 CSV.write(
-    "data/processed/auc_test.csv",
+    "../data/processed/auc_test.csv",
     auc,
 )
