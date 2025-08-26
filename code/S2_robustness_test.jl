@@ -14,6 +14,7 @@ using Extinctions
 using JLD2
 using pfim
 using SpeciesInteractionNetworks
+using StatsBase
 
 # set seed
 import Random
@@ -23,35 +24,40 @@ Random.seed!(66)
 include("lib/internals.jl")
 
 # get the name of all communities
-matrix_names = readdir("data/raw")
+matrix_names = readdir("data/dunhill")
 # select only species datasets
-matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
-
-# feeding rules
-feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
-
-# size classes (for creating continuous body sizes)
-size_classes = DataFrame(CSV.File("data/raw/size_classes.csv"))
+matrix_names = matrix_names[occursin.(r"^.*edgelist.*$", matrix_names)]
 
 # df to store networks
 networks = DataFrame(time = Any[], network = Any[]);
 
 for i in eachindex(matrix_names)
-    
+
     file_name = matrix_names[i]
     # get relevant info from slug
     str_cats = split(file_name, r"_")
-    # import data frame
-    df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
-    select!(df, [:Guild, :motility, :tiering, :feeding, :size])
-    rename!(df, :Guild => :species)
-    N = pfim.PFIM(df, feeding_rules; downsample = false)
+    # get interactions
+    ints = DataFrame(CSV.File.(joinpath("data/dunhill/", "$file_name")))
+
+    # build network
+    S = unique(vcat(ints.resource, ints.consumer))
+    nodes = Unipartite(Symbol.(S))
+    edgs = Binary(zeros(Bool, (length(S), length(S))))
+
+    N = SpeciesInteractionNetwork(nodes, edgs)
+
+    for i = 1:nrow(ints)
+        interaction = (Symbol(ints.consumer[i]), Symbol(ints.resource[i]))
+        N[interaction...] = true
+    end
+
+    # push to df
     d = Dict{Symbol,Any}(
         :time => str_cats[1],
         :network => N,
     )
     push!(networks, d)
-
+    
 end
 
 robustness_vals = DataFrame(
@@ -80,20 +86,27 @@ combos = [[:none; :cascade],
         [:basal; :cascade],
         [:basal; :secondary]]
         
-ext_reps = 100
+ext_reps = 500
 
 for h in 1:nrow(networks)
 
     # remove cannibals
-    N = remove_cannibals(networks.network[h])
+    N = networks.network[h]
 
     for i = eachindex(combos)
     
         for l = 1:ext_reps
-            
-            Ns = extinction(N; protect = combos[i][1], mechanism = combos[i][2])
 
-             D = DataFrame(
+            spp = StatsBase.shuffle(species(N))
+
+            if combos[i][1] == :basal
+                filter!(x -> x != Symbol("BASAL NODE"),spp)
+            end
+
+            # pre-defined extinction sequence
+            Ns = extinction(N, spp; protect = :none, mechanism = combos[i][2])
+            
+            D = DataFrame(
                     protect = combos[i][1],
                     mechanism = combos[i][2],
                     time = h,
