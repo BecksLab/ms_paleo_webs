@@ -115,7 +115,7 @@ for h in 1:nrow(networks)
 
             for j in eachindex(spread)
 
-                rob = robustness(Ns; threshold = spread[j])
+                rob = robustness(N; extinction_order = spp, threshold = spread[j])
             
                 D = DataFrame(
                     protect = combos[i][1],
@@ -171,7 +171,7 @@ for h in 1:nrow(networks)
     # remove cannibals
     N = networks.network[h]
 
-    for i = eachindex(combos)
+    for i = 2:3
     
         for l = 1:ext_reps
 
@@ -183,10 +183,7 @@ for h in 1:nrow(networks)
                 filter!(x -> x != Symbol("BASAL NODE"),spp)
             end
 
-            # pre-defined extinction sequence
-            Ns = extinction(N, spp; protect = :none, mechanism = combos[i][2])
-
-                rob = robustness(Ns; threshold = spread[j])
+            rob = robustness(N; threshold = spread[j])
             
                 D = DataFrame(
                     protect = combos[i][1],
