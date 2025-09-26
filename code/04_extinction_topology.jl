@@ -126,15 +126,8 @@ for i = 1:4
             N = remove_cannibals(networks.network[i])
             N = add_basal(N)
 
-            init_rich = richness(N)
-
-            # find target richness to have threshold % remaining
-            targ_rich = floor(Int, init_rich * spread[j]/100)
-
-
-            Ns = extinction(N; end_richness = targ_rich, protect = :none, mechanism = :secondary)
-
-            rob = length(Ns) / init_rich
+            rob = robustness(N;
+                        threshold = spread[j])
 
             D = DataFrame(
                 time = networks.time[i],
