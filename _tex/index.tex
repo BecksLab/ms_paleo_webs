@@ -318,28 +318,20 @@ are constructed using different models will change the the downstream
 inferences that are made for this we use the work from Dunhill et al.
 (2024) as a case study.
 
-\section{Contextualising the prediction of paleo webs within the
-contemporary
-toolbox}\label{contextualising-the-prediction-of-paleo-webs-within-the-contemporary-toolbox}
+\section{Contextualising paleo web prediction within the contemporary
+toolbox}\label{contextualising-paleo-web-prediction-within-the-contemporary-toolbox}
 
-There is an evolving body of work that focuses on developing tools
-specifically for the task of predicting food webs. However as
-highlighted in Strydom (T4T in prep) it is important that we understand
-what assumptions are being embedded within the network as a result of
-the underlying philosophy which a model was built on. Broadly we can
-think about models that are nested within two different schools of
-thought (and thus methodological approaches, Figure~\ref{fig-concept}),
-models that focus on assessing the \emph{mechanistic} feasibility of an
-interaction being able to occur between two species or models that are
-more closely married to specific bodies of ecological \emph{theory} -
-such as niche theory or foraging ecology. Broadly speaking the
-difference between these two modelling approaches is that mechanistic
-models typically asses interactions at a pairwise level buy determining
-if an interaction is feasible between a species \emph{pair} (extended
-\emph{e.g.,} here about trait-based assumptions), whereas theoretical
-models typically use some set of assumptions to constrain the
-distribution of links at the \emph{community} scale (extended
-\emph{e.g.,} here probably niche model or DBM).
+Although there is an evolving body of work focused on the development of
+food web prediction tools it is important that we understand how the
+underlying philosophy on which a model was built will result in
+different assumptions being embedded within the network {[}Strydom in
+prep{]}. Broadly we can think about models that are nested within two
+different schools of thought (and thus methodological approaches,
+Figure~\ref{fig-concept}), models that focus on assessing the
+\emph{mechanistic} feasibility of an interaction being able to occur
+between two species or models that are more closely married to specific
+bodies of ecological \emph{theory} - such as niche theory or foraging
+ecology.
 
 \begin{figure}
 
@@ -364,131 +356,60 @@ interactions (\emph{e.g.,} Fricke et al. (2022)). However, there is an
 argument that the theoretical models that have been developed in
 contemporary settings should hold even for paleo communities as we
 expect the fundamental `currencies of life' to have remained constant -
-\emph{e.g.,} the energetic constraints of foraging or foraging niches
-(is that the right way to phrase it, also I wonder is we can link to
-some other paleo work that showcases \emph{e.g.,} niche/competition is
-something present among some of the earliest animals). Somehow close
-this out by going from we should be able to use contemporary models we
-need to think about the constraints that are typically placed on us by
-paleo data as well as the assumptions that some of these models might
-require us to make (\emph{e.g.} the niche model makes some heavy
-assumptions by constraining the connectance - which itself is often used
-as a metric to understand changes or differences in network structure).
+\emph{e.g.,} the energetic constraints of foraging or foraging niches.
+Along with constructing different Additionally there are models that
+allow one to construct structurally sound networks that require very
+little input data. These are methods that are amenable to the data
+constraints that are prevalent in paleo communities in terms of both the
+completeness of fossil records as well as how the deeper in time we move
+the further away we might be moving from contemporary analogs.
 
-\begin{quote}
-Additionally there are models that allow one to construct structurally
-sound networks that require very little input data. These are methods
-that are amenable to the data constraints that are prevalent in paleo
-communities in terms of both the completeness of fossil records as well
-as how the deeper in time we move the further away we might be moving
-from contemporary analogs. Secondly it should also be noted that
-different network construction approaches are encoding different
-processes (T4T, in prep) and there is value in showcasing how the
-networks construct models may differ.
-\end{quote}
-
-Introduce here that it is thus important to understand that not all
-contemporary models may actually be suitable for paleo contexts as the
-assumptions that they make (or the data that they require) may actually
-introduce uncertainty/errors into the resulting network rendering them
-of little use. SImilarly not all paleo methods will be suitable for all
-paleo communities. As a simple example the framework developed by Fricke
-et al. (2022) uses phylogenetic relatedness as a way to infer
-interactions of Pleistocene mammals by looking at how their extant
-relatives interact. Although this approach is ecologically sound
+Not all contemporary models may actually be suitable for paleo contexts
+as the assumptions that they make (or the data that they require) may
+actually introduce uncertainty/errors into the resulting network
+rendering them of little use. Similarly not all paleo methods will be
+suitable for all paleo communities. As a simple example the framework
+developed by Fricke et al. (2022) uses phylogenetic relatedness as a way
+to infer interactions of Pleistocene mammals by looking at how their
+extant relatives interact. Although this approach is ecologically sound
 (phylogenetic relatedness is also used in other approaches \emph{e.g.,}
 Strydom et al. (2022)) there is also an argument that the further back
 in evolutionary time we go (and the greater the phylogenetic distance
 between extant and extinct communities become) there is more uncertainty
 introduced by the phylogenetic tree than what is introduced by assuming
-that interactions will be phylogenetically conserved. On the other side
-of the coin it can be very challenging to determine traits from the
-fossil record and so it may be instead by more pragmatic to use models
-that that are completely agnostic to the identity of the species and are
-instead concerned with the network structure (\emph{e.g.,} the niche
-model developed by Williams \& Martinez (2008)). Fundamentally this
-means that there is a trade off between the data that is available and
-the type of network one is interested in creating.
-
-\begin{quote}
-this section should be a box we can link to in the intro I think. We can
-also include some key `definitions'
-\end{quote}
-
-\section{Understanding how networks are
-different}\label{understanding-how-networks-are-different}
-
-It is important to be aware that networks can be configured in different
-ways depending on how the interactions are defined (Strydom, in prep)
-and that the configuration of the desired network should be informed by
-the research question (Gauzens et al., 2025).
-
-Think about the axes - trait-based/mechanistic model (metawebs) and then
-we have the statistical/theoretical models (which have their own mini
-axis of regression vs full theory models\ldots{} - see also
-Figure~\ref{fig-concept}). Basically we have metawebs (which represent
-\emph{potential} interactions, mechanistic networks), realised networks
-(which represent the subset of potential that are realised as a result
-of community and environmental context, theory networks), and structural
-networks (species agnostic networks that are structurally informative,
-theory networks). Here also talk about the implications of these
-different networks types - different uses and capturing different
-processes. Specifically link this to models - \emph{i.e.,} different
-models have been developed to construct a \emph{specific} network
-representation.
-
-\paragraph{Key Definitions}\label{key-definitions}
-
-\begin{itemize}
-\tightlist
-\item
-  Metaweb:
-\item
-  Realised Network:
-\item
-  Structural Network:
-\item
-  Feasible Interactions:
-\item
-  Realised interactions:
-\end{itemize}
+that interactions will be phylogenetically conserved.
 
 \section{Challenges specific to building paleo
 networks}\label{challenges-specific-to-building-paleo-networks}
 
 Although there has been a push for the development of tools and methods
-that allow us to predict species interactions and networks {[}see
-\emph{e.g.,} XXX for some reviews{]} they will not all be suitable for
-the prediction of paleo communities. This is primarily due to
-limitations that we are faced with in terms of the information that can
-be inferred from the fossil record (such as species traits abundances,
-and assemblages), which is needed as input data for the different
-models. The limited information available from the fossil record is
-compounded by the incomplete and biased preservation of species
-{[}REF{]}, the spatial ambiguity of fossils found in a location {[}were
-species conserved \emph{in situ} or were they there owing to geological
-processes; REF{]}, and an increasing degree of `fuzziness' the further
-one moves back in geological time {[}our understanding of both
-phylogenetic and functional trait space, REF{]}. Methodologically
-speaking some tools that `learn' from contemporary communities
-(\emph{e.g.,} Strydom et al. (2023), Caron et al. (2022)) will become
-`worse' the further one goes back in time since species then look very
-different from now but can still be useful for `recent' communities
-(\emph{e.g.,} Fricke et al. (2022)). This is not to say that it is
-impossible to construct paleo networks but rather identify that there
-are a subset of models that are probably not at all suitable for
-constructing paleo networks (\emph{e.g.,} Null models, since there are
-fully driven by abundance), other methods will be better suited
-depending on the community of interest \emph{e.g.,} for more
-contemporary communities that have modern analogs we can use methods
-rooted in phylogeny (\emph{e.g.,} Fricke et al. (2022), Strydom et al.
-(2023)) or traits (\emph{e.g.,} Caron et al. (2022)), and then there is
-the third axis which is to think about which are the assumptions that
-are made and there trade off of that. This includes thinking about both
-assumptions you are making about the actual data \emph{e.g.,} trying to
-extrapolate body size from fossil data but also assumptions across time
-\emph{e.g.,} assuming modern trait-feeding modes are the same OR that
-assumptions about network structure will hold across deep time.
+that allow us to predict species interactions and networks they will not
+all be suitable for the prediction of paleo communities. This is
+primarily due to limitations that we are faced with in terms of the
+information that can be inferred from the fossil record (such as species
+traits, abundances, and assemblages), which is needed as input data for
+the different models. The limited information available from the fossil
+record is compounded by the incomplete and biased preservation of
+species {[}REF{]}, which part of a species is preserved (part vs whole),
+the ambiguity of the `true' community composition {[}were communities
+conserved \emph{in situ} or were they there owing to geological
+processes?; REF{]}, as well as the availability/accessibility of
+different rock layers (and thus the completeness of data we might have
+for a specific era in time). Additionally there is an increasing degree
+of `fuzziness' around the ecology and life histories of species the
+further one moves back in geological time {[}REF{]}. This is not to say
+that because we have imperfect data we should not be attempting to
+construct paleo food webs but rather that we need to be aware of what
+the uncertainties are and how these might impact the assumptions that we
+need to make when constructing a network (as well as how this will
+intersect with the intended end use of the network). This will allow us
+to best identify an approach that minimises the assumption and potential
+uncertainties within the data while still constructing a suitable
+network. This includes thinking about both assumptions you are making
+about the actual data \emph{e.g.,} trying to extrapolate body size from
+fossil data but also assumptions across time \emph{e.g.,} assuming
+modern trait-feeding modes are the same or that assumptions about
+network structure will hold across deep time.
 
 \subsection{Approaches to food web
 prediction}\label{approaches-to-food-web-prediction}
@@ -989,12 +910,6 @@ Filling of Ecospace: Key Metazoan Radiations. \emph{Palaeontology},
 \emph{50}(1), 1--22.
 \url{https://doi.org/10.1111/j.1475-4983.2006.00611.x}
 
-\bibitem[\citeproctext]{ref-caron2022}
-Caron, D., Maiorano, L., Thuiller, W., \& Pollock, L. J. (2022).
-Addressing the Eltonian shortfall with trait-based interaction models.
-\emph{Ecology Letters}, \emph{25}(4), 889--899.
-\url{https://doi.org/10.1111/ele.13966}
-
 \bibitem[\citeproctext]{ref-curtsdotter2011}
 Curtsdotter, A., Binzer, A., Brose, U., De Castro, F., Ebenman, B.,
 Eklöf, A., Riede, J. O., Thierry, A., \& Rall, B. C. (2011). Robustness
@@ -1166,14 +1081,6 @@ R., Dalla Riva, G. V., \& Poisot, T. (2022). Food web reconstruction
 through phylogenetic transfer of low-rank network representation.
 \emph{Methods in Ecology and Evolution}, \emph{13}(12).
 \url{https://doi.org/10.1111/2041-210X.13835}
-
-\bibitem[\citeproctext]{ref-strydom2023}
-Strydom, T., Bouskila, S., Banville, F., Barros, C., Caron, D., Farrell,
-M. J., Fortin, M.-J., Mercier, B., Pollock, L. J., Runghen, R., Dalla
-Riva, G. V., \& Poisot, T. (2023). Graph embedding and transfer learning
-can help predict potential species interaction networks despite data
-limitations. \emph{Methods in Ecology and Evolution}, \emph{14}(12),
-2917--2930. \url{https://doi.org/10.1111/2041-210X.14228}
 
 \bibitem[\citeproctext]{ref-strydom2021b}
 Strydom, T., Catchen, M. D., Banville, F., Caron, D., Dansereau, G.,
