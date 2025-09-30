@@ -8,7 +8,7 @@
 
 <meta name="author" content="Tanya Strydom">
 <meta name="author" content="Andrew P. Beckerman">
-<meta name="dcterms.date" content="2025-09-29">
+<meta name="dcterms.date" content="2025-09-30">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Andrew P. Beckerman">
-<meta name="citation_publication_date" content="2025-09-29">
-<meta name="citation_cover_date" content="2025-09-29">
+<meta name="citation_publication_date" content="2025-09-30">
+<meta name="citation_cover_date" content="2025-09-30">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-09-29">
+<meta name="citation_online_date" content="2025-09-30">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -202,7 +202,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 29, 2025</p>
+              <p class="date">September 30, 2025</p>
             </div>
           </div>
           
@@ -400,12 +400,10 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 <section id="models-capture-different-network-structure-but-in-unexpected-ways" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="models-capture-different-network-structure-but-in-unexpected-ways"><span class="header-section-number">3.2</span> Models capture different network structure but in unexpected ways</h2>
 <p>Why is structure important and what can it tell us? Broadly when we talk about quantifying the structure of a network we are interesting in capturing some aspect of how the links are distributed between nodes, or alternatively about properties of the nodes (specifically in terms of the number of links coming in to (prey) or out of (predators) the node). What are some things we can learn/infer from network structure: energy flows and fluxes [REF], propagation of stress [REF], roles of species in the community [REF, think trophic levels]. Some closing statement about how thus there are different facets of network structure and the value of understanding generally how different models differ in terms of the structure that they recover - link to <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a> maybe.</p>
-<p>In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different ‘scales’ of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to ‘measure’ and analyse ecological networks <span class="citation" data-cites="delmas2018">(<a href="#ref-delmas2018" role="doc-biblioref">Delmas et al. 2018</a>)</span> we do still lack a clear set of guidelines for assessing how well models recover network structure <span class="citation" data-cites="allesina2008">(<a href="#ref-allesina2008" role="doc-biblioref">Allesina, Alonso, and Pascual 2008</a>)</span> and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.</p>
-<p>Here we used a Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as <code>network structure values ~ model + time period</code> and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure. <strong>Need to report the relevant effect of time in driving observed differences</strong></p>
 <div id="tbl-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: An informative caption about the different network properties
+Table&nbsp;2: Network properties used fo analysis.
 </figcaption>
 <div aria-describedby="tbl-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -417,7 +415,7 @@ Table&nbsp;2: An informative caption about the different network properties
 </colgroup>
 <thead>
 <tr class="header">
-<th>Label</th>
+<th>Metric</th>
 <th>Definition</th>
 <th>Scale</th>
 <th>Reference (for maths), can make footnotes probs</th>
@@ -425,40 +423,28 @@ Table&nbsp;2: An informative caption about the different network properties
 </thead>
 <tbody>
 <tr class="odd">
+<td>Richness</td>
+<td>Number of nodes in the network</td>
+<td>Macro</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Links</td>
+<td>Normalized standard deviation of links (number of consumers plus resources per taxon)</td>
+<td>Micro</td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>Connectance</td>
 <td><span class="math inline">\(L/S^2\)</span>, where <span class="math inline">\(S\)</span> is the number of species and <span class="math inline">\(L\)</span> the number of links</td>
 <td>Macro</td>
 <td></td>
 </tr>
 <tr class="even">
-<td>GenSD</td>
-<td>Normalized standard deviation of generality of a species standardized by <span class="math inline">\(L/S\)</span></td>
-<td>Micro</td>
-<td><span class="citation" data-cites="williams2000">Richard J. Williams and Martinez (<a href="#ref-williams2000" role="doc-biblioref">2000</a>)</span></td>
-</tr>
-<tr class="odd">
-<td>LinkSD</td>
-<td>Normalized standard deviation of links (number of consumers plus resources per taxon)</td>
-<td>Micro</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Richness</td>
-<td>Number of nodes in the network</td>
-<td>Macro</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>TL</td>
+<td>Max trophic level</td>
 <td>Prey-weighted trophic level averaged across taxa</td>
 <td>Macro</td>
 <td><span class="citation" data-cites="williams2004">R. J. Williams and Martinez (<a href="#ref-williams2004" role="doc-biblioref">2004</a>)</span></td>
-</tr>
-<tr class="even">
-<td>VulSD</td>
-<td>Normalized standard deviation of vulnerability of a species standardized by <span class="math inline">\(L/S\)</span></td>
-<td>Micro</td>
-<td><span class="citation" data-cites="williams2000">Richard J. Williams and Martinez (<a href="#ref-williams2000" role="doc-biblioref">2000</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>Diameter</td>
@@ -467,46 +453,60 @@ Table&nbsp;2: An informative caption about the different network properties
 <td><span class="citation" data-cites="delmas2018">Delmas et al. (<a href="#ref-delmas2018" role="doc-biblioref">2018</a>)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\rho\)</span></td>
-<td>Spectral radius is a a conceptual analog to nestedness (and more appropriate for unipartite networks). It is defined as the absolute value of the largest real part of the eigenvalues of the <em>undirected</em> adjacency matrix</td>
-<td>Macro</td>
-<td><span class="citation" data-cites="staniczenko2013">Staniczenko, Kopp, and Allesina (<a href="#ref-staniczenko2013" role="doc-biblioref">2013</a>)</span></td>
-</tr>
-<tr class="odd">
 <td>Complexity</td>
 <td>SVD complexity of a network, defined as the Pielou entropy of its singular values</td>
 <td>Macro</td>
 <td><span class="citation" data-cites="strydom2021">Strydom et al. (<a href="#ref-strydom2021" role="doc-biblioref">2021b</a>)</span></td>
 </tr>
+<tr class="odd">
+<td>Redundancy</td>
+<td><span class="math inline">\((L - (S - 1))/S\)</span>, where <span class="math inline">\(S\)</span> is the number of species and <span class="math inline">\(L\)</span> the number of links. Indicates the number of edges beyond what is needed for a minimum-connected tree</td>
+<td>Macro</td>
+<td></td>
+</tr>
 <tr class="even">
 <td>S1</td>
-<td>Number of linear chains</td>
+<td>Number of linear chains, normalised</td>
 <td>Meso</td>
 <td><span class="citation" data-cites="milo2002">Milo et al. (<a href="#ref-milo2002" role="doc-biblioref">2002</a>)</span>; <span class="citation" data-cites="stouffer2007">Stouffer et al. (<a href="#ref-stouffer2007" role="doc-biblioref">2007</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>S2</td>
-<td>Number of omnivory motifs</td>
+<td>Number of omnivory motifs, normalised</td>
 <td>Meso</td>
 <td><span class="citation" data-cites="milo2002">Milo et al. (<a href="#ref-milo2002" role="doc-biblioref">2002</a>)</span>; <span class="citation" data-cites="stouffer2007">Stouffer et al. (<a href="#ref-stouffer2007" role="doc-biblioref">2007</a>)</span></td>
 </tr>
 <tr class="even">
 <td>S4</td>
-<td>Number of apparent competition motifs</td>
+<td>Number of apparent competition motifs, normalised</td>
 <td>Meso</td>
 <td><span class="citation" data-cites="milo2002">Milo et al. (<a href="#ref-milo2002" role="doc-biblioref">2002</a>)</span>; <span class="citation" data-cites="stouffer2007">Stouffer et al. (<a href="#ref-stouffer2007" role="doc-biblioref">2007</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>S5</td>
-<td>Number of direct competition motifs</td>
+<td>Number of direct competition motifs, normalised</td>
 <td>Meso</td>
 <td><span class="citation" data-cites="milo2002">Milo et al. (<a href="#ref-milo2002" role="doc-biblioref">2002</a>)</span>; <span class="citation" data-cites="stouffer2007">Stouffer et al. (<a href="#ref-stouffer2007" role="doc-biblioref">2007</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Generality</td>
+<td>Normalized standard deviation of generality of a species standardized by <span class="math inline">\(L/S\)</span></td>
+<td>Micro</td>
+<td><span class="citation" data-cites="williams2000">Richard J. Williams and Martinez (<a href="#ref-williams2000" role="doc-biblioref">2000</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>Vulnerability</td>
+<td>Normalized standard deviation of vulnerability of a species standardized by <span class="math inline">\(L/S\)</span></td>
+<td>Micro</td>
+<td><span class="citation" data-cites="williams2000">Richard J. Williams and Martinez (<a href="#ref-williams2000" role="doc-biblioref">2000</a>)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
+<p>In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models. It is perhaps beneficial to think of these across different ‘scales’ of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to ‘measure’ and analyse ecological networks <span class="citation" data-cites="delmas2018">(<a href="#ref-delmas2018" role="doc-biblioref">Delmas et al. 2018</a>)</span> we do still lack a clear set of guidelines for assessing how well models recover network structure <span class="citation" data-cites="allesina2008">(<a href="#ref-allesina2008" role="doc-biblioref">Allesina, Alonso, and Pascual 2008</a>)</span> and it is beneficial to use a small subset of metrics that can clearly be tied to broader aspects of network function or capturing a ecological process.</p>
+<p>Here we used a Multivariate Analysis Of Variance (MANOVA) as it is able to capture model differences based on the combined information of the multiple structural network measures. Model defined as <code>network structure values ~ model + time period</code> and Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure. <strong>Need to report the relevant effect of time in driving observed differences</strong></p>
 <section id="macro-network-properties" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="macro-network-properties"><span class="header-section-number">3.2.1</span> Macro network properties</h3>
 <p><strong>Connectance</strong> <span class="citation" data-cites="martinez1992">(<a href="#ref-martinez1992" role="doc-biblioref">Martinez 1992</a>)</span> has been shown to be the feature of networks that underpin a series of other properties and function <span class="citation" data-cites="strydom2021b">(<a href="#ref-strydom2021b" role="doc-biblioref">Strydom et al. 2021a</a>)</span> and so it is perhaps the most important structural attribute for a model to be able to retrieve correctly. Additionally we consider the <strong>complexity</strong> of networks by calculating their SVD entropy (this gives us an estimate of the physical as opposed to behavioural complexity of networks; <span class="citation" data-cites="strydom2021">Strydom et al. (<a href="#ref-strydom2021" role="doc-biblioref">2021b</a>)</span>), we could also look at the rank/rank deficiency of networks which (theoretically) represents the number fo unique interaction strategies in the network <span class="citation" data-cites="strydom2021">(<a href="#ref-strydom2021" role="doc-biblioref">Strydom et al. 2021b</a>)</span>, which may be specifically interesting in terms of looking at pre and post extinction but also as a way to unpack ‘functional redundancy’ that some models may introduce.</p>
@@ -518,7 +518,6 @@ Table&nbsp;2: An informative caption about the different network properties
 <section id="micro-network-properties" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="micro-network-properties"><span class="header-section-number">3.2.3</span> Micro network properties</h3>
 <p>The number of interactions established (<strong>generality</strong>) or received (<strong>vulnerability</strong>) by each species <span class="citation" data-cites="schoener1989">(<a href="#ref-schoener1989" role="doc-biblioref">Schoener 1989</a>)</span>, are (broadly) indicative of consumer-resource relationships and diet breadth of species [ref]. Although this is usually determined at the species level the standard deviation of the generality and vulnerability of species is often used when benchmarking predicted networks <span class="citation" data-cites="williams2008 petchey2008">(<em>e.g.,</em> <a href="#ref-williams2008" role="doc-biblioref">Richard J. Williams and Martinez 2008</a>; <a href="#ref-petchey2008" role="doc-biblioref">Petchey et al. 2008</a>)</span>.</p>
-<p>The <strong>specificity</strong> of species in a network is measured as a function of the proportion of resources they effectively use <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span></p>
 <div id="fig-structure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -678,9 +677,6 @@ Schoener, Thomas W. 1989. <span>“Food Webs From the Small to the Large: The Ro
 <div id="ref-shaw2024" class="csl-entry" role="listitem">
 Shaw, Jack O., Alexander M. Dunhill, Andrew P. Beckerman, Jennifer A. Dunne, and Pincelli M. Hull. 2024. <span>“A Framework for Reconstructing Ancient Food Webs Using Functional Trait Data.”</span> bioRxiv. <a href="https://doi.org/10.1101/2024.01.30.578036">https://doi.org/10.1101/2024.01.30.578036</a>.
 </div>
-<div id="ref-staniczenko2013" class="csl-entry" role="listitem">
-Staniczenko, Phillip P. A., Jason C. Kopp, and Stefano Allesina. 2013. <span>“The Ghost of Nestedness in Ecological Networks.”</span> <em>Nature Communications</em> 4 (1): 1391. <a href="https://doi.org/10.1038/ncomms2422">https://doi.org/10.1038/ncomms2422</a>.
-</div>
 <div id="ref-stouffer2007" class="csl-entry" role="listitem">
 Stouffer, Daniel B, Juan Camacho, Wenxin Jiang, and Luís A Nunes Amaral. 2007. <span>“Evidence for the Existence of a Robust Pattern of Prey Selection in Food Webs.”</span> <em>Proceedings of the Royal Society B: Biological Sciences</em> 274 (1621): 1931–40. <a href="https://doi.org/10.1098/rspb.2007.0571">https://doi.org/10.1098/rspb.2007.0571</a>.
 </div>
@@ -711,7 +707,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 </div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{strydom2025,
   author = {Strydom, Tanya and P. Beckerman, Andrew},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-09-29},
+  date = {2025-09-30},
   langid = {en},
   abstract = {Food webs represent the feeding relationships between
     species and can help infer ecosystem-level processes. Alongside the
@@ -739,7 +735,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, and Andrew P. Beckerman. 2025. <span>“Methods for
-Reconstructing Paleo Food Webs.”</span> TBD. September 29, 2025.
+Reconstructing Paleo Food Webs.”</span> TBD. September 30, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

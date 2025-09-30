@@ -208,7 +208,7 @@
 1%
 }%
 }
-\date{2025-09-29}
+\date{2025-09-30}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -561,6 +561,68 @@ and the value of understanding generally how different models differ in
 terms of the structure that they recover - link to
 Table~\ref{tbl-properties} maybe.
 
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}@{}}
+\caption{Network properties used fo
+analysis.}\label{tbl-properties}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metric
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reference (for maths), can make footnotes probs
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metric
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reference (for maths), can make footnotes probs
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Richness & Number of nodes in the network & Macro & \\
+Links & Normalized standard deviation of links (number of consumers plus
+resources per taxon) & Micro & \\
+Connectance & \(L/S^2\), where \(S\) is the number of species and \(L\)
+the number of links & Macro & \\
+Max trophic level & Prey-weighted trophic level averaged across taxa &
+Macro & Williams \& Martinez (2004) \\
+Diameter & Diameter can also be measured as the average of the distances
+between each pair of nodes in the network & Macro & Delmas et al.
+(2018) \\
+Complexity & SVD complexity of a network, defined as the Pielou entropy
+of its singular values & Macro & Strydom et al. (2021a) \\
+Redundancy & \((L - (S - 1))/S\), where \(S\) is the number of species
+and \(L\) the number of links. Indicates the number of edges beyond what
+is needed for a minimum-connected tree & Macro & \\
+S1 & Number of linear chains, normalised & Meso & Milo et al. (2002);
+Stouffer et al. (2007) \\
+S2 & Number of omnivory motifs, normalised & Meso & Milo et al. (2002);
+Stouffer et al. (2007) \\
+S4 & Number of apparent competition motifs, normalised & Meso & Milo et
+al. (2002); Stouffer et al. (2007) \\
+S5 & Number of direct competition motifs, normalised & Meso & Milo et
+al. (2002); Stouffer et al. (2007) \\
+Generality & Normalized standard deviation of generality of a species
+standardized by \(L/S\) & Micro & Williams \& Martinez (2000) \\
+Vulnerability & Normalized standard deviation of vulnerability of a
+species standardized by \(L/S\) & Micro & Williams \& Martinez (2000) \\
+\end{longtable}
+
 In terms of wanting to asses and compare across the different models it
 is beneficial to approach this task by thinking about the different
 aspects of the network as well as interactions that are being predicted
@@ -582,70 +644,6 @@ multiple structural network measures. Model defined as
 and Linear Discriminant Analysis (LDA) to determine if different models
 produced networks with differing structure. \textbf{Need to report the
 relevant effect of time in driving observed differences}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2603}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}@{}}
-\caption{An informative caption about the different network
-properties}\label{tbl-properties}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Label
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Scale
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Reference (for maths), can make footnotes probs
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Label
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Definition
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Scale
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Reference (for maths), can make footnotes probs
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Connectance & \(L/S^2\), where \(S\) is the number of species and \(L\)
-the number of links & Macro & \\
-GenSD & Normalized standard deviation of generality of a species
-standardized by \(L/S\) & Micro & Williams \& Martinez (2000) \\
-LinkSD & Normalized standard deviation of links (number of consumers
-plus resources per taxon) & Micro & \\
-Richness & Number of nodes in the network & Macro & \\
-TL & Prey-weighted trophic level averaged across taxa & Macro & Williams
-\& Martinez (2004) \\
-VulSD & Normalized standard deviation of vulnerability of a species
-standardized by \(L/S\) & Micro & Williams \& Martinez (2000) \\
-Diameter & Diameter can also be measured as the average of the distances
-between each pair of nodes in the network & Macro & Delmas et al.
-(2018) \\
-\(\rho\) & Spectral radius is a a conceptual analog to nestedness (and
-more appropriate for unipartite networks). It is defined as the absolute
-value of the largest real part of the eigenvalues of the
-\emph{undirected} adjacency matrix & Macro & Staniczenko et al.
-(2013) \\
-Complexity & SVD complexity of a network, defined as the Pielou entropy
-of its singular values & Macro & Strydom et al. (2021a) \\
-S1 & Number of linear chains & Meso & Milo et al. (2002); Stouffer et
-al. (2007) \\
-S2 & Number of omnivory motifs & Meso & Milo et al. (2002); Stouffer et
-al. (2007) \\
-S4 & Number of apparent competition motifs & Meso & Milo et al. (2002);
-Stouffer et al. (2007) \\
-S5 & Number of direct competition motifs & Meso & Milo et al. (2002);
-Stouffer et al. (2007) \\
-\end{longtable}
 
 \subsubsection{Macro network properties}\label{macro-network-properties}
 
@@ -684,10 +682,6 @@ species {[}ref{]}. Although this is usually determined at the species
 level the standard deviation of the generality and vulnerability of
 species is often used when benchmarking predicted networks (Petchey et
 al., 2008; \emph{e.g.,} Williams \& Martinez, 2008).
-
-The \textbf{specificity} of species in a network is measured as a
-function of the proportion of resources they effectively use (Poisot et
-al., 2012)
 
 \begin{figure}
 
@@ -1061,11 +1055,6 @@ Shaw, J. O., Dunhill, A. M., Beckerman, A. P., Dunne, J. A., \& Hull, P.
 M. (2024). \emph{A framework for reconstructing ancient food webs using
 functional trait data} (p. 2024.01.30.578036). bioRxiv.
 \url{https://doi.org/10.1101/2024.01.30.578036}
-
-\bibitem[\citeproctext]{ref-staniczenko2013}
-Staniczenko, P. P. A., Kopp, J. C., \& Allesina, S. (2013). The ghost of
-nestedness in ecological networks. \emph{Nature Communications},
-\emph{4}(1), 1391. \url{https://doi.org/10.1038/ncomms2422}
 
 \bibitem[\citeproctext]{ref-stouffer2007}
 Stouffer, D. B., Camacho, J., Jiang, W., \& Nunes Amaral, L. A. (2007).
