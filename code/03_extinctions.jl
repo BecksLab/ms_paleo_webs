@@ -61,7 +61,7 @@ ext_reps = 50
 
 @showprogress "Running extinctions" for j = 1:nrow(networks)
 
-    @showprogress "Running extinction rep" for l = 1:ext_reps
+    for l = 1:ext_reps
 
         # select correct network
         N = networks.network[j]
