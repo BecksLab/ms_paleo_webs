@@ -189,8 +189,8 @@ function TSS(
     species(N_real)
 
     # get pairwise interactions
-    sim = interactions(N_sim)
-    real = interactions(N_real)
+    sim = SpeciesInteractionNetworks.interactions(N_sim)
+    real = SpeciesInteractionNetworks.interactions(N_real)
 
     # what is in left not in right
     # interactions in simulated not in real
@@ -260,11 +260,11 @@ function trophic_level(N::SpeciesInteractionNetwork)
 
                 pl_temp += distancetobase(N, preys[j])
 
-                pls[sp[i]] = 2 + (1/length(sp)) * pl_temp
+                pls[sp[i]] = 1 + (1/length(sp)) * pl_temp
 
             end
         else
-            pls[sp[i]] = 2
+            pls[sp[i]] = 1
         end
     end
     # return trophic level Dict
