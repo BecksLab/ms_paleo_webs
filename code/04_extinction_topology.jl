@@ -4,6 +4,7 @@ using CSV
 using DataFrames
 using Extinctions
 using JLD2
+using ProgressMeter
 using SpeciesInteractionNetworks
 
 include("lib/internals.jl")
@@ -13,15 +14,15 @@ import Random
 Random.seed!(66)
 
 # import networks object
-extinctions = load_object("data/processed/extinction_seq.jlds")
+extinctions = load_object("../data/processed/extinction_seq.jlds")
 
 # also import the 'known' networks for tss calcs
-networks = load_object("data/processed/networks.jlds")
+networks = load_object("../data/processed/networks.jlds")
 # we only care about the post extinction community
 filter!(:time => x -> x == "G2", networks)
 
 # find richness of post extinction community
-df = CSV.read("data/raw/G2_Guilds.csv", DataFrame)
+df = CSV.read("../data/raw/G2_Guilds.csv", DataFrame)
 post_rich = nrow(df)
 
 topology = DataFrame(
