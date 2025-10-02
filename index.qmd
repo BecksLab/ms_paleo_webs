@@ -12,6 +12,16 @@ author:
     affiliation:
       - id: sheffield
         name: School of Biosciences, University of Sheffield, Sheffield, UK
+  - name: Baran Karapunar
+    id: bk
+    orcid: 0000-0001-9711-1492
+    corresponding: false
+    role: 
+    - conceptualization: lead
+    - methodology: supporting
+    affiliation:
+      - id: leeds
+        name: School of Earth and Environment, University of Leeds, Leeds, UK
   - name: Andrew P. Beckerman
     id: apb
     orcid: 0000-0002-7859-8394
@@ -21,6 +31,15 @@ author:
     - methodology: supporting
     affiliations:
       - ref: sheffield
+  - name: Alexander Dunhill
+    id: ad
+    orcid: 0000-0002-8680-9163
+    corresponding: false
+    role: 
+    - conceptualization: lead
+    - methodology: supporting
+    affiliations:
+      - ref: leeds
 funding: "The author(s) received no specific funding for this work. Well they did I just haven't done the homework"
 keywords:
   - food web
