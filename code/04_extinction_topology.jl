@@ -98,8 +98,8 @@ tss = DataFrame(
 end
 
 # write summaries as .csv
-CSV.write("data/processed/extinction_topology.csv", topology)
-CSV.write("data/processed/extinction_tss.csv", tss)
+CSV.write("../data/processed/extinction_topology.csv", topology)
+CSV.write("../data/processed/extinction_tss.csv", tss)
 
 # robustness curves
 # here we want to generate robustness curves from teh spread 1:99
@@ -114,7 +114,7 @@ robustness_vals = DataFrame(
 );
 
 # using only random extinctions
-networks = load_object("data/processed/networks.jlds")
+networks = load_object("../data/processed/networks.jlds")
 # we only care about the metaweb pfim for now
 filter!(:model => x -> x == "pfim_metaweb", networks)
 
@@ -125,7 +125,6 @@ for i = 1:4
             
             # remove cannibals
             N = remove_cannibals(networks.network[i])
-            N = add_basal(N)
 
             rob = robustness(N;
                         threshold = spread[j])
