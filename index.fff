@@ -21,7 +21,10 @@ may differ.}
 
 }
 
-\caption{\label{fig-structure}stuff\ldots{}}
+\caption{\label{fig-structure}Linear Discriminant Analysis using
+thirteen different metrics of network structure. The colours represent
+the different models. The black points represent the predicted metaweb
+co-ordinates for the four different time periods.}
 
 \end{figure}
 \efloatseparator
@@ -53,7 +56,6 @@ species agnostic}
 }
 
 \caption{\label{fig-dunhill}stuff\ldots{} Recreation of the figure from
-Dunhill 2024. Note not 100\% sold on the TSS and absolute mean
-calculations\ldots{}}
+Dunhill 2024.}
 
 \end{figure}
