@@ -160,7 +160,7 @@ As we are using @dunhill2024 as a case study we followed their appraoch when sim
 
 > **TODO** not sure if we also want to unpack/showcase robustness $R_{50}$ [@jonsson2015]
 
-![stuff... Recreation of the figure from Dunhill 2024.](figures/dunhill_comp.png){#fig-dunhill}
+![stuff... Recreation of the figure from Dunhill 2024. I think it makes sense to split and divide into the below sections (depending on potential figure limitations of target journal)](figures/dunhill_comp.png){#fig-dunhill}
 
 ### Trends over time
 
