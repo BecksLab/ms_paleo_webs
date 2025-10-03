@@ -59,3 +59,16 @@ species agnostic}
 Dunhill 2024.}
 
 \end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/guidelines.png}}
+
+}
+
+\caption{\label{fig-guidelines}TODO.}
+
+\end{figure}

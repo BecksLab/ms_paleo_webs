@@ -178,7 +178,9 @@ I want this section to be more about contextualising model choice within the big
 
 Points to discuss:
 
--   Guidlines - as a box? Can we give something concrete??
+-   Guidlines - as a box? Can we give something concrete?? Something like @fig-guidelines
 -   How to we synthesise these results? As in should we give clear directives ot is it enough to do a bit more handwaving and have the bigger message be that model choice matters?
+
+![TODO.](figures/guidelines.png){#fig-guidelines}
 
 # References {.unnumbered}
