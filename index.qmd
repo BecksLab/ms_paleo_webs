@@ -138,6 +138,8 @@ What is perhaps the most striking result in @fig-structure is that although ther
 
 Although it is not possible to confidently identify the models that are predicting the *'correct'* network structure the fact that a models from different families are able to recover similar structures is reassuring as it suggests that it might be possible to substitute one model for another if the required data are not available. Although it is still important that an effort is made to match the 'best' model/network to the question being asked.
 
+> It would be remiss to not think about the fact that niche models are supposed to work with trophic species not taxonomic species - I wonder if we should run the niche (and possibly random) models with trophic species as the starting richness and not the taxo richness...
+
 > **TODO** Is it sound to try and unpack the 'pairwise differences' between the different structural metrics as well (or some) as this will allow us to say e.g. Niche and PFIM might recover the same connectance but differ in vulnerability.
 
 ## Some networks don’t share any interactions and some share a lot
