@@ -102,10 +102,16 @@ CSV.write("../data/processed/extinction_topology.csv", topology)
 CSV.write("../data/processed/extinction_tss.csv", tss)
 
 # robustness curves
+
+# using only random extinctions
+networks = load_object("../data/processed/networks.jlds")
+# we only care about the metaweb pfim for now
+filter!(:model => x -> x == "pfim_metaweb", networks)
+
 # here we want to generate robustness curves from teh spread 1:99
 spread = collect(1:1:99)
 
-ext_reps = 500
+n_reps = 500
 
 robustness_vals = DataFrame(
     time = Any[],
@@ -113,32 +119,29 @@ robustness_vals = DataFrame(
     robustness = Any[],
 );
 
-# using only random extinctions
-networks = load_object("../data/processed/networks.jlds")
-# we only care about the metaweb pfim for now
-filter!(:model => x -> x == "pfim_metaweb", networks)
+for _ = 1:n_reps
 
-for i = 1:4
-    
-    for l = 1:ext_reps
+    @showprogress "Calculating robustness" for i in 1:4
+
+        N = remove_cannibals(networks.network[i])
+        N = add_basal(N)
+
         for j in eachindex(spread)
-            
-            # remove cannibals
-            N = remove_cannibals(networks.network[i])
-
+    
             rob = robustness(N;
-                        threshold = spread[j])
-
+                        threshold = spread[j],
+                        mechanism = :cascade)
+    
             D = DataFrame(
                 time = networks.time[i],
                 threshold = spread[j],
                 robustness = rob,
                 )
     
-                # send to results
-                append!(robustness_vals, D)
+            # send to results
+            append!(robustness_vals, D)
         end
-    end
+    end    
 end
 
 # robustness curves
@@ -147,12 +150,10 @@ layer = data(robustness_vals) * mapping(:threshold, :robustness, color = :time =
 fig = draw(layer)
 
 figure = fig.figure
-save("figures/robustness_curve.png", figure)
+save("../figures/robustness_curve.png", figure)
 
 # write summaries as .csv
 CSV.write(
-    "data/processed/robustness.csv",
+    "../data/processed/robustness.csv",
     robustness_vals,
 )
-
-# subgraph(N, species_to_keep)
