@@ -88,7 +88,7 @@ df <- read_csv("../data/processed/extinction_topology.csv") %>%
   # rename the remianing pfim col
   mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
                            .default = as.character(model))) %>%
-  select(-c(r50, rep, distance, redundancy, complexity, diameter, S1, S2, S4, S5, resilience)) %>%
+  select(-c(rep, distance, redundancy, complexity, diameter, S1, S2, S4, S5, resilience)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
@@ -134,7 +134,7 @@ df <- read_csv("../data/processed/extinction_tss.csv") %>%
                            .default = as.character(model)))%>%
   mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   group_by(model, extinction_mechanism) %>%
-  summarise(mean_tss = mean(tss))
+  summarise(mean_tss = mean(tss, na.rm = TRUE))
 
 tss <-  ggplot(df,
                aes(y = extinction_mechanism,

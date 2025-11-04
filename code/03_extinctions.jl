@@ -12,12 +12,12 @@ import Random
 Random.seed!(66)
 
 # get the traits data
-traits = readdir("data/raw")
+traits = readdir("../data/raw")
 # select only species datasets
 traits = traits[occursin.(r"^.*Guilds.*$", traits)]
 
 # import networks
-networks = load_object("data/processed/networks.jlds")
+networks = load_object("../data/processed/networks.jlds")
 # select only pre extinction networks
 subset!(networks, :time => ByRow(x -> x == "G1"))
 
@@ -43,7 +43,7 @@ extinction_results = DataFrame(
 );
 
 # Modify datasets
-df = CSV.read("data/raw/G1_Guilds.csv", DataFrame)
+df = CSV.read("../data/raw/G1_Guilds.csv", DataFrame)
 select!(
     df,
     [:Guild, :motility_simple, :tiering_simple, :feeding_simple, :size, :calcification],
