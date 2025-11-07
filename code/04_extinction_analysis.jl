@@ -65,11 +65,8 @@ tss = DataFrame(
     model = String[],
     extinction_mechanism = Any[],
     n_rep = Any[],
-    β_int_shared = Int64[],
-    β_int_all = Int64[],
-    β_spp = Int64[],
-    links_left = Int64[],
-    links_right = Int64[],
+    β_div = Float64[],
+    β_type = String[],
 )
 
 @showprogress "Getting topology" for i = 1:nrow(extinctions)
@@ -123,24 +120,27 @@ tss = DataFrame(
 
             push!(topology, d)
 
-            # beta div - as an alternative to tss
-            β_spp = SpeciesInteractionNetworks.betadiversity(βS, real_N, sim_N)
-            β_int_all = SpeciesInteractionNetworks.betadiversity(βWN, real_N, sim_N)
-            β_int_shared = SpeciesInteractionNetworks.betadiversity(βOS, real_N, sim_N)
-            # collate
-            b = Dict{Symbol,Any}()
-            b[:model] = extinctions.model[i]
-            b[:extinction_mechanism] = extinctions.extinction_mechanism[i]
-            b[:n_rep] = extinctions.n_rep[i]
-            b[:β_int_all] = β_int_all.shared
-            b[:β_int_shared] = β_int_shared.shared
-            b[:β_spp] = β_spp.shared
-            b[:links_left] = links(real_N)
-            b[:links_right] = links(sim_N)
+            for β ∈ [βS, βWN, βOS]
+                
+                β_vals = SpeciesInteractionNetworks.betadiversity(β, real_N, sim_N)
 
-            # send to results
-            push!(β_div, b)
+                a = β_vals.shared
+                b = β_vals.right
+                c = β_vals.left
 
+                _β = (a + b + c)/((2a + b + c)/2) - 1
+
+                b = Dict{Symbol,Any}()
+                b[:model] = extinctions.model[i]
+                b[:extinction_mechanism] = extinctions.extinction_mechanism[i]
+                b[:n_rep] = i
+                b[:β_div] = _β
+                b[:β_type] = "$β"
+
+                # send to results
+                push!(β_div, b)
+
+            end
         end
     end
 end
@@ -149,7 +149,6 @@ end
 CSV.write("../data/processed/extinction_topology.csv", topology)
 CSV.write("../data/processed/extinction_tss.csv", tss)
 CSV.write("../data/processed/extinction_betadiv.csv", β_div)
-
 
 # robustness curves
 
