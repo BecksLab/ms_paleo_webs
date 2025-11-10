@@ -58,7 +58,8 @@ tss = DataFrame(
     model = String[],
     extinction_mechanism = Any[],
     n_rep = Any[],
-    tss = Float64[],
+    tss_link = Float64[],
+    tss_node = Float64[],
 )
 
 β_div = DataFrame(
@@ -98,13 +99,14 @@ tss = DataFrame(
             real_N = subgraph(real_net, real_spp)
             sim_N = _ext_seq[net_ind]
 
-            _tss = TSS(real_N, sim_N, _ext_seq[1])
+            tss_link, tss_node = TSS(real_N, sim_N, _ext_seq[1])
 
             t = Dict{Symbol,Any}(
                 :model => extinctions.model[i],
                 :extinction_mechanism => extinctions.extinction_mechanism[i],
                 :n_rep => extinctions.n_rep[i],
-                :tss => _tss,
+                :tss_link => tss_link,
+                :tss_node => tss_node,
             )
 
             push!(tss, t)
