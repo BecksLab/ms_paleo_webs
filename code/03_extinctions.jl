@@ -147,4 +147,4 @@ ext_reps = 50
 end
 
 # write networks as object
-save_object("data/processed/extinction_seq.jlds", extinction_results)
+save_object("../data/processed/extinction_seq.jlds", extinction_results)
