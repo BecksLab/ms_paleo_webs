@@ -184,8 +184,6 @@ function TSS(
     N_real::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
     N_sim::SpeciesInteractionNetwork{<:Partiteness,<:Binary},
     N_original::SpeciesInteractionNetwork{<:Partiteness,<:Binary};
-    ω_link::Float64 = 0.5,
-    ω_node::Float64 = 0.5,
 )
 
     # get pairwise interactions
@@ -231,7 +229,7 @@ function TSS(
     tss_link = (tp/(tp+fn)) + (tn/(tn+fp)) - 1
 
 
-    return ω_link*tss_link + ω_node*tss_node
+    return (tss_link, tss_node)
 end
 
 """
