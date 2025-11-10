@@ -1,5 +1,6 @@
 
 # libraries
+library(genzplyr)
 library(ggpubr)
 library(here)
 library(effectsize)
@@ -20,14 +21,14 @@ source("lib/plotting_theme.R")
 
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  dplyr::select(-c(richness, distance, n_rep)) %>%
+  vibe_check(-c(richness, distance, n_rep)) %>%
   # remove metaweb pfims
-  filter(model != "pfim_metaweb") %>%
+  yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
-  mutate(model = case_when(model == "pfim_downsample" ~ "pfim",
-                           .default = as.character(model))) %>%
+  glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
+                            .default = as.character(model))) %>%
   na.omit() %>%
-  mutate(model = str_replace(model, "bodymassratio", "log ratio"))
+  glow_up(model = str_replace(model, "bodymassratio", "log ratio"))
 
 dep_vars <- as.matrix(df[3:ncol(df)])
 
@@ -48,17 +49,17 @@ plot_lda <- data.frame(model = factor(df$model, ordered = TRUE,
                        time = df$time)
 
 plot_arrow <- as.data.frame(post_hoc[["scaling"]]) %>%
-  mutate(var = str_replace(row.names(.), "dep_vars", ""),
-         lda.LD1 = scale(LD1),
-         lda.LD2 = scale(LD2))
+  glow_up(var = str_replace(row.names(.), "dep_vars", ""),
+          lda.LD1 = scale(LD1),
+          lda.LD2 = scale(LD2))
 
 metaweb <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  dplyr::select(-c(richness, distance, n_rep)) %>%
+  vibe_check(-c(richness, distance, n_rep)) %>%
   # remove metaweb pfims
-  filter(model == "pfim_metaweb") %>%
+  yeet(model == "pfim_metaweb") %>%
   na.omit() %>%
-  mutate(model = NULL) %>%
+  glow_up(model = NULL) %>%
   unique()
 
 metaweb_predict <- predict(post_hoc, metaweb)
@@ -109,19 +110,19 @@ df <- df %>%
     names_to = "stat",
     values_to = "stat_val") %>%
   # standardise names
-  mutate(stat = case_when(stat == "S1" ~ "No. of linear chains",
-                          stat == "S2" ~ "No. of omnivory motifs",
-                          stat == "S5" ~ "No. of apparent competition motifs",
-                          stat == "S4" ~ "No. of direct competition motifs",
-                          .default = as.character(stat))) %>%
-  mutate(level = case_when(
+  glow_up(stat = case_when(stat == "S1" ~ "No. of linear chains",
+                           stat == "S2" ~ "No. of omnivory motifs",
+                           stat == "S5" ~ "No. of apparent competition motifs",
+                           stat == "S4" ~ "No. of direct competition motifs",
+                           .default = as.character(stat))) %>%
+  glow_up(level = case_when(
     stat %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   )) %>%
-  mutate(model = str_replace(model, "bodymassratio", "log ratio")) %>%
-  mutate(model = factor(model, ordered = TRUE, 
-                        levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
+  glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
+  glow_up(model = factor(model, ordered = TRUE, 
+                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
 
 plot_list <- vector(mode = "list", length = 3)
 levs = c("Macro", "Meso", "Micro")
@@ -129,7 +130,7 @@ levs = c("Macro", "Meso", "Micro")
 for (i in seq_along(plot_list)) {
   
   plot_list[[i]] <- ggplot(df %>% 
-                             filter(level == levs[i]),
+                             yeet(level == levs[i]),
                            aes(x = time,
                                y = stat_val,
                                colour = model)) +

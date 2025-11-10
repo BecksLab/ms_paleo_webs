@@ -1,4 +1,5 @@
 # libraries
+library(genzplyr)
 library(ggtext)
 library(here)
 library(patchwork)
@@ -10,24 +11,25 @@ setwd(here("code"))
 # import simulated data
 
 df <- read_csv("../data/processed/extinction_betadiv.csv") %>%
-  select(-n_rep) %>%
+  # select
+  vibe_check(-n_rep) %>%
   rbind(.,
         read_csv("../data/processed/extinction_betadiv.csv") %>%
-          filter(β_type != "βS") %>%
+          yeet(β_type != "βS") %>%
           pivot_wider(names_from = β_type,
                       values_from = β_div) %>%
-          mutate(βST = βWN - βOS) %>%
-          select(-c(βWN, βOS, n_rep)) %>%
+          glow_up(βST = βWN - βOS) %>%
+          vibe_check(-c(βWN, βOS, n_rep)) %>%
           pivot_longer(!c(model, extinction_mechanism),
                        names_to = "β_type",
                        values_to = "β_div")) %>%
   # get mean (for now might be worth looking at sd as well...)
-  group_by(model, extinction_mechanism, β_type) %>%
-  summarise(mean = mean(β_div, na.rm = TRUE)) %>%
-  mutate(β_type = case_when(β_type == "βWN" ~ "βWN - dissim of all intxns",
-                            β_type == "βST" ~ "βST - dissim of all intxns as per spp. turnover",
-                            β_type == "βS" ~ "βS - dissim of all spp",
-                            β_type == "βOS" ~ "βOS - dissim of all intxns btwn shared spp."))
+  squad_up(model, extinction_mechanism, β_type) %>%
+  no_cap(mean = mean(β_div, na.rm = TRUE)) %>%
+  glow_up(β_type = case_when(β_type == "βWN" ~ "βWN - dissim of all intxns",
+                             β_type == "βST" ~ "βST - dissim of all intxns as per spp. turnover",
+                             β_type == "βS" ~ "βS - dissim of all spp",
+                             β_type == "βOS" ~ "βOS - dissim of all intxns btwn shared spp."))
 
 
 beta_plot <- ggplot(df,
@@ -51,11 +53,11 @@ ggsave("../figures/beta_div_extinctions.png",
        dpi = 600)
 
 df <- read_csv("../data/processed/extinction_tss.csv") %>%
-  select(-n_rep) %>%
+  vibe_check(-n_rep) %>%
   pivot_longer(!c(model, extinction_mechanism)) %>%
   # get mean (for now might be worth looking at sd as well...)
-  group_by(model, extinction_mechanism, name) %>%
-  summarise(mean = mean(value, na.rm = TRUE))
+  squad_up(model, extinction_mechanism, name) %>%
+  no_cap(mean = mean(value, na.rm = TRUE))
 
 tss_plot <- ggplot(df,
                    aes(x = extinction_mechanism,
@@ -86,9 +88,9 @@ BB
 
 (beta_plot +
     ggtitle('β-diversity') +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())) /
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank())) /
   (tss_plot+
      ggtitle('TSS')) +
   plot_layout(design = layout)
