@@ -37,12 +37,12 @@ co-ordinates for the four different time periods.}
 
 }
 
-\caption{\label{fig-beta_div}stuff\ldots{} \% interaction shared is
-calculated as number shared interactions / ((number interactions left -
-shared interactions) + (number interactions right - shared interactions)
-+ shared interactions). Additionally niche and random models are
-excluded as it is illogical since both of these models are fundamentally
-species agnostic}
+\caption{\label{fig-beta_div}\% interaction shared is calculated as
+number shared interactions / ((number interactions left - shared
+interactions) + (number interactions right - shared interactions) +
+shared interactions). Additionally niche and random models are excluded
+as it is illogical since both of these models are fundamentally species
+agnostic}
 
 \end{figure}
 \efloatseparator
