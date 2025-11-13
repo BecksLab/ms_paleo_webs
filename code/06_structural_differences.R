@@ -88,20 +88,57 @@ ggsave("../figures/MANOVA_lda.png",
        units = "px",
        dpi = 700)
 
-ggplot(data = plot_arrow,
-       aes(x = 0,
-           y = 0,
-           xend = lda.LD1,
-           yend = lda.LD2)) +
-  geom_segment() +
-  geom_text_repel(aes(label = var,
-                      x = lda.LD1,
-                      y = lda.LD2),
-                  max.overlaps = getOption("ggrepel.max.overlaps", default = 100))
+# Get the linear discriminant scores
+lda_values <- predict(post_hoc)
 
-lda.pred = predict(post_hoc)
+# Correlation of original variables with the linear discriminants
+correlations <- cor(dep_vars, lda_values$x)
 
-ldahist(data = lda.pred$x[,1], g=df$model)
+# 4. Convert to a data frame for plotting
+corr_df <- as.data.frame(correlations)
+corr_df$Variable <- rownames(corr_df)
+
+# 5. Create correlation circle plot
+ggplot(corr_df) +
+  geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  geom_vline(xintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  # Add a unit circle
+  annotate("path",
+           x = cos(seq(0, 2 * pi, length.out = 200)),
+           y = sin(seq(0, 2 * pi, length.out = 200)),
+           color = "grey50")  +
+  geom_segment( 
+    aes(x = 0,
+        y = 0,
+        xend = LD1, 
+        yend = LD2),
+    arrow = arrow(length = unit(0.1,"cm")),
+    color = "steelblue") +
+  geom_text_repel(
+    aes(x = LD1, 
+        y = LD2, 
+        label = Variable),
+    max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
+    size = 4.5) +
+  coord_equal()+
+  labs(
+    title = "Correlation Circle of Original Variables with LDA Axes",
+    x = "LD1",
+    y = "LD2"
+  ) +
+  theme_classic()
+
+ggsave("../figures/lda_corr.png",
+       width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 700)
+
+
 
 df <- df %>%
   # to get the ratio
