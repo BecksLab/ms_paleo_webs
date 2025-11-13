@@ -21,7 +21,7 @@ source("lib/plotting_theme.R")
 
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  vibe_check(-c(richness, distance, n_rep)) %>%
+  vibe_check(-c(richness, distance, n_rep, diameter, redundancy)) %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
@@ -126,7 +126,6 @@ ggplot(corr_df) +
     size = 4.5) +
   coord_equal()+
   labs(
-    title = "Correlation Circle of Original Variables with LDA Axes",
     x = "LD1",
     y = "LD2"
   ) +
