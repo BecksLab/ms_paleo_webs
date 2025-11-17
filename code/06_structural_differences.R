@@ -1,9 +1,8 @@
 
 # libraries
-library(genzplyr)
-library(ggpubr)
-library(here)
 library(effectsize)
+library(here)
+library(genzplyr)
 library(ggrepel)
 library(ggtext)
 library(MASS)
@@ -33,25 +32,55 @@ df <- read_csv("../data/processed/topology.csv") %>%
 dep_vars <- as.matrix(df[3:ncol(df)])
 
 
-fit <- manova(dep_vars ~ model + time, data = df)
-summary(fit)
+fit <- manova(dep_vars ~ model, data = df)
+summary(fit, test = "Pillai")
+
+# Univariate ANOVAs
+summary.aov(fit)
+
+# effect size for each metric
+
+eta_df <- data.frame()
+
+for (i in names(df[3:ncol(df)])) {
+  
+  temp_df <- df %>%
+    glow_up(var = df %>% main_character(i))
+  
+  eta <- effectsize::eta_squared(aov(var ~ model, data = temp_df),
+                                 partial = TRUE) %>%
+    as.data.frame() %>%
+    glow_up(varibale = i)
+  
+  eta_df <- rbind(eta_df, eta)
+  
+}
+
+library(emmeans)
+
+# Assuming your fitted model is called 'fit'
+emm <- emmeans(fit, specs = "model")
+pairs(emm, adjust = "tukey")   # Tukey-adjusted pairwise comparisons
+
+aggregate(cbind(dep_vars) ~ model, df,
+          function(x) c(mean = mean(x), sd = sd(x)))
+
 
 #get effect size
 effectsize::eta_squared(fit)
 
-post_hoc <- lda(model~., dplyr::select(df, -time))
+# LDA
+post_hoc <- lda(model~., vibe_check(df, -time))
 post_hoc
+
+scores <- predict(post_hoc)$x
+cor(df[3:ncol(df)], scores)
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
                                       levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")), 
                        lda = predict(post_hoc)$x,
                        time = df$time)
-
-plot_arrow <- as.data.frame(post_hoc[["scaling"]]) %>%
-  glow_up(var = str_replace(row.names(.), "dep_vars", ""),
-          lda.LD1 = scale(LD1),
-          lda.LD2 = scale(LD2))
 
 metaweb <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
@@ -65,6 +94,10 @@ metaweb <- read_csv("../data/processed/topology.csv") %>%
 metaweb_predict <- predict(post_hoc, metaweb)
 
 ggplot(plot_lda) + 
+  stat_ellipse(aes(x = lda.LD1, 
+                   y = lda.LD2, 
+                   colour = model),,
+               level = 0.95, linetype = 2) +
   geom_point(aes(x = lda.LD1, 
                  y = lda.LD2, 
                  colour = model), 
@@ -78,11 +111,41 @@ ggplot(plot_lda) +
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
-  labs(x = "LDA 1",
-       y = "LDA 2") +
+  labs(x = "LD1 (72% variance)",
+       y = "LD2 (18% variance)") +
   figure_theme
 
 ggsave("../figures/MANOVA_lda.png",
+       width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 700)
+
+# Assuming your model is called 'fit' (e.g., lm or aov)
+emm <- emmeans(fit, specs = "model")
+
+# Get Tukey-adjusted pairwise comparisons
+pairs <- contrast(emm, method = "tukey")
+
+# Generate compact letter display (grouping by significance)
+cld_df <- multcomp::cld(emm, Letters = letters, adjust = "tukey")
+cld_df <- as.data.frame(cld_df)
+
+# Plot estimated marginal means with significance letters
+ggplot(cld_df, 
+       aes(x = reorder(model, emmean), 
+           y = emmean)) +
+  geom_bar(stat = "identity", fill = "skyblue", width = 0.7) +
+  geom_errorbar(aes(ymin = lower.CL, 
+                    ymax = upper.CL), 
+                width = 0.2) +
+  geom_text(aes(label = .group), 
+            vjust = -0.5, size = 5) + # significance letters
+  labs(x = "Model", 
+       y = "Estimated Marginal Mean") +
+  figure_theme
+
+ggsave("../figures/marginal_mean.png",
        width = 5000,
        height = 4000,
        units = "px",
@@ -117,7 +180,7 @@ ggplot(corr_df) +
         xend = LD1, 
         yend = LD2),
     arrow = arrow(length = unit(0.1,"cm")),
-    color = "steelblue") +
+    color = "skyblue") +
   geom_text_repel(
     aes(x = LD1, 
         y = LD2, 
