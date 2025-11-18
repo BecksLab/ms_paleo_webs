@@ -220,7 +220,7 @@
 2%
 }%
 }
-\date{2025-11-17}
+\date{2025-11-18}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -569,7 +569,7 @@ informative of diet specialisation.
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2603}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}@{}}
-\caption{Network properties used fo
+\caption{Network properties used for
 analysis.}\label{tbl-properties}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
@@ -803,6 +803,24 @@ same period (as our interest is only in between model differences) and
 excluded the random and niche networks from consideration as these two
 models are essentially species agnostic.
 
+Across the four network models, turnover in species interactions varied
+substantially, revealing clear differences in how each model appraoches
+determining the presence of links between species pairs
+Figure~\ref{fig-beta_div}. The log-ratio model consistently showed high
+turnover relative to all other approaches, indicating that it produces
+interaction pairs that are the most distinct from other models. In
+contrast the ADBM and l-matrix exhibited the lowest turnover and
+suggests strong agreement between how pairwise interactions are
+determined. This is unsurprising given the underlying inference
+mechanisms of the models. The PFIM displays an intermediate turnover,
+aligning most closely with log-ratio and least with ADBM and l-matrix.
+Although this result is unsurprising as the mechanisms that determine
+interactions in ADBM and l-matrix (a single trait (bodysize) +
+paramterisiation of links by ecological theory) is very different from
+the PFIM model that makes assumptions on a trait-based, mechanistic
+hierarchy. Taken together, these results demonstrate that model choice
+strongly influences inferred pairwise interactions.
+
 \begin{figure}
 
 \centering{
@@ -811,42 +829,50 @@ models are essentially species agnostic.
 
 }
 
-\caption{\label{fig-beta_div}\% interaction shared is calculated as
-number shared interactions / ((number interactions left - shared
-interactions) + (number interactions right - shared interactions) +
-shared interactions). Additionally niche and random models are excluded
-as it is illogical since both of these models are fundamentally species
-agnostic}
+\caption{\label{fig-beta_div}Pairwise beta turnover in species
+interactions among four ecological network models (adbm, lmatrix,
+log-ratio, and pfim). Each cell represents the mean turnover value
+between a pair of models, with warmer colors indicating greater
+dissimilarity in inferred interactions. The diagonal is omitted. High
+turnover values (yellow) indicate strong disagreement in network
+structure between models, whereas lower values (blue--purple) indicate
+greater similarity.}
 
 \end{figure}%
 
-In Figure~\ref{fig-beta_div} it is clear that some models share a large
-percentage of interactions \emph{e.g.,} between ADBM and l-matrix
-networks and others share nothing \emph{e.g.,} ADBM and PFIM networks.
-This result is unsurprising as the mechanisms that determine
-interactions in ADBM and l-matrix (a single trait (bodysize) +
-paramterisiation of links by ecological theory) is very different from
-the PFIM model that makes assumptions on a trait-based, mechanistic
-hierarchy.
-
-The key takeaway that this needs to lead into is thinking about diet
-related questions and the model that is best suited to get you there. It
-makes sense to contextualise this in the feasible vs realised
-interaction spectrum - specifically that from a `philosophical' basis if
-you are asking questions about possible diets of species then it makes
-sense to use models that fall firmly in the `feasible' space
-\emph{e.g.,} PFIM model or even something like the Fricke et al. (2022)
-model. How these results support that is that we can see the ADBM and
-PFIM are recovering (almost) totally different pairwise links and on a
-conceptual basis it means that we cannot use something like the ADBM to
-ask questions about diet breadth (note here this makes the assumption
-that something like the PFIM is truly aligning with diet breadth, which
-I am inclined to say it is).
+In terms of how model choice will influence our inference - this will
+have the biggest consequence when thinking about diet related questions.
+In Figure~\ref{fig-beta_div} we can see that the ADBM and PFIM are
+recovering (almost) totally different pairwise links and so will have
+very different answers when we want to start interrogating the specific
+interactions that may established by a specific species within the
+network. Pragmatically when if comes to deciding which model is the most
+appropriate choice when ir comes to diet-based questions it makes sense
+to contextualise this in the feasible vs realised interaction spectrum.
+Specifically that from a `philosophical' basis if you are asking
+questions about possible diets of species then it makes sense to use
+models that fall firmly in the `feasible' space \emph{e.g.,} PFIM model
+or even something like the Fricke et al. (2022) model.
 
 \subsection{Model choice changes the
 narrative}\label{model-choice-changes-the-narrative}
 
-\paragraph{Simulating Extinctions}\label{simulating-extinctions}
+As shown in both Figure~\ref{fig-structure} and
+Figure~\ref{fig-beta_div} different models do indeed create networks
+that look different despite being created using the same species pool
+(or at least richness in the case of the Niche and Random models). As we
+have alluded to multiple times these underlying difference could have
+consequences on inferences that we make about the behaviour of the
+system. Here we will look at how model choice alters the inference we
+make about the underlying mechanisms that were driving extinctions in
+the Toarcian extinction event. Here we again we use we followed the
+approach outlined in Dunhill et al. (2024) when simulating extinctions
+as well as assessing which extinction mechanism results in a simulated
+network most closely match the real post extinction network. Extinction
+simulations were only run on the pre extinction networks whereby species
+were removed until they reached the `target richness', which is the
+richness of the post extinction community. \textbf{TODO} The whole
+shebang about the different extinction simulation scenarios?
 
 Extinctions were simulated using different plausible mechanisms based on
 species traits (size, motility), their position within the network
@@ -865,15 +891,6 @@ and reassess the vulnerability/generality of each species after each
 extinction event to `redetermine' the extinction order based on their
 position in the newly generated network.
 
-As we are using Dunhill et al. (2024) as a case study we followed their
-approach when simulating extinctions as well as assessing which
-extinction mechanism results in a simulated network that most closely
-matches the real post extinction network. Extinction simulations were
-only run on the pre extinction networks whereby species were removed
-until they reached the `target richness', which is the richness of the
-post extinction community. \textbf{TODO} The whole shebang about the
-different extinction simulation scenarios.
-
 \begin{quote}
 \textbf{TODO} not sure if we also want to unpack/showcase robustness
 \(R_{50}\) (Jonsson et al., 2015)
@@ -883,7 +900,7 @@ different extinction simulation scenarios.
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/dunhill_comp.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/time_structure.png}}
 
 }
 
@@ -895,25 +912,24 @@ sections (depending on potential figure limitations of target journal)}
 
 \subsubsection{Trends over time}\label{trends-over-time}
 
-\begin{quote}
-\textbf{TODO} Not sure statistically speaking what the best way to
-unpack this is\ldots{} 2-way ANOVA/ANCOVA explanation is valuable? There
-are intercept differences (\emph{e.g.,} baseline average values are
-different; are the rankings among all three response variables the
-same?) and there are shape differences/similarities (\emph{e.g.,} motifs
-are all the same shape but Co and Gen show some among model differences
-in pattern.)
-\end{quote}
-
-Visual take-away seems to suggest that we see that the values
-(intercepts) of the different summary statistics are different but
-(broadly) they are capturing the same trends. This might suggest that
-although we observe differences in structure
-(Figure~\ref{fig-structure}) the general patterns still remain the same.
-This is good news because it means that at least the models that we have
-used here tend to tell us the same general story - which is worth
-contextualising in the space of `right' vs `wrong' and as long as we are
-not fixated on the point value but rather on understanding the trends.
+Generalized additive mixed modelling showed strong differences in both
+the magnitude and temporal dynamics of network structure across models.
+Model results indicated that both parametric and smooth terms
+significantly influenced network metrics across models, with some
+exceptions. For connectance, all parametric coefficients were negative
+except the intercept, and most smooth terms showed highly significant
+effects (p \textless{} 0.05), except for the Niche (p = 0.48) and Random
+(p = 0.016) models. Complexity and generality similarly exhibited
+significant parametric and smooth effects, whereas for vulnerability,
+the smooth term the Random model was non-significant (p = 0.73). Trophic
+level effects varied among models: modellmatrix had a non-significant
+parametric effect (p = 0.89), while others were strongly significant.
+Across the motifs (S1, S2, S4, S5), most parametric and smooth effects
+were significant (p \textless{} 0.05), though a few, such as the
+intercepts of S1 and S5were non-significant. Overall, these results
+indicate model- and metric-specific variation in both baseline
+(parametric) and temporal (smooth) effects, highlighting the importance
+of model structure in influences the observed temporal trends.
 
 \subsubsection{Inferred extinction
 drivers}\label{inferred-extinction-drivers}
