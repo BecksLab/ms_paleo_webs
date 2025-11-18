@@ -9,16 +9,13 @@ include("lib/internals.jl")
 β_div = DataFrame(
     time = Any[],
     left = String[],
-    right = String[],
-    β_int_shared = Int64[],
-    β_int_all = Int64[],
-    β_spp = Int64[],
-    links_left = Int64[],
-    links_right = Int64[],
+    right = Any[],
+    β_div = Float64[],
+    β_type = String[],
 )
 
 # same comment RE elegance
-networks = load_object("data/processed/networks.jlds")
+networks = load_object("../data/processed/networks.jlds")
 # remove random and niche networks...
 filter!(:model => x -> x ∉ ["niche", "random"], networks)
 
@@ -33,25 +30,33 @@ for i in eachindex(time_groups)
 
     # for each combination of datasets
     for (x, y) in combinations(unique(df[:, :uniq_id]), 2)
+
         U = df[occursin.(x, df.uniq_id), :network][1]
         V = df[occursin.(y, df.uniq_id), :network][1]
-        β_spp = SpeciesInteractionNetworks.betadiversity(βS, U, V)
-        β_int_all = SpeciesInteractionNetworks.betadiversity(βWN, U, V)
-        β_int_shared = SpeciesInteractionNetworks.betadiversity(βOS, U, V)
-        # collate
-        b = Dict{Symbol,Any}()
-        b[:time] = time_groups[i]
-        b[:left] = x
-        b[:right] = y
-        b[:β_int_all] = β_int_all.shared
-        b[:β_int_shared] = β_int_shared.shared
-        b[:β_spp] = β_spp.shared
-        b[:links_left] = links(U)
-        b[:links_right] = links(V)
-        # send to results
-        push!(β_div, b)
+        
+        for β ∈ [βS, βWN, βOS]
+                
+                β_vals = SpeciesInteractionNetworks.betadiversity(β, U, V)
+
+                a = β_vals.shared
+                b = β_vals.right
+                c = β_vals.left
+
+                _β = (a + b + c)/((2a + b + c)/2) - 1
+
+                b = Dict{Symbol,Any}()
+                b[:time] = time_groups[i]
+                b[:left] = x
+                b[:right] = y
+                b[:β_div] = _β
+                b[:β_type] = "$β"
+
+                # send to results
+                push!(β_div, b)
+
+            end
     end
 end
 
 # write outputs as .csv
-CSV.write("data/processed/beta_div.csv", β_div)
+CSV.write("../data/processed/beta_div.csv", β_div)
