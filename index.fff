@@ -17,14 +17,43 @@ may differ.}
 
 \centering{
 
+\pandocbounded{\includegraphics[keepaspectratio]{figures/marginal_mean.png}}
+
+}
+
+\caption{\label{fig-marginal}Estimated marginal means (EMMs) of
+ecological network metrics across six model types with 95\% confidence
+intervals. Bars represent the predicted values for each model, and error
+bars indicate the 95\% confidence limits. Letters above each bar denote
+Tukey-adjusted pairwise significance: models sharing the same letter are
+not significantly different, while models with different letters are
+significantly different (p \textless{} 0.05). The plot reveals three
+tiers of model performance, with pfim consistently higher, log ratio,
+niche, and random at intermediate levels, and adbm and lmatrix lower,
+consistent with the MANOVA and post-hoc analyses.}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
 \pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_lda.png}}
 
 }
 
-\caption{\label{fig-structure}Linear Discriminant Analysis using
-thirteen different metrics of network structure. The colours represent
-the different models. The black points represent the predicted metaweb
-co-ordinates for the four different time periods.}
+\caption{\label{fig-structure}Linear discriminant analysis (LDA) of
+ecological network metrics for six model types. The first two
+discriminant functions (LD1 and LD2) explain 72\% and 18\% of the
+variance, respectively. Each point represents a replicate, and ellipses
+indicate 95\% confidence regions for each model. The PFIM model is
+strongly separated along LD1, reflecting the highest values of network
+metrics, while adbm and lmatrix cluster closely together, indicating
+similar, lower metric values. The niche and random models occupy
+intermediate positions. Classification accuracy of the LDA was 85\%,
+demonstrating that the combination of dependent variables effectively
+discriminates among model types.}
 
 \end{figure}
 \efloatseparator
@@ -37,12 +66,14 @@ co-ordinates for the four different time periods.}
 
 }
 
-\caption{\label{fig-beta_div}\% interaction shared is calculated as
-number shared interactions / ((number interactions left - shared
-interactions) + (number interactions right - shared interactions) +
-shared interactions). Additionally niche and random models are excluded
-as it is illogical since both of these models are fundamentally species
-agnostic}
+\caption{\label{fig-beta_div}Pairwise beta turnover in species
+interactions among four ecological network models (adbm, lmatrix,
+log-ratio, and pfim). Each cell represents the mean turnover value
+between a pair of models, with warmer colors indicating greater
+dissimilarity in inferred interactions. The diagonal is omitted. High
+turnover values (yellow) indicate strong disagreement in network
+structure between models, whereas lower values (blue--purple) indicate
+greater similarity.}
 
 \end{figure}
 \efloatseparator
@@ -51,13 +82,28 @@ agnostic}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/dunhill_comp.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/time_structure.png}}
 
 }
 
 \caption{\label{fig-dunhill}stuff\ldots{} Recreation of the figure from
 Dunhill 2024. I think it makes sense to split and divide into the below
 sections (depending on potential figure limitations of target journal)}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/tss_extinctions.png}}
+
+}
+
+\caption{\label{fig-tss}stuff\ldots{} TSS scores. Link and node level
+turnover. `warm' colours indicate worse than random. Blue equals
+perfect}
 
 \end{figure}
 \efloatseparator
