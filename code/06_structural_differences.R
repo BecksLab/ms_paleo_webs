@@ -65,63 +65,10 @@ pairs(emm, adjust = "tukey")   # Tukey-adjusted pairwise comparisons
 aggregate(cbind(dep_vars) ~ model, df,
           function(x) c(mean = mean(x), sd = sd(x)))
 
-
 #get effect size
 effectsize::eta_squared(fit)
 
-# LDA
-post_hoc <- lda(model~., vibe_check(df, -time))
-post_hoc
-
-scores <- predict(post_hoc)$x
-cor(df[3:ncol(df)], scores)
-
-# plot 
-plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")), 
-                       lda = predict(post_hoc)$x,
-                       time = df$time)
-
-metaweb <- read_csv("../data/processed/topology.csv") %>%
-  #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  vibe_check(-c(richness, distance, n_rep)) %>%
-  # remove metaweb pfims
-  yeet(model == "pfim_metaweb") %>%
-  na.omit() %>%
-  glow_up(model = NULL) %>%
-  unique()
-
-metaweb_predict <- predict(post_hoc, metaweb)
-
-ggplot(plot_lda) + 
-  stat_ellipse(aes(x = lda.LD1, 
-                   y = lda.LD2, 
-                   colour = model),,
-               level = 0.95, linetype = 2) +
-  geom_point(aes(x = lda.LD1, 
-                 y = lda.LD2, 
-                 colour = model), 
-             size = 3,
-             alpha = 0.3) +
-  geom_point(data = data.frame(lda = metaweb_predict$x,
-                               time = metaweb$time),
-             aes(x = lda.LD1,
-                 y = lda.LD2)) +
-  coord_cartesian(clip = "off") +
-  scale_colour_manual(values = pal_df$c,
-                      breaks = pal_df$l) +
-  guides(color = guide_legend(override.aes = list(alpha = 1))) +
-  labs(x = "LD1 (72% variance)",
-       y = "LD2 (18% variance)") +
-  figure_theme
-
-ggsave("../figures/MANOVA_lda.png",
-       width = 5000,
-       height = 4000,
-       units = "px",
-       dpi = 700)
-
-# Assuming your model is called 'fit' (e.g., lm or aov)
+# Difference in means
 emm <- emmeans(fit, specs = "model")
 
 # Get Tukey-adjusted pairwise comparisons
@@ -147,6 +94,119 @@ ggplot(cld_df,
 
 ggsave("../figures/marginal_mean.png",
        width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 700)
+
+# LDA
+post_hoc <- lda(model~., vibe_check(df, -time))
+post_hoc
+
+scores <- predict(post_hoc)$x
+cor(df[3:ncol(df)], scores)
+
+# plot 
+plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
+                                      levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")), 
+                       lda = predict(post_hoc)$x,
+                       time = df$time)
+
+metaweb <- read_csv("../data/processed/topology.csv") %>%
+  #mutate(across(matches("S[[:digit:]]"), log)) %>%
+  vibe_check(-c(richness, distance, n_rep)) %>%
+  # remove metaweb pfims
+  yeet(model == "pfim_metaweb") %>%
+  na.omit() %>%
+  glow_up(model = NULL) %>%
+  unique()
+
+metaweb_predict <- predict(post_hoc, metaweb)
+
+ld1v2 <-
+  ggplot(plot_lda) + 
+  stat_ellipse(aes(x = lda.LD1, 
+                   y = lda.LD2, 
+                   colour = model),,
+               level = 0.95, linetype = 2) +
+  geom_point(aes(x = lda.LD1, 
+                 y = lda.LD2, 
+                 colour = model), 
+             size = 3,
+             alpha = 0.3) +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD1,
+                 y = lda.LD2)) +
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  guides(color = guide_legend(override.aes = list(alpha = 1))) +
+  labs(x = "LD1 (55% variance)",
+       y = "LD2 (30% variance)") +
+  figure_theme
+
+ggsave("../figures/MANOVA_lda.png",
+       ld1v2,
+       width = 5000,
+       height = 4000,
+       units = "px",
+       dpi = 700)
+
+# other LDA combos
+ld1v3 <-
+  ggplot(plot_lda) + 
+  stat_ellipse(aes(x = lda.LD1, 
+                   y = lda.LD3, 
+                   colour = model),,
+               level = 0.95, linetype = 2) +
+  geom_point(aes(x = lda.LD1, 
+                 y = lda.LD3, 
+                 colour = model), 
+             size = 3,
+             alpha = 0.3) +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD1, 
+                 y = lda.LD3)) +
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  guides(color = guide_legend(override.aes = list(alpha = 1))) +
+  labs(x = "LD1 (55% variance)",
+       y = "LD3 (9% variance)") +
+  figure_theme
+
+ld2v3 <-
+  ggplot(plot_lda) + 
+  stat_ellipse(aes(x = lda.LD3, 
+                   y = lda.LD2, 
+                   colour = model),,
+               level = 0.95, linetype = 2) +
+  geom_point(aes(x = lda.LD3, 
+                 y = lda.LD2, 
+                 colour = model), 
+             size = 3,
+             alpha = 0.3) +
+  geom_point(data = data.frame(lda = metaweb_predict$x,
+                               time = metaweb$time),
+             aes(x = lda.LD3, 
+                 y = lda.LD2)) +
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(values = pal_df$c,
+                      breaks = pal_df$l) +
+  guides(color = guide_legend(override.aes = list(alpha = 1))) +
+  labs(y = "LD2 (30% variance)",
+       x = "LD3 (9% variance)") +
+  figure_theme
+
+# patchwork them up
+
+(ld1v2) + (ld1v3) + (ld2v3) +
+  plot_layout(guides = 'collect') &
+  theme(legend.position='bottom')
+
+ggsave("../figures/MANOVA_3_panel.png",
+       width = 10000,
        height = 4000,
        units = "px",
        dpi = 700)
