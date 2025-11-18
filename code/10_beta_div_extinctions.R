@@ -57,7 +57,12 @@ df <- read_csv("../data/processed/extinction_tss.csv") %>%
   pivot_longer(!c(model, extinction_mechanism)) %>%
   # get mean (for now might be worth looking at sd as well...)
   squad_up(model, extinction_mechanism, name) %>%
-  no_cap(mean = mean(value, na.rm = TRUE))
+  no_cap(mean = mean(value, na.rm = TRUE)) %>%
+  glow_up(name = case_when(name == "tss_link" ~ "Link",
+                           name == "tss_node" ~ "Node"),
+          model = case_when(model == "bodymassratio" ~ "log ratio",
+                            #model == "pfim_downsample" ~ "pfim",
+                            .default = as.character(model)))
 
 tss_plot <- ggplot(df,
                    aes(x = extinction_mechanism,
@@ -75,7 +80,7 @@ tss_plot <- ggplot(df,
 ggsave("../figures/tss_extinctions.png",
        tss_plot,
        width = 5000,
-       height = 2000,
+       height = 3000,
        units = "px",
        dpi = 600)
 
