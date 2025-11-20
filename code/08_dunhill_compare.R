@@ -208,12 +208,6 @@ for (met in metrics) {
   # Compute Kendall & Spearman correlation matrices
   kendall_corr <- cor(ranked[,-ncol(ranked)], method = "kendall")
   
-  # Store outputs
-  results_list[[met]] <- list(
-    ranked = ranked,
-    kendall = kendall_corr,
-  )
-  
   # Print Kendall correlations nicely
   cat("\nKendall rank correlation matrix:\n")
   print(kendall_corr)
@@ -251,7 +245,7 @@ kendal_results <-
                              metric == "S4" ~ "No. of direct competition motifs",
                              .default = as.character(metric)),
           level = case_when(
-            metric %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
+            metric %in% c("complexity", "connectance", "trophic_level", "richness", "diameter") ~ "Macro",
             metric %in% c("generality", "vulnerability") ~ "Micro",
             .default = "Meso"
           ))
@@ -286,7 +280,7 @@ for (i in seq_along(plot_list)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 3, 1))
+  plot_layout(height = c(2, 2, 1))
 
 ggsave("../figures/mean_abs_diff.png",
        width = 5000,
