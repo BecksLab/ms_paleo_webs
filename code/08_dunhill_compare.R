@@ -86,7 +86,7 @@ all_results <- map_dfr(network_stats, ~fit_gam_with_anova(.x, df))
 # View tidy results
 print(all_results)
 
-# prep data fro plotting
+# prep data for plotting
 
 df_plot <- 
   df %>%
@@ -154,47 +154,150 @@ ggsave("../figures/time_structure.png",
 
 # means abs differences between real and extinction simulations
 
-df <- read_csv("../data/processed/extinction_topology.csv") %>%
+mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
-  vibe_check(-c(rep, distance, redundancy, complexity, diameter, S1, S2, S4, S5, resilience)) %>%
+  vibe_check(-c(rep, distance, redundancy, diameter, resilience)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
     values_to = "sim_val") %>%
-  everyone_in_the_groupchat(.,
-                            read_csv("../data/processed/topology.csv") %>%
-                              # remove metaweb pfims
-                              yeet(model != "pfim_metaweb") %>%
-                              # rename the remianing pfim col
-                              glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
-                                                        .default = as.character(model))) %>%
-                              yeet(time == "G2") %>%
-                              vibe_check(-c(distance, redundancy, complexity, diameter, time, S1, S2, S4, S5, trophic_level)) %>%
-                              pivot_longer(
-                                cols = -c(model, n_rep),
-                                names_to = "stat",
-                                values_to = "real_val")) %>%
+  full_join(.,
+            read_csv("../data/processed/topology.csv") %>%
+              # remove metaweb pfims
+              yeet(model != "pfim_metaweb") %>%
+              # rename the remianing pfim col
+              glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
+                                        .default = as.character(model))) %>%
+              yeet(time == "G2") %>%
+              vibe_check(-c(time, distance, redundancy, diameter)) %>%
+              pivot_longer(
+                cols = -c(model, n_rep),
+                names_to = "stat",
+                values_to = "real_val")) %>%
   glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
   glow_up(diff = real_val - sim_val) %>%
-  squad_up(model, extinction_mechanism) %>%
-  no_cap(mean_diff = abs(mean(diff, na.rm = TRUE))) %>%
+  squad_up(model, extinction_mechanism, stat) %>%
+  no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
+                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim"))) %>%
+  lowkey(scenario = extinction_mechanism, metric = stat)
 
-mean_diff <- ggplot(df,
-                    aes(y = extinction_mechanism,
-                        x = mean_diff,
-                        fill = model)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  coord_cartesian(clip = "off") +
-  ylab(NULL)  +
-  scale_fill_manual(values = pal_df$c,
-                    breaks = pal_df$l) +
-  figure_theme
+metrics <- unique(mad_df$metric)
+
+results_list <- list()
+kendal_results <- data.frame()
+
+for (met in metrics) {
+  
+  cat("\n---------------------------------------------\n")
+  cat("Processing metric:", met, "\n")
+  cat("---------------------------------------------\n")
+  
+  # Filter for this metric
+  df_met <- mad_df %>% filter(metric == met)
+  
+  # Convert to wide format: rows=scenarios, columns=models
+  wide_met <- df_met %>%
+    pivot_wider(names_from = model, values_from = MAD) %>%
+    vibe_check(-metric)
+  
+  # Rank within each model (lower MAD = better match)
+  ranked <- as.data.frame(apply(wide_met[,-1], 2, rank, ties.method = "average")) %>%
+    glow_up(scenario = wide_met$scenario)
+  
+  # Compute Kendall & Spearman correlation matrices
+  kendall_corr <- cor(ranked[,-ncol(ranked)], method = "kendall")
+
+  # Store outputs
+  results_list[[met]] <- list(
+    ranked = ranked,
+    kendall = kendall_corr,
+    spearman = spearman_corr
+  )
+  
+  # Print Kendall correlations nicely
+  cat("\nKendall rank correlation matrix:\n")
+  print(kendall_corr)
+  
+  # Pairwise significance tests
+  cat("\nPairwise Kendall correlation tests:\n")
+  pairs <- combn(colnames(ranked)[-ncol(ranked)], 2)
+  
+  for (i in 1:ncol(pairs)) {
+    m1 <- pairs[1, i]
+    m2 <- pairs[2, i]
+    ct <- cor.test(ranked[[m1]], ranked[[m2]], method = "kendall")
+    cat("\n", m1, "vs", m2, 
+        "tau =", round(ct$estimate, 3),
+        "p =", round(ct$p.value, 4), "\n")
+  }
+  
+  # Heatmap for Kendall correlations
+  melted <- melt(kendall_corr) %>%
+    # record network metric
+    glow_up(metric = met) %>%
+    # rename cols
+    lowkey(Model1 = Var1, Model2 = Var2, tau = value)
+  
+  kendal_results <- 
+    rbind(kendal_results, melted)
+  
+}
+
+kendal_results <-
+  kendal_results %>%
+  glow_up(metric = case_when(metric == "S1" ~ "No. of linear chains",
+                             metric == "S2" ~ "No. of omnivory motifs",
+                             metric == "S5" ~ "No. of apparent competition motifs",
+                             metric == "S4" ~ "No. of direct competition motifs",
+                             .default = as.character(metric)),
+          level = case_when(
+            metric %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
+            metric %in% c("generality", "vulnerability") ~ "Micro",
+            .default = "Meso"
+          ))
+
+plot_list <- vector(mode = "list", length = 3)
+levs = c("Macro", "Meso", "Micro")
+
+for (i in seq_along(plot_list)) {
+  
+  plot_list[[i]] <- ggplot(kendal_results %>%
+                             yeet(level == levs[i]), 
+                           aes(Model1, 
+                               Model2, 
+                               fill = tau)) +
+    geom_tile(color = "white") +
+    scale_fill_gradientn(breaks = c(-1, 0, 1),
+                         colours = c("red", "white", "blue"),
+                         limits = c(-1, 1)) +
+    facet_wrap(vars(metric),
+               #scales = 'free',
+               ncol = 2) +
+    labs(
+      fill = "Kendall τ",
+      title = levs[i],
+      x = NULL,
+      y = NULL
+    ) +
+    figure_theme +
+    theme(axis.text.x = element_text(angle=45, hjust=1))
+  
+}
+
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = 'collect') +
+  plot_layout(height = c(2, 3, 1))
+
+ggsave("../figures/mean_abs_diff.png",
+       width = 5000,
+       height = 6500,
+       units = "px",
+       dpi = 600)
 
 # tss scores
 
