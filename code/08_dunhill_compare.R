@@ -193,10 +193,6 @@ kendal_results <- data.frame()
 
 for (met in metrics) {
   
-  cat("\n---------------------------------------------\n")
-  cat("Processing metric:", met, "\n")
-  cat("---------------------------------------------\n")
-  
   # Filter for this metric
   df_met <- mad_df %>% filter(metric == met)
   
@@ -211,12 +207,11 @@ for (met in metrics) {
   
   # Compute Kendall & Spearman correlation matrices
   kendall_corr <- cor(ranked[,-ncol(ranked)], method = "kendall")
-
+  
   # Store outputs
   results_list[[met]] <- list(
     ranked = ranked,
     kendall = kendall_corr,
-    spearman = spearman_corr
   )
   
   # Print Kendall correlations nicely
@@ -301,35 +296,85 @@ ggsave("../figures/mean_abs_diff.png",
 
 # tss scores
 
-df <- read_csv("../data/processed/extinction_tss.csv") %>%
+tss_df <- read_csv("../data/processed/extinction_tss.csv")  %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
-  # rename the remianing pfim col
-  glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
-                            .default = as.character(model)))%>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
-  squad_up(model, extinction_mechanism) %>%
-  no_cap(mean_tss = mean(tss, na.rm = TRUE))
+  vibe_check(-n_rep) %>%
+  pivot_longer(!c(model, extinction_mechanism)) %>%
+  # get mean (for now might be worth looking at sd as well...)
+  squad_up(model, extinction_mechanism, name) %>%
+  no_cap(mean = mean(value, na.rm = TRUE)) %>%
+  glow_up(metric = case_when(name == "tss_link" ~ "Link",
+                             name == "tss_node" ~ "Node"),
+          model = case_when(model == "bodymassratio" ~ "log ratio",
+                            model == "pfim_downsample" ~ "pfim",
+                            .default = as.character(model)),
+          name = NULL) %>%
+  lowkey(scenario = extinction_mechanism) %>%
+  glow_up(model = factor(model, ordered = TRUE, 
+                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
 
-tss <-  ggplot(df,
-               aes(y = extinction_mechanism,
-                   x = mean_tss,
-                   fill = model)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  coord_cartesian(clip = "off") +
-  ylab(NULL)  +
-  scale_fill_manual(values = pal_df$c,
-                    breaks = pal_df$l) +
-  figure_theme
+metrics <- unique(tss_df$metric)
+
+results_list <- list()
+kendal_results <- data.frame()
+
+for (met in metrics) {
+
+  # Filter for this metric
+  df_met <- tss_df %>% 
+    filter(metric == met)
+  
+  # Convert to wide format: rows=scenarios, columns=models
+  wide_met <- df_met  %>%
+    # here we invert the mean scores because bigger is better and I can be arsed to
+    # look at the documentation to change the behaviour of rank()
+    glow_up(mean = -mean) %>%
+    pivot_wider(names_from = model, values_from = mean) %>%
+    vibe_check(-metric)
+  
+  # Rank within each model (lower mean = better match)
+  ranked <- as.data.frame(apply(wide_met[,-1], 2, rank, ties.method = "average")) %>%
+    glow_up(scenario = wide_met$scenario)
+  
+  # Compute Kendall & Spearman correlation matrices
+  kendall_corr <- cor(ranked[,-ncol(ranked)], method = "kendall")
+
+  # Heatmap for Kendall correlations
+  melted <- melt(kendall_corr) %>%
+    # record network metric
+    glow_up(metric = met) %>%
+    # rename cols
+    lowkey(Model1 = Var1, Model2 = Var2, tau = value)
+  
+  kendal_results <- 
+    rbind(kendal_results, melted)
+  
+}
 
 
-(tss + struct) / (mean_diff + motif)  +
-  plot_layout(guides = 'collect') +
-  plot_annotation(tag_levels = 'A')
+ggplot(kendal_results, 
+       aes(Model1, 
+           Model2, 
+           fill = tau)) +
+  geom_tile(color = "white") +
+  scale_fill_gradientn(breaks = c(-1, 0, 1),
+                       colours = c("red", "white", "blue"),
+                       limits = c(-1, 1)) +
+  facet_wrap(vars(metric),
+             #scales = 'free',
+             ncol = 2) +
+  labs(
+    fill = "Kendall τ",
+    x = NULL,
+    y = NULL
+  ) +
+  figure_theme +
+  theme(axis.text.x = element_text(angle=45, hjust=1))
 
-ggsave("../figures/dunhill_comp.png",
-       width = 7000,
-       height = 7500,
+ggsave("../figures/tss.png",
+       width = 7500,
+       height = 5500,
        units = "px",
        dpi = 600)
 
