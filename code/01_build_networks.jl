@@ -12,6 +12,7 @@ include("lib/internals.jl");
 include("lib/adbm.jl");
 include("lib/bodymass.jl");
 include("lib/lmatrix.jl");
+include("lib/niche.jl");
 include("lib/random.jl");
 
 # set seed
@@ -19,15 +20,15 @@ import Random
 Random.seed!(66)
 
 # get the name of all communities
-matrix_names = readdir("data/raw")
+matrix_names = readdir("../data/raw")
 # select only species datasets
 matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 
 # feeding rules
-feeding_rules = DataFrame(CSV.File("data/raw/feeding_rules.csv"))
+feeding_rules = DataFrame(CSV.File("../data/raw/feeding_rules.csv"))
 
 # size classes (for creating continuous body sizes)
-size_classes = DataFrame(CSV.File("data/raw/size_classes.csv"))
+size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 
 # df to store networks
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
@@ -63,7 +64,7 @@ for j = 1:n_reps
         str_cats = split(file_name, r"_")
 
         # import data frame
-        df = DataFrame(CSV.File.(joinpath("data/raw/", "$file_name")))
+        df = DataFrame(CSV.File.(joinpath("../data/raw/", "$file_name")))
         select!(df, [:Guild, :motility, :tiering, :feeding, :size])
         rename!(df, :Guild => :species)
 
@@ -101,7 +102,7 @@ for j = 1:n_reps
             elseif model == "pfim_downsample"
                 N = pfim.PFIM(df, feeding_rules; y = 30.0, downsample = true)
             elseif model == "niche"
-                N = structuralmodel(NicheModel, nrow(df), connectance)
+                N = nichemodel(df.species, connectance)
             elseif model == "random"
                 links = floor(Int, connectance * (nrow(df)^2))
                 N = randommodel(df.species, links)
@@ -129,4 +130,4 @@ for j = 1:n_reps
 end
 
 # write networks as object
-save_object("data/processed/networks.jlds", networks)
+save_object("../data/processed/networks.jlds", networks)
