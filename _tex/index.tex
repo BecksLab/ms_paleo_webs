@@ -769,9 +769,9 @@ couple our analyses with sensitivity analyses to assess how conclusions
 depend on model assumptions. It also means that we cannot compare
 inferences made using different models but and any generalisations about
 observed patterns should be be standardised across network model
-\emph{type} at minium. That is two say it may not be completely
+\emph{type} at minimum. That is two say it may not be completely
 illogical to make comparisons between two metawebs, however it would be
-unwise to compare a metaweb to a thoeretical network.
+unwise to compare a metaweb to a theoretical network.
 
 \begin{quote}
 These structural differences have consequences for predicting species
@@ -934,66 +934,133 @@ of model structure in influences the observed temporal trends.
 \subsubsection{Inferred extinction
 drivers}\label{inferred-extinction-drivers}
 
-In order to determine which extinction mechanism creates a network most
-similar to the post extinction network we use a derivative of Gupta et
-al. (2022) true skill statistic (TSS, see Equation~\ref{eq-1}), where a
-score below zero indicates that the simiulated extinction performs no
-better than random, and a score of one indicates a perfect match between
-real and simulated. Here we calculated both a node-level TSS as well as
-link-level TSS, by parsing out the TSS into two components we are able
-to assess if differences between real and simulated networks are due to
-node-level (the wrong species being removed) or link-level (the wrong
-links be recovered) mismatches. Because the extinction simulations do
-not allow for the origination of species, we only retained species that
-were present in both the pre and post extinciton community and so any
-node-level mismatches between real and simulated networks was due to the
-wrong species being removed and not because new species were not.
+To assess how consistently different modelling approaches evaluate
+extinction scenarios, we quantified the agreement in scenario rankings
+produced by multiple models across several network metrics. For each
+model, each extinction scenario, and each network metric we calculated
+the mean absolute difference (MAD) between the observed metric value and
+the value predicted following the simulated extinction sequence. Lower
+MAD values indicate a closer match to the empirical network structure
+and therefore a better-performing extinction scenario for that model and
+metric. Additionally, we used a derivative of Gupta et al. (2022) true
+skill statistic (TSS, see Equation~\ref{eq-1}), where a score below zero
+indicates that the simulated extinction performs no better than random,
+and a score of one indicates a perfect match between real and simulated.
+Here we calculated both a node-level TSS as well as link-level TSS, by
+parsing out the TSS into two components we are able to assess if
+differences between real and simulated networks are due to node-level
+(the wrong species being removed) or link-level (the wrong links be
+recovered) mismatches. Because the extinction simulations do not allow
+for the origination of species, when calculating the TSS we only
+retained species that were present in both the pre and post extinction
+community and so any node-level mismatches between real and simulated
+networks was due to the wrong species being removed and not because new
+species were not.
 
 \begin{equation}\phantomsection\label{eq-1}{ 
 TSS = \frac{True Positive}{True Positive + False Negative} + \frac{True Negative}{True Negative + False Positive} - 1 
 }\end{equation}
 
+For each network metric, we treated each model as an independent
+evaluator of scenario performance. MAD and TSS values were converted to
+within-model rankings, with rank 1 assigned to the scenario with the
+smallest MAD (i.e., the closest match to the empirical value) or highest
+TSS score. Ranking was performed independently for each combination of
+model and network metric to avoid assumptions about comparability across
+metrics. To evaluate whether different models produced consistent
+rankings of extinction scenarios, we quantified rank correlation among
+models separately for each network metric. Agreement among model
+rankings was assessed using Kendall's rank correlation coefficient (τ),
+which measures the degree of concordance between two ordinal rankings.
+Kendall's τ was selected because it is robust for small sample sizes,
+handles tied ranks appropriately, and provides a direct measure of the
+probability that model pairs agree or disagree on the relative ordering
+of scenarios. Kendall's τ ranges from --1 to +1, where +1 indicates
+perfect agreement between rankings, 0 reflects no relationship, and --1
+represents complete disagreement such that one ranking is the exact
+reverse of the other.
+
+When we look at Kendall's τ for the MAD across network structure and
+models Figure~\ref{fig-mad} we see that generally there is a positive
+correlation between the different different models. This implies that
+different models are often recovering a similar ranking of extinction
+mechanisms (as in the `signal' as to which extinction mechanisms may be
+the most plausible are the same). Although there is not a strong
+agreement between models as values tend to be low it is positive to
+observe that it is not often that we have a completely different ranking
+of extinction mechanisms, with the exception of complexity and to a
+lesser degree connectance. Interestingly we once again the the strong
+similarity between the l-matrix and the ADBM. Broadly this is positive,
+as despite the fact that we show that these models construct very
+different networks structurally Figure~\ref{fig-structure} they are
+still (broadly) capturing a similar extinction mechanism signal.
+
 \begin{figure}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/tss_extinctions.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/mean_abs_diff.png}}
 
 }
 
-\caption{\label{fig-tss}stuff\ldots{} TSS scores. Link and node level
-turnover. `warm' colours indicate worse than random. Blue equals
-perfect}
+\caption{\label{fig-mad}Heatmaps showing pairwise Kendall rank
+correlation coefficients (τ) between models for each network metric.
+Each panel corresponds to a different metric and displays the degree of
+agreement in extinction-scenario rankings across models based on mean
+absolute differences (MAD) between observed and predicted network
+values. Positive τ values (blue) indicate concordant rankings between
+models, whereas negative τ values (red) indicate opposing rankings.
+Warmer colours approaching zero represent little or no agreement. Panels
+illustrate how consistently different modelling approaches evaluate the
+relative realism of extinction scenarios across multiple network
+properties.}
+
+\end{figure}%
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/tss.png}}
+
+}
+
+\caption{\label{fig-tss}Heatmaps showing pairwise Kendall rank
+correlation coefficients (τ) between models for link and node level TSS.
+Each panel corresponds to a different metric and displays the degree of
+agreement in extinction-scenario rankings across models based on mean
+TSS scores between observed and predicted network values. Positive τ
+values (blue) indicate concordant rankings between models, whereas
+negative τ values (red) indicate opposing rankings. Warmer colours
+approaching zero represent little or no agreement. Panels illustrate how
+consistently different modelling approaches evaluate the relative
+realism of extinction scenarios across multiple network properties.}
 
 \end{figure}%
 
 When looking at the node-level TSS scores (Figure~\ref{fig-tss} panel 2)
-we see that in general the dignal of the extinction mechanism is
-maintained across the different models - this is perhaps most striking
-when we look at the two tiering mechanisms. However as these mechanisms
-are determine by the property of the node it is not surprising that we
-see a similar signal as the species are being removed in the exact same
-order. The metrics that are of most interest is those that are
-determined by network-driven node properties (vulnerability and
-generality). Here we can see some variation between the models, however
-on balance they still have the same general signal. The link-level TSS
-scores (Figure~\ref{fig-tss} panel 1) do not show the same signal within
-extinction mechanism. We see that the random and PFIM models have high
-TSS scores (\emph{i.e.,} have a `good fit'), however in the case of the
-PFIM this is to be expected as the links are deterministic and so if you
-have the same two species pools you will recover the same links. The
-`stochastic' element of the theoretical models (ADBM, l-matrix, and
-log-ratio) means that they create a degree of `noise' at the link-level
-and thus they are probably inappropriate to use for the type of
-extinction mechanism question we are askeing here - specifically does
-the real and the simulated netowrk look the same. Link-level TSS is
-perhaps also not an appropriate approach to determine the `best fit'
-extinction mechanism if used in isolation and we advoacte that the
-node-level TSS score (or alterniatvely some measure of \(\beta\)
-diversity is used). FInally, if we were to focus only on node level TSS
-we do not observe any strong differences between the models and it
-suggests that node-level driven (topological) extinction processes are
-insensitive to model type.
+we see that in general the signal of the extinction mechanism is
+maintained across the different models. However as many of the
+extinction mechanisms are determine by the \emph{traits} of the node it
+is not surprising that we see a similar signal as the species are being
+removed in the exact same order. The only two extinction mechanisms that
+are driven by The link-level TSS scores (Figure~\ref{fig-tss} panel 1)
+do not show the same signal within extinction mechanism. We see that the
+random and PFIM models have high TSS scores (\emph{i.e.,} have a `good
+fit'), however in the case of the PFIM this is to be expected as the
+links are deterministic and so if you have the same two species pools
+you will recover the same links. The `stochastic' element of the
+theoretical models (ADBM, l-matrix, and log-ratio) means that they
+create a degree of `noise' at the link-level and thus they are probably
+inappropriate to use for the type of extinction mechanism question we
+are asking here - specifically does the real and the simulated network
+look the same. Link-level TSS is perhaps also not an appropriate
+approach to determine the `best fit' extinction mechanism if used in
+isolation and we advocate that the node-level TSS score (or
+alternatively some measure of \(\beta\) diversity is used). FInally, if
+we were to focus only on node level TSS we do not observe any strong
+differences between the models and it suggests that node-level driven
+(topological) extinction processes are insensitive to model type.
 
 \section{Discussion (need a catchier
 heading)}\label{discussion-need-a-catchier-heading}
