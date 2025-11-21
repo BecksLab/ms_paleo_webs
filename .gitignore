@@ -32,7 +32,6 @@ code/Manifest.toml
 # everyone needs scrap paper
 _scrap.R
 code/_scrap.jl
-code/lib/niche.jl
 
 # quarto
 .ipynb_checkpoints
