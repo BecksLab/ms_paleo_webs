@@ -97,7 +97,7 @@ sections (depending on potential figure limitations of target journal)}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/mean_abs_diff.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/kendal_tau.png}}
 
 }
 
@@ -112,28 +112,6 @@ Warmer colours approaching zero represent little or no agreement. Panels
 illustrate how consistently different modelling approaches evaluate the
 relative realism of extinction scenarios across multiple network
 properties.}
-
-\end{figure}
-\efloatseparator
- 
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures/tss.png}}
-
-}
-
-\caption{\label{fig-tss}Heatmaps showing pairwise Kendall rank
-correlation coefficients (τ) between models for link and node level TSS.
-Each panel corresponds to a different metric and displays the degree of
-agreement in extinction-scenario rankings across models based on mean
-TSS scores between observed and predicted network values. Positive τ
-values (blue) indicate concordant rankings between models, whereas
-negative τ values (red) indicate opposing rankings. Warmer colours
-approaching zero represent little or no agreement. Panels illustrate how
-consistently different modelling approaches evaluate the relative
-realism of extinction scenarios across multiple network properties.}
 
 \end{figure}
 \efloatseparator
