@@ -106,9 +106,7 @@ ext_reps = 50
             end
 
             # categorical extinctions
-            # note we can't do this with the niche model...
-            if networks.model[j] ∉ ["niche"]
-                for k in eachindex(hierarchies[1])
+           for k in eachindex(hierarchies[1])
 
                     # select the correct traits matrix depending on nodes (species vs trophic)
                     trait_data = df[:, [:species, hierarchies[1][k]]]
@@ -141,7 +139,6 @@ ext_reps = 50
 
                     push!(extinction_results, d)
                 end
-            end
         end
     end
 end
