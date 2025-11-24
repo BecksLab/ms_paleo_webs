@@ -184,7 +184,26 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
   no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
                          levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim"))) %>%
-  lowkey(scenario = extinction_mechanism, metric = stat)
+  lowkey(scenario = extinction_mechanism, metric = stat) %>%
+  rbind(.,
+        read_csv("../data/processed/extinction_tss.csv")  %>%
+          # remove metaweb pfims
+          yeet(model != "pfim_metaweb") %>%
+          vibe_check(-n_rep) %>%
+          pivot_longer(!c(model, extinction_mechanism)) %>%
+          # get mean (for now might be worth looking at sd as well...)
+          squad_up(model, extinction_mechanism, name) %>%
+          no_cap(MAD = mean(value, na.rm = TRUE)*-1) %>%
+          glow_up(metric = case_when(name == "tss_link" ~ "Link",
+                                     name == "tss_node" ~ "Node"),
+                  model = case_when(model == "bodymassratio" ~ "log ratio",
+                                    model == "pfim_downsample" ~ "pfim",
+                                    .default = as.character(model)),
+                  name = NULL) %>%
+          lowkey(scenario = extinction_mechanism) %>%
+          glow_up(model = factor(model, ordered = TRUE, 
+                                 levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
+  )
 
 metrics <- unique(mad_df$metric)
 
@@ -247,11 +266,12 @@ kendal_results <-
           level = case_when(
             metric %in% c("complexity", "connectance", "trophic_level", "richness", "diameter") ~ "Macro",
             metric %in% c("generality", "vulnerability") ~ "Micro",
+            metric %in% c("Node", "Link") ~ "TSS",
             .default = "Meso"
           ))
 
-plot_list <- vector(mode = "list", length = 3)
-levs = c("Macro", "Meso", "Micro")
+plot_list <- vector(mode = "list", length = 4)
+levs = c("Macro", "Meso", "Micro", "TSS")
 
 for (i in seq_along(plot_list)) {
   
@@ -278,97 +298,12 @@ for (i in seq_along(plot_list)) {
   
 }
 
-plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] / plot_list[[4]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 2, 1))
+  plot_layout(height = c(2, 2, 1, 1))
 
-ggsave("../figures/mean_abs_diff.png",
+ggsave("../figures/kendal_tau.png",
        width = 5000,
-       height = 6500,
+       height = 7500,
        units = "px",
        dpi = 600)
-
-# tss scores
-
-tss_df <- read_csv("../data/processed/extinction_tss.csv")  %>%
-  # remove metaweb pfims
-  yeet(model != "pfim_metaweb") %>%
-  vibe_check(-n_rep) %>%
-  pivot_longer(!c(model, extinction_mechanism)) %>%
-  # get mean (for now might be worth looking at sd as well...)
-  squad_up(model, extinction_mechanism, name) %>%
-  no_cap(mean = mean(value, na.rm = TRUE)) %>%
-  glow_up(metric = case_when(name == "tss_link" ~ "Link",
-                             name == "tss_node" ~ "Node"),
-          model = case_when(model == "bodymassratio" ~ "log ratio",
-                            model == "pfim_downsample" ~ "pfim",
-                            .default = as.character(model)),
-          name = NULL) %>%
-  lowkey(scenario = extinction_mechanism) %>%
-  glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
-
-metrics <- unique(tss_df$metric)
-
-results_list <- list()
-kendal_results <- data.frame()
-
-for (met in metrics) {
-
-  # Filter for this metric
-  df_met <- tss_df %>% 
-    filter(metric == met)
-  
-  # Convert to wide format: rows=scenarios, columns=models
-  wide_met <- df_met  %>%
-    # here we invert the mean scores because bigger is better and I can be arsed to
-    # look at the documentation to change the behaviour of rank()
-    glow_up(mean = -mean) %>%
-    pivot_wider(names_from = model, values_from = mean) %>%
-    vibe_check(-metric)
-  
-  # Rank within each model (lower mean = better match)
-  ranked <- as.data.frame(apply(wide_met[,-1], 2, rank, ties.method = "average")) %>%
-    glow_up(scenario = wide_met$scenario)
-  
-  # Compute Kendall & Spearman correlation matrices
-  kendall_corr <- cor(ranked[,-ncol(ranked)], method = "kendall")
-
-  # Heatmap for Kendall correlations
-  melted <- melt(kendall_corr) %>%
-    # record network metric
-    glow_up(metric = met) %>%
-    # rename cols
-    lowkey(Model1 = Var1, Model2 = Var2, tau = value)
-  
-  kendal_results <- 
-    rbind(kendal_results, melted)
-  
-}
-
-
-ggplot(kendal_results, 
-       aes(Model1, 
-           Model2, 
-           fill = tau)) +
-  geom_tile(color = "white") +
-  scale_fill_gradientn(breaks = c(-1, 0, 1),
-                       colours = c("red", "white", "blue"),
-                       limits = c(-1, 1)) +
-  facet_wrap(vars(metric),
-             #scales = 'free',
-             ncol = 2) +
-  labs(
-    fill = "Kendall τ",
-    x = NULL,
-    y = NULL
-  ) +
-  figure_theme +
-  theme(axis.text.x = element_text(angle=45, hjust=1))
-
-ggsave("../figures/tss.png",
-       width = 7500,
-       height = 5500,
-       units = "px",
-       dpi = 600)
-
