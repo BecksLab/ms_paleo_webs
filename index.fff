@@ -39,21 +39,15 @@ consistent with the MANOVA and post-hoc analyses.}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_lda.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_3_panel.png}}
 
 }
 
 \caption{\label{fig-structure}Linear discriminant analysis (LDA) of
-ecological network metrics for six model types. The first two
-discriminant functions (LD1 and LD2) explain 72\% and 18\% of the
-variance, respectively. Each point represents a replicate, and ellipses
-indicate 95\% confidence regions for each model. The PFIM model is
-strongly separated along LD1, reflecting the highest values of network
-metrics, while adbm and lmatrix cluster closely together, indicating
-similar, lower metric values. The niche and random models occupy
-intermediate positions. Classification accuracy of the LDA was 85\%,
-demonstrating that the combination of dependent variables effectively
-discriminates among model types.}
+ecological network metrics for six model types. Each point represents a
+replicate, and ellipses indicate 95\% confidence regions for each model.
+The second column represents the correlation of the various network
+metrics with the respective LDA axes.}
 
 \end{figure}
 \efloatseparator
@@ -74,21 +68,6 @@ dissimilarity in inferred interactions. The diagonal is omitted. High
 turnover values (yellow) indicate strong disagreement in network
 structure between models, whereas lower values (blue--purple) indicate
 greater similarity.}
-
-\end{figure}
-\efloatseparator
- 
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures/time_structure.png}}
-
-}
-
-\caption{\label{fig-dunhill}stuff\ldots{} Recreation of the figure from
-Dunhill 2024. I think it makes sense to split and divide into the below
-sections (depending on potential figure limitations of target journal)}
 
 \end{figure}
 \efloatseparator
