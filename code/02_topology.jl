@@ -5,7 +5,7 @@ using JLD2
 include("lib/internals.jl")
 
 # import networks object
-networks = load_object("data/processed/networks.jlds")
+networks = load_object("../data/processed/networks.jlds")
 
 topology = DataFrame(
     model = String[],
@@ -38,4 +38,4 @@ for i = 1:nrow(networks)
 end
 
 # write summaries as .csv
-CSV.write("data/processed/topology.csv", topology)
+CSV.write("../data/processed/topology.csv", topology)
