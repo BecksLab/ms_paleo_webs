@@ -10,7 +10,7 @@
 <meta name="author" content="Baran Karapunar">
 <meta name="author" content="Andrew P. Beckerman">
 <meta name="author" content="Alexander Dunhill">
-<meta name="dcterms.date" content="2025-11-24">
+<meta name="dcterms.date" content="2025-11-27">
 <meta name="keywords" content="food web, network construction">
 
 <title>Methods for Reconstructing Paleo Food Webs</title>
@@ -102,17 +102,17 @@ window.Quarto = {
 </script>
 
 <meta name="citation_title" content="Methods for Reconstructing Paleo Food Webs">
-<meta name="citation_abstract" content="Food webs represent the feeding relationships between species and can help infer ecosystem-level processes. Alongside the development of food web theory, methods for constructing food webs have been developed to infer species interactions when empirical data is lacking. Food web construction methods are diverse, each utilising different approaches to infer species interactions —such as the use of traits to infer mechanistic relationships vs using gut content as a proxy for species diets. These methods have distinct theories, mechanisms, and data requirements. In paleoecology, where direct evidence of feeding interactions are rare, food web construction methods are especially valuable and affords us the opportunity to make inferences about paleo communities beyond simply a record of species composition. However, the limitations of paleontological data (e.g., information of species traits is limited to that which can be preserved) restrict which methods can reliably be used. By considering both ecological theory and the constraints of what can be derived from the fossil record, we identify the methods best suited for the construction of paleo food webs. Specifically, we focus on how these methods differ in the networks they produce and what these networks can reveal about species interactions. In doing so we hope to clarify the ecological nuances of network prediction and help prevent the accidental misuse or misinterpretation of paleo food webs.
+<meta name="citation_abstract" content="Food webs provide a powerful lens for understanding ecosystem structure and function, but reconstructing them in paleoecological contexts remains challenging because direct evidence of feeding interactions is rarely preserved. A wide range of models now exist for predicting interactions and inferring network structure, yet these models differ substantially in their assumptions, mechanisms, and data requirements. Here, we evaluate which network construction approaches are most suitable for paleo food webs given the constraints of the fossil record, and we assess how model choice influences the networks we infer. Using the Toarcian Oceanic Anoxic Event as a case study, we compare six modelling approaches encompassing mechanistic, structural, and theory-based methods. We show that the models produce strikingly different network structures and pairwise interactions, and that these differences propagate into ecological inference—including conclusions about extinction dynamics. Our results highlight the importance of aligning model choice with research questions and underscore the interpretative risks of treating all food-web reconstruction methods as interchangeable.
 ">
 <meta name="citation_keywords" content="food web,network construction">
 <meta name="citation_author" content="Tanya Strydom">
 <meta name="citation_author" content="Baran Karapunar">
 <meta name="citation_author" content="Andrew P. Beckerman">
 <meta name="citation_author" content="Alexander Dunhill">
-<meta name="citation_publication_date" content="2025-11-24">
-<meta name="citation_cover_date" content="2025-11-24">
+<meta name="citation_publication_date" content="2025-11-27">
+<meta name="citation_cover_date" content="2025-11-27">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-11-24">
+<meta name="citation_online_date" content="2025-11-27">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a Mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -223,7 +223,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">November 24, 2025</p>
+              <p class="date">November 27, 2025</p>
             </div>
           </div>
           
@@ -237,7 +237,7 @@ window.Quarto = {
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p>Food webs represent the feeding relationships between species and can help infer ecosystem-level processes. Alongside the development of food web theory, methods for constructing food webs have been developed to infer species interactions when empirical data is lacking. Food web construction methods are diverse, each utilising different approaches to infer species interactions —such as the use of traits to infer mechanistic relationships vs using gut content as a proxy for species diets. These methods have distinct theories, mechanisms, and data requirements. In paleoecology, where direct evidence of feeding interactions are rare, food web construction methods are especially valuable and affords us the opportunity to make inferences about paleo communities beyond simply a record of species composition. However, the limitations of paleontological data (e.g., information of species traits is limited to that which can be preserved) restrict which methods can reliably be used. By considering both ecological theory and the constraints of what can be derived from the fossil record, we identify the methods best suited for the construction of paleo food webs. Specifically, we focus on how these methods differ in the networks they produce and what these networks can reveal about species interactions. In doing so we hope to clarify the ecological nuances of network prediction and help prevent the accidental misuse or misinterpretation of paleo food webs.</p>
+        <p>Food webs provide a powerful lens for understanding ecosystem structure and function, but reconstructing them in paleoecological contexts remains challenging because direct evidence of feeding interactions is rarely preserved. A wide range of models now exist for predicting interactions and inferring network structure, yet these models differ substantially in their assumptions, mechanisms, and data requirements. Here, we evaluate which network construction approaches are most suitable for paleo food webs given the constraints of the fossil record, and we assess how model choice influences the networks we infer. Using the Toarcian Oceanic Anoxic Event as a case study, we compare six modelling approaches encompassing mechanistic, structural, and theory-based methods. We show that the models produce strikingly different network structures and pairwise interactions, and that these differences propagate into ecological inference—including conclusions about extinction dynamics. Our results highlight the importance of aligning model choice with research questions and underscore the interpretative risks of treating all food-web reconstruction methods as interchangeable.</p>
       </div>
     </div>
 
@@ -256,31 +256,38 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#constructing-paleo-webs" id="toc-constructing-paleo-webs" class="nav-link active" data-scroll-target="#constructing-paleo-webs"><span class="header-section-number">1</span> Constructing paleo webs</a></li>
-  <li><a href="#challenges-specific-to-building-paleo-networks" id="toc-challenges-specific-to-building-paleo-networks" class="nav-link" data-scroll-target="#challenges-specific-to-building-paleo-networks"><span class="header-section-number">2</span> Challenges specific to building paleo networks</a>
+  <li><a href="#constructing-paleo-webs" id="toc-constructing-paleo-webs" class="nav-link active" data-scroll-target="#constructing-paleo-webs"><span class="header-section-number">1</span> Constructing paleo webs</a>
   <ul class="collapse">
-  <li><a href="#understanding-the-approaches-to-network-construction" id="toc-understanding-the-approaches-to-network-construction" class="nav-link" data-scroll-target="#understanding-the-approaches-to-network-construction"><span class="header-section-number">2.1</span> Understanding the approaches to network construction</a></li>
+  <li><a href="#challenges-specific-to-building-paleo-networks" id="toc-challenges-specific-to-building-paleo-networks" class="nav-link" data-scroll-target="#challenges-specific-to-building-paleo-networks"><span class="header-section-number">1.1</span> Challenges specific to building paleo networks</a></li>
+  <li><a href="#understanding-the-approaches-to-network-construction" id="toc-understanding-the-approaches-to-network-construction" class="nav-link" data-scroll-target="#understanding-the-approaches-to-network-construction"><span class="header-section-number">1.2</span> Understanding the approaches to network construction</a></li>
   </ul></li>
-  <li><a href="#case-study-toarcian-mass-extinction-event" id="toc-case-study-toarcian-mass-extinction-event" class="nav-link" data-scroll-target="#case-study-toarcian-mass-extinction-event"><span class="header-section-number">3</span> Case study: Toarcian mass extinction event</a>
+  <li><a href="#case-study-toarcian-mass-extinction-event" id="toc-case-study-toarcian-mass-extinction-event" class="nav-link" data-scroll-target="#case-study-toarcian-mass-extinction-event"><span class="header-section-number">2</span> Case study: Toarcian mass extinction event</a>
   <ul class="collapse">
-  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">3.1</span> Dataset overview</a>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview"><span class="header-section-number">2.1</span> Dataset overview</a>
   <ul class="collapse">
-  <li><a href="#species-occurrence" id="toc-species-occurrence" class="nav-link" data-scroll-target="#species-occurrence"><span class="header-section-number">3.1.1</span> Species occurrence</a></li>
-  <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">3.1.2</span> Defining modes of life (traits)</a></li>
-  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">3.1.3</span> Constructing networks</a></li>
+  <li><a href="#species-occurrence" id="toc-species-occurrence" class="nav-link" data-scroll-target="#species-occurrence"><span class="header-section-number">2.1.1</span> Species occurrence</a></li>
+  <li><a href="#defining-modes-of-life-traits" id="toc-defining-modes-of-life-traits" class="nav-link" data-scroll-target="#defining-modes-of-life-traits"><span class="header-section-number">2.1.2</span> Defining modes of life (traits)</a></li>
+  <li><a href="#constructing-networks" id="toc-constructing-networks" class="nav-link" data-scroll-target="#constructing-networks"><span class="header-section-number">2.1.3</span> Constructing networks</a></li>
   </ul></li>
-  <li><a href="#models-capture-different-network-structure-but-in-unexpected-ways" id="toc-models-capture-different-network-structure-but-in-unexpected-ways" class="nav-link" data-scroll-target="#models-capture-different-network-structure-but-in-unexpected-ways"><span class="header-section-number">3.2</span> Models capture different network structure but in unexpected ways</a></li>
-  <li><a href="#some-networks-dont-share-any-interactions-and-some-share-a-lot" id="toc-some-networks-dont-share-any-interactions-and-some-share-a-lot" class="nav-link" data-scroll-target="#some-networks-dont-share-any-interactions-and-some-share-a-lot"><span class="header-section-number">3.3</span> Some networks don’t share any interactions and some share a lot</a></li>
-  <li><a href="#model-choice-changes-the-narrative" id="toc-model-choice-changes-the-narrative" class="nav-link" data-scroll-target="#model-choice-changes-the-narrative"><span class="header-section-number">3.4</span> Model choice changes the narrative</a>
+  <li><a href="#models-capture-different-network-structure-but-in-unexpected-ways" id="toc-models-capture-different-network-structure-but-in-unexpected-ways" class="nav-link" data-scroll-target="#models-capture-different-network-structure-but-in-unexpected-ways"><span class="header-section-number">2.2</span> Models capture different network structure but in unexpected ways</a></li>
+  <li><a href="#some-networks-dont-share-any-interactions-and-some-share-a-lot" id="toc-some-networks-dont-share-any-interactions-and-some-share-a-lot" class="nav-link" data-scroll-target="#some-networks-dont-share-any-interactions-and-some-share-a-lot"><span class="header-section-number">2.3</span> Some networks don’t share any interactions and some share a lot</a></li>
+  <li><a href="#model-choice-changes-the-narrative" id="toc-model-choice-changes-the-narrative" class="nav-link" data-scroll-target="#model-choice-changes-the-narrative"><span class="header-section-number">2.4</span> Model choice changes the narrative</a>
   <ul class="collapse">
-  <li><a href="#trends-over-time" id="toc-trends-over-time" class="nav-link" data-scroll-target="#trends-over-time"><span class="header-section-number">3.4.1</span> Trends over time</a></li>
-  <li><a href="#inferred-extinction-drivers" id="toc-inferred-extinction-drivers" class="nav-link" data-scroll-target="#inferred-extinction-drivers"><span class="header-section-number">3.4.2</span> Inferred extinction drivers</a></li>
+  <li><a href="#inferred-extinction-drivers" id="toc-inferred-extinction-drivers" class="nav-link" data-scroll-target="#inferred-extinction-drivers"><span class="header-section-number">2.4.1</span> Inferred extinction drivers</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#discussion-need-a-catchier-heading" id="toc-discussion-need-a-catchier-heading" class="nav-link" data-scroll-target="#discussion-need-a-catchier-heading"><span class="header-section-number">4</span> Discussion (need a catchier heading)</a></li>
+  <li><a href="#model-choice-as-an-ecological-inference-decision" id="toc-model-choice-as-an-ecological-inference-decision" class="nav-link" data-scroll-target="#model-choice-as-an-ecological-inference-decision"><span class="header-section-number">3</span> Model Choice as an Ecological Inference Decision</a>
+  <ul class="collapse">
+  <li><a href="#what-our-results-demonstrate-about-model-families" id="toc-what-our-results-demonstrate-about-model-families" class="nav-link" data-scroll-target="#what-our-results-demonstrate-about-model-families"><span class="header-section-number">3.1</span> What our results demonstrate about model families</a></li>
+  <li><a href="#consequences-for-interpreting-paleoecological-dynamics" id="toc-consequences-for-interpreting-paleoecological-dynamics" class="nav-link" data-scroll-target="#consequences-for-interpreting-paleoecological-dynamics"><span class="header-section-number">3.2</span> Consequences for interpreting paleoecological dynamics</a></li>
+  <li><a href="#aligning-ecological-questions-with-model-choice" id="toc-aligning-ecological-questions-with-model-choice" class="nav-link" data-scroll-target="#aligning-ecological-questions-with-model-choice"><span class="header-section-number">3.3</span> Aligning ecological questions with model choice</a></li>
+  <li><a href="#implications-for-the-use-of-food-webs-in-paleoecology" id="toc-implications-for-the-use-of-food-webs-in-paleoecology" class="nav-link" data-scroll-target="#implications-for-the-use-of-food-webs-in-paleoecology"><span class="header-section-number">3.4</span> Implications for the use of food webs in paleoecology</a></li>
+  <li><a href="#recommendations-and-best-practices" id="toc-recommendations-and-best-practices" class="nav-link" data-scroll-target="#recommendations-and-best-practices"><span class="header-section-number">3.5</span> Recommendations and best practices</a></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks"><span class="header-section-number">3.6</span> Concluding remarks</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/contemporary_webs-preview.html"><i class="bi bi-journal-code"></i>SuppMat 1: Comparing models using contemporary food webs</a></li><li><a href="notebooks/model_sumaries-preview.html"><i class="bi bi-journal-code"></i>SuppMat 1: Expanded descriptions of the food web models</a></li></ul></div></nav>
+</nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
@@ -291,17 +298,17 @@ window.Quarto = {
   
 
 
-<p>There has been a growing interest in understanding community responses to environmental changes across deep time events as a means to help understand current and future biodiversity changes <span class="citation" data-cites="kiessling2019 dillon2022">(<a href="#ref-kiessling2019" role="doc-biblioref">Kiessling et al. 2019</a>; <a href="#ref-dillon2022" role="doc-biblioref">Dillon et al. 2022</a>)</span>. Species interactions and the resulting networks have gained popularity in contemporary settings as a means to help us to understand aspects of community composition and biodiversity (eg <span class="citation" data-cites="thuiller2024">Thuiller et al. (<a href="#ref-thuiller2024" role="doc-biblioref">2024</a>)</span> and ??) and so it is perhaps unsurprising that there has been a growing interest in using paleo food webs in a similar manner <span class="citation" data-cites="dunhill2024 hao2025 yeakel2014">(<em>e.g.,</em> <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> looked at…; <a href="#ref-hao2025" role="doc-biblioref">Hao et al. 2025</a> looked at…; <a href="#ref-yeakel2014" role="doc-biblioref">Yeakel et al. 2014</a> looked at…)</span>. However, one of the core challenges and limitations of being able to effectively <em>use</em> food webs is the challenge of <em>creating</em> them <span class="citation" data-cites="jordano2016">(<a href="#ref-jordano2016" role="doc-biblioref">Jordano 2016</a>)</span>, although this is a challenge within contemporary settings it is compounded in paleo contexts where, in the absence of being able to observe interactions, we are dependent on the fossil record (and the inherent limitation it imposes) to infer interactions. As a way to address the challenges with recording species interactions there has been the development of a large number of models and tools that can be used to infer either species interactions <span class="citation" data-cites="morales-castilla2015 pichler2023 strydom2021">(see <em>e.g.,</em> <a href="#ref-morales-castilla2015" role="doc-biblioref">Morales-Castilla et al. 2015</a>; <a href="#ref-pichler2023" role="doc-biblioref">Pichler and Hartig 2023</a>; <a href="#ref-strydom2021" role="doc-biblioref">Strydom et al. 2021</a> for broader reviews)</span> or networks <span class="citation" data-cites="allesina2008">(see <em>e.g.,</em> <a href="#ref-allesina2008" role="doc-biblioref">Allesina, Alonso, and Pascual 2008</a>)</span>. Although there has been the development of models and tools that are specific for inferring paleo food webs <span class="citation" data-cites="shaw2024 roopnarine2006 fricke2022">(<em>e.g.,</em> <a href="#ref-shaw2024" role="doc-biblioref">Shaw et al. 2024</a>; <a href="#ref-roopnarine2006" role="doc-biblioref">Peter D. Roopnarine 2006</a>; <a href="#ref-fricke2022" role="doc-biblioref">Fricke et al. 2022</a>)</span>, it should be noted that these models only occupy a subset of the broader family of approaches that are used to predict networks, as they typically only focus on assessing the feasibility of interactions between species. Being able to construct only one ‘type’ of network means that we are limited in the scope of questions that we can appropriately answer with those networks [see Strydom in prep; <span class="citation" data-cites="gauzens2025">Gauzens et al. (<a href="#ref-gauzens2025" role="doc-biblioref">2025</a>)</span>]. However, there is scope that models and tools that have been developed in contemporary settings have the potential to be used for paleo settings <span class="citation" data-cites="yeakel2014">(<em>e.g.,</em> <a href="#ref-yeakel2014" role="doc-biblioref">Yeakel et al. 2014</a>)</span>, which opens the door for researchers to ask a broader and more complete range of questions about community responses to environmental change.</p>
-<p>Here we aim to provide an overview of the different models that can be used to construct food webs using paleo data. Specifically we focus on identifying a suite of models that are appropriate for use with paleo data that can feasibly be constructed within the limitations that are imposed by fossil data while still spanning the larger network space. Additionally we use the data from <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span> as a case study to understand how different models recover different networks, both in terms of structure as well as pairwise interactions and establish if there are consequences for using networks that are constructed using different models in terms of making inferences about the behaviour of the system by looking at how the model type influences what we infer to be the dominant driver of extinctions across a mass extinction event.</p>
+<p>There has been growing interest in using deep-time fossil data to understand how ecological communities respond to environmental change <span class="citation" data-cites="kiessling2019 dillon2022">(<a href="#ref-kiessling2019" role="doc-biblioref">Kiessling et al. 2019</a>; <a href="#ref-dillon2022" role="doc-biblioref">Dillon et al. 2022</a>)</span>. In modern systems, species interactions and the networks that they form have become central to studying biodiversity, energy flow, and community stability (<em>e.g.,</em> <span class="citation" data-cites="thuiller2024">Thuiller et al. (<a href="#ref-thuiller2024" role="doc-biblioref">2024</a>)</span>). Consequently, paleoecologists have increasingly sought to reconstruct ancient food webs to gain similar insights across major environmental transitions (<em>e.g.,</em> <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>; <span class="citation" data-cites="hao2025">Hao et al. (<a href="#ref-hao2025" role="doc-biblioref">2025</a>)</span>; <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>). However, we are faced by the limitation that interactions cannot be directly observed in the fossil record (with the exception of rare instances) and as a result, the construction of paleo food webs depends on models that allow us to infer feeding relationships from preserved traits, analogies to modern taxa, or ecological theory. While numerous models exist for predicting interactions (see <span class="citation" data-cites="morales-castilla2015">Morales-Castilla et al. (<a href="#ref-morales-castilla2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="pichler2023">Pichler and Hartig (<a href="#ref-pichler2023" role="doc-biblioref">2023</a>)</span>; <span class="citation" data-cites="strydom2021">Strydom et al. (<a href="#ref-strydom2021" role="doc-biblioref">2021</a>)</span>; <span class="citation" data-cites="allesina2008">Allesina, Alonso, and Pascual (<a href="#ref-allesina2008" role="doc-biblioref">2008</a>)</span> for broader reviews), only a subset can reliably be applied in paleo contexts, where data on traits, abundances, and community composition are inherently incomplete and biased.</p>
+<p>The growing interest in paleo food webs has outpaced a clear discussion of <em>which</em> construction methods are suitable for which purposes. Different models generate different kinds of networks (feasible, realised, or purely structural) and these differences can fundamentally alter ecological interpretations. In this study, we evaluate a suite of methods that can be feasibly applied to paleo communities and explore how their underlying assumptions shape both network structure and ecological inference. Specifically we focus on identifying a suite of models that are appropriate for use with paleo data that can feasibly be constructed within the limitations that are imposed by fossil data while still spanning the larger network space. Here we use the data from <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span> as a case study to understand how different models recover different networks, both in terms of structure as well as pairwise interactions and establish if there are consequences for using networks that are constructed using different models in terms of making inferences about the behaviour of the system by looking at how the model type influences what we infer to be the dominant driver of extinctions across a mass extinction event.</p>
 <section id="constructing-paleo-webs" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Constructing paleo webs</h1>
+<section id="challenges-specific-to-building-paleo-networks" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="challenges-specific-to-building-paleo-networks"><span class="header-section-number">1.1</span> Challenges specific to building paleo networks</h2>
+<p>Reconstructing paleo food webs presents challenges that differ from those encountered in modern systems. First, the fossil record provides an incomplete and selectively preserved subset of the original community. Preservation biases (driven by habitat, skeletal composition, and sedimentary environment) mean that some trophic groups are over-represented (<em>e.g.,</em> hard-shelled organisms), while others (<em>e.g.,</em> soft-bodied taxa, plankton) are systematically under-sampled. This directly constrains the kinds of models that can be applied, because models requiring complete assemblages or accurate guild representation will perform poorly when preservation is uneven. Second, there is inherent uncertainty about the true community boundaries. Fossil assemblages may represent time-averaged accumulations, transported material, or mixed habitats. As a result, any species list is best interpreted as a set of taxa that could have interacted, rather than a snapshot of a specific subset of interaction species. Third, many extinct taxa have ambiguous trait states, especially regarding diet and behaviour. Even when functional morphology is preserved, ecological behaviour is seldom directly evident. Such uncertainty propagates differently across model families: mechanistic models tend to accommodate broad trait assignments, whereas theory-driven models are more sensitive to uncertainty in body size, foraging mode, or feeding constraints. These limitations do not render reconstruction impossible but highlight the importance of choosing a model whose assumptions match the type of ecological inference being attempted.</p>
 </section>
-<section id="challenges-specific-to-building-paleo-networks" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Challenges specific to building paleo networks</h1>
-<p>Although there has been a push for the development of tools and methods that allow us to predict species interactions and networks they will not all be suitable for the prediction of paleo communities. This is primarily due to limitations that we are faced with in terms of the information that can be inferred from the fossil record (such as species traits, abundances, and assemblages), which is needed as input data for the different models. The limited information available from the fossil record is compounded by the incomplete and biased preservation of species [REF], which part of a species is preserved (part vs whole), the ambiguity of the ‘true’ community composition [were communities conserved <em>in situ</em> or were they there owing to geological processes?; REF], as well as the availability/accessibility of different rock layers (and thus the completeness of data we might have for a specific era in time). Additionally there is an increasing degree of ‘fuzziness’ around the ecology and life histories of species the further one moves back in geological time [REF]. This is not to say that because we have imperfect data we should not be attempting to construct paleo food webs but rather that we need to be aware of what the uncertainties are and how these might impact the assumptions that we need to make when constructing a network (as well as how this will intersect with the intended end use of the network). This will allow us to best identify an approach that minimises the assumption and potential uncertainties within the data while still constructing a suitable network. This includes thinking about both assumptions you are making about the actual data <em>e.g.,</em> trying to extrapolate body size from fossil data but also assumptions across time <em>e.g.,</em> assuming modern trait-feeding modes are the same or that assumptions about network structure will hold across deep time.</p>
-<section id="understanding-the-approaches-to-network-construction" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="understanding-the-approaches-to-network-construction"><span class="header-section-number">2.1</span> Understanding the approaches to network construction</h2>
-<p>Broadly we can think about network construction as being nested within two different schools of thought (and thus methodological approaches, <a href="#fig-concept" class="quarto-xref">Figure&nbsp;1</a>), models that focus on assessing the <em>mechanistic</em> feasibility of an interaction being able to occur between two species or models that are more closely married to specific bodies of ecological <em>theory</em> - such as niche theory or foraging ecology. The former of which will construct ‘metawebs’ and the latter ‘realised networks’ [Strydom et al in prep]. Models that have specifically been developed in the paleo space tend to be mechanistic in nature in that they focus on using a trait-based approach to formalise feeding interactions (<em>e.g.,</em> <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>; <span class="citation" data-cites="roopnarine2006">Peter D. Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>), are assembled by expert opinion (<em>e.g.</em> <span class="citation" data-cites="dunne2014">Dunne, Labandeira, and Williams (<a href="#ref-dunne2014" role="doc-biblioref">2014</a>)</span>), or make assumptions based on the evolutionary signals of interactions (<em>e.g.,</em> <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span>). Thus paleo models typically only construct metawebs, and there is the need for the intentional adoption of theoretical models if we want to realise the full potential of questions and information that we can glean from the fossil record. However, there is an argument that the fundamental ‘currencies of life’ to have remained constant - <em>e.g.,</em> the energetic constraints of foraging or foraging niches, meaning that theoretical models that have been developed and tested on contemporary food webs should still hold for paleo communities.</p>
+<section id="understanding-the-approaches-to-network-construction" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="understanding-the-approaches-to-network-construction"><span class="header-section-number">1.2</span> Understanding the approaches to network construction</h2>
+<p>Network construction approaches can be broadly grouped into three methodological and conceptual approaches <a href="#fig-concept" class="quarto-xref">Figure&nbsp;1</a>. The first are&nbsp;mechanistic models evaluate whether an interaction is&nbsp;<em>feasibly possible</em>. These models typically use trait-based rules (<em>e.g.,</em> feeding mode, body size, or functional morphology) or evolutionary relationships to determine whether a species&nbsp;<em>could</em>&nbsp;consume another. Mechanistic approaches tend to produce metawebs - the full set of all plausible interactions given biological constraints. Theory-driven models, embed assumptions from ecological theory (such as niche theory or foraging ecology) to generate realised interactions and networks. Structural models are similar to theory-driven models, with the exception that these models are species agnostic and as such can only be used to make inferences about network structure. Both theory-driven and structural models aim to reproduce characteristic patterns observed in modern food webs, such as intervality, trophic hierarchies, or body-size-scaled feeding ranges. They do not necessarily require detailed trait information and instead rely on ecological rules or statistical distributions consistent with empirical food webs.</p>
 <div id="fig-concept" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-concept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -312,11 +319,11 @@ Figure&nbsp;1: This obviously needs work but a variation on this to try and arti
 </figcaption>
 </figure>
 </div>
-<p>Here we present six different models (<a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a>) that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements fall within the limitations set by the fossil record.</p>
+<p>Most existing paleo-specific approaches fall within the mechanistic tradition (e.g., <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>; <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>; <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span>). While these are well-suited for reconstructing feasible interactions, they represent only a subset of the broader space of network construction methods. Incorporating theory-driven models allows paleoecologists to explore realised interaction structures and address a wider suite of ecological questions—provided their assumptions are compatible with the limitations of fossil data. Here we present a range of models <a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a> that carry specific assumptions and data requirements. For instance, allometric models depend on quantitative body-size estimates, which must be inferred from size classes or functional morphology in the fossil record. Structural models such as the niche model require only richness and connectance, but their species-agnostic nature limits their usefulness for trait-based or diet-specific questions. Mechanistic models rely on accurate assignment of feeding traits, which may be uncertain for extinct taxa but are often more tractable than estimating abundances or interaction strengths. Understanding how these limitations intersect with what fossil data can reliably provide is essential for selecting an appropriate modelling approach.</p>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: A summary of the different families of tools that can be used to generate paleo food webs.
+Table&nbsp;1: Six different models that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements fall within the limitations set by the fossil record.
 </figcaption>
 <div aria-describedby="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -394,26 +401,26 @@ Table&nbsp;1: A summary of the different families of tools that can be used to g
 </div>
 </section>
 </section>
-<section id="case-study-toarcian-mass-extinction-event" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Case study: Toarcian mass extinction event</h1>
-<section id="dataset-overview" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">3.1</span> Dataset overview</h2>
-<section id="species-occurrence" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="species-occurrence"><span class="header-section-number">3.1.1</span> Species occurrence</h3>
-<p>Here we use the fossil occurrence data over an interval extends from the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(see <a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a> for a more comprehensive overview)</span>. The data set consists of a subset of four broad time periods (pre-extinction, post-extinction, early recovery, and late recovery). The assemblages are treated as communities of interacting organisms. Something about the total number of taxa as well as numbers per a time period? Probbaly also make a comment that this is a ‘deep time’ community we are looking at.</p>
+<section id="case-study-toarcian-mass-extinction-event" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Case study: Toarcian mass extinction event</h1>
+<section id="dataset-overview" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="dataset-overview"><span class="header-section-number">2.1</span> Dataset overview</h2>
+<section id="species-occurrence" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="species-occurrence"><span class="header-section-number">2.1.1</span> Species occurrence</h3>
+<p>We used fossil occurrence data spanning the upper Pliensbachian (~185 Ma) to the upper Toarcian (~175 Ma) of the Cleveland Basin, following <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span> . The dataset comprises four paleo-communities representing the pre-extinction, post-extinction, early recovery, and late recovery intervals of the Toarcian Oceanic Anoxic Event. Each assemblage was treated as a community of potentially interacting taxa. <strong><em>([Insert here]: total number of taxa; numbers per time bin; brief note on sampling completeness?)</em></strong> Although the Toarcian occurs within “deep time,” the depositional environment of the Cleveland Basin provides an unusually well-resolved record of community change, making it a suitable system for comparing network reconstruction methods.</p>
 </section>
-<section id="defining-modes-of-life-traits" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">3.1.2</span> Defining modes of life (traits)</h3>
+<section id="defining-modes-of-life-traits" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="defining-modes-of-life-traits"><span class="header-section-number">2.1.2</span> Defining modes of life (traits)</h3>
 <p>We used the modes of life (traits) as identified in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, who defined four traits: motility (fast, slow, facultative, non-motile), tiering (pelagic, erect, surficial, semi-infaunal, shallow infaunal, deep infaunal), feeding (predator, suspension feeder, deposit feeder, mining, grazer), and size: gigantic (&gt;500 mm), very large (&gt;300–500 mm), large (&gt;100–300 mm), medium (&gt;50–100 mm), small (&gt;10–50 mm), tiny (≤10 mm), for each fossil species based on the ecological traits defined in the Bambach ecospace model <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach, Bush, and Erwin 2007</a>)</span>.</p>
 </section>
-<section id="constructing-networks" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">3.1.3</span> Constructing networks</h3>
-<p>For each paleo community (time bin) we constructed <strong>100</strong> networks for each model (so 6 * 100) networks. These networks were simplified so as to remove any disconnected species. In total 2 400 networks were constructed. When a quantitative measure of body size is needed (ADBM, body size ratio, and l-matrix) we drew a body mass for each species from a uniform distribution, with ranges being defined by the different size classes <em>e.g.,</em> a species classed as ‘very large’ would have a body mass drawn from <span class="math inline">\(U(300, 500)\)</span>. This was repeated for each run in order to add variation to the networks constructed, however the same body sizes were kept consistent for the relevant models <em>i.e.,</em> an ADBM and l-matrix network from the same replicate have the same bodysizes. For both the random and niche model the desired connectance was randomly selected between the range 0.07 - 0.15 for each replicate but kept consistent for both models. For each network we calculated the properties listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a></p>
+<section id="constructing-networks" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="constructing-networks"><span class="header-section-number">2.1.3</span> Constructing networks</h3>
+<p>For each paleo community, we constructed 100 networks using each of the modles listed in <a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a> (6 models × 4 time intervals × 100 replicates = 2,400 networks). Networks were then simplified by removing disconnected species, ensuring that all nodes participated in at least one interaction. Models requiring body-size inputs (ADBM, l-matrix, and body-size ratio models) were parameterised by drawing body masses from uniform distributions bounded by the size-class limits assigned in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>. This approach propagates uncertainty inherent in fossil size estimates while preserving consistent relative sizes among species within a replicate. For each replicate, the same set of body masses was used across models that depend on size. For structural models (random and niche), connectance was drawn uniformly from 0.07–0.34 to ensure networks spanned a realistic range of empirical food-web connectances, while holding richness constant. The same connectance value was used for both models within a replicate to facilitate direct comparison. For each network, we calculated the metrics listed in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a>, capturing macro-, meso-, and micro-scale structural properties.</p>
 </section>
 </section>
-<section id="models-capture-different-network-structure-but-in-unexpected-ways" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="models-capture-different-network-structure-but-in-unexpected-ways"><span class="header-section-number">3.2</span> Models capture different network structure but in unexpected ways</h2>
-<p>Broadly when we talk about quantifying the structure of a network we are interesting in capturing some aspect of how the links are distributed between nodes, or alternatively about properties of the nodes. Structure is useful as it is gives information as to how the interactions between species are distributed within the community, informing us on <em>e.g.,</em> energy flows and fluxes [REF], propagation of stress [REF], and something about trophic levels [REF]. We are also able to glean information on interaction strategies between smaller interacting units in the bigger community in the form of motifs <span class="citation" data-cites="milo2002 stouffer2007">(<a href="#ref-milo2002" role="doc-biblioref">Milo et al. 2002</a>; <a href="#ref-stouffer2007" role="doc-biblioref">Stouffer et al. 2007</a>)</span>. Motifs allow us to identify <em>e.g.,</em> the prevalence of competition, as well as smaller chains within the network. Node-level properties look at the the number of links coming in to (prey) or out of (predators) a node and are informative of diet specialisation.</p>
+<section id="models-capture-different-network-structure-but-in-unexpected-ways" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="models-capture-different-network-structure-but-in-unexpected-ways"><span class="header-section-number">2.2</span> Models capture different network structure but in unexpected ways</h2>
+<p>When quantifying network structure, we are essentially asking how interactions are distributed across species and how these patterns scale from individual nodes to the whole community. Structural metrics are informative because they reflect underlying ecological processes: how energy flows through trophic levels, how disturbances propagate, where redundancy or fragility exists, and how species specialise or generalise in their diets. To capture these different facets, we evaluated a suite of macro-, meso-, and micro-scale metrics <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a>, ranging from global properties like connectance and complexity to motifs and species-level generality and vulnerability.</p>
 <div id="tbl-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -519,85 +526,8 @@ Table&nbsp;2: Network properties used for analysis.
 </div>
 </figure>
 </div>
-<p>In terms of wanting to asses and compare across the different models it is beneficial to approach this task by thinking about the different aspects of the network as well as interactions that are being predicted by the different models across different ‘scales’ of organisation within the network, namely macro (the entire network), meso (smaller interacting units within the network), and micro (species-level attributes). Although there are a myriad of possible ways to ‘measure’ and analyse ecological networks <span class="citation" data-cites="delmas2018">(<a href="#ref-delmas2018" role="doc-biblioref">Delmas et al. 2018</a>)</span> we have selected those outlined in <a href="#tbl-properties" class="quarto-xref">Table&nbsp;2</a> as they span different scales within thr network and have been shown to be informative of different ecological processes.</p>
-<p>Here we used a Multivariate Analysis Of Variance (MANOVA) to assess the differences between networks generated by different models based on the combined information of the multiple structural network measures. Model defined as <code>network structure values ~ model</code> additionally we used a Linear Discriminant Analysis (LDA) to determine if different models produced networks with differing structure. In order to do the MANOVA and LDA we had to create within model variation for the different networks, with the exception of the PFIM model all models have some inherent variation. In order to generate variation within the PFIM metawebs we applied a <em>minimal</em> degree of downsampling following the protocol described in <span class="citation" data-cites="roopnarine2017">Peter D. Roopnarine (<a href="#ref-roopnarine2017" role="doc-biblioref">2017</a>)</span>. This downsampling approach uses a power law distribution to essentially ‘prune’ links from the most generalist species (See SUPP MATT for a more detailed overview).</p>
-<p>The multivariate effect of model was statistically significant, Pillai’s Trace = 3.89, F(45, 11 950) = 925.64, p &lt; .001, indicating systematic differences across multiple ecological or network properties simultaneously. Follow-up univariate ANOVAs revealed that model type had significant effects on all nine dependent variables <a href="#tbl-manova" class="quarto-xref">Table&nbsp;3</a>, show that the network structure differed markedly across the model types on every measured dimension. Model type accounts for the vast majority of variance in most network metrics (66%–92%), indicating profound differences in structure between models. The only exception is trophic level (η² = .19), which still shows a large effect but is much smaller relative to the other metrics.</p>
-<div id="tbl-manova" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-manova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Manova/univariate ANOVA results.
-</figcaption>
-<div aria-describedby="tbl-manova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Metric</th>
-<th>F(df = 5, 2394)</th>
-<th>df</th>
-<th>partial η²</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Connectance</td>
-<td>2717.8</td>
-<td>5</td>
-<td>0.85</td>
-</tr>
-<tr class="even">
-<td>Complexity</td>
-<td>2356.6</td>
-<td>5</td>
-<td>0.83</td>
-</tr>
-<tr class="odd">
-<td>Max trophic level</td>
-<td>108.86</td>
-<td>5</td>
-<td>0.19</td>
-</tr>
-<tr class="even">
-<td>Generality</td>
-<td>5646</td>
-<td>5</td>
-<td>0.92</td>
-</tr>
-<tr class="odd">
-<td>Vulnerability</td>
-<td>3266.9</td>
-<td>5</td>
-<td>0.87</td>
-</tr>
-<tr class="even">
-<td>S1</td>
-<td>1968.5</td>
-<td>5</td>
-<td>0.80</td>
-</tr>
-<tr class="odd">
-<td>S2</td>
-<td>1527.5</td>
-<td>5</td>
-<td>0.76</td>
-</tr>
-<tr class="even">
-<td>S4</td>
-<td>940.79</td>
-<td>5</td>
-<td>0.66</td>
-</tr>
-<tr class="odd">
-<td>S5</td>
-<td>1919.4</td>
-<td>5</td>
-<td>0.80</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Post-hoc pairwise comparisons using Tukey-adjusted estimated marginal means further clarified the differences among models. The PFIM differed significantly from all other models (all p &lt; 0.001). The niche and random models are similar to each other, and the adbm and lmatrix were also similar to each other <a href="#fig-marginal" class="quarto-xref">Figure&nbsp;2</a>. This although there are clear structural difference between the models as a whole we still broadly see the grouping between the theoretical models (ADBM, l-matrix), structural models (Niche and Random), and a metaweb (PFIM). Although the bodymass ratio model deviates from this neat grouping it is perhaps not as surprising since this simplified version of the bodymass ratio model is strongly rooted in the niche-based processes that are also assumed in the Niche model and so it having some overlap with the other structural models is not that surprising.</p>
+<p>Despite being supplied with the same species pools, the different models generated networks with&nbsp;systematically different structural signatures. A MANOVA revealed a strong multivariate effect of model type on network structure (Pillai’s Trace = 3.89, p &lt; 0.001), indicating that each modelling approach produces a distinct ‘structural fingerprint’. Follow-up ANOVAs confirmed that model choice had substantial effects on every metric we examined, with effect sizes typically exceeding 0.80. The only exception was maximum trophic level (η² = 0.19), suggesting some convergence in vertical structure even when structure differs widely.</p>
+<p>Post-hoc comparisons <a href="#fig-marginal" class="quarto-xref">Figure&nbsp;2</a> revealed three broad clusters. PFIM consistently yielded the most connected, dense networks, reflecting its mechanistic emphasis on trait-based feasibility. Niche, random, and body-size ratio models formed an intermediate group, producing networks with moderate connectance and motif frequencies. ADBM and l-matrix formed a tight cluster characterised by constrained feeding ranges, reflecting their shared basis in energetic and allometric theory. Although these groupings broadly align with <em>a priori</em> expectations about model families, several patterns emerged that were less intuitive. Most notably, the body-size ratio model which is theoretically grounded but aligned more closely with structural models than with the fully allometric ones. This suggests that even slight differences in how body-size constraints are implemented can shift a model’s position within the network-structure landscape. A Linear Discriminant Analysis further illustrated the distinctiveness of the model families <a href="#fig-structure" class="quarto-xref">Figure&nbsp;3</a>. Classification accuracy of the LDA was 85%, demonstrating that the combination of dependent variables effectively discriminates among model types, indicating the strong imprint that model assumptions leave on inferred ecological patterns. The PFIM model is strongly separated, while ADBM and l-matrix networks cluster closely together. The niche and random models occupy intermediate positions. Importantly these results indicate that model choice is the dominant driver of inferred network structure, often overwhelming the ecological signal embedded within the species pool itself. Models designed to reproduce feasible interactions and those designed to generate realised niche structure occupy fundamentally different portions of ‘network space’, even when operating on identical taxa. Such structural divergences could have direct implications for ecological inference, particularly when comparing networks across time or when using network metrics to infer processes such as community stability, trophic organisation, or susceptibility to cascading extinctions.</p>
 <div id="fig-marginal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-marginal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -608,26 +538,22 @@ Figure&nbsp;2: Estimated marginal means (EMMs) of ecological network metrics acr
 </figcaption>
 </figure>
 </div>
-<p>From the LDA the first two discriminant functions explained 72% and 18% of the variance, respectively. Wilks’ λ indicated that the discriminant functions significantly differentiated among models (λ = 0.12, χ² = 1024, p &lt; 0.001). The LDA plot <a href="#fig-structure" class="quarto-xref">Figure&nbsp;3</a> shows clear separation of the pfim model from the others along LD1, with adbm and lmatrix clustering closely together, and niche and random occupying intermediate positions. Classification accuracy was 85%, confirming that the combination of dependent variables reliably distinguishes model types.</p>
 <div id="fig-structure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/MANOVA_lda.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Linear discriminant analysis (LDA) of ecological network metrics for six model types. The first two discriminant functions (LD1 and LD2) explain 72% and 18% of the variance, respectively. Each point represents a replicate, and ellipses indicate 95% confidence regions for each model. The PFIM model is strongly separated along LD1, reflecting the highest values of network metrics, while adbm and lmatrix cluster closely together, indicating similar, lower metric values. The niche and random models occupy intermediate positions. Classification accuracy of the LDA was 85%, demonstrating that the combination of dependent variables effectively discriminates among model types."><img src="figures/MANOVA_lda.png" class="img-fluid figure-img"></a>
+<a href="figures/MANOVA_3_panel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Linear discriminant analysis (LDA) of ecological network metrics for six model types. Each point represents a replicate, and ellipses indicate 95% confidence regions for each model. The second column represents the correlation of the various network metrics with the respective LDA axes."><img src="figures/MANOVA_3_panel.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Linear discriminant analysis (LDA) of ecological network metrics for six model types. The first two discriminant functions (LD1 and LD2) explain 72% and 18% of the variance, respectively. Each point represents a replicate, and ellipses indicate 95% confidence regions for each model. The PFIM model is strongly separated along LD1, reflecting the highest values of network metrics, while adbm and lmatrix cluster closely together, indicating similar, lower metric values. The niche and random models occupy intermediate positions. Classification accuracy of the LDA was 85%, demonstrating that the combination of dependent variables effectively discriminates among model types.
+Figure&nbsp;3: Linear discriminant analysis (LDA) of ecological network metrics for six model types. Each point represents a replicate, and ellipses indicate 95% confidence regions for each model. The second column represents the correlation of the various network metrics with the respective LDA axes.
 </figcaption>
 </figure>
 </div>
-<p>The implications of the above results is that it is clear that different models will recover different structures - across all structural measures and highlight how model selection has the potential to strongly shape ecological inferences. Using a model that overestimates connectivity could exaggerate our inferences about redundancy or disturbance risk, while overly sparse models could underestimate network complexity and functional links. Therefore, the choice of model should align with the specific ecological question <em>e.g.,</em> in interest in exploring <em>potential</em> redundancy, robustness, versus trying to understand <em>realistic</em> energy flow pathways. Ideally we should couple our analyses with sensitivity analyses to assess how conclusions depend on model assumptions. It also means that we cannot compare inferences made using different models but and any generalisations about observed patterns should be be standardised across network model <em>type</em> at minimum. That is two say it may not be completely illogical to make comparisons between two metawebs, however it would be unwise to compare a metaweb to a theoretical network.</p>
-<blockquote class="blockquote">
-<p>These structural differences have consequences for predicting species persistence, stability, and ecosystem functioning. For example, metrics like generality and vulnerability influence top-down and bottom-up control, affecting how energy and biomass flow through trophic levels (Dunne et al., 2002). Similarly, connectance and trophic coherence influence stability and resilience; more coherent networks tend to resist perturbations, whereas very dense, highly connected webs may either buffer or amplify disturbances depending on interaction strengths (Johnson et al., 2014).</p>
-</blockquote>
 </section>
-<section id="some-networks-dont-share-any-interactions-and-some-share-a-lot" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="some-networks-dont-share-any-interactions-and-some-share-a-lot"><span class="header-section-number">3.3</span> Some networks don’t share any interactions and some share a lot</h2>
-<p>In addition to wanting to measure network structure researchers may also be interested in understanding aspects about the diets and predators of <em>specific</em> species in a community. In this instance the interest should be in understanding how the pairwise links predicted between species pairs differ between models. Here we look at the interaction turnover both within and between the different models <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span>. This can be thought of as the equivalent of species <span class="math inline">\(\beta\)</span> turnover and tells us which interactions are ‘conserved’ (shared) across the networks but only between species pairs that are shared - <em>i.e.,</em> this turnover is only driven by interaction and not species turnover. Here we only compared networks that we constructed for the same period (as our interest is only in between model differences) and excluded the random and niche networks from consideration as these two models are essentially species agnostic.</p>
-<p>Across the four network models, turnover in species interactions varied substantially, revealing clear differences in how each model appraoches determining the presence of links between species pairs <a href="#fig-beta_div" class="quarto-xref">Figure&nbsp;4</a>. The log-ratio model consistently showed high turnover relative to all other approaches, indicating that it produces interaction pairs that are the most distinct from other models. In contrast the ADBM and l-matrix exhibited the lowest turnover and suggests strong agreement between how pairwise interactions are determined. This is unsurprising given the underlying inference mechanisms of the models. The PFIM displays an intermediate turnover, aligning most closely with log-ratio and least with ADBM and l-matrix. Although this result is unsurprising as the mechanisms that determine interactions in ADBM and l-matrix (a single trait (bodysize) + paramterisiation of links by ecological theory) is very different from the PFIM model that makes assumptions on a trait-based, mechanistic hierarchy. Taken together, these results demonstrate that model choice strongly influences inferred pairwise interactions.</p>
+<section id="some-networks-dont-share-any-interactions-and-some-share-a-lot" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="some-networks-dont-share-any-interactions-and-some-share-a-lot"><span class="header-section-number">2.3</span> Some networks don’t share any interactions and some share a lot</h2>
+<p>Beyond differences in global structure, researchers are often interested in&nbsp;specific ecological relationships, <em>e.g.,</em> who eats who, which species share predators, and how trophic roles change across communities or time. For these types of questions, it is essential to understand how models differ at the level of pairwise interactions. To quantify this, we measured interaction turnover between networks to allow us to assess the degree to which two models predict the same or different links for the same set of species. This is analogous to β-diversity but applied to links rather than species <span class="citation" data-cites="poisot2012">(<a href="#ref-poisot2012" role="doc-biblioref">Poisot et al. 2012</a>)</span>. Specifically we only looked at the dissimilarity of interaction between shared species. Even when supplied with identical species pools, models varied dramatically in the interactions they inferred <a href="#fig-beta_div" class="quarto-xref">Figure&nbsp;4</a>. Some pairs of models showed substantial agreement, whereas others shared almost no interactions at all. Note here that we did not include the Random or Niche models as these networks are species agnostic and as such are not designed for inferring species-specific pairwise links.</p>
+<p>The body-size ratio model had consistently&nbsp;high&nbsp;turnover relative to all others, indicating that it inferred diets that were largely distinct. This reflects the strong constraints imposed by its logit-based linking rule, which sharply restricts prey to a narrow ‘optimal’ size range. Small differences in body-size estimates or functional groupings therefore lead to disproportionately large changes in inferred interactions. In contrast, the ADBM and L-matrix showed low turnover between each other, reflecting their shared theoretical foundations (operationalising foraging decisions and energetic constraints using similar allometric principles). As a result, they tend to produce similar pairwise interactions even when implemented independently. The PFIM exhibited intermediate turnover, sharing more interactions with size-based theoretical models than with the body-size ratio model. This makes sense: although PFIM uses categorical traits and hierarchical feeding rules rather than quantitative foraging theory, these constraints will still produce broadly similar trophic groupings.</p>
+<p>Taken together, these patterns show that&nbsp;pairwise interactions differ far more across models than global metrics alone might suggest. Two models with superficially similar connectance or trophic structure may nonetheless infer completely different diets for individual taxa. This has large implications for any question focused on species-level ecology, including predator–prey specialisation, trophic niche breadth, or the identity of keystone consumers. These findings reinforce the importance of selecting a model whose assumptions align with the intended inference. If the goal is to explore the full set of <em>possible</em> interactions a species could have had, a mechanistic model such as PFIM is appropriate. If instead the goal is to infer the likely <em>realised</em> interactions or energy pathways, models grounded in allometric foraging theory (ADBM, L-matrix) will provide more ecologically coherent results. Conversely, models like the body-size ratio may be too restrictive or idiosyncratic for diet-based questions because they force interactions into narrow, trait-determined windows.</p>
 <div id="fig-beta_div" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-beta_div-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -638,69 +564,126 @@ Figure&nbsp;4: Pairwise beta turnover in species interactions among four ecologi
 </figcaption>
 </figure>
 </div>
-<p>In terms of how model choice will influence our inference - this will have the biggest consequence when thinking about diet related questions. In <a href="#fig-beta_div" class="quarto-xref">Figure&nbsp;4</a> we can see that the ADBM and PFIM are recovering (almost) totally different pairwise links and so will have very different answers when we want to start interrogating the specific interactions that may established by a specific species within the network. Pragmatically when if comes to deciding which model is the most appropriate choice when ir comes to diet-based questions it makes sense to contextualise this in the feasible vs realised interaction spectrum. Specifically that from a ‘philosophical’ basis if you are asking questions about possible diets of species then it makes sense to use models that fall firmly in the ‘feasible’ space <em>e.g.,</em> PFIM model or even something like the <span class="citation" data-cites="fricke2022">Fricke et al. (<a href="#ref-fricke2022" role="doc-biblioref">2022</a>)</span> model.</p>
 </section>
-<section id="model-choice-changes-the-narrative" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="model-choice-changes-the-narrative"><span class="header-section-number">3.4</span> Model choice changes the narrative</h2>
-<p>As shown in both <a href="#fig-structure" class="quarto-xref">Figure&nbsp;3</a> and <a href="#fig-beta_div" class="quarto-xref">Figure&nbsp;4</a> different models do indeed create networks that look different despite being created using the same species pool (or at least richness in the case of the Niche and Random models). As we have alluded to multiple times these underlying difference could have consequences on inferences that we make about the behaviour of the system. Here we will look at how model choice alters the inference we make about the underlying mechanisms that were driving extinctions in the Toarcian extinction event. Here we again we use we followed the approach outlined in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span> when simulating extinctions as well as assessing which extinction mechanism results in a simulated network most closely match the real post extinction network. Extinction simulations were only run on the pre extinction networks whereby species were removed until they reached the ‘target richness’, which is the richness of the post extinction community. <strong>TODO</strong> The whole shebang about the different extinction simulation scenarios?</p>
-<p>Extinctions were simulated using different plausible mechanisms based on species traits (size, motility), their position within the network (generality, vulnerability), as well as randomly. Each network was subjected to <strong>50</strong> extinction runs for each extinction mechanism. The extinctions themselves were cascading in nature meaning that after the target species was removed all species that no longer had any prey were also deemed as extinct (secondary extinction), checking for secondary extinctions was then repeated until there were no longer any species without prey. This represents one extinction event and only then would the proceeding target species be removed from the network and cascading extinctions assessed again. Note that for extinction simulations which use the network position of a species to determine extinction order we follow the protocol from <span class="citation" data-cites="curtsdotter2011">Curtsdotter et al. (<a href="#ref-curtsdotter2011" role="doc-biblioref">2011</a>)</span> and reassess the vulnerability/generality of each species after each extinction event to ‘redetermine’ the extinction order based on their position in the newly generated network.</p>
-<blockquote class="blockquote">
-<p><strong>TODO</strong> not sure if we also want to unpack/showcase robustness <span class="math inline">\(R_{50}\)</span> <span class="citation" data-cites="jonsson2015">(<a href="#ref-jonsson2015" role="doc-biblioref">Jonsson et al. 2015</a>)</span></p>
-</blockquote>
-<div id="fig-dunhill" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: stuff… Recreation of the figure from Dunhill 2024. I think it makes sense to split and divide into the below sections (depending on potential figure limitations of target journal)"><img src="figures/time_structure.png" class="img-fluid figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dunhill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: stuff… Recreation of the figure from Dunhill 2024. I think it makes sense to split and divide into the below sections (depending on potential figure limitations of target journal)
-</figcaption>
-</figure>
-</div>
-<section id="trends-over-time" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="trends-over-time"><span class="header-section-number">3.4.1</span> Trends over time</h3>
-<p>Generalized additive mixed modelling showed strong differences in both the magnitude and temporal dynamics of network structure across models. Model results indicated that both parametric and smooth terms significantly influenced network metrics across models, with some exceptions. For connectance, all parametric coefficients were negative except the intercept, and most smooth terms showed highly significant effects (p &lt; 0.05), except for the Niche (p = 0.48) and Random (p = 0.016) models. Complexity and generality similarly exhibited significant parametric and smooth effects, whereas for vulnerability, the smooth term the Random model was non-significant (p = 0.73). Trophic level effects varied among models: modellmatrix had a non-significant parametric effect (p = 0.89), while others were strongly significant. Across the motifs (S1, S2, S4, S5), most parametric and smooth effects were significant (p &lt; 0.05), though a few, such as the intercepts of S1 and S5were non-significant. Overall, these results indicate model- and metric-specific variation in both baseline (parametric) and temporal (smooth) effects, highlighting the importance of model structure in influences the observed temporal trends.</p>
-</section>
-<section id="inferred-extinction-drivers" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="inferred-extinction-drivers"><span class="header-section-number">3.4.2</span> Inferred extinction drivers</h3>
+<section id="model-choice-changes-the-narrative" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="model-choice-changes-the-narrative"><span class="header-section-number">2.4</span> Model choice changes the narrative</h2>
+<p>The structural and interaction-level differences documented above raise a central question: do different models also lead to different interpretations of ecological dynamics? In other words, does model choice merely affect the architecture of the reconstructed networks, or does it shape the actual stories we tell about how communities collapsed and recovered during the Toarcian extinction event? Using the pre-extinction networks as starting points, we simulated species losses under a suite of ecologically plausible extinction scenarios, including trait-based removals (e.g., body size, motility), network-position removals (e.g., vulnerability, generality), and random extinctions. In each case, we allowed for cascading secondary extinctions. For each model and scenario, we then measured how closely the simulated post-extinction network resembled the real fossil community.</p>
+<section id="inferred-extinction-drivers" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="inferred-extinction-drivers"><span class="header-section-number">2.4.1</span> Inferred extinction drivers</h3>
 <p>To assess how consistently different modelling approaches evaluate extinction scenarios, we quantified the agreement in scenario rankings produced by multiple models across several network metrics. For each model, each extinction scenario, and each network metric we calculated the mean absolute difference (MAD) between the observed metric value and the value predicted following the simulated extinction sequence. Lower MAD values indicate a closer match to the empirical network structure and therefore a better-performing extinction scenario for that model and metric. Additionally, we used a derivative of <span class="citation" data-cites="gupta2022">Gupta, Furrer, and Petchey (<a href="#ref-gupta2022" role="doc-biblioref">2022</a>)</span> true skill statistic (TSS, see <a href="#eq-1" class="quarto-xref">Equation&nbsp;1</a>), where a score below zero indicates that the simulated extinction performs no better than random, and a score of one indicates a perfect match between real and simulated. Here we calculated both a node-level TSS as well as link-level TSS, by parsing out the TSS into two components we are able to assess if differences between real and simulated networks are due to node-level (the wrong species being removed) or link-level (the wrong links be recovered) mismatches. Because the extinction simulations do not allow for the origination of species, when calculating the TSS we only retained species that were present in both the pre and post extinction community and so any node-level mismatches between real and simulated networks was due to the wrong species being removed and not because new species were not.</p>
 <p><span id="eq-1"><span class="math display">\[
 TSS = \frac{True Positive}{True Positive + False Negative} + \frac{True Negative}{True Negative + False Positive} - 1
 \tag{1}\]</span></span></p>
-<p>For each network metric, we treated each model as an independent evaluator of scenario performance. MAD and TSS values were converted to within-model rankings, with rank 1 assigned to the scenario with the smallest MAD (i.e., the closest match to the empirical value) or highest TSS score. Ranking was performed independently for each combination of model and network metric to avoid assumptions about comparability across metrics. To evaluate whether different models produced consistent rankings of extinction scenarios, we quantified rank correlation among models separately for each network metric. Agreement among model rankings was assessed using Kendall’s rank correlation coefficient (τ), which measures the degree of concordance between two ordinal rankings. Kendall’s τ was selected because it is robust for small sample sizes, handles tied ranks appropriately, and provides a direct measure of the probability that model pairs agree or disagree on the relative ordering of scenarios. Kendall’s τ ranges from –1 to +1, where +1 indicates perfect agreement between rankings, 0 reflects no relationship, and –1 represents complete disagreement such that one ranking is the exact reverse of the other.</p>
-<p>When we look at Kendall’s τ for the MAD across network structure and models <a href="#fig-mad" class="quarto-xref">Figure&nbsp;6</a> we see that generally there is a positive correlation between the different different models. This implies that different models are often recovering a similar ranking of extinction mechanisms (as in the ‘signal’ as to which extinction mechanisms may be the most plausible are the same). Although there is not a strong agreement between models as values tend to be low it is positive to observe that it is not often that we have a completely different ranking of extinction mechanisms, with the exception of complexity and the number of direct competition motifs. When looking at the macro-level network properties the random model often showcases a disagreement in terms of the MAD. This is unsurprising as we expect random networks to produce networks that are not ecologically sound and thus will not behave as one may expect <span class="citation" data-cites="ings2009">(<a href="#ref-ings2009" role="doc-biblioref">Ings et al. 2009</a>)</span>. Interestingly we once again see the strong similarity between the l-matrix and the ADBM (have a high Kendall’s τ). meaning that they recover a similar ranking of extinction mechanisms, this is unsurprising given that we know these networks tend to recover a similar structure <a href="#fig-marginal" class="quarto-xref">Figure&nbsp;2</a>. Broadly when we look at the behaviour of the different model families (with the exception of the Random model) we see that they recover similar structural signals with regards to the mechanisms potentially driving extinctions.</p>
+<p>For each network metric, we treated each model as an independent evaluator of scenario performance. MAD and TSS values were converted to within-model rankings, with rank 1 assigned to the scenario with the smallest MAD (<em>i.e.,</em> the closest match to the empirical value) or highest TSS score. Ranking was performed independently for each combination of model and network metric to avoid assumptions about comparability across metrics. To evaluate whether different models produced consistent rankings of extinction scenarios, we quantified rank correlation among models separately for each network metric. Agreement among model rankings was assessed using Kendall’s rank correlation coefficient (τ), which measures the degree of agreement between two ordinal rankings. Kendall’s τ was selected because it is robust for small sample sizes, handles tied ranks appropriately, and provides a direct measure of the probability that model pairs agree or disagree on the relative ordering of scenarios. Kendall’s τ ranges from –1 to +1, where +1 indicates perfect agreement between rankings, 0 reflects no relationship, and –1 represents complete disagreement such that one ranking is the exact reverse of the other.</p>
+<p>When we look at Kendall’s τ for the MAD across network structure and models <a href="#fig-mad" class="quarto-xref">Figure&nbsp;5</a> we see that generally there is a positive correlation between the different different models. This implies that different models are often recovering a similar ranking of extinction mechanisms (as in the ‘signal’ as to which extinction mechanisms may be the most plausible are the same). Although there is not a strong agreement between models as values tend to be low it is positive to observe that it is not often that we have a completely different ranking of extinction mechanisms, with the exception of complexity and the number of direct competition motifs. When looking at the macro-level network properties the random model often showcases a disagreement in terms of the MAD. This is unsurprising as we expect random networks to produce networks that are not ecologically sound and thus will not behave as one may expect <span class="citation" data-cites="ings2009">(<a href="#ref-ings2009" role="doc-biblioref">Ings et al. 2009</a>)</span>. Interestingly we once again see the strong similarity between the L-matrix and the ADBM (have a high Kendall’s τ). meaning that they recover a similar ranking of extinction mechanisms, this is unsurprising given that we know these networks tend to recover a similar structure <a href="#fig-marginal" class="quarto-xref">Figure&nbsp;2</a>. Broadly when we look at the behaviour of the different model families (with the exception of the Random model) we see that they recover similar structural signals with regards to the mechanisms potentially driving extinctions.</p>
 <div id="fig-mad" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/kendal_tau.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: Heatmaps showing pairwise Kendall rank correlation coefficients (τ) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive τ values (blue) indicate concordant rankings between models, whereas negative τ values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties."><img src="figures/kendal_tau.png" class="img-fluid figure-img"></a>
+<a href="figures/kendal_tau.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: Heatmaps showing pairwise Kendall rank correlation coefficients (τ) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive τ values (blue) indicate concordant rankings between models, whereas negative τ values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties."><img src="figures/kendal_tau.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Heatmaps showing pairwise Kendall rank correlation coefficients (τ) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive τ values (blue) indicate concordant rankings between models, whereas negative τ values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties.
+Figure&nbsp;5: Heatmaps showing pairwise Kendall rank correlation coefficients (τ) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive τ values (blue) indicate concordant rankings between models, whereas negative τ values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties.
 </figcaption>
 </figure>
 </div>
-<p>When looking at the node-level TSS scores (<a href="#fig-mad" class="quarto-xref">Figure&nbsp;6</a>, TSS, panel 2) we see that in general the signal of the extinction mechanism is maintained across the different models. However as many of the extinction mechanisms are determine by the <em>traits</em> of the node it is not surprising that we see a similar signal as the species are being removed in the exact same order. The only two extinction mechanisms that are driven by The link-level TSS scores (<a href="#fig-mad" class="quarto-xref">Figure&nbsp;6</a>, TSS, panel 1) do not show the same signal within extinction mechanism. We see that the random and PFIM models have high TSS scores (<em>i.e.,</em> have a ‘good fit’), however in the case of the PFIM this is to be expected as the links are deterministic and so if you have the same two species pools you will recover the same links. The ‘stochastic’ element of the theoretical models (ADBM, l-matrix, and log-ratio) means that they create a degree of ‘noise’ at the link-level and thus they are probably inappropriate to use for the type of extinction mechanism question we are asking here - specifically does the real and the simulated network look the same. Link-level TSS is perhaps also not an appropriate approach to determine the ‘best fit’ extinction mechanism if used in isolation and we advocate that the node-level TSS score (or alternatively some measure of <span class="math inline">\(\beta\)</span> diversity is used). FInally, if we were to focus only on node level TSS we do not observe any strong differences between the models and it suggests that node-level driven (topological) extinction processes are insensitive to model type.</p>
+<p>When looking at the node-level TSS scores (<a href="#fig-mad" class="quarto-xref">Figure&nbsp;5</a>, TSS, panel 2) we see that in general the signal of the extinction mechanism is maintained across the different models. However as many of the extinction mechanisms are determine by the <em>traits</em> of the node it is not surprising that we see a similar signal as the species are being removed in the exact same order. Link-level TSS scores (<a href="#fig-mad" class="quarto-xref">Figure&nbsp;5</a>, TSS, panel 1) do not show the same within extinction mechanism ranking/signal. We see that the Random and PFIM models have high TSS scores (<em>i.e.,</em> have a ‘good fit’), however in the case of the PFIM this is to be expected as the links are deterministic and so if you have the same two species pools you will recover the same links. The ‘stochastic’ element of the theoretical models (ADBM, l-matrix, and log-ratio) means that they create a degree of noise at the link-level and thus they are probably inappropriate to use for the type of extinction mechanism question we are asking here - specifically does the real and the simulated network look the same. Link-level TSS is perhaps also not an appropriate approach to determine the ‘best fit’ extinction mechanism if used in isolation and we advocate that the node-level TSS score (or alternatively some measure of <span class="math inline">\(\beta\)</span> diversity is used). Finally, if we were to focus only on node level TSS we do not observe any strong differences between the models and it suggests that node-level driven (topological) extinction processes are insensitive to model type.</p>
+<p>Broad inferred extinction mechanisms were relatively robust across models. This is probably in part because species are removed in the same order, node-level outcomes (which species survive) tended to agree. However, at the link level, where secondary cascades depend sensitively on inferred interactions, models often showed limited agreement. PFIM produced consistent link-level outcomes due to its deterministic rules, whereas theory-driven models (ADBM, L-matrix, body-size ratio) generated more variable trajectories due to stochastic link assignment. As a result, different models sometimes reconstructed different pathways of collapse, inferred different trophic groups as being the most affected, or ranked extinction scenarios differently. In other words, while the high-level narrative (e.g., traits matter) is stable, the fine-grained story of ecosystem disruption (who lost interactions first, how cascades unfolded, which species acted as bottlenecks) changes depending on the chosen model. Thus, the Toarcian mass extinction looks subtly but meaningfully different through the lens of each modelling framework. Model choice therefore must be treated as a core component of ecological inference, not a neutral preprocessing step. Some broad signals are robust—especially those driven by species traits—but many of the finer details that paleoecologists care about, such as trophic cascading pathways, keystone taxa, or the ordering of collapse, depend strongly on the chosen model. Researchers must therefore treat model choice not as a technical detail but as a central component of ecological inference.</p>
 </section>
 </section>
 </section>
-<section id="discussion-need-a-catchier-heading" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Discussion (need a catchier heading)</h1>
-<p>I want this section to be more about contextualising model choice within the bigger research question discussion - i.e.&nbsp;mapping question and model choice more tightly…</p>
-<p>Points to discuss:</p>
-<ul>
-<li>Guidlines - as a box? Can we give something concrete?? Something like <a href="#fig-guidelines" class="quarto-xref">Figure&nbsp;7</a></li>
-<li>How to we synthesise these results? As in should we give clear directives ot is it enough to do a bit more handwaving and have the bigger message be that model choice matters?</li>
-</ul>
+<section id="model-choice-as-an-ecological-inference-decision" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Model Choice as an Ecological Inference Decision</h1>
+<p>Reconstructing food webs from fossil data is an exercise in inference under uncertainty, and our results demonstrate that the&nbsp;choice of network construction model is itself a major ecological decision. Despite using the same species pools, different models produced networks with profoundly different structural properties, interaction patterns, and inferred extinction dynamics. These differences emerge not from the fossil data themselves but from the assumptions embedded within each modelling approach. As a consequence, network reconstruction cannot be treated as a neutral methodological step: model choice fundamentally shapes the ecological narratives we extract from the fossil record.</p>
+<section id="what-our-results-demonstrate-about-model-families" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="what-our-results-demonstrate-about-model-families"><span class="header-section-number">3.1</span> What our results demonstrate about model families</h2>
+<p>Across every structural metric we measured, model identity explained the majority of variation. PFIM-produced networks were consistently the most connected, while the ADBM and l-matrix produced sparser networks with tighter energetic constraints. Structural models (niche and random) fell between these extremes. These clusters reflect the conceptual differences between feasible, realised, and structural network representations. Importantly, these differences were not superficial. Pairwise interaction turnover revealed that models often disagreed not just on the&nbsp;number&nbsp;of links but on&nbsp;who interacts with whom. Such discrepancies directly affect diet-based ecological questions and interpretations of trophic roles.</p>
+</section>
+<section id="consequences-for-interpreting-paleoecological-dynamics" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="consequences-for-interpreting-paleoecological-dynamics"><span class="header-section-number">3.2</span> Consequences for interpreting paleoecological dynamics</h2>
+<p>The downstream effects of model choice were most evident when evaluating extinction dynamics. Models often recovered comparable high-level patterns (e.g., trait-driven extinction signals remained robust across models), but the specific ranking of extinction mechanisms varied. Node-level patterns were relatively stable because extinction scenarios based on intrinsic traits remove species in the same order regardless of network structure. However, link-level outcomes—particularly those concerning secondary extinctions, network collapse, and recovery trajectories—were highly model-dependent.</p>
+<p>This means that conclusions about&nbsp;<em>how</em>&nbsp;an extinction unfolded,&nbsp;<em>which</em>&nbsp;interactions disappeared first, or&nbsp;<em>what</em>&nbsp;drove cascading losses are not simply properties of the fossil data but emerge from the assumptions embedded in the chosen model. Researchers therefore need to be explicit about the type of ecological signal they are trying to recover and select models accordingly.</p>
+</section>
+<section id="aligning-ecological-questions-with-model-choice" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="aligning-ecological-questions-with-model-choice"><span class="header-section-number">3.3</span> Aligning ecological questions with model choice</h2>
+<p>Our findings support a simple but crucial principle:&nbsp;different ecological questions require different types of network representations. The assumption that all food-web models are interchangeable is not supported by our results.</p>
+<p>Below is a conceptual summary (corresponding to a possible <a href="#fig-guidelines" class="quarto-xref">Figure&nbsp;6</a>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Ecological question</strong></th>
+<th><strong>Recommended model type</strong></th>
+<th><strong>Rationale</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What&nbsp;<em>could</em>&nbsp;have eaten what? (feasible interactions; trophic potential)</td>
+<td>Mechanistic (PFIM, trait-based, evolutionary-signal models)</td>
+<td>Captures all trait-feasible links; appropriate for reconstructing dietary breadth or assessing potential niches.</td>
+</tr>
+<tr class="even">
+<td>What interactions were&nbsp;<em>likely realised</em>?</td>
+<td>Theory-driven (ADBM, l-matrix)</td>
+<td>Encodes foraging ecology and energetic constraints; provides ecologically plausible realised networks.</td>
+</tr>
+<tr class="odd">
+<td>How do global structural properties vary?</td>
+<td>Structural models (niche, random as baseline)</td>
+<td>Useful for understanding generic patterns (connectance, trophic depth) without trait reliance.</td>
+</tr>
+<tr class="even">
+<td>How do traits influence dynamics (e.g., cascade sensitivity)?</td>
+<td>Theory-driven models</td>
+<td>Capture body-size scaling, energetic constraints, and trophic dependencies.</td>
+</tr>
+<tr class="odd">
+<td>How robust are inferences to uncertainty?</td>
+<td>Ensembles across multiple model families</td>
+<td>Allows quantifying how conclusions depend on assumptions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implications-for-the-use-of-food-webs-in-paleoecology" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="implications-for-the-use-of-food-webs-in-paleoecology"><span class="header-section-number">3.4</span> Implications for the use of food webs in paleoecology</h2>
+<p>Our analysis underscores three important implications for the broader field:</p>
+<ol type="1">
+<li><p><strong>Interpretations of ancient food webs must explicitly acknowledge model assumptions:</strong> Without this, differences in reconstructed networks may be mistakenly attributed to biological change rather than methodological artifacts.</p></li>
+<li><p><strong>Comparisons across studies must be standardised by model family:</strong> Comparing a metaweb from one study to a realised network from another risks generating misleading conclusions about ecological differences across space or time.</p></li>
+<li><p><strong>Mechanistic paleo-specific models alone cannot capture the full spectrum of possible network archetypes:</strong> Incorporating theory-driven models allows paleoecology to leverage decades of research on modern food-web structure and dynamics, broadening the range of ecological questions that can be asked.</p></li>
+</ol>
+</section>
+<section id="recommendations-and-best-practices" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="recommendations-and-best-practices"><span class="header-section-number">3.5</span> Recommendations and best practices</h2>
+<p>To support consistent, transparent use of network reconstruction methods in paleoecology, we propose the following guidelines (which could be highlighted as a boxed summary):</p>
+<ol type="1">
+<li><p><strong>Start with the ecological question:</strong>, then identify the network representation (feasible, realised, structural) best aligned with it.</p></li>
+<li><p><strong>Use multiple models whenever possible:</strong>&nbsp;to evaluate whether key conclusions are model-dependent.</p></li>
+<li><p><strong>Report all assumptions explicitly:</strong>, including body-size estimation methods, trait inference procedures, and parameter choices.</p></li>
+<li><p><strong>Perform sensitivity analyses:</strong>, particularly for size-based models and connectance assumptions.</p></li>
+<li><p><strong>Avoid comparing networks built with different model families</strong>&nbsp;unless explicitly testing model effects.</p></li>
+<li><p><strong>Distinguish between node-level and link-level inference</strong>, as they respond differently to model choice.</p></li>
+</ol>
+</section>
+<section id="concluding-remarks" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">3.6</span> Concluding remarks</h2>
+<p>Our results reveal that network construction models differ far more than is commonly appreciated in paleoecology. Because food webs are increasingly used to infer ecological resilience, collapse dynamics, and responses to environmental change, it is crucial to recognise that these inferences are shaped as much by modelling decisions as by fossil data. By mapping model families to ecological questions and demonstrating how model assumptions influence inferred patterns, our study provides a framework for more transparent, robust, and question-driven reconstruction of paleo food webs.</p>
 <div id="fig-guidelines" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-guidelines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/guidelines.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: TODO."><img src="figures/guidelines.png" class="img-fluid figure-img"></a>
+<a href="figures/guidelines.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: TODO."><img src="figures/guidelines.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-guidelines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: TODO.
+Figure&nbsp;6: TODO.
 </figcaption>
 </figure>
 </div>
+</section>
 </section>
 <section id="references" class="level1 unnumbered">
 
@@ -714,9 +697,6 @@ Allesina, Stefano, David Alonso, and Mercedes Pascual. 2008. <span>“A General 
 <div id="ref-bambach2007" class="csl-entry" role="listitem">
 Bambach, Richard K., Andrew M. Bush, and Douglas H. Erwin. 2007. <span>“Autecology and the Filling of Ecospace: Key Metazoan Radiations.”</span> <em>Palaeontology</em> 50 (1): 1–22. <a href="https://doi.org/10.1111/j.1475-4983.2006.00611.x">https://doi.org/10.1111/j.1475-4983.2006.00611.x</a>.
 </div>
-<div id="ref-curtsdotter2011" class="csl-entry" role="listitem">
-Curtsdotter, Alva, Amrei Binzer, Ulrich Brose, Francisco De Castro, Bo Ebenman, Anna Eklöf, Jens O. Riede, Aaron Thierry, and Björn C. Rall. 2011. <span>“Robustness to Secondary Extinctions: Comparing Trait-Based Sequential Deletions in Static and Dynamic Food Webs.”</span> <em>Basic and Applied Ecology</em> 12 (7): 571–80. <a href="https://doi.org/10.1016/j.baae.2011.09.008">https://doi.org/10.1016/j.baae.2011.09.008</a>.
-</div>
 <div id="ref-delmas2018" class="csl-entry" role="listitem">
 Delmas, Eva, Mathilde Besson, Marie-Hélène Brice, Laura A. Burkle, Giulio V. Dalla Riva, Marie-Josée Fortin, Dominique Gravel, et al. 2018. <span>“Analysing Ecological Networks of Species Interactions.”</span> <em>Biological Reviews</em>, June, 112540. <a href="https://doi.org/10.1111/brv.12433">https://doi.org/10.1111/brv.12433</a>.
 </div>
@@ -726,17 +706,11 @@ Dillon, Erin M., Jaleigh Q. Pier, Jansen A. Smith, Nussaïbah B. Raja, Danijela 
 <div id="ref-dunhill2024" class="csl-entry" role="listitem">
 Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispin T. S. Little, and Andrew P. Beckerman. 2024. <span>“Extinction Cascades, Community Collapse, and Recovery Across a Mesozoic Hyperthermal Event.”</span> <em>Nature Communications</em> 15 (1): 8599. <a href="https://doi.org/10.1038/s41467-024-53000-2">https://doi.org/10.1038/s41467-024-53000-2</a>.
 </div>
-<div id="ref-dunne2014" class="csl-entry" role="listitem">
-Dunne, Jennifer A., Conrad C. Labandeira, and Richard J. Williams. 2014. <span>“Highly Resolved Early Eocene Food Webs Show Development of Modern Trophic Structure After the End-Cretaceous Extinction.”</span> <em>Proceedings of the Royal Society B: Biological Sciences</em> 281 (1782): 20133280. <a href="https://doi.org/10.1098/rspb.2013.3280">https://doi.org/10.1098/rspb.2013.3280</a>.
-</div>
 <div id="ref-erdos1959" class="csl-entry" role="listitem">
 Erdős, P., and A. Rényi. 1959. <span>“On Random Graphs. i.”</span> <em>Publicationes Mathematicae Debrecen</em> 6 (3-4): 290–97. <a href="https://doi.org/10.5486/pmd.1959.6.3-4.12">https://doi.org/10.5486/pmd.1959.6.3-4.12</a>.
 </div>
 <div id="ref-fricke2022" class="csl-entry" role="listitem">
 Fricke, Evan C., Chia Hsieh, Owen Middleton, Daniel Gorczynski, Caroline D. Cappello, Oscar Sanisidro, John Rowan, Jens-Christian Svenning, and Lydia Beaudrot. 2022. <span>“Collapse of Terrestrial Mammal Food Webs Since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
-</div>
-<div id="ref-gauzens2025" class="csl-entry" role="listitem">
-Gauzens, Benoit, Lise Thouvenot, Diane S. Srivastava, Pavel Kratina, Gustavo Q. Romero, Emilio Berti, Eoin J. O’Gorman, et al. 2025. <span>“Tailoring Interaction Network Types to Answer Different Ecological Questions.”</span> <em>Nature Reviews Biodiversity</em>, June, 1–10. <a href="https://doi.org/10.1038/s44358-025-00056-7">https://doi.org/10.1038/s44358-025-00056-7</a>.
 </div>
 <div id="ref-gupta2022" class="csl-entry" role="listitem">
 Gupta, Anubhav, Reinhard Furrer, and Owen L. Petchey. 2022. <span>“Simultaneously Estimating Food Web Connectance and Structure with Uncertainty.”</span> <em>Ecology and Evolution</em> 12 (3): e8643. <a href="https://doi.org/10.1002/ece3.8643">https://doi.org/10.1002/ece3.8643</a>.
@@ -746,12 +720,6 @@ Hao, Xiyang, Marcel Holyoak, Zhicheng Zhang, and Chuan Yan. 2025. <span>“Globa
 </div>
 <div id="ref-ings2009" class="csl-entry" role="listitem">
 Ings, Thomas C., José M. Montoya, Jordi Bascompte, Nico Blüthgen, Lee Brown, Carsten F. Dormann, François Edwards, et al. 2009. <span>“Ecological networks–beyond food webs.”</span> <em>The Journal of Animal Ecology</em> 78 (1): 253–69. <a href="https://doi.org/10.1111/j.1365-2656.2008.01460.x">https://doi.org/10.1111/j.1365-2656.2008.01460.x</a>.
-</div>
-<div id="ref-jonsson2015" class="csl-entry" role="listitem">
-Jonsson, Tomas, Sofia Berg, Alexander Pimenov, Catherine Palmer, and Mark Emmerson. 2015. <span>“The Reliability of R50 as a Measure of Vulnerability of Food Webs to Sequential Species Deletions.”</span> <em>Oikos</em> 124 (4): 446–57. <a href="https://doi.org/10.1111/oik.01588">https://doi.org/10.1111/oik.01588</a>.
-</div>
-<div id="ref-jordano2016" class="csl-entry" role="listitem">
-Jordano, Pedro. 2016. <span>“Chasing Ecological Interactions.”</span> <em>PLOS Biology</em> 14 (9): e1002559. <a href="https://doi.org/10.1371/journal.pbio.1002559">https://doi.org/10.1371/journal.pbio.1002559</a>.
 </div>
 <div id="ref-kiessling2019" class="csl-entry" role="listitem">
 Kiessling, Wolfgang, Nussaïbah B. Raja, Vanessa Julie Roden, Samuel T. Turvey, and Erin E. Saupe. 2019. <span>“Addressing Priority Questions of Conservation Science with Palaeontological Data.”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 374 (1788): 20190222. <a href="https://doi.org/10.1098/rstb.2019.0222">https://doi.org/10.1098/rstb.2019.0222</a>.
@@ -773,9 +741,6 @@ Poisot, Timothée, Elsa Canard, Nicolas Mouquet, and Michael E. Hochberg. 2012. 
 </div>
 <div id="ref-rohr2010" class="csl-entry" role="listitem">
 Rohr, Rudolf&nbsp;Philippe, Heike Scherer, Patrik Kehrli, Christian Mazza, and Louis-Félix Bersier. 2010. <span>“Modeling Food Webs: Exploring Unexplained Structure Using Latent Traits.”</span> <em>The American Naturalist</em> 176 (2): 170–77. <a href="https://doi.org/10.1086/653667">https://doi.org/10.1086/653667</a>.
-</div>
-<div id="ref-roopnarine2017" class="csl-entry" role="listitem">
-Roopnarine, Peter D. 2017. <span>“Ecological Modelling of Paleocommunity Food Webs.”</span> In, 201–26. University of Chicago Press.
 </div>
 <div id="ref-roopnarine2006" class="csl-entry" role="listitem">
 Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
@@ -811,36 +776,32 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, Nathaniel J. Dominy, Paul L. K
   author = {Strydom, Tanya and Karapunar, Baran and P. Beckerman, Andrew
     and Dunhill, Alexander},
   title = {Methods for {Reconstructing} {Paleo} {Food} {Webs}},
-  date = {2025-11-24},
+  date = {2025-11-27},
   langid = {en},
-  abstract = {Food webs represent the feeding relationships between
-    species and can help infer ecosystem-level processes. Alongside the
-    development of food web theory, methods for constructing food webs
-    have been developed to infer species interactions when empirical
-    data is lacking. Food web construction methods are diverse, each
-    utilising different approaches to infer species interactions —such
-    as the use of traits to infer mechanistic relationships vs using gut
-    content as a proxy for species diets. These methods have distinct
-    theories, mechanisms, and data requirements. In paleoecology, where
-    direct evidence of feeding interactions are rare, food web
-    construction methods are especially valuable and affords us the
-    opportunity to make inferences about paleo communities beyond simply
-    a record of species composition. However, the limitations of
-    paleontological data (e.g., information of species traits is limited
-    to that which can be preserved) restrict which methods can reliably
-    be used. By considering both ecological theory and the constraints
-    of what can be derived from the fossil record, we identify the
-    methods best suited for the construction of paleo food webs.
-    Specifically, we focus on how these methods differ in the networks
-    they produce and what these networks can reveal about species
-    interactions. In doing so we hope to clarify the ecological nuances
-    of network prediction and help prevent the accidental misuse or
-    misinterpretation of paleo food webs.}
+  abstract = {Food webs provide a powerful lens for understanding
+    ecosystem structure and function, but reconstructing them in
+    paleoecological contexts remains challenging because direct evidence
+    of feeding interactions is rarely preserved. A wide range of models
+    now exist for predicting interactions and inferring network
+    structure, yet these models differ substantially in their
+    assumptions, mechanisms, and data requirements. Here, we evaluate
+    which network construction approaches are most suitable for paleo
+    food webs given the constraints of the fossil record, and we assess
+    how model choice influences the networks we infer. Using the
+    Toarcian Oceanic Anoxic Event as a case study, we compare six
+    modelling approaches encompassing mechanistic, structural, and
+    theory-based methods. We show that the models produce strikingly
+    different network structures and pairwise interactions, and that
+    these differences propagate into ecological inference—including
+    conclusions about extinction dynamics. Our results highlight the
+    importance of aligning model choice with research questions and
+    underscore the interpretative risks of treating all food-web
+    reconstruction methods as interchangeable.}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, Baran Karapunar, Andrew P. Beckerman, and Alexander
 Dunhill. 2025. <span>“Methods for Reconstructing Paleo Food
-Webs.”</span> TBD. November 24, 2025.
+Webs.”</span> TBD. November 27, 2025.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
