@@ -199,17 +199,7 @@ ld2v3 <-
        x = "LD3 (9% variance)") +
   figure_theme
 
-# patchwork them up
-
-(ld1v2) + (ld1v3) + (ld2v3) +
-  plot_layout(guides = 'collect') &
-  theme(legend.position='bottom')
-
-ggsave("../figures/MANOVA_3_panel.png",
-       width = 10000,
-       height = 4000,
-       units = "px",
-       dpi = 700)
+# going to do the same with the corr plots
 
 # Get the linear discriminant scores
 lda_values <- predict(post_hoc)
@@ -222,7 +212,7 @@ corr_df <- as.data.frame(correlations)
 corr_df$Variable <- rownames(corr_df)
 
 # 5. Create correlation circle plot
-ggplot(corr_df) +
+ld1v2_corr <- ggplot(corr_df) +
   geom_hline(yintercept = 0, 
              linetype = "dashed", 
              color = "grey70") +
@@ -246,7 +236,7 @@ ggplot(corr_df) +
         y = LD2, 
         label = Variable),
     max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
-    size = 4.5) +
+    size = 2.5) +
   coord_equal()+
   labs(
     x = "LD1",
@@ -254,12 +244,90 @@ ggplot(corr_df) +
   ) +
   theme_classic()
 
-ggsave("../figures/lda_corr.png",
-       width = 5000,
-       height = 4000,
+ld1v3_corr <- ggplot(corr_df) +
+  geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  geom_vline(xintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  # Add a unit circle
+  annotate("path",
+           x = cos(seq(0, 2 * pi, length.out = 200)),
+           y = sin(seq(0, 2 * pi, length.out = 200)),
+           color = "grey50")  +
+  geom_segment( 
+    aes(x = 0,
+        y = 0,
+        xend = LD1, 
+        yend = LD3),
+    arrow = arrow(length = unit(0.1,"cm")),
+    color = "skyblue") +
+  geom_text_repel(
+    aes(x = LD1, 
+        y = LD3, 
+        label = Variable),
+    max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
+    size = 2.5) +
+  coord_equal()+
+  labs(
+    x = "LD1",
+    y = "LD3"
+  ) +
+  theme_classic()
+
+ld2v3_corr <- ggplot(corr_df) +
+  geom_hline(yintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  geom_vline(xintercept = 0, 
+             linetype = "dashed", 
+             color = "grey70") +
+  # Add a unit circle
+  annotate("path",
+           x = cos(seq(0, 2 * pi, length.out = 200)),
+           y = sin(seq(0, 2 * pi, length.out = 200)),
+           color = "grey50")  +
+  geom_segment( 
+    aes(x = 0,
+        y = 0,
+        xend = LD3, 
+        yend = LD2),
+    arrow = arrow(length = unit(0.1,"cm")),
+    color = "skyblue") +
+  geom_text_repel(
+    aes(x = LD3, 
+        y = LD2, 
+        label = Variable),
+    max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
+    size = 2.5) +
+  coord_equal()+
+  labs(
+    x = "LD3",
+    y = "LD2"
+  ) +
+  theme_classic()
+
+
+# patchwork them up
+
+layout <- "
+AD
+BE
+CF
+"
+
+(ld1v2 + labs(tag = "A")) + (ld1v3 + labs(tag = "B")) + (ld2v3 + labs(tag = "C")) + 
+  ld1v2_corr + ld1v3_corr + ld2v3_corr +
+  plot_layout(guides = 'collect',
+              design = layout) &
+  theme(legend.position='bottom')
+
+ggsave("../figures/MANOVA_3_panel.png",
+       width = 9000,
+       height = 9500,
        units = "px",
        dpi = 700)
-
 
 
 df <- df %>%
