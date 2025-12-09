@@ -262,31 +262,17 @@ trophic_level(N::SpeciesInteractionNetwork)
 """
 function trophic_level(N::SpeciesInteractionNetwork)
 
-    sp = species(N)
+    A = _get_matrix(N) # Ensure A is dense for inversion.
+    S = size(A, 1) # Species richness.
+    out_degree = sum(A; dims = 2)
+    D = -(A ./ out_degree) # Diet matrix.
+    D[isnan.(D)] .= 0.0
+    D[diagind(D)] .= 1.0 .- D[diagind(D)]
+    # Solve with the inverse matrix.
+    inverse = iszero(det(D)) ? pinv : inv
+    tls = inverse(D) * ones(S)
 
-    # dictionary for path lengths
-    pls = Dict{Any,Any}()
+    # create dictionary
+    Dict(zip(species(N),tls))
 
-    for i in eachindex(sp)
-
-        # prey of spp i
-        preys = collect(successors(N, sp[i]))
-
-        # only continue if species has preys...
-        if length(preys) > 0
-            # for summing each path length
-            pl_temp = 0
-            for j in eachindex(preys)
-
-                pl_temp += distancetobase(N, preys[j])
-
-                pls[sp[i]] = 1 + (1/length(sp)) * pl_temp
-
-            end
-        else
-            pls[sp[i]] = 1
-        end
-    end
-    # return trophic level Dict
-    return pls
 end
