@@ -1,5 +1,5 @@
 ---
-title: "Methods for Reconstructing Paleo Food Webs"
+title: "Reconstructing deep-time food webs: model assumptions drive paleoecological inference"
 author:
   - name: Tanya Strydom
     id: ts
