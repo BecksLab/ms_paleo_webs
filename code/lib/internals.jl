@@ -4,6 +4,9 @@ using LinearAlgebra
 using SpeciesInteractionNetworks
 using Statistics
 
+# import other scripts with functions
+include("diameter.jl")
+
 """
 _network_summary(N::SpeciesInteractionNetwork{<:Partiteness, <:Binary})
 
@@ -27,7 +30,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     D = Dict{Symbol,Any}(
         :richness => richness(N),
         :connectance => SpeciesInteractionNetworks.connectance(N),
-        :diameter => _diameter(N),
+        :diameter => diameter(A),
         :complexity => complexity(N),
         :trophic_level => findmax(collect(values(tls)))[2],
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
