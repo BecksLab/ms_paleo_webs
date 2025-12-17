@@ -29,7 +29,7 @@ Tukey-adjusted pairwise significance: models sharing the same letter are
 not significantly different, while models with different letters are
 significantly different (p \textless{} 0.05). The plot reveals three
 tiers of model performance, with pfim consistently higher, log ratio,
-niche, and random at intermediate levels, and adbm and lmatrix lower,
+niche, and random at intermediate levels, and adbm and l-matrix lower,
 consistent with the MANOVA and post-hoc analyses.}
 
 \end{figure}
