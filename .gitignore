@@ -62,3 +62,6 @@ code/scrap.jl
 data/processed/extinction_seq2.jlds
 data/processed/extinction_seq 3.jlds
 data/processed/extinction_seq 2.jlds
+figures/heatmap_BES.png
+figures/heatmap_BES_metaweb.png
+figures/heatmap_TL.png
