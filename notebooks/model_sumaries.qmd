@@ -14,9 +14,7 @@ bibliography: ../references.bib
 
 ### Random model
 
-The Erdős–Rényi random graph model [@erdos1959] uniformly at random assigns an $L$ number of links to an $S$ number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (*i.e.,* species have no agency) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness *(*$S$) and connectance ($L/S^2$)
-
-> We could theoretically use the other 'null models' BUT I feel like in the context of constructing a network for a given community the Erdős–Rényi is the better choice than the other models that (IMO) are more suited to hypothesis testing e.g. do observed networks differ from the null network... Whereas Erdős–Rényi really is just a case of here is a truly random network with the specified number of links and nodes and anyway one of the Null models is a derivative of Erdős–Rényi if I remember correctly.
+The Erdős–Rényi random graph model [@erdos1959] uniformly (and at random) assigns an $L$ number of links to an $S$ number of nodes (species richness). From an ecological perspective this model assumes that the interactions between species occurs regardless of the identity of the species (*i.e.,* there are no node level properties that determine if an interaction will be present or absent) and links are randomly distributed throughout the network. This creates a food web that is as free as possible from biological structuring while maintaining the expected richness *(*$S$) and connectance ($L/S^2$)
 
 ### Niche model
 
@@ -26,7 +24,7 @@ Each of $S$ species assigned a ‘niche value’ parameter $n_i$ drawn uniformly
 
 ### Allometric diet breadth model
 
-The Allometric diet breadth model (ADBM; @petchey2008) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on the diet breadth of a species, where the diet ($K$) is defined as follows:
+The Allometric diet breadth model (ADBM; @petchey2008) is rooted in feeding theory and allocates the links between species based on energetics, which predicts the diet of a consumer based on energy intake. This means that the model is focused on predicting not only the number of links in a network but also the arrangement of these links based on some property of the node (here the diet breadth of a species), where the diet ($K$) is defined as follows:
 
 $$
 K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
@@ -44,11 +42,11 @@ $$
 H_{ij} = \infty \geq b
 $$
 
-Refer to @petchey2008 for more details as to how these different terms are parametrised.
+Refer to @petchey2008 for more details as to how these different terms are parametrised. It is also possible to specify which species are considered to be 'producer' species to further constrain the structure of the network to match biological expectations.
 
 ### L matrix
 
-For now we can link to the ATNr package [@gauzens2023] until I can find a more suitable manuscript that breaks down this construction method. @schneider2016 Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
+Similar to the ADBM the l-matrix uses bodysize as a way to determine the interaction between species, as well as constraining the links to some degree to allow the structure of the network to more closely resemble that of a realised web [@schneider2016; @gauzens2023]. Interactions are determined by allometric rules (ratio of consumer ($M_{i}$) and resource ($M_{j}$) body sizes) and a Ricker function as defined by $R_{opt}$ and $\gamma$ and returns The probability of a link ($P_{ij}$) existing between a consumer and resource, and is defined as follows:
 
 $$
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
@@ -61,14 +59,6 @@ L = \frac{M_{i}}{M_{j} \times R_{opt}}
 $$
 
 It is also possible to apply a threshold value to $P_{ij}$, whereby any probabilities below that threshold are set to zero.
-
-Note that as for the ADBM we specify which species are considered to be 'producer' species.
-
-## Interaction predictions
-
-### Paleo food web inference model
-
-The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that @shaw2024 does not specifically bin species into guilds, and so we choose to use the method developed by @shaw2024 since both approaches should produce extremely similar networks as they are built on the same underlying philosophy.
 
 ### Body size ratio model
 
@@ -85,6 +75,12 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 $$ {#eq-bodymass}
 
 The original latent-trait model developed by @rohr2010 also included an additional latent trait term $v_{i} \delta f_{j}$ however for simplicity we will use @eq-bodymass as per @yeakel2014 . Based on @rohr2010 it is possible to estimate the parameters $\alpha$, $\delta$, and $\gamma$ using a GLM but we will use the parameters from @yeakel2014, which was 'trained' on the Serengeti food web data and are as follows: $\alpha$ = 1.41, $\delta$ = 3.75, and $\gamma$ = 1.87.
+
+## Interaction predictions
+
+### Paleo food web inference model
+
+The Paleo food web inference model (PFIM; @shaw2024) uses a series of rules for a set of trait categories (such as habitat and body size) to determine if an interaction can feasibly occur between a species pair. If all conditions are met for the different rule classes then an interaction is deemed to be feasible. The original work put forward in @shaw2024 also includes a 'downsampling' step developed by @roopnarine2006 that uses a power law, defined by the link distribution, to 'prune' down some of the links. It is worth mentioning that this approach is similar to that developed by @roopnarine2017 with the exception that @shaw2024 does not specifically bin species into guilds, and so we choose to use the method developed by @shaw2024 since both approaches should produce extremely similar networks as they are built on the same underlying philosophy.
 
 # References {.unnumbered}
 
