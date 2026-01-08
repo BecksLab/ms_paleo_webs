@@ -1,0 +1,10 @@
+"Variable","Level","η²","CI lower","CI upper"
+"Connectance","Macro",0.845664779391731,0.838108379180977,1
+"Complexity","Macro",0.831134443517103,0.822884625440832,1
+"Trophic level","Macro",0.0356075713914672,0.0229700125247981,1
+"No. of linear chains","Meso",0.804610182598766,0.795108447623666,1
+"No. of omnivory motifs","Meso",0.760755666044928,0.749230932315009,1
+"No. of direct competition motifs","Meso",0.661965476834382,0.646169658726208,1
+"No. of apparent competition motifs","Meso",0.79947875108762,0.78973710126461,1
+"Generality","Micro",0.922167382130819,0.918327721346503,1
+"Vulnerability","Micro",0.88096752965776,0.875114493380567,1

@@ -1,6 +1,7 @@
 
 # libraries
 library(effectsize)
+library(emmeans)
 library(here)
 library(genzplyr)
 library(ggrepel)
@@ -50,15 +51,42 @@ for (i in names(df[3:ncol(df)])) {
   eta <- effectsize::eta_squared(aov(var ~ model, data = temp_df),
                                  partial = TRUE) %>%
     as.data.frame() %>%
-    glow_up(varibale = i)
+    glow_up(variable = i)
   
   eta_df <- rbind(eta_df, eta)
   
 }
 
-library(emmeans)
+# write as table to feed into Supp Matt
 
-# Assuming your fitted model is called 'fit'
+eta_df %>%
+  # standardise names
+  glow_up(Variable = case_when(variable == "S1" ~ "No. of linear chains",
+                               variable == "S2" ~ "No. of omnivory motifs",
+                               variable == "S5" ~ "No. of apparent competition motifs",
+                               variable == "S4" ~ "No. of direct competition motifs",
+                               variable == "trophic_level" ~ "Trophic level",
+                               .default = str_to_title(as.character(variable))),
+          Level = case_when(
+            Variable %in% c("Complexity", "Connectance", "Trophic level") ~ "Macro",
+            Variable %in% c("Generality", "Vulnerability") ~ "Micro",
+            .default = "Meso"
+          )) %>%
+  # remove unneded cols
+  vibe_check(-c(Parameter, variable)) %>%
+  # reorder
+  vibe_check(Variable, Level, Eta2, CI_low, CI_high) %>%
+  # better names
+  lowkey("η²" = Eta2, "CI lower" = CI_low, "CI upper" = CI_high) %>%
+  # reorder
+  slay(Level) %>%
+  # write to .csv
+  write.csv(.,
+            "../notebooks/tables/effect_size.csv",
+            row.names = FALSE)
+
+# get 'groupings' of models with TukeyHSD
+
 emm <- emmeans(fit, specs = "model")
 pairs(emm, adjust = "tukey")   # Tukey-adjusted pairwise comparisons
 

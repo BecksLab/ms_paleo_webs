@@ -1,0 +1,35 @@
+---
+title: "SuppMat 2: Additional results"
+authors:
+  - name: Tanya Strydom
+    id: ts
+    orcid: 0000-0001-6067-1349
+abstract: |
+  Expanded results section.
+date: last-modified
+bibliography: ../references.bib
+---
+
+# Effect size
+
+```{r}
+#| label: tbl-corr
+#| tbl-cap: "Effect size of the different network structure metrics in determining differences between models"
+library(knitr)
+library(tidyverse)
+
+dat = readr::read_csv("tables/effect_size.csv")
+
+kable(dat)
+```
+
+Playing around with using the @pomeranz2018 dataset because they have most of the traits we need for all models but the PFIM...
+
+![Something about X marking the spot... anyway that's the real value and coloured points indicate the predicted value.](figures/summary_contemporary.png)
+
+![Z-score. Its a bit janky because its 1:1 (one prediction for each site) but it gives one an idea?](figures/zscore_contemporary.png)
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
