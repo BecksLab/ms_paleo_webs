@@ -21,7 +21,7 @@ source("lib/plotting_theme.R")
 
 df <- read_csv("../data/processed/topology.csv") %>%
   #mutate(across(matches("S[[:digit:]]"), log)) %>%
-  vibe_check(-c(richness, distance, n_rep, diameter, redundancy)) %>%
+  vibe_check(-c(richness, distance, n_rep, redundancy)) %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
@@ -68,7 +68,7 @@ eta_df %>%
                                variable == "trophic_level" ~ "Trophic level",
                                .default = str_to_title(as.character(variable))),
           Level = case_when(
-            Variable %in% c("Complexity", "Connectance", "Trophic level") ~ "Macro",
+            Variable %in% c("Complexity", "Connectance", "Trophic level", "Diameter", "Redundancy") ~ "Macro",
             Variable %in% c("Generality", "Vulnerability") ~ "Micro",
             .default = "Meso"
           )) %>%
@@ -85,6 +85,7 @@ eta_df %>%
             "../notebooks/tables/effect_size.csv",
             row.names = FALSE)
 
+# Estimated marginal means
 # get 'groupings' of models with TukeyHSD
 
 emm <- emmeans(fit, specs = "model")
@@ -104,7 +105,8 @@ pairs <- contrast(emm, method = "tukey")
 
 # Generate compact letter display (grouping by significance)
 cld_df <- multcomp::cld(emm, Letters = letters, adjust = "tukey")
-cld_df <- as.data.frame(cld_df)
+cld_df <- as.data.frame(cld_df) %>%
+  glow_up(.group = str_squish(.group))
 
 # Plot estimated marginal means with significance letters
 ggplot(cld_df, 
@@ -114,8 +116,10 @@ ggplot(cld_df,
   geom_errorbar(aes(ymin = lower.CL, 
                     ymax = upper.CL), 
                 width = 0.2) +
-  geom_text(aes(label = .group), 
-            vjust = -0.5, size = 5) + # significance letters
+  geom_text(aes(y = upper.CL,
+                label = .group), 
+            vjust = -0.5,
+            size = 5) + # significance letters
   labs(x = "Model", 
        y = "Estimated Marginal Mean") +
   figure_theme
@@ -159,7 +163,7 @@ ld1v2 <-
   geom_point(aes(x = lda.LD1, 
                  y = lda.LD2, 
                  colour = model), 
-             size = 3,
+             size = 2,
              alpha = 0.3) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
@@ -167,10 +171,10 @@ ld1v2 <-
                  y = lda.LD2)) +
   coord_cartesian(clip = "off") +
   scale_colour_manual(values = pal_df$c,
-                      breaks = pal_df$l) +
+                     breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
-  labs(x = "LD1 (55% variance)",
-       y = "LD2 (30% variance)") +
+  labs(x = "LD1 (53% variance)",
+       y = "LD2 (32% variance)") +
   figure_theme
 
 ggsave("../figures/MANOVA_lda.png",
@@ -190,7 +194,7 @@ ld1v3 <-
   geom_point(aes(x = lda.LD1, 
                  y = lda.LD3, 
                  colour = model), 
-             size = 3,
+             size = 2,
              alpha = 0.3) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
@@ -200,8 +204,8 @@ ld1v3 <-
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
-  labs(x = "LD1 (55% variance)",
-       y = "LD3 (9% variance)") +
+  labs(x = "LD1 (52% variance)",
+       y = "LD3 (10% variance)") +
   figure_theme
 
 ld2v3 <-
@@ -213,7 +217,7 @@ ld2v3 <-
   geom_point(aes(x = lda.LD3, 
                  y = lda.LD2, 
                  colour = model), 
-             size = 3,
+             size = 2,
              alpha = 0.3) +
   geom_point(data = data.frame(lda = metaweb_predict$x,
                                time = metaweb$time),
@@ -223,8 +227,8 @@ ld2v3 <-
   scale_colour_manual(values = pal_df$c,
                       breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
-  labs(y = "LD2 (30% variance)",
-       x = "LD3 (9% variance)") +
+  labs(y = "LD2 (32% variance)",
+       x = "LD3 (10% variance)") +
   figure_theme
 
 # going to do the same with the corr plots
@@ -264,7 +268,7 @@ ld1v2_corr <- ggplot(corr_df) +
         y = LD2, 
         label = Variable),
     max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
-    size = 2.5) +
+    size = 3) +
   coord_equal()+
   labs(
     x = "LD1",
@@ -296,7 +300,7 @@ ld1v3_corr <- ggplot(corr_df) +
         y = LD3, 
         label = Variable),
     max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
-    size = 2.5) +
+    size = 3) +
   coord_equal()+
   labs(
     x = "LD1",
@@ -328,7 +332,7 @@ ld2v3_corr <- ggplot(corr_df) +
         y = LD2, 
         label = Variable),
     max.overlaps = getOption("ggrepel.max.overlaps", default = 100), 
-    size = 2.5) +
+    size = 3) +
   coord_equal()+
   labs(
     x = "LD3",
@@ -352,8 +356,8 @@ CF
   theme(legend.position='bottom')
 
 ggsave("../figures/MANOVA_3_panel.png",
-       width = 9000,
-       height = 9500,
+       width = 6000,
+       height = 6300,
        units = "px",
        dpi = 700)
 
@@ -412,3 +416,4 @@ ggsave("../figures/summary.png",
        height = 7000,
        units = "px",
        dpi = 600)
+
