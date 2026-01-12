@@ -27,7 +27,8 @@ dat = readr::read_csv("tables/effect_size.csv")
 kable(dat)
 ```
 
-"../figures/summary.png"
+![Boxplot of raw structural values for the different models](../figures/summary.png)
+
 
 # References {.unnumbered}
 
