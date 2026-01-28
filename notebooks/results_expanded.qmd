@@ -1,0 +1,82 @@
+---
+title: "SuppMat 2: Effects of Network Reconstruction on Food-Web Structure"
+authors:
+  - name: Tanya Strydom
+    id: ts
+    orcid: 0000-0001-6067-1349
+abstract: |
+  Expanded results section.
+date: last-modified
+bibliography: ../references.bib
+---
+
+# Effects of Network Reconstruction on Food-Web Structure
+
+## Table S1. Descriptive statistics of network metrics by model
+
+```{r}
+library(knitr)
+library(tidyverse)
+
+readr::read_csv("tables/Table_S1_descriptive_stats.csv") %>%
+kable()
+
+```
+
+## Table S2. Univariate ANOVA results with partial η² and 95% CI
+
+```{r}
+
+readr::read_csv("tables/Table_S2_ANOVA_eta.csv") %>%
+kable()
+
+```
+
+## Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)
+
+```{r}
+
+readr::read_csv("tables/Table_S3_Tukey_pairs.csv") %>%
+kable()
+
+```
+
+## Table S4. LDA coefficients for each variable and linear discriminant axis
+
+```{r}
+
+readr::read_csv("tables/Table_S5_LDA_coeffs.csv") %>%
+kable()
+
+```
+
+## Table S6. Correlation of original variables with LD axes
+
+```{r}
+
+readr::read_csv("tables/Table_S6_LD_correlations.csv") %>%
+kable()
+
+```
+
+## Figure S1. Estimated marginal means per model
+
+![](figures/MANOVA_LDA_biplot_panel.png)
+
+## Figure S2. LDA scatterplots
+
+![](figures/Figure_S1_EMMs.png)
+
+
+# Model choice influences inferred extinction dynamics
+
+## Figure S3. Temporal trajectories of network-level metrics across reconstruction models.
+
+![](figures/Figure_S3_time_structure.png)
+
+Macro (connectance, trophic level), Meso (motif counts: linear chains, omnivory, direct and apparent competition), and Micro (generality, vulnerability). Lines represent mean values across replicates. Deterministic, size-based models (ADBM, L-matrix) show highly similar trajectories, whereas stochastic or trait-driven models (log ratio, niche, random) exhibit greater divergence in both mean values and temporal patterns, consistent with GAM analyses (see main text).
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

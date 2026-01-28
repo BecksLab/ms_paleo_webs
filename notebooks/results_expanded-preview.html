@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.9.17">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta name="dcterms.date" content="2026-01-28">
+
+    <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
+    <style>
+      /* Default styles provided by pandoc.
+      ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+      */
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      html { -webkit-text-size-adjust: 100%; }
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
+
+    <style>
+      body.hypothesis-enabled #quarto-embed-header {
+        padding-right: 36px;
+      }
+
+      #quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+
+      #quarto-embed-header h6 {
+        font-size: 1.1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 400;
+      }
+
+      #quarto-embed-header a.quarto-back-link,
+      #quarto-embed-header a.quarto-download-embed {
+        font-size: 0.8em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+
+      .quarto-back-container {
+        padding-left: 0.5em;
+        display: flex;
+      }
+
+      .headroom {
+          will-change: transform;
+          transition: transform 200ms linear;
+      }
+
+      .headroom--pinned {
+          transform: translateY(0%);
+      }
+
+      .headroom--unpinned {
+          transform: translateY(-100%);
+      }      
+    </style>
+
+    <script>
+    window.document.addEventListener("DOMContentLoaded", function () {
+
+      var header = window.document.querySelector("#quarto-embed-header");
+      const titleBannerEl = window.document.querySelector("body > #title-block-header");
+      if (titleBannerEl) {
+        titleBannerEl.style.paddingTop = header.clientHeight + "px";
+      }
+      const contentEl = window.document.getElementById('quarto-content');
+      for (const child of contentEl.children) {
+        child.style.paddingTop = header.clientHeight + "px";
+        child.style.marginTop = "1em";
+      }
+
+      // Use the article root if the `back` call doesn't work. This isn't perfect
+      // but should typically work
+      window.quartoBackToArticle = () => {
+        var currentUrl = window.location.href;
+        window.history.back();
+        setTimeout(() => {
+            // if location was not changed in 100 ms, then there is no history back
+            if(currentUrl === window.location.href){              
+                // redirect to site root
+                window.location.href = "../index.html";
+            }
+        }, 100);
+      }
+
+      const headroom = new window.Headroom(header, {
+        tolerance: 5,
+        onPin: function () {
+        },
+        onUnpin: function () {
+        },
+      });
+      headroom.init();
+    });
+    </script>
+
+    
+<script src="../site_libs/manuscript-notebook/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ce4278342a015d016477ed09bce942c5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-575b51fb5e8da2a7cc0ded7321a6503a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+     <script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>  
+      </head>
+
+  <body class="quarto-notebook quarto-light">
+    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
+      
+      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6><i class="bi bi-journal-code"></i> SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</h6>
+
+            <a href="../notebooks/results_expanded.qmd" class="btn btn-primary quarto-download-embed" download="results_expanded.qmd">Download Source</a>
+          </div>
+
+     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</h1>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+        
+        <div class="quarto-title-meta">
+
+                <div>
+            <div class="quarto-title-meta-heading">Author</div>
+            <div class="quarto-title-meta-contents">
+                        <p>Tanya Strydom <a href="https://orcid.org/0000-0001-6067-1349" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+                      </div>
+          </div>
+                
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">January 28, 2026</p>
+            </div>
+          </div>
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      </div>
+    </div>
+
+    <div>
+      <div class="abstract">
+        <div class="block-title">Abstract</div>
+        <p>Expanded results section.</p>
+      </div>
+    </div>
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link active" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
+  <ul class="collapse">
+  <li><a href="#table-s1.-descriptive-statistics-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</a></li>
+  <li><a href="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" id="toc-table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" class="nav-link" data-scroll-target="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci">Table S2. Univariate ANOVA results with partial η² and 95% CI</a></li>
+  <li><a href="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" id="toc-table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" class="nav-link" data-scroll-target="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means">Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)</a></li>
+  <li><a href="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" id="toc-table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" class="nav-link" data-scroll-target="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis">Table S4. LDA coefficients for each variable and linear discriminant axis</a></li>
+  <li><a href="#table-s6.-correlation-of-original-variables-with-ld-axes" id="toc-table-s6.-correlation-of-original-variables-with-ld-axes" class="nav-link" data-scroll-target="#table-s6.-correlation-of-original-variables-with-ld-axes">Table S6. Correlation of original variables with LD axes</a></li>
+  <li><a href="#figure-s1.-estimated-marginal-means-per-model" id="toc-figure-s1.-estimated-marginal-means-per-model" class="nav-link" data-scroll-target="#figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</a></li>
+  <li><a href="#figure-s2.-lda-scatterplots" id="toc-figure-s2.-lda-scatterplots" class="nav-link" data-scroll-target="#figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</a></li>
+  </ul></li>
+  <li><a href="#model-choice-influences-inferred-extinction-dynamics" id="toc-model-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#model-choice-influences-inferred-extinction-dynamics">Model choice influences inferred extinction dynamics</a>
+  <ul class="collapse">
+  <li><a href="#figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." id="toc-figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." class="nav-link" data-scroll-target="#figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models.">Figure S3. Temporal trajectories of network-level metrics across reconstruction models.</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">      
+
+       <section id="effects-of-network-reconstruction-on-food-web-structure" class="level1">
+<h1>Effects of Network Reconstruction on Food-Web Structure</h1>
+<section id="table-s1.-descriptive-statistics-of-network-metrics-by-model" class="level2">
+<h2 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S1_descriptive_stats.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 6 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): model
+dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">connectance_mean</th>
+<th style="text-align: right;">connectance_sd</th>
+<th style="text-align: right;">trophic_level_mean</th>
+<th style="text-align: right;">trophic_level_sd</th>
+<th style="text-align: right;">generality_mean</th>
+<th style="text-align: right;">generality_sd</th>
+<th style="text-align: right;">vulnerability_mean</th>
+<th style="text-align: right;">vulnerability_sd</th>
+<th style="text-align: right;">S1_mean</th>
+<th style="text-align: right;">S1_sd</th>
+<th style="text-align: right;">S2_mean</th>
+<th style="text-align: right;">S2_sd</th>
+<th style="text-align: right;">S4_mean</th>
+<th style="text-align: right;">S4_sd</th>
+<th style="text-align: right;">S5_mean</th>
+<th style="text-align: right;">S5_sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">adbm</td>
+<td style="text-align: right;">0.2980289</td>
+<td style="text-align: right;">0.0173274</td>
+<td style="text-align: right;">14.9000</td>
+<td style="text-align: right;">4.394688</td>
+<td style="text-align: right;">0.9018448</td>
+<td style="text-align: right;">0.0950970</td>
+<td style="text-align: right;">0.8893876</td>
+<td style="text-align: right;">0.0559394</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">1.1891795</td>
+<td style="text-align: right;">0.4682134</td>
+<td style="text-align: right;">1.4537193</td>
+<td style="text-align: right;">0.6319601</td>
+<td style="text-align: right;">1.3887004</td>
+<td style="text-align: right;">0.3871614</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lmatrix</td>
+<td style="text-align: right;">0.2250133</td>
+<td style="text-align: right;">0.0170831</td>
+<td style="text-align: right;">15.7300</td>
+<td style="text-align: right;">6.889176</td>
+<td style="text-align: right;">1.0308906</td>
+<td style="text-align: right;">0.1385251</td>
+<td style="text-align: right;">1.0673261</td>
+<td style="text-align: right;">0.1042244</td>
+<td style="text-align: right;">0.0291176</td>
+<td style="text-align: right;">0.0502323</td>
+<td style="text-align: right;">0.4557063</td>
+<td style="text-align: right;">0.1981065</td>
+<td style="text-align: right;">1.3411211</td>
+<td style="text-align: right;">0.5991332</td>
+<td style="text-align: right;">1.1685892</td>
+<td style="text-align: right;">0.2930910</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log ratio</td>
+<td style="text-align: right;">0.1720401</td>
+<td style="text-align: right;">0.0155925</td>
+<td style="text-align: right;">19.9100</td>
+<td style="text-align: right;">10.106545</td>
+<td style="text-align: right;">0.6371490</td>
+<td style="text-align: right;">0.0896016</td>
+<td style="text-align: right;">0.6898121</td>
+<td style="text-align: right;">0.1403929</td>
+<td style="text-align: right;">0.7490114</td>
+<td style="text-align: right;">0.2910247</td>
+<td style="text-align: right;">0.1410731</td>
+<td style="text-align: right;">0.0622885</td>
+<td style="text-align: right;">0.5286292</td>
+<td style="text-align: right;">0.2069172</td>
+<td style="text-align: right;">0.5014183</td>
+<td style="text-align: right;">0.2151592</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">niche</td>
+<td style="text-align: right;">0.1181557</td>
+<td style="text-align: right;">0.0328685</td>
+<td style="text-align: right;">18.4925</td>
+<td style="text-align: right;">12.145317</td>
+<td style="text-align: right;">1.1245242</td>
+<td style="text-align: right;">0.1685898</td>
+<td style="text-align: right;">0.6482552</td>
+<td style="text-align: right;">0.1672472</td>
+<td style="text-align: right;">0.1924341</td>
+<td style="text-align: right;">0.1096531</td>
+<td style="text-align: right;">0.1088552</td>
+<td style="text-align: right;">0.0890663</td>
+<td style="text-align: right;">0.1434281</td>
+<td style="text-align: right;">0.0855302</td>
+<td style="text-align: right;">0.3231550</td>
+<td style="text-align: right;">0.1852910</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pfim</td>
+<td style="text-align: right;">0.1185292</td>
+<td style="text-align: right;">0.0231336</td>
+<td style="text-align: right;">15.6525</td>
+<td style="text-align: right;">6.238513</td>
+<td style="text-align: right;">1.7226598</td>
+<td style="text-align: right;">0.1528536</td>
+<td style="text-align: right;">0.6326936</td>
+<td style="text-align: right;">0.0763279</td>
+<td style="text-align: right;">0.1044935</td>
+<td style="text-align: right;">0.0352603</td>
+<td style="text-align: right;">0.1390467</td>
+<td style="text-align: right;">0.0305457</td>
+<td style="text-align: right;">0.0644215</td>
+<td style="text-align: right;">0.0456966</td>
+<td style="text-align: right;">0.5227883</td>
+<td style="text-align: right;">0.1453698</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">random</td>
+<td style="text-align: right;">0.2213846</td>
+<td style="text-align: right;">0.0449628</td>
+<td style="text-align: right;">17.0675</td>
+<td style="text-align: right;">12.154929</td>
+<td style="text-align: right;">0.3263843</td>
+<td style="text-align: right;">0.0833936</td>
+<td style="text-align: right;">1.7046249</td>
+<td style="text-align: right;">0.2168757</td>
+<td style="text-align: right;">0.0107583</td>
+<td style="text-align: right;">0.0127651</td>
+<td style="text-align: right;">0.1808526</td>
+<td style="text-align: right;">0.0937089</td>
+<td style="text-align: right;">1.6233885</td>
+<td style="text-align: right;">0.6556234</td>
+<td style="text-align: right;">0.0296900</td>
+<td style="text-align: right;">0.0213948</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" class="level2">
+<h2 class="anchored" data-anchor-id="table-s2.-univariate-anova-results-with-partial-η²-and-95-ci">Table S2. Univariate ANOVA results with partial η² and 95% CI</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S2_ANOVA_eta.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): Variable
+dbl (3): F (df1, df2), Df, p-value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">F (df1, df2)</th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Response connectance</td>
+<td style="text-align: right;">2623.53787</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response trophic_level</td>
+<td style="text-align: right;">17.67839</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Response generality</td>
+<td style="text-align: right;">5672.86254</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response vulnerability</td>
+<td style="text-align: right;">3543.63185</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Response S1</td>
+<td style="text-align: right;">1971.68594</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response S2</td>
+<td style="text-align: right;">1522.50131</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Response S4</td>
+<td style="text-align: right;">937.62337</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response S5</td>
+<td style="text-align: right;">1908.97687</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" class="level2">
+<h2 class="anchored" data-anchor-id="table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means">Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S3_Tukey_pairs.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 15 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): contrast
+dbl (5): estimate, SE, df, t.ratio, p.value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 7%">
+<col style="width: 16%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">contrast</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">SE</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">t.ratio</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">adbm - lmatrix</td>
+<td style="text-align: right;">-0.0033630</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.0402016</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">adbm - log ratio</td>
+<td style="text-align: right;">-0.2885341</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-3.4492019</td>
+<td style="text-align: right;">0.0075396</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">adbm - niche</td>
+<td style="text-align: right;">-0.0163059</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.1949241</td>
+<td style="text-align: right;">0.9999614</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">adbm - pfim</td>
+<td style="text-align: right;">0.2579660</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">3.0837836</td>
+<td style="text-align: right;">0.0252227</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">adbm - random</td>
+<td style="text-align: right;">-0.0179653</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.2147617</td>
+<td style="text-align: right;">0.9999376</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lmatrix - log ratio</td>
+<td style="text-align: right;">-0.2851711</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-3.4090003</td>
+<td style="text-align: right;">0.0086756</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lmatrix - niche</td>
+<td style="text-align: right;">-0.0129429</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.1547226</td>
+<td style="text-align: right;">0.9999877</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lmatrix - pfim</td>
+<td style="text-align: right;">0.2613289</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">3.1239852</td>
+<td style="text-align: right;">0.0222532</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lmatrix - random</td>
+<td style="text-align: right;">-0.0146024</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.1745602</td>
+<td style="text-align: right;">0.9999777</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log ratio - niche</td>
+<td style="text-align: right;">0.2722282</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">3.2542778</td>
+<td style="text-align: right;">0.0146362</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log ratio - pfim</td>
+<td style="text-align: right;">0.5465001</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">6.5329855</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log ratio - random</td>
+<td style="text-align: right;">0.2705687</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">3.2344401</td>
+<td style="text-align: right;">0.0156202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">niche - pfim</td>
+<td style="text-align: right;">0.2742718</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">3.2787078</td>
+<td style="text-align: right;">0.0135007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">niche - random</td>
+<td style="text-align: right;">-0.0016595</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-0.0198376</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pfim - random</td>
+<td style="text-align: right;">-0.2759313</td>
+<td style="text-align: right;">0.0836524</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">-3.2985454</td>
+<td style="text-align: right;">0.0126374</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" class="level2">
+<h2 class="anchored" data-anchor-id="table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis">Table S4. LDA coefficients for each variable and linear discriminant axis</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S5_LDA_coeffs.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): Variable
+dbl (5): LD1, LD2, LD3, LD4, LD5
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">LD1</th>
+<th style="text-align: right;">LD2</th>
+<th style="text-align: right;">LD3</th>
+<th style="text-align: right;">LD4</th>
+<th style="text-align: right;">LD5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">connectance</td>
+<td style="text-align: right;">40.7066495</td>
+<td style="text-align: right;">24.1437559</td>
+<td style="text-align: right;">2.1404456</td>
+<td style="text-align: right;">5.2341446</td>
+<td style="text-align: right;">23.6436361</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: right;">0.0057168</td>
+<td style="text-align: right;">-0.0009157</td>
+<td style="text-align: right;">0.0023019</td>
+<td style="text-align: right;">-0.0303978</td>
+<td style="text-align: right;">-0.0091700</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">generality</td>
+<td style="text-align: right;">-1.8879193</td>
+<td style="text-align: right;">6.6892927</td>
+<td style="text-align: right;">6.2429016</td>
+<td style="text-align: right;">0.9900440</td>
+<td style="text-align: right;">6.8769173</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: right;">7.8662831</td>
+<td style="text-align: right;">0.9922318</td>
+<td style="text-align: right;">2.5945500</td>
+<td style="text-align: right;">1.2416329</td>
+<td style="text-align: right;">4.4242109</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S1</td>
+<td style="text-align: right;">-2.2334080</td>
+<td style="text-align: right;">-3.1985189</td>
+<td style="text-align: right;">-0.2200124</td>
+<td style="text-align: right;">2.2390870</td>
+<td style="text-align: right;">8.6361615</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S2</td>
+<td style="text-align: right;">-3.5865498</td>
+<td style="text-align: right;">1.4763674</td>
+<td style="text-align: right;">-1.6934545</td>
+<td style="text-align: right;">-6.4591767</td>
+<td style="text-align: right;">2.8986340</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S4</td>
+<td style="text-align: right;">0.0445285</td>
+<td style="text-align: right;">-0.6075187</td>
+<td style="text-align: right;">2.2827132</td>
+<td style="text-align: right;">0.9064733</td>
+<td style="text-align: right;">0.3629381</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S5</td>
+<td style="text-align: right;">2.5723148</td>
+<td style="text-align: right;">2.5794213</td>
+<td style="text-align: right;">-3.1096720</td>
+<td style="text-align: right;">4.4559578</td>
+<td style="text-align: right;">-3.5414518</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="table-s6.-correlation-of-original-variables-with-ld-axes" class="level2">
+<h2 class="anchored" data-anchor-id="table-s6.-correlation-of-original-variables-with-ld-axes">Table S6. Correlation of original variables with LD axes</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S6_LD_correlations.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): Variable
+dbl (5): LD1, LD2, LD3, LD4, LD5
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">LD1</th>
+<th style="text-align: right;">LD2</th>
+<th style="text-align: right;">LD3</th>
+<th style="text-align: right;">LD4</th>
+<th style="text-align: right;">LD5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">connectance</td>
+<td style="text-align: right;">0.7628976</td>
+<td style="text-align: right;">0.3365943</td>
+<td style="text-align: right;">-0.4415876</td>
+<td style="text-align: right;">-0.0957877</td>
+<td style="text-align: right;">0.1622868</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: right;">-0.0687639</td>
+<td style="text-align: right;">-0.1701125</td>
+<td style="text-align: right;">-0.0621226</td>
+<td style="text-align: right;">0.0199146</td>
+<td style="text-align: right;">-0.0271378</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">generality</td>
+<td style="text-align: right;">-0.6911369</td>
+<td style="text-align: right;">0.6096567</td>
+<td style="text-align: right;">0.3559136</td>
+<td style="text-align: right;">0.1074749</td>
+<td style="text-align: right;">0.0127395</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: right;">0.8568712</td>
+<td style="text-align: right;">-0.2619202</td>
+<td style="text-align: right;">0.3574128</td>
+<td style="text-align: right;">-0.0748926</td>
+<td style="text-align: right;">-0.0096879</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S1</td>
+<td style="text-align: right;">-0.4192145</td>
+<td style="text-align: right;">-0.5599603</td>
+<td style="text-align: right;">-0.5106090</td>
+<td style="text-align: right;">0.3193043</td>
+<td style="text-align: right;">0.3667440</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S2</td>
+<td style="text-align: right;">0.3792652</td>
+<td style="text-align: right;">0.6239454</td>
+<td style="text-align: right;">-0.4959952</td>
+<td style="text-align: right;">-0.2831844</td>
+<td style="text-align: right;">0.0979852</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S4</td>
+<td style="text-align: right;">0.8150366</td>
+<td style="text-align: right;">0.0964847</td>
+<td style="text-align: right;">-0.1204570</td>
+<td style="text-align: right;">0.0165675</td>
+<td style="text-align: right;">0.0120830</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S5</td>
+<td style="text-align: right;">0.1544401</td>
+<td style="text-align: right;">0.7478257</td>
+<td style="text-align: right;">-0.5030685</td>
+<td style="text-align: right;">0.2619609</td>
+<td style="text-align: right;">-0.0157702</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="figure-s1.-estimated-marginal-means-per-model" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</h2>
+<p><a href="figures/MANOVA_LDA_biplot_panel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/MANOVA_LDA_biplot_panel.png" class="img-fluid"></a></p>
+</section>
+<section id="figure-s2.-lda-scatterplots" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</h2>
+<p><a href="figures/Figure_S1_EMMs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="figures/Figure_S1_EMMs.png" class="img-fluid"></a></p>
+</section>
+</section>
+<section id="model-choice-influences-inferred-extinction-dynamics" class="level1">
+<h1>Model choice influences inferred extinction dynamics</h1>
+<section id="figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." class="level2">
+<h2 class="anchored" data-anchor-id="figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models.">Figure S3. Temporal trajectories of network-level metrics across reconstruction models.</h2>
+<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
+<p>Macro (connectance, trophic level), Meso (motif counts: linear chains, omnivory, direct and apparent competition), and Micro (generality, vulnerability). Lines represent mean values across replicates. Deterministic, size-based models (ADBM, L-matrix) show highly similar trajectories, whereas stochastic or trait-driven models (log ratio, niche, random) exhibit greater divergence in both mean values and temporal patterns, consistent with GAM analyses (see main text).</p>
+</section>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" role="list">
+
+</div>
+</section>
+     </main>
+<!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script> 
+  
+</body></html>
