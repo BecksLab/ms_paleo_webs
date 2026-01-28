@@ -1,0 +1,547 @@
+model,extinction_mechanism,stat,MAD
+ADBM,Calcified (high - low),No. of linear chains,0.032609514987046354
+ADBM,Calcified (high - low),No. of direct competition motifs,0.1238457273896235
+ADBM,Calcified (high - low),Connectance,0.018547209324948286
+ADBM,Calcified (high - low),Generality,0.08373702314557496
+ADBM,Calcified (high - low),Trophic level,2.7720000000000025
+ADBM,Calcified (low - high),No. of linear chains,0.034350646970714424
+ADBM,Calcified (low - high),No. of direct competition motifs,0.11961771413675908
+ADBM,Calcified (low - high),Connectance,0.024201204377930163
+ADBM,Calcified (low - high),Generality,0.07854218719607536
+ADBM,Calcified (low - high),Trophic level,0.5393999999999994
+ADBM,Generality (low - high),No. of linear chains,0.017156327685878093
+ADBM,Generality (low - high),No. of direct competition motifs,0.34267951446493095
+ADBM,Generality (low - high),Connectance,0.06675583742115214
+ADBM,Generality (low - high),Generality,0.02974927810849206
+ADBM,Generality (low - high),Trophic level,3.820000000000002
+ADBM,Generality (high - low),No. of linear chains,0.06219999999999992
+ADBM,Generality (high - low),No. of direct competition motifs,0.3316249999999999
+ADBM,Generality (high - low),Connectance,0.08912500000000001
+ADBM,Generality (high - low),Generality,0.34478065970736993
+ADBM,Generality (high - low),Trophic level,0.46999999999997877
+ADBM,Motility (none - fast),No. of linear chains,0.028806557772503436
+ADBM,Motility (none - fast),No. of direct competition motifs,0.13424571520325454
+ADBM,Motility (none - fast),Connectance,0.016837811391260202
+ADBM,Motility (none - fast),Generality,0.06290131286696037
+ADBM,Motility (none - fast),Trophic level,4.656199999999996
+ADBM,Motility (fast - none),No. of linear chains,0.029136889926542262
+ADBM,Motility (fast - none),No. of direct competition motifs,0.13153087535611846
+ADBM,Motility (fast - none),Connectance,0.01656817937562933
+ADBM,Motility (fast - none),Generality,0.06390782300753262
+ADBM,Motility (fast - none),Trophic level,4.635600000000008
+ADBM,Random,No. of linear chains,0.034323981044322285
+ADBM,Random,No. of direct competition motifs,0.12646176128393952
+ADBM,Random,Connectance,0.020263559801386794
+ADBM,Random,Generality,0.08585428123723932
+ADBM,Random,Trophic level,1.6776000000000038
+ADBM,Size (small - large),No. of linear chains,0.012468869125468006
+ADBM,Size (small - large),No. of direct competition motifs,0.5514129923046643
+ADBM,Size (small - large),Connectance,0.05757874346013324
+ADBM,Size (small - large),Generality,0.03741432398966644
+ADBM,Size (small - large),Trophic level,5.302199999999996
+ADBM,Size (large - small),No. of linear chains,0.06258149999999997
+ADBM,Size (large - small),No. of direct competition motifs,0.35016850000000016
+ADBM,Size (large - small),Connectance,0.08258249999999999
+ADBM,Size (large - small),Generality,0.3433497480789074
+ADBM,Size (large - small),Trophic level,1.5663999999999905
+ADBM,Tiering (infaunal - pelagic),No. of linear chains,0.037408829501279627
+ADBM,Tiering (infaunal - pelagic),No. of direct competition motifs,0.14569124271638279
+ADBM,Tiering (infaunal - pelagic),Connectance,0.006286561485600279
+ADBM,Tiering (infaunal - pelagic),Generality,0.16701146391075977
+ADBM,Tiering (infaunal - pelagic),Trophic level,1.5944000000000038
+ADBM,Tiering (pelagic - infaunal),No. of linear chains,0.024704691706985582
+ADBM,Tiering (pelagic - infaunal),No. of direct competition motifs,0.10566527868466959
+ADBM,Tiering (pelagic - infaunal),Connectance,0.06055684399370112
+ADBM,Tiering (pelagic - infaunal),Generality,0.010086100373523173
+ADBM,Tiering (pelagic - infaunal),Trophic level,0.991799999999991
+ADBM,Vulnerability (low - high),No. of linear chains,0.06219999999999992
+ADBM,Vulnerability (low - high),No. of direct competition motifs,0.20859999999999984
+ADBM,Vulnerability (low - high),Connectance,0.051999999999999984
+ADBM,Vulnerability (low - high),Generality,0.1715044457521239
+ADBM,Vulnerability (low - high),Trophic level,8.439999999999959
+ADBM,Vulnerability (high - low),No. of linear chains,0.012451358750597085
+ADBM,Vulnerability (high - low),No. of direct competition motifs,0.49996820635973643
+ADBM,Vulnerability (high - low),Connectance,0.06729878106452625
+ADBM,Vulnerability (high - low),Generality,0.0984614325870244
+ADBM,Vulnerability (high - low),Trophic level,5.509999999999999
+l-matrix,Calcified (high - low),No. of linear chains,0.0568444657470092
+l-matrix,Calcified (high - low),No. of direct competition motifs,0.05093329040343787
+l-matrix,Calcified (high - low),Connectance,0.030258319242213727
+l-matrix,Calcified (high - low),Generality,0.13577219650366756
+l-matrix,Calcified (high - low),Trophic level,2.669199999999994
+l-matrix,Calcified (low - high),No. of linear chains,0.05722935494430683
+l-matrix,Calcified (low - high),No. of direct competition motifs,0.04963803222499198
+l-matrix,Calcified (low - high),Connectance,0.03478143915545899
+l-matrix,Calcified (low - high),Generality,0.13660196368833818
+l-matrix,Calcified (low - high),Trophic level,0.9595999999999845
+l-matrix,Generality (low - high),No. of linear chains,0.03437096881269847
+l-matrix,Generality (low - high),No. of direct competition motifs,0.06314622927212084
+l-matrix,Generality (low - high),Connectance,0.07850989987842297
+l-matrix,Generality (low - high),Generality,0.10308208159786514
+l-matrix,Generality (low - high),Trophic level,2.9399999999999693
+l-matrix,Generality (high - low),No. of linear chains,0.06262500000000013
+l-matrix,Generality (high - low),No. of direct competition motifs,0.13287500000000022
+l-matrix,Generality (high - low),Connectance,0.08407499999999996
+l-matrix,Generality (high - low),Generality,0.5092225348527141
+l-matrix,Generality (high - low),Trophic level,1.75
+l-matrix,Motility (none - fast),No. of linear chains,0.0542145217666467
+l-matrix,Motility (none - fast),No. of direct competition motifs,0.04313129985562662
+l-matrix,Motility (none - fast),Connectance,0.029003383823779694
+l-matrix,Motility (none - fast),Generality,0.09283708209009191
+l-matrix,Motility (none - fast),Trophic level,5.519800000000003
+l-matrix,Motility (fast - none),No. of linear chains,0.05449942616455886
+l-matrix,Motility (fast - none),No. of direct competition motifs,0.041660565762957014
+l-matrix,Motility (fast - none),Connectance,0.028620633914037987
+l-matrix,Motility (fast - none),Generality,0.09022406821546693
+l-matrix,Motility (fast - none),Trophic level,5.240799999999996
+l-matrix,Random,No. of linear chains,0.059457972782038127
+l-matrix,Random,No. of direct competition motifs,0.06023177744150225
+l-matrix,Random,Connectance,0.03021528166950793
+l-matrix,Random,Generality,0.141870642170143
+l-matrix,Random,Trophic level,1.8574000000000066
+l-matrix,Size (small - large),No. of linear chains,0.024123478543500214
+l-matrix,Size (small - large),No. of direct competition motifs,0.22253787462986957
+l-matrix,Size (small - large),Connectance,0.07815736103922621
+l-matrix,Size (small - large),Generality,0.14663389994992143
+l-matrix,Size (small - large),Trophic level,6.799599999999995
+l-matrix,Size (large - small),No. of linear chains,0.06506049999999997
+l-matrix,Size (large - small),No. of direct competition motifs,0.16244449999999985
+l-matrix,Size (large - small),Connectance,0.07694649999999997
+l-matrix,Size (large - small),Generality,0.49955333883668124
+l-matrix,Size (large - small),Trophic level,2.703000000000023
+l-matrix,Tiering (infaunal - pelagic),No. of linear chains,0.07736711614063631
+l-matrix,Tiering (infaunal - pelagic),No. of direct competition motifs,0.1376425627838772
+l-matrix,Tiering (infaunal - pelagic),Connectance,5.41938301445369e-4
+l-matrix,Tiering (infaunal - pelagic),Generality,0.26274511987938864
+l-matrix,Tiering (infaunal - pelagic),Trophic level,0.132400000000011
+l-matrix,Tiering (pelagic - infaunal),No. of linear chains,0.03152602740941667
+l-matrix,Tiering (pelagic - infaunal),No. of direct competition motifs,0.04267832287101937
+l-matrix,Tiering (pelagic - infaunal),Connectance,0.0807732946817176
+l-matrix,Tiering (pelagic - infaunal),Generality,0.058353743354600834
+l-matrix,Tiering (pelagic - infaunal),Trophic level,0.24760000000000026
+l-matrix,Vulnerability (low - high),No. of linear chains,0.06807500000000002
+l-matrix,Vulnerability (low - high),No. of direct competition motifs,0.1243749999999999
+l-matrix,Vulnerability (low - high),Connectance,0.04832499999999998
+l-matrix,Vulnerability (low - high),Generality,0.32141232545458687
+l-matrix,Vulnerability (low - high),Trophic level,8.829999999999998
+l-matrix,Vulnerability (high - low),No. of linear chains,0.02820070616101934
+l-matrix,Vulnerability (high - low),No. of direct competition motifs,0.13195049174480203
+l-matrix,Vulnerability (high - low),Connectance,0.08494131412566325
+l-matrix,Vulnerability (high - low),Generality,0.21946580061570387
+l-matrix,Vulnerability (high - low),Trophic level,7.639999999999974
+Log-ratio,Calcified (high - low),No. of linear chains,0.05641214380825233
+Log-ratio,Calcified (high - low),No. of direct competition motifs,0.047558122130251686
+Log-ratio,Calcified (high - low),Connectance,0.008797928291985795
+Log-ratio,Calcified (high - low),Generality,0.012359178797701936
+Log-ratio,Calcified (high - low),Trophic level,1.7669999999999904
+Log-ratio,Calcified (low - high),No. of linear chains,0.0302634792313956
+Log-ratio,Calcified (low - high),No. of direct competition motifs,0.0452646603612697
+Log-ratio,Calcified (low - high),Connectance,0.006545605968858963
+Log-ratio,Calcified (low - high),Generality,0.041318419140178315
+Log-ratio,Calcified (low - high),Trophic level,2.3589999999999924
+Log-ratio,Generality (low - high),No. of linear chains,0.32374470643175163
+Log-ratio,Generality (low - high),No. of direct competition motifs,0.36473813569009766
+Log-ratio,Generality (low - high),Connectance,0.018090111495117116
+Log-ratio,Generality (low - high),Generality,0.0920575300574161
+Log-ratio,Generality (low - high),Trophic level,7.930000000000031
+Log-ratio,Generality (high - low),No. of linear chains,0.1287742335407286
+Log-ratio,Generality (high - low),No. of direct competition motifs,0.08752566129903659
+Log-ratio,Generality (high - low),Connectance,0.0180797926175494
+Log-ratio,Generality (high - low),Generality,0.017905545241671705
+Log-ratio,Generality (high - low),Trophic level,2.650000000000002
+Log-ratio,Motility (none - fast),No. of linear chains,0.05477799270496382
+Log-ratio,Motility (none - fast),No. of direct competition motifs,0.037378087659800247
+Log-ratio,Motility (none - fast),Connectance,0.011101496393217046
+Log-ratio,Motility (none - fast),Generality,0.024661456046636315
+Log-ratio,Motility (none - fast),Trophic level,2.587799999999993
+Log-ratio,Motility (fast - none),No. of linear chains,0.0547765191536001
+Log-ratio,Motility (fast - none),No. of direct competition motifs,0.03889778733316289
+Log-ratio,Motility (fast - none),Connectance,0.011194104940334182
+Log-ratio,Motility (fast - none),Generality,0.026219992061633217
+Log-ratio,Motility (fast - none),Trophic level,2.6468000000000074
+Log-ratio,Random,No. of linear chains,0.04651073735506618
+Log-ratio,Random,No. of direct competition motifs,0.051233690874683775
+Log-ratio,Random,Connectance,0.007332594693415322
+Log-ratio,Random,Generality,0.009246320851825992
+Log-ratio,Random,Trophic level,2.069599999999992
+Log-ratio,Size (small - large),No. of linear chains,0.021789499999999986
+Log-ratio,Size (small - large),No. of direct competition motifs,0.32219749999999997
+Log-ratio,Size (small - large),Connectance,0.05946099999999999
+Log-ratio,Size (small - large),Generality,0.03579179612707527
+Log-ratio,Size (small - large),Trophic level,3.0854000000000124
+Log-ratio,Size (large - small),No. of linear chains,0.5095709463408633
+Log-ratio,Size (large - small),No. of direct competition motifs,0.5089275438590118
+Log-ratio,Size (large - small),Connectance,0.021924511389892147
+Log-ratio,Size (large - small),Generality,0.024048204126064978
+Log-ratio,Size (large - small),Trophic level,6.533599999999914
+Log-ratio,Tiering (infaunal - pelagic),No. of linear chains,0.022980086291215288
+Log-ratio,Tiering (infaunal - pelagic),No. of direct competition motifs,0.04433088204531292
+Log-ratio,Tiering (infaunal - pelagic),Connectance,0.002712240587323164
+Log-ratio,Tiering (infaunal - pelagic),Generality,0.08182238934134184
+Log-ratio,Tiering (infaunal - pelagic),Trophic level,4.56059999999999
+Log-ratio,Tiering (pelagic - infaunal),No. of linear chains,0.23946155109609923
+Log-ratio,Tiering (pelagic - infaunal),No. of direct competition motifs,0.2788087087995497
+Log-ratio,Tiering (pelagic - infaunal),Connectance,0.01973091992695181
+Log-ratio,Tiering (pelagic - infaunal),Generality,0.061943470117586524
+Log-ratio,Tiering (pelagic - infaunal),Trophic level,3.8413999999999935
+Log-ratio,Vulnerability (low - high),No. of linear chains,0.0010000000000000662
+Log-ratio,Vulnerability (low - high),No. of direct competition motifs,0.36202500000000004
+Log-ratio,Vulnerability (low - high),Connectance,0.061075000000000004
+Log-ratio,Vulnerability (low - high),Generality,0.03812903919481951
+Log-ratio,Vulnerability (low - high),Trophic level,1.6899999999999609
+Log-ratio,Vulnerability (high - low),No. of linear chains,0.1535478953896295
+Log-ratio,Vulnerability (high - low),No. of direct competition motifs,0.0999203832820573
+Log-ratio,Vulnerability (high - low),Connectance,0.048093481575880975
+Log-ratio,Vulnerability (high - low),Generality,0.184214853196764
+Log-ratio,Vulnerability (high - low),Trophic level,0.9199999999999892
+Niche,Calcified (high - low),No. of linear chains,0.037674768849646274
+Niche,Calcified (high - low),No. of direct competition motifs,0.022991309465111423
+Niche,Calcified (high - low),Connectance,7.726972147400182e-4
+Niche,Calcified (high - low),Generality,0.23819023532928238
+Niche,Calcified (high - low),Trophic level,1.9471999999999796
+Niche,Calcified (low - high),No. of linear chains,0.029688004559348568
+Niche,Calcified (low - high),No. of direct competition motifs,0.028470701607343434
+Niche,Calcified (low - high),Connectance,0.0013357372588111108
+Niche,Calcified (low - high),Generality,0.2163245240716641
+Niche,Calcified (low - high),Trophic level,0.4982000000000026
+Niche,Generality (low - high),No. of linear chains,0.0926070341955296
+Niche,Generality (low - high),No. of direct competition motifs,0.08536776016481662
+Niche,Generality (low - high),Connectance,0.050163405313974944
+Niche,Generality (low - high),Generality,0.2806472805508948
+Niche,Generality (low - high),Trophic level,2.5
+Niche,Generality (high - low),No. of linear chains,0.07335630608437761
+Niche,Generality (high - low),No. of direct competition motifs,0.027589340974299797
+Niche,Generality (high - low),Connectance,0.07015501656353305
+Niche,Generality (high - low),Generality,0.778737662890165
+Niche,Generality (high - low),Trophic level,1.4399999999999542
+Niche,Motility (none - fast),No. of linear chains,0.03642771307314878
+Niche,Motility (none - fast),No. of direct competition motifs,0.03277088134834562
+Niche,Motility (none - fast),Connectance,0.004556828294629626
+Niche,Motility (none - fast),Generality,0.2043702479137136
+Niche,Motility (none - fast),Trophic level,0.9743999999999949
+Niche,Motility (fast - none),No. of linear chains,0.03653993295052034
+Niche,Motility (fast - none),No. of direct competition motifs,0.03321107708352549
+Niche,Motility (fast - none),Connectance,0.004865200596541128
+Niche,Motility (fast - none),Generality,0.20262758810407167
+Niche,Motility (fast - none),Trophic level,0.9489999999999713
+Niche,Random,No. of linear chains,0.03234369445939393
+Niche,Random,No. of direct competition motifs,0.02369732648058081
+Niche,Random,Connectance,7.97315901639908e-4
+Niche,Random,Generality,0.223517844933463
+Niche,Random,Trophic level,1.141199999999979
+Niche,Size (small - large),No. of linear chains,0.028005418646667057
+Niche,Size (small - large),No. of direct competition motifs,0.02155382293443551
+Niche,Size (small - large),Connectance,0.005303045548043073
+Niche,Size (small - large),Generality,0.24958462207317045
+Niche,Size (small - large),Trophic level,1.1509999999999858
+Niche,Size (large - small),No. of linear chains,0.04240059899563138
+Niche,Size (large - small),No. of direct competition motifs,0.03714503608642247
+Niche,Size (large - small),Connectance,0.008497290572314286
+Niche,Size (large - small),Generality,0.21291490132092003
+Niche,Size (large - small),Trophic level,1.8098000000000043
+Niche,Tiering (infaunal - pelagic),No. of linear chains,0.02330132705307685
+Niche,Tiering (infaunal - pelagic),No. of direct competition motifs,0.014715148282801658
+Niche,Tiering (infaunal - pelagic),Connectance,0.008117795719751608
+Niche,Tiering (infaunal - pelagic),Generality,0.22739461633761693
+Niche,Tiering (infaunal - pelagic),Trophic level,0.4068000000000152
+Niche,Tiering (pelagic - infaunal),No. of linear chains,0.06621739085881588
+Niche,Tiering (pelagic - infaunal),No. of direct competition motifs,0.050042657674646746
+Niche,Tiering (pelagic - infaunal),Connectance,0.021981420393960612
+Niche,Tiering (pelagic - infaunal),Generality,0.23513201917152743
+Niche,Tiering (pelagic - infaunal),Trophic level,2.001599999999969
+Niche,Vulnerability (low - high),No. of linear chains,0.05589660196215065
+Niche,Vulnerability (low - high),No. of direct competition motifs,0.022452336455200325
+Niche,Vulnerability (low - high),Connectance,0.01246847355360049
+Niche,Vulnerability (low - high),Generality,0.15434508033748276
+Niche,Vulnerability (low - high),Trophic level,2.0600000000000454
+Niche,Vulnerability (high - low),No. of linear chains,0.02615802656615493
+Niche,Vulnerability (high - low),No. of direct competition motifs,0.0049524745874103505
+Niche,Vulnerability (high - low),Connectance,0.006920729749678407
+Niche,Vulnerability (high - low),Generality,0.14160268641977736
+Niche,Vulnerability (high - low),Trophic level,1.8399999999999748
+PFIM (downsampled),Calcified (high - low),No. of linear chains,0.05544538028710106
+PFIM (downsampled),Calcified (high - low),No. of direct competition motifs,0.2401693528607035
+PFIM (downsampled),Calcified (high - low),Connectance,0.03481962926107082
+PFIM (downsampled),Calcified (high - low),Generality,0.2702986540500148
+PFIM (downsampled),Calcified (high - low),Trophic level,0.1281999999999602
+PFIM (downsampled),Calcified (low - high),No. of linear chains,0.044102400226757384
+PFIM (downsampled),Calcified (low - high),No. of direct competition motifs,0.2285576201814059
+PFIM (downsampled),Calcified (low - high),Connectance,0.030165090702947844
+PFIM (downsampled),Calcified (low - high),Generality,0.3216233199160877
+PFIM (downsampled),Calcified (low - high),Trophic level,0.40840000000003873
+PFIM (downsampled),Generality (low - high),No. of linear chains,0.0012727324263039077
+PFIM (downsampled),Generality (low - high),No. of direct competition motifs,0.12563321995464846
+PFIM (downsampled),Generality (low - high),Connectance,0.02700765306122451
+PFIM (downsampled),Generality (low - high),Generality,0.6592488244924407
+PFIM (downsampled),Generality (low - high),Trophic level,2.25
+PFIM (downsampled),Generality (high - low),No. of linear chains,0.13485000000000003
+PFIM (downsampled),Generality (high - low),No. of direct competition motifs,0.40397500000000003
+PFIM (downsampled),Generality (high - low),Connectance,0.10832499999999996
+PFIM (downsampled),Generality (high - low),Generality,1.3413679663053324
+PFIM (downsampled),Generality (high - low),Trophic level,8.760000000000007
+PFIM (downsampled),Motility (none - fast),No. of linear chains,0.06901957482993198
+PFIM (downsampled),Motility (none - fast),No. of direct competition motifs,0.2786684557823129
+PFIM (downsampled),Motility (none - fast),Connectance,0.04777128458049887
+PFIM (downsampled),Motility (none - fast),Generality,0.23830960730087772
+PFIM (downsampled),Motility (none - fast),Trophic level,0.5130000000000323
+PFIM (downsampled),Motility (fast - none),No. of linear chains,0.06883808163265306
+PFIM (downsampled),Motility (fast - none),No. of direct competition motifs,0.2791066315192744
+PFIM (downsampled),Motility (fast - none),Connectance,0.04738739342403628
+PFIM (downsampled),Motility (fast - none),Generality,0.22803158363024642
+PFIM (downsampled),Motility (fast - none),Trophic level,0.5140000000000113
+PFIM (downsampled),Random,No. of linear chains,0.05127911111111112
+PFIM (downsampled),Random,No. of direct competition motifs,0.23211742630385487
+PFIM (downsampled),Random,Connectance,0.03275358163265306
+PFIM (downsampled),Random,Generality,0.289333513940958
+PFIM (downsampled),Random,Trophic level,0.5319999999999794
+PFIM (downsampled),Size (small - large),No. of linear chains,0.006923196679222683
+PFIM (downsampled),Size (small - large),No. of direct competition motifs,0.2175557308146399
+PFIM (downsampled),Size (small - large),Connectance,0.005808387951874964
+PFIM (downsampled),Size (small - large),Generality,0.510810690335704
+PFIM (downsampled),Size (small - large),Trophic level,0.09039999999996413
+PFIM (downsampled),Size (large - small),No. of linear chains,0.08211800000000001
+PFIM (downsampled),Size (large - small),No. of direct competition motifs,0.281671
+PFIM (downsampled),Size (large - small),Connectance,0.057829500000000006
+PFIM (downsampled),Size (large - small),Generality,0.1614928860091382
+PFIM (downsampled),Size (large - small),Trophic level,4.536199999999994
+PFIM (downsampled),Tiering (infaunal - pelagic),No. of linear chains,0.093356626984127
+PFIM (downsampled),Tiering (infaunal - pelagic),No. of direct competition motifs,0.1716473492063492
+PFIM (downsampled),Tiering (infaunal - pelagic),Connectance,0.02056623242630385
+PFIM (downsampled),Tiering (infaunal - pelagic),Generality,0.4794101440924075
+PFIM (downsampled),Tiering (infaunal - pelagic),Trophic level,0.09179999999996394
+PFIM (downsampled),Tiering (pelagic - infaunal),No. of linear chains,0.019762215428871303
+PFIM (downsampled),Tiering (pelagic - infaunal),No. of direct competition motifs,0.21598926249508071
+PFIM (downsampled),Tiering (pelagic - infaunal),Connectance,0.024048227478870303
+PFIM (downsampled),Tiering (pelagic - infaunal),Generality,0.011548076045485973
+PFIM (downsampled),Tiering (pelagic - infaunal),Trophic level,0.6389999999999998
+PFIM (downsampled),Vulnerability (low - high),No. of linear chains,0.03385000000000004
+PFIM (downsampled),Vulnerability (low - high),No. of direct competition motifs,0.260175
+PFIM (downsampled),Vulnerability (low - high),Connectance,0.01700000000000001
+PFIM (downsampled),Vulnerability (low - high),Generality,0.05331545475935676
+PFIM (downsampled),Vulnerability (low - high),Trophic level,1.3100000000000314
+PFIM (downsampled),Vulnerability (high - low),No. of linear chains,0.0700462168062817
+PFIM (downsampled),Vulnerability (high - low),No. of direct competition motifs,0.16698583422349658
+PFIM (downsampled),Vulnerability (high - low),Connectance,0.04880080676898859
+PFIM (downsampled),Vulnerability (high - low),Generality,0.2908677618072273
+PFIM (downsampled),Vulnerability (high - low),Trophic level,3.1399999999999726
+PFIM (metaweb),Calcified (high - low),No. of linear chains,0.08897000000000001
+PFIM (metaweb),Calcified (high - low),No. of direct competition motifs,0.259028
+PFIM (metaweb),Calcified (high - low),Connectance,0.03410849999999999
+PFIM (metaweb),Calcified (high - low),Generality,0.19374389734609834
+PFIM (metaweb),Calcified (high - low),Trophic level,1.3141999999999792
+PFIM (metaweb),Calcified (low - high),No. of linear chains,0.0708275
+PFIM (metaweb),Calcified (low - high),No. of direct competition motifs,0.248577
+PFIM (metaweb),Calcified (low - high),Connectance,0.025067999999999986
+PFIM (metaweb),Calcified (low - high),Generality,0.2301955994305069
+PFIM (metaweb),Calcified (low - high),Trophic level,1.0643999999999973
+PFIM (metaweb),Generality (low - high),No. of linear chains,0.01999999999999999
+PFIM (metaweb),Generality (low - high),No. of direct competition motifs,0.15
+PFIM (metaweb),Generality (low - high),Connectance,0.05250000000000002
+PFIM (metaweb),Generality (low - high),Generality,0.7663142100546823
+PFIM (metaweb),Generality (low - high),Trophic level,3
+PFIM (metaweb),Generality (high - low),No. of linear chains,0.1875
+PFIM (metaweb),Generality (high - low),No. of direct competition motifs,0.4275
+PFIM (metaweb),Generality (high - low),Connectance,0.1275
+PFIM (metaweb),Generality (high - low),Generality,1.2492394013372552
+PFIM (metaweb),Generality (high - low),Trophic level,8
+PFIM (metaweb),Motility (none - fast),No. of linear chains,0.10556600000000001
+PFIM (metaweb),Motility (none - fast),No. of direct competition motifs,0.298292
+PFIM (metaweb),Motility (none - fast),Connectance,0.049511499999999986
+PFIM (metaweb),Motility (none - fast),Generality,0.09053326938144608
+PFIM (metaweb),Motility (none - fast),Trophic level,2.0238000000000027
+PFIM (metaweb),Motility (fast - none),No. of linear chains,0.1044955
+PFIM (metaweb),Motility (fast - none),No. of direct competition motifs,0.2977285
+PFIM (metaweb),Motility (fast - none),Connectance,0.04886599999999999
+PFIM (metaweb),Motility (fast - none),Generality,0.09120948753490316
+PFIM (metaweb),Motility (fast - none),Trophic level,2.150799999999997
+PFIM (metaweb),Random,No. of linear chains,0.082734
+PFIM (metaweb),Random,No. of direct competition motifs,0.2525785
+PFIM (metaweb),Random,Connectance,0.030194499999999992
+PFIM (metaweb),Random,Generality,0.21017717306827483
+PFIM (metaweb),Random,Trophic level,0.7120000000000064
+PFIM (metaweb),Size (small - large),No. of linear chains,0.044145
+PFIM (metaweb),Size (small - large),No. of direct competition motifs,0.229791
+PFIM (metaweb),Size (small - large),Connectance,0.023974000000000013
+PFIM (metaweb),Size (small - large),Generality,0.41852872023226195
+PFIM (metaweb),Size (small - large),Trophic level,2.057000000000002
+PFIM (metaweb),Size (large - small),No. of linear chains,0.1110775
+PFIM (metaweb),Size (large - small),No. of direct competition motifs,0.310185
+PFIM (metaweb),Size (large - small),Connectance,0.044804999999999984
+PFIM (metaweb),Size (large - small),Generality,0.11630126975820143
+PFIM (metaweb),Size (large - small),Trophic level,1.4438000000000004
+PFIM (metaweb),Tiering (infaunal - pelagic),No. of linear chains,0.13460249999999999
+PFIM (metaweb),Tiering (infaunal - pelagic),No. of direct competition motifs,0.142822
+PFIM (metaweb),Tiering (infaunal - pelagic),Connectance,0.06333300000000001
+PFIM (metaweb),Tiering (infaunal - pelagic),Generality,0.3806000077497952
+PFIM (metaweb),Tiering (infaunal - pelagic),Trophic level,0.2768000000000005
+PFIM (metaweb),Tiering (pelagic - infaunal),No. of linear chains,0.065
+PFIM (metaweb),Tiering (pelagic - infaunal),No. of direct competition motifs,0.2275
+PFIM (metaweb),Tiering (pelagic - infaunal),Connectance,0.015000000000000013
+PFIM (metaweb),Tiering (pelagic - infaunal),Generality,0.05600951796010767
+PFIM (metaweb),Tiering (pelagic - infaunal),Trophic level,1
+PFIM (metaweb),Vulnerability (low - high),No. of linear chains,0.08
+PFIM (metaweb),Vulnerability (low - high),No. of direct competition motifs,0.29
+PFIM (metaweb),Vulnerability (low - high),Connectance,0.007499999999999979
+PFIM (metaweb),Vulnerability (low - high),Generality,0.19362081029223854
+PFIM (metaweb),Vulnerability (low - high),Trophic level,1
+PFIM (metaweb),Vulnerability (high - low),No. of linear chains,0.115
+PFIM (metaweb),Vulnerability (high - low),No. of direct competition motifs,0.2275
+PFIM (metaweb),Vulnerability (high - low),Connectance,0.059999999999999984
+PFIM (metaweb),Vulnerability (high - low),Generality,0.18332183477217923
+PFIM (metaweb),Vulnerability (high - low),Trophic level,4
+Random,Calcified (high - low),No. of linear chains,0.006654340347409233
+Random,Calcified (high - low),No. of direct competition motifs,0.08150383575720202
+Random,Calcified (high - low),Connectance,0.012501430034421532
+Random,Calcified (high - low),Generality,0.0983087152047582
+Random,Calcified (high - low),Trophic level,2.773199999999981
+Random,Calcified (low - high),No. of linear chains,0.006373588502829375
+Random,Calcified (low - high),No. of direct competition motifs,0.09686369179417553
+Random,Calcified (low - high),Connectance,0.001648706399322002
+Random,Calcified (low - high),Generality,0.10023870609675248
+Random,Calcified (low - high),Trophic level,2.1639999999999526
+Random,Generality (low - high),No. of linear chains,0.007601315789473713
+Random,Generality (low - high),No. of direct competition motifs,0.29103518005540135
+Random,Generality (low - high),Connectance,0.06811468144044316
+Random,Generality (low - high),Generality,0.23411982875329154
+Random,Generality (low - high),Trophic level,3.1100000000000168
+Random,Generality (high - low),No. of linear chains,0.008997234156820622
+Random,Generality (high - low),No. of direct competition motifs,0.06262751501868773
+Random,Generality (high - low),Connectance,0.04519327371389308
+Random,Generality (high - low),Generality,0.16873899790567987
+Random,Generality (high - low),Trophic level,3.209999999999981
+Random,Motility (none - fast),No. of linear chains,0.007686369514396833
+Random,Motility (none - fast),No. of direct competition motifs,0.004325240008295909
+Random,Motility (none - fast),Connectance,0.049369207058659596
+Random,Motility (none - fast),Generality,0.0787910472405909
+Random,Motility (none - fast),Trophic level,2.33540000000001
+Random,Motility (fast - none),No. of linear chains,0.007646565961210746
+Random,Motility (fast - none),No. of direct competition motifs,0.002684155750459359
+Random,Motility (fast - none),Connectance,0.050803183922065974
+Random,Motility (fast - none),Generality,0.07421724385915866
+Random,Motility (fast - none),Trophic level,2.323200000000014
+Random,Random,No. of linear chains,0.006135222549978686
+Random,Random,No. of direct competition motifs,0.09685411813910501
+Random,Random,Connectance,0.004482894973353804
+Random,Random,Generality,0.09950362413168354
+Random,Random,Trophic level,2.4745999999999917
+Random,Size (small - large),No. of linear chains,0.006985559553645988
+Random,Size (small - large),No. of direct competition motifs,0.26185773991185113
+Random,Size (small - large),Connectance,0.06792795964924736
+Random,Size (small - large),Generality,0.17930456314922616
+Random,Size (small - large),Trophic level,1.393800000000013
+Random,Size (large - small),No. of linear chains,0.00615308336316979
+Random,Size (large - small),No. of direct competition motifs,0.044727852824417595
+Random,Size (large - small),Connectance,0.056252682505135064
+Random,Size (large - small),Generality,0.020824740309529247
+Random,Size (large - small),Trophic level,3.8829999999999965
+Random,Tiering (infaunal - pelagic),No. of linear chains,0.009764315789473725
+Random,Tiering (infaunal - pelagic),No. of direct competition motifs,0.4648346800554018
+Random,Tiering (infaunal - pelagic),Connectance,0.10461918144044323
+Random,Tiering (infaunal - pelagic),Generality,0.3130402036230785
+Random,Tiering (infaunal - pelagic),Trophic level,5.1436000000000055
+Random,Tiering (pelagic - infaunal),No. of linear chains,6.099922751473978e-4
+Random,Tiering (pelagic - infaunal),No. of direct competition motifs,0.14365239871490829
+Random,Tiering (pelagic - infaunal),Connectance,0.029980747067287324
+Random,Tiering (pelagic - infaunal),Generality,0.13608006003663337
+Random,Tiering (pelagic - infaunal),Trophic level,1.0017999999999974
+Random,Vulnerability (low - high),No. of linear chains,1.0131578947369645e-4
+Random,Vulnerability (low - high),No. of direct competition motifs,0.1853898199445985
+Random,Vulnerability (low - high),Connectance,0.2951396814404434
+Random,Vulnerability (low - high),Generality,0.1268429812410781
+Random,Vulnerability (low - high),Trophic level,5.049999999999949
+Random,Vulnerability (high - low),No. of linear chains,0.00599264732853701
+Random,Vulnerability (high - low),No. of direct competition motifs,0.18411866153978007
+Random,Vulnerability (high - low),Connectance,0.12039943592231289
+Random,Vulnerability (high - low),Generality,0.17131411370275093
+Random,Vulnerability (high - low),Trophic level,0.7700000000000143
+ADBM,Calcified (high - low),TSS,-0.03224314752398235
+ADBM,Calcified (low - high),TSS,0.01700901218563651
+ADBM,Generality (low - high),TSS,0.0784500907441016
+ADBM,Generality (high - low),TSS,-0.19782577132486415
+ADBM,Motility (none - fast),TSS,-0.09767347938812551
+ADBM,Motility (fast - none),TSS,-0.09767722841586729
+ADBM,Random,TSS,0.0030610915219082225
+ADBM,Size (small - large),TSS,0.052983155302048134
+ADBM,Size (large - small),TSS,-0.19754850401866741
+ADBM,Tiering (infaunal - pelagic),TSS,-0.4325674332382681
+ADBM,Tiering (pelagic - infaunal),TSS,0.47786964998703657
+ADBM,Vulnerability (low - high),TSS,-0.09838138449572219
+ADBM,Vulnerability (high - low),TSS,0.04761576354679811
+Log-ratio,Calcified (high - low),TSS,-0.056391293751620476
+Log-ratio,Calcified (low - high),TSS,-0.009413603837179133
+Log-ratio,Generality (low - high),TSS,-0.04322011926367627
+Log-ratio,Generality (high - low),TSS,0.0064801659320715636
+Log-ratio,Motility (none - fast),TSS,-0.1342619341457091
+Log-ratio,Motility (fast - none),TSS,-0.13702147523982364
+Log-ratio,Random,TSS,-0.02939850401866735
+Log-ratio,Size (small - large),TSS,0.08586076225045372
+Log-ratio,Size (large - small),TSS,0.037602870106300236
+Log-ratio,Tiering (infaunal - pelagic),TSS,-0.4514316956183563
+Log-ratio,Tiering (pelagic - infaunal),TSS,0.3406451905626134
+Log-ratio,Vulnerability (low - high),TSS,0.07855846512833818
+Log-ratio,Vulnerability (high - low),TSS,-0.18221000777806587
+l-matrix,Calcified (high - low),TSS,-0.03914851698211038
+l-matrix,Calcified (low - high),TSS,0.008568270676691707
+l-matrix,Generality (low - high),TSS,0.09312794918330311
+l-matrix,Generality (high - low),TSS,-0.18612380088151428
+l-matrix,Motility (none - fast),TSS,-0.09617113559761462
+l-matrix,Motility (fast - none),TSS,-0.09892601244490525
+l-matrix,Random,TSS,-0.004404301270417406
+l-matrix,Size (small - large),TSS,0.061736079854809486
+l-matrix,Size (large - small),TSS,-0.20228101892662692
+l-matrix,Tiering (infaunal - pelagic),TSS,-0.43978076484314227
+l-matrix,Tiering (pelagic - infaunal),TSS,0.45656827326938043
+l-matrix,Vulnerability (low - high),TSS,-0.07777547316567297
+l-matrix,Vulnerability (high - low),TSS,0.0747800103707546
+Niche,Calcified (high - low),TSS,-0.05213165951923064
+Niche,Calcified (low - high),TSS,-0.01204887431254812
+Niche,Generality (low - high),TSS,-0.01580611465494417
+Niche,Generality (high - low),TSS,-0.07080886966089943
+Niche,Motility (none - fast),TSS,-0.11621058275473657
+Niche,Motility (fast - none),TSS,-0.11535919523980923
+Niche,Random,TSS,-0.030768030668886566
+Niche,Size (small - large),TSS,0.11343314109308025
+Niche,Size (large - small),TSS,-0.16637800577766537
+Niche,Tiering (infaunal - pelagic),TSS,-0.4178126866715842
+Niche,Tiering (pelagic - infaunal),TSS,0.27536087852700536
+Niche,Vulnerability (low - high),TSS,0.02857180852746682
+Niche,Vulnerability (high - low),TSS,-0.1258154361872546
+PFIM (downsampled),Calcified (high - low),TSS,-0.0711742857142857
+PFIM (downsampled),Calcified (low - high),TSS,-0.015495714285714241
+PFIM (downsampled),Generality (low - high),TSS,-0.1716428571428572
+PFIM (downsampled),Generality (high - low),TSS,0.047428571428571244
+PFIM (downsampled),Motility (none - fast),TSS,-0.13951714285714284
+PFIM (downsampled),Motility (fast - none),TSS,-0.13976285714285713
+PFIM (downsampled),Random,TSS,-0.03182428571428572
+PFIM (downsampled),Size (small - large),TSS,0.07038000000000003
+PFIM (downsampled),Size (large - small),TSS,-0.21890285714285718
+PFIM (downsampled),Tiering (infaunal - pelagic),TSS,-0.4636
+PFIM (downsampled),Tiering (pelagic - infaunal),TSS,0.45644428571428575
+PFIM (downsampled),Vulnerability (low - high),TSS,-0.26285714285714296
+PFIM (downsampled),Vulnerability (high - low),TSS,0.06242857142857168
+PFIM (metaweb),Calcified (high - low),TSS,-0.07181714285714288
+PFIM (metaweb),Calcified (low - high),TSS,-0.016188571428571403
+PFIM (metaweb),Generality (low - high),TSS,-0.1428571428571428
+PFIM (metaweb),Generality (high - low),TSS,0.02857142857142858
+PFIM (metaweb),Motility (none - fast),TSS,-0.13716571428571428
+PFIM (metaweb),Motility (fast - none),TSS,-0.14081714285714284
+PFIM (metaweb),Random,TSS,-0.02923428571428573
+PFIM (metaweb),Size (small - large),TSS,0.07339999999999998
+PFIM (metaweb),Size (large - small),TSS,-0.21641714285714284
+PFIM (metaweb),Tiering (infaunal - pelagic),TSS,-0.45962285714285717
+PFIM (metaweb),Tiering (pelagic - infaunal),TSS,0.4571428571428572
+PFIM (metaweb),Vulnerability (low - high),TSS,-0.3999999999999999
+PFIM (metaweb),Vulnerability (high - low),TSS,0.11428571428571432
+Random,Calcified (high - low),TSS,-0.04089010313139161
+Random,Calcified (low - high),TSS,0.01685902111600845
+Random,Generality (low - high),TSS,-0.014987828767320271
+Random,Generality (high - low),TSS,-0.008524544118918424
+Random,Motility (none - fast),TSS,-0.10440603808371504
+Random,Motility (fast - none),TSS,-0.10522368132976116
+Random,Random,TSS,-0.0025148805922852123
+Random,Size (small - large),TSS,0.11902955520986382
+Random,Size (large - small),TSS,-0.20797113617376778
+Random,Tiering (infaunal - pelagic),TSS,-0.45076338547518213
+Random,Tiering (pelagic - infaunal),TSS,0.39312970356926785
+Random,Vulnerability (low - high),TSS,-0.05749539077579028
+Random,Vulnerability (high - low),TSS,0.15572422435398828

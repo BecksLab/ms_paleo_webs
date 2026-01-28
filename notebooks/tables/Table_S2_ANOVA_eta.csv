@@ -1,0 +1,9 @@
+Variable,"F (df1, df2)",Df,p-value
+ Response connectance,2623.5378728001588,5,0
+ Response trophic_level,17.678389705768826,5,3.075601251590008e-17
+ Response generality,5672.862543392239,5,0
+ Response vulnerability,3543.6318509341595,5,0
+ Response S1,1971.6859381529744,5,0
+ Response S2,1522.5013143705805,5,0
+ Response S4,937.6233745007605,5,0
+ Response S5,1908.9768695187886,5,0
