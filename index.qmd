@@ -59,19 +59,23 @@ There is growing interest in using deep-time fossil data and evidence of species
 
 Inference from ecological networks regarding structure and complexity is (at its core) a mathematical task and is therefore relatively independent of biological assumptions [@delmas2019]. While these structural properties can be analysed independently of biological detail, their implications for stability and dynamics depend critically on assumptions about interaction strengths, and distributions [@allesina2012]. Thus, strong assumptions enter once network structure and complexity are interpreted in functional terms or used as templates for simulating community and extinction dynamics. While there is a well-developed theoretical framework describing what can be inferred from network properties, a central challenge (particularly in paleoecology) lies in how networks are constructed. Unlike modern systems, paleoecological interactions are rarely directly observed, with only exceptional cases preserving explicit evidence of trophic interactions (*e.g.,* @jenny2019; @vullo2011). As a result, paleo food web reconstruction depends on indirect inference, drawing on preserved traits, analogies with modern taxa, and ecological theory.
 
-Although numerous tools exist for inferring species interactions (see @morales-castilla2015; @pichler2023; @strydom2021; @allesina2008 for reviews), only a subset can be reliably applied in paleo contexts, where data on traits, abundances, and community composition are incomplete and systematically biased. This makes it essential to clearly articulate which reconstruction approaches are appropriate for which inferential purposes. Recent work has shown that reconstruction approaches (*e.g.,* models based on traits, abundances, or co-occurrence) can be categorised by the type of network that they predict \[@strydom2026\]. These include feasible networks (derived from trait matching and phylogenetic inference that produce metawebs of plausible interactions), realised networks, (constrained by ecological rules and evidence of actual feeding relationships), and purely structural networks (which reproduce ecologically plausible topologies but lack species-level node identities).
+Although numerous tools exist for inferring species interactions [see @morales-castilla2015; @pichler2023; @strydom2021; @allesina2008 for reviews], only a subset can be reliably applied in paleo contexts, where data on traits, abundances, and community composition are incomplete and systematically biased. This makes it essential to clearly articulate which reconstruction approaches are appropriate for which inferential purposes. Recent work has shown that reconstruction approaches (*e.g.,* models based on traits, abundances, or co-occurrence) can be categorised by the type of network that they predict [@strydom2026]. These include feasible networks (derived from trait matching and phylogenetic inference that produce metawebs of plausible interactions), realised networks, (constrained by ecological rules and evidence of actual feeding relationships), and purely structural networks (which reproduce ecologically plausible topologies but lack species-level node identities).
 
 Each of these reconstruction approaches carries distinct assumptions that influence inferred network size, complexity, structure, and node-level properties, with direct consequences for ecological interpretations of extinction dynamics, stability, resilience, and ecosystem function [@solé2001; @dunne2002; @roopnarine2006]. Despite this, most paleo food web studies default to constructing networks using expert knowledge (*e.g.,* @dunne2008) or mechanistic feeding rules (*e.g.,* @dunhill2024; @roopnarine2017; @fricke2022), approaches that typically result in metawebs. This raises a critical but underexplored question: to what extent does the choice of network type (and particularly the use of alternatives to metawebs) control not only inferred food web structure but also conclusions about system behaviour, especially with respect to extinction cascades and vulnerability.
 
 In this study, we address this question by linking recent advances in network reconstruction methods to a comparative re-evaluation of primary and secondary, trait-based extinction dynamics during the early Toarcian extinction event, a volcanic-driven hyperthermal and marine extinction event in the Early Jurassic (\~183Ma) [@dunhill2024]. We reconstruct four communities—pre-extinction, post-extinction, early recovery, and late recovery, from the Cleveland Basin of North Yorkshire, UK, using six different network reconstruction methods. For each community, we compare network- and node-level characteristics predicted by each method, allowing us to assess how reconstruction assumptions and ecological characterisations shape inferred community structure and interaction patterns. Finally, we replicate the secondary extinction analyses of Dunhill et al. for the pre to post-extinction transition across all six reconstruction methods to explicitly show how methodological assumptions and the resulting network structures influence the inference about the drivers and ecological targets of extinction events.
 
-# Methods
+# Materials and Methods
 
-## Network construction approaches
+## Study system and fossil data
 
-Most existing paleo-specific approaches fall within the feasibility space (e.g., @shaw2024; @roopnarine2006; @fricke2022). While these are well-suited for reconstructing feasible interactions, they represent only a subset of the broader space of network construction methods. Here we include a selection methods that allow researchers to construct realised networks and address a wider suite of ecological questions - provided their assumptions are compatible with the limitations of fossil data. Here we present a range of models [@tbl-models] that carry specific assumptions and data requirements. For instance, certain tools depend on quantitative body-size estimates, which must be inferred from size classes or functional morphology in the fossil record. Structural models such as the niche model require only richness and connectance, but their species-agnostic nature limits their usefulness for trait-based or diet-specific questions. Approaches using mechanistic approaches rely on accurate assignment of feeding traits or strong support for phylogenetic relationships. Understanding how these limitations intersect with what fossil data can reliably provide is essential for selecting an appropriate modelling approach.
+We used fossil occurrence data from the Cleveland Basin spanning the upper Pliensbachian to the upper Toarcian, following Dunhill et al. (2024). Four paleo-communities were defined: pre-extinction, post-extinction, early recovery, and late recovery. Each assemblage was treated as a community of potentially interacting taxa. Modes of life were assigned following Dunhill et al. (2024) using the Bambach ecospace framework. Traits included motility, tiering, feeding mode, and size class, with size defined categorically based on maximum linear dimensions.
 
-We evaluated six models spanning this space [@tbl-models]: random and niche models (structural network); allometric diet breadth (ADBM), l-matrix, and body-size ratio models (realised network); and a paleo food-web inference model (PFIM; feasibility web). These models differ in their assumptions, data requirements, and the types of networks they produce.
+## Network reconstruction approaches
+
+### Conceptual classification of network types
+
+Most paleo-specific approaches currently operate within the feasibility space [*e.g.,* @shaw2024; @roopnarine2006; @fricke2022]. Although well suited for reconstructing feasible interactions, these methods represent only a subset of the broader spectrum of network construction approaches. Here, we present a suite of models [@tbl-models] that enable the construction of a wider range of ecological networks and the exploration of a broader set of ecological questions, provided that their underlying assumptions are compatible with the constraints of fossil data. For example, some tools require quantitative estimates of body size, which must often be inferred from size classes or functional morphology in the fossil record. Structural models, such as the niche model, rely only on species richness and connectance, but their species-agnostic nature limits their applicability to trait-based or diet-specific questions. Mechanistic approaches, by contrast, depend on accurate assignment of feeding traits or robust phylogenetic support. Recognizing how these methodological requirements intersect with the limits of fossil evidence is essential for selecting an appropriate modelling framework.
 
 | Model family | Assumptions | Data needs | 'Limitation' | Network type | Key reference |
 |------------|------------|------------|------------|------------|------------|
@@ -84,17 +88,11 @@ We evaluated six models spanning this space [@tbl-models]: random and niche mode
 
 : Six different models that can be used to construct food webs for both this specific community but are also broadly suited to paleo network prediction. These models span all facets of the network representation space (metaweb, realised, and structural network) and are suitable for an array of different paleo communities as the data requirements fall within the limitations set by the fossil record. {#tbl-models}
 
-## Case study: Toarcian Hyperthemal Event
+### Network generation and replication
 
-### Fossil occurrence data
+We evaluated six models spanning this space [@tbl-models]: random and niche models (structural network); allometric diet breadth (ADBM), l-matrix, and body-size ratio models (realised network); and a paleo food-web inference model (PFIM; feasibility web). For each community, we constructed 100 replicate networks using each of the six models (2 400 networks total). Networks were simplified by removing disconnected species. For size-based models, body masses were drawn from uniform distributions bounded by size-class limits,allowing for variance between replicates but preserving relative sizes within replicates. Structural models were parameterised using connectance values drawn from an empirically realistic ranges (0.07–0.34) while holding richness constant. The same parameter draws were used across comparable models within each replicate.
 
-We used fossil occurrence data from the Cleveland Basin spanning the upper Pliensbachian to the upper Toarcian, following Dunhill et al. (2024). Four paleo-communities were defined: pre-extinction, post-extinction, early recovery, and late recovery. Each assemblage was treated as a community of potentially interacting taxa. Modes of life were assigned following Dunhill et al. (2024) using the Bambach ecospace framework. Traits included motility, tiering, feeding mode, and size class, with size defined categorically based on maximum linear dimensions.
-
-### Network reconstruction and replication
-
-For each community, we constructed 100 replicate networks using each of the six models (2 400 networks total). Networks were simplified by removing disconnected species. For size-based models, body masses were drawn from uniform distributions bounded by size-class limits, propagating uncertainty while preserving relative sizes within replicates. Structural models were parameterised using connectance values drawn from an empirically realistic ranges (0.07–0.34) while holding richness constant. The same parameter draws were used across comparable models within each replicate.
-
-## Network metrics and statistical analyses
+## Network metrics and structural analyses
 
 We quantified network structure using a suite of macro-, meso-, and micro-scale metrics [@tbl-properties], capturing global properties, motif structure, and species-level variability. Differences among models were assessed using MANOVA, followed by univariate ANOVAs, post-hoc comparisons, and linear discriminant analysis. Pairwise interaction turnover was quantified using link-based beta diversity for models that infer species-specific interactions.
 
@@ -113,13 +111,13 @@ We quantified network structure using a suite of macro-, meso-, and micro-scale 
 
 : Network properties used for analysis. {#tbl-properties}
 
-## Extinction simulations
+## Extinction simulations and model evaluation
 
 Using pre-extinction networks, we simulated species loss under multiple extinction scenarios, including trait-based, network-position-based, and random removals, allowing for secondary extinctions. Simulated networks were compared to empirical post-extinction communities using mean absolute differences (MAD) in network metrics and a modified true skill statistic (TSS) at both node and link levels. Scenario rankings were compared across models using Kendall’s rank correlation coefficient.
 
 # Results
 
-## Model choice drives network structure
+## Network structure differs among reconstruction approaches
 
 Despite identical taxon pools, different models produced networks with markedly different structural signatures. MANOVA revealed a strong multivariate effect of model type on network structure (Pillai’s Trace = 3.89, p \< 0.001), with model identity explaining most variation across metrics. Effect sizes were large for nearly all metrics, typically exceeding 0.80. The only exception was maximum trophic level (η² = 0.19), suggesting some convergence in vertical structure even when structure differs widely.
 
@@ -127,13 +125,13 @@ Three broad clusters emerged. PFIM produced the most connected and dense network
 
 ![Linear discriminant analysis (LDA) of ecological network metrics for six model types. Each point represents a replicate, and ellipses indicate 95% confidence regions for each model. The second column represents the correlation of the various network metrics with the respective LDA axes.](figures/MANOVA_lda.png){#fig-structure}
 
-## Divergence in pairwise interactions
+## Inferred pairwise interactions vary widely among models
 
 Models also differed strongly in the specific interactions they inferred. Pairwise interaction turnover revealed that some models shared few inferred links despite similar global properties [@fig-beta_div]. ADBM and l-matrix showed high similarity, whereas the body-size ratio model exhibited consistently high turnover relative to others. PFIM shared intermediate levels of interaction overlap with size-based theoretical models. These results show that agreement in global metrics does not imply agreement in species-level diets or trophic roles.
 
 ![Pairwise beta turnover in species interactions among four ecological network models (ADBM, lmatrix, body-size ratio, and pfim). Each cell represents the mean turnover value between a pair of models, with warmer colors indicating greater dissimilarity in inferred interactions. The diagonal is omitted. High turnover values (yellow) indicate strong disagreement in network structure between models, whereas lower values (blue–purple) indicate greater similarity.](figures/beta_div.png){#fig-beta_div}
 
-## Model-dependent extinction dynamics
+## Model choice influences inferred extinction dynamics
 
 At a coarse level, different models often recovered similar rankings of extinction mechanisms, particularly for trait-driven scenarios. Kendall’s τ values based on MAD were generally positive, indicating partial agreement among models (panel XX @fig-mad). Node-level TSS scores were also broadly consistent across models, reflecting the fact that many extinction scenarios remove taxa in the same order (panel XX @fig-mad). In contrast, link-level outcomes differed substantially. Deterministic models such as PFIM produced consistent link-level matches, whereas stochastic theory-driven models generated variable cascade dynamics and lower agreement (panel XX @fig-mad). As a result, inferred pathways of collapse, trophic bottlenecks, and secondary extinctions depended strongly on model choice.
 
@@ -141,11 +139,11 @@ At a coarse level, different models often recovered similar rankings of extincti
 
 # Discussion
 
-# Model Choice as an Ecological Inference Decision
+# Model choice as a component of ecological inference
 
 Reconstructing food webs from fossil data is an exercise in inference under uncertainty, and our results demonstrate that the choice of network construction model is itself a major ecological inference decision. Despite using the same taxon pools, different models produced networks with profoundly different structural properties, interaction patterns, and inferred extinction dynamics. These differences emerge not from the fossil data themselves but from the assumptions embedded within each modelling approach. As a consequence, network reconstruction cannot be treated as a neutral methodological step: model choice fundamentally shapes the ecological narratives we extract from the fossil record. Across every structural metric we measured, model identity explained the majority of variation. PFIM-produced networks were consistently the most connected, while the ADBM and l-matrix produced sparser networks with tighter energetic constraints. Structural models (niche and random) fell between these extremes. These clusters reflect the conceptual differences between feasible, realised, and structural network representations. Importantly, these differences were not superficial. Pairwise interaction turnover revealed that models often disagreed not just on the number of links but on who interacts with whom. Such discrepancies directly affect diet-based ecological questions and interpretations of trophic roles.
 
-## Consequences for interpreting paleoecological dynamics
+## Network type mediates ecological interpretation
 
 The downstream effects of model choice were most evident when evaluating extinction dynamics. Models often recovered comparable high-level patterns (e.g., trait-driven extinction signals remained robust across models), but the specific ranking of extinction mechanisms varied. Node-level patterns were relatively stable because extinction scenarios based on intrinsic traits remove species in the same order regardless of network structure. However, link-level outcomes—particularly those concerning secondary extinctions, network collapse, and recovery trajectories—were highly model-dependent.
 
@@ -165,7 +163,7 @@ Below is a conceptual summary:
 | How do traits influence dynamics (e.g., cascade sensitivity)? | Realised network | Capture body-size scaling, energetic constraints, and trophic dependencies. |
 | How robust are inferences to uncertainty? | Ensembles across multiple network types | Allows quantifying how conclusions depend on assumptions. |
 
-## Implications for the use of food webs in paleoecology
+## Implications for paleoecological network studies
 
 Our analysis underscores three important implications for the broader field:
 
@@ -175,7 +173,7 @@ Our analysis underscores three important implications for the broader field:
 
 3.  **Mechanistic paleo-specific models alone cannot capture the full spectrum of possible network archetypes:** Incorporating theory-driven models allows paleoecology to leverage decades of research on modern food-web structure and dynamics, broadening the range of ecological questions that can be asked.
 
-## Recommendations and best practices
+## Recommendations for network reconstruction in paleoecology
 
 To support consistent, transparent use of network reconstruction methods in paleoecology, we propose the following guidelines (which could be highlighted as a boxed summary):
 
@@ -191,7 +189,7 @@ To support consistent, transparent use of network reconstruction methods in pale
 
 6.  **Distinguish between node-level and link-level inference:** as they respond differently to model choice.
 
-# Conclusion
+# Conclusions
 
 Our results reveal that network construction models differ far more than is commonly appreciated in paleoecology. Because food webs are increasingly used to infer ecological resilience, collapse dynamics, and responses to environmental change, it is crucial to recognise that these inferences are shaped as much by modelling decisions as by fossil data. By mapping model families to ecological questions and demonstrating how model assumptions influence inferred patterns, our study provides a framework for more transparent, robust, and question-driven reconstruction of paleo food webs.
 
