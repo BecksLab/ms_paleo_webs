@@ -44,15 +44,15 @@ greater similarity.}
 }
 
 \caption{\label{fig-mad}Heatmaps showing pairwise Kendall rank
-correlation coefficients (τ) between models for each network metric.
-Each panel corresponds to a different metric and displays the degree of
-agreement in extinction-scenario rankings across models based on mean
-absolute differences (MAD) between observed and predicted network
-values. Positive τ values (blue) indicate concordant rankings between
-models, whereas negative τ values (red) indicate opposing rankings.
-Warmer colours approaching zero represent little or no agreement. Panels
-illustrate how consistently different modelling approaches evaluate the
-relative realism of extinction scenarios across multiple network
-properties.}
+correlation coefficients (\(\tau\)) between models for each network
+metric. Each panel corresponds to a different metric and displays the
+degree of agreement in extinction-scenario rankings across models based
+on mean absolute differences (MAD) between observed and predicted
+network values. Positive \(\tau\) values (blue) indicate concordant
+rankings between models, whereas negative \(\tau\) values (red) indicate
+opposing rankings. Warmer colours approaching zero represent little or
+no agreement. Panels illustrate how consistently different modelling
+approaches evaluate the relative realism of extinction scenarios across
+multiple network properties.}
 
 \end{figure}
