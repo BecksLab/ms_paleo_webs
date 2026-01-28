@@ -65,3 +65,5 @@ data/processed/extinction_seq 2.jlds
 figures/heatmap_BES.png
 figures/heatmap_BES_metaweb.png
 figures/heatmap_TL.png
+
+**/*.quarto_ipynb
