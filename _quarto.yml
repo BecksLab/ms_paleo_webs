@@ -6,7 +6,6 @@ project:
     - "*.ipynb"
     - "!reviews/"
     - "!coverletter.md"
-    - "!notebooks/"
 
 manuscript:
   article: index.qmd
