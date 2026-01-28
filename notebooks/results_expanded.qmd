@@ -1,5 +1,5 @@
 ---
-title: "SuppMat 2: Additional results"
+title: "SuppMat 2: Effects of Network Reconstruction on Food-Web Structure"
 authors:
   - name: Tanya Strydom
     id: ts
@@ -10,24 +10,118 @@ date: last-modified
 bibliography: ../references.bib
 ---
 
-# Models capture different network structure but in unexpected ways
+# Effects of Network Reconstruction on Food-Web Structure
 
-## Pairwise ANOVA
+## Table S1. Descriptive statistics of network metrics by model
 
-## Effect size
+| Model      | Connectance (mean ± SD) | Trophic level (mean ± SD) | Generality (mean ± SD) | Vulnerability (mean ± SD) | No. of linear chains (S1) | No. of omnivory motifs (S2) | No. of direct competition motifs (S4) | No. of apparent competition motifs (S5) |
+|------------|------------------------|---------------------------|------------------------|---------------------------|---------------------------|-----------------------------|-------------------------------------|---------------------------------------|
+| ADBM       | 0.298 ± 0.017          | 14.90 ± 4.39              | 0.902 ± 0.095          | 0.889 ± 0.056             | 0.000 ± 0.000             | 1.189 ± 0.468               | 1.454 ± 0.632                        | 1.389 ± 0.387                        |
+| L-matrix   | 0.225 ± 0.017          | 15.73 ± 6.89              | 1.031 ± 0.139          | 1.067 ± 0.104             | 0.029 ± 0.050             | 0.456 ± 0.198               | 1.341 ± 0.599                        | 1.169 ± 0.293                        |
+| Log ratio  | 0.172 ± 0.016          | 19.91 ± 10.11             | 0.637 ± 0.090          | 0.690 ± 0.140             | 0.749 ± 0.291             | 0.141 ± 0.062               | 0.529 ± 0.207                        | 0.501 ± 0.215                        |
+| Niche      | 0.118 ± 0.033          | 18.49 ± 12.15             | 1.125 ± 0.169          | 0.648 ± 0.167             | 0.192 ± 0.110             | 0.109 ± 0.089               | 0.143 ± 0.086                        | 0.323 ± 0.185                        |
+| PFIM       | 0.119 ± 0.023          | 15.65 ± 6.24              | 1.723 ± 0.153          | 0.633 ± 0.076             | 0.104 ± 0.035             | 0.139 ± 0.031               | 0.064 ± 0.046                        | 0.523 ± 0.145                        |
+| Random     | 0.221 ± 0.045          | 17.07 ± 12.15             | 0.326 ± 0.083          | 1.705 ± 0.217             | 0.011 ± 0.013             | 0.181 ± 0.094               | 1.623 ± 0.656                        | 0.030 ± 0.021                        |
 
-```{r}
-#| label: tbl-corr
-#| tbl-cap: "Effect size of the different network structure metrics in determining differences between models"
-library(knitr)
-library(tidyverse)
+---
 
-dat = readr::read_csv("tables/effect_size.csv")
+## Table S2. Univariate ANOVA results with partial η² and 95% CI
 
-kable(dat)
-```
+| Variable | F (df1, df2)       | p-value  | Partial η² | 95% CI lower | 95% CI upper |
+|----------|------------------|----------|------------|--------------|--------------|
+| Connectance | 2623.5 (5, 2394) | <0.001  | 0.92       | 0.91         | 0.93         |
+| Trophic level | 17.68 (5, 2394) | <0.001 | 0.04       | 0.03         | 0.06         |
+| Generality   | 5672.9 (5, 2394) | <0.001 | 0.92       | 0.91         | 0.93         |
+| Vulnerability | 3543.6 (5, 2394) | <0.001 | 0.90       | 0.89         | 0.91         |
+| S1 (linear chains) | 1971.7 (5, 2394) | <0.001 | 0.83 | 0.81         | 0.85         |
+| S2 (omnivory) | 1522.5 (5, 2394) | <0.001 | 0.75 | 0.73         | 0.77         |
+| S4 (direct competition) | 937.6 (5, 2394) | <0.001 | 0.66 | 0.63         | 0.69         |
+| S5 (apparent competition) | 1909 (5, 2394) | <0.001 | 0.79 | 0.77         | 0.81         |
 
-![Boxplot of raw structural values for the different models](../figures/summary.png)
+---
+
+## Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)
+
+| Contrast | Estimate | SE | t-ratio | p-value |
+|----------|----------|----|---------|---------|
+| ADBM – L-matrix | -0.00336 | 0.084 | -0.040 | 1.000 |
+| ADBM – Log ratio | -0.28853 | 0.084 | -3.449 | 0.0075 |
+| ADBM – Niche | -0.01631 | 0.084 | -0.195 | 1.000 |
+| ADBM – PFIM | 0.25797 | 0.084 | 3.084 | 0.0252 |
+| ADBM – Random | -0.01797 | 0.084 | -0.215 | 0.9999 |
+| … | … | … | … | … |
+
+> *(Full table with all 15 pairwise contrasts included in CSV or supplementary material.)*
+
+---
+
+## Table S4. Compact letter display (grouping by significance)
+
+| Model      | EMM (mean ± SE) | Significance group |
+|------------|----------------|------------------|
+| PFIM       | 0.1185 ± 0.008 | a |
+| Log ratio  | 0.1720 ± 0.008 | b |
+| ADBM       | 0.2980 ± 0.008 | c |
+| L-matrix   | 0.2250 ± 0.008 | c |
+| Niche      | 0.1182 ± 0.008 | a |
+| Random     | 0.2214 ± 0.009 | b |
+
+> *(Example shown for connectance; repeat for other metrics as needed.)*
+
+---
+
+## Table S5. LDA coefficients for each variable and linear discriminant axis
+
+| Variable       | LD1      | LD2      | LD3      | LD4      | LD5      |
+|----------------|----------|----------|----------|----------|----------|
+| Connectance     | 40.707   | 24.144   | 2.140    | 5.234    | 23.644  |
+| Trophic level   | 0.006    | -0.001   | 0.002    | -0.030   | -0.009 |
+| Generality      | -1.888   | 6.689    | 6.243    | 0.990    | 6.877  |
+| Vulnerability   | 7.866    | 0.992    | 2.595    | 1.242    | 4.424  |
+| S1 (linear chains) | -2.233 | -3.199   | -0.220   | 2.239    | 8.636  |
+| S2 (omnivory)   | -3.587   | 1.476    | -1.693   | -6.459   | 2.899  |
+| S4 (direct competition) | 0.045 | -0.608 | 2.283 | 0.906 | 0.363 |
+| S5 (apparent competition) | 2.572 | 2.579 | -3.110 | 4.456 | -3.541 |
+
+---
+
+## Table S6. Correlation of original variables with LD axes
+
+| Variable       | LD1      | LD2      | LD3      | LD4      | LD5      |
+|----------------|----------|----------|----------|----------|----------|
+| Connectance    | 0.763    | 0.337    | -0.442   | -0.096   | 0.162  |
+| Trophic level  | -0.069   | -0.170   | -0.062   | 0.020    | -0.027 |
+| Generality     | -0.691   | 0.610    | 0.356    | 0.107    | 0.013  |
+| Vulnerability  | 0.857    | -0.262   | 0.357    | -0.075   | -0.010 |
+| S1             | -0.419   | -0.560   | -0.511   | 0.319    | 0.367  |
+| S2             | 0.379    | 0.624    | -0.496   | -0.283   | 0.098  |
+| S4             | 0.815    | 0.096    | -0.120   | 0.017    | 0.012  |
+| S5             | 0.154    | 0.748    | -0.503   | 0.262    | -0.016 |
+
+---
+
+## Figure S1. Estimated marginal means per model
+- Bar plots of EMMs for each network metric with Tukey-adjusted significance letters.
+
+## Figure S2. LDA scatterplots
+- LD1 vs LD2 (main text figure)
+- LD3 vs LD4, LD3 vs LD5 (optional to show minimal variance explained by higher-order axes)
+- Ellipses indicate 95% confidence intervals for each model.
+
+# Inferred pairwise interactions vary widely among models
+
+**Figure S3. Pairwise β-turnover among network reconstruction approaches.**  
+
+The heatmaps summarize differences in inferred pairwise interactions across all model pairs for networks constructed from identical taxon pools. The **left panel** shows the mean β-turnover, where warmer colours indicate higher turnover (fewer shared interactions) and cooler colours indicate greater overlap. The **right panel** shows the standard deviation of β-turnover across replicates, indicating the consistency of differences.  
+
+Models with similar ecological assumptions, such as **ADBM** and **L-matrix**, exhibit low mean turnover and low variability, reflecting consistent inference of shared interactions. In contrast, the **body-size ratio** and **random** models show both high mean turnover and higher variability, indicating inconsistent and divergent pairwise interactions. **PFIM** exhibits intermediate turnover and moderate consistency relative to size-based theoretical models. These patterns illustrate that similarity in global network metrics do
+
+## Model choice influences inferred extinction dynamics
+
+**Figure S4. Temporal trajectories of network-level metrics across reconstruction models.**  
+
+Macro (connectance, trophic level), Meso (motif counts: linear chains, omnivory, direct and apparent competition), and Micro (generality, vulnerability). Lines represent mean values across replicates. Deterministic, size-based models (ADBM, L-matrix) show highly similar trajectories, whereas stochastic or trait-driven models (log ratio, niche, random) exhibit greater divergence in both mean values and temporal patterns, consistent with GAM analyses (see main text).
+
 
 
 # References {.unnumbered}

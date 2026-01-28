@@ -26,7 +26,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   glow_up(model = as.factor(model)) %>%
   na.omit()
 
-network_stats <- c("connectance", "complexity", "trophic_level", "generality",
+network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "S1", "S2", "S4", "S5")
 
 fit_gam_with_anova <- function(stat_name, data) {
@@ -113,7 +113,7 @@ df_plot <-
                          levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")),
           time = str_extract(time, "\\d+")) %>%
   glow_up(level = case_when(
-    stat %in% c("complexity", "connectance", "trophic_level", "redundancy", "diameter") ~ "Macro",
+    stat %in% c("connectance", "trophic_level") ~ "Macro",
     stat %in% c("generality", "vulnerability") ~ "Micro",
     .default = "Meso"
   ))
@@ -309,125 +309,3 @@ ggsave("../figures/kendal_tau.png",
        height = 7500,
        units = "px",
        dpi = 600)
-
-temp_df <- read_csv("../data/processed/extinction_topology.csv") %>%
-  vibe_check(c(n_rep, model, extinction_mechanism, connectance, trophic_level, S1, generality, S4)) %>%
-  pivot_longer(
-    cols = -c(model, extinction_mechanism, n_rep),
-    names_to = "stat",
-    values_to = "sim_val") %>%
-  full_join(.,
-            read_csv("../data/processed/topology.csv") %>%
-              yeet(time == "G2") %>%
-              vibe_check(c(n_rep, model, connectance, trophic_level, S1, generality, S4)) %>%
-              pivot_longer(
-                cols = -c(model, n_rep),
-                names_to = "stat",
-                values_to = "real_val")) %>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
-  glow_up(diff = real_val - sim_val) %>%
-  squad_up(model, extinction_mechanism, stat) %>%
-  no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
-  glow_up(MAD = if_else(is.nan(MAD), 0, MAD)) %>%
-  rbind(read_csv("../data/processed/extinction_tss.csv") %>%
-          squad_up(model, extinction_mechanism) %>%
-          no_cap(MAD = -mean(tss_node, na.rm = TRUE)) %>%
-          glow_up(stat = "TSS") %>%
-          glow_up(model = str_replace(model, "bodymassratio", "log ratio"))) %>%
-  glow_up(stat = case_when(stat == "S1" ~ "No. of linear chains",
-                           stat == "S4" ~ "No. of direct competition motifs",
-                           stat == "trophic_level" ~ "Trophic level",
-                           stat == "TSS" ~ "TSS",
-                           .default = str_to_title(stat)),
-          extinction_mechanism = case_when(extinction_mechanism == "motility_descending" ~ "Motility (fast - none)",
-                                           extinction_mechanism == "vulnerability_ascending" ~ "Vulnerability (low - high)",
-                                           extinction_mechanism == "vulnerability_descending" ~ "Vulnerability (high - low)",
-                                           extinction_mechanism == "size_ascending" ~ "Size (small - large)",
-                                           extinction_mechanism == "size_descending" ~ "Size (large - small)",
-                                           extinction_mechanism == "calcification_descending" ~ "Calcified (low - high)",
-                                           extinction_mechanism == "calcification_ascending" ~ "Calcified (high - low)",
-                                           extinction_mechanism == "tiering_descending" ~ "Tiering (pelagic - infaunal)",
-                                           extinction_mechanism == "random" ~ "Random",
-                                           extinction_mechanism == "motility_ascending" ~ "Motility (none - fast)",
-                                           extinction_mechanism == "generality_descending" ~ "Generality (high - low)",
-                                           extinction_mechanism == "generality_ascending" ~ "Generality (low - high)",
-                                           extinction_mechanism == "tiering_ascending" ~ "Tiering (infaunal - pelagic)",
-                                           .default = as.character(extinction_mechanism)),
-          model = case_when(model == "adbm" ~ "ADBM",
-                            model == "lmatrix" ~ "l-matrix",
-                            model == "log ratio" ~ "Log-ratio",
-                            model == "pfim_metaweb" ~ "PFIM (metaweb)",
-                            model == "pfim_downsample" ~ "PFIM (downsampled)",
-                            model == "random" ~ "Random",
-                            model == "niche" ~ "Niche")) %>%
-  glow_up(extinction_mechanism = factor(extinction_mechanism, ordered = TRUE, 
-                                        levels = c("Motility (fast - none)", "Vulnerability (low - high)", "Vulnerability (high - low)", 
-                                                   "Size (small - large)", "Size (large - small)", "Calcified (low - high)", 
-                                                   "Calcified (high - low)", "Tiering (pelagic - infaunal)", "Random",
-                                                   "Motility (none - fast)", "Generality (high - low)", "Generality (low - high)",
-                                                   "Tiering (infaunal - pelagic)")),
-          model = factor(model, ordered = TRUE, 
-                         levels = c("ADBM", "l-matrix", "Log-ratio", "Random", "Niche", "PFIM (downsampled)", 
-                                    "PFIM (metaweb)")))
-
-
-plot_list <- vector(mode = "list", length = 6)
-levs = unique(temp_df$stat)
-
-for (i in seq_along(plot_list)) {
-  
-  plot_list[[i]] <- ggplot(temp_df %>%
-                             yeet(stat == levs[i]), #%>%
-                             #yeet(model == "PFIM (metaweb)"), 
-                           aes(extinction_mechanism, 
-                               model, 
-                               fill = MAD)) +
-    scale_fill_gradientn(colors = paletteer_d("MoMAColors::Flash")) +
-    geom_tile(color = "white") +
-    labs(
-      fill = "MAD",
-      title = levs[i],
-      x = NULL,
-      y = NULL
-    ) +
-    figure_theme +
-    theme(axis.text.x = element_text(angle=45, hjust=1, size = rel(0.6)),
-          axis.text.y = element_text(size = rel(0.7)),
-          plot.title = element_text(size = rel(0.9)),
-          legend.position = 'none')
-  
-}
-
-((plot_list[[3]] + theme(axis.text.x = element_blank())) + 
-    (plot_list[[5]] + theme(axis.text.x = element_blank())) + 
-  (plot_list[[1]] + theme(axis.text.x = element_blank()))) / 
-     (((plot_list[[2]])) + plot_list[[4]] + plot_list[[6]]) +
-  plot_layout(height = c(1, 1))
-
-ggsave("../figures/heatmap.png",
-       width = 3000,
-       height = 2200,
-       units = "px",
-       dpi = 600)
-
-
-temp_df %>% 
-  group_by(model, stat) %>% 
-  # get minimum for each network stat for each model
-  mutate(minMAD = min(MAD)) %>%
-  ungroup() %>%
-  # select the ones that mach - janky workaround to get the actual minimum ones
-  filter(minMAD == MAD) %>%
-  group_by(model) %>%
-  # nw we get the mean at the model level
-  summarise(meanMAD = mean(MAD)) %>%
-  arrange(meanMAD)
-
-temp_df %>% 
-  group_by(model) %>% 
-  # get mean MAD for each model
-  summarise(meanMAD = mean(MAD)) %>%
-  arrange(meanMAD)
-
-write_csv(temp_df,
-          "../data/MAD.csv")

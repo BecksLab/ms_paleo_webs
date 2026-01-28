@@ -23,6 +23,9 @@ beta_df <- read_csv("../data/processed/beta_div.csv") %>%
 
 colnames(beta_df) <- c("Model1", "Model2", "Beta_turnover")
 
+# write raw beta divergence values to CSV for supp mat
+write.csv(beta_df, "../notebooks/tables/beta_divergence.csv", row.names = FALSE)
+
 # compare differences
 
 lm_df <- 
@@ -38,6 +41,10 @@ lm_df <-
                             .default = as.character(combo))) 
 
 anova(lm(Beta_turnover ~ combo, lm_df))
+
+# write ANOVA results to CSV
+anova_res <- anova(lm(Beta_turnover ~ combo, lm_df))
+write.csv(as.data.frame(anova_res), "../notebooks/tables/beta_divergence_anova.csv")
 
 # plotting
 
