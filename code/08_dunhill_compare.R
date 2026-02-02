@@ -206,8 +206,10 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
           no_cap(MAD = mean(value, na.rm = TRUE)*-1) %>%
           glow_up(metric = case_when(name == "tss_link" ~ "Link",
                                      name == "tss_node" ~ "Node"),
-                  model = case_when(model == "bodymassratio" ~ "log ratio",
-                                    model == "pfim_downsample" ~ "pfim",
+                  model = case_when(model == "pfim_downsample" ~ "PFIM",
+                                    model == "bodymassratio" ~ "log ratio",
+                                    model == "adbm" ~ "ADBM",
+                                    model == "lmatrix" ~ "ATN",
                                     .default = as.character(model)),
                   name = NULL) %>%
           lowkey(scenario = extinction_mechanism) %>%

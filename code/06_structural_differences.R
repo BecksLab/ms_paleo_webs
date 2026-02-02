@@ -173,7 +173,7 @@ ld1v2 <-
                  y = lda.LD2)) +
   coord_cartesian(clip = "off") +
   scale_colour_manual(values = pal_df$c,
-                     breaks = pal_df$l) +
+                      breaks = pal_df$l) +
   guides(color = guide_legend(override.aes = list(alpha = 1))) +
   labs(x = "LD1 (53.9% variance)",
        y = "LD2 (32.6% variance)") +
