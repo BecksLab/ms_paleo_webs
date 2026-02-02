@@ -161,7 +161,7 @@
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
       <h6><i class="bi bi-journal-code"></i> SuppMat 1: Expanded descriptions of the food web models</h6>
 
-            <a href="../notebooks/model_sumaries.qmd" class="btn btn-primary quarto-download-embed" download="model_sumaries.qmd">Download Source</a>
+            <a href="../notebooks/model_summaries.qmd" class="btn btn-primary quarto-download-embed" download="model_summaries.qmd">Download Source</a>
           </div>
 
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
@@ -218,7 +218,7 @@
   <li><a href="#random-model" id="toc-random-model" class="nav-link" data-scroll-target="#random-model">Random model</a></li>
   <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model">Niche model</a></li>
   <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model">Allometric diet breadth model</a></li>
-  <li><a href="#l-matrix" id="toc-l-matrix" class="nav-link" data-scroll-target="#l-matrix">L matrix</a></li>
+  <li><a href="#allometric-trophic-network" id="toc-allometric-trophic-network" class="nav-link" data-scroll-target="#allometric-trophic-network">Allometric trophic network</a></li>
   <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model">Body size ratio model</a></li>
   </ul></li>
   <li><a href="#interaction-predictions" id="toc-interaction-predictions" class="nav-link" data-scroll-target="#interaction-predictions">Interaction predictions</a>
@@ -260,9 +260,9 @@ H_{ij} = \infty \geq b
 \]</span></p>
 <p>Refer to <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> for more details as to how these different terms are parametrised. It is also possible to specify which species are considered to be ‘producer’ species to further constrain the structure of the network to match biological expectations.</p>
 </section>
-<section id="l-matrix" class="level3">
-<h3 class="anchored" data-anchor-id="l-matrix">L matrix</h3>
-<p>Similar to the ADBM the l-matrix uses bodysize as a way to determine the interaction between species, as well as constraining the links to some degree to allow the structure of the network to more closely resemble that of a realised web <span class="citation" data-cites="schneider2016 gauzens2023">(<a href="#ref-schneider2016" role="doc-biblioref">Schneider et al. 2016</a>; <a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span>. Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
+<section id="allometric-trophic-network" class="level3">
+<h3 class="anchored" data-anchor-id="allometric-trophic-network">Allometric trophic network</h3>
+<p>Similar to the ADBM the Allometric trophic network (ATN; <span class="citation" data-cites="brose2006">Brose et al. (<a href="#ref-brose2006" role="doc-biblioref">2006</a>)</span>) uses bodysize as a way to determine the interaction between species, as well as constraining the links to some degree to allow the structure of the network to more closely resemble that of a realised web <span class="citation" data-cites="schneider2016 gauzens2023">(<a href="#ref-schneider2016" role="doc-biblioref">Schneider et al. 2016</a>; <a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span>. Interactions are determined by allometric rules (ratio of consumer (<span class="math inline">\(M_{i}\)</span>) and resource (<span class="math inline">\(M_{j}\)</span>) body sizes) and a Ricker function as defined by <span class="math inline">\(R_{opt}\)</span> and <span class="math inline">\(\gamma\)</span> and returns The probability of a link (<span class="math inline">\(P_{ij}\)</span>) existing between a consumer and resource, and is defined as follows:</p>
 <p><span class="math display">\[
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
 \]</span></p>
@@ -282,7 +282,7 @@ P_{ij} = \frac{p}{1+p}
 <p><span class="math display">\[
 p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
 \]</span> {#eq-bodymass}</p>
-<p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <span class="citation" data-cites="eq-bodymass">(<a href="#ref-eq-bodymass" role="doc-biblioref"><strong>eq-bodymass?</strong></a>)</span> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span> . Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha\)</span> = 1.41, <span class="math inline">\(\delta\)</span> = 3.75, and <span class="math inline">\(\gamma\)</span> = 1.87.</p>
+<p>The original latent-trait model developed by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> also included an additional latent trait term <span class="math inline">\(v_{i} \delta f_{j}\)</span> however for simplicity we will use <span class="citation" data-cites="eq-bodymass">(<a href="#ref-eq-bodymass" role="doc-biblioref"><strong>eq-bodymass?</strong></a>)</span> as per <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>. Based on <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> it is possible to estimate the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta\)</span>, and <span class="math inline">\(\gamma\)</span> using a GLM but we will use the parameters from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which was ‘trained’ on the Serengeti food web data and are as follows: <span class="math inline">\(\alpha\)</span> = 1.41, <span class="math inline">\(\delta\)</span> = 3.75, and <span class="math inline">\(\gamma\)</span> = 1.87.</p>
 </section>
 </section>
 <section id="interaction-predictions" class="level2">
@@ -295,6 +295,9 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brose2006" class="csl-entry" role="listitem">
+Brose, Ulrich, Tomas Jonsson, Eric L. Berlow, et al. 2006. <span>“Consumer<span></span>resource Body-Size Relationships in Natural Food Webs.”</span> <em>Ecology</em> 87 (10): 2411–17. https://doi.org/<a href="https://doi.org/10.1890/0012-9658(2006)87[2411:CBRINF]2.0.CO;2">https://doi.org/10.1890/0012-9658(2006)87[2411:CBRINF]2.0.CO;2</a>.
+</div>
 <div id="ref-erdos1959" class="csl-entry" role="listitem">
 Erdős, P., and A. Rényi. 1959. <span>“On Random Graphs. i.”</span> <em>Publicationes Mathematicae Debrecen</em> 6 (3-4): 290–97. <a href="https://doi.org/10.5486/pmd.1959.6.3-4.12">https://doi.org/10.5486/pmd.1959.6.3-4.12</a>.
 </div>
