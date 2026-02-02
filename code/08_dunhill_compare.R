@@ -92,7 +92,11 @@ print(all_results)
 
 df_plot <- 
   df %>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
+  glow_up(model = case_when(model == "pfim" ~ "PFIM",
+                            model == "bodymassratio" ~ "log ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
+                            .default = as.character(model))) %>%
   #glow_up(across(matches("S[[:digit:]]"), log)) %>%
   vibe_check(-c(distance, redundancy, complexity, diameter, n_rep, richness)) %>%
   pivot_longer(
@@ -110,7 +114,7 @@ df_plot <-
                            stat == "S4" ~ "No. of direct competition motifs",
                            .default = as.character(stat))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")),
+                         levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
           time = str_extract(time, "\\d+")) %>%
   glow_up(level = case_when(
     stat %in% c("connectance", "trophic_level") ~ "Macro",
@@ -148,7 +152,7 @@ plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = 'collect') +
   plot_layout(height = c(1, 2, 1))
 
-ggsave("../figures/time_structure.png",
+ggsave("../notebooks/figures/Figure_S3_time_structure.png",
        width = 5000,
        height = 6500,
        units = "px",
@@ -180,12 +184,16 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                 cols = -c(model, n_rep),
                 names_to = "stat",
                 values_to = "real_val")) %>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio")) %>%
+  glow_up(model = case_when(model == "pfim" ~ "PFIM",
+                            model == "bodymassratio" ~ "log ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
+                            .default = as.character(model))) %>%
   glow_up(diff = real_val - sim_val) %>%
   squad_up(model, extinction_mechanism, stat) %>%
   no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim"))) %>%
+                         levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM"))) %>%
   lowkey(scenario = extinction_mechanism, metric = stat) %>%
   rbind(.,
         read_csv("../data/processed/extinction_tss.csv")  %>%
@@ -204,7 +212,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                   name = NULL) %>%
           lowkey(scenario = extinction_mechanism) %>%
           glow_up(model = factor(model, ordered = TRUE, 
-                                 levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")))
+                                 levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")))
   )
 
 metrics <- unique(mad_df$metric)

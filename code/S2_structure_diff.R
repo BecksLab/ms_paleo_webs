@@ -24,7 +24,11 @@ df <-  read_csv("../data/processed/topology.csv") %>%
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
   na.omit() %>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio"))
+  glow_up(model = case_when(model == "pfim" ~ "PFIM",
+                            model == "bodymassratio" ~ "log ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
+                            .default = as.character(model)))
 
 ## Table S1 – Descriptive statistics
 
@@ -134,7 +138,7 @@ var_explained
 lda_scores <- as.data.frame(predict(post_hoc)$x)  # LD1, LD2, LD3...
 plot_lda <- cbind(
   model = factor(df$model, ordered = TRUE,
-                 levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")),
+                 levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
   lda_scores,
   time = df$time
 )

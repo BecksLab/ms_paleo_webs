@@ -51,7 +51,15 @@ write.csv(as.data.frame(anova_res), "../notebooks/tables/beta_divergence_anova.c
 tile_df <-
   beta_df %>%
   squad_up(Model1, Model2) %>%
-  no_cap(Beta_turnover = mean(Beta_turnover, na.rm = TRUE))
+  no_cap(Beta_turnover = mean(Beta_turnover, na.rm = TRUE)) %>%
+  glow_up(Model1 = case_when(Model1 == "pfim" ~ "PFIM",
+                             Model1 == "adbm" ~ "ADBM",
+                             Model1 == "lmatrix" ~ "ATN",
+                             .default = as.character(Model1)),
+          Model2 = case_when(Model2 == "pfim" ~ "PFIM",
+                             Model2 == "adbm" ~ "ADBM",
+                             Model2 == "lmatrix" ~ "ATN",
+                             .default = as.character(Model2)))
 
 ggplot(tile_df, 
        aes(x = Model1, 

@@ -25,10 +25,12 @@ df <- read_csv("../data/processed/topology.csv") %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
-  glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+                            model == "bodymassratio" ~ "log ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
                             .default = as.character(model))) %>%
-  na.omit() %>%
-  glow_up(model = str_replace(model, "bodymassratio", "log ratio"))
+  na.omit()
 
 dep_vars <- as.matrix(df[3:ncol(df)])
 
@@ -139,7 +141,7 @@ cor(df[3:ncol(df)], scores)
 
 # plot 
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "adbm", "lmatrix", "log ratio", "pfim")), 
+                                      levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")), 
                        lda = predict(post_hoc)$x,
                        time = df$time)
 

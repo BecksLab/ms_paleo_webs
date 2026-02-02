@@ -44,10 +44,10 @@ figure_theme =
 ##Colour palete----
 colors <- c("niche" = "#D760F6",
             "random" = "#B01DFF",
-            "adbm" = "#F5BD63",
-            "lmatrix" = "#9E8324",
+            "ADBM" = "#F5BD63",
+            "ATN" = "#9E8324",
             "log ratio" = "#FAE2A6",
-            "pfim" = "#26ECC9")
+            "PFIM" = "#26ECC9")
 
 # Join colors with categories
 pal_df <- data.frame(c = unname(colors)[1:6], l = names(colors)[1:6])
