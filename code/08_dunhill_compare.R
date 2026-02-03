@@ -163,12 +163,13 @@ df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
                      stat == "S2" ~ "No. of omnivory motifs",
                      stat == "S4" ~ "No. of direct competition motifs",
                      stat == "S5" ~ "No. of apparent competition motifs",
-                     .default = stat)) %>%
+                     stat == "trophic_level" ~ "Trophic level",
+                     .default = str_to_sentence(stat))) %>%
   glow_up(
     model = factor(model, ordered = TRUE,
                    levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
-    level = case_when(stat %in% c("connectance", "trophic_level") ~ "Macro",
-                      stat %in% c("generality", "vulnerability") ~ "Micro",
+    level = case_when(stat %in% c("Connectance", "Trophic level") ~ "Macro",
+                      stat %in% c("Generality", "Vulnerability") ~ "Micro",
                       .default = "Meso"))
 
 plot_list <- vector("list", length = 3)
@@ -234,11 +235,12 @@ df_raw_plot <-
                            stat == "S2" ~ "No. of omnivory motifs",
                            stat == "S4" ~ "No. of direct competition motifs",
                            stat == "S5" ~ "No. of apparent competition motifs",
-                           .default = stat),
+                           stat == "trophic_level" ~ "Trophic level",
+                           .default = str_to_sentence(stat)),
           model = factor(model, ordered = TRUE,
                          levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
-          level = case_when(stat %in% c("connectance", "trophic_level") ~ "Macro",
-                            stat %in% c("generality", "vulnerability") ~ "Micro",
+          level = case_when(stat %in% c("Connectance", "Trophic level") ~ "Macro",
+                            stat %in% c("Generality", "Vulnerability") ~ "Micro",
                             .default = "Meso"))
 
 plot_list_raw <- vector("list", length = 3)
@@ -353,7 +355,7 @@ si_table <- si_table %>%
 
 # 6. Export CSV
 write_csv(si_table,
-          "../notebooks/tables/Table_S7_GAM_results.csv.csv")
+          "../notebooks/tables/Table_S7_GAM_results.csv")
 
 # model compare
 anova_table <-
@@ -406,7 +408,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
   # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
-  vibe_check(-c(rep, distance, redundancy, diameter, resilience)) %>%
+  vibe_check(-c(rep, distance, redundancy, diameter, resilience, richness)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
@@ -419,7 +421,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
               glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                                         .default = as.character(model))) %>%
               yeet(time == "G2") %>%
-              vibe_check(-c(time, distance, redundancy, diameter)) %>%
+              vibe_check(-c(time, distance, redundancy, diameter, richness)) %>%
               pivot_longer(
                 cols = -c(model, n_rep),
                 names_to = "stat",
@@ -514,10 +516,11 @@ kendal_results <-
                              metric == "S2" ~ "No. of omnivory motifs",
                              metric == "S5" ~ "No. of apparent competition motifs",
                              metric == "S4" ~ "No. of direct competition motifs",
-                             .default = as.character(metric)),
+                             metric == "trophic_level" ~ "Trophic level",
+                             .default = str_to_sentence(metric)),
           level = case_when(
-            metric %in% c("complexity", "connectance", "trophic_level", "richness", "diameter") ~ "Macro",
-            metric %in% c("generality", "vulnerability") ~ "Micro",
+            metric %in% c("Complexity", "Connectance", "Trophic level", "Richness", "Diameter") ~ "Macro",
+            metric %in% c("Generality", "Vulnerability") ~ "Micro",
             metric %in% c("Node", "Link") ~ "TSS",
             .default = "Meso"
           ))
