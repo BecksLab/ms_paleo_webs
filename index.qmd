@@ -98,7 +98,7 @@ We evaluated six models spanning this space [@tbl-models]: random and niche mode
 
 ## Network metrics and structural analyses
 
-We quantified network structure using a suite of macro-, meso-, and micro-scale metrics [@tbl-properties], capturing global properties, motif structure, and species-level variability. Differences among models were assessed using MANOVA, followed by univariate ANOVAs, post-hoc comparisons, and linear discriminant analysis. Pairwise interaction turnover was quantified using link-based beta diversity for models that infer species-specific interactions [@poisot2012a]
+We quantified network structure using a suite of macro-, meso-, and micro-scale metrics [@tbl-properties], capturing global properties, motif structure, and species-level variability. Differences among models were assessed using MANOVA, followed by univariate ANOVAs, post-hoc comparisons, and linear discriminant analysis. Pairwise interaction turnover was quantified using link‑based beta diversity, which measures dissimilarity in the identity of trophic links between networks, capturing differences due to species turnover or changes in interactions among shared species [@poisot2012a].
 
 | Metric | Definition | Scale | Reference (for maths), can make footnotes probs |
 |------------------|-------------------|------------------|------------------|
