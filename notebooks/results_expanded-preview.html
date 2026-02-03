@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-02-02">
+    <meta name="dcterms.date" content="2026-02-03">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -224,7 +224,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 2, 2026</p>
+              <p class="date">February 3, 2026</p>
             </div>
           </div>
           
@@ -263,7 +263,9 @@
   </ul></li>
   <li><a href="#model-choice-influences-inferred-extinction-dynamics" id="toc-model-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#model-choice-influences-inferred-extinction-dynamics">Model choice influences inferred extinction dynamics</a>
   <ul class="collapse">
-  <li><a href="#figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." id="toc-figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." class="nav-link" data-scroll-target="#figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models.">Figure S3. Temporal trajectories of network-level metrics across reconstruction models.</a></li>
+  <li><a href="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." id="toc-figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="nav-link" data-scroll-target="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</a></li>
+  <li><a href="#table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S7. Full generalized additive model (GAM) results for network-level metrics.</a></li>
+  <li><a href="#table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -348,7 +350,7 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">adbm</td>
+<td style="text-align: left;">ADBM</td>
 <td style="text-align: right;">0.2980289</td>
 <td style="text-align: right;">0.0173274</td>
 <td style="text-align: right;">14.9000</td>
@@ -367,7 +369,7 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 <td style="text-align: right;">0.3871614</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lmatrix</td>
+<td style="text-align: left;">ATN</td>
 <td style="text-align: right;">0.2250133</td>
 <td style="text-align: right;">0.0170831</td>
 <td style="text-align: right;">15.7300</td>
@@ -386,6 +388,25 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 <td style="text-align: right;">0.2930910</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1185292</td>
+<td style="text-align: right;">0.0231336</td>
+<td style="text-align: right;">15.6525</td>
+<td style="text-align: right;">6.238513</td>
+<td style="text-align: right;">1.7226598</td>
+<td style="text-align: right;">0.1528536</td>
+<td style="text-align: right;">0.6326936</td>
+<td style="text-align: right;">0.0763279</td>
+<td style="text-align: right;">0.1044935</td>
+<td style="text-align: right;">0.0352603</td>
+<td style="text-align: right;">0.1390467</td>
+<td style="text-align: right;">0.0305457</td>
+<td style="text-align: right;">0.0644215</td>
+<td style="text-align: right;">0.0456966</td>
+<td style="text-align: right;">0.5227883</td>
+<td style="text-align: right;">0.1453698</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">log ratio</td>
 <td style="text-align: right;">0.1720401</td>
 <td style="text-align: right;">0.0155925</td>
@@ -404,7 +425,7 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 <td style="text-align: right;">0.5014183</td>
 <td style="text-align: right;">0.2151592</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">niche</td>
 <td style="text-align: right;">0.1181557</td>
 <td style="text-align: right;">0.0328685</td>
@@ -422,25 +443,6 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 <td style="text-align: right;">0.0855302</td>
 <td style="text-align: right;">0.3231550</td>
 <td style="text-align: right;">0.1852910</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pfim</td>
-<td style="text-align: right;">0.1185292</td>
-<td style="text-align: right;">0.0231336</td>
-<td style="text-align: right;">15.6525</td>
-<td style="text-align: right;">6.238513</td>
-<td style="text-align: right;">1.7226598</td>
-<td style="text-align: right;">0.1528536</td>
-<td style="text-align: right;">0.6326936</td>
-<td style="text-align: right;">0.0763279</td>
-<td style="text-align: right;">0.1044935</td>
-<td style="text-align: right;">0.0352603</td>
-<td style="text-align: right;">0.1390467</td>
-<td style="text-align: right;">0.0305457</td>
-<td style="text-align: right;">0.0644215</td>
-<td style="text-align: right;">0.0456966</td>
-<td style="text-align: right;">0.5227883</td>
-<td style="text-align: right;">0.1453698</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">random</td>
@@ -563,12 +565,12 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 29%">
+<col style="width: 28%">
 <col style="width: 16%">
-<col style="width: 14%">
+<col style="width: 15%">
 <col style="width: 7%">
 <col style="width: 16%">
-<col style="width: 14%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -582,7 +584,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">adbm - lmatrix</td>
+<td style="text-align: left;">ADBM - ATN</td>
 <td style="text-align: right;">-0.0033630</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -590,7 +592,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">1.0000000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">adbm - log ratio</td>
+<td style="text-align: left;">ADBM - log ratio</td>
 <td style="text-align: right;">-0.2885341</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -598,7 +600,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0075396</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">adbm - niche</td>
+<td style="text-align: left;">ADBM - niche</td>
 <td style="text-align: right;">-0.0163059</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -606,7 +608,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.9999614</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">adbm - pfim</td>
+<td style="text-align: left;">ADBM - PFIM</td>
 <td style="text-align: right;">0.2579660</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -614,7 +616,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0252227</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">adbm - random</td>
+<td style="text-align: left;">ADBM - random</td>
 <td style="text-align: right;">-0.0179653</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -622,7 +624,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.9999376</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lmatrix - log ratio</td>
+<td style="text-align: left;">ATN - log ratio</td>
 <td style="text-align: right;">-0.2851711</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -630,7 +632,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0086756</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">lmatrix - niche</td>
+<td style="text-align: left;">ATN - niche</td>
 <td style="text-align: right;">-0.0129429</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -638,7 +640,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.9999877</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lmatrix - pfim</td>
+<td style="text-align: left;">ATN - PFIM</td>
 <td style="text-align: right;">0.2613289</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -646,7 +648,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0222532</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">lmatrix - random</td>
+<td style="text-align: left;">ATN - random</td>
 <td style="text-align: right;">-0.0146024</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -662,7 +664,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0146362</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">log ratio - pfim</td>
+<td style="text-align: left;">log ratio - PFIM</td>
 <td style="text-align: right;">0.5465001</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -678,7 +680,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">0.0156202</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">niche - pfim</td>
+<td style="text-align: left;">niche - PFIM</td>
 <td style="text-align: right;">0.2742718</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -694,7 +696,7 @@ dbl (5): estimate, SE, df, t.ratio, p.value
 <td style="text-align: right;">1.0000000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">pfim - random</td>
+<td style="text-align: left;">PFIM - random</td>
 <td style="text-align: right;">-0.2759313</td>
 <td style="text-align: right;">0.0836524</td>
 <td style="text-align: right;">2394</td>
@@ -927,10 +929,1076 @@ dbl (5): LD1, LD2, LD3, LD4, LD5
 </section>
 <section id="model-choice-influences-inferred-extinction-dynamics" class="level1">
 <h1>Model choice influences inferred extinction dynamics</h1>
-<section id="figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models." class="level2">
-<h2 class="anchored" data-anchor-id="figure-s3.-temporal-trajectories-of-network-level-metrics-across-reconstruction-models.">Figure S3. Temporal trajectories of network-level metrics across reconstruction models.</h2>
+<section id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="level2">
+<h2 class="anchored" data-anchor-id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</h2>
+<p>Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.</p>
 <p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
-<p>Macro (connectance, trophic level), Meso (motif counts: linear chains, omnivory, direct and apparent competition), and Micro (generality, vulnerability). Lines represent mean values across replicates. Deterministic, size-based models (ADBM, L-matrix) show highly similar trajectories, whereas stochastic or trait-driven models (log ratio, niche, random) exhibit greater divergence in both mean values and temporal patterns, consistent with GAM analyses (see main text).</p>
+</section>
+<section id="table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S7. Full generalized additive model (GAM) results for network-level metrics.</h2>
+<p>Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S7_GAM_results.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 104 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (4): Term, Network metric, Term type, p-value
+dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Network metric</th>
+<th style="text-align: left;">Term type</th>
+<th style="text-align: right;">Estimate / EDF</th>
+<th style="text-align: right;">Std. Error / Ref.df</th>
+<th style="text-align: right;">t / F value</th>
+<th style="text-align: left;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.298</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">241.811</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.126</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">-72.283</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.073</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">-41.891</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.180</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">-103.197</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.179</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">-102.983</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.077</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">-43.973</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.921</td>
+<td style="text-align: right;">2.995</td>
+<td style="text-align: right;">22.563</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.927</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">13.810</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.958</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">27.042</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.249</td>
+<td style="text-align: right;">2.618</td>
+<td style="text-align: right;">2.719</td>
+<td style="text-align: left;">0.112</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.987</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">113.849</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.604</td>
+<td style="text-align: right;">2.882</td>
+<td style="text-align: right;">4.720</td>
+<td style="text-align: left;">0.016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">32.045</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">14.900</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">38.394</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">5.010</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">9.128</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.830</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">1.512</td>
+<td style="text-align: left;">0.131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">3.592</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">6.546</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.752</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">1.371</td>
+<td style="text-align: left;">0.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">2.168</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">3.949</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.971</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">31.655</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.947</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">51.798</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.972</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">41.812</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.962</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">94.856</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.962</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">24.444</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.931</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">75.323</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11.723</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.902</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">200.915</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.265</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-41.698</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.129</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">20.329</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.223</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">35.079</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.821</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">129.304</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.575</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-90.653</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.949</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">101.687</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.847</td>
+<td style="text-align: right;">2.981</td>
+<td style="text-align: right;">25.350</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.979</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">230.268</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">1.001</td>
+<td style="text-align: right;">1.001</td>
+<td style="text-align: right;">0.391</td>
+<td style="text-align: left;">0.532</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">366.841</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.933</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">48.486</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">122.123</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">141.193</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.200</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">-22.403</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">19.974</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.241</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">-27.068</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.257</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">-28.815</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.815</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">91.514</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.595</td>
+<td style="text-align: right;">2.877</td>
+<td style="text-align: right;">10.151</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.909</td>
+<td style="text-align: right;">2.993</td>
+<td style="text-align: right;">49.940</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.912</td>
+<td style="text-align: right;">2.994</td>
+<td style="text-align: right;">45.848</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.824</td>
+<td style="text-align: right;">2.976</td>
+<td style="text-align: right;">20.777</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.944</td>
+<td style="text-align: right;">2.997</td>
+<td style="text-align: right;">40.497</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">1.412</td>
+<td style="text-align: right;">1.697</td>
+<td style="text-align: right;">0.222</td>
+<td style="text-align: left;">0.695</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">33.392</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.749</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">194.021</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">7.543</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.192</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">49.847</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">27.068</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">2.787</td>
+<td style="text-align: left;">0.005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">3454.642</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.473</td>
+<td style="text-align: right;">2.798</td>
+<td style="text-align: right;">5.453</td>
+<td style="text-align: left;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.980</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">197.148</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.952</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">41.261</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: left;">0.916</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">772.574</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">1.189</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">282.637</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.048</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-176.145</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.733</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-123.268</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.080</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-181.560</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.050</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-176.486</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.008</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-169.460</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">3739.389</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.941</td>
+<td style="text-align: right;">2.997</td>
+<td style="text-align: right;">49.584</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.990</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">607.421</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.860</td>
+<td style="text-align: right;">2.984</td>
+<td style="text-align: right;">22.303</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.757</td>
+<td style="text-align: right;">2.954</td>
+<td style="text-align: right;">13.956</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.915</td>
+<td style="text-align: right;">2.994</td>
+<td style="text-align: right;">35.738</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">553.156</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">1.454</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">271.314</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.925</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">-122.084</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.113</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">-14.860</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.310</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">-172.920</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.389</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">-183.346</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">22.391</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">4569.752</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.994</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">444.599</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">4034.456</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.854</td>
+<td style="text-align: right;">2.983</td>
+<td style="text-align: right;">24.949</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.786</td>
+<td style="text-align: right;">2.964</td>
+<td style="text-align: right;">23.029</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.999</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">4479.574</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">990.095</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">1.389</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">283.303</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.887</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">-127.994</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: ATN</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.220</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">-31.752</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Niche</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.066</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">-153.709</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model: PFIM</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-0.866</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">-124.911</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Model: Random</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">parametric</td>
+<td style="text-align: right;">-1.359</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">-196.042</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ADBM</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">1900.335</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.995</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">593.637</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by ATN</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">940.100</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Niche</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.976</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">167.436</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smooth: time by PFIM</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">2.980</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">286.415</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smooth: time by Random</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">smooth</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: left;">0.867</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">anova</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">279.442</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
+<p>Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as &lt;0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S8_GAM_model_comparison.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Term, Network metric, p-value
+dbl (1): F value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 21%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Network metric</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: left;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">connectance</td>
+<td style="text-align: right;">32.045</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">trophic_level</td>
+<td style="text-align: right;">11.723</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">generality</td>
+<td style="text-align: right;">122.123</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">vulnerability</td>
+<td style="text-align: right;">33.392</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S1</td>
+<td style="text-align: right;">772.574</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S2</td>
+<td style="text-align: right;">553.156</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S4</td>
+<td style="text-align: right;">990.095</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
+<td style="text-align: left;">S5</td>
+<td style="text-align: right;">279.442</td>
+<td style="text-align: left;">&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">

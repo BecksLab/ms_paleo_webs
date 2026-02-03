@@ -10,7 +10,7 @@
 <meta name="author" content="Baran Karapunar">
 <meta name="author" content="Andrew P. Beckerman">
 <meta name="author" content="Alexander Dunhill">
-<meta name="dcterms.date" content="2026-02-02">
+<meta name="dcterms.date" content="2026-02-03">
 <meta name="keywords" content="Paleoecological networks, Food-web reconstruction, Ecological networks, Extinction dynamics, Trophic interactions, Toarcian Oceanic Anoxic Event">
 
 <title>Reconstructing food webs in deep time: why model choice matters for ecological inference</title>
@@ -111,10 +111,10 @@ window.Quarto = {
 <meta name="citation_author" content="Baran Karapunar">
 <meta name="citation_author" content="Andrew P. Beckerman">
 <meta name="citation_author" content="Alexander Dunhill">
-<meta name="citation_publication_date" content="2026-02-02">
-<meta name="citation_cover_date" content="2026-02-02">
+<meta name="citation_publication_date" content="2026-02-03">
+<meta name="citation_cover_date" content="2026-02-03">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-02-02">
+<meta name="citation_online_date" content="2026-02-03">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -253,7 +253,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 2, 2026</p>
+              <p class="date">February 3, 2026</p>
             </div>
           </div>
           
@@ -569,15 +569,25 @@ Figure&nbsp;2: Pairwise beta turnover in species interactions among four ecologi
 </section>
 <section id="model-choice-influences-inferred-extinction-dynamics" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="model-choice-influences-inferred-extinction-dynamics"><span class="header-section-number">3.2</span> Model choice influences inferred extinction dynamics</h2>
-<p>To quantify how network structure changed over time during extinction simulations and whether these dynamics differed among reconstruction models, we fit generalized additive models (GAMs) to time series of network-level metrics. GAMs capture nonlinear temporal trajectories, allowing formal tests of whether the shape of these trajectories differs among models. For connectance, the model-specific smooth terms were all significant (<em>e.g.,</em> PFIM: EDF = 2.99, F = 113.8, p &lt; 0.001; ADBM: EDF = 2.92, F = 22.6, p &lt; 0.001), indicating distinct temporal patterns across reconstruction approaches. Trophic level trajectories also differed among models (PFIM: EDF = 2.96, F = 36.7, p &lt; 0.001; Niche: EDF = 2.96, F = 94.9, p &lt; 0.001). Deterministic approaches, such as PFIM, produced more consistent and smooth trajectories, whereas stochastic, theory-driven models (niche, ADBM, ATN) displayed greater variability in timing and magnitude of structural change. These results demonstrate that inferred pathways of collapse, trophic bottlenecks, and secondary extinctions are highly sensitive to model choice.</p>
-<p>To evaluate how model choice affects inferred extinction dynamics, we compared simulated post-extinction networks to observed networks using mean absolute differences (MAD) for network-level metrics and total sum-of-squares (TSS) for node- and link-level outcomes <a href="#fig-mad" class="quarto-xref">Figure&nbsp;3</a>. Overall, models were more consistent in ranking extinction scenarios at the network level: Kendall’s <span class="math inline">\(\tau\)</span> values for MAD-based rankings were generally positive, with strong agreement between ADBM and ATN models (<span class="math inline">\(\tau\)</span> ≈ 0.82) and weaker or inconsistent correlations involving stochastic models such as log ratio or random (<span class="math inline">\(\tau\)</span> ranging from −0.26 to 0.44). Node-level TSS scores similarly showed broad consistency across models, reflecting comparable species removal sequences (<span class="math inline">\(\tau\)</span> ≈ 0.38–0.46 between ADBM and niche or PFIM). In contrast, link-level outcomes were more variable: deterministic models like PFIM maintained moderate agreement with observed post-extinction links (<span class="math inline">\(\tau\)</span> ≈ 0.44), whereas stochastic, theory-driven models exhibited low or inconsistent correlations (<span class="math inline">\(\tau\)</span> as low as −0.44). These results indicate that while different models often recover similar species-level extinction patterns, inferred interaction loss and cascade dynamics are highly sensitive to model choice.</p>
+<p>To quantify how network structure changed over time during extinction simulations and whether these dynamics differed among reconstruction models, we fit generalized additive models (GAMs) to time series of network-level metrics. GAMs capture nonlinear temporal trajectories, allowing formal tests of whether the shape of these trajectories differs among models. These model-specific temporal trajectories are shown in <a href="#fig-gam" class="quarto-xref">Figure&nbsp;3</a>. For connectance, the model-specific smooth terms were all significant (<em>e.g.,</em> PFIM: EDF = 2.99, F = 113.8, p &lt; 0.001; ADBM: EDF = 2.92, F = 22.6, p &lt; 0.001), indicating distinct temporal patterns across reconstruction approaches. Trophic level trajectories also differed among models (PFIM: EDF = 2.96, F = 36.7, p &lt; 0.001; Niche: EDF = 2.96, F = 94.9, p &lt; 0.001). Deterministic approaches, such as PFIM, produced more consistent and smooth trajectories, whereas stochastic, theory-driven models (niche, ADBM, ATN) displayed greater variability in timing and magnitude of structural change. These results demonstrate that inferred pathways of collapse, trophic bottlenecks, and secondary extinctions are highly sensitive to model choice. Corresponding raw temporal trajectories are shown in Fig. S3.</p>
+<div id="fig-gam" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/GAM_predictions.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: GAM-predicted trajectories of network structure during extinction simulations reveal pronounced differences in the timing and magnitude of change across reconstruction models. Lines show model-specific smooths and shaded areas indicate 95% confidence intervals. Deterministic approaches produce smoother, more consistent dynamics, whereas stochastic models exhibit greater variability, underscoring the sensitivity of inferred collapse pathways to reconstruction assumptions."><img src="figures/GAM_predictions.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: GAM-predicted trajectories of network structure during extinction simulations reveal pronounced differences in the timing and magnitude of change across reconstruction models. Lines show model-specific smooths and shaded areas indicate 95% confidence intervals. Deterministic approaches produce smoother, more consistent dynamics, whereas stochastic models exhibit greater variability, underscoring the sensitivity of inferred collapse pathways to reconstruction assumptions.
+</figcaption>
+</figure>
+</div>
+<p>To evaluate how model choice affects inferred extinction dynamics, we compared simulated post-extinction networks to observed networks using mean absolute differences (MAD) for network-level metrics and total sum-of-squares (TSS) for node- and link-level outcomes <a href="#fig-mad" class="quarto-xref">Figure&nbsp;4</a>. Overall, models were more consistent in ranking extinction scenarios at the network level: Kendall’s <span class="math inline">\(\tau\)</span> values for MAD-based rankings were generally positive, with strong agreement between ADBM and ATN models (<span class="math inline">\(\tau\)</span> ≈ 0.82) and weaker or inconsistent correlations involving stochastic models such as log ratio or random (<span class="math inline">\(\tau\)</span> ranging from −0.26 to 0.44). Node-level TSS scores similarly showed broad consistency across models, reflecting comparable species removal sequences (<span class="math inline">\(\tau\)</span> ≈ 0.38–0.46 between ADBM and niche or PFIM). In contrast, link-level outcomes were more variable: deterministic models like PFIM maintained moderate agreement with observed post-extinction links (<span class="math inline">\(\tau\)</span> ≈ 0.44), whereas stochastic, theory-driven models exhibited low or inconsistent correlations (<span class="math inline">\(\tau\)</span> as low as −0.44). These results indicate that while different models often recover similar species-level extinction patterns, inferred interaction loss and cascade dynamics are highly sensitive to model choice.</p>
 <div id="fig-mad" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/kendal_tau.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Heatmaps showing pairwise Kendall rank correlation coefficients (\tau) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive \tau values (blue) indicate concordant rankings between models, whereas negative \tau values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties."><img src="figures/kendal_tau.png" class="img-fluid figure-img"></a>
+<a href="figures/kendal_tau.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: Heatmaps showing pairwise Kendall rank correlation coefficients (\tau) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive \tau values (blue) indicate concordant rankings between models, whereas negative \tau values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties."><img src="figures/kendal_tau.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Heatmaps showing pairwise Kendall rank correlation coefficients (<span class="math inline">\(\tau\)</span>) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive <span class="math inline">\(\tau\)</span> values (blue) indicate concordant rankings between models, whereas negative <span class="math inline">\(\tau\)</span> values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties.
+Figure&nbsp;4: Heatmaps showing pairwise Kendall rank correlation coefficients (<span class="math inline">\(\tau\)</span>) between models for each network metric. Each panel corresponds to a different metric and displays the degree of agreement in extinction-scenario rankings across models based on mean absolute differences (MAD) between observed and predicted network values. Positive <span class="math inline">\(\tau\)</span> values (blue) indicate concordant rankings between models, whereas negative <span class="math inline">\(\tau\)</span> values (red) indicate opposing rankings. Warmer colours approaching zero represent little or no agreement. Panels illustrate how consistently different modelling approaches evaluate the relative realism of extinction scenarios across multiple network properties.
 </figcaption>
 </figure>
 </div>
@@ -796,7 +806,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, et al. 2014. <span>“Collapse
     and Dunhill, Alexander},
   title = {Reconstructing Food Webs in Deep Time: Why Model Choice
     Matters for Ecological Inference},
-  date = {2026-02-02},
+  date = {2026-02-03},
   langid = {en},
   abstract = {Food webs provide a powerful framework for understanding
     ecosystem structure and function, yet reconstructing them in
@@ -824,7 +834,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, et al. 2014. <span>“Collapse
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-strydom2026" class="csl-entry quarto-appendix-citeas" role="listitem">
 Strydom, Tanya, Baran Karapunar, Andrew P. Beckerman, and Alexander
 Dunhill. 2026. <span>“Reconstructing Food Webs in Deep Time: Why Model
-Choice Matters for Ecological Inference.”</span> TBD, February 2.
+Choice Matters for Ecological Inference.”</span> TBD, February 3.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

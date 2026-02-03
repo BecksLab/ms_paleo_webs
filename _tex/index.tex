@@ -224,7 +224,7 @@ for ecological inference}
 2%
 }%
 }
-\date{2026-02-02}
+\date{2026-02-03}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -733,18 +733,39 @@ simulations and whether these dynamics differed among reconstruction
 models, we fit generalized additive models (GAMs) to time series of
 network-level metrics. GAMs capture nonlinear temporal trajectories,
 allowing formal tests of whether the shape of these trajectories differs
-among models. For connectance, the model-specific smooth terms were all
-significant (\emph{e.g.,} PFIM: EDF = 2.99, F = 113.8, p \textless{}
-0.001; ADBM: EDF = 2.92, F = 22.6, p \textless{} 0.001), indicating
-distinct temporal patterns across reconstruction approaches. Trophic
-level trajectories also differed among models (PFIM: EDF = 2.96, F =
-36.7, p \textless{} 0.001; Niche: EDF = 2.96, F = 94.9, p \textless{}
-0.001). Deterministic approaches, such as PFIM, produced more consistent
-and smooth trajectories, whereas stochastic, theory-driven models
-(niche, ADBM, ATN) displayed greater variability in timing and magnitude
-of structural change. These results demonstrate that inferred pathways
-of collapse, trophic bottlenecks, and secondary extinctions are highly
-sensitive to model choice.
+among models. These model-specific temporal trajectories are shown in
+Figure~\ref{fig-gam}. For connectance, the model-specific smooth terms
+were all significant (\emph{e.g.,} PFIM: EDF = 2.99, F = 113.8, p
+\textless{} 0.001; ADBM: EDF = 2.92, F = 22.6, p \textless{} 0.001),
+indicating distinct temporal patterns across reconstruction approaches.
+Trophic level trajectories also differed among models (PFIM: EDF = 2.96,
+F = 36.7, p \textless{} 0.001; Niche: EDF = 2.96, F = 94.9, p
+\textless{} 0.001). Deterministic approaches, such as PFIM, produced
+more consistent and smooth trajectories, whereas stochastic,
+theory-driven models (niche, ADBM, ATN) displayed greater variability in
+timing and magnitude of structural change. These results demonstrate
+that inferred pathways of collapse, trophic bottlenecks, and secondary
+extinctions are highly sensitive to model choice. Corresponding raw
+temporal trajectories are shown in Fig. S3.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/GAM_predictions.png}}
+
+}
+
+\caption{\label{fig-gam}GAM-predicted trajectories of network structure
+during extinction simulations reveal pronounced differences in the
+timing and magnitude of change across reconstruction models. Lines show
+model-specific smooths and shaded areas indicate 95\% confidence
+intervals. Deterministic approaches produce smoother, more consistent
+dynamics, whereas stochastic models exhibit greater variability,
+underscoring the sensitivity of inferred collapse pathways to
+reconstruction assumptions.}
+
+\end{figure}%
 
 To evaluate how model choice affects inferred extinction dynamics, we
 compared simulated post-extinction networks to observed networks using
