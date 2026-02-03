@@ -39,6 +39,26 @@ greater similarity.}
 
 \centering{
 
+\pandocbounded{\includegraphics[keepaspectratio]{figures/GAM_predictions.png}}
+
+}
+
+\caption{\label{fig-gam}GAM-predicted trajectories of network structure
+during extinction simulations reveal pronounced differences in the
+timing and magnitude of change across reconstruction models. Lines show
+model-specific smooths and shaded areas indicate 95\% confidence
+intervals. Deterministic approaches produce smoother, more consistent
+dynamics, whereas stochastic models exhibit greater variability,
+underscoring the sensitivity of inferred collapse pathways to
+reconstruction assumptions.}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+
+\centering{
+
 \pandocbounded{\includegraphics[keepaspectratio]{figures/kendal_tau.png}}
 
 }

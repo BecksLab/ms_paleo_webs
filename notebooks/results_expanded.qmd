@@ -70,11 +70,33 @@ kable()
 
 # Model choice influences inferred extinction dynamics
 
-## Figure S3. Temporal trajectories of network-level metrics across reconstruction models.
+## Figure S3. Raw temporal trajectories of network structure during extinction simulations.
+
+Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.
 
 ![](figures/Figure_S3_time_structure.png)
 
-Macro (connectance, trophic level), Meso (motif counts: linear chains, omnivory, direct and apparent competition), and Micro (generality, vulnerability). Lines represent mean values across replicates. Deterministic, size-based models (ADBM, L-matrix) show highly similar trajectories, whereas stochastic or trait-driven models (log ratio, niche, random) exhibit greater divergence in both mean values and temporal patterns, consistent with GAM analyses (see main text).
+## Table S7. Full generalized additive model (GAM) results for network-level metrics.
+
+Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.
+
+```{r}
+
+readr::read_csv("tables/Table_S7_GAM_results.csv") %>%
+kable()
+
+```
+
+## Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
+
+Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as <0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.
+
+```{r}
+
+readr::read_csv("tables/Table_S8_GAM_model_comparison.csv") %>%
+kable()
+
+```
 
 # References {.unnumbered}
 

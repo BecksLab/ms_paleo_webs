@@ -88,75 +88,315 @@ all_results <- map_dfr(network_stats, ~fit_gam_with_anova(.x, df))
 # View tidy results
 print(all_results)
 
-# prep data for plotting
 
-df_plot <- 
+
+# function to get GAM predictions for plotting
+get_gam_predictions <- function(stat_name, data, time_grid = 100) {
+  
+  gam_fit <- gam(
+    as.formula(paste0(stat_name, " ~ model + s(time, by = model, k = 4)")),
+    data = data,
+    method = "REML"
+  )
+  
+  newdata <- expand_grid(
+    time = seq(min(data$time), max(data$time), length.out = time_grid),
+    model = levels(data$model)
+  )
+  
+  preds <- predict(gam_fit, newdata, se.fit = TRUE)
+  
+  newdata %>%
+    mutate(
+      statistic = stat_name,
+      fit = preds$fit,
+      se = preds$se.fit,
+      lower = fit - 1.96 * se,
+      upper = fit + 1.96 * se
+    )
+}
+
+# predictions for all  metrics
+
+all_stats <- c(
+  "connectance", "trophic_level",
+  "generality", "vulnerability",
+  "S1", "S2", "S4", "S5"
+)
+
+get_all_gam_preds <- function(data, stats, time_grid = 100) {
+  
+  map_dfr(stats, function(stat) {
+    
+    gam_fit <- gam(
+      as.formula(paste0(stat, " ~ model + s(time, by = model, k = 4)")),
+      data = data,
+      method = "REML"
+    )
+    
+    newdata <- expand_grid(
+      time = seq(min(data$time), max(data$time), length.out = time_grid),
+      model = levels(data$model)
+    )
+    
+    preds <- predict(gam_fit, newdata, se.fit = TRUE)
+    
+    newdata %>%
+      mutate(
+        stat = stat,
+        fit = preds$fit,
+        se = preds$se.fit,
+        lower = fit - 1.96 * se,
+        upper = fit + 1.96 * se
+      )
+  })
+}
+
+df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
+  glow_up(
+    model = case_when(model == "pfim" ~ "PFIM",
+                      model == "bodymassratio" ~ "log ratio",
+                      model == "adbm" ~ "ADBM",
+                      model == "lmatrix" ~ "ATN",
+                      .default = as.character(model)),
+    stat = case_when(stat == "S1" ~ "No. of linear chains",
+                     stat == "S2" ~ "No. of omnivory motifs",
+                     stat == "S4" ~ "No. of direct competition motifs",
+                     stat == "S5" ~ "No. of apparent competition motifs",
+                     .default = stat)) %>%
+  glow_up(
+    model = factor(model, ordered = TRUE,
+                   levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
+    level = case_when(stat %in% c("connectance", "trophic_level") ~ "Macro",
+                      stat %in% c("generality", "vulnerability") ~ "Micro",
+                      .default = "Meso"))
+
+plot_list <- vector("list", length = 3)
+levs <- c("Macro", "Meso", "Micro")
+
+for (i in seq_along(plot_list)) {
+  
+  plot_list[[i]] <-
+    ggplot(
+      df_gam_plot %>% yeet(level == levs[i]),
+      aes(x = time, 
+          y = fit, 
+          colour = model, 
+          fill = model)) +
+    geom_ribbon(aes(ymin = lower, 
+                    ymax = upper),
+                alpha = 0.2,
+                colour = NA) +
+    geom_line(linewidth = 1) +
+    facet_wrap(vars(stat),
+               scales = "free_y",
+               ncol = 2) +
+    scale_x_continuous(breaks = c(1, 2, 3, 4),
+                       labels = c("pre", "during", "early", "late")) +
+    scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
+    scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
+    labs(x = "Time",
+         y = "Value",
+         title = levs[i]) +
+    coord_cartesian(clip = "off") +
+    figure_theme
+}
+
+plot_list[[1]] /
+  plot_list[[2]] /
+  plot_list[[3]] +
+  plot_layout(
+    guides = "collect",
+    heights = c(1, 2, 1)
+  )
+
+ggsave("../figures/GAM_predictions.png",
+       width = 5000,
+       height = 6500,
+       units = "px",
+       dpi = 600)
+
+df_raw_plot <- 
   df %>%
   glow_up(model = case_when(model == "pfim" ~ "PFIM",
                             model == "bodymassratio" ~ "log ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = as.character(model))) %>%
-  #glow_up(across(matches("S[[:digit:]]"), log)) %>%
   vibe_check(-c(distance, redundancy, complexity, diameter, n_rep, richness)) %>%
-  pivot_longer(
-    cols = -c(model, time),
-    names_to = "stat",
-    values_to = "stat_val") %>%
-  # get mean values
+  pivot_longer(cols = -c(model, time),
+               names_to = "stat",
+               values_to = "stat_val") %>%
   squad_up(model, time, stat) %>%
-  no_cap(mean = mean(stat_val)) %>%
+  no_cap(mean = mean(stat_val, na.rm = TRUE)) %>%
   ungroup() %>%
-  # standardise names
   glow_up(stat = case_when(stat == "S1" ~ "No. of linear chains",
                            stat == "S2" ~ "No. of omnivory motifs",
-                           stat == "S5" ~ "No. of apparent competition motifs",
                            stat == "S4" ~ "No. of direct competition motifs",
-                           .default = as.character(stat))) %>%
-  glow_up(model = factor(model, ordered = TRUE, 
+                           stat == "S5" ~ "No. of apparent competition motifs",
+                           .default = stat),
+          model = factor(model, ordered = TRUE,
                          levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
-          time = str_extract(time, "\\d+")) %>%
-  glow_up(level = case_when(
-    stat %in% c("connectance", "trophic_level") ~ "Macro",
-    stat %in% c("generality", "vulnerability") ~ "Micro",
-    .default = "Meso"
-  ))
+          level = case_when(stat %in% c("connectance", "trophic_level") ~ "Macro",
+                            stat %in% c("generality", "vulnerability") ~ "Micro",
+                            .default = "Meso"))
 
-plot_list <- vector(mode = "list", length = 3)
-levs = c("Macro", "Meso", "Micro")
+plot_list_raw <- vector("list", length = 3)
+levs <- c("Macro", "Meso", "Micro")
 
-for (i in seq_along(plot_list)) {
+for (i in seq_along(plot_list_raw)) {
   
-  plot_list[[i]] <- ggplot(df_plot %>% 
-                             yeet(level == levs[i]),
-                           aes(x = time,
-                               y = mean,
-                               colour = model,
-                               group = model)) +
-    geom_line()  +
-    facet_wrap(vars(stat),
-               scales = 'free',
-               ncol = 2) +
-    scale_size(guide = 'none') +
-    xlab("Time") +
-    ylab("value") +
+  plot_list_raw[[i]] <-
+    ggplot(
+      df_raw_plot %>% yeet(level == levs[i]),
+      aes(x = time, y = mean, colour = model, group = model)
+    ) +
+    geom_line(linewidth = 0.8) +
+    facet_wrap(
+      vars(stat),
+      scales = "free_y",
+      ncol = 2
+    ) +
+    scale_x_continuous(breaks = c(1, 2, 3, 4),
+                       labels = c("pre", "during", "early", "late")) +
+    scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
+    labs(
+      x = "Time",
+      y = "Value",
+      title = levs[i]
+    ) +
     coord_cartesian(clip = "off") +
-    scale_colour_manual(values = pal_df$c,
-                        breaks = pal_df$l) +
-    scale_x_discrete(labels = c("pre", "during", "early", "late")) +
-    labs(title = levs[i]) +
     figure_theme
 }
 
-plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
-  plot_layout(guides = 'collect') +
-  plot_layout(height = c(1, 2, 1))
+plot_list_raw[[1]] /
+  plot_list_raw[[2]] /
+  plot_list_raw[[3]] +
+  plot_layout(
+    guides = "collect",
+    heights = c(1, 2, 1)
+  )
 
 ggsave("../notebooks/figures/Figure_S3_time_structure.png",
        width = 5000,
        height = 6500,
        units = "px",
        dpi = 600)
+
+# other results export
+
+# Copy your original all_results
+si_table <- all_results %>%
+  # 1. Rename columns
+  rename(
+    `Network metric` = statistic,
+    `Term type` = type,
+    `Estimate / EDF` = estimate_or_edf,
+    `Std. Error / Ref.df` = se_or_refdf,
+    `t / F value` = t_or_f_value,
+    `p-value` = p_value
+  ) %>%
+  
+  # 2. Re-label terms
+  mutate(
+    Term = case_when(
+      `Term type` == "parametric" & str_detect(term, "model") ~
+        str_replace(term, "model", "Model: ") %>%
+        str_replace("bodymassratio", "log ratio") %>%
+        str_replace("lmatrix", "ATN") %>%
+        str_replace("pfim", "PFIM") %>%
+        str_replace("niche", "Niche") %>%
+        str_replace("random", "Random") %>%
+        str_replace("adbm", "ADBM"),
+      
+      `Term type` == "parametric" & term == "(Intercept)" ~ "(Intercept)",
+      
+      `Term type` == "smooth" ~
+        str_replace(term, "s\\(time\\):model", "Smooth: time by ") %>%
+        str_replace("bodymassratio", "log ratio") %>%
+        str_replace("lmatrix", "ATN") %>%
+        str_replace("pfim", "PFIM") %>%
+        str_replace("niche", "Niche") %>%
+        str_replace("random", "Random") %>%
+        str_replace("adbm", "ADBM"),
+      
+      `Term type` == "anova" ~ "ANOVA: shared vs model-specific smooths",
+      
+      TRUE ~ term
+    )
+  ) %>%
+  
+  # 3. Round numeric columns
+  mutate(
+    `Estimate / EDF` = round(`Estimate / EDF`, 3),
+    `Std. Error / Ref.df` = round(`Std. Error / Ref.df`, 3),
+    `t / F value` = round(`t / F value`, 3),
+    `p-value` = ifelse(`p-value` < 0.001, "<0.001", round(`p-value`, 3))
+  ) %>%
+  
+  # 4. Order metrics and rows for readability
+  mutate(
+    `Network metric` = factor(
+      `Network metric`,
+      levels = c("connectance", "trophic_level",
+                 "generality", "vulnerability",
+                 "S1", "S2", "S4", "S5")
+    ),
+    `Term type` = factor(`Term type`, levels = c("parametric", "smooth", "anova"))
+  ) %>%
+  arrange(`Network metric`, `Term type`)
+
+# 5. Select final column order
+si_table <- si_table %>%
+  select(Term, `Network metric`, `Term type`, `Estimate / EDF`,
+         `Std. Error / Ref.df`, `t / F value`, `p-value`)
+
+# 6. Export CSV
+write_csv(si_table,
+          "../notebooks/tables/Table_S7_GAM_results.csv.csv")
+
+# model compare
+anova_table <-
+  all_results %>%
+  filter(type == "anova") %>%
+  select(
+    statistic,
+    t_or_f_value,
+    p_value
+  ) %>%
+  # Rename columns for clarity
+  rename(
+    `Network metric` = statistic,
+    `F value` = t_or_f_value,
+    `p-value` = p_value
+  ) %>%
+  
+  # Add descriptive Term column
+  mutate(
+    Term = "ANOVA: shared vs model-specific smooths",
+    
+    # Round numbers for readability
+    `F value` = round(`F value`, 3),
+    `p-value` = ifelse(`p-value` < 0.001, "<0.001", round(`p-value`, 3))
+  ) %>%
+  
+  # Select relevant columns in order
+  select(Term, `Network metric`, `F value`, `p-value`) %>%
+  
+  # Order metrics to match main figure
+  mutate(
+    `Network metric` = factor(
+      `Network metric`,
+      levels = c("connectance", "trophic_level",
+                 "generality", "vulnerability",
+                 "S1", "S2", "S4", "S5")
+    )
+  ) %>%
+  arrange(`Network metric`)
+
+write_csv(
+  anova_table,
+  "../notebooks/tables/Table_S8_GAM_model_comparison.csv")
 
 # means abs differences between real and extinction simulations
 
