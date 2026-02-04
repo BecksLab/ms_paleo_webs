@@ -32,7 +32,7 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :connectance => SpeciesInteractionNetworks.connectance(N),
         :diameter => diameter(A),
         :complexity => complexity(N),
-        :trophic_level => findmax(collect(values(tls)))[2],
+        :trophic_level => findmax(collect(values(tls)))[1],
         :distance => distancetobase(N, collect(keys(_gen))[ind_maxgen]),
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),

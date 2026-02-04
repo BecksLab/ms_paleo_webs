@@ -1,6 +1,6 @@
 Term,Network metric,F value,p-value
 ANOVA: shared vs model-specific smooths,connectance,32.045,<0.001
-ANOVA: shared vs model-specific smooths,trophic_level,11.723,<0.001
+ANOVA: shared vs model-specific smooths,trophic_level,78.029,<0.001
 ANOVA: shared vs model-specific smooths,generality,122.123,<0.001
 ANOVA: shared vs model-specific smooths,vulnerability,33.392,<0.001
 ANOVA: shared vs model-specific smooths,S1,772.574,<0.001

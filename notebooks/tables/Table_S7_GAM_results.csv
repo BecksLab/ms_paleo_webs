@@ -12,19 +12,19 @@ Smooth: time by Niche,connectance,smooth,2.249,2.618,2.719,0.112
 Smooth: time by PFIM,connectance,smooth,2.987,3,113.849,<0.001
 Smooth: time by Random,connectance,smooth,2.604,2.882,4.72,0.016
 ANOVA: shared vs model-specific smooths,connectance,anova,NA,NA,32.045,<0.001
-(Intercept),trophic_level,parametric,14.9,0.388,38.394,<0.001
-Model: log ratio,trophic_level,parametric,5.01,0.549,9.128,<0.001
-Model: ATN,trophic_level,parametric,0.83,0.549,1.512,0.131
-Model: Niche,trophic_level,parametric,3.592,0.549,6.546,<0.001
-Model: PFIM,trophic_level,parametric,0.752,0.549,1.371,0.17
-Model: Random,trophic_level,parametric,2.168,0.549,3.949,<0.001
-Smooth: time by ADBM,trophic_level,smooth,2.971,2.999,31.655,<0.001
-Smooth: time by log ratio,trophic_level,smooth,2.947,2.998,51.798,<0.001
-Smooth: time by ATN,trophic_level,smooth,2.972,2.999,41.812,<0.001
-Smooth: time by Niche,trophic_level,smooth,2.962,2.999,94.856,<0.001
-Smooth: time by PFIM,trophic_level,smooth,2.962,2.999,24.444,<0.001
-Smooth: time by Random,trophic_level,smooth,2.931,2.996,75.323,<0.001
-ANOVA: shared vs model-specific smooths,trophic_level,anova,NA,NA,11.723,<0.001
+(Intercept),trophic_level,parametric,3.583,0.032,110.465,<0.001
+Model: log ratio,trophic_level,parametric,2.666,0.046,58.124,<0.001
+Model: ATN,trophic_level,parametric,-0.388,0.046,-8.45,<0.001
+Model: Niche,trophic_level,parametric,0.448,0.046,9.771,<0.001
+Model: PFIM,trophic_level,parametric,-1.105,0.046,-24.099,<0.001
+Model: Random,trophic_level,parametric,2.312,0.046,50.402,<0.001
+Smooth: time by ADBM,trophic_level,smooth,2.74,2.948,15.265,<0.001
+Smooth: time by log ratio,trophic_level,smooth,2.918,2.995,72.135,<0.001
+Smooth: time by ATN,trophic_level,smooth,2.642,2.903,11.011,<0.001
+Smooth: time by Niche,trophic_level,smooth,2.925,2.996,46.779,<0.001
+Smooth: time by PFIM,trophic_level,smooth,1.496,1.811,6.427,0.007
+Smooth: time by Random,trophic_level,smooth,2.994,3,607.81,<0.001
+ANOVA: shared vs model-specific smooths,trophic_level,anova,NA,NA,78.029,<0.001
 (Intercept),generality,parametric,0.902,0.004,200.915,<0.001
 Model: log ratio,generality,parametric,-0.265,0.006,-41.698,<0.001
 Model: ATN,generality,parametric,0.129,0.006,20.329,<0.001
