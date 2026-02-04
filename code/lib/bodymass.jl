@@ -2,60 +2,55 @@ using DataFrames
 using SpeciesInteractionNetworks
 
 """
-  bmratio(
-    species::Any,
-    bodymass::Vector{Float64};
-    α::Float64,
-    β::Float64,
-    γ::Float64,
-)
+  bmratio(species, bodymass; α, β, γ)
 
-    Implements the Bodymass-ratio model as per Rohr et al. (2010), 
-    however does not include the latent trait variables. α, β, and γ 
-    parameters are set to those used by Yeakel (2014) and so only
-    requires a species list and their bodymass and returns a 
-    `SpeciesInteractionNetwork`.
+    Determines links based on the log-ratio of consumer to prey body mass.
+    Returns a Unipartite Binary SpeciesInteractionNetwork.
     
-    #### References
-    
-    Rohr, R.P., H. Scherer, P. Kehrli, C. Mazza, and L-F. Bersier. 2010. 
-    “Modeling Food Webs: Exploring Unexplained Structure Using Latent 
-    Traits.” The American Naturalist 176 (2): 170–77. 
-    https://doi.org/10.1086/653667.
-
-    Yeakel, J.D., M.M. Pires, L. Rudolf, N.J. Dominy, P.L. Koch, P.R. 
-    Guimarães, and T. Gross. 2014. “Collapse of an Ecological Network in 
-    Ancient Egypt.” PNAS 111 (40): 14472–77. 
-    https://doi.org/10.1073/pnas.1408471111.
-
+    α, β, and γ are the statistical parameters that define the 
+    location and breadth of the feeding niche.
 """
 function bmratio(
     species::Any,
     bodymass::Vector{Float64};
-    α::Float64 = 1.41,
-    β::Float64 = 3.73,
-    γ::Float64 = 1.87,
+    α::Float64 = 1.41,  # Center of the feeding niche (optimum ratio)
+    β::Float64 = 3.73,  # Width/Breadth of the feeding niche
+    γ::Float64 = -1.90, # Scaling constant
 )
 
     S = length(species)
-
+    # Convert body mass to log10 for allometric scaling
+    logM = log10.(bodymass)
+    
+    # Initialize adjacency matrix
     prob_matrix = zeros(Bool, (S, S))
 
     for i = 1:S
+        # Potential consumer loop
         for j = 1:S
-            MR = bodymass[i] / bodymass[j]
-            p = exp(α + β * log(MR) + γ * (log(MR))^2)
+            
+            # 1. Calculate the log-ratio of masses
+            # This represents the relative size difference in log-space
+            x_ij = logM[j] - logM[i]
 
-            if p / (1 - p) >= 0.08
-                prob_matrix[i, j] = 1
+            # 2. Probability Function (Rohr/Yeakel Logic)
+            # This calculates the 'energy' or 'fit' of the interaction.
+            # It creates a peak probability at the ratio defined by α.
+            # Note: The original model often includes latent traits (ε); 
+            # here we assume ε = 0.
+            
+            # Formula: - ( (x_ij - α) / β )^2
+            p_val = -((x_ij - α) / β)^2
+
+            # 3. Deterministic Threshold
+            # In this version, if the 'fit' is greater than γ, a link is formed.
+            # This creates a "diet envelope" around the optimal size ratio.
+            if p_val > γ
+                prob_matrix[i, j] = true
             end
         end
     end
 
-    # make probabilistic
-    # prob_matrix = prob_matrix ./ maximum(prob_matrix)
-
-    edges = Binary(prob_matrix)
-    nodes = Unipartite(Symbol.(species))
-    return SpeciesInteractionNetwork(nodes, edges)
+    # Wrap as a Network object
+    return SpeciesInteractionNetwork(Unipartite(Symbol.(species)), Binary(prob_matrix))
 end

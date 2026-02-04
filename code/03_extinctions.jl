@@ -7,25 +7,24 @@ using SpeciesInteractionNetworks
 
 include("lib/internals.jl")
 
-# set seed
+# Set seed for reproducible extinction sequences
 import Random
 Random.seed!(66)
 
-# get the traits data
+# Data Preparation: Identify trait datasets
 traits = readdir("../data/raw")
-# select only species datasets
 traits = traits[occursin.(r"^.*Guilds.*$", traits)]
 
-# import networks
+# Load previously generated networks and isolate the "G1" time period for baseline testing
 networks = load_object("../data/processed/networks.jlds")
-# select only pre extinction networks
 subset!(networks, :time => ByRow(x -> x == "G1"))
 
-# specify hierarchies
+# Define Trait Hierarchies for Categorical Extinctions
+# This defines the order in which species are removed based on their ecological traits
 hierarchies = [
-    # trait class
+    # Trait classes available in the data
     [:size, :motility, :tiering, :calcification],
-    # hierarchy for trait class
+    # Specific hierarchies (e.g., small to large, or infaunal to pelagic)
     [
         ["tiny", "small", "medium", "large", "very_large", "gigantic"],
         ["non_motile", "motile"],
@@ -34,7 +33,7 @@ hierarchies = [
     ],
 ]
 
-# data frame for results
+# Initialize storage for extinction results
 extinction_results = DataFrame(
     model = String[],
     extinction_mechanism = Any[],
@@ -42,7 +41,7 @@ extinction_results = DataFrame(
     extinction_seq = Any[],
 );
 
-# Modify datasets
+# Load and clean the G1 trait data specifically for mapping node attributes
 df = CSV.read("../data/raw/G1_Guilds.csv", DataFrame)
 select!(
     df,
@@ -53,44 +52,44 @@ rename!(df, :motility_simple => :motility)
 rename!(df, :tiering_simple => :tiering)
 rename!(df, :feeding_simple => :feeding)
 
-# remove BASAL_NODE for now...
+# Exclude BASAL_NODE to treat it as a protected source of energy/refuge
 filter!(:species => x -> x != "BASAL_NODE", df)
 
-# number of extinction sims
+# Number of extinction simulations per network
 ext_reps = 50
 
+# Main Extinction Loop
 @showprogress "Running extinctions" for j = 1:nrow(networks)
 
     for l = 1:ext_reps
 
-        # select correct network
+        # Retrieve the specific network and ensure it has a basal node for stability
         N = networks.network[j]
-
         N = add_basal(N)
 
-        # random extinction
+        # Mechanism 1: Random Extinction
+        # Species are removed in a completely stochastic order
         extinction_series = extinction(N; protect = :basal)
 
-        # send results to data frame
+        # Log Random Results
         d = Dict{Symbol,Any}(
             :model => networks.model[j],
             :extinction_mechanism => "random",
             :n_rep => networks.n_rep[j],
             :extinction_seq => extinction_series,
         )
-
         push!(extinction_results, d)
 
-        # need to simulate for both 'orders' of traits/hierarchies
-        # where true is descending and false is ascending
+        # Mechanism 2 & 3: Topological and Categorical Extinctions
+        # Iterates through both descending and ascending directions
         for descending in [true, false]
 
-            # numeric extinctions
+            # Numeric (Topological) extinctions based on network metrics
+            # Generality (number of resources) or Vulnerability (number of consumers)
             for k in ["generality", "vulnerability"]
 
                 extinction_series = extinction(N, k, descending; protect = :basal)
 
-                # send results to data frame
                 d = Dict{Symbol,Any}(
                     :model => networks.model[j],
                     :extinction_mechanism => join(
@@ -100,30 +99,30 @@ ext_reps = 50
                     :n_rep => networks.n_rep[j],
                     :extinction_seq => extinction_series,
                 )
-
                 push!(extinction_results, d)
-
             end
 
-            # categorical extinctions
-           for k in eachindex(hierarchies[1])
+            # Categorical extinctions based on biological traits
+            for k in eachindex(hierarchies[1])
 
-                    # select the correct traits matrix depending on nodes (species vs trophic)
+                    # Extract species list and the current trait being tested
                     trait_data = df[:, [:species, hierarchies[1][k]]]
                     rename!(trait_data, hierarchies[1][k] => :trait)
 
-                    # only include species that have the desired traits
+                    # Filter to ensure only species with defined traits are targeted
                     filter!(:trait => x -> x ∈ hierarchies[2][k], trait_data)
 
+                    # Determine the sequence of species removal based on hierarchy
                     extinction_list = extinctionsequence(
                         hierarchies[2][k],
                         trait_data;
                         descending = descending,
                     )
-                    # generate extinction sequence
+                    
+                    # Simulate the cascade
                     extinction_series = extinction(N, extinction_list; protect = :basal)
 
-                    # send results to data frame
+                    # Log Trait-based Results
                     d = Dict{Symbol,Any}(
                         :model => networks.model[j],
                         :extinction_mechanism => join(
@@ -136,12 +135,11 @@ ext_reps = 50
                         :n_rep => networks.n_rep[j],
                         :extinction_seq => extinction_series,
                     )
-
                     push!(extinction_results, d)
                 end
         end
     end
 end
 
-# write networks as object
+# Save all extinction sequences for subsequent analysis (e.g., Robustness or R50 metrics)
 save_object("../data/processed/extinction_seq.jlds", extinction_results)

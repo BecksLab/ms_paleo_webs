@@ -5,43 +5,38 @@ using JLD2
 using pfim
 using SpeciesInteractionNetworks
 
-# helper functions
+# helper functions: Imports internal utilities and model-specific logic
 include("lib/internals.jl");
-
-# additional functions for building networks
 include("lib/adbm.jl");
 include("lib/bodymass.jl");
 include("lib/lmatrix.jl");
 include("lib/niche.jl");
 include("lib/random.jl");
 
-# set seed
+# Set seed for reproducibility of random body mass and network generation
 import Random
 Random.seed!(66)
 
-# get the name of all communities
+# Data Ingestion: Identify relevant community files in the raw data folder
 matrix_names = readdir("../data/raw")
-# select only species datasets
+# Filter to keep only datasets containing "Guilds" in the filename
 matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 
-# feeding rules
+# Load external rule sets for feeding interactions and body size distributions
 feeding_rules = DataFrame(CSV.File("../data/raw/feeding_rules.csv"))
-
-# size classes (for creating continuous body sizes)
 size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 
-# df to store networks
+# Initialize a central DataFrame to store results of all simulated networks
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
 
-# number of network reps
+# Simulation Loop: Run 100 repetitions to account for stochasticity in body sizes and models
 n_reps = 100
 
 for j = 1:n_reps
 
-    # create some synthetic bodysize data (based on some distributions)
-    # spp body sizes will be constant across communities but vary by rep
+    # Step 1: Generate Synthetic Body Mass Data
+    # Assigns a random mass within a specific range based on the 'size' category
     y = collect(String, size_classes.size)
-
     bodysize = (
         y ->
             y == "tiny" ? rand(Uniform(0.1, 10.0)) :
@@ -50,41 +45,39 @@ for j = 1:n_reps
             y == "large" ? rand(Uniform(100.0, 300.0)) :
             y == "very_large" ? rand(Uniform(300.0, 500.0)) :
             y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
-    ).(
-        y,
-    )
+    ).(y)
 
-    # add to size classes df
+    # Update size_classes with the mass values generated for this specific repetition
     size_classes[!, :bodymass] = bodysize
 
+    # Step 2: Process each community file individually
     for i in eachindex(matrix_names)
 
         file_name = matrix_names[i]
-        # get relevant info from slug
+        # Extract metadata (like time period) from the file name string
         str_cats = split(file_name, r"_")
 
-        # import data frame
+        # Load and clean the community dataframe
         df = DataFrame(CSV.File.(joinpath("../data/raw/", "$file_name")))
         select!(df, [:Guild, :motility, :tiering, :feeding, :size])
         rename!(df, :Guild => :species)
 
-        # remove BASAL_NODE for now...
+        # Exclude basal nodes from the species list
         filter!(:species => x -> x != "BASAL_NODE", df)
 
-        # specify if producer (basal node)
+        # Identify primary producers based on the 'tiering' column
         is_producer = map(==("primary"), string.(df.tiering))
 
-        # get the bodysizes of species only present in df
-        bodymass =
-            Vector{Float64}(innerjoin(df, size_classes, on = [:species, :size]).bodymass)
+        # Join with size_classes to map synthetic masses to specific species in this community
+        bodymass = Vector{Float64}(innerjoin(df, size_classes, on = [:species, :size]).bodymass)
 
-        # create some mock abundance/biomass values using a *very* basic scaling law
+        # Estimate biomass using Metabolic Theory scaling (M^-3/4)
         biomass = bodymass .^ (-3 / 4)
 
-        # specify connectance for niche/random model
-        # TODO could possibly have this be 'dynamic' based on the Co of other networks...
+        # Assign a random connectance value for models requiring a fixed link density
         connectance = rand(Uniform(0.07, 0.15))
 
+        # Step 3: Iterate through different ecological network models
         for model ∈ [
             "adbm",
             "bodymassratio",
@@ -95,25 +88,31 @@ for j = 1:n_reps
             "random",
         ]
 
+            # Model Branching Logic
             if model == "bodymassratio"
                 N = bmratio(df.species, bodymass)
             elseif model == "pfim_metaweb"
+                # Probabilistic Feeding Interaction Model (Metaweb version)
                 N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "pfim_downsample"
+                # PFIM with downsampling applied
                 N = pfim.PFIM(df, feeding_rules; y = 30.0, downsample = true)
             elseif model == "niche"
                 N = nichemodel(df.species, connectance)
             elseif model == "random"
+                # Simple random network based on total possible links and connectance
                 links = floor(Int, connectance * (nrow(df)^2))
                 N = randommodel(df.species, links)
             elseif model == "lmatrix"
                 N = lmatrix(df.species, bodymass, is_producer)
             else
+                # Default case: Allometric Diet Breadth Model (ADBM)
                 model == "adbm"
                 parameters = adbm_parameters(df, bodymass)
                 N = adbmmodel(df, parameters, biomass)
             end
 
+            # Package result metadata
             d = Dict{Symbol,Any}(
                 :model => model,
                 :time => str_cats[1],
@@ -121,7 +120,7 @@ for j = 1:n_reps
                 :n_rep => j,
             )
 
-            # only push if network exists
+            # Store the network only if it successfully generated species/interactions
             if richness(N) > 0
                 push!(networks, d)
             end
@@ -129,5 +128,6 @@ for j = 1:n_reps
     end
 end
 
-# write networks as object
+# Step 4: Final Serialization
+# Save the completed DataFrame containing all repetitions and models to a JLD2 file
 save_object("../data/processed/networks.jlds", networks)
