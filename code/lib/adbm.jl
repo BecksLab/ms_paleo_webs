@@ -38,7 +38,7 @@ function adbm_parameters(
     # ... [Method checks for H and N omitted] ...
 
     # Flag producers to ensure they don't "hunt" in the simulation
-    parameters[:is_producer] = df.feeding_simple .== "producer"
+    parameters[:is_producer] = df.feeding .== "producer"
     parameters[:M] = bodymass
     return parameters
 end
