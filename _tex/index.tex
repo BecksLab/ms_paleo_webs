@@ -563,7 +563,7 @@ Supplementary Material S1. For each of the four communities, we
 constructed 100 replicate networks using each of the six models (2400
 networks total). Networks were simplified by removing disconnected
 species. For size-based models, body masses were drawn from uniform
-distributions bounded by size-class limits, this allows for variance
+distributions bounded by size-class limits, allowing for variance
 between replicates but preserves relative sizes within replicates. We
 adopt uniform sampling by default, as alternative distributions
 (lognormal, truncated lognormal) have negligible impact on topology
@@ -571,7 +571,9 @@ adopt uniform sampling by default, as alternative distributions
 parameterised using connectance values drawn from an empirically
 realistic range (0.07 -- 0.34) while holding richness constant. The same
 parameter draws were used across comparable models within each
-replicate.
+replicate. For the Body-size ratio model, we followed (Yeakel et al.,
+2014) and excluded latent trait terms, rather than fitting the full
+model with additional inferred preferences.
 
 \subsection{Network metrics and structural
 analyses}\label{network-metrics-and-structural-analyses}
@@ -827,32 +829,30 @@ reconstruction assumptions.}
 To evaluate how model choice affects inferred extinction dynamics, we
 compared simulated post-extinction networks to observed networks using
 mean absolute differences (MAD) for network-level metrics and total
-sum-of-squares (TSS) for node- and link-level outcomes {[}@fig-mad{]}.
-Across models, MAD-based rankings were generally positively correlated
-(Kendall's \$\textbackslash tau\$ ≈ 0.13 across structural metrics),
-indicating broad agreement on the relative importance of extinction
-drivers despite substantial differences in reconstructed network
-structure. However, agreement within the allometric models differed from
-patterns observed for reconstructed network structure. Whereas earlier
-multivariate analyses showed strongest structural similarity between the
-ADBM and log-ratio models, extinction-driven network responses aligned
-most closely between the ADBM and ATN models (mean
-\$\textbackslash tau\$ ≈ 0.67 across structural metrics), with little
-correspondence between ADBM and log-ratio outcomes (mean
-\$\textbackslash tau\$ ≈ 0.05). This reversal relative to structural
-similarity analyses demonstrates that model concordance is context
-dependent, with emergent topology and extinction dynamics emphasizing
-different aspects of model assumptions. Node-level TSS rankings were
-similarly consistent across models (\$\textbackslash tau\$ =
-0.26--0.90), reflecting broadly comparable species removal sequences. In
-contrast, link-level outcomes were far more variable
-(\$\textbackslash tau\$ = −0.48--0.29), highlighting that inferences
-about which interactions are lost, retained, or re-established during
-collapse and recovery are highly model contingent. Together, these
-results suggest that while alternative models converge on similar
-species-level extinction patterns, the inferred pathways of interaction
-loss and cascading dynamics depend strongly on both reconstruction
-approach and extinction formulation.
+sum-of-squares (TSS) for node- and link-level outcomes
+Figure~\ref{fig-mad}. Across models, MAD-based rankings were generally
+positively correlated (Kendall's \(\tau\) ≈ 0.13 across structural
+metrics), indicating broad agreement on the relative importance of
+extinction drivers despite substantial differences in reconstructed
+network structure. However, agreement within the allometric models
+differed from patterns observed for reconstructed network structure.
+Whereas earlier multivariate analyses showed strongest structural
+similarity between the ADBM and log-ratio models, extinction-driven
+network responses aligned most closely between the ADBM and ATN models
+(mean \(\tau\) ≈ 0.67 across structural metrics), with little
+correspondence between ADBM and log-ratio outcomes (mean \(\tau\) ≈
+0.05). This reversal relative to structural similarity analyses
+demonstrates that model concordance is context dependent, with emergent
+topology and extinction dynamics emphasizing different aspects of model
+assumptions. Node-level TSS rankings were similarly consistent across
+models (\(\tau\) = 0.26--0.90), reflecting broadly comparable species
+removal sequences. In contrast, link-level outcomes were far more
+variable (\(\tau\) = −0.48--0.29), highlighting that inferences about
+which interactions are lost, retained, or re-established during collapse
+and recovery are highly model contingent. Together, these results
+suggest that while alternative models converge on similar species-level
+extinction patterns, the inferred pathways of interaction loss and
+cascading dynamics depend strongly on both reconstruction approach.
 
 \begin{figure}
 
