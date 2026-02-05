@@ -555,10 +555,10 @@ for (i in seq_along(plot_list)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] / plot_list[[4]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(2, 2, 1, 1))
+  plot_layout(height = c(1, 2, 1, 1))
 
 ggsave("../figures/kendal_tau.png",
        width = 5000,
-       height = 7500,
+       height = 7000,
        units = "px",
        dpi = 600)
