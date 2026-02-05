@@ -21,7 +21,7 @@ source("lib/plotting_theme.R")
 # -----------------------------
 # 2. Load and prepare data
 # -----------------------------
-df <- read_csv(here("data/processed/topology.csv")) %>%
+df <- read_csv(here("data/processed/topology_bodysize.csv")) %>%
   # Remove unnecessary columns
   vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   # Keep only models of interest (exclude metaweb for this analysis)
@@ -29,7 +29,7 @@ df <- read_csv(here("data/processed/topology.csv")) %>%
   # Standardize model names for plots
   glow_up(model = case_when(
     model == "pfim_downsample" ~ "PFIM",
-    model == "bodymassratio" ~ "log ratio",
+    model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",
     TRUE ~ as.character(model)
@@ -100,6 +100,6 @@ ggplot(eta_bodysize_df,
   scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
   figure_theme
 
-ggsave(here("figures/effect_size_bodysize_within_model.png"), 
+ggsave(here("notebooks/figures/effect_size_bodysize_within_model.png"), 
        width = 10, height = 6, 
        dpi = 600)

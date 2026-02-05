@@ -14,7 +14,6 @@ topology = DataFrame(
     model = String[],
     time = Any[],
     n_rep = Any[],
-    bodysize_method = String[],
     richness = Int64[],      # Number of nodes (species/guilds)
     connectance = Float64[],   # Realized fraction of possible links
     diameter = Int64[],        # Longest shortest path between any two nodes
@@ -41,7 +40,6 @@ for i = 1:nrow(networks)
     d[:model] = networks.model[i]
     d[:n_rep] = networks.n_rep[i]
     d[:time] = networks.time[i]
-    d[:bodysize_method] = networks.bodysize_method[i]
 
     # Append the resulting dictionary of metrics to the topology table 
     push!(topology, d)
