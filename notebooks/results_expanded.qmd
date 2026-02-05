@@ -10,6 +10,20 @@ date: last-modified
 bibliography: ../references.bib
 ---
 
+# Effect of Body Size Sampling Method on Network Metrics
+
+To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
+
+Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN model showed slightly higher effects (η² ≈ 0.17 for number of linear chains), but these remained the exception rather than the rule.
+
+These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.
+
+## Figure S1. Effect of Body Size Sampling Method on Network Metrics
+
+![](figures/effect_size_bodysize_within_model.png)
+
+Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (e.g., number of linear chains).
+
 # Effects of Network Reconstruction on Food-Web Structure
 
 ## Table S1. Descriptive statistics of network metrics by model
