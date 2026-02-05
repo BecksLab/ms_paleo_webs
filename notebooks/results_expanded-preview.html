@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-02-04">
+    <meta name="dcterms.date" content="2026-02-05">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -224,7 +224,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 4, 2026</p>
+              <p class="date">February 5, 2026</p>
             </div>
           </div>
           
@@ -251,21 +251,25 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link active" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
+  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link active" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a>
+  <ul class="collapse">
+  <li><a href="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" id="toc-figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</a></li>
+  </ul></li>
+  <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
   <ul class="collapse">
   <li><a href="#table-s1.-descriptive-statistics-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</a></li>
   <li><a href="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" id="toc-table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" class="nav-link" data-scroll-target="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci">Table S2. Univariate ANOVA results with partial η² and 95% CI</a></li>
   <li><a href="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" id="toc-table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" class="nav-link" data-scroll-target="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means">Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)</a></li>
   <li><a href="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" id="toc-table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" class="nav-link" data-scroll-target="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis">Table S4. LDA coefficients for each variable and linear discriminant axis</a></li>
-  <li><a href="#table-s6.-correlation-of-original-variables-with-ld-axes" id="toc-table-s6.-correlation-of-original-variables-with-ld-axes" class="nav-link" data-scroll-target="#table-s6.-correlation-of-original-variables-with-ld-axes">Table S6. Correlation of original variables with LD axes</a></li>
+  <li><a href="#table-s5.-correlation-of-original-variables-with-ld-axes" id="toc-table-s5.-correlation-of-original-variables-with-ld-axes" class="nav-link" data-scroll-target="#table-s5.-correlation-of-original-variables-with-ld-axes">Table S5. Correlation of original variables with LD axes</a></li>
   <li><a href="#figure-s1.-estimated-marginal-means-per-model" id="toc-figure-s1.-estimated-marginal-means-per-model" class="nav-link" data-scroll-target="#figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</a></li>
   <li><a href="#figure-s2.-lda-scatterplots" id="toc-figure-s2.-lda-scatterplots" class="nav-link" data-scroll-target="#figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</a></li>
   </ul></li>
   <li><a href="#model-choice-influences-inferred-extinction-dynamics" id="toc-model-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#model-choice-influences-inferred-extinction-dynamics">Model choice influences inferred extinction dynamics</a>
   <ul class="collapse">
   <li><a href="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." id="toc-figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="nav-link" data-scroll-target="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</a></li>
-  <li><a href="#table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S7. Full generalized additive model (GAM) results for network-level metrics.</a></li>
-  <li><a href="#table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
+  <li><a href="#table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S6. Full generalized additive model (GAM) results for network-level metrics.</a></li>
+  <li><a href="#table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -275,7 +279,18 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="effects-of-network-reconstruction-on-food-web-structure" class="level1">
+       <section id="effect-of-body-size-sampling-method-on-network-metrics" class="level1">
+<h1>Effect of Body Size Sampling Method on Network Metrics</h1>
+<p>To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.</p>
+<p>Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (&lt;0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN model showed slightly higher effects (η² ≈ 0.17 for number of linear chains), but these remained the exception rather than the rule.</p>
+<p>These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.</p>
+<section id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</h2>
+<p><a href="figures/effect_size_bodysize_within_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/effect_size_bodysize_within_model.png" class="img-fluid"></a></p>
+<p>Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (&lt;0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (e.g., number of linear chains).</p>
+</section>
+</section>
+<section id="effects-of-network-reconstruction-on-food-web-structure" class="level1">
 <h1>Effects of Network Reconstruction on Food-Web Structure</h1>
 <section id="table-s1.-descriptive-statistics-of-network-metrics-by-model" class="level2">
 <h2 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</h2>
@@ -813,8 +828,8 @@ dbl (5): LD1, LD2, LD3, LD4, LD5
 </div>
 </div></div>
 </section>
-<section id="table-s6.-correlation-of-original-variables-with-ld-axes" class="level2">
-<h2 class="anchored" data-anchor-id="table-s6.-correlation-of-original-variables-with-ld-axes">Table S6. Correlation of original variables with LD axes</h2>
+<section id="table-s5.-correlation-of-original-variables-with-ld-axes" class="level2">
+<h2 class="anchored" data-anchor-id="table-s5.-correlation-of-original-variables-with-ld-axes">Table S5. Correlation of original variables with LD axes</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S6_LD_correlations.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -920,11 +935,11 @@ dbl (5): LD1, LD2, LD3, LD4, LD5
 </section>
 <section id="figure-s1.-estimated-marginal-means-per-model" class="level2">
 <h2 class="anchored" data-anchor-id="figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</h2>
-<p><a href="figures/MANOVA_LDA_biplot_panel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/MANOVA_LDA_biplot_panel.png" class="img-fluid"></a></p>
+<p><a href="figures/MANOVA_LDA_biplot_panel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="figures/MANOVA_LDA_biplot_panel.png" class="img-fluid"></a></p>
 </section>
 <section id="figure-s2.-lda-scatterplots" class="level2">
 <h2 class="anchored" data-anchor-id="figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</h2>
-<p><a href="figures/Figure_S1_EMMs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="figures/Figure_S1_EMMs.png" class="img-fluid"></a></p>
+<p><a href="figures/Figure_S1_EMMs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S1_EMMs.png" class="img-fluid"></a></p>
 </section>
 </section>
 <section id="model-choice-influences-inferred-extinction-dynamics" class="level1">
@@ -932,10 +947,10 @@ dbl (5): LD1, LD2, LD3, LD4, LD5
 <section id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="level2">
 <h2 class="anchored" data-anchor-id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</h2>
 <p>Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.</p>
-<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
+<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
 </section>
-<section id="table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s7.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S7. Full generalized additive model (GAM) results for network-level metrics.</h2>
+<section id="table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S6. Full generalized additive model (GAM) results for network-level metrics.</h2>
 <p>Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S7_GAM_results.csv"</span>) <span class="sc">%&gt;%</span></span>
@@ -1094,108 +1109,108 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">(Intercept)</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">14.900</td>
-<td style="text-align: right;">0.388</td>
-<td style="text-align: right;">38.394</td>
+<td style="text-align: right;">3.583</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">110.465</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Model: log ratio</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">5.010</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">9.128</td>
+<td style="text-align: right;">2.666</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">58.124</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Model: ATN</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.830</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">1.512</td>
-<td style="text-align: left;">0.131</td>
+<td style="text-align: right;">-0.388</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">-8.450</td>
+<td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Model: Niche</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">3.592</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">6.546</td>
+<td style="text-align: right;">0.448</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">9.771</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Model: PFIM</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.752</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">1.371</td>
-<td style="text-align: left;">0.17</td>
+<td style="text-align: right;">-1.105</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">-24.099</td>
+<td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Model: Random</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
-<td style="text-align: right;">2.168</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">3.949</td>
+<td style="text-align: right;">2.312</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">50.402</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Smooth: time by ADBM</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.971</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">31.655</td>
+<td style="text-align: right;">2.740</td>
+<td style="text-align: right;">2.948</td>
+<td style="text-align: right;">15.265</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Smooth: time by log ratio</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.947</td>
-<td style="text-align: right;">2.998</td>
-<td style="text-align: right;">51.798</td>
+<td style="text-align: right;">2.918</td>
+<td style="text-align: right;">2.995</td>
+<td style="text-align: right;">72.135</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Smooth: time by ATN</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.972</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">41.812</td>
+<td style="text-align: right;">2.642</td>
+<td style="text-align: right;">2.903</td>
+<td style="text-align: right;">11.011</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Smooth: time by Niche</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.962</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">94.856</td>
+<td style="text-align: right;">2.925</td>
+<td style="text-align: right;">2.996</td>
+<td style="text-align: right;">46.779</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Smooth: time by PFIM</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.962</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">24.444</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: right;">1.496</td>
+<td style="text-align: right;">1.811</td>
+<td style="text-align: right;">6.427</td>
+<td style="text-align: left;">0.007</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Smooth: time by Random</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.931</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">75.323</td>
+<td style="text-align: right;">2.994</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">607.810</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
@@ -1204,7 +1219,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">anova</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">11.723</td>
+<td style="text-align: right;">78.029</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
@@ -1914,8 +1929,8 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 </div>
 </div></div>
 </section>
-<section id="table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s8.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
+<section id="table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
 <p>Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as &lt;0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S8_GAM_model_comparison.csv"</span>) <span class="sc">%&gt;%</span></span>
@@ -1956,7 +1971,7 @@ dbl (1): F value
 <tr class="even">
 <td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
 <td style="text-align: left;">trophic_level</td>
-<td style="text-align: right;">11.723</td>
+<td style="text-align: right;">78.029</td>
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
