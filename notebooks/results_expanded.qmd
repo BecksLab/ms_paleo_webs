@@ -50,7 +50,7 @@ kable()
 
 ```
 
-## Table S6. Correlation of original variables with LD axes
+## Table S5. Correlation of original variables with LD axes
 
 ```{r}
 
@@ -76,7 +76,7 @@ Panels show mean values of network-level metrics through time for each reconstru
 
 ![](figures/Figure_S3_time_structure.png)
 
-## Table S7. Full generalized additive model (GAM) results for network-level metrics.
+## Table S6. Full generalized additive model (GAM) results for network-level metrics.
 
 Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.
 
@@ -87,7 +87,7 @@ kable()
 
 ```
 
-## Table S8. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
+## Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
 
 Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as <0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.
 
