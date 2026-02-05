@@ -67,10 +67,10 @@ eta_df %>%
                                variable == "S2" ~ "No. of omnivory motifs",
                                variable == "S5" ~ "No. of apparent competition motifs",
                                variable == "S4" ~ "No. of direct competition motifs",
-                               variable == "trophic_level" ~ "Trophic level",
+                               variable == "trophic_level" ~ "Max trophic level",
                                .default = str_to_title(as.character(variable))),
           Level = case_when(
-            Variable %in% c("Connectance", "Trophic level") ~ "Macro",
+            Variable %in% c("Connectance", "Max trophic level") ~ "Macro",
             Variable %in% c("Generality", "Vulnerability") ~ "Micro",
             .default = "Meso"
           )) %>%

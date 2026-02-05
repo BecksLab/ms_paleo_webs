@@ -163,12 +163,12 @@ df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
                      stat == "S2" ~ "No. of omnivory motifs",
                      stat == "S4" ~ "No. of direct competition motifs",
                      stat == "S5" ~ "No. of apparent competition motifs",
-                     stat == "trophic_level" ~ "Trophic level",
+                     stat == "trophic_level" ~ "Max trophic level",
                      .default = str_to_sentence(stat))) %>%
   glow_up(
     model = factor(model, ordered = TRUE,
                    levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
-    level = case_when(stat %in% c("Connectance", "Trophic level") ~ "Macro",
+    level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                       stat %in% c("Generality", "Vulnerability") ~ "Micro",
                       .default = "Meso"))
 
@@ -235,11 +235,11 @@ df_raw_plot <-
                            stat == "S2" ~ "No. of omnivory motifs",
                            stat == "S4" ~ "No. of direct competition motifs",
                            stat == "S5" ~ "No. of apparent competition motifs",
-                           stat == "trophic_level" ~ "Trophic level",
+                           stat == "trophic_level" ~ "Max trophic level",
                            .default = str_to_sentence(stat)),
           model = factor(model, ordered = TRUE,
                          levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
-          level = case_when(stat %in% c("Connectance", "Trophic level") ~ "Macro",
+          level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                             stat %in% c("Generality", "Vulnerability") ~ "Micro",
                             .default = "Meso"))
 
@@ -408,7 +408,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
   # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
-  vibe_check(-c(rep, distance, redundancy, diameter, resilience, richness)) %>%
+  vibe_check(-c(rep, distance, redundancy, diameter, resilience, richness, complexity)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
@@ -421,7 +421,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
               glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                                         .default = as.character(model))) %>%
               yeet(time == "G2") %>%
-              vibe_check(-c(time, distance, redundancy, diameter, richness)) %>%
+              vibe_check(-c(time, distance, redundancy, diameter, richness, complexity)) %>%
               pivot_longer(
                 cols = -c(model, n_rep),
                 names_to = "stat",
@@ -516,10 +516,10 @@ kendal_results <-
                              metric == "S2" ~ "No. of omnivory motifs",
                              metric == "S5" ~ "No. of apparent competition motifs",
                              metric == "S4" ~ "No. of direct competition motifs",
-                             metric == "trophic_level" ~ "Trophic level",
+                             metric == "trophic_level" ~ "Max trophic level",
                              .default = str_to_sentence(metric)),
           level = case_when(
-            metric %in% c("Complexity", "Connectance", "Trophic level", "Richness", "Diameter") ~ "Macro",
+            metric %in% c("Complexity", "Connectance", "Max trophic level", "Richness", "Diameter") ~ "Macro",
             metric %in% c("Generality", "Vulnerability") ~ "Micro",
             metric %in% c("Node", "Link") ~ "TSS",
             .default = "Meso"
