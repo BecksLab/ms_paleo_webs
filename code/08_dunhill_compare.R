@@ -99,10 +99,16 @@ get_gam_predictions <- function(stat_name, data, time_grid = 100) {
     method = "REML"
   )
   
+  # Keep only levels actually present in the data used for fitting
+  model_levels <- unique(data$model)
+  
   newdata <- expand_grid(
     time = seq(min(data$time), max(data$time), length.out = time_grid),
-    model = levels(data$model)
+    model = model_levels
   )
+  
+  # Ensure model is factor with same levels as fit
+  newdata$model <- factor(newdata$model, levels = model_levels)
   
   preds <- predict(gam_fit, newdata, se.fit = TRUE)
   
@@ -136,8 +142,10 @@ get_all_gam_preds <- function(data, stats, time_grid = 100) {
     
     newdata <- expand_grid(
       time = seq(min(data$time), max(data$time), length.out = time_grid),
-      model = levels(data$model)
+      model = unique(data$model)
     )
+    
+    newdata$model <- factor(newdata$model, levels = unique(data$model))
     
     preds <- predict(gam_fit, newdata, se.fit = TRUE)
     
@@ -155,7 +163,7 @@ get_all_gam_preds <- function(data, stats, time_grid = 100) {
 df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
   glow_up(
     model = case_when(model == "pfim" ~ "PFIM",
-                      model == "bodymassratio" ~ "log ratio",
+                      model == "bodymassratio" ~ "Body-size ratio",
                       model == "adbm" ~ "ADBM",
                       model == "lmatrix" ~ "ATN",
                       .default = as.character(model)),
@@ -167,7 +175,7 @@ df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
                      .default = str_to_sentence(stat))) %>%
   glow_up(
     model = factor(model, ordered = TRUE,
-                   levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
+                   levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")),
     level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                       stat %in% c("Generality", "Vulnerability") ~ "Micro",
                       .default = "Meso"))
@@ -220,7 +228,7 @@ ggsave("../figures/GAM_predictions.png",
 df_raw_plot <- 
   df %>%
   glow_up(model = case_when(model == "pfim" ~ "PFIM",
-                            model == "bodymassratio" ~ "log ratio",
+                            model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = as.character(model))) %>%
@@ -238,7 +246,7 @@ df_raw_plot <-
                            stat == "trophic_level" ~ "Max trophic level",
                            .default = str_to_sentence(stat)),
           model = factor(model, ordered = TRUE,
-                         levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")),
+                         levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")),
           level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                             stat %in% c("Generality", "Vulnerability") ~ "Micro",
                             .default = "Meso"))
@@ -304,7 +312,7 @@ si_table <- all_results %>%
     Term = case_when(
       `Term type` == "parametric" & str_detect(term, "model") ~
         str_replace(term, "model", "Model: ") %>%
-        str_replace("bodymassratio", "log ratio") %>%
+        str_replace("bodymassratio", "Body-size ratio") %>%
         str_replace("lmatrix", "ATN") %>%
         str_replace("pfim", "PFIM") %>%
         str_replace("niche", "Niche") %>%
@@ -315,7 +323,7 @@ si_table <- all_results %>%
       
       `Term type` == "smooth" ~
         str_replace(term, "s\\(time\\):model", "Smooth: time by ") %>%
-        str_replace("bodymassratio", "log ratio") %>%
+        str_replace("bodymassratio", "Body-size ratio") %>%
         str_replace("lmatrix", "ATN") %>%
         str_replace("pfim", "PFIM") %>%
         str_replace("niche", "Niche") %>%
@@ -427,7 +435,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                 names_to = "stat",
                 values_to = "real_val")) %>%
   glow_up(model = case_when(model == "pfim" ~ "PFIM",
-                            model == "bodymassratio" ~ "log ratio",
+                            model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = as.character(model))) %>%
@@ -435,7 +443,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
   squad_up(model, extinction_mechanism, stat) %>%
   no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM"))) %>%
+                         levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM"))) %>%
   lowkey(scenario = extinction_mechanism, metric = stat) %>%
   rbind(.,
         read_csv("../data/processed/extinction_tss.csv")  %>%
@@ -449,14 +457,14 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
           glow_up(metric = case_when(name == "tss_link" ~ "Link",
                                      name == "tss_node" ~ "Node"),
                   model = case_when(model == "pfim_downsample" ~ "PFIM",
-                                    model == "bodymassratio" ~ "log ratio",
+                                    model == "bodymassratio" ~ "Body-size ratio",
                                     model == "adbm" ~ "ADBM",
                                     model == "lmatrix" ~ "ATN",
                                     .default = as.character(model)),
                   name = NULL) %>%
           lowkey(scenario = extinction_mechanism) %>%
           glow_up(model = factor(model, ordered = TRUE, 
-                                 levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")))
+                                 levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")))
   )
 
 metrics <- unique(mad_df$metric)

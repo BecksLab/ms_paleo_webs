@@ -24,7 +24,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   yeet(model != "pfim_metaweb") %>%
   # Standardize model names for publication-quality legends
   glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
-                            model == "bodymassratio" ~ "log ratio",
+                            model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = as.character(model)),
@@ -116,7 +116,7 @@ cor(df[3:ncol(df)], scores)
 
 # 7. Visualizing the Discriminant Space
 plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "ADBM", "ATN", "log ratio", "PFIM")), 
+                                      levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")), 
                        lda = predict(post_hoc)$x,
                        time = df$time)
 

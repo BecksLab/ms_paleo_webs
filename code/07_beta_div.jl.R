@@ -19,9 +19,9 @@ beta_df <- read_csv("../data/processed/beta_div.csv") %>%
   # Simplify identifiers: extract the model name (e.g., "adbm") and strip repetition numbers
   glow_up(left = str_extract(left, "[a-z]+"),
           right = str_extract(right, "[a-z]+")) %>%
-  # Ensure consistent naming for the "log ratio" model
-  glow_up(left = str_replace(left, "bodymassratio", "log ratio"),
-          right = str_replace(right, "bodymassratio", "log ratio")) %>%
+  # Ensure consistent naming for the "Body-size ratio" model
+  glow_up(left = str_replace(left, "bodymassratio", "Body-size ratio"),
+          right = str_replace(right, "bodymassratio", "Body-size ratio")) %>%
   vibe_check(left, right, β_div)
 
 # Standardize column names for the analysis

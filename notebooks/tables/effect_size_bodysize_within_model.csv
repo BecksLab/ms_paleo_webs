@@ -7,14 +7,14 @@ bodysize_method,NA,0.95,NA,1,S1,ADBM
 bodysize_method,NA,0.95,NA,1,S2,ADBM
 bodysize_method,NA,0.95,NA,1,S4,ADBM
 bodysize_method,NA,0.95,NA,1,S5,ADBM
-bodysize_method,0.006668561018682117,0.95,6.192753581219349e-4,1,connectance,log ratio
-bodysize_method,8.528364387732494e-11,0.95,0,1,trophic_level,log ratio
-bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,generality,log ratio
-bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,vulnerability,log ratio
-bodysize_method,NA,0.95,NA,1,S1,log ratio
-bodysize_method,NA,0.95,NA,1,S2,log ratio
-bodysize_method,NA,0.95,NA,1,S4,log ratio
-bodysize_method,NA,0.95,NA,1,S5,log ratio
+bodysize_method,0.006668561018682117,0.95,6.192753581219349e-4,1,connectance,Body-size ratio
+bodysize_method,8.528364387732494e-11,0.95,0,1,trophic_level,Body-size ratio
+bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,generality,Body-size ratio
+bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,vulnerability,Body-size ratio
+bodysize_method,NA,0.95,NA,1,S1,Body-size ratio
+bodysize_method,NA,0.95,NA,1,S2,Body-size ratio
+bodysize_method,NA,0.95,NA,1,S4,Body-size ratio
+bodysize_method,NA,0.95,NA,1,S5,Body-size ratio
 bodysize_method,0.001635902052854806,0.95,0,1,connectance,ATN
 bodysize_method,0.08700491213580677,0.95,0.0626327365578588,1,trophic_level,ATN
 bodysize_method,8.143573580001374e-4,0.95,0,1,generality,ATN

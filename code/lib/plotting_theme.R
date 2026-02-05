@@ -49,7 +49,7 @@ colors <- c("niche" = "#D760F6",
             "random" = "#B01DFF",
             "ADBM" = "#F5BD63",
             "ATN" = "#9E8324",
-            "log ratio" = "#FAE2A6",
+            "Body-size ratio" = "#FAE2A6",
             "PFIM" = "#26ECC9")         # Pink
 
 # Converts the named vector into a dataframe for easier mapping in ggplot
