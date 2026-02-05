@@ -57,7 +57,9 @@ The analysis is designed to be run in numerical order:
 
 * 07_beta_div.jl.R: Analyses interaction turnover between modelling frameworks.
 
-* 08_dunhill_compare.R: Uses GAMs to evaluate how well models track temporal changes.
+* 08_dunhill_compare.R: Uses GAMs to evaluate how well models track temporal changes and compare extinction simulations.
+
+* S1_bodysize_distribution.jl and S1_bodysize_distribution.R: effect size analyses of body size distributions.
 
 **/code/lib**
 
