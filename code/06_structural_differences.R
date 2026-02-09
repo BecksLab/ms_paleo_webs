@@ -1,75 +1,151 @@
-# libraries: Statistical and Plotting ecosystem
-library(candisc)
-library(effectsize) # For eta-squared calculations
-library(emmeans)    # For estimated marginal means
-library(here)       # For robust file path management
-library(genzplyr)   # User-specific utility package (wrappers for tidyverse)
+# =========================
+# NETWORK ANALYSIS WORKFLOW
+# =========================
+
+# 0. Libraries
+library(effectsize)   # eta-squared
+library(here)         # file paths
+library(genzplyr)
+library(ggpubr)
 library(ggrepel)
 library(ggtext)
-library(MASS)       # For Linear Discriminant Analysis (LDA)
+library(MASS)         # LDA
+library(MVN)
 library(patchwork)
-library(rstatix)
+library(rstatix)      # stats utilities
 library(tidyverse)
+library(heplots)      # MANOVA assumption checks
+library(biotools)     # Box's M test
+library(candisc)      # canonical discriminant analysis
 
-# Set path to code sub directory for consistent relative paths
+# =========================
+# 1. Data Loading & Cleaning
+# =========================
 setwd(here("code"))
 
-# Load script that determines plotting aesthetics (colors, fonts, etc.)
 source("lib/plotting_theme.R")
 
-# 1. Data Cleaning & Preparation
 df <- read_csv("../data/processed/topology.csv") %>%
-  # Remove non-numeric or irrelevant metadata columns for MANOVA
   vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
-  # Focus only on specific model variants (excludes the pfim_metaweb)
   yeet(model != "pfim_metaweb") %>%
-  # Standardize model names for publication-quality legends
-  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
-                            model == "bodymassratio" ~ "Body-size ratio",
-                            model == "adbm" ~ "ADBM",
-                            model == "lmatrix" ~ "ATN",
-                            .default = as.character(model)),
-          trophic_level = round(trophic_level, 0)) %>%
+  glow_up(model = case_when(
+    model == "pfim_downsample" ~ "PFIM",
+    model == "bodymassratio" ~ "Body-size ratio",
+    model == "adbm" ~ "ADBM",
+    model == "lmatrix" ~ "ATN",
+    TRUE ~ as.character(model)
+  ), trophic_level = round(trophic_level, 0)) %>%
   na.omit()
 
-# Separate the dependent variables (topological metrics) into a matrix
+# Dependent variable matrix for MANOVA/CDA
 dep_vars <- as.matrix(df[3:ncol(df)])
 
-# 2. Multivariate Statistical Testing
-# Does the choice of 'model' significantly affect the collective suite of network metrics?
+# =========================
+# 2. MANOVA + Assumption Checks
+# =========================
 fit <- manova(dep_vars ~ model, data = df)
+
+# --- Multivariate test
 summary(fit, test = "Pillai")
 
+# --- Univariate ANOVAs
+summary.aov(fit)
 
-# 3: Canonical discriminant analysis
-cda <- candisc(fit)
+# --- MANOVA Assumption Checks
 
-# Eigenvalues and variance explained
-eig_df <- data.frame(
-  CV = paste0("CV", seq_along(cda$eig)),
-  Eigenvalue = cda$eig,
-  Variance = 100 * cda$eig / sum(cda$eig)
+## 2a. Multivariate Normality (Henze-Zirkler)
+result_hz <- hz(data = dep_vars)
+
+## 2b. Homogeneity of Covariance (Box's M test)
+boxM(dep_vars, df$model) # p < 0.05 indicates heterogeneity
+
+## 2c. Multicollinearity
+cor_matrix <- cor(dep_vars)
+high_cor <- which(abs(cor_matrix) > 0.9, arr.ind = TRUE) # flag very high correlations
+
+
+# =========================
+# 3. Canonical Discriminant Analysis (CDA)
+# =========================
+cda <- candisc(fit) # integrates MANOVA with canonical variates
+summary(cda)
+
+# --- Extract canonical loadings (which metrics drive variance)
+round(cda$structure[, 1:3], 2)
+
+# --- Canonical means (model positions in CV space)
+round(cda$means[, 1:3], 2)
+
+# =========================
+# 4. LDA for visualization
+# =========================
+lda_fit <- lda(model ~ ., data = df %>% vibe_check(-time))
+lda_scores <- predict(lda_fit)$x
+
+lda_variance <- round((lda_fit$svd^2 / sum(lda_fit$svd^2)) * 100, 1)
+ld1_lab <- paste0("LD1 (", lda_variance[1], "% variance)")
+ld2_lab <- paste0("LD2 (", lda_variance[2], "% variance)")
+
+# Correlation between LDA axes and original metrics
+cor(df[3:ncol(df)], lda_scores)
+
+# =========================
+# 5. LDA Visualization
+# =========================
+plot_lda <- data.frame(
+  model = factor(df$model, levels = c("niche","random","ADBM","ATN","Body-size ratio","PFIM")),
+  lda = lda_scores,
+  time = df$time
 )
 
-write.csv(eig_df,
-          "../notebooks/tables/cda_eigenvalues.csv",
+ggplot(plot_lda, aes(x = lda.LD1, y = lda.LD2, colour = model, fill = model)) + 
+  stat_ellipse(aes(x = lda.LD1, 
+                   y = lda.LD2, 
+                   colour = model), 
+               level = 0.95, linetype = 2)  +
+  geom_point(size = 2, alpha = 0.4) +
+  labs(x = ld1_lab, y = ld2_lab) +
+  scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
+  scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
+  figure_theme
+ggsave("../figures/MANOVA_lda.png", width = 5000, height = 4000, units = "px", dpi = 700)
+
+# =========================
+# 6. Canonical Loadings Table
+# =========================
+
+# Extract canonical loadings
+loadings <- round(cda$structure[, 1:3], 2)
+loadings_df <- as.data.frame(loadings)
+loadings_df$Metric <- rownames(loadings_df)
+
+# Reorder columns: Metric first
+loadings_df <- loadings_df[, c("Metric", "Can1", "Can2", "Can3")]
+
+# Save table for supplementary materials
+write.csv(loadings_df, "../notebooks/tables/canonical_loadings.csv",
           row.names = FALSE)
 
 loadings_df <- as.data.frame(cda$structure[, 1:2]) %>%
-  rownames_to_column("metric") %>%
+  rownames_to_column("Metric") %>%
   glow_up(CV1 = Can1,
-          CV2 = Can2) %>%
+          CV2 = Can2)  %>%
   mutate(
     abs_loading = pmax(abs(CV1), abs(CV2)),
     keep = abs_loading >= 0.4
   ) %>%
   mutate(Level = case_when(
-    metric %in% c("connectance", "trophic_level") ~ "Macro",
-    metric %in% c("generality", "vulnerability") ~ "Micro",
-    .default = "Meso"
+    Metric %in% c("richness", "connectance", "trophic_level") ~ "Macro",
+    Metric %in% c("S1", "S2", "S4", "S5") ~ "Meso",
+    Metric %in% c("generality", "vulnerability") ~ "Micro",
+    TRUE ~ "Other"
   ))
 
-loading_plot <- ggplot(loadings_df, aes(x = CV1, y = CV2)) +
+# =========================
+# 7. Canonical Loadings Plot
+# =========================
+
+ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   geom_hline(yintercept = 0, linetype = "dashed", colour = "grey70") +
   geom_vline(xintercept = 0, linetype = "dashed", colour = "grey70") +
   geom_segment(
@@ -90,7 +166,7 @@ loading_plot <- ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   )) +
   geom_text_repel(
     data = subset(loadings_df, keep),
-    aes(label = metric),
+    aes(label = Metric),
     size = 4,
     box.padding = 0.4,
     point.padding = 0.3,
@@ -103,134 +179,5 @@ loading_plot <- ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   ) +
   figure_theme
 
-ggsave("../figures/loading_plot.png", 
-       loading_plot, 
-       width = 5000, height = 4000, 
-       units = "px", dpi = 700)
-
-# 4: Canonical structure coefficients
-
-structure_df <- as.data.frame(cda$structure) %>%
-  rownames_to_column("Metric")
-
-write.csv(structure_df,
-          "../notebooks/tables/cda_structure_coefficients.csv",
-          row.names = FALSE)
-
-# 5: LDA for visualization only
-
-post_hoc <- lda(model ~ ., data = vibe_check(df, -time))
-scores <- as.data.frame(predict(post_hoc)$x)
-
-scores <- scores %>%
-  glow_up(
-    CV1 = LD1,
-    CV2 = LD2,
-    model = df$model,
-    time = df$time
-  )
-
-plot_lda <- data.frame(model = factor(df$model, ordered = TRUE, 
-                                      levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")), 
-                       lda = predict(post_hoc)$x,
-                       time = df$time)
-
-# Extract proportion of trace for axis labels
-lda_variance <- round((post_hoc$svd^2 / sum(post_hoc$svd^2)) * 100, 1)
-ld1_lab <- paste0("LD1 (", lda_variance[1], "% variance)")
-ld2_lab <- paste0("LD2 (", lda_variance[2], "% variance)")
-
-# Overlay the "metaweb" versions (non-downsampled) as single points in the same space
-metaweb <- read_csv("../data/processed/topology.csv") %>%
-  vibe_check(-c(richness, distance, n_rep)) %>%
-  yeet(model == "pfim_metaweb") %>%
-  na.omit() %>%
-  glow_up(model = NULL) %>%
-  unique()
-
-metaweb_predict <- predict(post_hoc, metaweb)
-
-# Final Plot: LD1 vs LD2 with 95% confidence ellipses
-ld1v2 <- ggplot(plot_lda) + 
-  stat_ellipse(aes(x = lda.LD1, 
-                   y = lda.LD2, 
-                   colour = model), 
-               level = 0.95, linetype = 2) +
-  geom_point(aes(x = lda.LD1, 
-                 y = lda.LD2, 
-                 colour = model), 
-             size = 2, alpha = 0.3) +
-  geom_point(data = data.frame(lda = metaweb_predict$x, time = metaweb$time),
-             aes(x = lda.LD1, 
-                 y = lda.LD2)) +
-  stat_ellipse(aes(x = lda.LD1, 
-                   y = lda.LD2, 
-                   colour = model), 
-               level = 0.95, linetype = 2) +
-  coord_cartesian(clip = "off") +
-  scale_colour_manual(values = pal_df$c, 
-                      breaks = pal_df$l) +
-  labs(x = ld1_lab,
-       y = ld2_lab) +
-  figure_theme
-
-
-ggsave("../figures/MANOVA_lda.png", 
-       ld1v2, 
-       width = 5000, height = 4000, 
-       units = "px", dpi = 700)
-
-# 6: Convex hull canonical plot
-
-hull_df <- cda_scores %>%
-  group_by(model) %>%
-  slice(chull(CV1, CV2)) %>%
-  ungroup()
-
-centroids <- cda_scores %>%
-  group_by(model) %>%
-  summarise(
-    CV1 = mean(CV1),
-    CV2 = mean(CV2)
-  )
-
-plot_cda_hull <- ggplot(cda_scores, aes(x = CV1, y = CV2, colour = model)) +
-  
-  # convex hulls
-  geom_polygon(
-    data = hull_df,
-    aes(x = CV1, y = CV2, fill = model),
-    alpha = 0.15,
-    colour = NA
-  ) +
-  geom_polygon(
-    data = hull_df,
-    aes(x = CV1, y = CV2, colour = model),
-    fill = NA,
-    linewidth = 0.8
-  ) +
-  geom_point(
-    size = 2,
-    alpha = 0.35
-  )  +
-  geom_point(
-    data = centroids,
-    aes(x = CV1, y = CV2),
-    shape = 21,
-    fill = "white",
-    size = 3,
-    stroke = 1
-  ) +
-  coord_cartesian(clip = "off") +
-  scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
-  scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
-  labs(
-    x = cv1_lab,
-    y = cv2_lab
-  ) +
-  figure_theme
-
-ggsave("../figures/cda_hull.png", 
-       plot_cda_hull, 
-       width = 5000, height = 4000, 
-       units = "px", dpi = 700)
+# Save figure
+ggsave("../figures/canonical_loadings_plot.png", width = 8, height = 5, dpi = 300)

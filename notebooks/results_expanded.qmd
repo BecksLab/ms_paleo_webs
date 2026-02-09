@@ -46,60 +46,30 @@ kable()
 
 ```
 
-## Table S2. Univariate ANOVA results with partial η² and 95% CI
+## Table S2. Canonical discriminant analysis
 
 ```{r}
 
-readr::read_csv("tables/cda_eigenvalues.csv") %>%
+readr::read_csv("tables/canonical_loadings.csv") %>%
 kable()
 
 ```
 
-## Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)
+## Figure S1. Canonical Loadings
 
-```{r}
+Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (green), Meso (orange), Micro (purple). Metric labels are shown for the most influential variables.
 
-readr::read_csv("tables/Table_S3_Tukey_pairs.csv") %>%
-kable()
-
-```
-
-## Table S4. LDA coefficients for each variable and linear discriminant axis
-
-```{r}
-
-readr::read_csv("tables/Table_S5_LDA_coeffs.csv") %>%
-kable()
-
-```
-
-## Table S5. Correlation of original variables with LD axes
-
-```{r}
-
-readr::read_csv("tables/Table_S6_LD_correlations.csv") %>%
-kable()
-
-```
-
-## Figure S1. Estimated marginal means per model
-
-![](figures/MANOVA_LDA_biplot_panel.png)
-
-## Figure S2. LDA scatterplots
-
-![](figures/Figure_S1_EMMs.png)
-
+![](../figures/canonical_loadings_plot.png)
 
 # Model choice influences inferred extinction dynamics
 
-## Figure S3. Raw temporal trajectories of network structure during extinction simulations.
+## Figure S2. Raw temporal trajectories of network structure during extinction simulations.
 
 Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.
 
 ![](figures/Figure_S3_time_structure.png)
 
-## Table S6. Full generalized additive model (GAM) results for network-level metrics.
+## Table S3. Full generalized additive model (GAM) results for network-level metrics.
 
 Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.
 
@@ -110,7 +80,7 @@ kable()
 
 ```
 
-## Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
+## Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
 
 Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as <0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.
 
