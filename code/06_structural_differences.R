@@ -103,6 +103,11 @@ loading_plot <- ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   ) +
   figure_theme
 
+ggsave("../figures/loading_plot.png", 
+       loading_plot, 
+       width = 5000, height = 4000, 
+       units = "px", dpi = 700)
+
 # 4: Canonical structure coefficients
 
 structure_df <- as.data.frame(cda$structure) %>%
@@ -130,6 +135,11 @@ plot_lda <- data.frame(model = factor(df$model, ordered = TRUE,
                        lda = predict(post_hoc)$x,
                        time = df$time)
 
+# Extract proportion of trace for axis labels
+lda_variance <- round((post_hoc$svd^2 / sum(post_hoc$svd^2)) * 100, 1)
+ld1_lab <- paste0("LD1 (", lda_variance[1], "% variance)")
+ld2_lab <- paste0("LD2 (", lda_variance[2], "% variance)")
+
 # Overlay the "metaweb" versions (non-downsampled) as single points in the same space
 metaweb <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, n_rep)) %>%
@@ -153,6 +163,22 @@ ld1v2 <- ggplot(plot_lda) +
   geom_point(data = data.frame(lda = metaweb_predict$x, time = metaweb$time),
              aes(x = lda.LD1, 
                  y = lda.LD2)) +
+  stat_ellipse(aes(x = lda.LD1, 
+                   y = lda.LD2, 
+                   colour = model), 
+               level = 0.95, linetype = 2) +
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(values = pal_df$c, 
+                      breaks = pal_df$l) +
+  labs(x = ld1_lab,
+       y = ld2_lab) +
+  figure_theme
+
+
+ggsave("../figures/MANOVA_lda.png", 
+       ld1v2, 
+       width = 5000, height = 4000, 
+       units = "px", dpi = 700)
 
 # 6: Convex hull canonical plot
 
@@ -203,3 +229,8 @@ plot_cda_hull <- ggplot(cda_scores, aes(x = CV1, y = CV2, colour = model)) +
     y = cv2_lab
   ) +
   figure_theme
+
+ggsave("../figures/cda_hull.png", 
+       plot_cda_hull, 
+       width = 5000, height = 4000, 
+       units = "px", dpi = 700)
