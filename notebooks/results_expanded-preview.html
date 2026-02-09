@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-02-05">
+    <meta name="dcterms.date" content="2026-02-09">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -224,7 +224,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 5, 2026</p>
+              <p class="date">February 9, 2026</p>
             </div>
           </div>
           
@@ -251,25 +251,22 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link active" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a>
+  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link active" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a></li>
+  <li><a href="#multivariate-analysis-of-network-structure" id="toc-multivariate-analysis-of-network-structure" class="nav-link" data-scroll-target="#multivariate-analysis-of-network-structure">Multivariate analysis of network structure</a>
   <ul class="collapse">
   <li><a href="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" id="toc-figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</a></li>
   </ul></li>
   <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
   <ul class="collapse">
   <li><a href="#table-s1.-descriptive-statistics-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</a></li>
-  <li><a href="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" id="toc-table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" class="nav-link" data-scroll-target="#table-s2.-univariate-anova-results-with-partial-η²-and-95-ci">Table S2. Univariate ANOVA results with partial η² and 95% CI</a></li>
-  <li><a href="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" id="toc-table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" class="nav-link" data-scroll-target="#table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means">Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)</a></li>
-  <li><a href="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" id="toc-table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" class="nav-link" data-scroll-target="#table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis">Table S4. LDA coefficients for each variable and linear discriminant axis</a></li>
-  <li><a href="#table-s5.-correlation-of-original-variables-with-ld-axes" id="toc-table-s5.-correlation-of-original-variables-with-ld-axes" class="nav-link" data-scroll-target="#table-s5.-correlation-of-original-variables-with-ld-axes">Table S5. Correlation of original variables with LD axes</a></li>
-  <li><a href="#figure-s1.-estimated-marginal-means-per-model" id="toc-figure-s1.-estimated-marginal-means-per-model" class="nav-link" data-scroll-target="#figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</a></li>
-  <li><a href="#figure-s2.-lda-scatterplots" id="toc-figure-s2.-lda-scatterplots" class="nav-link" data-scroll-target="#figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</a></li>
+  <li><a href="#table-s2.-canonical-discriminant-analysis" id="toc-table-s2.-canonical-discriminant-analysis" class="nav-link" data-scroll-target="#table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</a></li>
+  <li><a href="#figure-s1.-canonical-loadings" id="toc-figure-s1.-canonical-loadings" class="nav-link" data-scroll-target="#figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</a></li>
   </ul></li>
   <li><a href="#model-choice-influences-inferred-extinction-dynamics" id="toc-model-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#model-choice-influences-inferred-extinction-dynamics">Model choice influences inferred extinction dynamics</a>
   <ul class="collapse">
-  <li><a href="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." id="toc-figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="nav-link" data-scroll-target="#figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</a></li>
-  <li><a href="#table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S6. Full generalized additive model (GAM) results for network-level metrics.</a></li>
-  <li><a href="#table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
+  <li><a href="#figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." id="toc-figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="nav-link" data-scroll-target="#figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S2. Raw temporal trajectories of network structure during extinction simulations.</a></li>
+  <li><a href="#table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S3. Full generalized additive model (GAM) results for network-level metrics.</a></li>
+  <li><a href="#table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -284,6 +281,12 @@
 <p>To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.</p>
 <p>Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (&lt;0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN model showed slightly higher effects (η² ≈ 0.17 for number of linear chains), but these remained the exception rather than the rule.</p>
 <p>These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.</p>
+</section>
+<section id="multivariate-analysis-of-network-structure" class="level1">
+<h1>Multivariate analysis of network structure</h1>
+<p>We quantified food-web structure using a suite of macro-, meso-, and micro-scale network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality.</p>
+<p>To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximize separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).</p>
+<p>For visualization, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualized using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison. Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.</p>
 <section id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="level2">
 <h2 class="anchored" data-anchor-id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</h2>
 <p><a href="figures/effect_size_bodysize_within_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/effect_size_bodysize_within_model.png" class="img-fluid"></a></p>
@@ -299,11 +302,11 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.1.0     
+✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -483,17 +486,17 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 </div>
 </div></div>
 </section>
-<section id="table-s2.-univariate-anova-results-with-partial-η²-and-95-ci" class="level2">
-<h2 class="anchored" data-anchor-id="table-s2.-univariate-anova-results-with-partial-η²-and-95-ci">Table S2. Univariate ANOVA results with partial η² and 95% CI</h2>
+<section id="table-s2.-canonical-discriminant-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S2_ANOVA_eta.csv"</span>) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/canonical_loadings.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 8 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (1): Variable
-dbl (3): F (df1, df2), Df, p-value
+chr (1): Metric
+dbl (3): Can1, Can2, Can3
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -502,459 +505,85 @@ dbl (3): F (df1, df2), Df, p-value
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: right;">F (df1, df2)</th>
-<th style="text-align: right;">Df</th>
-<th style="text-align: right;">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Response connectance</td>
-<td style="text-align: right;">2623.53787</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Response trophic_level</td>
-<td style="text-align: right;">17.67839</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Response generality</td>
-<td style="text-align: right;">5672.86254</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Response vulnerability</td>
-<td style="text-align: right;">3543.63185</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Response S1</td>
-<td style="text-align: right;">1971.68594</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Response S2</td>
-<td style="text-align: right;">1522.50131</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Response S4</td>
-<td style="text-align: right;">937.62337</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Response S5</td>
-<td style="text-align: right;">1908.97687</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-</section>
-<section id="table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means" class="level2">
-<h2 class="anchored" data-anchor-id="table-s3.-tukey-adjusted-pairwise-comparisons-estimated-marginal-means">Table S3. Tukey-adjusted pairwise comparisons (estimated marginal means)</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S3_Tukey_pairs.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 15 Columns: 6
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): contrast
-dbl (5): estimate, SE, df, t.ratio, p.value
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 16%">
-<col style="width: 15%">
-<col style="width: 7%">
-<col style="width: 16%">
-<col style="width: 15%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">contrast</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">SE</th>
-<th style="text-align: right;">df</th>
-<th style="text-align: right;">t.ratio</th>
-<th style="text-align: right;">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ADBM - ATN</td>
-<td style="text-align: right;">-0.0033630</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.0402016</td>
-<td style="text-align: right;">1.0000000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ADBM - log ratio</td>
-<td style="text-align: right;">-0.2885341</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-3.4492019</td>
-<td style="text-align: right;">0.0075396</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ADBM - niche</td>
-<td style="text-align: right;">-0.0163059</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.1949241</td>
-<td style="text-align: right;">0.9999614</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ADBM - PFIM</td>
-<td style="text-align: right;">0.2579660</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">3.0837836</td>
-<td style="text-align: right;">0.0252227</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ADBM - random</td>
-<td style="text-align: right;">-0.0179653</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.2147617</td>
-<td style="text-align: right;">0.9999376</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ATN - log ratio</td>
-<td style="text-align: right;">-0.2851711</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-3.4090003</td>
-<td style="text-align: right;">0.0086756</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ATN - niche</td>
-<td style="text-align: right;">-0.0129429</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.1547226</td>
-<td style="text-align: right;">0.9999877</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ATN - PFIM</td>
-<td style="text-align: right;">0.2613289</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">3.1239852</td>
-<td style="text-align: right;">0.0222532</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ATN - random</td>
-<td style="text-align: right;">-0.0146024</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.1745602</td>
-<td style="text-align: right;">0.9999777</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">log ratio - niche</td>
-<td style="text-align: right;">0.2722282</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">3.2542778</td>
-<td style="text-align: right;">0.0146362</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">log ratio - PFIM</td>
-<td style="text-align: right;">0.5465001</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">6.5329855</td>
-<td style="text-align: right;">0.0000000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">log ratio - random</td>
-<td style="text-align: right;">0.2705687</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">3.2344401</td>
-<td style="text-align: right;">0.0156202</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">niche - PFIM</td>
-<td style="text-align: right;">0.2742718</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">3.2787078</td>
-<td style="text-align: right;">0.0135007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">niche - random</td>
-<td style="text-align: right;">-0.0016595</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-0.0198376</td>
-<td style="text-align: right;">1.0000000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PFIM - random</td>
-<td style="text-align: right;">-0.2759313</td>
-<td style="text-align: right;">0.0836524</td>
-<td style="text-align: right;">2394</td>
-<td style="text-align: right;">-3.2985454</td>
-<td style="text-align: right;">0.0126374</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-</section>
-<section id="table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis" class="level2">
-<h2 class="anchored" data-anchor-id="table-s4.-lda-coefficients-for-each-variable-and-linear-discriminant-axis">Table S4. LDA coefficients for each variable and linear discriminant axis</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S5_LDA_coeffs.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 8 Columns: 6
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): Variable
-dbl (5): LD1, LD2, LD3, LD4, LD5
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: right;">LD1</th>
-<th style="text-align: right;">LD2</th>
-<th style="text-align: right;">LD3</th>
-<th style="text-align: right;">LD4</th>
-<th style="text-align: right;">LD5</th>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Can1</th>
+<th style="text-align: right;">Can2</th>
+<th style="text-align: right;">Can3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">connectance</td>
-<td style="text-align: right;">40.7066495</td>
-<td style="text-align: right;">24.1437559</td>
-<td style="text-align: right;">2.1404456</td>
-<td style="text-align: right;">5.2341446</td>
-<td style="text-align: right;">23.6436361</td>
+<td style="text-align: right;">-0.75</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">-0.45</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">trophic_level</td>
-<td style="text-align: right;">0.0057168</td>
-<td style="text-align: right;">-0.0009157</td>
-<td style="text-align: right;">0.0023019</td>
-<td style="text-align: right;">-0.0303978</td>
-<td style="text-align: right;">-0.0091700</td>
+<td style="text-align: right;">-0.31</td>
+<td style="text-align: right;">-0.75</td>
+<td style="text-align: right;">-0.25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">generality</td>
-<td style="text-align: right;">-1.8879193</td>
-<td style="text-align: right;">6.6892927</td>
-<td style="text-align: right;">6.2429016</td>
-<td style="text-align: right;">0.9900440</td>
-<td style="text-align: right;">6.8769173</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.32</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">vulnerability</td>
-<td style="text-align: right;">7.8662831</td>
-<td style="text-align: right;">0.9922318</td>
-<td style="text-align: right;">2.5945500</td>
-<td style="text-align: right;">1.2416329</td>
-<td style="text-align: right;">4.4242109</td>
+<td style="text-align: right;">-0.86</td>
+<td style="text-align: right;">-0.20</td>
+<td style="text-align: right;">0.38</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">S1</td>
-<td style="text-align: right;">-2.2334080</td>
-<td style="text-align: right;">-3.1985189</td>
-<td style="text-align: right;">-0.2200124</td>
-<td style="text-align: right;">2.2390870</td>
-<td style="text-align: right;">8.6361615</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">-0.60</td>
+<td style="text-align: right;">-0.48</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">S2</td>
-<td style="text-align: right;">-3.5865498</td>
-<td style="text-align: right;">1.4763674</td>
-<td style="text-align: right;">-1.6934545</td>
-<td style="text-align: right;">-6.4591767</td>
-<td style="text-align: right;">2.8986340</td>
+<td style="text-align: right;">-0.35</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">-0.53</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">S4</td>
-<td style="text-align: right;">0.0445285</td>
-<td style="text-align: right;">-0.6075187</td>
-<td style="text-align: right;">2.2827132</td>
-<td style="text-align: right;">0.9064733</td>
-<td style="text-align: right;">0.3629381</td>
+<td style="text-align: right;">-0.81</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">-0.11</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">S5</td>
-<td style="text-align: right;">2.5723148</td>
-<td style="text-align: right;">2.5794213</td>
-<td style="text-align: right;">-3.1096720</td>
-<td style="text-align: right;">4.4559578</td>
-<td style="text-align: right;">-3.5414518</td>
+<td style="text-align: right;">-0.12</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">-0.52</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div></div>
 </section>
-<section id="table-s5.-correlation-of-original-variables-with-ld-axes" class="level2">
-<h2 class="anchored" data-anchor-id="table-s5.-correlation-of-original-variables-with-ld-axes">Table S5. Correlation of original variables with LD axes</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S6_LD_correlations.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 8 Columns: 6
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): Variable
-dbl (5): LD1, LD2, LD3, LD4, LD5
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: right;">LD1</th>
-<th style="text-align: right;">LD2</th>
-<th style="text-align: right;">LD3</th>
-<th style="text-align: right;">LD4</th>
-<th style="text-align: right;">LD5</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">connectance</td>
-<td style="text-align: right;">0.7628976</td>
-<td style="text-align: right;">0.3365943</td>
-<td style="text-align: right;">-0.4415876</td>
-<td style="text-align: right;">-0.0957877</td>
-<td style="text-align: right;">0.1622868</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: right;">-0.0687639</td>
-<td style="text-align: right;">-0.1701125</td>
-<td style="text-align: right;">-0.0621226</td>
-<td style="text-align: right;">0.0199146</td>
-<td style="text-align: right;">-0.0271378</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">generality</td>
-<td style="text-align: right;">-0.6911369</td>
-<td style="text-align: right;">0.6096567</td>
-<td style="text-align: right;">0.3559136</td>
-<td style="text-align: right;">0.1074749</td>
-<td style="text-align: right;">0.0127395</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: right;">0.8568712</td>
-<td style="text-align: right;">-0.2619202</td>
-<td style="text-align: right;">0.3574128</td>
-<td style="text-align: right;">-0.0748926</td>
-<td style="text-align: right;">-0.0096879</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">S1</td>
-<td style="text-align: right;">-0.4192145</td>
-<td style="text-align: right;">-0.5599603</td>
-<td style="text-align: right;">-0.5106090</td>
-<td style="text-align: right;">0.3193043</td>
-<td style="text-align: right;">0.3667440</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S2</td>
-<td style="text-align: right;">0.3792652</td>
-<td style="text-align: right;">0.6239454</td>
-<td style="text-align: right;">-0.4959952</td>
-<td style="text-align: right;">-0.2831844</td>
-<td style="text-align: right;">0.0979852</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">S4</td>
-<td style="text-align: right;">0.8150366</td>
-<td style="text-align: right;">0.0964847</td>
-<td style="text-align: right;">-0.1204570</td>
-<td style="text-align: right;">0.0165675</td>
-<td style="text-align: right;">0.0120830</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S5</td>
-<td style="text-align: right;">0.1544401</td>
-<td style="text-align: right;">0.7478257</td>
-<td style="text-align: right;">-0.5030685</td>
-<td style="text-align: right;">0.2619609</td>
-<td style="text-align: right;">-0.0157702</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-</section>
-<section id="figure-s1.-estimated-marginal-means-per-model" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s1.-estimated-marginal-means-per-model">Figure S1. Estimated marginal means per model</h2>
-<p><a href="figures/MANOVA_LDA_biplot_panel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="figures/MANOVA_LDA_biplot_panel.png" class="img-fluid"></a></p>
-</section>
-<section id="figure-s2.-lda-scatterplots" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s2.-lda-scatterplots">Figure S2. LDA scatterplots</h2>
-<p><a href="figures/Figure_S1_EMMs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S1_EMMs.png" class="img-fluid"></a></p>
+<section id="figure-s1.-canonical-loadings" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</h2>
+<p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (green), Meso (orange), Micro (purple). Metric labels are shown for the most influential variables.</p>
+<p><a href="../figures/canonical_loadings_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../figures/canonical_loadings_plot.png" class="img-fluid"></a></p>
 </section>
 </section>
 <section id="model-choice-influences-inferred-extinction-dynamics" class="level1">
 <h1>Model choice influences inferred extinction dynamics</h1>
-<section id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="level2">
-<h2 class="anchored" data-anchor-id="figure-s3.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S3. Raw temporal trajectories of network structure during extinction simulations.</h2>
+<section id="figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="level2">
+<h2 class="anchored" data-anchor-id="figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S2. Raw temporal trajectories of network structure during extinction simulations.</h2>
 <p>Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.</p>
-<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
+<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
 </section>
-<section id="table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s6.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S6. Full generalized additive model (GAM) results for network-level metrics.</h2>
+<section id="table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S3. Full generalized additive model (GAM) results for network-level metrics.</h2>
 <p>Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S7_GAM_results.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S7_GAM_results.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 104 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
@@ -998,7 +627,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">connectance</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-0.126</td>
@@ -1052,7 +681,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">connectance</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.927</td>
@@ -1115,7 +744,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">2.666</td>
@@ -1169,7 +798,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">trophic_level</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.918</td>
@@ -1232,7 +861,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">generality</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-0.265</td>
@@ -1286,7 +915,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">generality</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.847</td>
@@ -1349,7 +978,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">vulnerability</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-0.200</td>
@@ -1403,7 +1032,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">vulnerability</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.909</td>
@@ -1466,7 +1095,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">S1</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">0.749</td>
@@ -1520,7 +1149,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">S1</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.999</td>
@@ -1583,7 +1212,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">S2</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-1.048</td>
@@ -1637,7 +1266,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">S2</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.941</td>
@@ -1700,7 +1329,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">S4</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-0.925</td>
@@ -1754,7 +1383,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">S4</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.994</td>
@@ -1817,7 +1446,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Model: log ratio</td>
+<td style="text-align: left;">Model: Body-size ratio</td>
 <td style="text-align: left;">S5</td>
 <td style="text-align: left;">parametric</td>
 <td style="text-align: right;">-0.887</td>
@@ -1871,7 +1500,7 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 <td style="text-align: left;">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Smooth: time by log ratio</td>
+<td style="text-align: left;">Smooth: time by Body-size ratio</td>
 <td style="text-align: left;">S5</td>
 <td style="text-align: left;">smooth</td>
 <td style="text-align: right;">2.995</td>
@@ -1929,12 +1558,12 @@ dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
 </div>
 </div></div>
 </section>
-<section id="table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s7.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S7. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
+<section id="table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
 <p>Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as &lt;0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S8_GAM_model_comparison.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S8_GAM_model_comparison.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 8 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
