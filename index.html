@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.19">
+<meta name="generator" content="quarto-1.9.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="author" content="Baran Karapunar">
 <meta name="author" content="Andrew P. Beckerman">
 <meta name="author" content="Alexander Dunhill">
-<meta name="dcterms.date" content="2026-02-09">
+<meta name="dcterms.date" content="2026-02-12">
 <meta name="keywords" content="Paleoecological networks, Food-web reconstruction, Ecological networks, Extinction dynamics, Trophic interactions, Toarcian Oceanic Anoxic Event">
 
 <title>Reconstructing food webs in deep time: Network models as explicit hypotheses for paleoecological inference</title>
@@ -59,7 +59,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3f61aac59b63c3a2d0e87c59ee7d0662.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0a83c53033ed047cde592d264eaa4157.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -111,10 +111,10 @@ window.Quarto = {
 <meta name="citation_author" content="Baran Karapunar">
 <meta name="citation_author" content="Andrew P. Beckerman">
 <meta name="citation_author" content="Alexander Dunhill">
-<meta name="citation_publication_date" content="2026-02-09">
-<meta name="citation_cover_date" content="2026-02-09">
+<meta name="citation_publication_date" content="2026-02-12">
+<meta name="citation_cover_date" content="2026-02-12">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-02-09">
+<meta name="citation_online_date" content="2026-02-12">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="TBD">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
@@ -266,7 +266,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 9, 2026</p>
+              <p class="date">February 12, 2026</p>
             </div>
           </div>
           
@@ -614,7 +614,7 @@ Figure&nbsp;4: Heatmaps showing pairwise Kendall rank correlation coefficients (
 <section id="model-choice-as-a-component-of-ecological-inference" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="model-choice-as-a-component-of-ecological-inference"><span class="header-section-number">4.1</span> Model choice as a component of ecological inference</h2>
 <p>Reconstructing food webs from fossil data is inherently an exercise in inference under uncertainty. It requires not only assembling paleontological data but also making explicit assumptions about how species interact and how those interactions are represented mathematically <span class="citation" data-cites="dunne2008 morales-castilla2015 strydom2026">(<a href="#ref-dunne2008" role="doc-biblioref">Dunne et al. 2008</a>; <a href="#ref-morales-castilla2015" role="doc-biblioref">Morales-Castilla et al. 2015</a>; <a href="#ref-strydom2026" role="doc-biblioref">Strydom et al. 2026</a>)</span>. This process parallels modern ecological network studies, where the tension between data limitations and meaningful ecological inference is well recognised <span class="citation" data-cites="delmas2019 poisot2021">(<a href="#ref-delmas2019" role="doc-biblioref">Delmas et al. 2019</a>; <a href="#ref-poisot2021" role="doc-biblioref">Poisot et al. 2021</a>)</span>. Here we demonstrate that the choice of network reconstruction model is itself a major ecological decision, shaping both the structural properties of inferred networks and downstream interpretations of extinction dynamics <span class="citation" data-cites="allesina2012 solé2001">(<a href="#ref-allesina2012" role="doc-biblioref">Allesina and Tang 2012</a>; <a href="#ref-solé2001" role="doc-biblioref">Solé and Montoya 2001</a>)</span>. Results show that the choice of reconstruction approach exerts an influence on inferred food-web structure, shaping multivariate network properties, and inferred interactions and extinction dynamics.</p>
-<p>Differences among models do not arise from the fossil evidence itself, but from assumptions embedded in each model famil <span class="citation" data-cites="pichler2023 strydom2021">(<a href="#ref-pichler2023" role="doc-biblioref">Pichler and Hartig 2023</a>; <a href="#ref-strydom2021" role="doc-biblioref">Strydom et al. 2021</a>)</span>. These assumptions include how trophic links are defined (trait compatibility versus energetic constraints), how interaction probabilities are parameterised, and whether network topology is guided by macroecological theory (<em>e.g.,</em> niche structure) or mechanistic rules (<em>e.g.,</em> Body-size ratios). Consequently, network reconstruction is not neutral and it explicitly encodes ecological assumptions that shape inferred structure and downstream dynamical narratives. This sensitivity parallels challenges in modern network ecology, where model and metric selection influence interpretations of connectance, modularity, and motif distributions <span class="citation" data-cites="poisot2014 michalska-smith2019">(<a href="#ref-poisot2014" role="doc-biblioref">Poisot and Gravel 2014</a>; <a href="#ref-michalska-smith2019" role="doc-biblioref">Michalska-Smith and Allesina 2019</a>)</span>.</p>
+<p>Differences among models do not arise from the fossil evidence itself, but from assumptions embedded in each model family <span class="citation" data-cites="pichler2023 strydom2021">(<a href="#ref-pichler2023" role="doc-biblioref">Pichler and Hartig 2023</a>; <a href="#ref-strydom2021" role="doc-biblioref">Strydom et al. 2021</a>)</span>. These assumptions include how trophic links are defined (trait compatibility versus energetic constraints), how interaction probabilities are parameterised, and whether network topology is guided by macroecological theory (<em>e.g.,</em> niche structure) or mechanistic rules (<em>e.g.,</em> Body-size ratios). Consequently, network reconstruction is not neutral and it explicitly encodes ecological assumptions that shape inferred structure and downstream dynamical narratives. This sensitivity parallels challenges in modern network ecology, where model and metric selection influence interpretations of connectance, modularity, and motif distributions <span class="citation" data-cites="poisot2014 michalska-smith2019">(<a href="#ref-poisot2014" role="doc-biblioref">Poisot and Gravel 2014</a>; <a href="#ref-michalska-smith2019" role="doc-biblioref">Michalska-Smith and Allesina 2019</a>)</span>.</p>
 <p>Multivariate analyses of network metrics revealed that differences among reconstruction approaches are structured along a small number of dominant multivariate axes rather than dispersed across many weakly informative dimensions. Although some reconstruction approaches converged in multivariate space along one canonical dimension, divergence along the orthogonal axis often persisted. For example, allometric models showed partial overlap along CV1, reflecting similar assumptions about interaction density, yet separated along CV2, indicating contrasting trophic organisation despite shared energetic constraints. The first canonical variate (CV1) captured variation in interaction density and competitive structure. The second canonical variate (CV2) distinguished models based on vertical trophic organisation, omnivory and apparent competition. Together, these axes explain the majority of between-model variance, indicating that reconstruction approaches encode fundamentally different assumptions about both horizontal and vertical dimensions of food-web structure. These patterns demonstrate a strong, model-specific signature independent of community composition.</p>
 <p>While some models occasionally converged on some global metrics (<em>e.g.,</em> ADBM and ATN models), pairwise β-turnover revealed disagreements in inferred species-level interactions. Thus, structural similarity does not guarantee concordance in trophic roles, highlighting that uncertainty in reconstructed networks follows structured, predictable patterns rather than random noise. For example, allometric models tended to converge on similar species removal sequences while diverging in inferred interaction loss, whereas structural models dampened the apparent magnitude and variability of collapse. Comparing multiple reconstruction approaches provides a means to identify robust ecological signals while delineating areas where inference remains model-dependent.</p>
 <p>Mechanistic models (PFIM) typically identify a broad landscape of trait-compatible interactions, theoretical size-based models (ADBM, ATN, Body-size ratio) impose energetic filters to approximate realised diets, and structural models (niche, random) prioritise topological patterns over species identity. Temporal trajectories of network collapse, interaction loss, and motif reorganization varied markedly among approaches. Species-level extinction rankings were often broadly consistent across models. In contrast, link-level outcomes and secondary extinctions were highly sensitive to reconstruction assumptions. This reflects how extinction pathways depend on the specification of interactions, demonstrating that interaction-level inferences about cascade dynamics are inherently model dependent <span class="citation" data-cites="dunne2002 allesina2012 curtsdotter2011">(<a href="#ref-dunne2002" role="doc-biblioref">Dunne et al. 2002</a>; <a href="#ref-allesina2012" role="doc-biblioref">Allesina and Tang 2012</a>; <a href="#ref-curtsdotter2011" role="doc-biblioref">Curtsdotter et al. 2011</a>)</span>.</p>
@@ -820,7 +820,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, et al. 2014. <span>“Collapse
     and Dunhill, Alexander},
   title = {Reconstructing Food Webs in Deep Time: {Network} Models as
     Explicit Hypotheses for Paleoecological Inference},
-  date = {2026-02-09},
+  date = {2026-02-12},
   langid = {en},
   abstract = {Food webs provide a powerful framework for understanding
     ecosystem structure and function, yet reconstructing them in
@@ -854,7 +854,7 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, et al. 2014. <span>“Collapse
 Strydom, Tanya, Baran Karapunar, Andrew P. Beckerman, and Alexander
 Dunhill. 2026. <span>“Reconstructing Food Webs in Deep Time: Network
 Models as Explicit Hypotheses for Paleoecological Inference.”</span>
-TBD, February 9.
+TBD, February 12.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
