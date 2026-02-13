@@ -25,7 +25,7 @@ metrics with the respective LDA axes.}
 
 \caption{\label{fig-beta_div}Pairwise β-turnover in species interactions
 among four ecological network models (ADBM, ATN, Body-size ratio, and
-pfim). Each cell represents the mean turnover value between a pair of
+PFIM). Each cell represents the mean turnover value between a pair of
 models, with warmer colours indicating greater dissimilarity in inferred
 interactions. The diagonal is omitted. High turnover values (yellow)
 indicate strong disagreement in network structure between models,
