@@ -61,6 +61,14 @@ Canonical loadings for the first two canonical variates (CV1, CV2) from the cano
 
 ![](../figures/canonical_loadings_plot.png)
 
+## PERMANOVA Variance Partitioning
+
+To quantify the relative contributions of reconstruction framework and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardized (z-transformed) network metrics. Reconstruction framework ('model') and extinction phase ('time') were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.
+
+### Robustness of model effects after temporal centering
+
+To determine whether the dominance of reconstruction framework reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, reconstruction framework explained 84.8% of multivariate variance (R² = 0.848, p < 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among reconstruction frameworks.
+
 # Model choice influences inferred extinction dynamics
 
 ## Figure S2. Raw temporal trajectories of network structure during extinction simulations.
