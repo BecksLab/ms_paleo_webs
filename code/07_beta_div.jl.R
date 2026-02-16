@@ -1,4 +1,4 @@
-# libraries: Standard tidyverse plus custom 'genzplyr' for data manipulation
+# libraries
 library(genzplyr)
 library(ggtext)
 library(here)
