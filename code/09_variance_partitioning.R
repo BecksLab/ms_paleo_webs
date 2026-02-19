@@ -2,9 +2,6 @@
 
 library(genzplyr)
 library(here) 
-library(insight)
-library(lme4)
-library(performance)
 library(tidyverse)
 library(vegan)
 
@@ -29,10 +26,28 @@ df <- read_csv("../data/processed/topology.csv") %>%
 
 dist_mat <- dist(scale(df[3:ncol(df)]))
 
-adonis2(dist_mat ~ model * time, data = df, by = "margin")
-
 # make factor
 df$model <- factor(df$model)
 df$time  <- factor(df$time)
 
-ad <- adonis2(dist_mat ~ model * time, data = df)
+ad_interaction <- adonis2(dist_mat ~ model * time, data = df, by = "margin")
+ad_model <- adonis2(dist_mat ~ model, data = df)
+as_time <- adonis2(dist_mat ~ time, data = df)
+
+
+# time centred PERMANOVA
+
+metric_cols <- c("connectance", "trophic_level", "generality", "vulnerability", "S1",
+                 "S2", "S4", "S5" )
+
+df_centered <- df
+
+df_centered[metric_cols] <- 
+  lapply(metric_cols, function(m) {
+    df[[m]] - ave(df[[m]], df$time)
+  })
+
+mat_centered <- scale(df_centered[metric_cols])
+dist_centered <- dist(mat_centered, method = "euclidean")
+
+ad_centred <- adonis2(dist_centered ~ model, data = df_centered)
