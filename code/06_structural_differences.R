@@ -98,7 +98,11 @@ plot_lda <- data.frame(
   time = df$time
 )
 
-ggplot(plot_lda, aes(x = lda.LD1, y = lda.LD2, colour = model, fill = model)) + 
+ggplot(plot_lda, aes(x = lda.LD1, 
+                     y = lda.LD2, 
+                     colour = model, 
+                     fill = model,
+                     shape = model)) + 
   stat_ellipse(aes(x = lda.LD1, 
                    y = lda.LD2, 
                    colour = model), 
@@ -107,6 +111,7 @@ ggplot(plot_lda, aes(x = lda.LD1, y = lda.LD2, colour = model, fill = model)) +
   labs(x = ld1_lab, y = ld2_lab) +
   scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
   scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
+  guides(color = guide_legend(override.aes = list(linetype = 0, alpha = 1, size = 3))) +
   figure_theme
 ggsave("../figures/MANOVA_lda.png", width = 5000, height = 4000, units = "px", dpi = 700)
 
