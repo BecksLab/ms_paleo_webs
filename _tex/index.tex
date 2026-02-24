@@ -224,7 +224,7 @@ reconstruction}
 2%
 }%
 }
-\date{2026-02-23}
+\date{2026-02-24}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -350,15 +350,16 @@ environmental gradients, to quantify β-diversity in interaction
 structure, to evaluate stability--complexity relationships, and to infer
 vulnerability under global change (Carstensen et al., 2014; Gravel et
 al., 2019; Poisot et al., 2015; Trøjelsgaard \& Olesen, 2016; Tylianakis
-\& Morris, 2017). As a result, ecological networks now play a central
-role in comparative analyses spanning latitudinal gradients, disturbance
-regimes, and deep-time environmental transitions (Dunhill et al., 2024;
-Hao et al., 2025; Michalska-Smith \& Allesina, 2019; Poisot \& Gravel,
-2014; Roopnarine, 2006). Implicit in this expansion is the critical
-assumption that network properties estimated across systems are
-structurally comparable, and that differences among them reflect
-ecological signal rather than methodological artefact (Fründ et al.,
-2016; Jordano, 2016).
+\& Morris, 2017).
+
+As a result, ecological networks now play a central role in comparative
+analyses spanning latitudinal gradients, disturbance regimes, and
+deep-time environmental transitions (Dunhill et al., 2024; Hao et al.,
+2025; Michalska-Smith \& Allesina, 2019; Poisot \& Gravel, 2014;
+Roopnarine, 2006). Implicit in this expansion is the critical assumption
+that network properties estimated across systems are structurally
+comparable, and that differences among them reflect ecological signal
+rather than methodological artefact (Fründ et al., 2016; Jordano, 2016).
 
 Yet most ecological networks are not fully observed as interaction data
 are incomplete and sampling is uneven across historical and
@@ -400,21 +401,22 @@ structure and which are intrinsically model dependent.
 Deep-time ecosystems provide an especially stringent test of this issue
 because interactions are not observed directly and must be reconstructed
 explicitly (Dunhill et al., 2024; Dunne et al., 2008; Dunne et al.,
-2014; Roopnarine, 2006), rendering modelling assumptions transparent. We
-re-evaluate inferences made by Dunhill et al. (2024) on community
-structure and extinction dynamics during the early Toarcian extinction
-event (\textasciitilde183 Ma), a volcanic-driven hyperthermal and marine
-crisis in the Early Jurassic (Kemp et al., 2024). Using four successive
-communities drawn from an identical taxon pool, we reconstruct
-ecological networks under six contrasting model classes spanning
-feasible, realised, and structural representations. For each
-reconstruction framework, we quantify emergent topology across scales,
-measure interaction turnover, and simulate disturbance-driven collapse.
-By holding species composition constant while varying the food web model
-used, this design isolates the influence of model constrained structure
-on inferred food web organisation and extinction dynamics, allowing us
-to distinguish ecological signals that are robust from those that are
-reconstruction contingent.
+2014; Roopnarine, 2006), rendering modelling assumptions transparent.
+Against this stringency, here we re-evaluate inferences made by Dunhill
+et al. (2024) on community structure and extinction dynamics during the
+early Toarcian extinction event (\textasciitilde183 Ma), a
+volcanic-driven hyperthermal and marine crisis in the Early Jurassic
+(Kemp et al., 2024). Using four successive communities drawn from an
+identical taxon pool, we reconstruct ecological networks under six
+contrasting model classes spanning feasible, realised, and structural
+representations. For each reconstruction framework, we quantify emergent
+topology across scales, measure interaction turnover, and simulate
+disturbance-driven collapse. By holding species composition constant
+while varying the food web model used, this design isolates the
+influence of model constrained structure on inferred food web
+organisation and extinction dynamics, allowing us to distinguish
+ecological signals that are robust from those that are reconstruction
+contingent.
 
 \section{Methods}\label{methods}
 
@@ -444,23 +446,28 @@ approaches}\label{network-reconstruction-approaches}
 \subsubsection{Conceptual classification of network
 types}\label{conceptual-classification-of-network-types}
 
-Most paleo-specific approaches (e.g., Fricke et al. (2022); Roopnarine
-(2006); Shaw et al. (2024)) currently operate within the feasibility
-space. That is, these approaches identify and encode the entire diet of
-a species and thus represent all feasible interactions within the
-network. Although well suited for reconstructing feasible interactions,
-these methods represent only a subset of the broader spectrum of network
-construction approaches. Here, we present a suite of models
+Most paleo-specific research (\emph{e.g.,} Fricke et al. (2022);
+Roopnarine (2006); Shaw et al. (2024)) currently uses models from within
+the feasibility space. That is, the model reconstructions identify and
+encode the entire feasible diet of a species to build the network. These
+methods, however, represent only a subset of the broader spectrum of
+network construction approaches. Here, we present a suite of methods
 (Table~\ref{tbl-models}) that enable the construction of a wider range
 of ecological networks and the exploration of a broader set of
 ecological questions, provided that their underlying assumptions are
-compatible with the constraints of fossil data. For example, some tools
-require quantitative estimates of body size, which must often be
-inferred from size classes or functional morphology in the fossil
-record. Structural models, such as the niche model, rely only on species
-richness and estimates/specification of connectance, but their
-species-agnostic nature limits their applicability to trait-based or
-diet-specific questions, although they do still accurately recover
+compatible with the constraints of fossil data. The methods include a)
+structural models that create species agnostic networks that are
+structurally `correct' by assigning links between nodes based on
+assumptions of link distributions; and b) realised models that create
+networks where links between species are constrained based on some form
+of `species choice' \emph{e.g.,} maximising energy gain.
+
+For example, some tools require quantitative estimates of body size,
+which must often be inferred from size classes or functional morphology
+in the fossil record. Structural models, such as the niche model, rely
+only on species richness and estimates/specification of connectance, but
+their species-agnostic nature limits their applicability to trait-based
+or diet-specific questions, although they do still accurately recover
 network structure (Stouffer et al., 2005) . Mechanistic approaches, by
 contrast, depend on accurate assignment of feeding traits or robust
 phylogenetic support. Recognizing how these methodological requirements
@@ -658,15 +665,14 @@ evaluation}\label{extinction-simulations-and-model-evaluation}
 
 Following Dunhill et al. (2024) and using the pre-extinction and
 post-extinction networks, we simulated species loss under multiple
-extinction scenarios. We simulated species loss under multiple
-scenarios, including trait-based, network-position-based, and random
-removals, allowing cascading extinctions to propagate. Simulated
-outcomes were compared to observed or expected community states using
-mean absolute differences (MAD) and modified true skill statistics (TSS)
-at node and link levels. Kendall's rank correlation coefficient was used
-to evaluate concordance in scenario rankings across reconstruction
-models, providing a measure of robustness in inferred community
-responses.
+extinction scenarios including trait-based, network-position-based, and
+random removals, allowing cascading extinctions to propagate (cascading
+secondary extinctions). Simulated outcomes were compared to observed or
+expected community states using mean absolute differences (MAD) of food
+web metrics and modified true skill statistics (TSS) at node and link
+levels. Kendall's rank correlation coefficient was used to evaluate
+concordance in scenario rankings across reconstruction models, providing
+a measure of robustness in inferred community responses.
 
 \section{Results}\label{results}
 
@@ -679,21 +685,19 @@ independent of community composition. Notably, agreement among models
 depended on scale - approaches that were statistically similar in
 multivariate structural space often diverged in inferred interactions or
 extinction dynamics. This demonstrates that structural similarity does
-not guarantee concordance in species-level diets or trophic roles. Model
-choice also substantially influenced inferred extinction dynamics.
+not guarantee concordance in species-level diets or trophic roles.
+
+Model choice substantially influenced inferred extinction dynamics.
 Temporal trajectories of network collapse, interaction loss, and motif
 reorganization differed among approaches. Although species-level
 extinction rankings were often broadly consistent, link-level outcomes
 and extinction inferences were highly sensitive to reconstruction
 assumptions. Together, these results show that ecological inferences
 drawn from networks depend critically on the reconstruction framework
-employed. Importantly, agreement among models was not consistent across
-analytical scales - models that were statistically indistinguishable in
-multivariate structural space often diverged in inferred interactions or
-extinction dynamics. Together these results show that reconstruction
-approaches that appear similar when evaluated using global network
-metrics can yield fundamentally different ecological narratives when
-interrogated at the level of interactions and extinction dynamics.
+employed. Together these results show that reconstruction approaches
+that appear similar when evaluated using global network metrics can
+yield fundamentally different ecological narratives when interrogated at
+the level of interactions and extinction dynamics.
 
 \subsection{Network structure differs among reconstruction
 approaches}\label{network-structure-differs-among-reconstruction-approaches}
