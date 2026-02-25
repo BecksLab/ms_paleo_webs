@@ -31,6 +31,25 @@ We quantified food-web structure using a suite of macro-, meso-, and micro-scale
 For visualization, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualized using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison.
 Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.
 
+# Quantification of simulation outcomes and model concordance
+
+To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches.
+First, deviation in continuous network metrics (e.g., connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:
+
+$MAD = \frac{1}{n} \sum_{i=1}^{n} | M_{i}^{sim} - M_{i}^{ref}|$
+
+where $M_{i}^{sim}$ is the simulated value and $M_{i}^{ref}$ is the corresponding observed or expected value. MAD was chosen because it provides a scale-preserving measure of deviation that is less sensitive to extreme values than squared-error metrics and allows direct comparison across reconstruction frameworks.
+
+Second, agreement in predicted persistence outcomes was evaluated using a modified True Skill Statistic (TSS) at both node and link levels. At the node level, species were classified as present (persisting) or absent (extinct) in each simulated network and compared to their presence–absence status in the reference community.
+
+At the link level, each possible species pair was classified according to the presence or absence of a trophic interaction in the simulated versus reference network. Thus, link-level evaluation quantified agreement in the retention or loss of specific trophic interactions, independent of overall species richness.
+
+For both node- and link-level classifications, outcomes were assigned as true positives (TP), true negatives (TN), false positives (FP), or false negatives (FN), and TSS was calculated as:
+
+TSS = Sensitivity + Specificity − 1
+
+where Sensitivity = TP/(TP + FN) and Specificity = TN/(TN + FP). TSS ranges from −1 to 1, with 1 indicating perfect agreement, 0 indicating performance no better than random expectation, and negative values indicating systematic disagreement. Because TSS is prevalence-independent, it is appropriate for extinction simulations in which class imbalance may occur (*e.g.,* many persisting species or many absent links).
+
 # Effects of Network Reconstruction on Food-Web Structure
 
 ## Table S1. Descriptive statistics of network metrics by model

@@ -406,13 +406,20 @@ Against this stringency, here we re-evaluate inferences made by Dunhill
 et al. (2024) on community structure and extinction dynamics during the
 early Toarcian extinction event (\textasciitilde183 Ma), a
 volcanic-driven hyperthermal and marine crisis in the Early Jurassic
-(Kemp et al., 2024). Using four successive communities drawn from an
-identical taxon pool, we reconstruct ecological networks under six
-contrasting model classes spanning feasible, realised, and structural
-representations. For each reconstruction framework, we quantify emergent
-topology across scales, measure interaction turnover, and simulate
-disturbance-driven collapse. By holding species composition constant
-while varying the food web model used, this design isolates the
+(Kemp et al., 2024). Crucially, this re-evaluation allows us to test a
+pivotal but often overlooked possibility - that the ecological
+narratives regarding community stability or collapse might be as much a
+product of the specific reconstruction method chosen as they are of the
+fossil data itself. By applying alternative models, we can determine if
+Dunhill et al. (2024) conclusions remain robust or if a different choice
+of reconstruction method would have led to fundamentally different
+inferences about extinction dynamics. Using four successive communities
+drawn from an identical taxon pool, we reconstruct ecological networks
+under six contrasting model classes spanning feasible, realised, and
+structural representations. For each reconstruction framework, we
+quantify emergent topology across scales, measure interaction turnover,
+and simulate disturbance-driven collapse. By holding species composition
+constant while varying the food web model used, this design isolates the
 influence of model constrained structure on inferred food web
 organisation and extinction dynamics, allowing us to distinguish
 ecological signals that are robust from those that are reconstruction
@@ -588,10 +595,15 @@ properties, motif structure, and species-level variability. Differences
 among reconstruction approaches were assessed using a multivariate
 analysis of variance (MANOVA), with model identity as a fixed factor and
 the full set of network metrics as response variables. Pairwise
-interaction turnover was quantified using link‑based beta diversity,
-which measures dissimilarity in the identity of trophic links between
-networks, capturing differences due to species turnover or changes in
-interactions among shared species (Poisot et al., 2012).
+interaction turnover was quantified using link-based β-diversity
+following the framework of Poisot et al. (2012). For each pair of
+reconstructed networks, we represented trophic interactions as binary
+adjacency matrices and calculated their dissimilarity. Specifically we
+looked at interaction rewiring among shared species (\(β_{OS}\)), which
+allows separation of differences arising from altered interaction
+identities among species common to both networks. All calculations were
+performed for all model combinations within the same community (time
+bin).
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
@@ -651,16 +663,30 @@ species, standardised by \(L/S\) & Micro & Williams \& Martinez
 \subsection{Extinction simulations and model
 evaluation}\label{extinction-simulations-and-model-evaluation}
 
-Following Dunhill et al. (2024) and using the pre-extinction and
-post-extinction networks, we simulated species loss under multiple
-extinction scenarios including trait-based, network-position-based, and
-random removals, allowing cascading extinctions to propagate (cascading
-secondary extinctions). Simulated outcomes were compared to observed or
-expected community states using mean absolute differences (MAD) of food
-web metrics and modified true skill statistics (TSS) at node and link
-levels. Kendall's rank correlation coefficient was used to evaluate
-concordance in scenario rankings across reconstruction models, providing
-a measure of robustness in inferred community responses.
+Following Dunhill et al. (2024), we simulated species loss from
+Pre-extinction networks under trait-based, network-position--based, and
+random removal scenarios. Species were deleted sequentially, with
+cascading secondary extinctions allowed to propagate. Simulated
+post-extinction states were compared to `observed' networks using mean
+absolute differences (MAD) of food-web metrics
+Table~\ref{tbl-properties} and modified true skill statistics (TSS)
+calculated separately at the node level (species presence/absence) and
+link level (presence/absence of interactions between species pairs).
+Scenarios were ranked within each reconstruction framework based on MAD
+and TSS performance, and Kendall's rank correlation coefficient (τ) was
+used to quantify concordance in scenario ordering across models. Full
+methodological details are provided in the Supplementary Materials.
+
+\subsection{Software and
+Reproducibility}\label{software-and-reproducibility}
+
+Ecological network reconstruction and extraction of structural metrics
+were conducted in Julia v1.11.4 (Bezanson et al., 2017). All statistical
+analyses, model fitting (MANOVA, PERMANOVA, GAMs), and figure production
+were performed in R v4.5.2 (R Core Team, 2024). The empirical data,
+derived network datasets and code implementing network reconstruction,
+extinction simulations, and all analytical workflows is archived at
+{[}Zenodo DOI{]}.
 
 \section{Results}\label{results}
 
@@ -879,6 +905,21 @@ provide structurally comparable representations of ecological
 communities, such that differences in connectance, trophic structure,
 motif composition, or robustness primarily reflect biological variation.
 
+This assumption is particularly critical to evaluate within the context
+of deep-time paleoecological data. Because interactions in fossil
+ecosystems are never observed directly, they must explicitly be
+reconstructed through some form of reconstruction approach. This
+necessity renders the underlying assumptions transparent but also makes
+the resulting ecological narratives highly susceptible to the
+constraints inherent in the chosen reconstruction framework. In these
+settings the risk is not just incomplete data, but the potential for
+methodological artefacts to be misinterpreted as genuine
+macroevolutionary or paleoecological signals. Consequently, deep-time
+studies offer a unique and stringent testing ground for determining
+whether community-level responses (such as stability or collapse during
+mass extinctions) are robust features of the ecosystem or merely
+byproducts of how we choose to construct the links between species.
+
 Our results challenge this assumption and reveal strong sensitivity of
 inference about secondary extinction dynamics in paleo-foodwebs. Across
 an identical species pool, reconstruction frameworks explained the
@@ -927,27 +968,33 @@ Importantly, reconstruction sensitivity was not uniform across network
 scales (macro-, mesio-, micro- level properties). Species-level
 extinction rankings were broadly consistent among model classes, whereas
 interaction-level outcomes and cascade trajectories were highly
-contingent on structural prior. The predominance of reconstruction
-framework over temporal turnover (\textasciitilde80\% vs.~6\% variance
-explained) illustrates why coarse-grained patterns like species-level
-extinction rankings are more robust. Model-imposed structure dominates
-the overall topology, leaving finer-scale interaction dynamics highly
-contingent on framework choice. This asymmetry reveals a
+contingent on reconstruction approach. The predominance of
+reconstruction framework over temporal turnover (\textasciitilde80\%
+vs.~6\% variance explained) illustrates why coarse-grained patterns like
+species-level extinction rankings are more robust. Model-imposed
+structure dominates the overall topology, leaving interaction dynamics
+highly contingent on framework choice. This asymmetry reveals a
 context-dependent pattern of robustness. Coarse-grained macroecological
 patterns (such as the vulnerability of a community to collapse) can
 emerge from multiple plausible interaction architectures. By contrast,
 fine-grained inferences about which links are lost, retained, or
 reorganised depend strongly on how interactions are inferred.
 
-This distinction challenges a central ambition of food web ecology - the
+This distinction challenges a central ambition of food web ecology: the
 use of detailed interaction structure to diagnose mechanisms of
-stability and collapse (\emph{e.g.,} Dunhill et al., 2024). If
-interaction-level cascade pathways vary substantially across equally
-plausible reconstructions, then mechanistic narratives derived from a
-single inferred topology may overstate their precision (Allesina \&
-Tang, 2012; Curtsdotter et al., 2011; Dunne et al., 2002). The apparent
-determinism of extinction cascades or trophic bottlenecks may partly
-reflect model-imposed structure rather than ecological inevitability.
+stability and collapse. Our findings suggest that while coarse-grained
+patterns might be shared across methods, fine-grained mechanistic
+narratives (such as the specific pathways of interaction loss) are much
+more precarious. This implies that had Dunhill et al. (2024) selected a
+different reconstruction method, the resulting inferences regarding the
+drivers of extinctions could have pointed to entirely different
+ecological mechanisms. If interaction-level cascade pathways vary
+substantially across equally plausible reconstructions, then mechanistic
+narratives derived from a single inferred topology may overstate their
+precision (Allesina \& Tang, 2012; Curtsdotter et al., 2011; Dunne et
+al., 2002). The apparent determinism of extinction cascades may
+therefore partly reflect model-imposed structure rather than ecological
+inevitability.
 
 For macroecology, this metric dependence clarifies where network-based
 inference is accurate. Aggregate properties may be comparatively robust
@@ -958,18 +1005,18 @@ network analyses are to inform comparative synthesis across space and
 time.
 
 Taken together, these results underscore that network reconstruction is
-not a neutral preprocessing step but part of a hypothesis-generating
-process in which each model encodes a distinct set of ecological
-assumptions. The inferred topology and dynamics of a food web therefore
-reflect not only ecological data, but the theoretical assumptions
-embedded in the reconstruction framework. Disagreement among models does
-not imply that any single approach is `wrong', but rather that different
-models capture different facets of ecological reality (Petchey et al.,
-2011; Stouffer, 2019). Disagreement among models does not imply that any
-single approach is `incorrect'. Rather, different models capture
-different facets of ecological constraint---trait compatibility,
-energetic optimisation, or topological regularity. The critical point is
-that these facets are not interchangeable.
+not a neutral preprocessing step but an additional part of the
+hypothesis-generating process in which each model encodes a distinct set
+of ecological assumptions. The inferred topology and dynamics of a food
+web therefore reflect not only ecological data, but the theoretical
+assumptions embedded in the reconstruction framework. Disagreement among
+models does not imply that any single approach is `wrong', but rather
+that different models capture different facets of ecological reality
+(Petchey et al., 2011; Stouffer, 2019). Disagreement among models does
+not imply that any single approach is `incorrect'. Rather, different
+models capture different facets of ecological constraint---trait
+compatibility, energetic optimisation, or topological regularity. The
+critical point is that these facets are not interchangeable.
 
 This perspective reframes reconstruction choice as part of hypothesis
 specification. Researchers must align reconstruction approaches with the
@@ -991,32 +1038,37 @@ research}\label{implications-for-comparative-biogeography-and-global-change-rese
 
 Network approaches are increasingly applied to examine how ecological
 organisation varies across latitudinal gradients, environmental filters,
-disturbance regimes, and climate-driven transitions. These studies
-frequently interpret variation in connectance, trophic height,
-interaction β-diversity, or robustness as indicators of ecological
-differentiation among regions or time intervals. Yet reconstruction
-frameworks often differ among systems due to variation in sampling
-intensity, trait resolution, or modelling preference. Our results show
-that such differences can systematically alter inferred topology and
-disturbance dynamics even when species composition is held constant.
+disturbance regimes, and climate-driven transitions (Gilman et al.,
+2010; Tylianakis et al., 2008). In global change ecology, networks are
+used to project vulnerability under warming, quantify rewiring of
+interactions, and assess stability under species loss (\emph{e.g.,} Hao
+et al., 2025; Marjakangas et al., 2025). These studies frequently
+interpret variation in connectance, trophic height, interaction
+β-diversity, or robustness as indicators of ecological differentiation
+among regions or time intervals (\emph{e.g.,} Pellissier et al., 2018;
+Trøjelsgaard \& Olesen, 2016). Our results show that such differences
+can systematically alter inferred topology and disturbance dynamics even
+when species composition is held constant. This suggests that apparent
+differences in network structure across spatial or climate gradients may
+reflect variation in structural priors as much as ecological process.
 
-This finding has consequences for interaction biogeography. Apparent
-differences in network turnover across spatial gradients may reflect
-divergence in structural priors rather than genuine ecological
-reorganisation. Similarly, projected differences in vulnerability under
-climate change may depend on how realised interactions are modelled, not
-solely on community composition. Without explicit treatment of
-reconstruction assumptions, comparative network analyses risk conflating
-modelling artefact with macroecological process.
+Deep-time paleo-food webs provide a complementary perspective because
+they capture ecosystem responses to large-scale environmental
+perturbations and extinction events under past climate change
+(\emph{e.g.,} Dunhill et al. (2024); Smith et al. (2025)). Fossil
+networks therefore represent natural experiments for evaluating
+resilience, trophic reorganisation, and recovery following extreme
+environmental change. Studies of fossil food webs have demonstrated how
+network structure mediates extinction cascades and post-disturbance
+reassembly (Dunne et al., 2008; Roopnarine, 2006), providing empirical
+constraints on long-term ecological stability.
 
-If ecological networks are to function as reliable macroecological state
-variables, reconstruction framework must be treated as a formal
-component of hypothesis specification. Cross-system comparisons should
-standardise modelling approaches wherever possible, or explicitly
-evaluate sensitivity to alternative structural priors. Ensemble
-reconstruction---treating networks as distributions rather than single
-topologies---offers a principled pathway toward incorporating structural
-uncertainty into comparative synthesis.
+However, our results emphasise that even in deep-time systems structural
+conclusions remain sensitive to modelling assumptions. Treating
+reconstructed networks as ensembles rather than single deterministic
+representations provides a more transparent framework for incorporating
+uncertainty into comparative macroecology and for using paleo data to
+inform expectations about modern climate-driven reorganisation.
 
 \subsection{Toward a more explicit modelling paradigm in food web
 ecology}\label{toward-a-more-explicit-modelling-paradigm-in-food-web-ecology}
@@ -1053,12 +1105,14 @@ modelling assumptions. The reliability of network-based inference is
 therefore scale dependent.
 
 These results challenge the implicit assumption that reconstructed
-networks are structurally commensurable across systems. When
-reconstruction frameworks differ, variation in connectance, trophic
-organisation, robustness, or interaction turnover may reflect embedded
-modelling assumptions as much as ecological processes. Network
-reconstruction should thus be treated as an explicit component of
-hypothesis specification in comparative macroecology and biogeography.
+networks are structurally commensurable across systems --- whether
+comparing modern communities across environmental gradients or fossil
+assemblages across extinction intervals. When reconstruction frameworks
+differ, variation in connectance, trophic organisation, robustness, or
+interaction turnover may reflect embedded modelling assumptions as much
+as ecological processes. Network reconstruction should thus be treated
+as an explicit component of hypothesis specification in comparative
+macroecology and biogeography.
 
 No single model captures the full complexity of ecological organisation,
 but neither are alternative models interchangeable. Aligning
@@ -1066,10 +1120,12 @@ reconstruction framework with inferential goals, standardising
 approaches across comparative studies, and incorporating ensemble or
 probabilistic representations will be essential for strengthening the
 interpretability of network analyses across spatial and temporal
-gradients. As ecological networks increasingly inform global change
-research, recognising structural priors as fundamental determinants of
-inference is critical for advancing food web ecology from descriptive
-reconstruction toward rigorous comparative synthesis.
+gradients, including efforts to use deep-time systems to inform
+expectations under contemporary climate change. As ecological networks
+increasingly inform global change research, recognising model
+reconstruction as fundamental determinants of inference is critical for
+advancing food web ecology from descriptive reconstruction toward
+rigorous comparative synthesis.
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
@@ -1100,6 +1156,11 @@ T. M., \& Pascual, M. (2011). Spatial guilds in the serengeti food web
 revealed by a bayesian group model. \emph{PLOS Computational Biology},
 \emph{7}(12), e1002321.
 \url{https://doi.org/10.1371/journal.pcbi.1002321}
+
+\bibitem[\citeproctext]{ref-Bezanson2017Julia}
+Bezanson, J., Edelman, A., Karpinski, S., \& Shah, V. B. (2017). Julia:
+A fresh approach to numerical computing. \emph{SIAM Review},
+\emph{59}(1), 65--98. \url{https://doi.org/10.1137/141000671}
 
 \bibitem[\citeproctext]{ref-brose2006}
 Brose, U., Jonsson, T., Berlow, E. L., Warren, P., Banasek-Richter, C.,
@@ -1202,6 +1263,12 @@ interaction network types to answer different ecological questions.
 \emph{Nature Reviews Biodiversity}, 1--10.
 \url{https://doi.org/10.1038/s44358-025-00056-7}
 
+\bibitem[\citeproctext]{ref-gilman2010}
+Gilman, S. E., Urban, M. C., Tewksbury, J., Gilchrist, G. W., \& Holt,
+R. D. (2010). A framework for community interactions under climate
+change. \emph{Trends in Ecology \& Evolution}, \emph{25}(6), 325--331.
+\url{https://doi.org/10.1016/j.tree.2010.03.002}
+
 \bibitem[\citeproctext]{ref-gravel2019}
 Gravel, D., Baiser, B., Dunne, J. A., Kopelke, J.-P., Martinez, N. D.,
 Nyman, T., Poisot, T., Stouffer, D. B., Tylianakis, J. M., Wood, S. A.,
@@ -1233,6 +1300,12 @@ hydroclimate perturbations during the toarcian oceanic anoxic event.
 \emph{Earth-Science Reviews}, \emph{258}, 104946.
 \url{https://doi.org/10.1016/j.earscirev.2024.104946}
 
+\bibitem[\citeproctext]{ref-marjakangas2025}
+Marjakangas, E.-L., Dalsgaard, B., \& Ordonez, A. (2025). Fundamental
+interaction niches: Towards a functional understanding of ecological
+networks' resilience. \emph{Ecology Letters}, \emph{28}(6), e70146.
+\url{https://doi.org/10.1111/ele.70146}
+
 \bibitem[\citeproctext]{ref-michalska-smith2019}
 Michalska-Smith, M. J., \& Allesina, S. (2019). Telling ecological
 networks apart by their structure: A computational challenge. \emph{PLOS
@@ -1250,6 +1323,14 @@ Morales-Castilla, I., Matias, M. G., Gravel, D., \& Araújo, M. B.
 (2015). Inferring biotic interactions from proxies. \emph{Trends in
 Ecology \& Evolution}, \emph{30}(6), 347--356.
 \url{https://doi.org/10.1016/j.tree.2015.03.014}
+
+\bibitem[\citeproctext]{ref-pellissier2018}
+Pellissier, L., Albouy, C., Bascompte, J., Farwig, N., Graham, C.,
+Loreau, M., Maglianesi, M. A., Melián, C. J., Pitteloud, C., Roslin, T.,
+Rohr, R., Saavedra, S., Thuiller, W., Woodward, G., Zimmermann, N. E.,
+\& Gravel, D. (2018). Comparing species interaction networks along
+environmental gradients. \emph{Biological Reviews}, \emph{93}(2),
+785--800. \url{https://doi.org/10.1111/brv.12366}
 
 \bibitem[\citeproctext]{ref-perez-lamarque2026}
 Perez-Lamarque, B., Andréoletti, J., Morillon, B., Pion-Piola, O.,
@@ -1305,6 +1386,11 @@ ecological interaction networks vary through space and time.
 \emph{Oikos}, \emph{124}(3), 243--251.
 \url{https://doi.org/10.1111/oik.01719}
 
+\bibitem[\citeproctext]{ref-RCoreTeam2024}
+R Core Team. (2024). \emph{R: A language and environment for statistical
+computing}. R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}
+
 \bibitem[\citeproctext]{ref-rohr2010}
 Rohr, R., Scherer, H., Kehrli, P., Mazza, C., \& Bersier, L.-F. (2010).
 Modeling food webs: Exploring unexplained structure using latent traits.
@@ -1327,6 +1413,14 @@ Shaw, J. O., Dunhill, A. M., Beckerman, A. P., Dunne, J. A., \& Hull, P.
 M. (2024). \emph{A framework for reconstructing ancient food webs using
 functional trait data} (p. 2024.01.30.578036). bioRxiv.
 \url{https://doi.org/10.1101/2024.01.30.578036}
+
+\bibitem[\citeproctext]{ref-smith2025}
+Smith, Q. A., Tomé, C. P., Gearty, W., Smith, F. A., Shizuka, D., \&
+Lyons, S. K. (2025). Consequences of the megafauna extinction: Changes
+in food web networks on the edwards plateau across the
+pleistocene{\textendash}holocene transition. \emph{Global Ecology and
+Biogeography}, \emph{34}(12), e70113.
+\url{https://doi.org/10.1111/geb.70113}
 
 \bibitem[\citeproctext]{ref-soluxe92001}
 Solé, R. V., \& Montoya, M. (2001). Complexity and fragility in
@@ -1373,6 +1467,12 @@ Trøjelsgaard, K., \& Olesen, J. M. (2016). Ecological networks in
 motion: Micro- and macroscopic variability across scales.
 \emph{Functional Ecology}, \emph{30}(12), 1926--1935.
 https://doi.org/\url{https://doi.org/10.1111/1365-2435.12710}
+
+\bibitem[\citeproctext]{ref-tylianakis2008}
+Tylianakis, J. M., Didham, R. K., Bascompte, J., \& Wardle, D. A.
+(2008). Global change and species interactions in terrestrial
+ecosystems. \emph{Ecology Letters}, \emph{11}(12), 1351--1363.
+\url{https://doi.org/10.1111/j.1461-0248.2008.01250.x}
 
 \bibitem[\citeproctext]{ref-tylianakis2017}
 Tylianakis, J. M., \& Morris, R. J. (2017). Ecological networks across
