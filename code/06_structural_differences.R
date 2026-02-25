@@ -308,16 +308,16 @@ for (i in seq_along(levs)) {
                         breaks = pal_df$l) +
     scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
     labs(
-      x = "Model",
+      x = NULL,
       y = "Estimated marginal mean",
       title = levs[i]
     ) +
     coord_cartesian(clip = "off") +
-    figure_theme
+    figure_theme +
+    theme(axis.text.x = element_text(angle=45, hjust=1))
 }
 
-model_comparison_plot <-
-  plot_list_emm[[1]] /
+plot_list_emm[[1]] /
   plot_list_emm[[2]] /
   plot_list_emm[[3]] +
   plot_layout(
@@ -325,4 +325,5 @@ model_comparison_plot <-
     heights = c(1, 2, 1)
   )
 
-model_comparison_plot
+# Save figure
+ggsave("../figures/emm_plot.png", width = 9, height = 11, dpi = 600)
