@@ -224,7 +224,7 @@ reconstruction}
 2%
 }%
 }
-\date{2026-02-24}
+\date{2026-02-25}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -462,18 +462,6 @@ assumptions of link distributions; and b) realised models that create
 networks where links between species are constrained based on some form
 of `species choice' \emph{e.g.,} maximising energy gain.
 
-For example, some tools require quantitative estimates of body size,
-which must often be inferred from size classes or functional morphology
-in the fossil record. Structural models, such as the niche model, rely
-only on species richness and estimates/specification of connectance, but
-their species-agnostic nature limits their applicability to trait-based
-or diet-specific questions, although they do still accurately recover
-network structure (Stouffer et al., 2005) . Mechanistic approaches, by
-contrast, depend on accurate assignment of feeding traits or robust
-phylogenetic support. Recognizing how these methodological requirements
-intersect with the limits of fossil evidence is essential for selecting
-an appropriate modelling framework.
-
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
@@ -676,16 +664,21 @@ a measure of robustness in inferred community responses.
 
 \section{Results}\label{results}
 
-Across six network reconstruction approaches, inferred food web
-structure, species interactions, and extinction dynamics differed
-consistently. Multivariate analyses showed pronounced separation among
-models in network metric space. Reconstruction approach explained most
-of the variance in structural properties, leaving a distinct signature
-independent of community composition. Notably, agreement among models
-depended on scale - approaches that were statistically similar in
-multivariate structural space often diverged in inferred interactions or
-extinction dynamics. This demonstrates that structural similarity does
-not guarantee concordance in species-level diets or trophic roles.
+Results show that reconstruction approaches that appear similar when
+evaluated using global network metrics can yield fundamentally different
+ecological narratives when interrogated at the level of interactions and
+extinction dynamics. Across six network reconstruction approaches,
+inferred food web structure, species interactions, and extinction
+dynamics differed consistently. Multivariate analyses showed pronounced
+separation among models in network metric space. Reconstruction approach
+explained most of the variance in structural properties, leaving a
+distinct signature independent of community composition. Notably,
+agreement among models depended on the scale at which the comparison was
+made- approaches that were statistically similar in multivariate
+structural space (scale 1) often diverged in inferred interactions
+(scale 2) or extinction dynamics (scale 3). This demonstrates that
+structural similarity does not guarantee concordance in species-level
+diets or trophic roles.
 
 Model choice substantially influenced inferred extinction dynamics.
 Temporal trajectories of network collapse, interaction loss, and motif
@@ -694,10 +687,7 @@ extinction rankings were often broadly consistent, link-level outcomes
 and extinction inferences were highly sensitive to reconstruction
 assumptions. Together, these results show that ecological inferences
 drawn from networks depend critically on the reconstruction framework
-employed. Together these results show that reconstruction approaches
-that appear similar when evaluated using global network metrics can
-yield fundamentally different ecological narratives when interrogated at
-the level of interactions and extinction dynamics.
+employed.
 
 \subsection{Network structure differs among reconstruction
 approaches}\label{network-structure-differs-among-reconstruction-approaches}
@@ -746,11 +736,11 @@ magnitude greater than structural differences associated with ecological
 turnover through the extinction sequence, even if the Toarcian dataset
 was characterized with a significant community turnover.
 
-To determine whether the dominance of reconstruction framework reflected
-absolute mean shifts among time bins, we repeated the analysis after
-centring network metrics within each extinction phase. This procedure
-removes between-phase differences while retaining within-phase
-structural variation. Even after temporal bin-standardised centring,
+To determine whether the dominance of the reconstruction framework
+reflected absolute mean shifts among time bins, we repeated the analysis
+after centring network metrics within each extinction phase. This
+procedure removes between-phase differences while retaining within-phase
+structural variation. Even after temporal bin-standardised centring, the
 reconstruction framework explained 84.8\% of multivariate variance (R² =
 0.848, p \textless{} 0.001). These results demonstrate that the
 influence of model choice is not driven by temporal mean differences,
@@ -888,15 +878,17 @@ in this workflow is a powerful assumption - that reconstructed networks
 provide structurally comparable representations of ecological
 communities, such that differences in connectance, trophic structure,
 motif composition, or robustness primarily reflect biological variation.
-Our results challenge this assumption. Across an identical species pool,
-reconstruction frameworks explained the majority of variance among
-reconstructed network topologies, generating distinct structural
-signatures independent of community composition. Although some model
-classes converged on similar global metrics, pairwise interaction
-turnover revealed substantial divergence in inferred trophic links.
-Structural similarity at the level of connectance or trophic height
-therefore does not guarantee concordance in species roles or interaction
-architecture.
+
+Our results challenge this assumption and reveal strong sensitivity of
+inference about secondary extinction dynamics in paleo-foodwebs. Across
+an identical species pool, reconstruction frameworks explained the
+majority of variance among reconstructed network topologies, generating
+distinct structural signatures independent of community composition.
+Although some model classes converged on similar global metrics,
+pairwise interaction turnover revealed substantial divergence in
+inferred trophic links. Structural similarity at the level of
+connectance or trophic height therefore does not guarantee concordance
+in species roles or interaction architecture.
 
 Reconstruction framework explained the majority of variance in inferred
 food web topology, far outweighing the influence of temporal turnover
@@ -1341,12 +1333,6 @@ Solé, R. V., \& Montoya, M. (2001). Complexity and fragility in
 ecological networks. \emph{Proceedings of the Royal Society of London.
 Series B: Biological Sciences}, \emph{268}(1480), 2039--2045.
 \url{https://doi.org/10.1098/rspb.2001.1767}
-
-\bibitem[\citeproctext]{ref-stouffer2005}
-Stouffer, D. B., Camacho, J., Guimerà, R., Ng, C. A., \& Nunes Amaral,
-L. A. (2005). Quantitative patterns in the structure of model and
-empirical food webs. \emph{Ecology}, \emph{86}(5), 1301--1311.
-\url{https://doi.org/10.1890/04-0957}
 
 \bibitem[\citeproctext]{ref-stouffer2019}
 Stouffer, D. B. (2019). All ecological models are wrong, but some are
