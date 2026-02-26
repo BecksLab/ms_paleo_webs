@@ -170,9 +170,9 @@ ggplot(loadings_df, aes(x = CV1, y = CV2)) +
     linewidth = 0.9
   ) +
   scale_colour_manual(values = c(
-    Macro = "#1b9e77",
-    Meso  = "#d95f02",
-    Micro = "#7570b3"
+    Macro = "#D9C589",
+    Meso  = "#6B4E3D",
+    Micro = "#A63D2D"
   )) +
   geom_text_repel(
     data = subset(loadings_df, keep),

@@ -32,7 +32,7 @@ figure_theme =
         panel.grid.major.x = element_blank(),
         axis.line = element_blank(),
         axis.ticks = element_line(colour = colorspace::darken("#dddddd", 0.1),
-                                  size = 0.3),
+                                  linewidth = 0.3),
         plot.background = element_rect(fill = "white", colour = NA),
         panel.background = element_rect(fill = "white", colour = NA),
         legend.background = element_rect(fill = "white", colour = NA),
@@ -45,12 +45,24 @@ figure_theme =
 ## 3. Model Color Palette ----
 # Assigns specific hex codes to each modelling framework
 # This ensures a model is always the same colour across all plots
-colors <- c("niche" = "#D760F6",
-            "random" = "#B01DFF",
-            "ADBM" = "#F5BD63",
-            "ATN" = "#9E8324",
-            "Body-size ratio" = "#FAE2A6",
-            "PFIM" = "#26ECC9")         # Pink
+# 1. DISCRETE MODEL COLORS (Paleo-Safe)
+colours <- c("niche"           = "#B8A9C9", # Light Shale
+             "random"          = "#45354F", # Deep Pyrite (Darker for contrast)
+             "ADBM"            = "#D98A47", # Ironstone
+             "ATN"             = "#A66128", # Mudstone
+             "Body-size ratio" = "#E6C18B", # Sandstone
+             "PFIM"            = "#507D77"  # Glauconite Teal
+)
+
+# 2. CONTINUOUS OCEAN RAMP
+# Low: #F2E8CF (Sand) -> Mid: #6A994E (Algae) -> High: #154734 (Anoxic)
+
+# 3. DIVERGING (Non-White Midpoint)
+# Low:  #364F6B (Cool Deep Blue)
+# Mid:  #E3D5B8 (Parchment)
+# High: #B03A2E (Extinction Red)
+
+
 
 # Converts the named vector into a dataframe for easier mapping in ggplot
 pal_df <- data.frame(l = names(colors), c = colors)

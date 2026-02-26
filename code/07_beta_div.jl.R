@@ -74,7 +74,8 @@ ggplot(tile_df,
            y = Model2, 
            fill = Beta_turnover)) +
   geom_tile(color = "white") +
-  scale_fill_viridis_c(option = "plasma", name = "Beta Turnover") +
+  scale_fill_gradientn(colors = c("#F2E8CF", "#6A994E", "#154734"),
+                       name = "Beta turnover") +
   theme_minimal() +
   labs(x = NULL,
        y = NULL) +
