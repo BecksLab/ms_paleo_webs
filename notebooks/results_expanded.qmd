@@ -86,35 +86,51 @@ To quantify the relative contributions of reconstruction framework and temporal 
 
 To determine whether the dominance of reconstruction framework reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, reconstruction framework explained 84.8% of multivariate variance (R² = 0.848, p < 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among reconstruction frameworks.
 
-# Model choice influences inferred extinction dynamics
+# Statistical Drivers of Network Variation
 
-## Figure S2. Raw temporal trajectories of network structure during extinction simulations.
+## Statistical Robustness and Assumptions
 
-Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.
+Factorial ANOVA assumptions were validated via residual analysis. Despite significant heteroscedasticity (Levene’s test, p<0.001), the perfectly balanced design (n = 100 per cell) and large sample size (N = 2400) ensure the robustness of the F-test. Visual inspection of Q-Q plots and Residuals-vs-Fitted plots confirmed that the distributions were sufficiently symmetric for parametric analysis.
 
-![](figures/Figure_S3_time_structure.png)
+## Figure S2. Temporal Trajectories of Network Structure by Model
 
-## Table S3. Full generalized additive model (GAM) results for network-level metrics.
+Detailed shifts in network properties across the four extinction phases, categorized by organizational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the "baseline" differences between models—such as the Niche model's tendency to over-estimate motif counts—and their divergent responses to species loss.
 
-Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.
+![](../figures/raw_time_structure.png)
+
+## Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.
+
+Summary of the two-way factorial ANOVA results for all eight metrics. Values represent partial eta-squared ($\eta^{2}_{p}$), which quantifies the proportion of variance explained by each factor. The dominance of the 'Model' term across all scales confirms that framework choice is the primary determinant of network topology.
 
 ```{r}
 
-readr::read_csv("tables/Table_S7_GAM_results.csv") %>%
+readr::read_csv("../tables/ANOVA_Results.csv") %>%
 kable()
 
 ```
 
-## Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.
+## Figure S3. Model Disagreement (CV%) Across Extinction Phases
 
-Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as <0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.
+Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardized across panels to facilitate comparison between organizational scales. A characteristic "dip" at the 'during' phase in several meso-scale metrics illustrates the structural canalization effect, where severe species loss forces a temporary convergence in model predictions.
+
+![](../figures/cv.png)
+
+## Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.
+
+Calculated inter-model CV% for each metric at each time step. These data points underpin the "bubble sizes" in the main text's executive summary and the trajectories in Figure S3. Note the reduction in CV% for linear chains and omnivory motifs during the peak extinction phase (During).
 
 ```{r}
 
-readr::read_csv("tables/Table_S8_GAM_model_comparison.csv") %>%
+readr::read_csv("../tables/Model_Agreement_CV.csv") %>%
 kable()
 
 ```
+
+## Figure S4. Pairwise Framework Comparisons (Tukey HSD)
+
+Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks ($*$) indicate statistical significance (p<0.05). This identifies which specific models drive the high CV values seen in Figure 1.
+
+![](../figures/ANOVA_tukey.png)
 
 # References {.unnumbered}
 

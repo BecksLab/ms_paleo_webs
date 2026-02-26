@@ -29,201 +29,119 @@ df <- read_csv("../data/processed/topology.csv") %>%
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "S1", "S2", "S4", "S5")
 
-fit_gam_with_anova <- function(stat_name, data) {
+# ANOVA function (to make mapping easier)
+fit_anova_per_time <- function(stat_name, time_bin, data) {
   
-  formula_shared <- as.formula(paste0(stat_name, " ~ model + s(time, k = 4)"))
-  formula_model <- as.formula(paste0(stat_name, " ~ model + s(time, by = model, k = 4)"))
+  # Filter data for the specific time bin
+  data_filtered <- data %>% filter(time == time_bin)
   
-  # Fit models
-  gam_shared <- gam(formula_shared, data = data, method = "REML")
-  gam_model <- gam(formula_model, data = data, method = "REML")
+  # Fit ANOVA: stat ~ model
+  formula_anova <- as.formula(paste0(stat_name, " ~ model"))
+  anova_fit <- aov(formula_anova, data = data_filtered)
   
-  # Parametric coefficients
-  param <- summary(gam_model)$p.table %>%
-    as.data.frame() %>%
-    rownames_to_column("term") %>%
+  # Run Tukey Post-hoc
+  tukey_res <- TukeyHSD(anova_fit)
+  
+  # Tidy results
+  posthoc_df <- as.data.frame(tukey_res$model) %>%
+    rownames_to_column("comparison") %>%
+    as_tibble() %>%
     mutate(
-      statistic = stat_name,
-      type = "parametric",
-      estimate_or_edf = Estimate,
-      se_or_refdf = `Std. Error`,
-      t_or_f_value = `t value`,
-      p_value = `Pr(>|t|)`
+      statistic = as.character(stat_name),
+      time_bin = as.character(time_bin),
+      significant = ifelse(`p adj` < 0.05, "*", "ns")
     ) %>%
-    select(term, statistic, type, estimate_or_edf, se_or_refdf, t_or_f_value, p_value)
+    select(statistic, time_bin, comparison, diff, lwr, upr, p_adj = `p adj`, significant)
   
-  # Smooth terms
-  smooths <- summary(gam_model)$s.table %>%
-    as.data.frame() %>%
-    rownames_to_column("term") %>%
-    mutate(
-      statistic = stat_name,
-      type = "smooth",
-      estimate_or_edf = edf,
-      se_or_refdf = Ref.df,
-      t_or_f_value = F,
-      p_value = `p-value`
-    ) %>%
-    select(term, statistic, type, estimate_or_edf, se_or_refdf, t_or_f_value, p_value)
-  
-  # ANOVA comparison
-  anova_res <- anova(gam_shared, gam_model, test = "F")
-  anova_df <- tibble(
-    term = "anova_model_comparison",
-    statistic = stat_name,
-    type = "anova",
-    estimate_or_edf = NA,
-    se_or_refdf = NA,
-    t_or_f_value = anova_res$F[2],
-    p_value = anova_res$`Pr(>F)`[2]
-  )
-  
-  # Combine all
-  bind_rows(param, smooths, anova_df)
+  return(posthoc_df)
 }
 
-# Loop over all network statistics
-all_results <- map_dfr(network_stats, ~fit_gam_with_anova(.x, df))
+# Define your time bins based on your labels (1=pre, 2=during, 3=early, 4=late)
+time_bins <- unique(df$time)
 
-# View tidy results
-print(all_results)
+# Run the analysis across all metrics AND all time bins
+all_time_results <- expand_grid(stat = network_stats, time = time_bins) %>%
+  mutate(results = map2(stat, time, ~fit_anova_per_time(.x, .y, df))) %>%
+  unnest(results)
+
+# Relabel time bins for the plot
+all_time_results_plot <- all_time_results %>%
+  mutate(time_label = case_when(
+    time_bin == "1" ~ "Pre-extinction",
+    time_bin == "2" ~ "During Extinction",
+    time_bin == "3" ~ "Early Recovery",
+    time_bin == "4" ~ "Late Recovery"
+  ))
+
+ggplot(all_time_results_plot, aes(x = comparison, y = diff, color = significant)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_pointrange(aes(ymin = lwr, ymax = upr)) +
+  # Facet by Metric (rows) and Time Bin (columns)
+  facet_grid(statistic ~ time_label, scales = "free") +
+  coord_flip() +
+  scale_colour_manual(values = c("*" = "#E41A1C", "ns" = "#377EB8"),
+                      name = NULL,
+                      labels = c("Significant", "Non-Significant")) +
+  labs(
+    x = "Comparison",
+    y = "Mean Difference"
+  ) +
+  figure_theme +
+  theme(axis.text.y = element_text(size = 7))
 
 
+# 1. Calculate Means and SE for the Linear Plot
+df_linear <- df %>%
+  # Ensure time is numeric (1, 2, 3, 4)
+  mutate(time_num = as.numeric(time)) %>%
+  pivot_longer(cols = all_of(network_stats), names_to = "statistic", values_to = "val") %>%
+  group_by(statistic, model, time_num) %>%
+  summarise(
+    mean_val = mean(val, na.rm = TRUE),
+    se_val = sd(val, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) %>%
+  # Calculate Change Relative to Time 1 (Pre-extinction)
+  group_by(statistic, model) %>%
+  mutate(relative_change = mean_val - mean_val[time_num == 1]) %>%
+  ungroup() %>%
+  # Labeling for the plot
+  glow_up(stat_label = case_when(statistic == "S1" ~ "No. of linear chains",
+                                 statistic == "S2" ~ "No. of omnivory motifs",
+                                 statistic == "S4" ~ "No. of direct competition motifs",
+                                 statistic == "S5" ~ "No. of apparent competition motifs",
+                                 statistic == "trophic_level" ~ "Max trophic level",
+                                 .default = str_to_sentence(statistic)),
+          model = case_when(
+            model == "pfim" ~ "PFIM",
+            model == "bodymassratio" ~ "Body-size ratio",
+            model == "adbm" ~ "ADBM",
+            model == "lmatrix" ~ "ATN",
+            TRUE ~ as.character(model)
+          ))
 
-# function to get GAM predictions for plotting
-get_gam_predictions <- function(stat_name, data, time_grid = 100) {
-  
-  gam_fit <- gam(
-    as.formula(paste0(stat_name, " ~ model + s(time, by = model, k = 4)")),
-    data = data,
-    method = "REML"
-  )
-  
-  # Keep only levels actually present in the data used for fitting
-  model_levels <- unique(data$model)
-  
-  newdata <- expand_grid(
-    time = seq(min(data$time), max(data$time), length.out = time_grid),
-    model = model_levels
-  )
-  
-  # Ensure model is factor with same levels as fit
-  newdata$model <- factor(newdata$model, levels = model_levels)
-  
-  preds <- predict(gam_fit, newdata, se.fit = TRUE)
-  
-  newdata %>%
-    mutate(
-      statistic = stat_name,
-      fit = preds$fit,
-      se = preds$se.fit,
-      lower = fit - 1.96 * se,
-      upper = fit + 1.96 * se
-    )
-}
+ggplot(df_linear, aes(x = time_num, y = mean_val, color = model, group = model)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = mean_val - se_val, ymax = mean_val + se_val), width = 0.1) +
+  facet_wrap(~stat_label, scales = "free_y") +
+  scale_x_continuous(breaks = 1:4, labels = c("Pre", "Dur", "Early", "Late")) +
+  scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
+  labs(title = "Absolute Change Over Linear Time",
+       x = "Extinction Phase", y = "Mean Metric Value") +
+  figure_theme
 
-# predictions for all  metrics
-
-all_stats <- c(
-  "connectance", "trophic_level",
-  "generality", "vulnerability",
-  "S1", "S2", "S4", "S5"
-)
-
-get_all_gam_preds <- function(data, stats, time_grid = 100) {
-  
-  map_dfr(stats, function(stat) {
-    
-    gam_fit <- gam(
-      as.formula(paste0(stat, " ~ model + s(time, by = model, k = 4)")),
-      data = data,
-      method = "REML"
-    )
-    
-    newdata <- expand_grid(
-      time = seq(min(data$time), max(data$time), length.out = time_grid),
-      model = unique(data$model)
-    )
-    
-    newdata$model <- factor(newdata$model, levels = unique(data$model))
-    
-    preds <- predict(gam_fit, newdata, se.fit = TRUE)
-    
-    newdata %>%
-      mutate(
-        stat = stat,
-        fit = preds$fit,
-        se = preds$se.fit,
-        lower = fit - 1.96 * se,
-        upper = fit + 1.96 * se
-      )
-  })
-}
-
-df_gam_plot <- get_all_gam_preds(df, all_stats) %>%
-  glow_up(
-    model = case_when(model == "pfim" ~ "PFIM",
-                      model == "bodymassratio" ~ "Body-size ratio",
-                      model == "adbm" ~ "ADBM",
-                      model == "lmatrix" ~ "ATN",
-                      .default = as.character(model)),
-    stat = case_when(stat == "S1" ~ "No. of linear chains",
-                     stat == "S2" ~ "No. of omnivory motifs",
-                     stat == "S4" ~ "No. of direct competition motifs",
-                     stat == "S5" ~ "No. of apparent competition motifs",
-                     stat == "trophic_level" ~ "Max trophic level",
-                     .default = str_to_sentence(stat))) %>%
-  glow_up(
-    model = factor(model, ordered = TRUE,
-                   levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")),
-    level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
-                      stat %in% c("Generality", "Vulnerability") ~ "Micro",
-                      .default = "Meso"))
-
-plot_list <- vector("list", length = 3)
-levs <- c("Macro", "Meso", "Micro")
-
-for (i in seq_along(plot_list)) {
-  
-  plot_list[[i]] <-
-    ggplot(
-      df_gam_plot %>% yeet(level == levs[i]),
-      aes(x = time, 
-          y = fit, 
-          colour = model, 
-          fill = model)) +
-    geom_ribbon(aes(ymin = lower, 
-                    ymax = upper),
-                alpha = 0.2,
-                colour = NA) +
-    geom_line(linewidth = 1) +
-    facet_wrap(vars(stat),
-               scales = "free_y",
-               ncol = 2) +
-    scale_x_continuous(breaks = c(1, 2, 3, 4),
-                       labels = c("pre", "during", "early", "late")) +
-    scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
-    scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
-    labs(x = "Time",
-         y = "Value",
-         title = levs[i]) +
-    coord_cartesian(clip = "off") +
-    figure_theme
-}
-
-plot_list[[1]] /
-  plot_list[[2]] /
-  plot_list[[3]] +
-  plot_layout(
-    guides = "collect",
-    heights = c(1, 2, 1)
-  )
-
-ggsave("../figures/GAM_predictions.png",
-       width = 5000,
-       height = 6500,
-       units = "px",
-       dpi = 600)
+ggplot(df_linear, aes(x = time_num, y = relative_change, color = model, group = model)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~stat_label, scales = "free_y") +
+  scale_x_continuous(breaks = 1:4, labels = c("Pre", "Dur", "Early", "Late")) +
+  scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
+  labs(title = "Relative Change from Pre-extinction Baseline",
+       subtitle = "Spreading lines = Divergence in response; Parallel lines = Similarity of differences",
+       x = "Extinction Phase", y = "Change in Value (Δ)") +
+  figure_theme
 
 df_raw_plot <- 
   df %>%
@@ -545,7 +463,7 @@ for (i in seq_along(plot_list)) {
                                fill = tau)) +
     geom_tile(color = "white") +
     scale_fill_gradientn(breaks = c(-1, 0, 1),
-                         colours = c("red", "white", "blue"),
+                         colours = c("#8C2F02", "#FFFFFF", "#084594"),
                          limits = c(-1, 1)) +
     facet_wrap(vars(metric),
                #scales = 'free',

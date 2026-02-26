@@ -1,0 +1,9 @@
+Metric,Model,Time,Interaction
+Connectance,0.871,0.029,0.171
+Max trophic level,0.821,0.322,0.324
+Generality,0.959,0.23,0.405
+Vulnerability,0.9,0.01,0.168
+No. of linear chains,0.959,0.514,0.783
+No. of omnivory motifs,0.955,0.673,0.782
+No. of direct competition motifs,0.973,0.915,0.863
+No. of apparent competition motifs,0.959,0.771,0.605
