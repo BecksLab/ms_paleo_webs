@@ -224,7 +224,7 @@ reconstruction}
 2%
 }%
 }
-\date{2026-02-25}
+\date{2026-02-26}
 
 \usepackage{setspace}
 \usepackage[left]{lineno}
@@ -620,7 +620,7 @@ Definition
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Scale
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Reference (for maths), can make footnotes probs
+Reference
 \end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
@@ -632,15 +632,12 @@ Definition
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Scale
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Reference (for maths), can make footnotes probs
+Reference
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Richness & Number of nodes in the network & Macro & \\
-Links & Normalized standard deviation of links (number of consumers plus
-resources per taxon) & Micro & \\
 Connectance & \(L/S^2\), where \(S\) is the number of species and \(L\)
 the number of links & Macro & \\
 Max trophic level & Prey-weighted trophic level averaged across taxa &
@@ -773,6 +770,51 @@ influence of model choice is not driven by temporal mean differences,
 but reflects intrinsic divergence among reconstruction frameworks in how
 ecological interactions are organised.
 
+\subsubsection{Statistical Drivers of Network
+Variation}\label{statistical-drivers-of-network-variation}
+
+The structural organization of the reconstructed food webs was dictated
+by the choice of modeling framework, which exerted a significantly
+stronger influence on network topology than the ecological signal of
+species loss. A two-way factorial ANOVA across all eight network metrics
+confirmed that the reconstruction approach was the dominant driver of
+variance, with partial eta-squared values (\(\eta^{2}_{p}\))
+consistently exceeding 0.82 and reaching 0.97 for meso-scale motifs
+(Figure~\ref{fig-anova}; Table S3). While the extinction event (time
+bin) significantly altered network structure (p\textless0.001), its
+relative importance remained secondary, typically explaining a smaller
+fraction of the total topological variation. This is clear in
+Figure~\ref{fig-anova} where all metrics are within the bottom-right
+(model-dominated) quadrant of this space, emphasising that framework
+assumptions outweigh the ecological signal of species loss. Furthermore,
+the high inter-model Coefficient of Variation (CV) observed for some
+metrics (Table S4, Figure S4) highlights a sensitivity. The properties
+that are influenced by time are also those upon which the models
+disagree most profoundly. Demonstrating that our understanding of
+structural food web collapse in the fossil record is highly contingent
+on the chosen reconstruction framework, particularly when examining
+complex trophic pathways beyond simple macro-scale properties like
+connectance.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{figures/ANOVA_summary.png}}
+
+}
+
+\caption{\label{fig-anova}Scatter plot illustrating the influence of
+model (x-axis) and time (y-axis) across network metrics. The dashed 1:1
+diagonal represents the parity of influence; metrics below this line are
+governed primarily by model choice and those above by time. Bubble size
+indicates the interaction between model and time while colour indicates
+inter-model disagreement (Mean CV\%); greener bubbles signify metrics
+where models show the highest divergence in their structural
+predictions.}
+
+\end{figure}%
+
 \subsubsection{Inferred pairwise interactions vary widely among
 models}\label{inferred-pairwise-interactions-vary-widely-among-models}
 
@@ -797,55 +839,15 @@ concordance in species-level interactions.
 \caption{\label{fig-beta_div}Pairwise β-turnover in species interactions
 among four ecological network models (ADBM, ATN, Body-size ratio, and
 PFIM). Each cell represents the mean turnover value between a pair of
-models, with warmer colours indicating greater dissimilarity in inferred
-interactions. The diagonal is omitted. High turnover values (yellow)
-indicate strong disagreement in network structure between models,
-whereas lower values (blue--purple) indicate greater similarity.}
+models, with darker colours indicating greater dissimilarity in inferred
+interactions. High turnover values indicate strong disagreement in
+pairwise interactions between models, whereas lower values indicate
+greater similarity.}
 
 \end{figure}%
 
 \subsection{Model choice influences inferred extinction
 dynamics}\label{model-choice-influences-inferred-extinction-dynamics}
-
-To quantify how network structure changed over time during extinction
-simulations and whether these dynamics differed among reconstruction
-models, we fit generalized additive models (GAMs) to time series of
-network-level metrics. GAMs capture non-linear temporal trajectories,
-allowing formal tests of whether the shape of these trajectories differs
-among models. These model-specific temporal trajectories are shown in
-Figure~\ref{fig-gam}. For all metrics examined, the inclusion of
-model-specific smooth terms significantly improved model fit (ANOVA
-model comparison: \(p\) \textless{} 0.001 for all metrics).
-Model-specific smooths differed not only in magnitude but also in the
-timing and abruptness of change, indicating distinct modes of collapse
-across reconstruction approaches (Tables S3--S4). Deterministic,
-data-driven approaches (PFIM) and allometric models (ADBM, ATN)
-exhibited highly non-linear trajectories, showing structural shifts in
-connectivity and motif frequency. In contrast, the Niche model produced
-the most consistent and gradual trajectories, effectively smoothing the
-perceived magnitude of structural change during community collapse.
-These results demonstrate that inferred pathways of collapse, trophic
-bottlenecks, and secondary extinctions are highly sensitive to model
-choice. Corresponding raw temporal trajectories are shown in Figure S2.
-
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures/GAM_predictions.png}}
-
-}
-
-\caption{\label{fig-gam}GAM-predicted trajectories of network structure
-during extinction simulations reveal pronounced differences in the
-timing and magnitude of change across reconstruction models. Lines show
-model-specific smooths and shaded areas indicate 95\% confidence
-intervals. Deterministic approaches produce smoother, more consistent
-dynamics, whereas stochastic models exhibit greater variability,
-underscoring the sensitivity of inferred collapse pathways to
-reconstruction assumptions.}
-
-\end{figure}%
 
 To evaluate how model choice affects inferred extinction dynamics, we
 compared simulated post-extinction networks to observed networks using
@@ -884,9 +886,7 @@ on mean absolute differences (MAD) between observed and predicted
 network values. Positive \(\tau\) values (blue) indicate concordant
 rankings between models, whereas negative \(\tau\) values (red) indicate
 opposing rankings. Warmer colours approaching zero represent little or
-no agreement. Panels illustrate how consistently different modelling
-approaches evaluate the relative realism of extinction scenarios across
-multiple network properties.}
+no agreement.}
 
 \end{figure}%
 
@@ -925,11 +925,23 @@ inference about secondary extinction dynamics in paleo-foodwebs. Across
 an identical species pool, reconstruction frameworks explained the
 majority of variance among reconstructed network topologies, generating
 distinct structural signatures independent of community composition.
-Although some model classes converged on similar global metrics,
-pairwise interaction turnover revealed substantial divergence in
-inferred trophic links. Structural similarity at the level of
-connectance or trophic height therefore does not guarantee concordance
-in species roles or interaction architecture.
+Demonstrating that the divergence among reconstruction approaches
+reflects intrinsic differences in how models organise interactions, not
+temporal shifts in network structure. The dominance of these structural
+sigantures is systemic. Reconstruction frameworks occupy distinct and
+non-overlapping regions of multivariate space
+Figure~\ref{fig-structure}, with the model identity explaining nearly
+all of the observed variance. Even when focusing on individual metrics,
+it is the coice of reconstruction approach that drives the observed
+differences through the extinction interval Figure~\ref{fig-anova}. This
+suggests that in paleo-food webs, the structure of the network is
+pre-defined by the chosen reconstruction appraoch, leaving the
+extinction process to merely reorganize the remaining links within a
+strictly pre-constrained architectural space. Network structure is
+therefore not solely a property of ecological communities; it is jointly
+determined by ecological data, modelling assumptions, and level of
+organisation (Gauzens et al., 2025; Guimarães, 2020; Pichler \& Hartig,
+2023; Strydom et al., 2021; Strydom et al., 2026).
 
 Reconstruction framework explained the majority of variance in inferred
 food web topology, far outweighing the influence of temporal turnover
@@ -947,19 +959,19 @@ et al., 2021; Strydom et al., 2026).
 
 This has direct implications for the interpretation of comparative
 network studies. Feasible, realised, and structural models encode
-different assumptions about constraint, optimisation, and topology, and
-these assumptions propagate into emergent metrics and dynamical
+different assumptions about constraint, optimisation, and topology, with
+these assumptions propagating into emergent metrics and dynamical
 predictions (Allesina \& Tang, 2012; Dunne et al., 2002; Michalska-Smith
 \& Allesina, 2019; Poisot \& Gravel, 2014; Solé \& Montoya, 2001). When
 networks reconstructed under different model classes are compared across
 spatial gradients, disturbance regimes, or evolutionary transitions,
-part of the observed variation may derive from structural priors rather
-than ecological process. Without explicit standardisation or sensitivity
-analysis, methodological heterogeneity can be mistaken for biological
-signal. Food web ecology has devoted substantial effort to understanding
-how topology shapes dynamics; comparatively less attention has been paid
-to how reconstruction method shapes topology. Our findings indicate that
-these two questions cannot be separated.
+part of the observed variation may derive from reconstruction choice
+rather than ecological process. Without explicit standardisation or
+sensitivity analysis, methodological heterogeneity can be mistaken for
+biological signal. Food web ecology has devoted substantial effort to
+understanding how topology shapes dynamics; comparatively less attention
+has been paid to how reconstruction method shapes topology. Our findings
+indicate that these two questions cannot be separated.
 
 \subsection{Scale-dependent robustness in network-based
 inference}\label{scale-dependent-robustness-in-network-based-inference}
@@ -993,8 +1005,8 @@ substantially across equally plausible reconstructions, then mechanistic
 narratives derived from a single inferred topology may overstate their
 precision (Allesina \& Tang, 2012; Curtsdotter et al., 2011; Dunne et
 al., 2002). The apparent determinism of extinction cascades may
-therefore partly reflect model-imposed structure rather than ecological
-inevitability.
+therefore partly reflect reconstruction-imposed structure rather than
+ecological inevitability.
 
 For macroecology, this metric dependence clarifies where network-based
 inference is accurate. Aggregate properties may be comparatively robust
@@ -1105,13 +1117,13 @@ modelling assumptions. The reliability of network-based inference is
 therefore scale dependent.
 
 These results challenge the implicit assumption that reconstructed
-networks are structurally commensurable across systems --- whether
-comparing modern communities across environmental gradients or fossil
-assemblages across extinction intervals. When reconstruction frameworks
-differ, variation in connectance, trophic organisation, robustness, or
-interaction turnover may reflect embedded modelling assumptions as much
-as ecological processes. Network reconstruction should thus be treated
-as an explicit component of hypothesis specification in comparative
+networks are comparable across systems --- whether comparing modern
+communities across environmental gradients or fossil assemblages across
+extinction intervals. When reconstruction frameworks differ, variation
+in connectance, trophic organisation, robustness, or interaction
+turnover may reflect embedded modelling assumptions as much as
+ecological processes. Network reconstruction should thus be treated as
+an explicit component of hypothesis specification in comparative
 macroecology and biogeography.
 
 No single model captures the full complexity of ecological organisation,

@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-02-25">
+    <meta name="dcterms.date" content="2026-02-26">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -181,7 +181,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-076ecbd647e1f0418c5051713cd9b730.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cb5849899318f24a43522ae45f8874d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-133a0a4dda30ced7f07b755c880e46a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -224,7 +224,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 25, 2026</p>
+              <p class="date">February 26, 2026</p>
             </div>
           </div>
           
@@ -266,11 +266,14 @@
   <li><a href="#robustness-of-model-effects-after-temporal-centering" id="toc-robustness-of-model-effects-after-temporal-centering" class="nav-link" data-scroll-target="#robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#model-choice-influences-inferred-extinction-dynamics" id="toc-model-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#model-choice-influences-inferred-extinction-dynamics">Model choice influences inferred extinction dynamics</a>
+  <li><a href="#statistical-drivers-of-network-variation" id="toc-statistical-drivers-of-network-variation" class="nav-link" data-scroll-target="#statistical-drivers-of-network-variation">Statistical Drivers of Network Variation</a>
   <ul class="collapse">
-  <li><a href="#figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." id="toc-figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="nav-link" data-scroll-target="#figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S2. Raw temporal trajectories of network structure during extinction simulations.</a></li>
-  <li><a href="#table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." id="toc-table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="nav-link" data-scroll-target="#table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S3. Full generalized additive model (GAM) results for network-level metrics.</a></li>
-  <li><a href="#table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." id="toc-table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="nav-link" data-scroll-target="#table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</a></li>
+  <li><a href="#statistical-robustness-and-assumptions" id="toc-statistical-robustness-and-assumptions" class="nav-link" data-scroll-target="#statistical-robustness-and-assumptions">Statistical Robustness and Assumptions</a></li>
+  <li><a href="#figure-s2.-temporal-trajectories-of-network-structure-by-model" id="toc-figure-s2.-temporal-trajectories-of-network-structure-by-model" class="nav-link" data-scroll-target="#figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</a></li>
+  <li><a href="#table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." id="toc-table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="nav-link" data-scroll-target="#table-s3.-variance-partitioning-of-framework-time-and-interaction-effects.">Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.</a></li>
+  <li><a href="#figure-s3.-model-disagreement-cv-across-extinction-phases" id="toc-figure-s3.-model-disagreement-cv-across-extinction-phases" class="nav-link" data-scroll-target="#figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</a></li>
+  <li><a href="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." id="toc-table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="nav-link" data-scroll-target="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</a></li>
+  <li><a href="#figure-s4.-pairwise-framework-comparisons-tukey-hsd" id="toc-figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="nav-link" data-scroll-target="#figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -591,1005 +594,114 @@ dbl (3): Can1, Can2, Can3
 </section>
 </section>
 </section>
-<section id="model-choice-influences-inferred-extinction-dynamics" class="level1">
-<h1>Model choice influences inferred extinction dynamics</h1>
-<section id="figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations." class="level2">
-<h2 class="anchored" data-anchor-id="figure-s2.-raw-temporal-trajectories-of-network-structure-during-extinction-simulations.">Figure S2. Raw temporal trajectories of network structure during extinction simulations.</h2>
-<p>Panels show mean values of network-level metrics through time for each reconstruction model, grouped by macro-, meso-, and micro-scale properties as in Figure 3. Lines represent raw simulation outputs averaged across replicates. This figure provides the underlying data corresponding to the GAM-predicted trajectories shown in Figure 3.</p>
-<p><a href="figures/Figure_S3_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="figures/Figure_S3_time_structure.png" class="img-fluid"></a></p>
+<section id="statistical-drivers-of-network-variation" class="level1">
+<h1>Statistical Drivers of Network Variation</h1>
+<section id="statistical-robustness-and-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-robustness-and-assumptions">Statistical Robustness and Assumptions</h2>
+<p>Factorial ANOVA assumptions were validated via residual analysis. Despite significant heteroscedasticity (Levene’s test, p&lt;0.001), the perfectly balanced design (n = 100 per cell) and large sample size (N = 2400) ensure the robustness of the F-test. Visual inspection of Q-Q plots and Residuals-vs-Fitted plots confirmed that the distributions were sufficiently symmetric for parametric analysis.</p>
 </section>
-<section id="table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s3.-full-generalized-additive-model-gam-results-for-network-level-metrics.">Table S3. Full generalized additive model (GAM) results for network-level metrics.</h2>
-<p>Parametric coefficients, model-specific smooth terms, and ANOVA comparisons of shared versus model-specific time effects are shown for each network metric. Estimate/EDF and Std. Error / Ref.df correspond to parametric coefficients or effective degrees of freedom and reference degrees of freedom for smooth terms. t/F value and p-value report statistical significance. Parametric terms represent the baseline effect of each model; smooth terms describe non-linear temporal trajectories of each reconstruction model. ANOVA rows compare the fit of shared versus model-specific smooths. No inference or interpretation is implied in this table; the main text and Figure 3 provide inferential conclusions.</p>
+<section id="figure-s2.-temporal-trajectories-of-network-structure-by-model" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</h2>
+<p>Detailed shifts in network properties across the four extinction phases, categorized by organizational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the “baseline” differences between models—such as the Niche model’s tendency to over-estimate motif counts—and their divergent responses to species loss.</p>
+<p><a href="../figures/raw_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../figures/raw_time_structure.png" class="img-fluid"></a></p>
+</section>
+<section id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="level2">
+<h2 class="anchored" data-anchor-id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects.">Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.</h2>
+<p>Summary of the two-way factorial ANOVA results for all eight metrics. Values represent partial eta-squared (<span class="math inline">\(\eta^{2}_{p}\)</span>), which quantifies the proportion of variance explained by each factor. The dominance of the ‘Model’ term across all scales confirms that framework choice is the primary determinant of network topology.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S7_GAM_results.csv"</span>) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"../tables/ANOVA_Results.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 104 Columns: 7
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (4): Term, Network metric, Term type, p-value
-dbl (3): Estimate / EDF, Std. Error / Ref.df, t / F value
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 12%">
-<col style="width: 9%">
-<col style="width: 12%">
-<col style="width: 16%">
-<col style="width: 9%">
-<col style="width: 6%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Term</th>
-<th style="text-align: left;">Network metric</th>
-<th style="text-align: left;">Term type</th>
-<th style="text-align: right;">Estimate / EDF</th>
-<th style="text-align: right;">Std. Error / Ref.df</th>
-<th style="text-align: right;">t / F value</th>
-<th style="text-align: left;">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.298</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">241.811</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.126</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-72.283</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.073</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-41.891</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.180</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-103.197</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.179</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-102.983</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.077</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-43.973</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.921</td>
-<td style="text-align: right;">2.995</td>
-<td style="text-align: right;">22.563</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.927</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">13.810</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.958</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">27.042</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.249</td>
-<td style="text-align: right;">2.618</td>
-<td style="text-align: right;">2.719</td>
-<td style="text-align: left;">0.112</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.987</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">113.849</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.604</td>
-<td style="text-align: right;">2.882</td>
-<td style="text-align: right;">4.720</td>
-<td style="text-align: left;">0.016</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">32.045</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">3.583</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">110.465</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">2.666</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">58.124</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.388</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">-8.450</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.448</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">9.771</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.105</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">-24.099</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">2.312</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">50.402</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.740</td>
-<td style="text-align: right;">2.948</td>
-<td style="text-align: right;">15.265</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.918</td>
-<td style="text-align: right;">2.995</td>
-<td style="text-align: right;">72.135</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.642</td>
-<td style="text-align: right;">2.903</td>
-<td style="text-align: right;">11.011</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.925</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">46.779</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.496</td>
-<td style="text-align: right;">1.811</td>
-<td style="text-align: right;">6.427</td>
-<td style="text-align: left;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.994</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">607.810</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">78.029</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.902</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">200.915</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.265</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-41.698</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.129</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">20.329</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.223</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">35.079</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.821</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">129.304</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.575</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-90.653</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.949</td>
-<td style="text-align: right;">2.998</td>
-<td style="text-align: right;">101.687</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.847</td>
-<td style="text-align: right;">2.981</td>
-<td style="text-align: right;">25.350</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.979</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">230.268</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.001</td>
-<td style="text-align: right;">1.001</td>
-<td style="text-align: right;">0.391</td>
-<td style="text-align: left;">0.532</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">366.841</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.933</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">48.486</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">122.123</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.889</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">141.193</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.200</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">-22.403</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">19.974</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.241</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">-27.068</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.257</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">-28.815</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.815</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">91.514</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.595</td>
-<td style="text-align: right;">2.877</td>
-<td style="text-align: right;">10.151</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.909</td>
-<td style="text-align: right;">2.993</td>
-<td style="text-align: right;">49.940</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.912</td>
-<td style="text-align: right;">2.994</td>
-<td style="text-align: right;">45.848</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.824</td>
-<td style="text-align: right;">2.976</td>
-<td style="text-align: right;">20.777</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.944</td>
-<td style="text-align: right;">2.997</td>
-<td style="text-align: right;">40.497</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.412</td>
-<td style="text-align: right;">1.697</td>
-<td style="text-align: right;">0.222</td>
-<td style="text-align: left;">0.695</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">33.392</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.749</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">194.021</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">7.543</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.192</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">49.847</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.104</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">27.068</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">2.787</td>
-<td style="text-align: left;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">3454.642</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.473</td>
-<td style="text-align: right;">2.798</td>
-<td style="text-align: right;">5.453</td>
-<td style="text-align: left;">0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.980</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">197.148</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.952</td>
-<td style="text-align: right;">2.998</td>
-<td style="text-align: right;">41.261</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: left;">0.916</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">772.574</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">1.189</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">282.637</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.048</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-176.145</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.733</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-123.268</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.080</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-181.560</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.050</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-176.486</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.008</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">-169.460</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.998</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">3739.389</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.941</td>
-<td style="text-align: right;">2.997</td>
-<td style="text-align: right;">49.584</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.990</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">607.421</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.860</td>
-<td style="text-align: right;">2.984</td>
-<td style="text-align: right;">22.303</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.757</td>
-<td style="text-align: right;">2.954</td>
-<td style="text-align: right;">13.956</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.915</td>
-<td style="text-align: right;">2.994</td>
-<td style="text-align: right;">35.738</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">553.156</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">1.454</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">271.314</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.925</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">-122.084</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.113</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">-14.860</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.310</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">-172.920</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.389</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">-183.346</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">22.391</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">4569.752</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.994</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">444.599</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">4034.456</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.854</td>
-<td style="text-align: right;">2.983</td>
-<td style="text-align: right;">24.949</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.786</td>
-<td style="text-align: right;">2.964</td>
-<td style="text-align: right;">23.029</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.999</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">4479.574</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">990.095</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">1.389</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">283.303</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Body-size ratio</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.887</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">-127.994</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: ATN</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.220</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">-31.752</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Niche</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.066</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">-153.709</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model: PFIM</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-0.866</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">-124.911</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Model: Random</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">parametric</td>
-<td style="text-align: right;">-1.359</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">-196.042</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ADBM</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.998</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">1900.335</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Body-size ratio</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.995</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">593.637</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by ATN</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.996</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">940.100</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Niche</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.976</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">167.436</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Smooth: time by PFIM</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">2.980</td>
-<td style="text-align: right;">3.000</td>
-<td style="text-align: right;">286.415</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smooth: time by Random</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">smooth</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: left;">0.867</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: left;">anova</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">279.442</td>
-<td style="text-align: left;">&lt;0.001</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></div>
-</section>
-<section id="table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="table-s4.-anova-comparisons-of-shared-versus-model-specific-gam-smooths-for-all-network-level-metrics.">Table S4. ANOVA comparisons of shared versus model-specific GAM smooths for all network-level metrics.</h2>
-<p>Each row shows the result of comparing a generalized additive model (GAM) with a shared smooth term for time across reconstruction models versus a model-specific smooth term for each reconstruction model. Columns include the F value and p-value of the ANOVA test. Very small p-values are reported as &lt;0.001. These tests indicate whether allowing model-specific temporal trajectories significantly improves model fit; no inferential claims about the direction or magnitude of changes are made in this table.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S8_GAM_model_comparison.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 8 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (3): Term, Network metric, p-value
-dbl (1): F value
+chr (1): Metric
+dbl (3): Model, Time, Interaction
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Model</th>
+<th style="text-align: right;">Time</th>
+<th style="text-align: right;">Interaction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Connectance</td>
+<td style="text-align: right;">0.871</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.171</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Max trophic level</td>
+<td style="text-align: right;">0.821</td>
+<td style="text-align: right;">0.322</td>
+<td style="text-align: right;">0.324</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Generality</td>
+<td style="text-align: right;">0.959</td>
+<td style="text-align: right;">0.230</td>
+<td style="text-align: right;">0.405</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vulnerability</td>
+<td style="text-align: right;">0.900</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No.&nbsp;of linear chains</td>
+<td style="text-align: right;">0.959</td>
+<td style="text-align: right;">0.514</td>
+<td style="text-align: right;">0.783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.&nbsp;of omnivory motifs</td>
+<td style="text-align: right;">0.955</td>
+<td style="text-align: right;">0.673</td>
+<td style="text-align: right;">0.782</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No.&nbsp;of direct competition motifs</td>
+<td style="text-align: right;">0.973</td>
+<td style="text-align: right;">0.915</td>
+<td style="text-align: right;">0.863</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.&nbsp;of apparent competition motifs</td>
+<td style="text-align: right;">0.959</td>
+<td style="text-align: right;">0.771</td>
+<td style="text-align: right;">0.605</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="figure-s3.-model-disagreement-cv-across-extinction-phases" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</h2>
+<p>Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardized across panels to facilitate comparison between organizational scales. A characteristic “dip” at the ‘during’ phase in several meso-scale metrics illustrates the structural canalization effect, where severe species loss forces a temporary convergence in model predictions.</p>
+<p><a href="../figures/cv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/cv.png" class="img-fluid"></a></p>
+</section>
+<section id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="level2">
+<h2 class="anchored" data-anchor-id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</h2>
+<p>Calculated inter-model CV% for each metric at each time step. These data points underpin the “bubble sizes” in the main text’s executive summary and the trajectories in Figure S3. Note the reduction in CV% for linear chains and omnivory motifs during the peak extinction phase (During).</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"../tables/Model_Agreement_CV.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): statistic
+dbl (4): Pre extinction, During extinction, Early extinction, Late extinction
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -1597,72 +709,87 @@ dbl (1): F value
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 56%">
-<col style="width: 21%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 34%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Term</th>
-<th style="text-align: left;">Network metric</th>
-<th style="text-align: right;">F value</th>
-<th style="text-align: left;">p-value</th>
+<th style="text-align: left;">statistic</th>
+<th style="text-align: right;">Pre extinction</th>
+<th style="text-align: right;">During extinction</th>
+<th style="text-align: right;">Early extinction</th>
+<th style="text-align: right;">Late extinction</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">connectance</td>
-<td style="text-align: right;">32.045</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">Connectance</td>
+<td style="text-align: right;">39.68855</td>
+<td style="text-align: right;">32.15691</td>
+<td style="text-align: right;">34.79191</td>
+<td style="text-align: right;">40.54695</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">trophic_level</td>
-<td style="text-align: right;">78.029</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">Generality</td>
+<td style="text-align: right;">58.51606</td>
+<td style="text-align: right;">41.01746</td>
+<td style="text-align: right;">48.53126</td>
+<td style="text-align: right;">51.75989</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">generality</td>
-<td style="text-align: right;">122.123</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">Max trophic level</td>
+<td style="text-align: right;">41.65860</td>
+<td style="text-align: right;">31.46020</td>
+<td style="text-align: right;">32.30812</td>
+<td style="text-align: right;">39.32523</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">vulnerability</td>
-<td style="text-align: right;">33.392</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">No.&nbsp;of apparent competition motifs</td>
+<td style="text-align: right;">74.26024</td>
+<td style="text-align: right;">83.35463</td>
+<td style="text-align: right;">84.28280</td>
+<td style="text-align: right;">79.62819</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S1</td>
-<td style="text-align: right;">772.574</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">No.&nbsp;of direct competition motifs</td>
+<td style="text-align: right;">80.49528</td>
+<td style="text-align: right;">81.63039</td>
+<td style="text-align: right;">79.94947</td>
+<td style="text-align: right;">82.73417</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S2</td>
-<td style="text-align: right;">553.156</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">No.&nbsp;of linear chains</td>
+<td style="text-align: right;">173.66964</td>
+<td style="text-align: right;">131.61905</td>
+<td style="text-align: right;">156.24100</td>
+<td style="text-align: right;">160.33886</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S4</td>
-<td style="text-align: right;">990.095</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">No.&nbsp;of omnivory motifs</td>
+<td style="text-align: right;">119.22142</td>
+<td style="text-align: right;">102.05423</td>
+<td style="text-align: right;">101.35425</td>
+<td style="text-align: right;">123.04302</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANOVA: shared vs model-specific smooths</td>
-<td style="text-align: left;">S5</td>
-<td style="text-align: right;">279.442</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">Vulnerability</td>
+<td style="text-align: right;">47.92763</td>
+<td style="text-align: right;">41.32709</td>
+<td style="text-align: right;">39.99020</td>
+<td style="text-align: right;">47.67690</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div></div>
+</section>
+<section id="figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="level2">
+<h2 class="anchored" data-anchor-id="figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</h2>
+<p>Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks (<span class="math inline">\(*\)</span>) indicate statistical significance (p&lt;0.05). This identifies which specific models drive the high CV values seen in Figure 1.</p>
+<p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
