@@ -1,48 +1,48 @@
 Parameter,Eta2,CI,CI_low,CI_high,variable,model
-bodysize_method,0.001668056713928749,0.95,0,1,connectance,ADBM
-bodysize_method,8.075031107621102e-31,0.95,0,1,trophic_level,ADBM
+bodysize_method,0.0016663391741718295,0.95,0,1,connectance,ADBM
+bodysize_method,8.386380842782281e-32,0.95,0,1,trophic_level,ADBM
 bodysize_method,NA,0.95,NA,1,generality,ADBM
 bodysize_method,NA,0.95,NA,1,vulnerability,ADBM
 bodysize_method,NA,0.95,NA,1,S1,ADBM
 bodysize_method,NA,0.95,NA,1,S2,ADBM
 bodysize_method,NA,0.95,NA,1,S4,ADBM
 bodysize_method,NA,0.95,NA,1,S5,ADBM
-bodysize_method,0.006668561018682117,0.95,6.192753581219349e-4,1,connectance,Body-size ratio
-bodysize_method,8.528364387732494e-11,0.95,0,1,trophic_level,Body-size ratio
-bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,generality,Body-size ratio
-bodysize_method,0.006677257464838099,0.95,6.227983000122883e-4,1,vulnerability,Body-size ratio
+bodysize_method,0.006668561018111871,0.95,6.192753580686526e-4,1,connectance,Body-size ratio
+bodysize_method,8.528364389745526e-11,0.95,0,1,trophic_level,Body-size ratio
+bodysize_method,0.0066772574648381626,0.95,6.227983000122915e-4,1,generality,Body-size ratio
+bodysize_method,0.0066772574648381626,0.95,6.227983000122915e-4,1,vulnerability,Body-size ratio
 bodysize_method,NA,0.95,NA,1,S1,Body-size ratio
 bodysize_method,NA,0.95,NA,1,S2,Body-size ratio
 bodysize_method,NA,0.95,NA,1,S4,Body-size ratio
 bodysize_method,NA,0.95,NA,1,S5,Body-size ratio
-bodysize_method,0.001635902052854806,0.95,0,1,connectance,ATN
-bodysize_method,0.08700491213580677,0.95,0.0626327365578588,1,trophic_level,ATN
-bodysize_method,8.143573580001374e-4,0.95,0,1,generality,ATN
-bodysize_method,0.006590415985101555,0.95,5.877627936598587e-4,1,vulnerability,ATN
-bodysize_method,0.17383629618964458,0.95,0.14250834937660709,1,S1,ATN
-bodysize_method,0.001241523981956382,0.95,0,1,S2,ATN
-bodysize_method,0.0055717991546499835,0.95,2.0087027387952002e-4,1,S4,ATN
-bodysize_method,6.894801259343658e-5,0.95,0,1,S5,ATN
-bodysize_method,0.002068303932826302,0.95,0,1,connectance,niche
-bodysize_method,6.305038378512905e-4,0.95,0,1,trophic_level,niche
-bodysize_method,2.8992570834689146e-4,0.95,0,1,generality,niche
-bodysize_method,1.5466579759279464e-4,0.95,0,1,vulnerability,niche
-bodysize_method,5.709258185811562e-4,0.95,0,1,S1,niche
-bodysize_method,6.856423325452057e-4,0.95,0,1,S2,niche
-bodysize_method,0.0010678739814081754,0.95,0,1,S4,niche
-bodysize_method,3.640842666033848e-4,0.95,0,1,S5,niche
-bodysize_method,6.530026608870626e-5,0.95,0,1,connectance,PFIM
-bodysize_method,0.001276865987584818,0.95,0,1,trophic_level,PFIM
-bodysize_method,2.0445402758379714e-4,0.95,0,1,generality,PFIM
-bodysize_method,1.4605971691838178e-5,0.95,0,1,vulnerability,PFIM
-bodysize_method,0.002118438238134034,0.95,0,1,S1,PFIM
-bodysize_method,5.949024913401314e-4,0.95,0,1,S2,PFIM
-bodysize_method,2.0909380027514163e-5,0.95,0,1,S4,PFIM
-bodysize_method,2.348537269437239e-5,0.95,0,1,S5,PFIM
-bodysize_method,4.660364905878344e-4,0.95,0,1,connectance,random
-bodysize_method,0.001791793988257614,0.95,0,1,trophic_level,random
-bodysize_method,6.405331954059241e-4,0.95,0,1,generality,random
-bodysize_method,6.405331954059241e-4,0.95,0,1,vulnerability,random
+bodysize_method,0.0016359020528548447,0.95,0,1,connectance,ATN
+bodysize_method,0.0870049121358067,0.95,0.06263273655785877,1,trophic_level,ATN
+bodysize_method,8.143573580001329e-4,0.95,0,1,generality,ATN
+bodysize_method,0.006590415985101716,0.95,5.877627936598733e-4,1,vulnerability,ATN
+bodysize_method,0.17383629618964996,0.95,0.14250834937661178,1,S1,ATN
+bodysize_method,0.0012415239819564047,0.95,0,1,S2,ATN
+bodysize_method,0.005571799154650143,0.95,2.008702738795243e-4,1,S4,ATN
+bodysize_method,6.894801259343574e-5,0.95,0,1,S5,ATN
+bodysize_method,0.0020683039328263284,0.95,0,1,connectance,niche
+bodysize_method,6.305038378512871e-4,0.95,0,1,trophic_level,niche
+bodysize_method,2.8992570834689304e-4,0.95,0,1,generality,niche
+bodysize_method,1.5466579759280778e-4,0.95,0,1,vulnerability,niche
+bodysize_method,5.709258185811687e-4,0.95,0,1,S1,niche
+bodysize_method,6.856423325452112e-4,0.95,0,1,S2,niche
+bodysize_method,0.0010678739814081785,0.95,0,1,S4,niche
+bodysize_method,3.6408426660338724e-4,0.95,0,1,S5,niche
+bodysize_method,6.530026608870573e-5,0.95,0,1,connectance,PFIM
+bodysize_method,0.0012768659875848135,0.95,0,1,trophic_level,PFIM
+bodysize_method,2.044540275838142e-4,0.95,0,1,generality,PFIM
+bodysize_method,1.4605971691841047e-5,0.95,0,1,vulnerability,PFIM
+bodysize_method,0.0021184382381340457,0.95,0,1,S1,PFIM
+bodysize_method,5.949024913401194e-4,0.95,0,1,S2,PFIM
+bodysize_method,2.090938002751485e-5,0.95,0,1,S4,PFIM
+bodysize_method,2.3485372694377228e-5,0.95,0,1,S5,PFIM
+bodysize_method,4.660364905878628e-4,0.95,0,1,connectance,random
+bodysize_method,0.0017917939882576555,0.95,0,1,trophic_level,random
+bodysize_method,6.405331954059257e-4,0.95,0,1,generality,random
+bodysize_method,6.405331954059257e-4,0.95,0,1,vulnerability,random
 bodysize_method,NA,0.95,NA,1,S1,random
 bodysize_method,NA,0.95,NA,1,S2,random
 bodysize_method,NA,0.95,NA,1,S4,random

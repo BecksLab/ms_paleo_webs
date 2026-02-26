@@ -65,4 +65,4 @@ colours <- c("niche"           = "#B8A9C9", # Light Shale
 
 
 # Converts the named vector into a dataframe for easier mapping in ggplot
-pal_df <- data.frame(l = names(colors), c = colors)
+pal_df <- data.frame(l = names(colours), c = colours)
