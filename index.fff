@@ -43,13 +43,15 @@ predictions.}
 
 }
 
-\caption{\label{fig-beta_div}Pairwise β-turnover in species interactions
+\caption{\label{fig-beta_div}Pairwise \(β_{OS}\) in species interactions
 among four ecological network models (ADBM, ATN, Body-size ratio, and
 PFIM). Each cell represents the mean turnover value between a pair of
 models, with darker colours indicating greater dissimilarity in inferred
 interactions. High turnover values indicate strong disagreement in
 pairwise interactions between models, whereas lower values indicate
-greater similarity.}
+greater similarity. Note that we do not include the Random or Niche
+model as these models are species agnostic and thus we cannot truly
+evaluate differences in pairwise interactions}
 
 \end{figure}
 \efloatseparator
