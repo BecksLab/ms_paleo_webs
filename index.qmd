@@ -107,7 +107,7 @@ We used fossil occurrence data from the Cleveland Basin spanning the upper Plien
 
 ### Conceptual classification of network types
 
-Most paleo-specific research (*e.g.,* @fricke2022a; @roopnarine2006; @shaw2024) currently uses models from within the feasibility space. That is, the model reconstructions identify and encode the entire feasible diet of a species to build the network. These methods, however, represent only a subset of the broader spectrum of network construction approaches. Here, we present a suite of methods (@tbl-models) that enable the construction of a wider range of ecological networks and the exploration of a broader set of ecological questions, provided that their underlying assumptions are compatible with the constraints of fossil data. The methods include a) structural models that create species agnostic networks that are structurally ‘correct’ by assigning links between nodes based on assumptions of link distributions; and b) realised models that create networks where links between species are constrained based on some form of ‘species choice’ *e.g.,* maximising energy gain.
+Most paleo-specific research (*e.g.,* @fricke2022a; @roopnarine2006; @shaw2024) currently uses models from within the feasibility space. That is, the model reconstructions identify and encode the entire feasible diet of a species to build the network. These methods, however, represent only a subset of the broader spectrum of network construction approaches. Here, we present a suite of methods (@tbl-models) that enable the construction of a wider range of ecological networks and the exploration of a broader set of ecological questions, provided that their underlying assumptions are compatible with the constraints of the data. The methods include a) structural models that create species agnostic networks that are structurally ‘correct’ by assigning links between nodes based on assumptions of link distributions; and b) realised models that create networks where links between species are constrained based on some form of ‘species choice’ *e.g.,* maximising energy gain.
 
 | Model | Assumptions | Data needs | Limitation | Network type | Key reference | Usage examples |
 |-----------|-----------|-----------|-----------|-----------|-----------|-----------|
@@ -138,8 +138,8 @@ We quantified network structure using a suite of macro-, meso-, and micro-scale 
 | S2 | Number of omnivory motifs, normalised | Meso | @milo2002; @stouffer2007 |
 | S4 | Number of apparent competition motifs, normalised | Meso | @milo2002; @stouffer2007 |
 | S5 | Number of direct competition motifs, normalised | Meso | @milo2002; @stouffer2007 |
-| Generality | Normalized standard deviation of generality of a species, standardised by $L/S$ | Micro | @williams2000 |
-| Vulnerability | Normalized standard deviation of vulnerability of a species, standardised by $L/S$ | Micro | @williams2000 |
+| Generality | Normalised standard deviation of generality of network, standardised by $L/S$ | Micro | @williams2000 |
+| Vulnerability | Normalised standard deviation of vulnerability of network, standardised by $L/S$ | Micro | @williams2000 |
 
 : Network properties used for analysis. {#tbl-properties}
 
@@ -149,7 +149,7 @@ Following @dunhill2024, we simulated species loss from pre-extinction networks u
 
 ## Software and Reproducibility
 
-Ecological network reconstruction and extraction of structural metrics were conducted in Julia v1.11.4 [@Bezanson2017Julia]. All statistical analyses, model fitting (MANOVA, PERMANOVA, GAMs), and figure production were performed in R v4.5.2 [@RCoreTeam2024]. The empirical data, derived network datasets and code implementing network reconstruction, extinction simulations, and all analytical workflows is archived at \[Zenodo DOI\].
+Ecological network reconstruction and extraction of structural metrics were conducted in Julia v1.11.4 [@Bezanson2017Julia]. All statistical analyses, model fitting (MANOVA, PERMANOVA, GAMs), and figure production were performed in R v4.5.2 [@RCoreTeam2024]. The empirical data, derived network datasets and code implementing network reconstruction, extinction simulations, and all analytical workflows is archived at \[**TODO** Zenodo DOI\].
 
 # Results
 
