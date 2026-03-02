@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.9.23">
+    <meta name="generator" content="quarto-1.9.26">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-02-27">
+    <meta name="dcterms.date" content="2026-03-02">
 
     <title>SuppMat 1: Expanded descriptions of the food web models</title>
     <style>
@@ -138,12 +138,11 @@
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-076ecbd647e1f0418c5051713cd9b730.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-61780a260fdcf47536a34fde95582725.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-133a0a4dda30ced7f07b755c880e46a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -186,7 +185,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">February 27, 2026</p>
+              <p class="date">March 2, 2026</p>
             </div>
           </div>
           
@@ -217,11 +216,14 @@
   <ul class="collapse">
   <li><a href="#random-model" id="toc-random-model" class="nav-link" data-scroll-target="#random-model">Random model</a></li>
   <li><a href="#niche-model" id="toc-niche-model" class="nav-link" data-scroll-target="#niche-model">Niche model</a></li>
+  </ul></li>
+  <li><a href="#realised-models" id="toc-realised-models" class="nav-link" data-scroll-target="#realised-models">Realised models</a>
+  <ul class="collapse">
   <li><a href="#allometric-diet-breadth-model" id="toc-allometric-diet-breadth-model" class="nav-link" data-scroll-target="#allometric-diet-breadth-model">Allometric diet breadth model</a></li>
-  <li><a href="#allometric-trophic-network" id="toc-allometric-trophic-network" class="nav-link" data-scroll-target="#allometric-trophic-network">Allometric trophic network</a></li>
+  <li><a href="#allometric-trophic-network-model" id="toc-allometric-trophic-network-model" class="nav-link" data-scroll-target="#allometric-trophic-network-model">Allometric trophic network model</a></li>
   <li><a href="#body-size-ratio-model" id="toc-body-size-ratio-model" class="nav-link" data-scroll-target="#body-size-ratio-model">Body size ratio model</a></li>
   </ul></li>
-  <li><a href="#interaction-predictions" id="toc-interaction-predictions" class="nav-link" data-scroll-target="#interaction-predictions">Interaction predictions</a>
+  <li><a href="#feasibility-models" id="toc-feasibility-models" class="nav-link" data-scroll-target="#feasibility-models">Feasibility models</a>
   <ul class="collapse">
   <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model">Paleo food web inference model</a></li>
   </ul></li>
@@ -244,6 +246,9 @@
 <p>The niche model <span class="citation" data-cites="williams2000">(<a href="#ref-williams2000" role="doc-biblioref">Williams and Martinez 2000</a>)</span> assumes that trophic interactions are structured by a one-dimensional feeding niche. Each species is assigned a niche range, and all species whose niche values fall within this range are potential prey, allowing for cannibalism. Niche ranges are assigned stochastically, with their sizes constrained in part by the specified connectance (<span class="math inline">\(Co\)</span>) of the network. Although several extensions of the niche model have been proposed, increasing model complexity does not appear to improve its ability to reproduce empirically realistic network structure <span class="citation" data-cites="williams2008">(<a href="#ref-williams2008" role="doc-biblioref">Williams and Martinez 2008</a>)</span>.</p>
 <p>Formally, each of the <span class="math inline">\(S\)</span> species is assigned a niche value <span class="math inline">\(n_i\)</span> drawn uniformly from the interval [0,1]. Species <span class="math inline">\(i\)</span> consumes all species whose niche values fall within a contiguous range of width <span class="math inline">\(r_i\)</span>, with the center of this range (<span class="math inline">\(c_i\)</span>) drawn uniformly from the interval <span class="math inline">\([ \frac{r_i}{2}, n_i ]\)</span>. The range width <span class="math inline">\(r_i\)</span> is determined by drawing a value from a beta distribution on [0,1] with expected value <span class="math inline">\(2 \times Co\)</span>, which is then multiplied by <span class="math inline">\(n_i\)</span> to achieve the desired connectance.</p>
 </section>
+</section>
+<section id="realised-models" class="level2">
+<h2 class="anchored" data-anchor-id="realised-models">Realised models</h2>
 <section id="allometric-diet-breadth-model" class="level3">
 <h3 class="anchored" data-anchor-id="allometric-diet-breadth-model">Allometric diet breadth model</h3>
 <p>The Allometric Diet Breadth Model (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>) is grounded in optimal foraging theory and predicts trophic interactions based on energetic considerations. In this framework, consumers select prey to maximize their rate of energy intake, such that diet composition is determined by the energetic profitability of potential resources. The model therefore predicts both the number of trophic links and their arrangement based on species-level traits, specifically consumer diet breadth. The energy intake rate (<span class="math inline">\(K\)</span>) of a consumer is defined as:</p>
@@ -260,8 +265,8 @@ H_{ij} = \infty \geq b
 \]</span></p>
 <p>All bioenergetic and allometric parameters were fixed to the default values reported in <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> and were not estimated from data. Attack rates, handling times, and resource densities were parameterised as power-law functions of body mass using empirically derived scaling exponents, while energy content was assumed to scale linearly with prey body mass. Body mass was therefore the sole varying biological input to the model across replicates, with all other parameters held constant.</p>
 </section>
-<section id="allometric-trophic-network" class="level3">
-<h3 class="anchored" data-anchor-id="allometric-trophic-network">Allometric trophic network</h3>
+<section id="allometric-trophic-network-model" class="level3">
+<h3 class="anchored" data-anchor-id="allometric-trophic-network-model">Allometric trophic network model</h3>
 <p>The Allometric Trophic Network (ATN; <span class="citation" data-cites="brose2006">Brose et al. (<a href="#ref-brose2006" role="doc-biblioref">2006</a>)</span>) model also uses body mass to infer trophic interactions but places greater emphasis on mechanical constraints associated with consumer–resource size relationships. Interactions are determined by allometric rules based on the ratio of consumer (<span class="math inline">\(M_i\)</span>) to resource (<span class="math inline">\(M_j\)</span>) body mass and are further constrained to produce networks that resemble realized food webs <span class="citation" data-cites="schneider2016 gauzens2023">(<a href="#ref-schneider2016" role="doc-biblioref">Schneider et al. 2016</a>; <a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span>.</p>
 <p>The probability of a trophic interaction (<span class="math inline">\(P_{ij}\)</span>) between consumer <span class="math inline">\(i\)</span> and resource <span class="math inline">\(j\)</span> is defined using a Ricker function parameterized by the optimal body-mass ratio (<span class="math inline">\(R_{opt}\)</span>) and the shape parameter <span class="math inline">\(\gamma\)</span>:</p>
 <p><span class="math display">\[
@@ -286,12 +291,12 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <p>The original latent-trait formulation introduced by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> included an additional interaction term, <span class="math inline">\(v_i \delta f_j\)</span>. For simplicity, and following <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, this term is omitted here and only the equation above is used. Parameter values are taken directly from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which were estimated using Serengeti food web data: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\beta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
 </section>
 </section>
-<section id="interaction-predictions" class="level2">
-<h2 class="anchored" data-anchor-id="interaction-predictions">Interaction predictions</h2>
+<section id="feasibility-models" class="level2">
+<h2 class="anchored" data-anchor-id="feasibility-models">Feasibility models</h2>
 <section id="paleo-food-web-inference-model" class="level3">
 <h3 class="anchored" data-anchor-id="paleo-food-web-inference-model">Paleo food web inference model</h3>
 <p>The Paleo Food Web Inference Model (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.</p>
-<p>The original implementation of PFIM includes an optional downsampling step adapted from <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods <span class="citation" data-cites="roopnarine2017">(<a href="#ref-roopnarine2017" role="doc-biblioref">Roopnarine 2017</a>)</span> but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.</p>
+<p>The original implementation of PFIM includes an optional downsampling step adapted from <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods <span class="citation" data-cites="roopnarine2006">(<a href="#ref-roopnarine2006" role="doc-biblioref">Roopnarine 2006</a>)</span> but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.</p>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
@@ -311,9 +316,6 @@ Petchey, Owen L., Andrew P. Beckerman, Jens O. Riede, and Philip H. Warren. 2008
 </div>
 <div id="ref-rohr2010" class="csl-entry" role="listitem">
 Rohr, Rudolf&nbsp;Philippe, Heike Scherer, Patrik Kehrli, Christian Mazza, and Louis-Félix Bersier. 2010. <span>“Modeling Food Webs: Exploring Unexplained Structure Using Latent Traits.”</span> <em>The American Naturalist</em> 176 (2): 170–77. <a href="https://doi.org/10.1086/653667">https://doi.org/10.1086/653667</a>.
-</div>
-<div id="ref-roopnarine2017" class="csl-entry" role="listitem">
-Roopnarine, Peter D. 2017. <em>Ecological Modelling of Paleocommunity Food Webs</em>. University of Chicago Press.
 </div>
 <div id="ref-roopnarine2006" class="csl-entry" role="listitem">
 Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
