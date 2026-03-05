@@ -37,7 +37,7 @@ figure_theme =
         panel.background = element_rect(fill = "white", colour = NA),
         legend.background = element_rect(fill = "white", colour = NA),
         legend.key = element_blank(),
-        text = element_text(color = "#5e5e5e"), # Soft gray text for better readability
+        text = element_text(color = "#5e5e5e", family = "Noto"), # Soft gray text for better readability
         plot.margin = margin(10, 5, 5, 10),
         legend.margin = margin(1, 2, 1, 2)
   )
@@ -46,23 +46,24 @@ figure_theme =
 # Assigns specific hex codes to each modelling framework
 # This ensures a model is always the same colour across all plots
 # 1. DISCRETE MODEL COLORS (Paleo-Safe)
-colours <- c("niche"           = "#B8A9C9", # Light Shale
-             "random"          = "#45354F", # Deep Pyrite (Darker for contrast)
-             "ADBM"            = "#D98A47", # Ironstone
-             "ATN"             = "#A66128", # Mudstone
-             "Body-size ratio" = "#E6C18B", # Sandstone
-             "PFIM"            = "#507D77"  # Glauconite Teal
+colours <- c(
+  # Group 1: The Anchor
+  "PFIM"            = "#006D77", # Deep Teal
+  "random"          = "#3D348B", # Deep Violet
+  "niche"           = "#8E81E1", # Soft Violet
+  "ATN"             = "#B84600", # Rich Rust
+  "ADBM"            = "#FF9F1C", # Amber
+  "Body-size ratio" = "#FFD166"  # Soft Goldenrod
 )
 
-# 2. CONTINUOUS OCEAN RAMP
-# Low: #F2E8CF (Sand) -> Mid: #6A994E (Algae) -> High: #154734 (Anoxic)
-
-# 3. DIVERGING (Non-White Midpoint)
-# Low:  #364F6B (Cool Deep Blue)
-# Mid:  #E3D5B8 (Parchment)
-# High: #B03A2E (Extinction Red)
-
-
-
-# Converts the named vector into a dataframe for easier mapping in ggplot
 pal_df <- data.frame(l = names(colours), c = colours)
+
+# 2. CONTINUOUS OCEAN RAMP (Tied to Group 1)
+# High-vibrancy transition from ice-blue to PFIM Teal
+col_cont <- c("#E0FBFC", "#83C5BE", "#006D77")
+
+# 3. DIVERGING (Tied to Group 2 & 3)
+# Contrasts the 'ATN' warmth against the 'random' cool violet
+col_div <- c("#B84600", "#F4F1DE", "#3D348B")
+
+

@@ -74,7 +74,7 @@ ggplot(tile_df,
            y = Model2, 
            fill = Beta_turnover)) +
   geom_tile(color = "white") +
-  scale_fill_gradientn(colors = c("#F2E8CF", "#6A994E", "#154734"),
+  scale_fill_gradientn(colors = col_cont,
                        name = "Beta turnover") +
   theme_minimal() +
   labs(x = NULL,

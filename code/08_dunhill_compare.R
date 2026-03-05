@@ -79,7 +79,8 @@ ggplot(all_time_results_plot, aes(x = comparison, y = diff, color = significant)
   # Facet by Metric (rows) and Time Bin (columns)
   facet_grid(statistic ~ time_label, scales = "free") +
   coord_flip() +
-  scale_colour_manual(values = c("*" = "#E41A1C", "ns" = "#377EB8"),
+  scale_colour_manual(values = c("*" = col_div[1], 
+                                 "ns" = col_div[3]),
                       name = NULL,
                       labels = c("Significant", "Non-Significant")) +
   labs(
@@ -94,7 +95,9 @@ ggplot(all_time_results_plot, aes(x = comparison, y = diff, color = significant)
 df_linear <- df %>%
   # Ensure time is numeric (1, 2, 3, 4)
   mutate(time_num = as.numeric(time)) %>%
-  pivot_longer(cols = all_of(network_stats), names_to = "statistic", values_to = "val") %>%
+  pivot_longer(cols = all_of(network_stats), 
+               names_to = "statistic", 
+               values_to = "val") %>%
   group_by(statistic, model, time_num) %>%
   summarise(
     mean_val = mean(val, na.rm = TRUE),
@@ -269,7 +272,7 @@ for (i in seq_along(plot_list)) {
                                fill = tau)) +
     geom_tile(color = "white") +
     scale_fill_gradientn(breaks = c(-1, 0, 1),
-                         colours = c("#8C2F02", "#FFFFFF", "#084594"),
+                         colours = col_div,
                          limits = c(-1, 1)) +
     facet_wrap(vars(metric),
                #scales = 'free',
