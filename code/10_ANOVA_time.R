@@ -78,8 +78,8 @@ diag_data <- network_stats %>%
 # 2. Create the Residuals vs. Fitted Plot (Homogeneity Check)
 res_vs_fit_plot <- ggplot(diag_data, aes(x = fitted, y = resid)) +
   # Use high transparency (alpha) because of the large N (2400)
-  geom_point(alpha = 0.1, size = 0.5, color = "midnightblue") +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_point(alpha = 0.1, size = 0.5, color = "#3D348B") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "#B84600") +
   # Facet by metric with 'free' scales since metrics have different units
   facet_wrap(~metric, scales = "free", ncol = 4) +
   labs(
@@ -94,7 +94,7 @@ res_vs_fit_plot <- ggplot(diag_data, aes(x = fitted, y = resid)) +
 # 3. Create the Q-Q Plot (Normality Check)
 qq_plot <- ggplot(diag_data, aes(sample = resid)) +
   stat_qq(alpha = 0.1, size = 0.5) +
-  stat_qq_line(color = "red") +
+  stat_qq_line(color = "#B84600") +
   facet_wrap(~metric, scales = "free", ncol = 4) +
   labs(
     title = "Normal Q-Q Plots (All Metrics)",
@@ -317,7 +317,10 @@ plot_tukey_data <- all_posthocs %>%
 ggplot(plot_tukey_data, aes(x = time_label, y = contrast, fill = estimate)) +
   geom_tile(color = "white") +
   # Use a diverging scale (Red = Positive difference, Blue = Negative)
-  scale_fill_gradient2(low = "#084594", mid = "white", high = "#8C2F02", midpoint = 0) +
+  scale_fill_gradient2(low = col_div[3], 
+                       mid = col_div[2], 
+                       high = col_div[1], 
+                       midpoint = 0) +
   # Add a border or 'star' to significant cells
   geom_text(data = filter(plot_tukey_data, p.value < 0.05), label = "*", size = 5) +
   facet_wrap(~statistic, ncol = 4) +
@@ -384,19 +387,24 @@ summary_data <- manuscript_anova_table %>%
     by = c("Metric" = "statistic")
   )
 
-summary_plot <- 
-  ggplot(summary_data, aes(x = Model, y = Time, label = Metric)) +
+ggplot(summary_data, 
+         aes(x = Model, 
+             y = Time, 
+             label = Metric)) +
   # Reference line: Where Model and Time are equally important
   geom_abline(slope = 1, 
               intercept = 0, 
-              linetype = "dashed", 
-              colour = "grey90") +
+              linetype = "dashed",
+              linewidth = 0.5,
+              colour = colorspace::lighten("#5e5e5e", 0.8)) +
   # The Data Points
-  geom_point(aes(size = Interaction, color = mean_cv), alpha = 0.8) +
+  geom_point(aes(size = Interaction, 
+                 color = mean_cv), 
+             alpha = 0.7) +
   # Labels
-  geom_text_repel(size = 3.5, box.padding = 0.5) +
+  geom_text_repel(size = 3.5, box.padding = 1) +
   # Color scale (Viridis for clarity)
-  scale_colour_gradientn(colors = c("#F2E8CF", "#6A994E", "#154734"),
+  scale_colour_gradientn(colors = col_cont,
                          name = "Disagreement (CV%)") +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
@@ -409,8 +417,7 @@ summary_plot <-
   figure_theme
 
 ggsave("../figures/ANOVA_summary.png",
-       plot = summary_plot,
-       width = 6000,
-       height = 5000,
+       width = 5000,
+       height = 4000,
        units = "px",
        dpi = 600)

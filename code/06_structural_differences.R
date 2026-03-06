@@ -180,8 +180,7 @@ ggplot(loadings_df, aes(x = CV1, y = CV2)) +
     size = 4,
     box.padding = 0.4,
     point.padding = 0.3,
-    max.overlaps = Inf
-  ) +
+    max.overlaps = Inf) +
   coord_equal(xlim = c(-1, 1), ylim = c(-1, 1)) +
   labs(
     x = "CV1",
