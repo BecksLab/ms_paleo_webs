@@ -9,9 +9,8 @@ author:
     role: 
     - conceptualization: lead
     - methodology: lead
-    affiliation:
-      - id: sheffield
-        name: School of Biosciences, University of Sheffield, Sheffield, UK
+    affiliations:
+      - ref: sheffield
   - name: Baran Karapunar
     id: bk
     orcid: 0000-0001-9711-1492
@@ -19,9 +18,17 @@ author:
     role: 
     - conceptualization: lead
     - methodology: supporting
-    affiliation:
-      - id: leeds
-        name: School of Earth and Environment, University of Leeds, Leeds, UK
+    affiliations:
+      - ref: leeds
+  - name: Jennifer A. Dunne
+    id: jad
+    orcid: 0000-0002-3789-9561
+    corresponding: false
+    role: 
+    - conceptualization: lead
+    - methodology: supporting
+    affiliations:
+        - ref: sfi
   - name: Andrew P. Beckerman
     id: apb
     orcid: 0000-0002-7859-8394
@@ -40,6 +47,13 @@ author:
     - methodology: supporting
     affiliations:
       - ref: leeds
+affiliations:
+    - id: sheffield
+      name: School of Biosciences, University of Sheffield, Sheffield, UK, S10 2TN
+    - id: leeds
+      name: School of Earth, Environment and Sustainability, University of Leeds, Leeds, UK, LS2 9JT
+    - id: sfi
+      name: Santa Fe Institute, 1399 Hyde Park Road, Santa Fe, NM 87501, USA
 funding: "The author(s) received no specific funding for this work. Well they did I just haven't done the homework"
 keywords:
   - Ecological networks
