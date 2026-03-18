@@ -138,6 +138,11 @@
  
 
 
+\usepackage[left=3cm,right=5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{lineno}
+\usepackage{setspace}
+\usepackage{orcidlink}
+\usepackage{etoolbox}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -184,7 +189,7 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Model structure conditions ecological inference in food web reconstruction},
-  pdfauthor={Tanya Strydom; Baran Karapunar; Andrew P. Beckerman; Alexander Dunhill},
+  pdfauthor={Tanya Strydom; Baran Karapunar; Jennifer A. Dunne; Andy Ridgwell; Pincelli Hull; Crispin T.S. Little; Catalina Pimiento; Paul B. Wignall; Andrew P. Beckerman; Alexander Dunhill},
   pdfkeywords={Ecological networks, Biotic interactions, Community
 assembly, Environmental gradients, Interaction turnover, Trophic
 organisation, Ecosystem resilience, Macroecology},
@@ -196,146 +201,267 @@ organisation, Ecosystem resilience, Macroecology},
   pdfcreator={LaTeX via pandoc}}
 
 
-
 \title{Model structure conditions ecological inference in food web
 reconstruction}
-\author{Tanya Strydom %
-%
-\textsuperscript{%
-%
-1%
-}%
-; Baran Karapunar %
-%
-\textsuperscript{%
-%
-2%
-}%
-; Andrew P. Beckerman %
-%
-\textsuperscript{%
-%
-1%
-}%
-; Alexander Dunhill %
-%
-\textsuperscript{%
-%
-2%
-}%
-}
-\date{2026-03-06}
 
-\usepackage{setspace}
-\usepackage[left]{lineno}
-\usepackage[letterpaper]{geometry}
+
+% ==================================================================
+% 1. CAPTURE DATA 
+% ==================================================================
+\newcommand{\myauthors}{%
+%
+\textbf{Tanya Strydom}%
+~\orcidlink{0000-0001-6067-1349}%
+\textsuperscript{1}%
+\textsuperscript{*}%
+%
+, %
+%
+\textbf{Baran Karapunar}%
+~\orcidlink{0000-0001-9711-1492}%
+\textsuperscript{2}%
+%
+%
+, %
+%
+\textbf{Jennifer A. Dunne}%
+~\orcidlink{0000-0002-3789-9561}%
+\textsuperscript{3}%
+%
+%
+, %
+%
+\textbf{Andy Ridgwell}%
+~\orcidlink{0000-0003-2333-0128}%
+\textsuperscript{4}%
+%
+%
+, %
+%
+\textbf{Pincelli Hull}%
+~\orcidlink{0000-0002-1917-4460}%
+\textsuperscript{5}%
+%
+%
+, %
+%
+\textbf{Crispin T.S. Little}%
+~\orcidlink{0000-0002-1917-4460}%
+\textsuperscript{2}%
+%
+%
+, %
+%
+\textbf{Catalina Pimiento}%
+~\orcidlink{0000-0002-1917-4460}%
+\textsuperscript{6}%
+%
+%
+, %
+%
+\textbf{Paul B. Wignall}%
+%
+\textsuperscript{2}%
+%
+%
+, %
+%
+\textbf{Andrew P. Beckerman}%
+~\orcidlink{0000-0002-7859-8394}%
+\textsuperscript{1}%
+%
+%
+, %
+%
+\textbf{Alexander Dunhill}%
+~\orcidlink{0000-0002-8680-9163}%
+\textsuperscript{2}%
+%
+%
+%
+}
+
+\newcommand{\myaffiliations}{%
+%
+\textsuperscript{1} School of Biosciences, University of Sheffield,
+Sheffield, UK, S10 2TN%
+\\ %
+%
+\textsuperscript{2} School of Earth, Environment and Sustainability,
+University of Leeds, Leeds, UK, LS2 9JT%
+\\ %
+%
+\textsuperscript{3} Santa Fe Institute, 1399 Hyde Park Road, Santa Fe,
+NM 87501, USA%
+\\ %
+%
+\textsuperscript{4} Department of Earth and Planetary Sciences,
+University of California, Riverside, CA, USA%
+\\ %
+%
+\textsuperscript{5} Department of Geology and Geophysics, Yale
+University, New Haven, CT, USA%
+\\ %
+%
+\textsuperscript{6} Department of Paleontology, University of Zurich,
+Zurich, Switzerland%
+%
+}
+
+\newcommand{\myemail}{%
+%
+%
+\textsuperscript{*}Correspondence: \texttt{t.strydom@sheffield.ac.uk}%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+}
+
+% ==================================================================
+% 2. DEFINE THE LAYOUT
+% ==================================================================
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  % Use a Group with \raggedright instead of 'flushleft' environment
+  % This ensures it aligns EXACTLY with the body text margins.
+  {\raggedright
+    \let \footnote \thanks
+    \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+    % TITLE
+    {\LARGE \bfseries \sffamily \@title \par}%
+    \vskip 1em%
+    % AUTHORS
+    {\large
+      \lineskip .5em%
+      \noindent\myauthors\par}% 
+    % AFFILIATIONS
+    \vskip 1em%
+    {\footnotesize \myaffiliations \par}%
+    % EMAIL
+    \vskip 0.5em%
+    {\footnotesize \myemail \par}%
+  }% End group
+  \par
+  \vskip 1em}
+\makeatother
+
+\date{2026-03-18}
 
 \usepackage[nolists,noheads,markers]{endfloat}
-\geometry{margin=2.5cm}
 
 \begin{document}
+\maketitle
 
-\thispagestyle{empty}
-{\bfseries\sffamily\Large Model structure conditions ecological
-inference in food web reconstruction}
-\vfil
-Tanya Strydom %
-%
-\textsuperscript{%
-%
-1%
-}%
-; Baran Karapunar %
-%
-\textsuperscript{%
-%
-2%
-}%
-; Andrew P. Beckerman %
-%
-\textsuperscript{%
-%
-1%
-}%
-; Alexander Dunhill %
-%
-\textsuperscript{%
-%
-2%
-}%
+% REDEFINE ABSTRACT TO REMOVE INDENTATION
+\renewenvironment{abstract}
+ {\small\noindent\textbf{Abstract:}}
+ {\par}
 
-\vfil
-{\small
-\textbf{Abstract:} Aim
+  \begin{abstract}
+    Aim
 
-Ecological networks are widely used to compare community structure,
-stability, and responses to disturbance across environmental gradients.
-However, many networks (particularly those assembled from incomplete
-interaction data) require model-based reconstruction. We test how
-alternative reconstruction frameworks condition ecological inference by
-quantifying their effects on network structure and disturbance dynamics.
+    Ecological networks are widely used to compare community structure,
+    stability, and responses to disturbance across environmental
+    gradients. However, many networks (particularly those assembled from
+    incomplete interaction data) require model-based reconstruction. We
+    test how alternative reconstruction frameworks condition ecological
+    inference by quantifying their effects on network structure and
+    disturbance dynamics.
 
-Location
+    Location
 
-Cleveland Basin, United Kingdom.
+    Cleveland Basin, United Kingdom.
 
-Time period
+    Time period
 
-Toarcian extinction event (Early Jurassic, late Pliensbachian--late
-Toarcian, \textasciitilde183 Ma).
+    Toarcian extinction event (Early Jurassic, late Pliensbachian--late
+    Toarcian, \textasciitilde183 Ma).
 
-Major taxa studied
+    Major taxa studied
 
-Marine animal communities.
+    Marine animal communities.
 
-Methods
+    Methods
 
-We reconstructed four successive communities from an identical species
-pool using six contrasting food-web models spanning feasible
-(trait-based), realised (allometric and energetic), and structural
-(topological) network representations. For each community and model, 100
-replicate networks were generated. We quantified macro-, meso-, and
-micro-scale network properties and assessed differences among models
-using multivariate analyses. Pairwise interaction turnover was measured
-using link-based beta diversity. We then simulated species loss under
-multiple disturbance scenarios, allowing cascading extinctions, and
-compared predicted community states using mean absolute differences and
-rank concordance metrics between models.
+    We reconstructed four successive communities from an identical
+    species pool using six contrasting food-web models spanning feasible
+    (trait-based), realised (allometric and energetic), and structural
+    (topological) network representations. For each community and model,
+    100 replicate networks were generated. We quantified macro-, meso-,
+    and micro-scale network properties and assessed differences among
+    models using multivariate analyses. Pairwise interaction turnover
+    was measured using link-based beta diversity. We then simulated
+    species loss under multiple disturbance scenarios, allowing
+    cascading extinctions, and compared predicted community states using
+    mean absolute differences and rank concordance metrics between
+    models.
 
-Results
+    Results
 
-Reconstruction framework strongly influenced inferred network topology
-(MANOVA, p \textless{} 0.001), generating distinct structural signatures
-independent of species composition. Models that were similar in global
-metrics often diverged in species-level interactions, with high
-β-turnover among inferred link sets. During disturbance simulations,
-species-level vulnerability rankings were broadly consistent across
-models, but interaction-level outcomes and cascade dynamics varied
-substantially. Concordance in extinction-scenario rankings was scale
-dependent, with higher agreement at the species level than at the
-interaction level.
+    Reconstruction framework strongly influenced inferred network
+    topology (MANOVA, p \textless{} 0.001), generating distinct
+    structural signatures independent of species composition. Models
+    that were similar in global metrics often diverged in species-level
+    interactions, with high β-turnover among inferred link sets. During
+    disturbance simulations, species-level vulnerability rankings were
+    broadly consistent across models, but interaction-level outcomes and
+    cascade dynamics varied substantially. Concordance in
+    extinction-scenario rankings was scale dependent, with higher
+    agreement at the species level than at the interaction level.
 
-Main conclusions
+    Main conclusions
 
-Network reconstruction functions as a structural prior that conditions
-ecological inference. While some aggregate patterns are robust across
-modelling frameworks, detailed interaction-level dynamics are highly
-model contingent. Comparative network studies across spatial or
-environmental gradients should therefore align reconstruction framework
-with inferential goals and explicitly evaluate sensitivity to modelling
-assumptions.
-\vfil
-\textbf{Keywords:} %
-Ecological networks, Biotic interactions, Community
-assembly, Environmental gradients, Interaction turnover, Trophic
-organisation, Ecosystem resilience, %
-Macroecology%
-}
-\clearpage
-\setcounter{page}{1}
-\doublespacing
+    Network reconstruction functions as a structural prior that
+    conditions ecological inference. While some aggregate patterns are
+    robust across modelling frameworks, detailed interaction-level
+    dynamics are highly model contingent. Comparative network studies
+    across spatial or environmental gradients should therefore align
+    reconstruction framework with inferential goals and explicitly
+    evaluate sensitivity to modelling assumptions.
+          \par\bigskip
+      \noindent\textbf{Keywords:} Ecological networks, Biotic
+interactions, Community assembly, Environmental gradients, Interaction
+turnover, Trophic organisation, Ecosystem resilience, Macroecology
+      \end{abstract}
+
+% FORCE NEW PAGE BEFORE CONTENT
+\newpage
+
+% ==========================================================
+% BODY TEXT SETUP
+% ==========================================================
+
+% 1. Set default body style
 \linenumbers
+\doublespacing % <--- CHANGED TO DOUBLE SPACING
 
+% 2. Fix Table of Contents (Clean Mode)
+\makeatletter
+\@ifpackageloaded{etoolbox}{%
+  \pretocmd{\tableofcontents}{\nolinenumbers\singlespacing}{}{}%
+  \apptocmd{\tableofcontents}{\linenumbers\doublespacing}{}{}% 
+}{}%
+\makeatother
 
 \section{Introduction}\label{introduction}
 
@@ -1534,7 +1660,6 @@ in ancient egypt. \emph{PNAS}, \emph{111}(40), 14472--14477.
 \url{https://doi.org/10.1073/pnas.1408471111}
 
 \end{CSLReferences}
-
 
 
 
