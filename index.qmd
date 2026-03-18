@@ -29,6 +29,50 @@ author:
     - methodology: supporting
     affiliations:
         - ref: sfi
+  - name: Andy Ridgwell
+    id: AR
+    orcid: 0000-0003-2333-0128
+    corresponding: false
+    role: 
+    - conceptualization: supporting
+    - methodology: supporting
+    affiliations:
+        - ref: uoc
+  - name: Pincelli Hull
+    id: ctsl
+    orcid: 0000-0002-1917-4460
+    corresponding: false
+    role: 
+    - conceptualization: supporting
+    - methodology: supporting
+    affiliations:
+      - ref: yale
+  - name: Crispin T.S. Little
+    id: ctsl
+    orcid: 0000-0002-1917-4460
+    corresponding: false
+    role: 
+    - conceptualization: supporting
+    - methodology: supporting
+    affiliations:
+      - ref: leeds
+  - name: Catalina Pimiento
+    id: ctsl
+    orcid: 0000-0002-1917-4460
+    corresponding: false
+    role: 
+    - conceptualization: supporting
+    - methodology: supporting
+    affiliations:
+      - ref: zurich
+  - name: Paul B. Wignall
+    id: pbw
+    corresponding: false
+    role: 
+    - conceptualization: supporting
+    - methodology: supporting
+    affiliations:
+      - ref: leeds
   - name: Andrew P. Beckerman
     id: apb
     orcid: 0000-0002-7859-8394
@@ -54,6 +98,12 @@ affiliations:
       name: School of Earth, Environment and Sustainability, University of Leeds, Leeds, UK, LS2 9JT
     - id: sfi
       name: Santa Fe Institute, 1399 Hyde Park Road, Santa Fe, NM 87501, USA
+    - id: uoc
+      name: Department of Earth and Planetary Sciences, University of California, Riverside, CA, USA
+    - id: yale
+      name: Department of Geology and Geophysics, Yale University, New Haven, CT, USA
+    - id: zurich
+      name: Department of Paleontology, University of Zurich, Zurich, Switzerland
 funding: "The author(s) received no specific funding for this work. Well they did I just haven't done the homework"
 keywords:
   - Ecological networks
