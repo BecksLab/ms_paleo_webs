@@ -8,7 +8,19 @@ author:
     email: t.strydom@sheffield.ac.uk
     role: 
     - conceptualization: lead
-    - methodology: lead
+    - data-curation
+    - formal-analysis
+    - funding-acquisition
+    - investigation
+    - methodology
+    - project-administration
+    - resources
+    - software
+    - supervision
+    - validation
+    - visualization
+    - writing-original-draft
+    - writing-review-editing
     affiliations:
       - ref: sheffield
   - name: Baran Karapunar
@@ -40,7 +52,7 @@ author:
         - ref: uoc
   - name: Pincelli Hull
     id: ctsl
-    orcid: 0000-0002-1917-4460
+    orcid: 0000-0001-8607-4817
     corresponding: false
     role: 
     - conceptualization: supporting
@@ -58,7 +70,7 @@ author:
       - ref: leeds
   - name: Catalina Pimiento
     id: ctsl
-    orcid: 0000-0002-1917-4460
+    orcid: 0000-0002-5320-7246
     corresponding: false
     role: 
     - conceptualization: supporting
