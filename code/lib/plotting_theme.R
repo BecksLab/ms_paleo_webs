@@ -49,22 +49,20 @@ figure_theme =
 # 1. DISCRETE MODEL COLORS (Paleo-Safe)
 colours <- c(
   # Group 1: The Anchor
-  "PFIM"            = "#006D77", # Deep Teal
-  "random"          = "#3D348B", # Deep Violet
-  "niche"           = "#8E81E1", # Soft Violet
-  "ATN"             = "#B84600", # Rich Rust
-  "ADBM"            = "#FF9F1C", # Amber
-  "Body-size ratio" = "#FFD166"  # Soft Goldenrod
+  "PFIM"            = "#1E7548", # Deep Teal
+  "random"          = "#5F249F", # Deep Violet
+  "niche"           = "#69B3E7", # Soft Violet
+  "ATN"             = "#6F263D", # Rich Rust
+  "ADBM"            = "#A9431E", # Amber
+  "Body-size ratio" = "#B9975B"  # Soft Goldenrod
 )
 
 pal_df <- data.frame(l = names(colours), c = colours)
 
 # 2. CONTINUOUS OCEAN RAMP (Tied to Group 1)
 # High-vibrancy transition from ice-blue to PFIM Teal
-col_cont <- c("#E0FBFC", "#83C5BE", "#006D77")
+col_cont <- c("#AEfED5", "#32BF76", "#1E7548")
 
 # 3. DIVERGING (Tied to Group 2 & 3)
 # Contrasts the 'ATN' warmth against the 'random' cool violet
-col_div <- c("#B84600", "#F4F1DE", "#3D348B")
-
-
+col_div <- c("#6F263D", "#F4F1DE", "#5F249F")

@@ -68,7 +68,7 @@ tile_df <-
                              Model2 == "lmatrix" ~ "ATN",
                              .default = as.character(Model2)))
 
-# Generate Tile Plot (Heatmap) using the 'plasma' color scale
+# Generate Tile Plot (Heatmap)
 ggplot(tile_df, 
        aes(x = Model1, 
            y = Model2, 
