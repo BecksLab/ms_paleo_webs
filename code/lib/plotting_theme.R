@@ -61,7 +61,7 @@ pal_df <- data.frame(l = names(colours), c = colours)
 
 # 2. CONTINUOUS OCEAN RAMP (Tied to Group 1)
 # High-vibrancy transition from ice-blue to PFIM Teal
-col_cont <- c("#AEfED5", "#32BF76", "#1E7548")
+col_cont <- c("#DED0BE", "#A9431E")
 
 # 3. DIVERGING (Tied to Group 2 & 3)
 # Contrasts the 'ATN' warmth against the 'random' cool violet

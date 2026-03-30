@@ -7,6 +7,7 @@ library(tidyverse)
 
 # set path to code sub directory
 setwd(here("code"))
+source("lib/plotting_theme.R")
 
 # 1. Data Cleaning and Model Name Normalization
 beta_df <- read_csv("../data/processed/beta_div.csv") %>%
