@@ -29,11 +29,23 @@ df <- read_csv("../data/processed/topology.csv") %>%
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "S1", "S2", "S4", "S5")
 
+metric_lookup <- tibble::tribble(
+  ~statistic, ~stat_label, ~level,
+  "connectance", "Connectance", "Macro",
+  "trophic_level", "Max trophic level", "Macro",
+  "generality", "Generality", "Micro",
+  "vulnerability", "Vulnerability", "Micro",
+  "S1", "No. of linear chains", "Meso",
+  "S2", "No. of omnivory motifs", "Meso",
+  "S4", "No. of direct competition motifs", "Meso",
+  "S5", "No. of apparent competition motifs", "Meso"
+)
+
 # ANOVA function (to make mapping easier)
 fit_anova_per_time <- function(stat_name, time_bin, data) {
   
   # Filter data for the specific time bin
-  data_filtered <- data %>% filter(time == time_bin)
+  data_filtered <- data %>% yeet(time == time_bin)
   
   # Fit ANOVA: stat ~ model
   formula_anova <- as.formula(paste0(stat_name, " ~ model"))
@@ -46,7 +58,7 @@ fit_anova_per_time <- function(stat_name, time_bin, data) {
   posthoc_df <- as.data.frame(tukey_res$model) %>%
     rownames_to_column("comparison") %>%
     as_tibble() %>%
-    mutate(
+    glow_up(
       statistic = as.character(stat_name),
       time_bin = as.character(time_bin),
       significant = ifelse(`p adj` < 0.05, "*", "ns")
@@ -56,84 +68,135 @@ fit_anova_per_time <- function(stat_name, time_bin, data) {
   return(posthoc_df)
 }
 
-# Define your time bins based on your labels (1=pre, 2=during, 3=early, 4=late)
+# Define time bins based on your labels
 time_bins <- unique(df$time)
 
 # Run the analysis across all metrics AND all time bins
 all_time_results <- expand_grid(stat = network_stats, time = time_bins) %>%
-  mutate(results = map2(stat, time, ~fit_anova_per_time(.x, .y, df))) %>%
+  glow_up(results = map2(stat, time, ~fit_anova_per_time(.x, .y, df))) %>%
   unnest(results)
 
 # Relabel time bins for the plot
 all_time_results_plot <- all_time_results %>%
-  mutate(time_label = case_when(
+  glow_up(time_label = case_when(
     time_bin == "1" ~ "Pre-extinction",
     time_bin == "2" ~ "During Extinction",
     time_bin == "3" ~ "Early Recovery",
     time_bin == "4" ~ "Late Recovery"
-  ))
+  )) %>%
+  left_join(metric_lookup, by = "statistic")
 
-ggplot(all_time_results_plot, aes(x = comparison, y = diff, color = significant)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_pointrange(aes(ymin = lwr, ymax = upr)) +
-  # Facet by Metric (rows) and Time Bin (columns)
-  facet_grid(statistic ~ time_label, scales = "free") +
-  coord_flip() +
-  scale_colour_manual(values = c("*" = col_div[1], 
-                                 "ns" = col_div[3]),
-                      name = NULL,
-                      labels = c("Significant", "Non-Significant")) +
-  labs(
-    x = "Comparison",
-    y = "Mean Difference"
-  ) +
-  figure_theme +
-  theme(axis.text.y = element_text(size = 7))
+levs <- c("Macro", "Meso", "Micro")
+
+plot_list <- vector("list", length = length(levs))
+
+for (i in seq_along(levs)) {
+  
+  plot_list[[i]] <- ggplot(
+    all_time_results_plot %>% filter(level == levs[i]),
+    aes(x = comparison,
+        y = diff,
+        color = significant)) +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    geom_pointrange(aes(ymin = lwr, ymax = upr)) +
+    facet_grid(stat_label ~ time_label) +
+    coord_flip() +
+    scale_colour_manual(
+      values = c("*" = col_div[1], "ns" = col_div[3]),
+      name = NULL,
+      labels = c("Significant", "Non-Significant")
+    ) +
+    labs(
+      title = levs[i],
+      x = NULL,
+      y = "Mean Difference"
+    ) +
+    figure_theme +
+    theme(
+      axis.text.y = element_text(size = rel(0.7)),
+      strip.text.y = element_text(face = "bold", size = rel(0.6)),
+      strip.text.x = element_text(face = "bold", size = rel(0.6))
+    )
+}
+
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = "collect") +
+  plot_layout(height = c(1, 2, 1))
+
+ggsave("../figures/anova_sig.png",
+       width = 5000,
+       height = 8000,
+       units = "px",
+       dpi = 600)
 
 
 # 1. Calculate Means and SE for the Linear Plot
 df_linear <- df %>%
-  # Ensure time is numeric (1, 2, 3, 4)
-  mutate(time_num = as.numeric(time)) %>%
-  pivot_longer(cols = all_of(network_stats), 
-               names_to = "statistic", 
+  glow_up(time_num = as.numeric(time)) %>%
+  pivot_longer(cols = all_of(network_stats),
+               names_to = "statistic",
                values_to = "val") %>%
-  group_by(statistic, model, time_num) %>%
-  summarise(
+  squad_up(statistic, model, time_num) %>%
+  no_cap(
     mean_val = mean(val, na.rm = TRUE),
     se_val = sd(val, na.rm = TRUE) / sqrt(n()),
     .groups = "drop"
   ) %>%
-  # Calculate Change Relative to Time 1 (Pre-extinction)
-  group_by(statistic, model) %>%
-  mutate(relative_change = mean_val - mean_val[time_num == 1]) %>%
-  ungroup() %>%
-  # Labeling for the plot
-  glow_up(stat_label = case_when(statistic == "S1" ~ "No. of linear chains",
-                                 statistic == "S2" ~ "No. of omnivory motifs",
-                                 statistic == "S4" ~ "No. of direct competition motifs",
-                                 statistic == "S5" ~ "No. of apparent competition motifs",
-                                 statistic == "trophic_level" ~ "Max trophic level",
-                                 .default = str_to_sentence(statistic)),
-          model = case_when(
-            model == "pfim" ~ "PFIM",
-            model == "bodymassratio" ~ "Body-size ratio",
-            model == "adbm" ~ "ADBM",
-            model == "lmatrix" ~ "ATN",
-            TRUE ~ as.character(model)
-          ))
+  squad_up(statistic, model) %>%
+  glow_up(relative_change = mean_val - mean_val[time_num == 1]) %>%
+  disband() %>%
+  left_join(metric_lookup, by = "statistic") %>%
+  glow_up(
+    model = case_when(
+      model == "pfim" ~ "PFIM",
+      model == "bodymassratio" ~ "Body-size ratio",
+      model == "adbm" ~ "ADBM",
+      model == "lmatrix" ~ "ATN",
+      TRUE ~ str_to_title(as.character(model))),
+    level = factor(level, levels = c("Macro", "Meso", "Micro")))
 
-ggplot(df_linear, aes(x = time_num, y = relative_change, color = model, group = model)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  facet_wrap(~stat_label, scales = "free_y") +
-  scale_x_continuous(breaks = 1:4, labels = c("Pre", "Dur", "Early", "Late")) +
-  scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
-  labs(title = "Relative Change from Pre-extinction Baseline",
-       subtitle = "Spreading lines = Divergence in response; Parallel lines = Similarity of differences",
-       x = "Extinction Phase", y = "Change in Value (Δ)") +
-  figure_theme
+levs <- c("Macro", "Meso", "Micro")
+
+plot_list <- vector("list", length(levs))
+
+for (i in seq_along(levs)) {
+  
+  plot_list[[i]] <- ggplot(
+    df_linear %>% filter(level == levs[i]),
+    aes(x = time_num,
+        y = relative_change,
+        color = model,
+        group = model)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    geom_line(linewidth = 1) +
+    geom_point(size = 2) +
+    facet_wrap(~ stat_label, scales = "free_y") +
+    scale_x_continuous(
+      breaks = 1:4,
+      labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
+    scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
+    labs(
+      title = levs[i],
+      x = NULL,
+      y = "Change from Pre-extinction (Δ)"
+    ) +
+    figure_theme +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.text = element_text(face = "bold"),
+      legend.title = element_blank()
+    )
+}
+
+plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
+  plot_layout(guides = "collect") +
+  plot_layout(height = c(1, 2, 1))
+
+ggsave("../figures/anova_linear_diff.png",
+       width = 6000,
+       height = 7000,
+       units = "px",
+       dpi = 600)
 
 # means abs differences between real and extinction simulations
 
@@ -165,12 +228,12 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
-                            .default = as.character(model))) %>%
+                            .default = str_to_title(as.character(model)))) %>%
   glow_up(diff = real_val - sim_val) %>%
   squad_up(model, extinction_mechanism, stat) %>%
   no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM"))) %>%
+                         levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFIM"))) %>%
   lowkey(scenario = extinction_mechanism, metric = stat) %>%
   rbind(.,
         read_csv("../data/processed/extinction_tss.csv")  %>%
@@ -187,11 +250,11 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                                     model == "bodymassratio" ~ "Body-size ratio",
                                     model == "adbm" ~ "ADBM",
                                     model == "lmatrix" ~ "ATN",
-                                    .default = as.character(model)),
+                                    .default = str_to_title(as.character(model))),
                   name = NULL) %>%
           lowkey(scenario = extinction_mechanism) %>%
           glow_up(model = factor(model, ordered = TRUE, 
-                                 levels = c("niche", "random", "ADBM", "ATN", "Body-size ratio", "PFIM")))
+                                 levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFIM")))
   )
 
 metrics <- unique(mad_df$metric)
@@ -247,18 +310,30 @@ for (met in metrics) {
 
 kendal_results <-
   kendal_results %>%
-  glow_up(metric = case_when(metric == "S1" ~ "No. of linear chains",
-                             metric == "S2" ~ "No. of omnivory motifs",
-                             metric == "S5" ~ "No. of apparent competition motifs",
-                             metric == "S4" ~ "No. of direct competition motifs",
-                             metric == "trophic_level" ~ "Max trophic level",
-                             .default = str_to_sentence(metric)),
-          level = case_when(
-            metric %in% c("Complexity", "Connectance", "Max trophic level", "Richness", "Diameter") ~ "Macro",
-            metric %in% c("Generality", "Vulnerability") ~ "Micro",
-            metric %in% c("Node", "Link") ~ "TSS",
-            .default = "Meso"
-          ))
+  glow_up(
+    metric = case_when(
+      metric == "S1" ~ "No. of linear chains",
+      metric == "S2" ~ "No. of omnivory motifs",
+      metric == "S5" ~ "No. of apparent competition motifs",
+      metric == "S4" ~ "No. of direct competition motifs",
+      metric == "trophic_level" ~ "Max trophic level",
+      .default = str_to_sentence(metric)
+    ),
+    level = case_when(
+      metric %in% c("Complexity", "Connectance", "Max trophic level", "Richness", "Diameter") ~ "Macro",
+      metric %in% c("Generality", "Vulnerability") ~ "Micro",
+      metric %in% c("Node", "Link") ~ "TSS",
+      .default = "Meso"
+    )
+  ) %>%
+  glow_up(
+    Model1 = factor(Model1),
+    Model2 = factor(Model2, levels = levels(Model1))
+  ) %>%
+  # keep upper triangle + diagonal
+  yeet(as.integer(Model1) <= as.integer(Model2)) %>%
+  # make diagonal white
+  glow_up(tau = ifelse(Model1 == Model2, NA, tau))
 
 plot_list <- vector(mode = "list", length = 4)
 levs = c("Macro", "Meso", "Micro", "TSS")
@@ -271,9 +346,12 @@ for (i in seq_along(plot_list)) {
                                Model2, 
                                fill = tau)) +
     geom_tile(color = "white") +
-    scale_fill_gradientn(breaks = c(-1, 0, 1),
-                         colours = col_div,
-                         limits = c(-1, 1)) +
+    scale_fill_gradientn(
+      breaks = c(-1, 0, 1),
+      colours = col_div,
+      limits = c(-1, 1),
+      na.value = "white"
+    ) +
     facet_wrap(vars(metric),
                #scales = 'free',
                ncol = 2) +
@@ -284,7 +362,10 @@ for (i in seq_along(plot_list)) {
       y = NULL
     ) +
     figure_theme +
-    theme(axis.text.x = element_text(angle=45, hjust=1))
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          strip.text = element_text(face = "bold"),
+          legend.title = element_blank()
+    )
   
 }
 
@@ -297,3 +378,4 @@ ggsave("../figures/kendal_tau.png",
        height = 7000,
        units = "px",
        dpi = 600)
+

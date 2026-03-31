@@ -78,8 +78,8 @@ diag_data <- network_stats %>%
 # 2. Create the Residuals vs. Fitted Plot (Homogeneity Check)
 res_vs_fit_plot <- ggplot(diag_data, aes(x = fitted, y = resid)) +
   # Use high transparency (alpha) because of the large N (2400)
-  geom_point(alpha = 0.1, size = 0.5, color = "#3D348B") +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "#B84600") +
+  geom_point(alpha = 0.1, size = 0.5, color = "#5F249F") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "#6F263D") +
   # Facet by metric with 'free' scales since metrics have different units
   facet_wrap(~metric, scales = "free", ncol = 4) +
   labs(
@@ -94,7 +94,7 @@ res_vs_fit_plot <- ggplot(diag_data, aes(x = fitted, y = resid)) +
 # 3. Create the Q-Q Plot (Normality Check)
 qq_plot <- ggplot(diag_data, aes(sample = resid)) +
   stat_qq(alpha = 0.1, size = 0.5) +
-  stat_qq_line(color = "#B84600") +
+  stat_qq_line(color = "#6F263D") +
   facet_wrap(~metric, scales = "free", ncol = 4) +
   labs(
     title = "Normal Q-Q Plots (All Metrics)",
@@ -252,7 +252,7 @@ for (i in seq_along(cv_plot_list)) {
 }
 
 # 3. Assemble the final multi-panel plot
-# Adjust heights based on how many metrics are in each level (Meso usually has more)
+# Adjust heights based on how many metrics are in each level
 cv_final_plot <- cv_plot_list[[1]] / 
   cv_plot_list[[2]] / 
   cv_plot_list[[3]] +
@@ -368,7 +368,7 @@ write_csv(manuscript_anova_table, "../tables/ANOVA_Results.csv")
 # 2. Export CV Analysis (The Convergence Table)
 # Formatted to show Time Bins as columns for easier reading
 cv_analysis %>%
-  glow_up(time_fact = case_when(time_fact == "1" ~ "Pre extinction",
+  glow_up(time_fact = case_when(time_fact == "1" ~ "Pre-extinction",
                                 time_fact == "2" ~ "During extinction",
                                 time_fact == "3" ~ "Early extinction",
                                 time_fact == "4" ~ "Late extinction")) %>%
@@ -387,7 +387,8 @@ summary_data <- manuscript_anova_table %>%
     by = c("Metric" = "statistic")
   )
 
-ggplot(summary_data, 
+ANOVA_summary <-
+  ggplot(summary_data, 
          aes(x = Model, 
              y = Time, 
              label = Metric)) +
@@ -397,19 +398,18 @@ ggplot(summary_data,
               linetype = "dashed",
               linewidth = 0.5,
               colour = colorspace::lighten("#5e5e5e", 0.8)) +
-  # The Data Points
-  geom_point(aes(size = Interaction, 
-                 color = mean_cv), 
-             alpha = 0.7) +
   # Labels
   geom_text_repel(size = 3.5, box.padding = 1) +
-  # Color scale (Viridis for clarity)
+  # The Data Points (overlay the lines)
+  geom_point(aes(size = Interaction, 
+                 color = mean_cv)) +
   scale_colour_gradientn(colors = col_cont,
                          name = "Disagreement (CV%)") +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
   coord_fixed() +
-  scale_size_continuous(range = c(3, 12), name = "Interaction (CV%)") +
+  coord_cartesian(clip = "off") +
+  scale_size_continuous(range = c(2, 8), name = "Interaction (CV%)") +
   labs(
     x = "Importance of model (Partial Eta-Squared)",
     y = "Importance of time (Partial Eta-Squared)"
@@ -417,7 +417,8 @@ ggplot(summary_data,
   figure_theme
 
 ggsave("../figures/ANOVA_summary.png",
-       width = 5000,
-       height = 4000,
+       ANOVA_summary,
+       width = 4000,
+       height = 3000,
        units = "px",
        dpi = 600)

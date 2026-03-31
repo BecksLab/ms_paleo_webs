@@ -32,7 +32,7 @@ df <- read_csv(here("data/processed/topology_bodysize.csv")) %>%
     model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",
-    TRUE ~ as.character(model)
+    TRUE ~ str_to_title(as.character(model))
   )) %>%
   # Ensure bodysize method is a factor
   mutate(bodysize_method = factor(bodysize_method,

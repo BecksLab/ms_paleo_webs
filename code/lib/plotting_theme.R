@@ -50,14 +50,16 @@ figure_theme =
 colours <- c(
   # Group 1: The Anchor
   "PFIM"            = "#1E7548", # Deep Teal
-  "random"          = "#5F249F", # Deep Violet
-  "niche"           = "#69B3E7", # Soft Violet
+  "Random"          = "#5F249F", # Deep Violet
+  "Niche"           = "#69B3E7", # Soft Violet
   "ATN"             = "#6F263D", # Rich Rust
   "ADBM"            = "#A9431E", # Amber
   "Body-size ratio" = "#B9975B"  # Soft Goldenrod
 )
 
 pal_df <- data.frame(l = names(colours), c = colours)
+# make named vector
+names(pal_df$c) <- pal_df$l
 
 # 2. CONTINUOUS OCEAN RAMP (Tied to Group 1)
 # High-vibrancy transition from ice-blue to PFIM Teal

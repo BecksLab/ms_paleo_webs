@@ -20,7 +20,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
     model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",
-    TRUE ~ as.character(model)
+    TRUE ~ str_to_title(as.character(model))
   ), trophic_level = round(trophic_level, 0)) %>%
   na.omit()
 

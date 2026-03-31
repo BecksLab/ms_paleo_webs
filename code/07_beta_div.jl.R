@@ -67,7 +67,13 @@ tile_df <-
           Model2 = case_when(Model2 == "pfim" ~ "PFIM",
                              Model2 == "adbm" ~ "ADBM",
                              Model2 == "lmatrix" ~ "ATN",
-                             .default = as.character(Model2)))
+                             .default = as.character(Model2))) %>%
+  glow_up(
+    Model1 = factor(Model1),
+    Model2 = factor(Model2, levels = levels(Model1))
+  ) %>%
+  # keep upper triangle + diagonal
+  yeet(as.integer(Model1) <= as.integer(Model2))
 
 # Generate Tile Plot (Heatmap)
 ggplot(tile_df, 
@@ -76,10 +82,11 @@ ggplot(tile_df,
            fill = Beta_turnover)) +
   geom_tile(color = "white") +
   scale_fill_gradientn(colors = col_cont,
+                       na.value = "white",
                        name = "Beta turnover") +
-  theme_minimal() +
   labs(x = NULL,
        y = NULL) +
+  figure_theme +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.background = element_rect(fill = "white"))
 

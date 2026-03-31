@@ -38,7 +38,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
     model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",
-    TRUE ~ as.character(model)
+    TRUE ~ str_to_title(as.character(model))
   ), trophic_level = round(trophic_level, 0)) %>%
   na.omit()
 
@@ -98,27 +98,47 @@ cor(df[3:ncol(df)], lda_scores)
 # 5. LDA Visualization
 # =========================
 plot_lda <- data.frame(
-  model = factor(df$model, levels = c("niche","random","ADBM","ATN","Body-size ratio","PFIM")),
+  model = factor(df$model, levels = c("Niche","Random","ADBM","ATN","Body-size ratio","PFIM")),
   lda = lda_scores,
   time = df$time
 )
 
+plot_lda$model <- factor(plot_lda$model, levels = pal_df$l)
+
 ggplot(plot_lda, aes(x = lda.LD1, 
                      y = lda.LD2, 
-                     colour = model, 
+                     colour = model,
                      fill = model,
-                     shape = model)) + 
-  stat_ellipse(aes(x = lda.LD1, 
-                   y = lda.LD2, 
-                   colour = model), 
-               level = 0.95, linetype = 2)  +
+                     shape = model))  +
+  geom_hline(yintercept = 0, colour = "#A5ACAF") +
+  geom_vline(xintercept = 0, colour = "#A5ACAF") + 
+  stat_ellipse(aes(colour = model), 
+               level = 0.95, linetype = 2) +
   geom_point(size = 2, alpha = 0.4) +
   labs(x = ld1_lab, y = ld2_lab) +
-  scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
-  scale_fill_manual(values = pal_df$c, breaks = pal_df$l) +
-  guides(color = guide_legend(override.aes = list(linetype = 0, alpha = 1, size = 3))) +
+  scale_colour_manual(values = pal_df$c,
+                      name = "Reconstruction Approach") +
+  scale_fill_manual(values = pal_df$c,
+                    name = "Reconstruction Approach") +
+  scale_shape_manual(values = c(15, 19, 17, 23, 8, 3),
+                     name = "Reconstruction Approach") +
+  guides(
+    colour = "none",
+    shape = guide_legend(
+      override.aes = list(
+        colour = pal_df$c,
+        fill = pal_df$c,
+        size = 3,
+        alpha = 1
+      )
+    )
+  ) +
   figure_theme
-ggsave("../figures/MANOVA_lda.png", width = 5000, height = 4000, units = "px", dpi = 700)
+
+ggsave("../figures/MANOVA_lda.png", 
+       width = 5250, 
+       height = 4000, 
+       units = "px", dpi = 700)
 
 # =========================
 # 6. Canonical Loadings Table
