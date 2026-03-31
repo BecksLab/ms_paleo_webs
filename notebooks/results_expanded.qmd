@@ -10,7 +10,9 @@ date: last-modified
 bibliography: ../references.bib
 ---
 
-# Effect of Body Size Sampling Method on Network Metrics
+# Methods
+
+## Effect of Body Size Sampling Method on Network Metrics
 
 To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
 
@@ -18,20 +20,20 @@ Across all models and network metrics, the effect of body size sampling method w
 
 These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.
 
-## Figure S1. Effect of Body Size Sampling Method on Network Metrics
+### Figure S1. Effect of Body Size Sampling Method on Network Metrics
 
 ![](figures/effect_size_bodysize_within_model.png)
 
 Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
 
-# Multivariate analysis of network structure
+## Multivariate analysis of network structure
 
 We quantified food-web structure using a suite of macro-, meso-, and micro-scale network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).
 
 For visualisation, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualised using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison.
 Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.
 
-# Quantification of extinction simulation outcomes and model concordance
+## Quantification of extinction simulation outcomes and model concordance
 
 To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches.
 First, deviation in continuous network metrics (e.g., connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:
@@ -50,9 +52,11 @@ TSS = Sensitivity + Specificity − 1
 
 where Sensitivity = TP/(TP + FN) and Specificity = TN/(TN + FP). TSS ranges from −1 to 1, with 1 indicating perfect agreement, 0 indicating performance no better than random expectation, and negative values indicating systematic disagreement. Because TSS is prevalence-independent, it is appropriate for extinction simulations in which class imbalance may occur (*e.g.,* many persisting species or many absent links).
 
-# Effects of Network Reconstruction on Food-Web Structure
+# Results
 
-## Table S1. Descriptive statistics of network metrics by model
+## Effects of Network Reconstruction on Food-Web Structure
+
+### Table S1. Descriptive statistics of network metrics by model
 
 ```{r}
 library(knitr)
@@ -63,7 +67,7 @@ kable()
 
 ```
 
-## Table S2. Canonical discriminant analysis
+### Table S2. Canonical discriminant analysis
 
 ```{r}
 
@@ -72,33 +76,33 @@ kable()
 
 ```
 
-## Figure S1. Canonical Loadings
+### Figure S1. Canonical Loadings
 
-Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (green), Meso (orange), Micro (purple). Metric labels are shown for the most influential variables.
+Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Metric labels are shown for the most influential variables.
 
 ![](../figures/canonical_loadings_plot.png)
 
-## PERMANOVA Variance Partitioning
+### PERMANOVA Variance Partitioning
 
 To quantify the relative contributions of reconstruction framework and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Reconstruction framework ('model') and extinction phase ('time') were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.
 
-### Robustness of model effects after temporal centering
+#### Robustness of model effects after temporal centering
 
 To determine whether the dominance of reconstruction framework reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, reconstruction framework explained 84.8% of multivariate variance (R² = 0.848, p < 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among reconstruction frameworks.
 
-# Statistical Drivers of Network Variation
+## Statistical Drivers of Network Variation
 
-## Statistical Robustness and Assumptions
+### Statistical Robustness and Assumptions
 
 Factorial ANOVA assumptions were validated via residual analysis. Despite significant heteroscedasticity (Levene’s test, p<0.001), the perfectly balanced design (n = 100 per cell) and large sample size (N = 2400) ensure the robustness of the F-test. Visual inspection of Q-Q plots and Residuals-vs-Fitted plots confirmed that the distributions were sufficiently symmetric for parametric analysis.
 
-## Figure S2. Temporal Trajectories of Network Structure by Model
+### Figure S2. Temporal Trajectories of Network Structure by Model
 
 Detailed shifts in network properties across the four extinction phases, categorised by organisational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the "baseline" differences between models—such as the Niche model's tendency to over-estimate motif counts—and their divergent responses to species loss.
 
 ![](../figures/raw_time_structure.png)
 
-## Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.
+### Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.
 
 Summary of the two-way factorial ANOVA results for all eight metrics. Values represent partial eta-squared ($\eta^{2}_{p}$), which quantifies the proportion of variance explained by each factor. The dominance of the 'Model' term across all scales confirms that framework choice is the primary determinant of network topology.
 
@@ -109,13 +113,13 @@ kable()
 
 ```
 
-## Figure S3. Model Disagreement (CV%) Across Extinction Phases
+### Figure S3. Model Disagreement (CV%) Across Extinction Phases
 
 Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic "dip" at the 'during' phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.
 
 ![](../figures/cv.png)
 
-## Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.
+### Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.
 
 Calculated inter-model CV% for each metric at each time step. These data points underpin the bubble sizes in Figure 2 and the trajectories in Figure S3. Note the reduction in CV% for linear chains and omnivory motifs during the peak extinction phase (During).
 
@@ -126,7 +130,7 @@ kable()
 
 ```
 
-## Figure S4. Pairwise Framework Comparisons (Tukey HSD)
+### Figure S4. Pairwise Framework Comparisons (Tukey HSD)
 
 Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks ($*$) indicate statistical significance (p<0.05). This identifies which specific models drive the high CV values seen in Figure 2.
 
