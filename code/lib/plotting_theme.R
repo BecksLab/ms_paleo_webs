@@ -68,3 +68,16 @@ col_cont <- c("#DED0BE", "#A9431E")
 # 3. DIVERGING (Tied to Group 2 & 3)
 # Contrasts the 'ATN' warmth against the 'random' cool violet
 col_div <- c("#6F263D", "#F4F1DE", "#5F249F")
+
+# 4. LOOKUP TABLE (for consistent renaming)
+metric_lookup <- tibble::tribble(
+  ~statistic, ~stat_label, ~level,
+  "connectance", "Connectance", "Macro",
+  "trophic_level", "Max trophic level", "Macro",
+  "generality", "Generality", "Micro",
+  "vulnerability", "Vulnerability", "Micro",
+  "S1", "No. of linear chains", "Meso",
+  "S2", "No. of omnivory motifs", "Meso",
+  "S4", "No. of direct competition motifs", "Meso",
+  "S5", "No. of apparent competition motifs", "Meso"
+)

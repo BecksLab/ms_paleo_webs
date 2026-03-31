@@ -29,18 +29,6 @@ df <- read_csv("../data/processed/topology.csv") %>%
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "S1", "S2", "S4", "S5")
 
-metric_lookup <- tibble::tribble(
-  ~statistic, ~stat_label, ~level,
-  "connectance", "Connectance", "Macro",
-  "trophic_level", "Max trophic level", "Macro",
-  "generality", "Generality", "Micro",
-  "vulnerability", "Vulnerability", "Micro",
-  "S1", "No. of linear chains", "Meso",
-  "S2", "No. of omnivory motifs", "Meso",
-  "S4", "No. of direct competition motifs", "Meso",
-  "S5", "No. of apparent competition motifs", "Meso"
-)
-
 # ANOVA function (to make mapping easier)
 fit_anova_per_time <- function(stat_name, time_bin, data) {
   
@@ -79,12 +67,17 @@ all_time_results <- expand_grid(stat = network_stats, time = time_bins) %>%
 # Relabel time bins for the plot
 all_time_results_plot <- all_time_results %>%
   glow_up(time_label = case_when(
-    time_bin == "1" ~ "Pre-extinction",
+    time_bin == "1" ~ "Pre-Extinction",
     time_bin == "2" ~ "During Extinction",
     time_bin == "3" ~ "Early Recovery",
     time_bin == "4" ~ "Late Recovery"
   )) %>%
-  left_join(metric_lookup, by = "statistic")
+  left_join(metric_lookup, by = "statistic") %>%
+  glow_up(time_label = factor(time_label, 
+                              levels = c("Pre-Extinction",
+                                         "During Extinction",
+                                         "Early Recovery",
+                                         "Late Recovery")))
 
 levs <- c("Macro", "Meso", "Micro")
 
@@ -126,75 +119,6 @@ plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
 ggsave("../figures/anova_sig.png",
        width = 5000,
        height = 8000,
-       units = "px",
-       dpi = 600)
-
-
-# 1. Calculate Means and SE for the Linear Plot
-df_linear <- df %>%
-  glow_up(time_num = as.numeric(time)) %>%
-  pivot_longer(cols = all_of(network_stats),
-               names_to = "statistic",
-               values_to = "val") %>%
-  squad_up(statistic, model, time_num) %>%
-  no_cap(
-    mean_val = mean(val, na.rm = TRUE),
-    se_val = sd(val, na.rm = TRUE) / sqrt(n()),
-    .groups = "drop"
-  ) %>%
-  squad_up(statistic, model) %>%
-  glow_up(relative_change = mean_val - mean_val[time_num == 1]) %>%
-  disband() %>%
-  left_join(metric_lookup, by = "statistic") %>%
-  glow_up(
-    model = case_when(
-      model == "pfim" ~ "PFIM",
-      model == "bodymassratio" ~ "Body-size ratio",
-      model == "adbm" ~ "ADBM",
-      model == "lmatrix" ~ "ATN",
-      TRUE ~ str_to_title(as.character(model))),
-    level = factor(level, levels = c("Macro", "Meso", "Micro")))
-
-levs <- c("Macro", "Meso", "Micro")
-
-plot_list <- vector("list", length(levs))
-
-for (i in seq_along(levs)) {
-  
-  plot_list[[i]] <- ggplot(
-    df_linear %>% filter(level == levs[i]),
-    aes(x = time_num,
-        y = relative_change,
-        color = model,
-        group = model)) +
-    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
-    geom_line(linewidth = 1) +
-    geom_point(size = 2) +
-    facet_wrap(~ stat_label, scales = "free_y") +
-    scale_x_continuous(
-      breaks = 1:4,
-      labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
-    scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
-    labs(
-      title = levs[i],
-      x = NULL,
-      y = "Change from Pre-extinction (Δ)"
-    ) +
-    figure_theme +
-    theme(
-      axis.text.x = element_text(angle = 45, hjust = 1),
-      strip.text = element_text(face = "bold"),
-      legend.title = element_blank()
-    )
-}
-
-plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
-  plot_layout(guides = "collect") +
-  plot_layout(height = c(1, 2, 1))
-
-ggsave("../figures/anova_linear_diff.png",
-       width = 6000,
-       height = 7000,
        units = "px",
        dpi = 600)
 
