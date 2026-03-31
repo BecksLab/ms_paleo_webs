@@ -26,7 +26,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
-                            .default = as.character(model)),
+                            .default = str_to_title(as.character(model))),
           #make tiem numeric
           time = as.numeric(str_extract(time, "\\d+")))  %>%
   glow_up(model = as.factor(model)) %>%
@@ -202,6 +202,69 @@ ggsave("../figures/raw_time_structure.png",
        units = "px",
        dpi = 600)
 
+# 1. Calculate Means and SE for the Linear Plot
+df_linear <- df %>%
+  glow_up(time_num = as.numeric(time)) %>%
+  pivot_longer(cols = all_of(network_stats),
+               names_to = "statistic",
+               values_to = "val") %>%
+  squad_up(statistic, model, time_num) %>%
+  no_cap(
+    mean_val = mean(val, na.rm = TRUE),
+    se_val = sd(val, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) %>%
+  squad_up(statistic, model) %>%
+  glow_up(relative_change = mean_val - mean_val[time_num == 1]) %>%
+  disband() %>%
+  left_join(metric_lookup, by = "statistic") %>%
+  glow_up(
+    level = factor(level, levels = c("Macro", "Meso", "Micro")))
+
+levs <- c("Macro", "Meso", "Micro")
+
+linear_plot_list <- vector("list", length(levs))
+
+for (i in seq_along(levs)) {
+  
+  linear_plot_list[[i]] <- ggplot(
+    df_linear %>% filter(level == levs[i]),
+    aes(x = time_num,
+        y = relative_change,
+        color = model,
+        group = model)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    geom_line(linewidth = 1) +
+    geom_point(size = 2) +
+    facet_wrap(~ stat_label, scales = "free_y") +
+    scale_x_continuous(
+      breaks = 1:4,
+      labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
+    scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
+    labs(
+      title = levs[i],
+      x = NULL,
+      y = "Change from Pre-extinction (Δ)"
+    ) +
+    figure_theme +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.text = element_text(face = "bold"),
+      legend.title = element_blank()
+    )
+}
+
+anova_linear <- linear_plot_list[[1]] / linear_plot_list[[2]] / linear_plot_list[[3]] +
+  plot_layout(guides = "collect") +
+  plot_layout(height = c(1, 2, 1))
+
+ggsave("../figures/anova_linear_diff.png",
+       anova_linear,
+       width = 6000,
+       height = 7000,
+       units = "px",
+       dpi = 600)
+
 cv_analysis <- df_plot %>%
   group_by(statistic, time_fact) %>%
   summarise(
@@ -301,20 +364,26 @@ plot_tukey_data <- all_posthocs %>%
     # Define significance for alpha/coloring
     sig_label = ifelse(p.value < 0.05, "Significant", "Non-Significant"),
     # Create a cleaner time label
-    time_label = case_when(time == "G1" ~ "Pre",
-                           time == "G2" ~ "During",
-                           time == "G3" ~ "Early",
-                           time == "G4" ~ "Late"
-    ),
+    time_label = case_when(time == "1" ~ "Pre-Extinction",
+                           time == "2" ~ "During Extinction",
+                           time == "3" ~ "Early Recovery",
+                           time == "4" ~ "Late Recovery"),
     statistic = case_when(statistic == "S1" ~ "No. of linear chains",
                           statistic == "S2" ~ "No. of omnivory motifs",
                           statistic == "S4" ~ "No. of direct competition motifs",
                           statistic == "S5" ~ "No. of apparent competition motifs",
                           statistic == "trophic_level" ~ "Max trophic level",
-                          .default = str_to_sentence(statistic))
-  )
+                          .default = str_to_sentence(statistic))) %>%
+  glow_up(time_label = factor(time_label, 
+                              levels = c("Pre-Extinction",
+                                         "During Extinction",
+                                         "Early Recovery",
+                                         "Late Recovery")))
 
-ggplot(plot_tukey_data, aes(x = time_label, y = contrast, fill = estimate)) +
+ggplot(plot_tukey_data, 
+       aes(x = time_label, 
+           y = contrast, 
+           fill = estimate)) +
   geom_tile(color = "white") +
   # Use a diverging scale (Red = Positive difference, Blue = Negative)
   scale_fill_gradient2(low = col_div[3], 
@@ -323,17 +392,20 @@ ggplot(plot_tukey_data, aes(x = time_label, y = contrast, fill = estimate)) +
                        midpoint = 0) +
   # Add a border or 'star' to significant cells
   geom_text(data = filter(plot_tukey_data, p.value < 0.05), label = "*", size = 5) +
-  facet_wrap(~statistic, ncol = 4) +
+  facet_wrap(vars(statistic)) +
   labs(
-    subtitle = "Asterisks (*) denote p < 0.05 (Tukey HSD). Color intensity indicates magnitude of difference.",
-    x = "Extinction Phase",
+    subtitle = "Asterisks (*) denote p < 0.05 (Tukey HSD).",
+    x = NULL,
     fill = "Mean Diff"
   ) +
-  figure_theme
+  figure_theme +
+  theme(axis.text.y = element_text(size = rel(0.7)),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = rel(0.6)),
+        strip.text = element_text(face = "bold", size = rel(0.7)))
 
 ggsave("../figures/ANOVA_tukey.png",
-       width = 6000,
-       height = 5000,
+       width = 4500,
+       height = 5500,
        units = "px",
        dpi = 600)
 
@@ -408,10 +480,9 @@ ANOVA_summary <-
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
   coord_fixed() +
-  coord_cartesian(clip = "off") +
   scale_size_continuous(range = c(2, 8), name = "Interaction (CV%)") +
   labs(
-    x = "Importance of model (Partial Eta-Squared)",
+    x = "Importance of reconstruction approach (Partial Eta-Squared)",
     y = "Importance of time (Partial Eta-Squared)"
   ) +
   figure_theme
@@ -422,3 +493,49 @@ ggsave("../figures/ANOVA_summary.png",
        height = 3000,
        units = "px",
        dpi = 600)
+
+# combine linear and ANOVA summary
+
+# linear_all
+
+linear_all <- ggplot(
+  df_linear,
+  aes(x = time_num,
+      y = relative_change,
+      color = model,
+      group = model)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.7) +
+  facet_wrap(~ stat_label, 
+             scales = "free_y",
+             ncol = 2) +
+  scale_x_continuous(
+    breaks = 1:4,
+    labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
+  scale_color_manual(values = pal_df$c, breaks = pal_df$l,
+                     name = "Reconstruction Approach") +
+  labs(
+    x = NULL,
+    y = "Change from Pre-extinction (Δ)"
+  ) +
+  figure_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    strip.text = element_text(face = "bold")
+  )
+
+layout <- "
+AB
+"
+
+combined_plot <- linear_all + ANOVA_summary + 
+  plot_layout(design = layout) + 
+  plot_annotation(tag_levels = 'A')
+
+ggsave("../figures/combined_ANOVA_time.png",
+       combined_plot,
+       width = 5000,
+       height = 2200,
+       units = "px",
+       dpi = 300)
