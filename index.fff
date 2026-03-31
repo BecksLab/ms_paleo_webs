@@ -7,10 +7,11 @@
 }
 
 \caption{\label{fig-structure}Linear discriminant analysis (LDA) of
-ecological network metrics for six model types. Each point represents a
-replicate, and ellipses indicate 95\% confidence regions for each model.
-The second column represents the correlation of the various network
-metrics with the respective LDA axes.}
+ecological network metrics for six reconstruction approach types. Each
+point represents a replicate, and ellipses indicate 95\% confidence
+regions for each reconstruction approach. The second column represents
+the correlation of the various network metrics with the respective LDA
+axes.}
 
 \end{figure}
 \efloatseparator
@@ -19,18 +20,23 @@ metrics with the respective LDA axes.}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/ANOVA_summary.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/combined_ANOVA_time.png}}
 
 }
 
-\caption{\label{fig-anova}Scatter plot illustrating the influence of
-model (x-axis) and time (y-axis) across network metrics. The dashed 1:1
-diagonal represents the parity of influence; metrics below this line are
-governed primarily by model choice and those above by time. Bubble size
-indicates the interaction between model and time while colour indicates
-inter-model disagreement (Mean CV\%); greener bubbles signify metrics
-where models show the highest divergence in their structural
-predictions.}
+\caption{\label{fig-anova}\textbf{A} Changes in network metrics through
+time, expressed as deviation from Pre-Extinction conditions (Δ). Metrics
+are faceted and scaled independently to highlight differences in
+temporal trajectories across different network properties. \textbf{B}
+Scatter plot illustrating the influence of reconstruction approach
+(x-axis) and time (y-axis) across network metrics. The dashed 1:1
+diagonal represents parity of influence; metrics below this line are
+governed primarily by reconstruction approach and those above by time.
+Bubble size indicates the interaction between reconstruction approach
+and time, while colour indicates inter reconstruction approach
+disagreement (mean CV\%); greener bubbles signify metrics where
+reconstruction approaches show the highest divergence in their
+structural predictions.}
 
 \end{figure}
 \efloatseparator
@@ -44,14 +50,15 @@ predictions.}
 }
 
 \caption{\label{fig-beta_div}Pairwise \(β_{OS}\) in species interactions
-among four ecological network models (ADBM, ATN, Body-size ratio, and
-PFIM). Each cell represents the mean turnover value between a pair of
-models, with darker colours indicating greater dissimilarity in inferred
-interactions. High turnover values indicate strong disagreement in
-pairwise interactions between models, whereas lower values indicate
-greater similarity. Note that we do not include the Random or Niche
-model as these models are species agnostic and thus we cannot truly
-evaluate differences in pairwise interactions}
+among four ecological network reconstruction approaches (ADBM, ATN,
+Body-size ratio, and PFIM). Each cell represents the mean turnover value
+between a pair of reconstruction approaches, with darker colours
+indicating greater dissimilarity in inferred interactions. High turnover
+values indicate strong disagreement in pairwise interactions between
+reconstruction approaches, whereas lower values indicate greater
+similarity. Note that we do not include the Random or Niche model as
+these reconstruction approaches are species agnostic and thus we cannot
+truly evaluate differences in pairwise interactions}
 
 \end{figure}
 \efloatseparator
@@ -65,13 +72,14 @@ evaluate differences in pairwise interactions}
 }
 
 \caption{\label{fig-mad}Heatmaps showing pairwise Kendall rank
-correlation coefficients (\(\tau\)) between models for each network
-metric. Each panel corresponds to a different metric and displays the
-degree of agreement in extinction-scenario rankings across models based
-on mean absolute differences (MAD) between observed and predicted
-network values. Positive \(\tau\) values (blue) indicate concordant
-rankings between models, whereas negative \(\tau\) values (red) indicate
-opposing rankings. Warmer colours approaching zero represent little or
-no agreement.}
+correlation coefficients (\(\tau\)) between reconstruction approaches
+for each network metric. Each panel corresponds to a different metric
+and displays the degree of agreement in extinction-scenario rankings
+across reconstruction approaches based on mean absolute differences
+(MAD) between observed and predicted network values. Positive \(\tau\)
+values (purple) indicate concordant rankings between reconstruction
+approaches, whereas negative \(\tau\) values (sienna) indicate opposing
+rankings. Warmer colours approaching zero represent little or no
+agreement.}
 
 \end{figure}
