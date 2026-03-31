@@ -56,7 +56,7 @@ where Sensitivity = TP/(TP + FN) and Specificity = TN/(TN + FP). TSS ranges from
 
 ## Effects of Network Reconstruction on Food-Web Structure
 
-### Table S1. Descriptive statistics of network metrics by model
+### Table S1. Descriptive statistics (mean ± standard deviation) of network metrics by model
 
 ```{r}
 library(knitr)

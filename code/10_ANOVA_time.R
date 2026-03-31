@@ -35,6 +35,29 @@ df <- read_csv("../data/processed/topology.csv") %>%
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "S1", "S2", "S4", "S5")
 
+# summary table for supp matt
+df %>%
+  vibe_check(-c(time, n_rep)) %>%
+  pivot_longer(
+    cols = -model,
+    names_to = "statistic"
+  ) %>%
+  glow_up(statistic = case_when(statistic == "S1" ~ "No. of linear chains",
+                                statistic == "S2" ~ "No. of omnivory motifs",
+                                statistic == "S4" ~ "No. of direct competition motifs",
+                                statistic == "S5" ~ "No. of apparent competition motifs",
+                                statistic == "trophic_level" ~ "Max trophic level",
+                                .default = str_to_sentence(statistic))) %>%
+  squad_up(model, statistic) %>%
+  no_cap(mean = mean(value),
+         sd = sd(value)) %>%
+  glow_up(value = paste0(signif(mean, 3)," ±",round(mean, sd)),
+          mean = NULL,
+          sd = NULL) %>%
+  pivot_wider(names_from = model,
+              values_from = value) %>%
+  write_csv("../notebooks/tables/Table_S1_descriptive_stats.csv")
+
 # Updated function to handle the 'unique' vector error
 check_anova_assumptions <- function(stat_name, data) {
   
