@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.10.0">
+    <meta name="generator" content="quarto-1.10.1">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-03-30">
+    <meta name="dcterms.date" content="2026-03-31">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -177,7 +177,7 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9c5e1a58ae97b3faeeb5cca0e0e2eaf1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cc6d6016adaf1c7a86dcaac46e77afcc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-e785223f05d10701a9450850344a1947.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -223,7 +223,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">March 30, 2026</p>
+              <p class="date">March 31, 2026</p>
             </div>
           </div>
           
@@ -250,21 +250,23 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link active" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a>
+  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a>
   <ul class="collapse">
   <li><a href="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" id="toc-figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</a></li>
   </ul></li>
   <li><a href="#multivariate-analysis-of-network-structure" id="toc-multivariate-analysis-of-network-structure" class="nav-link" data-scroll-target="#multivariate-analysis-of-network-structure">Multivariate analysis of network structure</a></li>
   <li><a href="#quantification-of-extinction-simulation-outcomes-and-model-concordance" id="toc-quantification-of-extinction-simulation-outcomes-and-model-concordance" class="nav-link" data-scroll-target="#quantification-of-extinction-simulation-outcomes-and-model-concordance">Quantification of extinction simulation outcomes and model concordance</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
   <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
   <ul class="collapse">
   <li><a href="#table-s1.-descriptive-statistics-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</a></li>
   <li><a href="#table-s2.-canonical-discriminant-analysis" id="toc-table-s2.-canonical-discriminant-analysis" class="nav-link" data-scroll-target="#table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</a></li>
   <li><a href="#figure-s1.-canonical-loadings" id="toc-figure-s1.-canonical-loadings" class="nav-link" data-scroll-target="#figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</a></li>
-  <li><a href="#permanova-variance-partitioning" id="toc-permanova-variance-partitioning" class="nav-link" data-scroll-target="#permanova-variance-partitioning">PERMANOVA Variance Partitioning</a>
-  <ul class="collapse">
-  <li><a href="#robustness-of-model-effects-after-temporal-centering" id="toc-robustness-of-model-effects-after-temporal-centering" class="nav-link" data-scroll-target="#robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</a></li>
-  </ul></li>
+  <li><a href="#permanova-variance-partitioning" id="toc-permanova-variance-partitioning" class="nav-link" data-scroll-target="#permanova-variance-partitioning">PERMANOVA Variance Partitioning</a></li>
   </ul></li>
   <li><a href="#statistical-drivers-of-network-variation" id="toc-statistical-drivers-of-network-variation" class="nav-link" data-scroll-target="#statistical-drivers-of-network-variation">Statistical Drivers of Network Variation</a>
   <ul class="collapse">
@@ -275,6 +277,7 @@
   <li><a href="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." id="toc-table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="nav-link" data-scroll-target="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</a></li>
   <li><a href="#figure-s4.-pairwise-framework-comparisons-tukey-hsd" id="toc-figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="nav-link" data-scroll-target="#figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</a></li>
   </ul></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -283,24 +286,26 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="effect-of-body-size-sampling-method-on-network-metrics" class="level1">
-<h1>Effect of Body Size Sampling Method on Network Metrics</h1>
+       <section id="methods" class="level1">
+<h1>Methods</h1>
+<section id="effect-of-body-size-sampling-method-on-network-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</h2>
 <p>To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.</p>
 <p>Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (&lt;0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN model showed slightly higher effects (η² ≈ 0.17 for number of linear chains), but these remained the exception rather than the rule.</p>
 <p>These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.</p>
-<section id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</h2>
+<section id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</h3>
 <p><a href="figures/effect_size_bodysize_within_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/effect_size_bodysize_within_model.png" class="img-fluid"></a></p>
 <p>Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (&lt;0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (<em>e.g.,</em> number of linear chains).</p>
 </section>
 </section>
-<section id="multivariate-analysis-of-network-structure" class="level1">
-<h1>Multivariate analysis of network structure</h1>
+<section id="multivariate-analysis-of-network-structure" class="level2">
+<h2 class="anchored" data-anchor-id="multivariate-analysis-of-network-structure">Multivariate analysis of network structure</h2>
 <p>We quantified food-web structure using a suite of macro-, meso-, and micro-scale network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).</p>
 <p>For visualisation, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualised using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison. Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.</p>
 </section>
-<section id="quantification-of-extinction-simulation-outcomes-and-model-concordance" class="level1">
-<h1>Quantification of extinction simulation outcomes and model concordance</h1>
+<section id="quantification-of-extinction-simulation-outcomes-and-model-concordance" class="level2">
+<h2 class="anchored" data-anchor-id="quantification-of-extinction-simulation-outcomes-and-model-concordance">Quantification of extinction simulation outcomes and model concordance</h2>
 <p>To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches. First, deviation in continuous network metrics (e.g., connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:</p>
 <p><span class="math inline">\(MAD = \frac{1}{n} \sum_{i=1}^{n} | M_{i}^{sim} - M_{i}^{ref}|\)</span></p>
 <p>where <span class="math inline">\(M_{i}^{sim}\)</span> is the simulated value and <span class="math inline">\(M_{i}^{ref}\)</span> is the corresponding observed or expected value. MAD was chosen because it provides a scale-preserving measure of deviation that is less sensitive to extreme values than squared-error metrics and allows direct comparison across reconstruction frameworks.</p>
@@ -310,10 +315,13 @@
 <p>TSS = Sensitivity + Specificity − 1</p>
 <p>where Sensitivity = TP/(TP + FN) and Specificity = TN/(TN + FP). TSS ranges from −1 to 1, with 1 indicating perfect agreement, 0 indicating performance no better than random expectation, and negative values indicating systematic disagreement. Because TSS is prevalence-independent, it is appropriate for extinction simulations in which class imbalance may occur (<em>e.g.,</em> many persisting species or many absent links).</p>
 </section>
-<section id="effects-of-network-reconstruction-on-food-web-structure" class="level1">
-<h1>Effects of Network Reconstruction on Food-Web Structure</h1>
-<section id="table-s1.-descriptive-statistics-of-network-metrics-by-model" class="level2">
-<h2 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</h2>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<section id="effects-of-network-reconstruction-on-food-web-structure" class="level2">
+<h2 class="anchored" data-anchor-id="effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</h2>
+<section id="table-s1.-descriptive-statistics-of-network-metrics-by-model" class="level3">
+<h3 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -503,8 +511,8 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 </div>
 </div></div>
 </section>
-<section id="table-s2.-canonical-discriminant-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</h2>
+<section id="table-s2.-canonical-discriminant-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/canonical_loadings.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -582,33 +590,33 @@ dbl (3): Can1, Can2, Can3
 </div>
 </div></div>
 </section>
-<section id="figure-s1.-canonical-loadings" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</h2>
-<p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (green), Meso (orange), Micro (purple). Metric labels are shown for the most influential variables.</p>
+<section id="figure-s1.-canonical-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</h3>
+<p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Metric labels are shown for the most influential variables.</p>
 <p><a href="../figures/canonical_loadings_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../figures/canonical_loadings_plot.png" class="img-fluid"></a></p>
 </section>
-<section id="permanova-variance-partitioning" class="level2">
-<h2 class="anchored" data-anchor-id="permanova-variance-partitioning">PERMANOVA Variance Partitioning</h2>
+<section id="permanova-variance-partitioning" class="level3">
+<h3 class="anchored" data-anchor-id="permanova-variance-partitioning">PERMANOVA Variance Partitioning</h3>
 <p>To quantify the relative contributions of reconstruction framework and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Reconstruction framework (‘model’) and extinction phase (‘time’) were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.</p>
-<section id="robustness-of-model-effects-after-temporal-centering" class="level3">
-<h3 class="anchored" data-anchor-id="robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</h3>
+<section id="robustness-of-model-effects-after-temporal-centering" class="level4">
+<h4 class="anchored" data-anchor-id="robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</h4>
 <p>To determine whether the dominance of reconstruction framework reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, reconstruction framework explained 84.8% of multivariate variance (R² = 0.848, p &lt; 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among reconstruction frameworks.</p>
 </section>
 </section>
 </section>
-<section id="statistical-drivers-of-network-variation" class="level1">
-<h1>Statistical Drivers of Network Variation</h1>
-<section id="statistical-robustness-and-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-robustness-and-assumptions">Statistical Robustness and Assumptions</h2>
+<section id="statistical-drivers-of-network-variation" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-drivers-of-network-variation">Statistical Drivers of Network Variation</h2>
+<section id="statistical-robustness-and-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-robustness-and-assumptions">Statistical Robustness and Assumptions</h3>
 <p>Factorial ANOVA assumptions were validated via residual analysis. Despite significant heteroscedasticity (Levene’s test, p&lt;0.001), the perfectly balanced design (n = 100 per cell) and large sample size (N = 2400) ensure the robustness of the F-test. Visual inspection of Q-Q plots and Residuals-vs-Fitted plots confirmed that the distributions were sufficiently symmetric for parametric analysis.</p>
 </section>
-<section id="figure-s2.-temporal-trajectories-of-network-structure-by-model" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</h2>
+<section id="figure-s2.-temporal-trajectories-of-network-structure-by-model" class="level3">
+<h3 class="anchored" data-anchor-id="figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</h3>
 <p>Detailed shifts in network properties across the four extinction phases, categorised by organisational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the “baseline” differences between models—such as the Niche model’s tendency to over-estimate motif counts—and their divergent responses to species loss.</p>
 <p><a href="../figures/raw_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../figures/raw_time_structure.png" class="img-fluid"></a></p>
 </section>
-<section id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="level2">
-<h2 class="anchored" data-anchor-id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects.">Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.</h2>
+<section id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="level3">
+<h3 class="anchored" data-anchor-id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects.">Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.</h3>
 <p>Summary of the two-way factorial ANOVA results for all eight metrics. Values represent partial eta-squared (<span class="math inline">\(\eta^{2}_{p}\)</span>), which quantifies the proportion of variance explained by each factor. The dominance of the ‘Model’ term across all scales confirms that framework choice is the primary determinant of network topology.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"../tables/ANOVA_Results.csv"</span>) <span class="sc">%&gt;%</span></span>
@@ -687,13 +695,13 @@ dbl (3): Model, Time, Interaction
 </div>
 </div></div>
 </section>
-<section id="figure-s3.-model-disagreement-cv-across-extinction-phases" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</h2>
+<section id="figure-s3.-model-disagreement-cv-across-extinction-phases" class="level3">
+<h3 class="anchored" data-anchor-id="figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</h3>
 <p>Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic “dip” at the ‘during’ phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.</p>
 <p><a href="../figures/cv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/cv.png" class="img-fluid"></a></p>
 </section>
-<section id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="level2">
-<h2 class="anchored" data-anchor-id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</h2>
+<section id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="level3">
+<h3 class="anchored" data-anchor-id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</h3>
 <p>Calculated inter-model CV% for each metric at each time step. These data points underpin the bubble sizes in Figure 2 and the trajectories in Figure S3. Note the reduction in CV% for linear chains and omnivory motifs during the peak extinction phase (During).</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"../tables/Model_Agreement_CV.csv"</span>) <span class="sc">%&gt;%</span></span>
@@ -703,7 +711,7 @@ dbl (3): Model, Time, Interaction
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr (2): statistic, level
-dbl (4): Pre extinction, During extinction, Early extinction, Late extinction
+dbl (4): Pre-extinction, During extinction, Early extinction, Late extinction
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -722,7 +730,7 @@ dbl (4): Pre extinction, During extinction, Early extinction, Late extinction
 <tr class="header">
 <th style="text-align: left;">statistic</th>
 <th style="text-align: left;">level</th>
-<th style="text-align: right;">Pre extinction</th>
+<th style="text-align: right;">Pre-extinction</th>
 <th style="text-align: right;">During extinction</th>
 <th style="text-align: right;">Early extinction</th>
 <th style="text-align: right;">Late extinction</th>
@@ -798,10 +806,11 @@ dbl (4): Pre extinction, During extinction, Early extinction, Late extinction
 </div>
 </div></div>
 </section>
-<section id="figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="level2">
-<h2 class="anchored" data-anchor-id="figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</h2>
+<section id="figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="level3">
+<h3 class="anchored" data-anchor-id="figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</h3>
 <p>Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks (<span class="math inline">\(*\)</span>) indicate statistical significance (p&lt;0.05). This identifies which specific models drive the high CV values seen in Figure 2.</p>
 <p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
+</section>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
