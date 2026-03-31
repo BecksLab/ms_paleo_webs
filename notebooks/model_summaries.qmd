@@ -1,11 +1,11 @@
 ---
-title: "SuppMat 1: Expanded descriptions of the food web models"
+title: "SuppMat 1: Expanded descriptions of the food web reconstruction approaches"
 authors:
   - name: Tanya Strydom
     id: ts
     orcid: 0000-0001-6067-1349
 abstract: |
-  This supplementary material provides expanded methodological descriptions of the food web models summarized in Table 1, detailing their assumptions, parameterization, and link-generation rules.
+  This supplementary material provides expanded methodological descriptions of the food web reconstruction approaches summarised in Table 1, detailing their assumptions, parameterization, and link-generation rules.
 date: last-modified
 bibliography: ../references.bib
 ---

@@ -263,7 +263,7 @@
   <ul class="collapse">
   <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
   <ul class="collapse">
-  <li><a href="#table-s1.-descriptive-statistics-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</a></li>
+  <li><a href="#table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model" id="toc-table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model" class="nav-link" data-scroll-target="#table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model">Table S1. Descriptive statistics (mean ± standard deviation) of network metrics by model</a></li>
   <li><a href="#table-s2.-canonical-discriminant-analysis" id="toc-table-s2.-canonical-discriminant-analysis" class="nav-link" data-scroll-target="#table-s2.-canonical-discriminant-analysis">Table S2. Canonical discriminant analysis</a></li>
   <li><a href="#figure-s1.-canonical-loadings" id="toc-figure-s1.-canonical-loadings" class="nav-link" data-scroll-target="#figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</a></li>
   <li><a href="#permanova-variance-partitioning" id="toc-permanova-variance-partitioning" class="nav-link" data-scroll-target="#permanova-variance-partitioning">PERMANOVA Variance Partitioning</a></li>
@@ -320,8 +320,8 @@
 <h1>Results</h1>
 <section id="effects-of-network-reconstruction-on-food-web-structure" class="level2">
 <h2 class="anchored" data-anchor-id="effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</h2>
-<section id="table-s1.-descriptive-statistics-of-network-metrics-by-model" class="level3">
-<h3 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-of-network-metrics-by-model">Table S1. Descriptive statistics of network metrics by model</h3>
+<section id="table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model" class="level3">
+<h3 class="anchored" data-anchor-id="table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model">Table S1. Descriptive statistics (mean ± standard deviation) of network metrics by model</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -340,11 +340,10 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/Table_S1_descriptive_stats.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 17
+<pre><code>Rows: 13 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr  (1): model
-dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
+chr (7): statistic, ADBM, ATN, Body-size ratio, Niche, PFIM, Random
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -352,159 +351,142 @@ dbl (16): connectance_mean, connectance_sd, trophic_level_mean, trophic_leve...
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
+<col style="width: 31%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">model</th>
-<th style="text-align: right;">connectance_mean</th>
-<th style="text-align: right;">connectance_sd</th>
-<th style="text-align: right;">trophic_level_mean</th>
-<th style="text-align: right;">trophic_level_sd</th>
-<th style="text-align: right;">generality_mean</th>
-<th style="text-align: right;">generality_sd</th>
-<th style="text-align: right;">vulnerability_mean</th>
-<th style="text-align: right;">vulnerability_sd</th>
-<th style="text-align: right;">S1_mean</th>
-<th style="text-align: right;">S1_sd</th>
-<th style="text-align: right;">S2_mean</th>
-<th style="text-align: right;">S2_sd</th>
-<th style="text-align: right;">S4_mean</th>
-<th style="text-align: right;">S4_sd</th>
-<th style="text-align: right;">S5_mean</th>
-<th style="text-align: right;">S5_sd</th>
+<th style="text-align: left;">statistic</th>
+<th style="text-align: left;">ADBM</th>
+<th style="text-align: left;">ATN</th>
+<th style="text-align: left;">Body-size ratio</th>
+<th style="text-align: left;">Niche</th>
+<th style="text-align: left;">PFIM</th>
+<th style="text-align: left;">Random</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ADBM</td>
-<td style="text-align: right;">0.2980289</td>
-<td style="text-align: right;">0.0173274</td>
-<td style="text-align: right;">14.9000</td>
-<td style="text-align: right;">4.394688</td>
-<td style="text-align: right;">0.9018448</td>
-<td style="text-align: right;">0.0950970</td>
-<td style="text-align: right;">0.8893876</td>
-<td style="text-align: right;">0.0559394</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">1.1891795</td>
-<td style="text-align: right;">0.4682134</td>
-<td style="text-align: right;">1.4537193</td>
-<td style="text-align: right;">0.6319601</td>
-<td style="text-align: right;">1.3887004</td>
-<td style="text-align: right;">0.3871614</td>
+<td style="text-align: left;">Complexity</td>
+<td style="text-align: left;">0.779 ±1</td>
+<td style="text-align: left;">0.794 ±1</td>
+<td style="text-align: left;">0.865 ±1</td>
+<td style="text-align: left;">0.895 ±1</td>
+<td style="text-align: left;">0.871 ±1</td>
+<td style="text-align: left;">0.744 ±1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ATN</td>
-<td style="text-align: right;">0.2250133</td>
-<td style="text-align: right;">0.0170831</td>
-<td style="text-align: right;">15.7300</td>
-<td style="text-align: right;">6.889176</td>
-<td style="text-align: right;">1.0308906</td>
-<td style="text-align: right;">0.1385251</td>
-<td style="text-align: right;">1.0673261</td>
-<td style="text-align: right;">0.1042244</td>
-<td style="text-align: right;">0.0291176</td>
-<td style="text-align: right;">0.0502323</td>
-<td style="text-align: right;">0.4557063</td>
-<td style="text-align: right;">0.1981065</td>
-<td style="text-align: right;">1.3411211</td>
-<td style="text-align: right;">0.5991332</td>
-<td style="text-align: right;">1.1685892</td>
-<td style="text-align: right;">0.2930910</td>
+<td style="text-align: left;">Connectance</td>
+<td style="text-align: left;">0.298 ±0</td>
+<td style="text-align: left;">0.225 ±0</td>
+<td style="text-align: left;">0.172 ±0</td>
+<td style="text-align: left;">0.118 ±0</td>
+<td style="text-align: left;">0.119 ±0</td>
+<td style="text-align: left;">0.221 ±0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">PFIM</td>
-<td style="text-align: right;">0.1185292</td>
-<td style="text-align: right;">0.0231336</td>
-<td style="text-align: right;">15.6525</td>
-<td style="text-align: right;">6.238513</td>
-<td style="text-align: right;">1.7226598</td>
-<td style="text-align: right;">0.1528536</td>
-<td style="text-align: right;">0.6326936</td>
-<td style="text-align: right;">0.0763279</td>
-<td style="text-align: right;">0.1044935</td>
-<td style="text-align: right;">0.0352603</td>
-<td style="text-align: right;">0.1390467</td>
-<td style="text-align: right;">0.0305457</td>
-<td style="text-align: right;">0.0644215</td>
-<td style="text-align: right;">0.0456966</td>
-<td style="text-align: right;">0.5227883</td>
-<td style="text-align: right;">0.1453698</td>
+<td style="text-align: left;">Diameter</td>
+<td style="text-align: left;">1 ±1</td>
+<td style="text-align: left;">1.38 ±1</td>
+<td style="text-align: left;">4.37 ±4.4</td>
+<td style="text-align: left;">3.8 ±3.8</td>
+<td style="text-align: left;">3.3 ±3.3</td>
+<td style="text-align: left;">2.66 ±2.7</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">log ratio</td>
-<td style="text-align: right;">0.1720401</td>
-<td style="text-align: right;">0.0155925</td>
-<td style="text-align: right;">19.9100</td>
-<td style="text-align: right;">10.106545</td>
-<td style="text-align: right;">0.6371490</td>
-<td style="text-align: right;">0.0896016</td>
-<td style="text-align: right;">0.6898121</td>
-<td style="text-align: right;">0.1403929</td>
-<td style="text-align: right;">0.7490114</td>
-<td style="text-align: right;">0.2910247</td>
-<td style="text-align: right;">0.1410731</td>
-<td style="text-align: right;">0.0622885</td>
-<td style="text-align: right;">0.5286292</td>
-<td style="text-align: right;">0.2069172</td>
-<td style="text-align: right;">0.5014183</td>
-<td style="text-align: right;">0.2151592</td>
+<td style="text-align: left;">Distance</td>
+<td style="text-align: left;">2 ±2</td>
+<td style="text-align: left;">2.35 ±2</td>
+<td style="text-align: left;">2.81 ±2.81</td>
+<td style="text-align: left;">2.19 ±2.2</td>
+<td style="text-align: left;">2.5 ±2.5</td>
+<td style="text-align: left;">1.02 ±1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">niche</td>
-<td style="text-align: right;">0.1181557</td>
-<td style="text-align: right;">0.0328685</td>
-<td style="text-align: right;">18.4925</td>
-<td style="text-align: right;">12.145317</td>
-<td style="text-align: right;">1.1245242</td>
-<td style="text-align: right;">0.1685898</td>
-<td style="text-align: right;">0.6482552</td>
-<td style="text-align: right;">0.1672472</td>
-<td style="text-align: right;">0.1924341</td>
-<td style="text-align: right;">0.1096531</td>
-<td style="text-align: right;">0.1088552</td>
-<td style="text-align: right;">0.0890663</td>
-<td style="text-align: right;">0.1434281</td>
-<td style="text-align: right;">0.0855302</td>
-<td style="text-align: right;">0.3231550</td>
-<td style="text-align: right;">0.1852910</td>
+<td style="text-align: left;">Generality</td>
+<td style="text-align: left;">0.902 ±1</td>
+<td style="text-align: left;">1.03 ±1</td>
+<td style="text-align: left;">0.637 ±1</td>
+<td style="text-align: left;">1.12 ±1</td>
+<td style="text-align: left;">1.72 ±2</td>
+<td style="text-align: left;">0.326 ±0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">random</td>
-<td style="text-align: right;">0.2213846</td>
-<td style="text-align: right;">0.0449628</td>
-<td style="text-align: right;">17.0675</td>
-<td style="text-align: right;">12.154929</td>
-<td style="text-align: right;">0.3263843</td>
-<td style="text-align: right;">0.0833936</td>
-<td style="text-align: right;">1.7046249</td>
-<td style="text-align: right;">0.2168757</td>
-<td style="text-align: right;">0.0107583</td>
-<td style="text-align: right;">0.0127651</td>
-<td style="text-align: right;">0.1808526</td>
-<td style="text-align: right;">0.0937089</td>
-<td style="text-align: right;">1.6233885</td>
-<td style="text-align: right;">0.6556234</td>
-<td style="text-align: right;">0.0296900</td>
-<td style="text-align: right;">0.0213948</td>
+<td style="text-align: left;">Max trophic level</td>
+<td style="text-align: left;">3.58 ±4</td>
+<td style="text-align: left;">3.2 ±3</td>
+<td style="text-align: left;">6.25 ±6.2</td>
+<td style="text-align: left;">4.03 ±4</td>
+<td style="text-align: left;">2.48 ±2</td>
+<td style="text-align: left;">5.89 ±5.89</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No.&nbsp;of apparent competition motifs</td>
+<td style="text-align: left;">1.39 ±1</td>
+<td style="text-align: left;">1.17 ±1</td>
+<td style="text-align: left;">0.501 ±1</td>
+<td style="text-align: left;">0.323 ±0</td>
+<td style="text-align: left;">0.523 ±1</td>
+<td style="text-align: left;">0.0297 ±0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.&nbsp;of direct competition motifs</td>
+<td style="text-align: left;">1.45 ±1.5</td>
+<td style="text-align: left;">1.34 ±1.3</td>
+<td style="text-align: left;">0.529 ±1</td>
+<td style="text-align: left;">0.143 ±0</td>
+<td style="text-align: left;">0.0644 ±0</td>
+<td style="text-align: left;">1.62 ±1.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No.&nbsp;of linear chains</td>
+<td style="text-align: left;">0 ±0</td>
+<td style="text-align: left;">0.0291 ±0</td>
+<td style="text-align: left;">0.749 ±1</td>
+<td style="text-align: left;">0.192 ±0</td>
+<td style="text-align: left;">0.104 ±0</td>
+<td style="text-align: left;">0.0108 ±0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.&nbsp;of omnivory motifs</td>
+<td style="text-align: left;">1.19 ±1</td>
+<td style="text-align: left;">0.456 ±0</td>
+<td style="text-align: left;">0.141 ±0</td>
+<td style="text-align: left;">0.109 ±0</td>
+<td style="text-align: left;">0.139 ±0</td>
+<td style="text-align: left;">0.181 ±0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Redundancy</td>
+<td style="text-align: left;">9.44 ±9.438</td>
+<td style="text-align: left;">6.86 ±6.857</td>
+<td style="text-align: left;">5.07 ±5.07</td>
+<td style="text-align: left;">3.02 ±3.02</td>
+<td style="text-align: left;">2.92 ±2.9</td>
+<td style="text-align: left;">6.77 ±6.765</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Richness</td>
+<td style="text-align: left;">34.8 ±34.75</td>
+<td style="text-align: left;">34.8 ±34.75</td>
+<td style="text-align: left;">34.8 ±34.75</td>
+<td style="text-align: left;">34 ±33.99</td>
+<td style="text-align: left;">34.8 ±34.75</td>
+<td style="text-align: left;">34.7 ±34.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vulnerability</td>
+<td style="text-align: left;">0.889 ±1</td>
+<td style="text-align: left;">1.07 ±1</td>
+<td style="text-align: left;">0.69 ±1</td>
+<td style="text-align: left;">0.648 ±1</td>
+<td style="text-align: left;">0.633 ±1</td>
+<td style="text-align: left;">1.7 ±2</td>
 </tr>
 </tbody>
 </table>
