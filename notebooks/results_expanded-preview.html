@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-03-31">
+    <meta name="dcterms.date" content="2026-04-01">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -223,7 +223,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">March 31, 2026</p>
+              <p class="date">April 1, 2026</p>
             </div>
           </div>
           
@@ -256,6 +256,9 @@
   <ul class="collapse">
   <li><a href="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" id="toc-figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#downsampling-pfim-networks" id="toc-downsampling-pfim-networks" class="nav-link" data-scroll-target="#downsampling-pfim-networks">Downsampling PFIM networks</a>
+  <ul class="collapse">
   <li><a href="#multivariate-analysis-of-network-structure" id="toc-multivariate-analysis-of-network-structure" class="nav-link" data-scroll-target="#multivariate-analysis-of-network-structure">Multivariate analysis of network structure</a></li>
   <li><a href="#quantification-of-extinction-simulation-outcomes-and-model-concordance" id="toc-quantification-of-extinction-simulation-outcomes-and-model-concordance" class="nav-link" data-scroll-target="#quantification-of-extinction-simulation-outcomes-and-model-concordance">Quantification of extinction simulation outcomes and model concordance</a></li>
   </ul></li>
@@ -299,6 +302,10 @@
 <p>Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (&lt;0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (<em>e.g.,</em> number of linear chains).</p>
 </section>
 </section>
+</section>
+<section id="downsampling-pfim-networks" class="level1">
+<h1>Downsampling PFIM networks</h1>
+<p>To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs across the following range: 5.0, 10.0, 20.0, 30.0, 50.0, 100.0. We then calculated the Jaccard similarity of the resulting adjacency matrices. Across the parameter range the similarity of networks tended to remain above 0.6 and a downsampling parameter of 100 had a mean similarity of 0.86. We thus used a downsampling parameter of 100 for all of the PFIM networks for all statistical analyses.</p>
 <section id="multivariate-analysis-of-network-structure" class="level2">
 <h2 class="anchored" data-anchor-id="multivariate-analysis-of-network-structure">Multivariate analysis of network structure</h2>
 <p>We quantified food-web structure using a suite of macro-, meso-, and micro-scale network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).</p>
