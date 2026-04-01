@@ -494,19 +494,19 @@ ANOVA_summary <-
               linewidth = 0.5,
               colour = colorspace::lighten("#5e5e5e", 0.8)) +
   # Labels
-  geom_text_repel(size = 3.5, box.padding = 1) +
+  geom_text_repel(size = 3.5, box.padding = 1.2) +
   # The Data Points (overlay the lines)
   geom_point(aes(size = Interaction, 
                  color = mean_cv)) +
   scale_colour_gradientn(colors = col_cont,
                          name = "Disagreement (CV%)") +
-  scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   coord_fixed() +
   scale_size_continuous(range = c(2, 8), name = "Interaction (CV%)") +
   labs(
-    x = "Importance of reconstruction approach (Partial Eta-Squared)",
-    y = "Importance of time (Partial Eta-Squared)"
+    x = expression(paste("Importance of reconstruction approach (Partial ", eta[p]^2, ")")),
+    y = expression(paste("Importance of time (Partial ", eta[p]^2, ")"))
   ) +
   figure_theme
 
@@ -549,7 +549,8 @@ linear_all <- ggplot(
   )
 
 layout <- "
-AB
+A
+B
 "
 
 combined_plot <- linear_all + ANOVA_summary + 
@@ -558,7 +559,7 @@ combined_plot <- linear_all + ANOVA_summary +
 
 ggsave("../figures/combined_ANOVA_time.png",
        combined_plot,
-       width = 5000,
-       height = 2200,
+       width = 2500,
+       height = 3800,
        units = "px",
        dpi = 300)
