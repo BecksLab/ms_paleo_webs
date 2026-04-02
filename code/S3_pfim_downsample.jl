@@ -22,7 +22,6 @@ matrix_names = readdir("../data/raw")
 matrix_names = matrix_names[occursin.(r"^.*Guilds.*$", matrix_names)]
 
 feeding_rules = DataFrame(CSV.File("../data/raw/feeding_rules.csv"))
-size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 
 # -----------------------------
 # PARAMETERS
@@ -68,7 +67,7 @@ if richness(N_meta) > 0
     push!(networks, (
         str_cats[1],
         j,
-        0.0,  # 👈 use 0 to indicate "no downsampling"
+        0.0,
         N_meta,
         richness(N_meta),
         links(N_meta),
