@@ -58,7 +58,6 @@ df %>%
               values_from = value) %>%
   write_csv("../notebooks/tables/Table_S1_descriptive_stats.csv")
 
-# Updated function to handle the 'unique' vector error
 check_anova_assumptions <- function(stat_name, data) {
   
   # 1. Ensure the grouping variables are factors and not nested in a tibble
