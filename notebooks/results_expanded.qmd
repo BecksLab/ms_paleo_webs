@@ -12,11 +12,13 @@ bibliography: ../references.bib
 
 # Methods
 
+## Simulating networks
+
 ## Effect of Body Size Sampling Method on Network Metrics
 
 To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
 
-Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN model showed slightly higher effects (η² ≈ 0.17 for number of linear chains), but these remained the exception rather than the rule.
+Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects (η² ≈ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.
 
 These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.
 
@@ -26,7 +28,49 @@ These findings justify using any of the tested body size sampling approaches for
 
 Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
 
-# Downsampling PFIM networks
+## Parameterisation of the body-mass ratio model
+
+To evaluate the sensitivity of the body-mass ratio (BMR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.
+
+The BMR model defines trophic link probability as a function of predator–prey body-mass ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.
+
+We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.
+
+### Table S1. Parameter perturbation classes for the BMR model
+
+| Parameter set        | α (optimum ratio) | β (niche width) | γ (threshold / scaling) | Interpretation                       |
+| -------------------- | ----------------- | --------------- | ----------------------- | ------------------------------------ |
+| baseline             | 1.41              | 3.73            | -1.90                   | Serengeti-calibrated reference model |
+| narrow_niche         | 1.41              | 2.5             | -1.90                   | Increased dietary specialization     |
+| wide_niche           | 1.41              | 5.0             | -1.90                   | Relaxed dietary specialization       |
+| shifted_optimum_low  | 1.0               | 3.73            | -1.90                   | Smaller optimal predator–prey ratio  |
+| shifted_optimum_high | 1.8               | 3.73            | -1.90                   | Larger optimal predator–prey ratio   |
+| strict_threshold     | 1.41              | 3.73            | -2.5                    | Stronger interaction filtering       |
+| relaxed_threshold    | 1.41              | 3.73            | -1.0                    | Weaker interaction filtering         |
+
+These parameterisations represent structured deviations from the empirically calibrated baseline, allowing us to separate effects of niche breadth, interaction optima, and interaction filtering strength.
+
+### Effects of body-mass interaction parameterisation on network structure
+
+Multivariate analysis revealed that parameterisation of the body-mass ratio interaction model significantly influenced emergent food-web structure (PERMANOVA, R² = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
+
+Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, p = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.
+
+Inspection of RDA loadings indicates that this structure is primarily driven by variation in connectance and measures of trophic organisation (notably generality and vulnerability), whereas richness and trophic level contribute comparatively weakly. Thus, parameter variation primarily reshapes interaction density and the distribution of consumer–resource breadth, rather than fundamentally altering overall network organisation.
+
+Despite significant differences in multivariate centroids, there was no evidence that parameter sets differ in multivariate dispersion (betadisper, F = 0.154, p = 0.988). This indicates that while parameter choice shifts the mean position of networks in multivariate space, it does not systematically alter the variability of structures generated within each parameter regime.
+
+### Justification for baseline parameterisation
+
+Given that parameter variation induces structured but low-dimensional shifts in network topology, we retain the baseline parameter set (α = 1.41, β = 3.73, γ = −1.90; derived from empirical Serengeti estimates) for subsequent analyses.
+This choice is justified for three reasons:
+* **Empirical grounding:** The baseline parameters are derived from well-resolved empirical food webs and therefore represent biologically realistic interaction constraints rather than arbitrary tuning.
+* **Structural robustness:** Although alternative parameterisations modify network properties, these changes occur primarily along a single dominant structural axis rather than producing qualitatively distinct network regimes. Thus, conclusions are robust to reasonable variation in parameter choice.
+* **Avoiding overfitting of generative assumptions:** Exploring extreme parameter regimes (e.g., narrow niche, relaxed thresholds) expands structural variance but does not improve biological realism. Using empirically informed baseline parameters prevents artificially inflating or distorting ecological inference.
+
+Overall, body-mass interaction parameters influence emergent food web structure in a systematic but constrained manner. Rather than defining fundamentally different network architectures, parameter variation reshapes networks along a single dominant gradient of interaction density and trophic role breadth.
+
+## Downsampling PFIM networks
 
 To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs across the following range: 5.0, 10.0, 20.0, 30.0, 50.0, 100.0. We then calculated the Jaccard similarity of the resulting adjacency matrices. Across the parameter range the similarity of networks tended to remain above 0.6 and a downsampling parameter of 100 had a mean similarity of 0.86. We thus used a downsampling parameter of 100 for all of the PFIM networks for all statistical analyses.
 
