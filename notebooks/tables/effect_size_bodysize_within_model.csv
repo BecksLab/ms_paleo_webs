@@ -1,20 +1,20 @@
 Parameter,Eta2,CI,CI_low,CI_high,variable,model
-bodysize_method,0.0016663391741718295,0.95,0,1,connectance,ADBM
-bodysize_method,8.386380842782281e-32,0.95,0,1,trophic_level,ADBM
-bodysize_method,NA,0.95,NA,1,generality,ADBM
-bodysize_method,NA,0.95,NA,1,vulnerability,ADBM
+bodysize_method,5.585544755843207e-4,0.95,0,1,connectance,ADBM
+bodysize_method,0.15787666339869202,0.95,0.12742588470351993,1,trophic_level,ADBM
+bodysize_method,0.0035057177027577324,0.95,0,1,generality,ADBM
+bodysize_method,0.016141349381568998,0.95,0.00575369410890454,1,vulnerability,ADBM
 bodysize_method,NA,0.95,NA,1,S1,ADBM
-bodysize_method,NA,0.95,NA,1,S2,ADBM
-bodysize_method,NA,0.95,NA,1,S4,ADBM
-bodysize_method,NA,0.95,NA,1,S5,ADBM
-bodysize_method,0.006668561018111871,0.95,6.192753580686526e-4,1,connectance,Body-size ratio
-bodysize_method,8.528364389745526e-11,0.95,0,1,trophic_level,Body-size ratio
-bodysize_method,0.0066772574648381626,0.95,6.227983000122915e-4,1,generality,Body-size ratio
-bodysize_method,0.0066772574648381626,0.95,6.227983000122915e-4,1,vulnerability,Body-size ratio
-bodysize_method,NA,0.95,NA,1,S1,Body-size ratio
-bodysize_method,NA,0.95,NA,1,S2,Body-size ratio
-bodysize_method,NA,0.95,NA,1,S4,Body-size ratio
-bodysize_method,NA,0.95,NA,1,S5,Body-size ratio
+bodysize_method,6.679340632789639e-4,0.95,0,1,S2,ADBM
+bodysize_method,1.3008125255458802e-4,0.95,0,1,S4,ADBM
+bodysize_method,0.0029580832757635602,0.95,0,1,S5,ADBM
+bodysize_method,5.451723107421381e-4,0.95,0,1,connectance,Body-size ratio
+bodysize_method,0.009006576960273084,0.95,0.001672187677477638,1,trophic_level,Body-size ratio
+bodysize_method,0.034247693460605015,0.95,0.018610991269283433,1,generality,Body-size ratio
+bodysize_method,0.012694789396259957,0.95,0.003660138511346617,1,vulnerability,Body-size ratio
+bodysize_method,6.256922829864246e-4,0.95,0,1,S1,Body-size ratio
+bodysize_method,0.005122451660675449,0.95,4.386498662580148e-5,1,S2,Body-size ratio
+bodysize_method,0.0029845924729209683,0.95,0,1,S4,Body-size ratio
+bodysize_method,9.292817544131717e-5,0.95,0,1,S5,Body-size ratio
 bodysize_method,0.0016359020528548447,0.95,0,1,connectance,ATN
 bodysize_method,0.0870049121358067,0.95,0.06263273655785877,1,trophic_level,ATN
 bodysize_method,8.143573580001329e-4,0.95,0,1,generality,ATN
