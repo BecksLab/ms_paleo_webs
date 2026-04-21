@@ -27,6 +27,7 @@ Formally, each of the $S$ species is assigned a niche value $n_i$ drawn uniforml
 ### Allometric diet breadth model
 
 The Allometric Diet Breadth Model (ADBM; @petchey2008) is grounded in optimal foraging theory and predicts trophic interactions based on energetic considerations. In this framework, consumers select prey to maximize their rate of energy intake, such that diet composition is determined by the energetic profitability of potential resources. The model therefore predicts both the number of trophic links and their arrangement based on species-level traits, specifically consumer diet breadth.
+
 The energy intake rate ($K$) of a consumer is defined as:
 
 $$
