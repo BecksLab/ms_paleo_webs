@@ -29,13 +29,19 @@ n_reps = 100
 
 # BMR params sims
 # Initialize central DataFrame
-networks = DataFrame(time = Any[], network = Any[], n_rep = Any[], param_set = String[])
+networks = DataFrame(
+    model = String[],
+    time = Any[],
+    network = Any[],
+    n_rep = Int[],
+    param_set = String[]
+)
 
 # Number of repetitions
 n_reps = 100
 
-# Define LTM params
-param_sets = Dict(
+# Define params sets (BMR and ADBM)
+bmr_param_sets = Dict(
     "baseline" => (α=1.41, β=3.73, γ=-1.90),
     "narrow_niche" => (α=1.41, β=2.5, γ=-1.90),
     "wide_niche" => (α=1.41, β=5.0, γ=-1.90),
@@ -43,6 +49,24 @@ param_sets = Dict(
     "shifted_optimum_high" => (α=1.8, β=3.73, γ=-1.90),
     "strict_threshold" => (α=1.41, β=3.73, γ=-2.5),
     "relaxed_threshold" => (α=1.41, β=3.73, γ=-1.0)
+)
+
+adbm_baseline = (
+    e=1.0, a_adbm=0.0189, ai=-0.491, aj=-0.465,
+    b=0.401, h_adbm=1.0, hi=1.0, hj=1.0,
+    n=1.0, ni=-0.75, Hmethod=:ratio, Nmethod=:original
+)
+
+adbm_param_sets = Dict(
+    "baseline" => (),
+    "high_attack" => (a_adbm=0.05,),
+    "low_attack" => (a_adbm=0.005,),
+    "strict_ratio" => (b=0.3,),
+    "relaxed_ratio" => (b=0.6,),
+    "high_handling" => (h_adbm=2.0,),
+    "low_handling" => (h_adbm=0.5,),
+    "power_handling" => (Hmethod=:power,),
+    "biomass_driven" => (Nmethod=:biomass,)
 )
 
 # Main simulation loop
@@ -65,69 +89,99 @@ for j in 1:n_reps
     size_classes[!, :bodymass] = bodysize
 
     for file_name in matrix_names
-            str_cats = split(file_name, r"_")
 
-            # Load and clean community data
-            df = DataFrame(CSV.File(joinpath("../data/raw/", file_name)))
-            select!(df, [:Guild, :motility, :tiering, :feeding, :size])
-            rename!(df, :Guild => :species)
-            filter!(:species => x -> x != "BASAL_NODE", df)
+        str_cats = split(file_name, r"_")
 
-            is_producer = map(==("primary"), string.(df.tiering))
-            bodymass = Vector{Float64}(innerjoin(df, size_classes, on=[:species, :size]).bodymass)
+        df = DataFrame(CSV.File(joinpath("../data/raw/", file_name)))
+        select!(df, [:Guild, :motility, :tiering, :feeding, :size])
+        rename!(df, :Guild => :species)
+        filter!(:species => x -> x != "BASAL_NODE", df)
 
-            for (pname, pvals) in param_sets
-                N = bmratio(df.species, bodymass;
+        bodymass = Vector{Float64}(innerjoin(df, size_classes, on=[:species, :size]).bodymass)
+
+        # -------------------------
+        # BMR MODEL
+        # -------------------------
+        for (pname, pvals) in bmr_param_sets
+
+            N = bmratio(df.species, bodymass;
                 α=pvals.α, β=pvals.β, γ=pvals.γ)
 
-                if richness(N) > 0
-                    push!(networks, (
-                        time = str_cats[1],
-                        network = N,
-                        n_rep = j,
-                        param_set = pname
-                    ))
-                end
+            if richness(N) > 0
+                push!(networks, (
+                    model = "BMR",
+                    time = str_cats[1],
+                    network = N,
+                    n_rep = j,
+                    param_set = pname
+                ))
             end
         end
+
+        # -------------------------
+        # ADBM MODEL
+        # -------------------------
+        for (pname, pvals) in adbm_param_sets
+
+            params = merge(adbm_baseline, pvals)
+
+            adbm_params = adbm_parameters(
+                df,
+                bodymass;
+                params...
+            )
+
+            biomass = bodymass  # or experiment later
+
+            N = adbmmodel(df, adbm_params, biomass)
+
+            if richness(N) > 0
+                push!(networks, (
+                    model = "ADBM",
+                    time = str_cats[1],
+                    network = N,
+                    n_rep = j,
+                    param_set = pname
+                ))
+            end
+        end
+    end
 end
 
 # Pre-allocate a DataFrame to store topological features [cite: 15]
 # This defines the schema for the structural analysis of each network
 topology = DataFrame(
+    model = String[],
     time = Any[],
-    n_rep = Any[],
+    n_rep = Int[],
     param_set = String[],
-    richness = Int64[],      # Number of nodes (species/guilds)
-    connectance = Float64[],   # Realized fraction of possible links
-    diameter = Int64[],        # Longest shortest path between any two nodes
-    complexity = Float64[],    # Often related to link density or eigenvalue properties
-    trophic_level = Float64[], # Mean vertical position in the food web
-    distance = Float64[],      # Mean path length between nodes
-    generality = Float64[],    # Average number of resources per consumer
-    vulnerability = Float64[], # Average number of consumers per resource
-    redundancy = Float64[],    # Overlap in ecological roles/links
-    S1 = Float64[],            # Structural motif 1
-    S2 = Float64[],            # Structural motif 2
-    S4 = Float64[],            # Structural motif 4 
-    S5 = Float64[],            # Structural motif 5 
-);
+    richness = Int[],
+    connectance = Float64[],
+    diameter = Int[],
+    complexity = Float64[],
+    trophic_level = Float64[],
+    distance = Float64[],
+    generality = Float64[],
+    vulnerability = Float64[],
+    redundancy = Float64[],
+    S1 = Float64[],
+    S2 = Float64[],
+    S4 = Float64[],
+    S5 = Float64[],
+)
 
 # Analysis Loop: Process every generated network from the previous step 
 for i = 1:nrow(networks)
 
-    # Calculate metrics using the internal helper function 
-    # This likely calls functions from SpeciesInteractionNetworks.jl internally
     d = _network_summary(networks.network[i])
 
-    # Re-attach metadata from the original 'networks' dataframe 
+    d[:model] = networks.model[i]
     d[:n_rep] = networks.n_rep[i]
     d[:time] = networks.time[i]
     d[:param_set] = networks.param_set[i]
 
-    # Append the resulting dictionary of metrics to the topology table 
     push!(topology, d)
 end
 
 # Data Export: Save the final table as a CSV for easy use in plotting or R
-CSV.write("../data/processed/topology_bmr_params.csv", topology)
+CSV.write("../data/processed/topology_param_effects.csv", topology)

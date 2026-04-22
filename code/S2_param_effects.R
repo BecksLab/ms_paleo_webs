@@ -16,6 +16,7 @@ library(ggplot2)      # plotting
 library(ggtext)       # enhanced text in plots
 library(rstatix)
 library(effectsize)
+library(vegan)
 
 # set path to code sub dir
 setwd(here("code"))
@@ -23,11 +24,60 @@ setwd(here("code"))
 #load script that determines plotting aesthetics
 source("lib/plotting_theme.R")
 
+models <- c("BMR", "ADBM")
+
+results <- list()
+
+for (m in models) {
+
+  df_m <- read_csv("../data/processed/topology_param_effects.csv") %>%
+    yeet(model == m) %>%
+    vibe_check(param_set, time,
+               richness, connectance, diameter,
+               trophic_level, generality, vulnerability,
+               S1, S2, S4, S5) %>%
+    na.omit()
+
+  Y <- df_m %>%
+    vibe_check(param_set, time,
+               connectance, trophic_level,
+               generality, vulnerability)
+
+  Y_mat <- scale(Y %>%
+    vibe_check(connectance, trophic_level,
+               generality, vulnerability))
+
+  # PERMANOVA
+  ad <- adonis2(Y_mat ~ param_set, data = Y, method = "euclidean")
+
+  # RDA
+  rda_mod <- rda(Y_mat ~ param_set, data = df_m)
+
+  results[[m]] <- list(
+    permanova = ad,
+    rda = rda_mod,
+    r2 = RsquareAdj(rda_mod)
+  )
+}
+
+df_summary <- tibble(
+  model = names(results),
+  R2_permanova = map_dbl(results, ~ .x$permanova$R2[1]),
+  R2_rda = map_dbl(results, ~ .x$r2$adj.r.squared)
+)
+
+ggplot(df_summary, aes(x = model, y = R2_permanova, fill = model)) +
+  geom_col() +
+  labs(y = "Variance explained by parameters",
+       x = "Model") +
+  figure_theme
+
 # -----------------------------
-# 6. BMR parms
+# 7. BMR
 # -----------------------------
 
-df <- read_csv("../data/processed/topology_bmr_params.csv") %>%
+df <- read_csv("../data/processed/topology_param_effects.csv") %>%
+  yeet(model == "BMR") %>%
   vibe_check(param_set, time,
              richness, connectance, diameter,
              trophic_level, generality, vulnerability,
@@ -40,18 +90,8 @@ Y <- df %>%
              trophic_level, generality, vulnerability,
              S1, S2, S4, S5)
 
-df %>%
-  squad_up(param_set, time) %>%
-  no_cap(across(richness:S5, ~ mean(.x, na.rm = TRUE)))
-
-# -----------------------------
-# 7. PERMANOVA
-# -----------------------------
-library(vegan)
-
-Y_mat <- scale(Y %>% vibe_check(connectance, trophic_level, generality, vulnerability))
-
-adonis2(Y_mat ~ param_set, data = Y, method = "euclidean")
+Y_mat <- scale(Y %>% 
+                 vibe_check(connectance, trophic_level, generality, vulnerability))
 
 rda_mod <- rda(Y_mat ~ param_set, data = Y)
 
