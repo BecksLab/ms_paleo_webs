@@ -67,3 +67,4 @@ figures/heatmap_BES_metaweb.png
 figures/heatmap_TL.png
 
 **/*.quarto_ipynb
+.positai
