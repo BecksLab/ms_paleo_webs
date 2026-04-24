@@ -360,7 +360,7 @@ SA28PP, UK%
   \vskip 1em}
 \makeatother
 
-\date{2026-04-21}
+\date{2026-04-24}
 
 \usepackage[nolists,noheads,markers]{endfloat}
 
@@ -506,49 +506,58 @@ structural assumptions embedded in network reconstruction.
 
 Despite rapid methodological development in interaction inference, few
 studies have directly evaluated how alternative reconstruction
-frameworks condition macroecological conclusions when applied to the
+frameworks influence macroecological conclusions when applied to the
 same species pool. This gap is particularly consequential for
 comparative research, where network metrics are routinely interpreted as
 indicators of environmental filtering, disturbance intensity,
 evolutionary history, or community stability (Allesina \& Tang, 2012;
 Poisot \emph{et al.}, 2015; Delmas \emph{et al.}, 2018). If
-reconstruction approaches encode distinct structural priors over
+reconstruction approaches encode distinct structural constraints over
 interaction topology, then differences among communities may reflect
 reconstruction assumptions rather than ecological processes.
-Consequently, here we test whether macroecological inference derived
-from ecological networks is robust to variation in reconstruction
-framework, asking which aspects of network-based inference are stable
-across plausible representations of interaction structure and which are
-intrinsically reconstruction approach dependent.
 
-Deep-time ecosystems provide an especially stringent test of this issue
-because interactions are not observed directly and must be reconstructed
-explicitly (Roopnarine, 2006; Dunne \emph{et al.}, 2008; Dunne \emph{et
-al.}, 2014; Dunhill \emph{et al.}, 2024; Karapunar \emph{et al.}, 2026),
-rendering reconstruction approach assumptions transparent. Against this
-stringency, here we re-evaluate inferences made by Dunhill \emph{et al.}
-(2024) on community structure and extinction dynamics during the Early
-Toarcian Extinction Event (ETEE; \textasciitilde183 Ma),a marine biotic
-crisis in the Early Jurassic, likely caused by a volcanic-driven
-hyperthermal event (Kemp \emph{et al.}, 2024). Crucially, this
-re-evaluation allows us to test a pivotal but often overlooked
-possibility - that the ecological narratives regarding community
-stability or collapse might be as much a product of the specific
-reconstruction method chosen as they are of the fossil data itself. By
-applying alternative reconstruction approaches, we can determine if the
-Dunhill \emph{et al.} (2024) conclusions remain robust or if a different
-choice of reconstruction method would have led to fundamentally
-different inferences about extinction dynamics. Using four successive
-assemblages, we reconstruct ecological networks under six contrasting
-reconstruction classes spanning feasible, realised, and structural
-representations. For each reconstruction framework, we quantify emergent
-topology across scales, measure interaction turnover, and simulate
-disturbance-driven collapse. By holding species composition constant
-while varying the food web reconstruction approach used, this design
-isolates the influence of reconstruction constrained structure on
-inferred food web organisation and extinction dynamics, allowing us to
-distinguish ecological signals that are robust from those that are
-reconstruction contingent.
+Deep-time ecosystems provide an especially useful test of this issue
+because trophic interactions are not observed directly and must be
+inferred from traits, co-occurrence, and theoretical constraints
+(Roopnarine, 2006; Dunne \emph{et al.}, 2008; Dunne \emph{et al.}, 2014;
+Dunhill \emph{et al.}, 2024; Karapunar \emph{et al.}, 2026). As a
+result, ecological networks in these systems are inherently
+reconstruction-dependent, rendering the assumptions embedded within
+different reconstruction frameworks both explicit and consequential.
+Among such systems, the Early Toarcian Extinction Event (ETEE;
+\textasciitilde183 Ma) provides a particularly informative case study.
+The ETEE was a volcanically driven hyperthermal event associated with
+widespread marine anoxia, biodiversity loss, and major ecological
+restructuring (Kemp \emph{et al.}, 2024), representing one of the most
+significant environmental perturbations of the Early Jurassic. Fossil
+assemblages spanning this interval therefore capture both community
+collapse and subsequent reassembly under rapidly changing climatic and
+environmental conditions.
+
+Ecological networks have previously been used to infer patterns of
+community organisation and extinction dynamics across this transition,
+providing an ideal test case for evaluating the robustness of
+network-based inference. In particular, recent work (\emph{e.g.,}
+Dunhill \emph{et al.} (2024)) has used reconstructed food webs to draw
+ecological conclusions about community stability and collapse during
+this event. This creates a rare opportunity to ask a more general
+question: to what extent are such inferences contingent on the specific
+reconstruction framework used to generate the network?
+
+Here, we reconstruct ecological networks for four successive assemblages
+across the ETEE using six contrasting reconstruction frameworks spanning
+feasibility-based, realised, and structural models. By holding species
+composition constant while varying only the reconstruction approach, we
+isolate the influence of structural assumptions on inferred food web
+organisation, interaction turnover, and extinction dynamics. This design
+allows us to explicitly evaluate whether conclusions drawn from a single
+reconstruction approach (such as those of Dunhill \emph{et al.} (2024))
+are robust to alternative, equally plausible representations of
+interaction structure, or whether different reconstruction choices would
+lead to fundamentally different ecological inferences. More broadly, our
+study tests whether macroecological conclusions derived from ecological
+networks reflect underlying biological processes or are conditioned by
+the assumptions embedded within the reconstruction framework itself.
 
 \section{Methods}\label{methods}
 
@@ -560,13 +569,14 @@ the upper Pliensbachian to the upper Toarcian. This interval encompasses
 a major volcanic-driven hyperthermal and marine extinction event. To
 capture network dynamics across this transition, we defined four
 successive palaeo-assemblages: pre-extinction (Pliensbachian),
-post-extinction (Lower Toarcian), early recovery, and late recovery
-(Middle/Upper Toarcian). Each taxon was characterized using their size
-and Bambach's ecospace framework (Bambach \emph{et al.}, 2007), coding
-for tiering, motility, and feeding mode as per Dunhill \emph{et al.}
-(2024). Each assemblage was treated as a community of potentially
-interacting taxa. The dataset includes 57 taxa across diverse groups
-(\emph{e.g.,} cephalopods, bivalves, and gastropods).
+post-extinction (Lower Toarcian), early recovery (Lower--Middle
+Toarcian) and late recovery (Upper Toarcian). Each taxon was
+characterized using their size and Bambach's ecospace framework (Bambach
+\emph{et al.}, 2007), coding for tiering, motility, and feeding mode as
+per Dunhill \emph{et al.} (2024). Each assemblage was treated as a
+community of potentially interacting taxa. The dataset includes 57 taxa
+across diverse groups (\emph{e.g.,} cephalopods, bivalves, and
+gastropods).
 
 \subsection{Network reconstruction
 approaches}\label{network-reconstruction-approaches}
@@ -574,22 +584,63 @@ approaches}\label{network-reconstruction-approaches}
 \subsubsection{Conceptual classification of network
 types}\label{conceptual-classification-of-network-types}
 
-Most palaeontological research (\emph{e.g.,} Fricke \emph{et al.}
-(2022); Roopnarine (2006); Shaw \emph{et al.} (2024)) use reconstruction
-approaches from within the feasibility space. That is, the
-reconstructions identify and encode the entire feasible diet of a
-species to build the network. These methods, however, represent only a
-subset of the broader spectrum of network construction approaches. Here,
-we present a suite of methods (Table~\ref{tbl-models}) that enable the
-construction of a wider range of ecological networks and the exploration
-of a broader set of ecological questions, provided that their underlying
-assumptions are compatible with the constraints of the data. Along with
-one feasibility reconstruction approach we include structural models
-that create species agnostic networks that are structurally `correct' by
-assigning links between nodes based on assumptions of link
-distributions; and realised models that create networks where links
-between species are constrained based on some form of `species choice'
-\emph{e.g.,} maximising energy gain.
+Ecological network reconstruction encompasses a range of approaches that
+differ in how trophic interactions are inferred and in the ecological
+assumptions they encode. These approaches can be broadly grouped into
+three classes: feasibility-based, realised, and structural models.
+Together, these classes represent distinct hypotheses about how
+interactions arise and constrain the space of possible food web
+structure.
+
+Feasibility-based models infer the set of potential interactions among
+species based on trait compatibility or mechanistic rules. These
+approaches define a feasible interaction space by identifying which
+consumer--resource pairs are biologically possible, without specifying
+which interactions are realised in a given community. In
+palaeoecological contexts, where direct observation of interactions is
+not possible, such models provide a biologically grounded, formalised
+representation, of `expert knowledge' based rules that can be used to
+infer interactions (\emph{e.g.,} Fricke \emph{et al.} (2022); Roopnarine
+(2006); Shaw \emph{et al.} (2024)).
+
+Realised models aim to approximate the subset of interactions that are
+expected to occur in practice. These approaches impose additional
+constraints (such as energetic optimisation, mechanical limits, or
+probabilistic niche structure) on top of feasibility, thereby generating
+networks that represent putative realised diets. Although often
+parameterised using body size or related traits, realised models differ
+in their underlying ecological assumptions about how consumers select
+resources and how trophic interactions are structured.
+
+Structural models, in contrast, do not attempt to reconstruct empirical
+trophic interactions from species-level data. Instead, they generate
+networks based on general topological constraints such as species
+richness, connectance, or trophic ordering. These models are
+species-agnostic and therefore cannot be interpreted as reconstructions
+of specific ecological communities. Rather, they serve as null or
+end-member hypotheses, providing reference expectations against which
+the structure and dynamics of data-informed reconstructions can be
+evaluated. For example, random networks represent an unconstrained
+baseline in which interactions occur independently of species identity,
+whereas the niche model captures well-established statistical
+regularities of food webs (\emph{e.g.,} interval feeding and trophic
+hierarchy) without incorporating empirical trait information.
+
+In this study, we selected models to span these three conceptual classes
+(Table~\ref{tbl-models}) and, critically, to sample distinct mechanistic
+interpretations of trophic interactions rather than exhaustively include
+all available implementations. Specifically, we include: a
+feasibility-based model (PFIM), representing trait-constrained
+interactions; multiple realised models (ADBM, ATN, and Body-size ratio),
+capturing energetic optimisation, mechanical constraints, and
+probabilistic allometric structure, respectively; and structural models
+(Random and Niche), providing theoretical reference points. Although
+some approaches share common inputs (\emph{e.g.,} body mass), they
+encode fundamentally different assumptions about how interactions arise.
+Conversely, some alternative palaeoecological approaches (\emph{e.g.,}
+guild- or feasibility-based frameworks) are conceptually aligned with
+PFIM and would therefore provide limited additional contrast for the
+purposes of this analysis.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
@@ -674,40 +725,48 @@ links & Realised & Rohr \emph{et al.} (2010) & Estimating likely
 interactions; simulating cascading effects. \\
 \end{longtable}
 
-The three body mass-based approaches (ADBM, ATN, Body-size ratio) differ
-primarily in their underlying ecological assumptions. Although all three
-approaches use body mass to infer food web structure, they differ in
-their ecological assumptions. The ADBM is based on energy maximization
-under optimal foraging theory, the ATN constrains interactions via
-mechanically optimal consumer-resource size ratios, and the Body-size
-ratio model defines links probabilistically within a fixed allometric
-niche. Together, these approaches span bioenergetic, mechanical, and
-statistical interpretations of size-structured interactions.
+This classification allows us to distinguish variation arising from
+ecological assumptions embedded in reconstruction frameworks from
+variation attributable to species composition. By comparing networks
+generated from the same species pool across these complementary model
+classes, we explicitly evaluate how different representations of
+interaction structure condition ecological inference.
 
 \subsubsection{Network generation and
 replication}\label{network-generation-and-replication}
 
-We evaluated six network reconstruction approaches using the approaches
+We evaluated six network reconstruction frameworks using the approaches
 listed in Table~\ref{tbl-models}: Random and Niche models (structural
 networks); allometric diet breadth (ADBM), allometric trophic network
 (ATN), and Body-size ratio models (realised networks); and a paleo food
 web inference model (PFIM; feasibility network). Expanded descriptions
 of reconstruction approach assumptions, parameterisation, and
-link-generation rules are provided in Supplementary Material S1. For
-each community, 100 networks were generated per reconstruction approach
-per successive community (n = 2400) to capture stochastic variation in
-link assignment. Where reconstruction approaches required species body
-mass or trait values, these were sampled within biologically reasonable
-ranges to preserve relative differences among species. We adopted
-uniform sampling by default, as alternative distributions (lognormal,
-truncated lognormal) have negligible impact on topology (Supplementary
-Material S2; Figure S1). Structural models were parameterised using
-connectance values drawn from an empirically realistic range (0.07 --
-0.34), with species richness held constant. Identical parameter draws
-were applied across comparable reconstruction approaches within each
-replicate to ensure comparability. For the Body-size ratio model, we
-followed the approach of Yeakel \emph{et al.} (2014) and excluded the
-latent trait terms.
+link-generation rules are provided in Supplementary Material S1,
+including full mathematical formulations and parameter definitions. For
+each community, 100 stochastic network realisations were generated per
+reconstruction approach (n = 2400 per time bin) to capture uncertainty
+in link assignment. Where reconstruction approaches required species
+body mass or trait values, these were sampled within biologically
+reasonable ranges to preserve relative differences among species. We
+adopted a uniform sampling by default, as alternative distributions
+(lognormal, truncated lognormal) have negligible impact on topology
+(Supplementary Material S1; Figure S1). Structural models were
+parameterised using connectance values drawn from an empirically
+realistic range (0.07--0.15). For models requiring link number
+explicitly (Random model), connectance was first converted to expected
+link number using \(L = Co\times S^2\), ensuring consistency in network
+density across all reconstruction approaches. Richness was determined by
+the number of species for each time bin. For the Body-size ratio model,
+we followed the approach of Yeakel \emph{et al.} (2014) and excluded the
+latent trait terms. Sensitivity of network structure to these parameter
+choices is evaluated in Supplementary Material S1. The PFIM generates a
+deterministic feasible metaweb for a given trait configuration. To allow
+for statistical analyses we introduced controlled variation in
+interaction subsets by applying a downsampling procedure that
+stochastically samples feasible interactions. This step allowed us to
+introduce `statistical noise' while still preserving most of the metaweb
+structure . The choice of downsampling parameter and its effects on
+network structure are evaluated in Supplementary Material S1.
 
 \subsection{Network metrics and structural
 analyses}\label{network-metrics-and-structural-analyses}
@@ -724,14 +783,17 @@ interaction turnover was quantified using link-based \(\beta\)-diversity
 was calculated following the framework of Poisot \emph{et al.} (2012)
 among the four of the reconstruction frameworks (ADBM, ATN, body-size
 ratio, and PFIM). We excluded the purely structural Random and Niche
-models as they are inherently species agnostic. For each pair of
-reconstructed networks, we represented trophic interactions as binary
-adjacency matrices and calculated their dissimilarity. Specifically we
-looked at interaction rewiring among shared species (\(\beta_{OS}\)),
-which allows separation of differences arising from altered interaction
-identities among species common to both networks. All calculations were
-performed for all reconstruction combinations within the same assemblage
-(time bin).
+models as they are inherently species agnostic. Specifically, we looked
+at interaction rewiring among shared species (\(\beta_{OS}\), see S1 for
+additional details on the decomposition of interaction β-diversity and
+its implementation), which allows separation of differences arising from
+altered interaction identities among species common to both networks.
+Because all networks within a given assemblage are constructed from the
+same species pool, differences in interaction structure primarily
+reflect `rewiring' of trophic links due to stochasticity in the
+reconstruction approach rather than species turnover. All calculations
+were performed for all reconstruction combinations within the same
+assemblage (time bin).
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
@@ -801,35 +863,42 @@ level (species presence/absence) and link level (presence/absence of
 interactions between species pairs). Scenarios were ranked within each
 reconstruction framework based on MAD and TSS performance, and Kendall's
 rank correlation coefficient (\(\tau\)) was used to quantify concordance
-in scenario ordering across reconstruction approaches. Full
-methodological details are provided in the Supplementary Materials.
+in scenario ordering across reconstruction approaches. Detailed
+implementation of extinction sequences and secondary extinction rules is
+provided in Supplementary Material S1.
 
 \subsection{Software and
 Reproducibility}\label{software-and-reproducibility}
 
 Ecological network reconstruction and extraction of structural metrics
-were conducted in Julia v1.11.4 (Bezanson \emph{et al.}, 2017). All
-statistical analyses, model fitting (MANOVA, PERMANOVA, GAMs), and
-figure production were performed in R v4.5.2 (R Core Team, 2024). The
-empirical data, derived network datasets and code implementing network
-reconstruction, extinction simulations, and all analytical workflows are
-archived at {[}\textbf{TODO} Zenodo DOI{]}.
+were conducted in Julia v1.11.4 (Bezanson \emph{et al.}, 2017) using
+custom scripts and model implementations provided in Supplementary
+Material S1. All statistical analyses, including MANOVA, PERMANOVA,
+redundancy analysis, and post hoc comparisons, were performed in R
+v4.5.2 (R Core Team, 2024). The full analytical workflow, including data
+preprocessing, network generation, extinction simulations, and metric
+calculation, is fully reproducible from the archived codebase.
+
+The empirical data, derived network datasets, and all analysis scripts
+are archived in a public Zenodo repository (\textbf{TODO} DOI), which
+includes a complete README file describing software dependencies,
+execution order, and reproduction instructions.
 
 \section{Results}\label{results}
 
-Results show that reconstruction approaches that appear similar when
-evaluated using network metrics can yield fundamentally different
-ecological narratives when interrogated at the level of interactions and
-extinction dynamics. Across six network reconstruction approaches,
-inferred food web structure, species interactions, and extinction
-dynamics differed consistently. Multivariate analyses showed pronounced
-separation among reconstruction approaches in network metric space.
-Reconstruction approach explained most of the variance in structural
-properties, leaving a distinct signature independent of community
-composition. Notably, approaches that were statistically similar in
-multivariate structural space often diverged in inferred interactions or
-extinction dynamics. This demonstrates that structural similarity does
-not guarantee concordance in species-level diets or trophic roles.
+We found that when evaluated using network metrics, different
+reconstruction approaches, even those that appear to be similar, yield
+fundamentally different ecological inferences. Across six network
+reconstruction approaches, inferred food web structure, species
+interactions, and extinction dynamics differed consistently.
+Multivariate analyses showed pronounced separation among reconstruction
+approaches in network metric space. Reconstruction approach explained
+most of the variance in structural properties, leaving a distinct
+signature independent of community composition. Notably, approaches that
+were statistically similar in multivariate structural space often
+diverged in inferred interactions or extinction dynamics. This
+demonstrates that structural similarity does not guarantee concordance
+in species-level diets or trophic roles.
 
 Reconstruction approach substantially influenced inferred extinction
 dynamics. Temporal trajectories of network collapse, interaction loss,
@@ -849,8 +918,8 @@ properties listed in Table~\ref{tbl-properties}) differed significantly
 \textless{} 0.001), indicating that reconstruction approach
 systematically alters inferred food web topology. Canonical discriminant
 analysis identified two dominant axes of variation, explaining 86\% of
-between reconstruction approach variance. LD1 correlated with
-vulnerability, direct competition motifs, and connectance. LD2
+the differences between reconstruction approach variance. LD1 correlated
+with vulnerability, direct competition motifs, and connectance. LD2
 correlated with maximum trophic level and apparent competition motifs,
 reflecting vertical trophic structure (Figure 1; Table S1, Figure S1).
 All higher-order canonical variates each explained less than 9\% of the
@@ -1073,6 +1142,29 @@ as stability or collapse during mass extinctions) are robust features of
 the ecosystem or merely byproducts of how we choose to construct the
 links between species.
 
+Food web ecology has long treated network reconstruction as a technical
+step preceding ecological analysis. Once a network is assembled (whether
+from observation, inference, or simulation), its properties are
+typically analysed as reflections of underlying ecological organisation.
+Implicit in this workflow is a powerful assumption---that reconstructed
+networks provide structurally comparable representations of ecological
+communities, such that differences in connectance, trophic structure,
+motif composition, or robustness primarily reflect biological variation.
+
+This assumption is particularly critical in deep-time palaeoecological
+contexts such as the Early Toarcian Extinction Event, where trophic
+interactions are never observed directly but must be inferred from
+incomplete fossil data. In these systems, ecological networks are
+entirely reconstruction-dependent, rendering the assumptions embedded
+within different frameworks both explicit and consequential. The risk is
+therefore not only incomplete data, but that methodological artefacts
+may be misinterpreted as genuine macroevolutionary or ecological
+signals. Consequently, deep-time studies provide a stringent test of
+whether inferred community responses (such as stability, collapse, or
+recovery during environmental perturbations) reflect underlying
+ecosystem dynamics or are contingent on how interactions are
+reconstructed.
+
 Reconstruction framework explained the overwhelming majority of variance
 in inferred food web topology, far outweighing the influence of temporal
 turnover across extinction and recovery phases. Across an identical
@@ -1136,7 +1228,7 @@ whereas interaction-level outcomes and cascade trajectories were highly
 contingent on reconstruction approach. The predominance of
 reconstruction framework over temporal turnover (\textasciitilde80\%
 vs.~6\% variance explained) illustrates why coarse-grained patterns like
-node-level extinction rankings are more robust. reconstruction
+node-level extinction rankings are more robust. Reconstruction
 approach-imposed structure dominates the overall topology, leaving
 interaction dynamics highly contingent on framework choice. This
 asymmetry reveals a context-dependent pattern of robustness.

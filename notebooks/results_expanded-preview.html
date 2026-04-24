@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-    <meta name="dcterms.date" content="2026-04-21">
+    <meta name="dcterms.date" content="2026-04-24">
 
     <title>SuppMat 2: Effects of Network Reconstruction on Food-Web Structure</title>
     <style>
@@ -223,7 +223,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 21, 2026</p>
+              <p class="date">April 24, 2026</p>
             </div>
           </div>
           
@@ -250,27 +250,7 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a>
-  <ul class="collapse">
-  <li><a href="#overview-of-the-comparative-framework" id="toc-overview-of-the-comparative-framework" class="nav-link" data-scroll-target="#overview-of-the-comparative-framework">Overview of the comparative framework</a></li>
-  <li><a href="#simulating-networks" id="toc-simulating-networks" class="nav-link" data-scroll-target="#simulating-networks">Simulating networks</a></li>
-  <li><a href="#extinction-simulation-framework" id="toc-extinction-simulation-framework" class="nav-link" data-scroll-target="#extinction-simulation-framework">Extinction simulation framework</a></li>
-  <li><a href="#effect-of-body-size-sampling-method-on-network-metrics" id="toc-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</a>
-  <ul class="collapse">
-  <li><a href="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" id="toc-figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="nav-link" data-scroll-target="#figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</a></li>
-  </ul></li>
-  <li><a href="#parameterisation-of-the-body-mass-ratio-model" id="toc-parameterisation-of-the-body-mass-ratio-model" class="nav-link" data-scroll-target="#parameterisation-of-the-body-mass-ratio-model">Parameterisation of the body-mass ratio model</a>
-  <ul class="collapse">
-  <li><a href="#table-s1.-parameter-perturbation-classes-for-the-bmr-model" id="toc-table-s1.-parameter-perturbation-classes-for-the-bmr-model" class="nav-link" data-scroll-target="#table-s1.-parameter-perturbation-classes-for-the-bmr-model">Table S1. Parameter perturbation classes for the BMR model</a></li>
-  <li><a href="#effects-of-body-mass-interaction-parameterisation-on-network-structure" id="toc-effects-of-body-mass-interaction-parameterisation-on-network-structure" class="nav-link" data-scroll-target="#effects-of-body-mass-interaction-parameterisation-on-network-structure">Effects of body-mass interaction parameterisation on network structure</a></li>
-  </ul></li>
-  <li><a href="#downsampling-pfim-networks" id="toc-downsampling-pfim-networks" class="nav-link" data-scroll-target="#downsampling-pfim-networks">Downsampling PFIM networks</a></li>
-  <li><a href="#multivariate-analysis-of-network-structure" id="toc-multivariate-analysis-of-network-structure" class="nav-link" data-scroll-target="#multivariate-analysis-of-network-structure">Multivariate analysis of network structure</a></li>
-  <li><a href="#beta-diversity-of-network-structure" id="toc-beta-diversity-of-network-structure" class="nav-link" data-scroll-target="#beta-diversity-of-network-structure"><span class="math inline">\(\beta\)</span>-diversity of network structure</a></li>
-  <li><a href="#quantification-of-extinction-simulation-outcomes-and-model-concordance" id="toc-quantification-of-extinction-simulation-outcomes-and-model-concordance" class="nav-link" data-scroll-target="#quantification-of-extinction-simulation-outcomes-and-model-concordance">Quantification of extinction simulation outcomes and model concordance</a></li>
-  <li><a href="#anova-and-temporal-dynamics-analysis" id="toc-anova-and-temporal-dynamics-analysis" class="nav-link" data-scroll-target="#anova-and-temporal-dynamics-analysis">ANOVA and temporal dynamics analysis</a></li>
-  </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#additional-results-and-analyses" id="toc-additional-results-and-analyses" class="nav-link active" data-scroll-target="#additional-results-and-analyses">Additional Results and Analyses</a>
   <ul class="collapse">
   <li><a href="#effects-of-network-reconstruction-on-food-web-structure" id="toc-effects-of-network-reconstruction-on-food-web-structure" class="nav-link" data-scroll-target="#effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</a>
   <ul class="collapse">
@@ -297,178 +277,8 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="methods" class="level1">
-<h1>Methods</h1>
-<section id="overview-of-the-comparative-framework" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-the-comparative-framework">Overview of the comparative framework</h2>
-<p>All food-web reconstruction approaches were evaluated within a unified comparative framework in which each model generated ensembles of binary interaction networks under identical species richness and sampling structure. This design allows direct comparison of emergent network properties while controlling for variation in species identity, temporal sampling, and stochastic realisations. Each reconstructed food web is represented as a directed binary adjacency matrix <span class="math inline">\(A_{ij}\)</span>, where <span class="math inline">\(A_{ij} = 1\)</span> denotes a trophic interaction from consumer <span class="math inline">\(i\)</span> to resource <span class="math inline">\(j\)</span>, and <span class="math inline">\(A_{ij} = 0\)</span> otherwise. Unless otherwise stated, all analyses are based on binary interaction structure.</p>
-<p>Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFIM) impose deterministic rule sets derived from discrete ecological traits.</p>
-<p>For each model and time period, multiple stochastic realisations were generated to capture intrinsic variability. Reported results therefore reflect ensemble-level properties rather than single deterministic networks.</p>
-</section>
-<section id="simulating-networks" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-networks">Simulating networks</h2>
-<p>Food webs were generated for each reconstruction approach using a consistent simulation framework designed to ensure comparability across models. For each model and time period, multiple independent network realisations were constructed (replicates), allowing stochastic variation in link structure to be quantified and propagated through subsequent analyses. All networks were built with identical species richness and based on a shared species pool, ensuring that differences in network structure arise solely from model-specific assumptions about interaction formation.</p>
-<p>For models requiring continuous traits (<em>e.g.,</em> ADBM, ATN, and body size ratio models), species body masses were assigned probabilistically for each replicate. Body mass values were drawn from a predefined distribution (log-scaled), and these values served as the primary input governing interaction probabilities or energetic constraints. As a result, each replicate represents a unique realisation of trait space, generating variation in network topology even under identical model parameterisation.</p>
-<p>In contrast, feasibility-based approaches (<em>e.g.,</em> PFIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.</p>
-<p>For each model–time combination, an ensemble of network replicates (n ≈ 50 per configuration) was generated. These ensembles form the basis for all downstream analyses, including structural comparisons, beta diversity calculations, and extinction simulations. By maintaining consistent replication across models, the framework captures both deterministic differences among reconstruction approaches and their inherent stochastic variability.</p>
-</section>
-<section id="extinction-simulation-framework" class="level2">
-<h2 class="anchored" data-anchor-id="extinction-simulation-framework">Extinction simulation framework</h2>
-<p>To evaluate structural robustness, reconstructed networks were subjected to simulated species removal sequences representing alternative disturbance regimes. These included random extinction, degree-ordered extinction (based on generality and vulnerability), and trait-ordered extinction sequences derived from ecological hierarchies as defined in <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>.</p>
-<p>Following each removal event, secondary extinctions were computed dynamically as species losing all incoming trophic resources. This process generates cascading extinction dynamics dependent on underlying network topology.</p>
-<p>All extinction regimes were applied consistently across reconstruction models and network realisations to ensure comparability of cascading structural responses.</p>
-</section>
-<section id="effect-of-body-size-sampling-method-on-network-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="effect-of-body-size-sampling-method-on-network-metrics">Effect of Body Size Sampling Method on Network Metrics</h2>
-<p>To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.</p>
-<p>Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (&lt;0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects (η² ≈ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.</p>
-<p>These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.</p>
-<section id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="figure-s1.-effect-of-body-size-sampling-method-on-network-metrics">Figure S1. Effect of Body Size Sampling Method on Network Metrics</h3>
-<p><a href="figures/effect_size_bodysize_within_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="figures/effect_size_bodysize_within_model.png" class="img-fluid"></a></p>
-<p>Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (&lt;0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (<em>e.g.,</em> number of linear chains).</p>
-</section>
-</section>
-<section id="parameterisation-of-the-body-mass-ratio-model" class="level2">
-<h2 class="anchored" data-anchor-id="parameterisation-of-the-body-mass-ratio-model">Parameterisation of the body-mass ratio model</h2>
-<p>To evaluate the sensitivity of the body-mass ratio (BMR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.</p>
-<p>The BMR model defines trophic link probability as a function of predator–prey body-mass ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.</p>
-<p>We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.</p>
-<section id="table-s1.-parameter-perturbation-classes-for-the-bmr-model" class="level3">
-<h3 class="anchored" data-anchor-id="table-s1.-parameter-perturbation-classes-for-the-bmr-model">Table S1. Parameter perturbation classes for the BMR model</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 15%">
-<col style="width: 13%">
-<col style="width: 20%">
-<col style="width: 32%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter set</th>
-<th>α (optimum ratio)</th>
-<th>β (niche width)</th>
-<th>γ (threshold / scaling)</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>baseline</td>
-<td>1.41</td>
-<td>3.73</td>
-<td>-1.90</td>
-<td>Serengeti-calibrated reference model</td>
-</tr>
-<tr class="even">
-<td>narrow_niche</td>
-<td>1.41</td>
-<td>2.5</td>
-<td>-1.90</td>
-<td>Increased dietary specialization</td>
-</tr>
-<tr class="odd">
-<td>wide_niche</td>
-<td>1.41</td>
-<td>5.0</td>
-<td>-1.90</td>
-<td>Relaxed dietary specialization</td>
-</tr>
-<tr class="even">
-<td>shifted_optimum_low</td>
-<td>1.0</td>
-<td>3.73</td>
-<td>-1.90</td>
-<td>Smaller optimal predator–prey ratio</td>
-</tr>
-<tr class="odd">
-<td>shifted_optimum_high</td>
-<td>1.8</td>
-<td>3.73</td>
-<td>-1.90</td>
-<td>Larger optimal predator–prey ratio</td>
-</tr>
-<tr class="even">
-<td>strict_threshold</td>
-<td>1.41</td>
-<td>3.73</td>
-<td>-2.5</td>
-<td>Stronger interaction filtering</td>
-</tr>
-<tr class="odd">
-<td>relaxed_threshold</td>
-<td>1.41</td>
-<td>3.73</td>
-<td>-1.0</td>
-<td>Weaker interaction filtering</td>
-</tr>
-</tbody>
-</table>
-<p>These parameterisations represent structured deviations from the empirically calibrated baseline, allowing us to separate effects of niche breadth, interaction optima, and interaction filtering strength.</p>
-</section>
-<section id="effects-of-body-mass-interaction-parameterisation-on-network-structure" class="level3">
-<h3 class="anchored" data-anchor-id="effects-of-body-mass-interaction-parameterisation-on-network-structure">Effects of body-mass interaction parameterisation on network structure</h3>
-<p>Multivariate analysis revealed that parameterisation of the body-mass ratio interaction model significantly influenced emergent food-web structure (PERMANOVA, R² = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.</p>
-<p>Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, p = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.</p>
-<p>Inspection of RDA loadings indicates that this structure is primarily driven by variation in connectance and measures of trophic organisation (notably generality and vulnerability), whereas richness and trophic level contribute comparatively weakly. Thus, parameter variation primarily reshapes interaction density and the distribution of consumer–resource breadth, rather than fundamentally altering overall network organisation.</p>
-<p>Despite significant differences in multivariate centroids, there was no evidence that parameter sets differ in multivariate dispersion (betadisper, F = 0.154, p = 0.988). This indicates that while parameter choice shifts the mean position of networks in multivariate space, it does not systematically alter the variability of structures generated within each parameter regime.</p>
-<p>###&nbsp;Justification for baseline parameterisation</p>
-<p>Given that parameter variation induces structured but low-dimensional shifts in network topology, we retain the baseline parameter set (α = 1.41, β = 3.73, γ = −1.90; derived from empirical Serengeti estimates) for subsequent analyses.</p>
-<p>This choice is justified for three reasons:</p>
-<ul>
-<li><p><strong>Empirical grounding:</strong> The baseline parameters are derived from well-resolved empirical food webs and therefore represent biologically realistic interaction constraints rather than arbitrary tuning.</p></li>
-<li><p><strong>Structural robustness:</strong> Although alternative parameterisations modify network properties, these changes occur primarily along a single dominant structural axis rather than producing qualitatively distinct network regimes. Thus, conclusions are robust to reasonable variation in parameter choice.</p></li>
-<li><p><strong>Avoiding overfitting of generative assumptions:</strong> Exploring extreme parameter regimes (e.g., narrow niche, relaxed thresholds) expands structural variance but does not improve biological realism. Using empirically informed baseline parameters prevents artificially inflating or distorting ecological inference.</p></li>
-</ul>
-<p>Overall, body-mass interaction parameters influence emergent food web structure in a systematic but constrained manner. Rather than defining fundamentally different network architectures, parameter variation reshapes networks along a single dominant gradient of interaction density and trophic role breadth.</p>
-</section>
-</section>
-<section id="downsampling-pfim-networks" class="level2">
-<h2 class="anchored" data-anchor-id="downsampling-pfim-networks">Downsampling PFIM networks</h2>
-<p>To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs across the following range: 5.0, 10.0, 20.0, 30.0, 50.0, 100.0. We then calculated the Jaccard similarity of the resulting adjacency matrices. Across the parameter range the similarity of networks tended to remain above 0.6 and a downsampling parameter of 100 had a mean similarity of 0.86. We thus used a downsampling parameter of 100 for all of the PFIM networks for all statistical analyses.</p>
-</section>
-<section id="multivariate-analysis-of-network-structure" class="level2">
-<h2 class="anchored" data-anchor-id="multivariate-analysis-of-network-structure">Multivariate analysis of network structure</h2>
-<p>We quantified food-web structure using a suite of macro-, meso-, and micro-scale network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).</p>
-<p>For visualisation, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualised using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison. Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.</p>
-</section>
-<section id="beta-diversity-of-network-structure" class="level2">
-<h2 class="anchored" data-anchor-id="beta-diversity-of-network-structure"><span class="math inline">\(\beta\)</span>-diversity of network structure</h2>
-<p>Structural dissimilarity between networks was quantified using interaction-based beta diversity, decomposed into complementary components:</p>
-<ul>
-<li><p>βS: total interaction dissimilarity</p></li>
-<li><p>βWN: interaction rewiring among shared species</p></li>
-<li><p>βOS: species turnover–driven interaction change</p></li>
-</ul>
-<p>These metrics partition differences between networks into contributions arising from species loss versus rewiring of interactions among shared species.</p>
-<p>Together, they define a multilevel decomposition of structural divergence in food-web topology across models and time periods.</p>
-</section>
-<section id="quantification-of-extinction-simulation-outcomes-and-model-concordance" class="level2">
-<h2 class="anchored" data-anchor-id="quantification-of-extinction-simulation-outcomes-and-model-concordance">Quantification of extinction simulation outcomes and model concordance</h2>
-<p>To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches. First, deviation in continuous network metrics (e.g., connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:</p>
-<p><span class="math inline">\(MAD = \frac{1}{n} \sum_{i=1}^{n} | M_{i}^{sim} - M_{i}^{ref}|\)</span></p>
-<p>where <span class="math inline">\(M_{i}^{sim}\)</span> is the simulated value and <span class="math inline">\(M_{i}^{ref}\)</span> is the corresponding observed or expected value. MAD was chosen because it provides a scale-preserving measure of deviation that is less sensitive to extreme values than squared-error metrics and allows direct comparison across reconstruction frameworks.</p>
-<p>Second, agreement in predicted persistence outcomes was evaluated using a modified True Skill Statistic (TSS) at both node and link levels. At the node level, species were classified as present (persisting) or absent (extinct) in each simulated network and compared to their presence–absence status in the reference community.</p>
-<p>At the link level, each possible species pair was classified according to the presence or absence of a trophic interaction in the simulated versus reference network. Thus, link-level evaluation quantified agreement in the retention or loss of specific trophic interactions, independent of overall species richness.</p>
-<p>For both node- and link-level classifications, outcomes were assigned as true positives (TP), true negatives (TN), false positives (FP), or false negatives (FN), and TSS was calculated as:</p>
-<p>TSS = Sensitivity + Specificity − 1</p>
-<p>where Sensitivity = TP/(TP + FN) and Specificity = TN/(TN + FP). TSS ranges from −1 to 1, with 1 indicating perfect agreement, 0 indicating performance no better than random expectation, and negative values indicating systematic disagreement. Because TSS is prevalence-independent, it is appropriate for extinction simulations in which class imbalance may occur (<em>e.g.,</em> many persisting species or many absent links).</p>
-</section>
-<section id="anova-and-temporal-dynamics-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="anova-and-temporal-dynamics-analysis">ANOVA and temporal dynamics analysis</h2>
-<p>This script quantifies how food web structure varies across reconstruction models and through time using a combination of two-way ANOVA, effect size estimation, and post hoc comparisons.</p>
-<p>First, simulated network outputs are imported and standardised across models and time steps. A suite of network metrics spanning macro- (<em>e.g.,</em> connectance, trophic level), meso- (motif structure), and micro-scale (generality, vulnerability) properties are extracted and summarised. Descriptive statistics (mean ± SD) are calculated for each model–metric combination and exported for supplementary reporting.</p>
-<p>To test for differences in network structure, separate two-way ANOVAs are fitted for each metric with reconstruction model and time (four stages: pre-, during, early, and late extinction) as fixed factors. Model assumptions are evaluated using Levene’s tests for homogeneity of variance and visual diagnostics (residual–fitted plots and Q–Q plots).</p>
-<p>For each ANOVA, partial eta-squared values are calculated to quantify the relative importance of model choice, time, and their interaction. These effect sizes are used to compare how strongly each factor influences different aspects of network structure.</p>
-<p>Temporal trajectories are then visualised by plotting mean metric values (± standard error) across time for each model, as well as relative changes from pre-extinction baselines. This allows direct comparison of how models differ in their predicted structural responses to extinction and recovery.</p>
-<p>To assess agreement among models, the coefficient of variation (CV) is calculated across models for each metric and time step, providing a measure of inter-model disagreement through time.</p>
-<p>Post hoc pairwise comparisons (Tukey-adjusted) are performed to identify which models differ significantly within each time step. These results are summarised as heatmaps showing the magnitude and significance of pairwise differences.</p>
-<p>Finally, ANOVA effect sizes and model disagreement (CV) are combined into a synthesis plot, highlighting which metrics are primarily driven by model choice versus temporal dynamics, and where models converge or diverge most strongly.</p>
-</section>
-</section>
-<section id="results" class="level1">
-<h1>Results</h1>
+       <section id="additional-results-and-analyses" class="level1">
+<h1>Additional Results and Analyses</h1>
 <section id="effects-of-network-reconstruction-on-food-web-structure" class="level2">
 <h2 class="anchored" data-anchor-id="effects-of-network-reconstruction-on-food-web-structure">Effects of Network Reconstruction on Food-Web Structure</h2>
 <section id="table-s1.-descriptive-statistics-mean-standard-deviation-of-network-metrics-by-model" class="level3">
@@ -726,7 +536,7 @@ dbl (3): Can1, Can2, Can3
 <section id="figure-s1.-canonical-loadings" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</h3>
 <p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Metric labels are shown for the most influential variables.</p>
-<p><a href="../figures/canonical_loadings_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../figures/canonical_loadings_plot.png" class="img-fluid"></a></p>
+<p><a href="../figures/canonical_loadings_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../figures/canonical_loadings_plot.png" class="img-fluid"></a></p>
 </section>
 <section id="permanova-variance-partitioning" class="level3">
 <h3 class="anchored" data-anchor-id="permanova-variance-partitioning">PERMANOVA Variance Partitioning</h3>
@@ -746,7 +556,7 @@ dbl (3): Can1, Can2, Can3
 <section id="figure-s2.-temporal-trajectories-of-network-structure-by-model" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</h3>
 <p>Detailed shifts in network properties across the four extinction phases, categorised by organisational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the “baseline” differences between models—such as the Niche model’s tendency to over-estimate motif counts—and their divergent responses to species loss.</p>
-<p><a href="../figures/raw_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../figures/raw_time_structure.png" class="img-fluid"></a></p>
+<p><a href="../figures/raw_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../figures/raw_time_structure.png" class="img-fluid"></a></p>
 </section>
 <section id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="level3">
 <h3 class="anchored" data-anchor-id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects.">Table S3. Variance Partitioning of Framework, Time, and Interaction Effects.</h3>
@@ -831,7 +641,7 @@ dbl (3): Model, Time, Interaction
 <section id="figure-s3.-model-disagreement-cv-across-extinction-phases" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</h3>
 <p>Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic “dip” at the ‘during’ phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.</p>
-<p><a href="../figures/cv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/cv.png" class="img-fluid"></a></p>
+<p><a href="../figures/cv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../figures/cv.png" class="img-fluid"></a></p>
 </section>
 <section id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="level3">
 <h3 class="anchored" data-anchor-id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</h3>
@@ -942,16 +752,14 @@ dbl (4): Pre-extinction, During extinction, Early extinction, Late extinction
 <section id="figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</h3>
 <p>Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks (<span class="math inline">\(*\)</span>) indicate statistical significance (p&lt;0.05). This identifies which specific models drive the high CV values seen in Figure 2.</p>
-<p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
+<p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
 </section>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-dunhill2024" class="csl-entry" role="listitem">
-Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispin T. S. Little, and Andrew P. Beckerman. 2024. <span>“Extinction Cascades, Community Collapse, and Recovery Across a Mesozoic Hyperthermal Event.”</span> <em>Nature Communications</em> 15 (1): 8599. <a href="https://doi.org/10.1038/s41467-024-53000-2">https://doi.org/10.1038/s41467-024-53000-2</a>.
-</div>
+<div id="refs" role="list">
+
 </div>
 </section>
      </main>
