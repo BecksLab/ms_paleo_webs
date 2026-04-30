@@ -126,12 +126,12 @@ ggplot(scores,
        aes(RDA1, 
            RDA2, 
            color = param_set)) +
-  geom_point(alpha = 0.35, 
-             size = 1.2) +
   geom_polygon(data = hulls,
                aes(fill = param_set),
-               alpha = 0.15,
-               color = NA) +
+               alpha = 0.2,
+               colour = "white") +
+  geom_point(alpha = 0.35, 
+             size = 1.2) +
   geom_point(data = centroids,
              aes(RDA1, RDA2, color = param_set),
              size = 4) +
