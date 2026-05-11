@@ -1,12 +1,5 @@
 ---
 title: "SuppMat 2: Effects of Network Reconstruction on Food-Web Structure"
-authors:
-  - name: Tanya Strydom
-    id: ts
-    orcid: 0000-0001-6067-1349
-abstract: |
-  Expanded results section.
-date: last-modified
 bibliography: ../references.bib
 ---
 

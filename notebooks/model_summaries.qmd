@@ -89,6 +89,26 @@ The Paleo Food Web Inference Model (PFIM; @shaw2024) infers trophic interactions
 
 The original implementation of PFIM includes an optional downsampling step adapted from @roopnarine2006, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods [@roopnarine2006] but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by @shaw2024, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.
 
+## Alternative palaeoecological reconstruction approaches and their exclusion
+
+A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages.
+Expert-knowledge and guild-based assembly approaches
+
+Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (e.g., @roopnarine2006). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.
+
+Conceptually, these approaches align closely with feasibility-based models such as PFIM, which also define interactions based on trait compatibility. However, PFIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.
+
+## Phylogenetically informed and trait-evolution models
+
+Some recent approaches incorporate phylogenetic information or trait evolution models to constrain interaction probabilities (e.g., methods inspired by modern ecological network inference such as @fricke2022a). These frameworks assume that trophic interactions are structured by shared evolutionary history or conserved traits, and typically require well-resolved phylogenies and trait datasets.
+
+Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (e.g., feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this system and were excluded from the comparative framework.
+
+## Abundance- and co-occurrence–based inference methods
+
+In modern systems, trophic interactions can be inferred from species co-occurrence patterns, abundance data, or statistical association networks (e.g., joint species distribution models, correlation-based networks). These approaches rely on high-resolution ecological sampling and assume that interaction structure can be inferred from patterns of co-variation in space or time.
+Fossil datasets generally do not provide the temporal or spatial resolution required to apply such methods robustly. Occurrence data are often time-averaged, spatially aggregated, and subject to preservation and sampling biases, which violate key assumptions of co-occurrence-based inference. Consequently, these approaches are not appropriate for reconstructing trophic interactions in deep-time assemblages and were not considered here.
+
 # Network construction
 
 ## Overview of the comparative framework
