@@ -144,7 +144,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3b1896eddc8589bc6244f4e1c31347fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-27cab9aec8e99a6ee976eafe45e6a7aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -213,6 +213,9 @@
   <ul class="collapse">
   <li><a href="#paleo-food-web-inference-model" id="toc-paleo-food-web-inference-model" class="nav-link" data-scroll-target="#paleo-food-web-inference-model">Paleo food web inference model</a></li>
   </ul></li>
+  <li><a href="#alternative-palaeoecological-reconstruction-approaches-and-their-exclusion" id="toc-alternative-palaeoecological-reconstruction-approaches-and-their-exclusion" class="nav-link" data-scroll-target="#alternative-palaeoecological-reconstruction-approaches-and-their-exclusion">Alternative palaeoecological reconstruction approaches and their exclusion</a></li>
+  <li><a href="#phylogenetically-informed-and-trait-evolution-models" id="toc-phylogenetically-informed-and-trait-evolution-models" class="nav-link" data-scroll-target="#phylogenetically-informed-and-trait-evolution-models">Phylogenetically informed and trait-evolution models</a></li>
+  <li><a href="#abundance--and-co-occurrencebased-inference-methods" id="toc-abundance--and-co-occurrencebased-inference-methods" class="nav-link" data-scroll-target="#abundance--and-co-occurrencebased-inference-methods">Abundance- and co-occurrence–based inference methods</a></li>
   </ul></li>
   <li><a href="#network-construction" id="toc-network-construction" class="nav-link" data-scroll-target="#network-construction">Network construction</a>
   <ul class="collapse">
@@ -316,6 +319,21 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <p>The Paleo Food Web Inference Model (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.</p>
 <p>The original implementation of PFIM includes an optional downsampling step adapted from <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods <span class="citation" data-cites="roopnarine2006">(<a href="#ref-roopnarine2006" role="doc-biblioref">Roopnarine 2006</a>)</span> but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.</p>
 </section>
+</section>
+<section id="alternative-palaeoecological-reconstruction-approaches-and-their-exclusion" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-palaeoecological-reconstruction-approaches-and-their-exclusion">Alternative palaeoecological reconstruction approaches and their exclusion</h2>
+<p>A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages. Expert-knowledge and guild-based assembly approaches</p>
+<p>Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (e.g., <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.</p>
+<p>Conceptually, these approaches align closely with feasibility-based models such as PFIM, which also define interactions based on trait compatibility. However, PFIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.</p>
+</section>
+<section id="phylogenetically-informed-and-trait-evolution-models" class="level2">
+<h2 class="anchored" data-anchor-id="phylogenetically-informed-and-trait-evolution-models">Phylogenetically informed and trait-evolution models</h2>
+<p>Some recent approaches incorporate phylogenetic information or trait evolution models to constrain interaction probabilities (e.g., methods inspired by modern ecological network inference such as <span class="citation" data-cites="fricke2022a">Fricke et al. (<a href="#ref-fricke2022a" role="doc-biblioref">2022</a>)</span>). These frameworks assume that trophic interactions are structured by shared evolutionary history or conserved traits, and typically require well-resolved phylogenies and trait datasets.</p>
+<p>Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (e.g., feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this system and were excluded from the comparative framework.</p>
+</section>
+<section id="abundance--and-co-occurrencebased-inference-methods" class="level2">
+<h2 class="anchored" data-anchor-id="abundance--and-co-occurrencebased-inference-methods">Abundance- and co-occurrence–based inference methods</h2>
+<p>In modern systems, trophic interactions can be inferred from species co-occurrence patterns, abundance data, or statistical association networks (e.g., joint species distribution models, correlation-based networks). These approaches rely on high-resolution ecological sampling and assume that interaction structure can be inferred from patterns of co-variation in space or time. Fossil datasets generally do not provide the temporal or spatial resolution required to apply such methods robustly. Occurrence data are often time-averaged, spatially aggregated, and subject to preservation and sampling biases, which violate key assumptions of co-occurrence-based inference. Consequently, these approaches are not appropriate for reconstructing trophic interactions in deep-time assemblages and were not considered here.</p>
 </section>
 </section>
 <section id="network-construction" class="level1">
@@ -686,6 +704,9 @@ Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispi
 </div>
 <div id="ref-erdos1959" class="csl-entry" role="listitem">
 Erdős, P., and A. Rényi. 1959. <span>“On Random Graphs. i.”</span> <em>Publicationes Mathematicae Debrecen</em> 6 (3-4): 290–97. <a href="https://doi.org/10.5486/pmd.1959.6.3-4.12">https://doi.org/10.5486/pmd.1959.6.3-4.12</a>.
+</div>
+<div id="ref-fricke2022a" class="csl-entry" role="listitem">
+Fricke, Evan C., Chia Hsieh, Owen Middleton, et al. 2022. <span>“Collapse of Terrestrial Mammal Food Webs Since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
 </div>
 <div id="ref-gauzens2023" class="csl-entry" role="listitem">
 Gauzens, Benoit, Ulrich Brose, Eva Delmas, and Emilio Berti. 2023. <span>“ATNr: Allometric Trophic Network Models in r.”</span> <em>Methods in Ecology and Evolution</em> 14 (11): 2766–73. <a href="https://doi.org/10.1111/2041-210X.14212">https://doi.org/10.1111/2041-210X.14212</a>.
