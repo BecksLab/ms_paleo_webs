@@ -7,10 +7,10 @@ library(genzplyr)     # utility wrappers (vibe_check, glow_up, yeet)
 library(ggplot2)      # plotting
 library(ggtext)       # enhanced text in plots
 
+setwd(here("code"))
+
 #load script that determines plotting aesthetics
 source("lib/plotting_theme.R")
-
-setwd(here("code"))
 
 # -----------------------------
 # 2. Load and prepare data
