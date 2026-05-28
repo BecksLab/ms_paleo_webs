@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.10.3">
+    <meta name="generator" content="quarto-1.10.5">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -141,10 +141,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-832852b6563d68d88ceb798efa7195d4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27cab9aec8e99a6ee976eafe45e6a7aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-3b361995821cf61d77a5cf475430d514.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -196,7 +196,8 @@
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#model-descriptions" id="toc-model-descriptions" class="nav-link active" data-scroll-target="#model-descriptions">Model descriptions</a>
+  <li><a href="#extended-study-system-description" id="toc-extended-study-system-description" class="nav-link active" data-scroll-target="#extended-study-system-description">Extended study system description</a></li>
+  <li><a href="#model-descriptions" id="toc-model-descriptions" class="nav-link" data-scroll-target="#model-descriptions">Model descriptions</a>
   <ul class="collapse">
   <li><a href="#structural-models" id="toc-structural-models" class="nav-link" data-scroll-target="#structural-models">Structural models</a>
   <ul class="collapse">
@@ -251,7 +252,13 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="model-descriptions" class="level1">
+       <section id="extended-study-system-description" class="level1">
+<h1>Extended study system description</h1>
+<p>We used fossil occurrence data from the Cleveland Basin, UK, spanning the late upper Pliensbachian to the late upper Toarcian (~185–175 Ma), a stratigraphic interval that captures the onset, peak, and recovery from the Early Toarcian Extinction Event (ETEE) (Dunhill et al.&nbsp;2024). This interval records a major volcanically driven hyperthermal perturbation associated with widespread marine ecological disruption and extinction. To resolve changes in community structure through time, we used a high-resolution dataset of 38,670 fossil occurrences representing 162 marine species, including pelagic and benthic invertebrates (ammonites, belemnites, bivalves, brachiopods, decapod crustaceans, and echinoderms), as well as fish and trace fossils, derived from extensive published and newly integrated field datasets.</p>
+<p>To capture temporal variation in ecological organisation across the extinction interval, we used the same intervals as Dunhill et al.&nbsp;(2024), which subdivided the dataset into four successive palaeo-assemblages treated as interacting communities: pre-extinction (margaritatus–tenuicostatum zones), post-extinction (serpentinum–commune subzones), early recovery (upper bifrons–lower levesquei zones), and late recovery (upper levesquei zone). These assemblages span well-characterised stratigraphic units within the Staithes Sandstone, Cleveland Ironstone, Whitby Mudstone, and Blea Wyke Sandstone formations of the Cleveland Basin <span class="citation" data-cites="dunhill2024">(<a href="#ref-dunhill2024" role="doc-biblioref">Dunhill et al. 2024</a>)</span>.</p>
+<p>Each taxon was characterised using body size and Bambach’s ecospace framework <span class="citation" data-cites="bambach2007">(<a href="#ref-bambach2007" role="doc-biblioref">Bambach et al. 2007</a>)</span>, encoding tiering, motility, and feeding mode following <span class="citation" data-cites="dunhill2024">Dunhill et al. (<a href="#ref-dunhill2024" role="doc-biblioref">2024</a>)</span>, allowing ecological roles to be standardised across diverse taxonomic groups. This framework enables each assemblage to be analysed as a metacommunity of potentially interacting organisms, from which community trophic interaction networks (food webs) were constructed to assess how ecological structure changed across extinction and recovery phases.</p>
+</section>
+<section id="model-descriptions" class="level1">
 <h1>Model descriptions</h1>
 <section id="structural-models" class="level2">
 <h2 class="anchored" data-anchor-id="structural-models">Structural models</h2>
@@ -696,6 +703,9 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bambach2007" class="csl-entry" role="listitem">
+Bambach, Richard K., Andrew M. Bush, and Douglas H. Erwin. 2007. <span>“Autecology and the Filling of Ecospace: Key Metazoan Radiations.”</span> <em>Palaeontology</em> 50 (1): 1–22. <a href="https://doi.org/10.1111/j.1475-4983.2006.00611.x">https://doi.org/10.1111/j.1475-4983.2006.00611.x</a>.
+</div>
 <div id="ref-brose2006" class="csl-entry" role="listitem">
 Brose, Ulrich, Tomas Jonsson, Eric L. Berlow, et al. 2006. <span>“Consumer<span></span>resource Body-Size Relationships in Natural Food Webs.”</span> <em>Ecology</em> 87 (10): 2411–17. https://doi.org/<a href="https://doi.org/10.1890/0012-9658(2006)87[2411:CBRINF]2.0.CO;2">https://doi.org/10.1890/0012-9658(2006)87[2411:CBRINF]2.0.CO;2</a>.
 </div>

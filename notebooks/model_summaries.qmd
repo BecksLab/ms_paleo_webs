@@ -3,6 +3,14 @@ title: "Supplementary Material S1: Expanded descriptions of the food web reconst
 bibliography: ../references.bib
 ---
 
+# Extended study system description
+
+We used fossil occurrence data from the Cleveland Basin, UK, spanning the late upper Pliensbachian to the late upper Toarcian (~185–175 Ma), a stratigraphic interval that captures the onset, peak, and recovery from the Early Toarcian Extinction Event (ETEE) (Dunhill et al. 2024). This interval records a major volcanically driven hyperthermal perturbation associated with widespread marine ecological disruption and extinction. To resolve changes in community structure through time, we used a high-resolution dataset of 38,670 fossil occurrences representing 162 marine species, including pelagic and benthic invertebrates (ammonites, belemnites, bivalves, brachiopods, decapod crustaceans, and echinoderms), as well as fish and trace fossils, derived from extensive published and newly integrated field datasets. 
+
+To capture temporal variation in ecological organisation across the extinction interval, we used the same intervals as Dunhill et al. (2024), which subdivided the dataset into four successive palaeo-assemblages treated as interacting communities: pre-extinction (margaritatus–tenuicostatum zones), post-extinction (serpentinum–commune subzones), early recovery (upper bifrons–lower levesquei zones), and late recovery (upper levesquei zone). These assemblages span well-characterised stratigraphic units within the Staithes Sandstone, Cleveland Ironstone, Whitby Mudstone, and Blea Wyke Sandstone formations of the Cleveland Basin [@dunhill2024].
+
+Each taxon was characterised using body size and Bambach’s ecospace framework [@bambach2007], encoding tiering, motility, and feeding mode following @dunhill2024, allowing ecological roles to be standardised across diverse taxonomic groups. This framework enables each assemblage to be analysed as a metacommunity of potentially interacting organisms, from which community trophic interaction networks (food webs) were constructed to assess how ecological structure changed across extinction and recovery phases.
+
 # Model descriptions
 
 ## Structural models
