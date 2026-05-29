@@ -22,19 +22,20 @@ regions for each reconstruction approach.}
 
 }
 
-\caption{\label{fig-anova}\textbf{A} Changes in network metrics through
-time, expressed as deviation from Pre-Extinction conditions (Δ). Metrics
-are faceted and scaled independently to highlight differences in
-temporal trajectories across different network properties. \textbf{B}
-Scatter plot illustrating the influence of reconstruction approach
-(x-axis) and time (y-axis) across network metrics. The dashed 1:1
-diagonal represents parity of influence; metrics below this line are
-governed primarily by reconstruction approach and those above by time.
-Bubble size indicates the interaction between reconstruction approach
-and time, while colour indicates inter reconstruction approach
-disagreement (mean CV\%); browner bubbles signify metrics where
-reconstruction approaches show the highest divergence in their
-structural predictions.}
+\caption{\label{fig-anova}Figure 2: Temporal changes in food-web
+structure and the relative influence of reconstruction approach and
+ecological turnover on network properties. (\textbf{A}) Changes in
+network metrics through time, expressed as deviations from
+pre-extinction conditions (\(\delta\)). Metrics are faceted and scaled
+independently to highlight differences in temporal trajectories among
+network properties. (\textbf{B}) Relative influence of reconstruction
+approach (x-axis) and time (y-axis) on individual network metrics. The
+dashed 1:1 line indicates equal explanatory power. Metrics below the
+line are more strongly influenced by reconstruction approach than by
+temporal turnover. Bubble size represents the reconstruction approach ×
+time interaction, and colour indicates disagreement among reconstruction
+approaches (mean CV\%), with darker colours indicating greater
+divergence in metric estimates.}
 
 \end{figure}
 \efloatseparator
@@ -47,16 +48,14 @@ structural predictions.}
 
 }
 
-\caption{\label{fig-beta_div}Pairwise \(β_{OS}\) in species interactions
-among four ecological network reconstruction approaches (ADBM, ATN,
-Body-size ratio, and PFWIM). Each cell represents the mean turnover
-value between a pair of reconstruction approaches, with darker colours
-indicating greater dissimilarity in inferred interactions. High turnover
-values indicate strong disagreement in pairwise interactions between
-reconstruction approaches, whereas lower values indicate greater
-similarity. Note that we do not include the Random or Niche model as
-these reconstruction approaches are species agnostic and thus we cannot
-truly evaluate differences in pairwise interactions}
+\caption{\label{fig-beta_div}Pairwise interaction turnover (\(β_{OS}\))
+among four food-web reconstruction approaches that infer
+species-specific trophic interactions (ADBM, ATN, Body-size Ratio, and
+PFWIM). Each cell represents the mean turnover value between a pair of
+reconstruction approaches, with darker colours indicating greater
+dissimilarity in inferred interactions. High turnover values indicate
+strong disagreement in predicted trophic links, whereas lower values
+indicate greater similarity.}
 
 \end{figure}
 \efloatseparator

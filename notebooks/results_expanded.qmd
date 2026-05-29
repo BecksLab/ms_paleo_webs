@@ -99,8 +99,3 @@ readr::read_csv("tables/kendall_tau_coefficients.csv") %>%
 kable()
 
 ```
-
-# References {.unnumbered}
-
-::: {#refs}
-:::

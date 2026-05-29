@@ -75,7 +75,7 @@ for j = 1:n_reps
         biomass = bodymass .^ (-3 / 4)
 
         # Assign a random connectance value for models requiring a fixed link density
-        connectance = rand(Uniform(0.07, 0.15))
+        connectance = rand(Uniform(0.05, 0.25))
 
         # Step 3: Iterate through different ecological network models
         for model ∈ [
