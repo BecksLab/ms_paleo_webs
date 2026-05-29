@@ -321,3 +321,5 @@ No single reconstruction approach captures the full complexity of ecological org
 # References {.unnumbered}
 
 *Data and Code Availability Statement:* The empirical data, derived network datasets, and all analysis scripts are archived in a public Zenodo repository ([DOI: 10.5281/zenodo.20444969](https://doi.org/10.5281/zenodo.20444969)), which includes a complete README file describing software dependencies, execution order, and reproduction instructions.
+
+*Acknowledgements:* TS, BK, APB, and AMD received funding from NERC/NSF grant number NE/X015025/1.
