@@ -1,162 +1,81 @@
 # Reconstructing food webs in deep time: why model choice matters for ecological inference
 
-This repository contains the full analytical pipeline used to evaluate how food-web reconstruction models influence ecological inference in paleoecosystems. Using the Early Jurassic (Toarcian) Oceanic Anoxic Event as a case study, we compare multiple network reconstruction approaches to assess how their underlying assumptions shape predictions of ecosystem structure, extinction dynamics, and recovery.
+This repository contains the full analytical pipeline used to evaluate how food-web reconstruction models influence ecological inference in paleoecosystems. Using the Early Jurassic (Toarcian) Oceanic Anoxic Event as a case study, multiple network reconstruction approaches are compared to assess how their assumptions shape predictions of ecosystem structure, extinction dynamics, and recovery.
 
-## Scientific Context
+## Quick overview
 
-Reconstructing paleo-food webs is inherently uncertain because species interactions are rarely preserved in the fossil record. This project treats different reconstruction models as alternative ecological hypotheses and evaluates how these hypotheses diverge in their predictions.
-We focus on three key dimensions:
+- Languages: Julia and R
+- Primary analysis scripts: /code (numerically ordered)
+- Notebooks and figures: /notebooks
+- Data: /data (raw + processed; large processed files are not included)
 
-* **Network Topology**: Differences in macro-scale (e.g., connectance), meso-scale (motifs), and micro-scale (degree structure) properties.
+## Quickstart (recommended)
 
-* **Extinction Dynamics**: Variation in robustness to species loss and the magnitude of secondary extinction cascades.
+1. Install Julia (recommended version: 1.9+).
+2. Open a Julia REPL in the repository root and run:
 
-* **Interaction Turnover**: The extent to which models differ in predicted interaction 'rewiring' across time.
+   using Pkg
+   Pkg.activate("code")
+   Pkg.instantiate()
 
-## Network generation overview
+3. (One-off) Install required GitHub-only packages:
 
-For each reconstruction approach and time period, ensembles of food webs were generated under a unified framework:
+   pkg> add https://github.com/BecksLab/pfim.jl
+   pkg> add https://github.com/BecksLab/Extinctions.jl
 
-* All models use a shared species pool and identical species richness.
+4. Run the analysis (examples):
 
-* Each model–time combination is simulated across multiple stochastic replicates (100 per configuration).
+   julia --project=code code/01_build_networks.jl
+   julia --project=code code/02_topology.jl
+   julia --project=code code/03_generate_extinctions.jl
 
-* Networks are represented as binary directed adjacency matrices.
+5. Render the manuscript and Supplementary Materials (Quarto):
 
-### Trait handling
+   quarto render .
 
-* Body mass–based models (ADBM, ATN, body size ratio): Species body masses are stochastically assigned per replicate, generating variation in interaction structure.
+Notes:
+- Scripts are designed to be run in order, but individual steps can be re-run as needed.
+- Long-running jobs can be run on a cluster or backgrounded locally.
 
-* Trait-rule models (PFIM): Discrete ecological traits (e.g., guild, motility, tiering) are fixed within each time period, with variability arising from link filtering/downsampling.
+## What the pipeline does
 
-* Structural models (Niche, Random): Interactions are generated from statistical rules independent of observed traits.
+- Generates ensembles of synthetic food webs using multiple reconstruction models (ADBM, ATN, Body-mass ratio, Niche, Random, PFIM variants).
+- Computes network metrics at macro, meso (motifs), and micro scales.
+- Simulates primary extinction sequences and propagating secondary extinctions under multiple removal scenarios.
+- Quantifies interaction beta-diversity and performs statistical comparisons (MANOVA, LDA, PERMANOVA, mixed models).
 
-This design ensures that differences among networks reflect model assumptions rather than differences in species composition.
+## Project structure (high level)
 
+- /code: analysis scripts (01_... to S2_...)
+  - /code/lib: reusable functions and model implementations
+- /data
+  - /data/raw: curated input trait and guild data
+  - /data/processed: generated networks and analysis outputs (not tracked when large)
+- /notebooks: supplementary outputs and tables used in the manuscript
+- Quarto files (.qmd) in the repository root for manuscript rendering
 
-### Extinction simulations
+## Reproducibility
 
-Each network replicate is subjected to multiple extinction scenarios:
+- Use the Project.toml and Manifest.toml inside /code to reproduce the Julia environment exactly.
+- The Manifest snapshots package versions; keep it intact to ensure identical analysis results.
+- External packages hosted on GitHub (PFIM.jl and Extinctions.jl) must be installed separately (see Quickstart).
 
-* Random removal
+## Data availability
 
-* Topological removal (based on generality or vulnerability)
+Large processed files are not stored in the repo. To reproduce results, run the relevant Julia scripts to regenerate the following (examples):
 
-* Trait-ordered removal (based on ecological hierarchies)
+- data/processed/extinction_seq.jlds
 
-Extinctions are simulated dynamically:
-* Primary removals are applied sequentially
+If you need access to the generated datasets, contact the repository maintainers or check any supplementary data archive associated with the manuscript.
 
-* Secondary extinctions occur when species lose all resources
+## Contributing
 
-* Each scenario is repeated across replicates (~50 extinction runs per network)
+Contributions and bug reports are welcome. Please open issues or pull requests describing the change and the rationale.
 
-### Beta diversity and structural comparison
+## Citation
 
-Network dissimilarity is quantified using interaction beta diversity:
-* βS: total dissimilarity
+If using results or code from this repository, please cite the associated manuscript (when available).
 
-* βWN: rewiring among shared species
+## Contact
 
-* βOS: species turnover component
-
-Structural differences are further analysed using:
-* MANOVA and canonical discriminant analysis (CDA)
-
-* Linear discriminant analysis (LDA)
-
-* Mixed-effects models and ANOVA
-
-* Variance partitioning (PERMANOVA)
-
-## Prerequisites
-
-**External Julia Packages**
-
-Two critical components of this pipeline are hosted as independent packages on GitHub and must be installed manually, as they are not currently in the general Julia registry:
-
-PFIM.jl: The core paleo modeling framework.
-
-`pkg> add https://github.com/BecksLab/pfim.jl`
-
-Extinctions.jl: Logic for simulating secondary extinction cascades.
-
-`pkg> add https://github.com/BecksLab/Extinctions.jl`
-
-**Environment Management (Julia)**
-
-This project uses Julia's built-in package manager to ensure reproducibility. You will find two key files in the /code directory:
-
-Project.toml: Defines the project dependencies and their versions.
-
-Manifest.toml: A complete "snapshot" of every package and sub-dependency used in the original analysis. (Note: This is ignored by Git in some contexts but is vital for matching the exact state of the SpeciesInteractionNetworks and Graphs packages).
-
-To instantiate the environment:
-
-`using Pkg; Pkg.activate("code"); Pkg.instantiate()`
-
-## Project Structure
-
-**/code**
-
-The analysis is designed to be run in numerical order:
-
-* `01_build_networks.jl`: Generates synthetic food webs using five different models: ADBM, ATN (L-matrix), Body Mass Ratio, Niche, and Random. It also incorporates the downsampled and full PFIM.
-
-* `02_topology.jl`: Calculates macro, meso (motifs), and micro-scale network metrics.
-
-* `03_generate_extinctions.jl`: Simulates primary extinction sequences based on different proposed extinction mechanisms.
-
-* `04_extinction_analysis.jl`: Evaluates robustness and secondary extinction counts.
-
-* `05_betadiv.jl`: Quantifies network dissimilarity (β OS).
-
-* `06_structural_differences.R`: Performs MANOVA and LDA to visualize network space.
-
-* `07_beta_div.jl.R`: Analyses interaction turnover between modelling frameworks.
-
-* `08_dunhill_compare.R`: Temporal comparisons and compare extinction simulations.
-
-* `09_variance_partitioning.R`: Variance partitioning between model and time.
-
-* `08_ANOVA_time.R`: Two-way ANOVA and post hoc analyses to quantify how food web structure varies across model and time.
-
-* `S1_bodysize_distribution.jl` and `S1_bodysize_distribution.R`: effect size analyses of body size distributions and body mass ratio parameters.
-
-* `S2_pfim_downsample.jl` and `S2_pfim_downsample.R`: effect of downsampling on networks generated with PFIM.
-
-**/code/lib**
-
-Internal functions and model implementations:
-
-* `adbm.jl`, `lmatrix.jl`, `bodymass.jl`, `niche.jl`, `random.jl`: The specific model engines.
-
-* `internals.jl`: Core topological summary functions and TSS validation logic.
-
-* `plotting_theme.R`: Centralized aesthetics, fonts, and color palettes for all figures.
-
-**/data**
-
-* `/raw`: input datasets (traits, guilds)
-
-* `/processed`: generated networks and analysis outputs
-
-⚠️ Large processed files are not tracked in the repository.
-
-**/notebooks**
-
-Contains the outputs for the Supplementary Materials. Tables for effect sizes, ANOVA results from beta-diversity analysis, and model coefficients are exported here from the R scripts to be dynamically pulled into the final manuscript.
-
-**Manuscript & Quarto**
-
-The final paper and supplementary documents are rendered using Quarto (.qmd files located in the root).
-
-The manuscript integrates code-generated figures and tables directly.
-
-To render the document, run quarto render from the root directory.
-
-## Data Note
-
-Due to file size constraints, several large processed datasets are not included in the remote repository (tracked via .gitignore). You must run the Julia scripts locally to regenerate the following:
-
-* data/processed/extinction_seq.jlds (extinction results)
+Maintainer: Tanya STrydom
