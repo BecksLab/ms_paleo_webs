@@ -57,26 +57,7 @@
       @media screen {
       pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
       }
-      /* CSS for citations */
-      div.csl-bib-body { }
-      div.csl-entry {
-        clear: both;
-      }
-      .hanging-indent div.csl-entry {
-        margin-left:2em;
-        text-indent:-2em;
-      }
-      div.csl-left-margin {
-        min-width:2em;
-        float:left;
-      }
-      div.csl-right-inline {
-        margin-left:2em;
-        padding-left:1em;
-      }
-      div.csl-indent {
-        margin-left: 2em;
-      }    </style>
+    </style>
 
     <style>
       body.hypothesis-enabled #quarto-embed-header {
@@ -249,8 +230,11 @@
   <li><a href="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." id="toc-table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="nav-link" data-scroll-target="#table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases.">Table S4. Percentage Disagreement Between Frameworks Across Extinction Phases.</a></li>
   <li><a href="#figure-s4.-pairwise-framework-comparisons-tukey-hsd" id="toc-figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="nav-link" data-scroll-target="#figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</a></li>
   </ul></li>
+  <li><a href="#reconstruction-approach-choice-influences-inferred-extinction-dynamics" id="toc-reconstruction-approach-choice-influences-inferred-extinction-dynamics" class="nav-link" data-scroll-target="#reconstruction-approach-choice-influences-inferred-extinction-dynamics">Reconstruction approach choice influences inferred extinction dynamics</a>
+  <ul class="collapse">
+  <li><a href="#table-s5.-kendalls-tau-correlation-coefficients" id="toc-table-s5.-kendalls-tau-correlation-coefficients" class="nav-link" data-scroll-target="#table-s5.-kendalls-tau-correlation-coefficients">Table S5. Kendall’s Tau Correlation Coefficients</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -269,11 +253,11 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ dplyr     1.2.1     ✔ readr     2.2.0
 ✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
 ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.1     
+✔ purrr     1.2.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -736,12 +720,2201 @@ dbl (4): Pre-extinction, During extinction, Early extinction, Late extinction
 <p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
 </section>
 </section>
-</section>
-<section id="references" class="level1 unnumbered">
-<h1 class="unnumbered">References</h1>
-<div id="refs" role="list">
+<section id="reconstruction-approach-choice-influences-inferred-extinction-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="reconstruction-approach-choice-influences-inferred-extinction-dynamics">Reconstruction approach choice influences inferred extinction dynamics</h2>
+<section id="table-s5.-kendalls-tau-correlation-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="table-s5.-kendalls-tau-correlation-coefficients">Table S5. Kendall’s Tau Correlation Coefficients</h3>
+<p>Kendalls Tau (<span class="math inline">\(\tau\)</span>) values quantifying the amount of agreement between reconstruction approach as to the main driver of extinctions. This is determined based on the mean absolute difference rankings. Significant correlations (p&lt;0.05) are denoted with an asterisk (*). The variability in <span class="math inline">\(\tau\)</span> values across models for the same metric highlights how reconstruction choice can lead to divergent interpretations of extinction drivers in network structure.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"tables/kendall_tau_coefficients.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 360 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Model1, Model2, metric
+dbl (1): tau
 
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model1</th>
+<th style="text-align: left;">Model2</th>
+<th style="text-align: right;">tau</th>
+<th style="text-align: left;">metric</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.8129201</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.1935524</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.1161314</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2709734</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0387105</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.8129201</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1935524</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4358974</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.1161314</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.4358974</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.1025641</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2709734</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0387105</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.1025641</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1538462</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3333333</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.1538462</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.3333333</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.6153846</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.2051282</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.6153846</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1025641</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.2051282</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.1025641</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.6410256</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.3076923</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.6410256</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.2307692</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.2307692</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">S5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.8205128</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.8205128</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.5128205</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.4615385</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.5128205</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">connectance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.1538462</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4358974</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.1538462</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0512821</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.0512821</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.4358974</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">generality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.3589744</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0769231</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.3589744</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.1282051</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.1794872</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">trophic_level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.9230769</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.9230769</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.0769231</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1025641</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.0256410</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.2820513</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">vulnerability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2307692</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.8205128</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.2307692</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">-0.4871795</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.1538462</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.8205128</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">-0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.4871795</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1538462</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.1794872</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">-0.2564103</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.1282051</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.4871795</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.2051282</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">-0.3846154</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.8974359</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.5128205</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.5897436</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: right;">0.6666667</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.6410256</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.8974359</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.2564103</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.5384615</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">ATN</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.5128205</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.6410256</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.5641026</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Niche</td>
+<td style="text-align: right;">0.5384615</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.5897436</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3076923</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.5384615</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.3589744</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ADBM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.6666667</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Body-size ratio</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATN</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niche</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.5384615</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PFIM</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">0.7692308</td>
+<td style="text-align: left;">Node</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Random</td>
+<td style="text-align: left;">Random</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: left;">Node</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

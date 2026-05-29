@@ -360,7 +360,7 @@ SA28PP, UK%
   \vskip 1em}
 \makeatother
 
-\date{2026-05-28}
+\date{2026-05-29}
 
 \usepackage[nolists,noheads,markers]{endfloat}
 
@@ -551,10 +551,10 @@ extinction was both prolonged and uneven across marine habitats.
 Ecological networks have previously been used to infer patterns of
 community organisation and extinction dynamics across this transition,
 providing an ideal test case for evaluating the robustness of
-network-based inference. In particular, recent work (\emph{e.g.,}
-Dunhill \emph{et al.} (2024)) has used reconstructed food webs to draw
-ecological conclusions about community stability and collapse during
-this event. This creates a rare opportunity to ask a more general
+network-based inferences of community response. In particular, recent
+work by Dunhill \emph{et al.} (2024) has used reconstructed food webs to
+draw ecological conclusions about community stability and collapse
+during this event. This creates a rare opportunity to ask a more general
 question: to what extent are such inferences contingent on the specific
 reconstruction framework used to generate the network?
 
@@ -763,22 +763,23 @@ uniform sampling by default, as alternative distributions (lognormal,
 truncated lognormal) have negligible impact on topology (Supplementary
 Material S1; Figure S1). Random and Niche models were parameterised
 using connectance values drawn from an empirically realistic range
-(0.07--0.15). For the Random model, which requires link number
-explicitly, connectance (Co) was first converted to expected link number
-(L) using \(L = Co\times S^2\), ensuring consistency in network density
-across all reconstruction approaches. Richness was determined by the
-number of species for each time bin. For the Body-size ratio model, we
-followed the approach of Yeakel \emph{et al.} (2014) and excluded the
-latent trait term, using only the body-mass scaling to determine links
-between species. Sensitivity of network structure to these parameter
-choices is evaluated in Supplementary Material S1. The PFWIM generates a
-deterministic feasible metaweb for a given trait configuration. To allow
-for statistical analyses we introduced controlled variation in
-interaction subsets by applying a downsampling procedure that
-stochastically samples feasible interactions. This step allowed us to
-introduce statistical variation while still preserving most of the
-metaweb structure. The choice of downsampling parameter and its effects
-on network structure are evaluated in Supplementary Material S1.
+(0.05--0.25; Curtsdotter \emph{et al.} (2011)). For the Random model,
+which requires link number explicitly, connectance (Co) was first
+converted to expected link number (L) using \(L = Co\times S^2\),
+ensuring consistency in network density across all reconstruction
+approaches. Richness (S) was determined by the number of species for
+each time bin. For the Body-size ratio model, we followed the approach
+of Yeakel \emph{et al.} (2014) and excluded the latent trait term, using
+only the body-mass scaling to determine links between species.
+Sensitivity of network structure to these parameter choices is evaluated
+in Supplementary Material S1. The PFWIM generates a deterministic
+feasible metaweb for a given trait configuration. To allow for
+statistical analyses we introduced controlled variation in interaction
+subsets by applying a downsampling procedure that stochastically samples
+feasible interactions. This step allowed us to introduce statistical
+variation while still preserving most of the metaweb structure. The
+choice of downsampling parameter and its effects on network structure
+are evaluated in Supplementary Material S1.
 
 \subsection{Network metrics and structural
 analyses}\label{network-metrics-and-structural-analyses}
@@ -794,10 +795,13 @@ permutational multivariate analysis of variance (PERMANOVA). Pairwise
 interaction turnover was quantified using link-based \(\beta\)-diversity
 and was calculated following the framework of Poisot \emph{et al.}
 (2012) among the four of the reconstruction frameworks (ADBM, ATN,
-body-size ratio, and PFWIM). We excluded the purely structural Random
-and Niche models as they are inherently species agnostic. Specifically,
-we looked at interaction rewiring among shared species (\(\beta_{OS}\),
-see S1 for additional details on the decomposition of interaction
+body-size ratio, and PFWIM). Random and Niche models were excluded
+because they are species-agnostic reconstruction approaches that
+generate networks matching broad topological properties (\emph{e.g.,}
+connectance and degree distributions) rather than predicting
+biologically realistic species-specific interactions. Specifically, we
+looked at interaction rewiring among shared species (\(\beta_{OS}\), see
+S1 for additional details on the decomposition of interaction
 β-diversity and its implementation), which allows separation of
 differences arising from altered interaction identities among species
 common to both networks. Because all networks within a given assemblage
@@ -902,28 +906,29 @@ execution order, and reproduction instructions.
 
 \section{Results}\label{results}
 
-We found that when evaluated using network metrics, different
-reconstruction approaches, even those that appear to be similar, yield
-fundamentally different ecological inferences. Across six network
-reconstruction approaches, inferred food web structure, species
-interactions, and extinction dynamics differed consistently.
-Multivariate analyses showed pronounced separation among reconstruction
-approaches in network metric space. Reconstruction approach explained
-most of the variance in structural properties, leaving a distinct
-signature independent of community composition. Notably, approaches that
-were statistically similar in multivariate structural space often
-diverged in inferred interactions or extinction dynamics. This
-demonstrates that structural similarity does not guarantee concordance
+We found that different reconstruction approaches, even those that
+appeared structurally similar, yielded fundamentally different
+ecological inferences. Across six reconstruction approaches, inferred
+food web structure, species interactions, and extinction dynamics
+differed consistently. Multivariate analyses showed pronounced
+separation among reconstruction approaches in network metric space
+Figure~\ref{fig-structure}, with reconstruction approach explaining most
+of the variance in structural properties Figure~\ref{fig-anova}.
+Notably, approaches that were statistically similar in multivariate
+structural space often diverged in inferred interactions
+Figure~\ref{fig-beta_div} or extinction dynamics Figure~\ref{fig-mad},
+demonstrating that structural similarity does not guarantee concordance
 in species-level diets or trophic roles.
 
 Reconstruction approach substantially influenced inferred extinction
 dynamics. Temporal trajectories of network collapse, interaction loss,
-and motif reorganisation differed among approaches. Although node-level
-extinction ranking were often broadly consistent, link-level outcomes
-and extinction inferences were highly sensitive to reconstruction
-assumptions. Together, these results show that ecological inferences
-drawn from networks depend critically on the reconstruction framework
-used.
+and motif reorganisation differed among approaches
+Figure~\ref{fig-anova}. Although node-level extinction rankings were
+often broadly consistent, link-level outcomes and extinction inferences
+were highly sensitive to reconstruction assumptions
+Figure~\ref{fig-mad}. Together, these results show that ecological
+inferences drawn from networks depend critically on the reconstruction
+framework used.
 
 \subsection{Network structure differs among reconstruction
 approaches}\label{network-structure-differs-among-reconstruction-approaches}
@@ -1025,19 +1030,20 @@ simple macro-scale properties like connectance.
 
 }
 
-\caption{\label{fig-anova}\textbf{A} Changes in network metrics through
-time, expressed as deviation from Pre-Extinction conditions (Δ). Metrics
-are faceted and scaled independently to highlight differences in
-temporal trajectories across different network properties. \textbf{B}
-Scatter plot illustrating the influence of reconstruction approach
-(x-axis) and time (y-axis) across network metrics. The dashed 1:1
-diagonal represents parity of influence; metrics below this line are
-governed primarily by reconstruction approach and those above by time.
-Bubble size indicates the interaction between reconstruction approach
-and time, while colour indicates inter reconstruction approach
-disagreement (mean CV\%); browner bubbles signify metrics where
-reconstruction approaches show the highest divergence in their
-structural predictions.}
+\caption{\label{fig-anova}Figure 2: Temporal changes in food-web
+structure and the relative influence of reconstruction approach and
+ecological turnover on network properties. (\textbf{A}) Changes in
+network metrics through time, expressed as deviations from
+pre-extinction conditions (\(\delta\)). Metrics are faceted and scaled
+independently to highlight differences in temporal trajectories among
+network properties. (\textbf{B}) Relative influence of reconstruction
+approach (x-axis) and time (y-axis) on individual network metrics. The
+dashed 1:1 line indicates equal explanatory power. Metrics below the
+line are more strongly influenced by reconstruction approach than by
+temporal turnover. Bubble size represents the reconstruction approach ×
+time interaction, and colour indicates disagreement among reconstruction
+approaches (mean CV\%), with darker colours indicating greater
+divergence in metric estimates.}
 
 \end{figure}%
 
@@ -1064,16 +1070,14 @@ guarantee concordance in species-level interactions.
 
 }
 
-\caption{\label{fig-beta_div}Pairwise \(β_{OS}\) in species interactions
-among four ecological network reconstruction approaches (ADBM, ATN,
-Body-size ratio, and PFWIM). Each cell represents the mean turnover
-value between a pair of reconstruction approaches, with darker colours
-indicating greater dissimilarity in inferred interactions. High turnover
-values indicate strong disagreement in pairwise interactions between
-reconstruction approaches, whereas lower values indicate greater
-similarity. Note that we do not include the Random or Niche model as
-these reconstruction approaches are species agnostic and thus we cannot
-truly evaluate differences in pairwise interactions}
+\caption{\label{fig-beta_div}Pairwise interaction turnover (\(β_{OS}\))
+among four food-web reconstruction approaches that infer
+species-specific trophic interactions (ADBM, ATN, Body-size Ratio, and
+PFWIM). Each cell represents the mean turnover value between a pair of
+reconstruction approaches, with darker colours indicating greater
+dissimilarity in inferred interactions. High turnover values indicate
+strong disagreement in predicted trophic links, whereas lower values
+indicate greater similarity.}
 
 \end{figure}%
 
@@ -1189,12 +1193,13 @@ ecological metrics, thus the imprint of the reconstruction framework is
 visible not only in aggregate topology but in the very structural
 features often interpreted as ecological signals. Notably, the few
 properties that exhibited detectable temporal sensitivity were also
-those with the greatest inter-reconstruction approach disagreement,
-indicating that temporal trends are most difficult to disentangle when
-reconstruction frameworks diverge most strongly. These results suggest
-that structural assumptions do not merely shift networks within a shared
-architectural space; they condition the specific patterns through which
-ecological change is perceived and interpreted.
+those with the greatest inter-reconstruction approach disagreement
+(\emph{i.e.,} motif distributions), indicating that temporal trends are
+most difficult to disentangle when reconstruction frameworks diverge
+most strongly. These results suggest that structural assumptions do not
+merely shift networks within a shared architectural space; they
+condition the specific patterns through which ecological change is
+perceived and interpreted.
 
 This has direct implications for the interpretation of comparative
 network studies. Feasible, realised, and structural reconstruction
@@ -1216,39 +1221,32 @@ two questions cannot be separated.
 \subsection{Scale-dependent robustness in network-based
 inference}\label{scale-dependent-robustness-in-network-based-inference}
 
-Importantly, reconstruction sensitivity was not uniform across network
-scales (macro-, mesio-, micro- level properties). Node-level extinction
-rankings were broadly consistent among reconstruction approaches,
-whereas interaction-level outcomes and cascade trajectories were highly
-contingent on the reconstruction approach. The predominance of
-reconstruction framework over temporal turnover (\textasciitilde80\%
-vs.~6\% variance explained) illustrates why coarse-grained patterns like
-node-level extinction rankings are more robust. Reconstruction
-approach-imposed structure dominates the overall topology, leaving
-interaction dynamics highly contingent on framework choice. This
-asymmetry reveals a context-dependent pattern of robustness.
-Coarse-grained macroecological patterns (such as the vulnerability of a
-community to collapse) can emerge from multiple plausible interaction
-architectures. By contrast, fine-grained inferences about which links
-are lost, retained, or reorganised depend strongly on how interactions
-are inferred.
+Importantly, reconstruction sensitivity was not uniform across levels of
+inference. Node-level extinction rankings were broadly consistent among
+reconstruction approaches, whereas interaction-level outcomes and
+cascade trajectories were highly contingent on reconstruction methods.
+The predominance of the reconstruction framework over temporal turnover
+helps explain this pattern. Different reconstruction approaches often
+converged on similar patterns of community vulnerability, yet diverged
+substantially in the mechanisms through which collapse unfolded. Broad
+ecological patterns can emerge across multiple plausible interaction
+architectures, whereas conclusions about which interactions are lost,
+retained, or reorganised depend strongly on how those interactions are
+inferred.
 
-This distinction challenges a central ambition of food web ecology: the
-use of detailed interaction structure to diagnose mechanisms of
-stability and collapse. Our findings suggest that while coarse-grained
-patterns might be shared across methods, fine-grained mechanistic
-narratives (such as the specific pathways of interaction loss) are much
-more precarious. This implies that had Dunhill \emph{et al.} (2024)
-selected a different reconstruction method other than PFWIM, the
-resulting inferences regarding the drivers of extinctions and subsequent
-recovery could have pointed to entirely different ecological mechanisms.
-If interaction-level cascade pathways vary substantially across equally
-plausible reconstructions, then mechanistic narratives derived from a
-single inferred topology may overstate their precision (Dunne \emph{et
-al.}, 2002; Curtsdotter \emph{et al.}, 2011; Allesina \& Tang, 2012).
-The apparent determinism of extinction cascades may therefore partly
-reflect reconstruction-imposed structure rather than ecological
-inevitability.
+This distinction challenges a central ambition of food web ecology:
+using interaction structure to identify the mechanisms underlying
+stability and collapse. Our findings suggest that while broad patterns
+may be robust across reconstruction approaches, mechanistic explanations
+are far less secure. Had Dunhill \emph{et al.} (2024) used a
+reconstruction approach other than PFWIM, the inferred drivers of
+extinction and recovery may have differed substantially. If cascade
+pathways vary across equally plausible reconstructions, then mechanistic
+narratives derived from a single inferred topology may overstate their
+precision (Dunne \emph{et al.}, 2002; Curtsdotter \emph{et al.}, 2011;
+Allesina \& Tang, 2012). The apparent determinism of extinction cascades
+may therefore reflect reconstruction-imposed structure as much as
+ecological inevitability.
 
 For macroecology, this metric dependence clarifies where network-based
 inference is accurate. Aggregate properties may be comparatively robust

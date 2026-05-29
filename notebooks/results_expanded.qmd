@@ -87,7 +87,15 @@ Heatmap showing significant differences between specific pairs of reconstruction
 
 ![](../figures/ANOVA_tukey.png)
 
-# References {.unnumbered}
+## Reconstruction approach choice influences inferred extinction dynamics
 
-::: {#refs}
-:::
+### Table S5. Kendall's Tau Correlation Coefficients
+
+Kendalls Tau ($\tau$) values quantifying the amount of agreement between reconstruction approach as to the main driver of extinctions. This is determined based on the mean absolute difference rankings. Significant correlations (p<0.05) are denoted with an asterisk (*). The variability in $\tau$ values across models for the same metric highlights how reconstruction choice can lead to divergent interpretations of extinction drivers in network structure.
+
+```{r}
+
+readr::read_csv("tables/kendall_tau_coefficients.csv") %>%
+kable()
+
+```
