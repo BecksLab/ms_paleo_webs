@@ -95,7 +95,7 @@ for (i in seq_along(levs)) {
     facet_grid(stat_label ~ time_label) +
     coord_flip() +
     scale_colour_manual(
-      values = c("*" = col_div[1], "ns" = col_div[3]),
+      values = c("*" = "#1E7548", "ns" = "#5F249F"),
       name = NULL,
       labels = c("Significant", "Non-Significant")
     ) +
@@ -231,6 +231,10 @@ for (met in metrics) {
     rbind(kendal_results, melted)
   
 }
+
+# Export full Kendall tau values for supplementary material
+kendal_results %>%
+  write_csv("../notebooks/tables/kendall_tau_coefficients.csv")
 
 kendal_results <-
   kendal_results %>%
