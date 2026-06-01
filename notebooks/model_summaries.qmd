@@ -3,14 +3,6 @@ title: "Supplementary Material S1: Expanded descriptions of the food web reconst
 bibliography: ../references.bib
 ---
 
-# Extended study system description
-
-We used fossil occurrence data from the Cleveland Basin, UK, spanning the late upper Pliensbachian to the late upper Toarcian (~185–175 Ma), a stratigraphic interval that captures the onset, peak, and recovery from the Early Toarcian Extinction Event (ETEE) (Dunhill et al. 2024). This interval records a major volcanically driven hyperthermal perturbation associated with widespread marine ecological disruption and extinction. To resolve changes in community structure through time, we used a high-resolution dataset of 38,670 fossil occurrences representing 162 marine species, including pelagic and benthic invertebrates (ammonites, belemnites, bivalves, brachiopods, decapod crustaceans, and echinoderms), as well as fish and trace fossils, derived from extensive published and newly integrated field datasets. 
-
-To capture temporal variation in ecological organisation across the extinction interval, we used the same intervals as Dunhill et al. (2024), which subdivided the dataset into four successive palaeo-assemblages treated as interacting communities: pre-extinction (margaritatus–tenuicostatum zones), post-extinction (serpentinum–commune subzones), early recovery (upper bifrons–lower levesquei zones), and late recovery (upper levesquei zone). These assemblages span well-characterised stratigraphic units within the Staithes Sandstone, Cleveland Ironstone, Whitby Mudstone, and Blea Wyke Sandstone formations of the Cleveland Basin [@dunhill2024].
-
-Each taxon was characterised using body size and Bambach’s ecospace framework [@bambach2007], encoding tiering, motility, and feeding mode following @dunhill2024, allowing ecological roles to be standardised across diverse taxonomic groups. This framework enables each assemblage to be analysed as a metacommunity of potentially interacting organisms, from which community trophic interaction networks (food webs) were constructed to assess how ecological structure changed across extinction and recovery phases.
-
 # Model descriptions
 
 ## Structural models
@@ -55,7 +47,7 @@ All bioenergetic and allometric parameters were fixed to the default values repo
 
 The Allometric Trophic Network (ATN; @brose2006) model also uses body mass to infer trophic interactions but places greater emphasis on mechanical constraints associated with consumer–resource size relationships. Interactions are determined by allometric rules based on the ratio of consumer ($M_i$) to resource ($M_j$) body mass and are further constrained to produce networks that resemble realized food webs [@schneider2016; @gauzens2023].
 
-The probability of a trophic interaction ($P_{ij}$) between consumer $i$ and resource $j$ is defined using a Ricker function parameterized by the optimal body-mass ratio ($R_{opt}$) and the shape parameter $\gamma$:
+The probability of a trophic interaction ($P_{ij}$) between consumer $i$ and resource $j$ is defined using a Ricker function parameterized by the optimal body-size ratio ($R_{opt}$) and the shape parameter $\gamma$:
 
 $$
 P_{ij} = (L \times \exp(1 - L))^{\gamma}
@@ -73,7 +65,7 @@ All bioenergetic and allometric parameters were fixed to the default values repo
 
 ### Body size ratio model
 
-The body size ratio model [@rohr2010] infers trophic interactions probabilistically based on the ratio of consumer ($M_i$) to resource ($M_j$) body mass. To represent predator–prey body-mass ratios as a feeding niche, the model modifies this ratio using a quadratic function in log-transformed mass space, producing a unimodal interaction probability distribution. In its simplified form, the probability of an interaction between consumer $i$ and resource $j$ is defined as:
+The body size ratio model [@rohr2010] infers trophic interactions probabilistically based on the ratio of consumer ($M_i$) to resource ($M_j$) body mass. To represent predator–prey body-size ratios as a feeding niche, the model modifies this ratio using a quadratic function in log-transformed mass space, producing a unimodal interaction probability distribution. In its simplified form, the probability of an interaction between consumer $i$ and resource $j$ is defined as:
 
 $$
 P_{ij} = \frac{p}{1+p}
@@ -87,7 +79,7 @@ $$
 
 The original latent-trait formulation introduced by @rohr2010 included an additional interaction term, $v_i \delta f_j$. For simplicity, and following @yeakel2014, this term is omitted here and only the equation above is used. Parameter values are taken directly from @yeakel2014, which were estimated using Serengeti food web data: $\alpha = 1.41$, $\beta = 3.75$, and $\gamma = 1.87$.
 
-Although the body size ratio model is parameterised using empirical estimates derived from terrestrial systems (*e.g.,* Serengeti food webs), its applicability to paleo communities may be less direct. To address this, we explicitly evaluated the sensitivity of network structure (see *Parameterisation of the body-mass ratio model* section) to variation in key parameters governing interaction probabilities.
+Although the body size ratio model is parameterised using empirical estimates derived from terrestrial systems (*e.g.,* Serengeti food webs), its applicability to paleo communities may be less direct. To address this, we explicitly evaluated the sensitivity of network structure (see *Parameterisation of the body-size ratio model* section) to variation in key parameters governing interaction probabilities.
 
 ## Feasibility models
 
@@ -135,26 +127,26 @@ For models requiring continuous traits (*e.g.,* ADBM, ATN, and body size ratio m
 
 In contrast, feasibility-based approaches (*e.g.,* PFIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.
 
-For each model–time combination, an ensemble of network replicates (n ≈ 50 per configuration) was generated. These ensembles form the basis for all downstream analyses, including structural comparisons, beta diversity calculations, and extinction simulations. By maintaining consistent replication across models, the framework captures both deterministic differences among reconstruction approaches and their inherent stochastic variability.
+For each model–time combination, an ensemble of network replicates (n $\approx$ 50 per configuration) was generated. These ensembles form the basis for all downstream analyses, including structural comparisons, beta diversity calculations, and extinction simulations. By maintaining consistent replication across models, the framework captures both deterministic differences among reconstruction approaches and their inherent stochastic variability.
 
 ### Table S1. Summary of parameterisation across food web reconstruction models
 
 | Model | Parameter | Value / Distribution | Source / Implementation | Notes |
 |--------------|--------------|------------------|--------------|--------------|
 | **Random** | Species richness (S) | Empirical (per community) | Input data | Shared across all models |
-|  | Number of links (L) | (\$L = Co \times S\^2\$), with (\$Co \sim U(0.07, 0.15)\$) | This study | Connectance randomly drawn per replicate |
+|  | Number of links (L) | ($L = Co \times S^2$), with ($Co \sim U(0.05, 0.25)$) | This study | Connectance randomly drawn per replicate |
 | **Niche** | Species richness (S) | Empirical | Input data |  |
-|  | Connectance (Co) | (\$Co \sim U(0.07, 0.15)\$) | This study | Determines niche range distribution |
-|  | Niche values (\$n_i\$) | (\$U(0,1)\$) | Standard niche model |  |
+|  | Connectance (Co) | ($Co \sim U(0.05, 0.25)$) | This study | Determines niche range distribution |
+|  | Niche values ($n_i$) | ($U(0,1)$) | Standard niche model |  |
 |  | Range distribution | Beta distribution with mean | Standard niche model | As in @williams2000 |
-| **ADBM** | Body mass (\$M_i\$) | Uniform within size classes (see below) | This study | Primary varying trait |
-|  | Biomass (\$B_i\$) | (\$M_i\^{-3/4}\$) | Metabolic scaling | Used in encounter rates |
+| **ADBM** | Body mass ($M_i$) | Uniform within size classes (see below) | This study | Primary varying trait |
+|  | Biomass ($B_i$) | ($M_i\^{-3/4}$) | Metabolic scaling | Used in encounter rates |
 |  | Attack rate, handling time, energy scaling | Fixed allometric exponents | @petchey2008 | Default parameter set |
-|  | Resource density (\$N_i\$) | Derived from biomass | This study | Implicit in encounter term |
-| **ATN / L-matrix** | Body mass (\$M_i\$) | Uniform within size classes | This study | Same as ADBM |
+|  | Resource density ($N_i$) | Derived from biomass | This study | Implicit in encounter term |
+| **ATN / L-matrix** | Body mass ($M_i$) | Uniform within size classes | This study | Same as ADBM |
 |  | Producer identity | Binary (from tiering) | Empirical data | Constrains trophic structure |
 |  | Interaction rules | Deterministic size-structured constraints | Schneider et al. (2016) implementation | I |
-| **Body-mass ratio (BMR)** | Body mass (\$M_i\$) | Uniform within size classes | This study |  |
+| **body-size ratio (BSR)** | Body mass ($M_i$) | Uniform within size classes | This study |  |
 |  | α (optimum ratio) | 1.41 | @yeakel2014 | Serengeti-derived |
 |  | β (niche width) | 3.73 | @yeakel2014 |  |
 |  | γ (scaling / threshold) | −1.90 | @yeakel2014 |  |
@@ -175,9 +167,9 @@ All extinction regimes were applied consistently across reconstruction models an
 
 ## Effect of Body Size Sampling Method on Network Metrics
 
-To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared (η²) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
+To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared ($\eta^2$) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
 
-Across all models and network metrics, the effect of body size sampling method was extremely small. Most η² values were effectively zero (\<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects (η² ≈ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.
+Across all models and network metrics, the effect of body size sampling method was extremely small. Most $\eta^2$ values were effectively zero (<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects ($\eta^2 \approx$ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.
 
 These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.
 
@@ -185,19 +177,19 @@ These findings justify using any of the tested body size sampling approaches for
 
 ![](figures/effect_size_bodysize_within_model.png)
 
-Metrics where η² was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, η² values are extremely low (\<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
+Metrics where $\eta^2$ was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, $\eta^2$ values are extremely low (<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
 
-## Parameterisation of the body-mass ratio model
+## Parameterisation of the body-size ratio model
 
-To evaluate the sensitivity of the body-mass ratio (BMR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.
+To evaluate the sensitivity of the body-size ratio (BSR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.
 
-The BMR model defines trophic link probability as a function of predator–prey body-mass ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.
+The BSR model defines trophic link probability as a function of predator–prey body-size ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.
 
 We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.
 
-### Table S2. Parameter perturbation classes for the BMR model
+### Table S2. Parameter perturbation classes for the BSR model
 
-| Parameter set | α (optimum ratio) | β (niche width) | γ (threshold / scaling) | Interpretation |
+| Parameter set | $\alpha$ (optimum ratio) | $\beta$ (niche width) | $\gamma$ (threshold / scaling) | Interpretation |
 |--------------|--------------|--------------|--------------|-------------------|
 | baseline | 1.41 | 3.73 | -1.90 | Serengeti-calibrated reference model |
 | narrow_niche | 1.41 | 2.5 | -1.90 | Increased dietary specialization |
@@ -209,9 +201,9 @@ We explored seven parameter sets (Table Sx), constructed to isolate distinct mec
 
 These parameterisations represent structured deviations from the empirically calibrated baseline, allowing us to separate effects of niche breadth, interaction optima, and interaction filtering strength.
 
-### Effects of body-mass interaction parameterisation on network structure
+### Effects of body-size interaction parameterisation on network structure
 
-Multivariate analysis revealed that parameterisation of the body-mass ratio interaction model significantly influenced emergent food-web structure (PERMANOVA, R² = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
+Multivariate analysis revealed that parameterisation of the body-size ratio interaction model significantly influenced emergent food-web structure (PERMANOVA, R^2 = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
 
 Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, p = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.
 
@@ -221,7 +213,7 @@ Despite significant differences in multivariate centroids, there was no evidence
 
 ### Justification for baseline parameterisation
 
-Given that parameter variation induces structured but low-dimensional shifts in network topology, we retain the baseline parameter set (α = 1.41, β = 3.73, γ = −1.90; derived from empirical Serengeti estimates) for subsequent analyses.
+Given that parameter variation induces structured but low-dimensional shifts in network topology, we retain the baseline parameter set ($\alpha$ = 1.41, $\beta$ = 3.73, $\gamma$ = −1.90; derived from empirical Serengeti estimates) for subsequent analyses.
 
 This choice is justified for three reasons:
 
@@ -249,11 +241,11 @@ For visualisation, canonical scores were plotted using linear discriminant analy
 
 Structural dissimilarity between networks was quantified using interaction-based beta diversity, decomposed into complementary components:
 
--   βS: total interaction dissimilarity
+-   $\beta_{S}$: total interaction dissimilarity
 
--   βWN: interaction rewiring among shared species
+-   $\beta_{WN}$: interaction rewiring among shared species
 
--   βOS: species turnover–driven interaction change
+-   $\beta_{OS}$: species turnover–driven interaction change
 
 These metrics partition differences between networks into contributions arising from species loss versus rewiring of interactions among shared species.
 
@@ -261,7 +253,7 @@ Together, they define a multilevel decomposition of structural divergence in foo
 
 ## Quantification of extinction simulation outcomes and model concordance
 
-To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches. First, deviation in continuous network metrics (e.g., connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:
+To evaluate how reconstruction framework influenced inferred extinction dynamics, simulated community states were compared against observed or expected reference states using two complementary approaches. First, deviation in continuous network metrics (*e.g.,* connectance, mean trophic level, modularity) was quantified using mean absolute difference (MAD). For each metric and time step, MAD was calculated as:
 
 $MAD = \frac{1}{n} \sum_{i=1}^{n} | M_{i}^{sim} - M_{i}^{ref}|$
 
@@ -286,8 +278,6 @@ First, simulated network outputs are imported and standardised across models and
 To test for differences in network structure, separate two-way ANOVAs are fitted for each metric with reconstruction model and time (four stages: pre-, during, early, and late extinction) as fixed factors. Model assumptions are evaluated using Levene’s tests for homogeneity of variance and visual diagnostics (residual–fitted plots and Q–Q plots).
 
 For each ANOVA, partial eta-squared values are calculated to quantify the relative importance of model choice, time, and their interaction. These effect sizes are used to compare how strongly each factor influences different aspects of network structure.
-
-Temporal trajectories are then visualised by plotting mean metric values (± standard error) across time for each model, as well as relative changes from pre-extinction baselines. This allows direct comparison of how models differ in their predicted structural responses to extinction and recovery.
 
 To assess agreement among models, the coefficient of variation (CV) is calculated across models for each metric and time step, providing a measure of inter-model disagreement through time.
 
