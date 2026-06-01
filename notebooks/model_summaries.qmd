@@ -94,7 +94,7 @@ The original implementation of PFIM includes an optional downsampling step adapt
 A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages.
 Expert-knowledge and guild-based assembly approaches
 
-Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (e.g., @roopnarine2006). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.
+Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (*e.g.,* @roopnarine2006). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.
 
 Conceptually, these approaches align closely with feasibility-based models such as PFIM, which also define interactions based on trait compatibility. However, PFIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.
 
@@ -146,7 +146,7 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 | **ATN / L-matrix** | Body mass ($M_i$) | Uniform within size classes | This study | Same as ADBM |
 |  | Producer identity | Binary (from tiering) | Empirical data | Constrains trophic structure |
 |  | Interaction rules | Deterministic size-structured constraints | Schneider et al. (2016) implementation | I |
-| **body-size ratio (BSR)** | Body mass ($M_i$) | Uniform within size classes | This study |  |
+| **Body-size ratio (BSR)** | Body mass ($M_i$) | Uniform within size classes | This study |  |
 |  | α (optimum ratio) | 1.41 | @yeakel2014 | Serengeti-derived |
 |  | β (niche width) | 3.73 | @yeakel2014 |  |
 |  | γ (scaling / threshold) | −1.90 | @yeakel2014 |  |
