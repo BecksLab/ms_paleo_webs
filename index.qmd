@@ -318,8 +318,8 @@ These results challenge the implicit assumption that reconstructed networks are 
 
 No single reconstruction approach captures the full complexity of ecological organisation, but neither are alternative reconstruction approaches interchangeable. Aligning reconstruction framework with inferential goals, standardising approaches across comparative studies, and incorporating ensemble or probabilistic representations will be essential for strengthening the interpretability of network analyses across spatial and temporal gradients, including efforts to use deep-time systems to inform expectations under contemporary climate change. As ecological networks increasingly inform global change research, recognising network reconstruction as fundamental determinants of inference is critical for advancing food web ecology from descriptive reconstruction toward rigorous comparative synthesis.
 
-# References {.unnumbered}
-
 *Data and Code Availability Statement:* The empirical data, derived network datasets, and all analysis scripts are archived in a public Zenodo repository ([DOI: 10.5281/zenodo.20444969](https://doi.org/10.5281/zenodo.20444969)), which includes a complete README file describing software dependencies, execution order, and reproduction instructions.
 
 *Acknowledgements:* TS, BK, APB, and AMD received funding from NERC/NSF grant number NE/X015025/1.
+
+# References {.unnumbered}
