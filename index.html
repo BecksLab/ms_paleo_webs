@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.7">
+<meta name="generator" content="quarto-1.10.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -15,7 +15,7 @@
 <meta name="author" content="Andy Ridgwell">
 <meta name="author" content="Andrew P. Beckerman">
 <meta name="author" content="Alexander M. Dunhill">
-<meta name="dcterms.date" content="2026-06-02">
+<meta name="dcterms.date" content="2026-06-09">
 <meta name="keywords" content="Ecological networks, Biotic interactions, Community assembly, Environmental gradients, Interaction turnover, Trophic organisation, Ecosystem resilience, Macroecology">
 
 <title>Network reconstruction approach conditions ecological inference in food web reconstruction</title>
@@ -63,7 +63,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c02e96a55a3fac3aceec3c7506c22d80.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b856dee10e21950d696b022d144bb914.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-3b361995821cf61d77a5cf475430d514.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -146,10 +146,10 @@ Network reconstruction functions as a structural prior that conditions ecologica
 <meta name="citation_author" content="Andy Ridgwell">
 <meta name="citation_author" content="Andrew P. Beckerman">
 <meta name="citation_author" content="Alexander M. Dunhill">
-<meta name="citation_publication_date" content="2026-06-02">
-<meta name="citation_cover_date" content="2026-06-02">
+<meta name="citation_publication_date" content="2026-06-09">
+<meta name="citation_cover_date" content="2026-06-09">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-06-02">
+<meta name="citation_online_date" content="2026-06-09">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a mesozoic hyperthermal event;,citation_author=Alexander M. Dunhill;,citation_author=Karolina Zarzyczny;,citation_author=Jack O. Shaw;,citation_author=Jed W. Atkinson;,citation_author=Crispin T. S. Little;,citation_author=Andrew P. Beckerman;,citation_publication_date=2024-10-04;,citation_cover_date=2024-10-04;,citation_year=2024;,citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2;,citation_issue=1;,citation_doi=10.1038/s41467-024-53000-2;,citation_volume=15;,citation_language=en;,citation_journal_title=Nature Communications;">
 <meta name="citation_reference" content="citation_title=Shortcomings of reusing species interaction networks created by different sets of researchers;,citation_author=Chris Brimacombe;,citation_author=Korryn Bodner;,citation_author=Matthew Michalska-Smith;,citation_author=Timothée Poisot;,citation_author=Marie-Josée Fortin;,citation_publication_date=2023-03;,citation_cover_date=2023-03;,citation_year=2023;,citation_fulltext_html_url=https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002068;,citation_issue=4;,citation_doi=10.1371/journal.pbio.3002068;,citation_volume=21;,citation_language=en;,citation_journal_title=PLOS Biology;">
@@ -368,7 +368,7 @@ Network reconstruction functions as a structural prior that conditions ecologica
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">June 2, 2026</p>
+              <p class="date">June 9, 2026</p>
             </div>
           </div>
           
@@ -482,7 +482,7 @@ Network reconstruction functions as a structural prior that conditions ecologica
 <p>Feasibility-based models infer the set of potential interactions among species based on trait compatibility or mechanistic rules. These approaches define a feasible interaction space by identifying which consumer–resource pairs are biologically possible, without specifying which interactions are realised in each community. In palaeoecological contexts, where direct observation of interactions is not possible, such models provide a biologically grounded, formalised representation, of ‘expert knowledge’ based rules that can be used to infer interactions (<em>e.g.,</em> <span class="citation" data-cites="fricke2022a">Fricke et al. (<a href="#ref-fricke2022a" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>).</p>
 <p>Realised models aim to approximate the subset of interactions that are expected to occur in practice. These approaches impose additional constraints (such as energetic optimisation, mechanical limits, or probabilistic niche structure) on top of feasibility, thereby generating networks that represent putative realised diets <span class="citation" data-cites="schneider2016 brose2006">(<a href="#ref-schneider2016" role="doc-biblioref">Schneider et al. 2016</a>; <a href="#ref-brose2006" role="doc-biblioref">Brose et al. 2006</a>)</span>. Although often parameterised using body size or related traits, realised models differ in their underlying ecological assumptions about how consumers select resources and how trophic interactions are structured.</p>
 <p>Structural models, in contrast, do not attempt to reconstruct empirical trophic interactions from species-level data. Instead, they generate networks based on general topological constraints such as species richness, connectance, or trophic ordering <span class="citation" data-cites="allesina2008">(<a href="#ref-allesina2008" role="doc-biblioref">Allesina et al. 2008</a>)</span>. These models are species-agnostic and therefore cannot be interpreted as reconstructions of specific ecological communities. Rather, they have the potential to serve as ‘null hypotheses’, providing reference expectations against which the structure and dynamics of data-informed reconstructions can be evaluated.</p>
-<p>In this study, we selected models to span these three conceptual classes (<a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a>) to sample distinct mechanistic interpretations of trophic interactions rather than exhaustively include all available implementations. Specifically, we include: a feasibility-based model (PFWIM), representing trait-constrained interactions; multiple realised models (ADBM, ATN, and Body-size ratio), capturing energetic optimisation, mechanical constraints, and probabilistic allometric structure, respectively; and structural models (Random and Niche), providing theoretical reference points. Although some approaches share common inputs (<em>e.g.,</em> body mass), they encode fundamentally different assumptions about how interactions arise. Conversely, some alternative palaeoecological approaches (<em>e.g.,</em> guild- or feasibility-based frameworks) are conceptually aligned with PFWIM and would therefore provide limited additional contrast for the purposes of this analysis.</p>
+<p>In this study, we selected models to span these three conceptual classes (<a href="#tbl-models" class="quarto-xref">Table&nbsp;1</a>) to sample distinct mechanistic interpretations of trophic interactions rather than exhaustively include all available implementations. Specifically, we include: a feasibility-based model (PFWIM), representing trait-constrained interactions; multiple realised models (ADBM, ATN, and Body-size ratio), capturing energetic optimisation, mechanical constraints, and probabilistic allometric structure, respectively; and structural models (Random and Niche), providing theoretical reference points. Notably some approaches share common inputs (<em>e.g.,</em> body mass for ADBM, ATN, and Body-size ratio), they encode fundamentally different assumptions about how interactions arise. Additionally, although other feasibility-based approaches exist (<em>e.g.,</em> <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>), they are conceptually similar to PFWIM in that they infer interactions from biologically feasible consumer–resource combinations. We therefore selected PFWIM as a representative feasibility-based framework because it formalises these rules in a transferable model that can be parameterised across datasets, rather than relying on system-specific expert assignment of links.</p>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
