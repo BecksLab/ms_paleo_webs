@@ -69,3 +69,5 @@ figures/heatmap_TL.png
 **/*.quarto_ipynb
 .positai
 .RDataTmp
+cover_lett.docx
+title_pg.docx
