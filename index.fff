@@ -8,7 +8,7 @@
 
 \caption{\label{fig-structure}Linear discriminant analysis (LDA) of
 ecological network metrics for six reconstruction approach types. Each
-point represents a replicate (n = 100 per approach), and ellipses
+point represents a replicate (n = 400 per approach), and ellipses
 indicate 95\% confidence regions for each reconstruction approach.}
 
 \end{figure}
