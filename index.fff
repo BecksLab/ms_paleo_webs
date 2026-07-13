@@ -22,18 +22,18 @@ indicate 95\% confidence regions for each reconstruction approach.}
 
 }
 
-\caption{\label{fig-anova}Figure 2: Temporal changes in food-web
-structure and the relative influence of reconstruction approach and
-ecological turnover on network properties. (\textbf{A}) Changes in
-network metrics through time, expressed as deviations from
-pre-extinction conditions (\(\delta\)). Metrics are faceted and scaled
-independently to highlight differences in temporal trajectories among
-network properties. (\textbf{B}) Relative influence of reconstruction
-approach (x-axis) and time (y-axis) on individual network metrics. The
-dashed 1:1 line indicates equal explanatory power. Metrics below the
-line are more strongly influenced by reconstruction approach than by
-temporal turnover. Bubble size represents the reconstruction approach ×
-time interaction, and colour indicates disagreement among reconstruction
+\caption{\label{fig-anova}Temporal changes in food-web structure and the
+relative influence of reconstruction approach and ecological turnover on
+network properties. (\textbf{A}) Changes in network metrics through
+time, expressed as deviations from pre-extinction conditions
+(\(\delta\)). Metrics are faceted and scaled independently to highlight
+differences in temporal trajectories among network properties.
+(\textbf{B}) Relative influence of reconstruction approach (x-axis) and
+time (y-axis) on individual network metrics. The dashed 1:1 line
+indicates equal explanatory power. Metrics below the line are more
+strongly influenced by reconstruction approach than by temporal
+turnover. Bubble size represents the reconstruction approach × time
+interaction, and colour indicates disagreement among reconstruction
 approaches (mean CV\%), with darker colours indicating greater
 divergence in metric estimates.}
 
