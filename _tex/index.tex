@@ -187,12 +187,18 @@
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
 \hypersetup{
   pdftitle={Are We Mapping Ecosystems or Models? Framework Choices Dominate Food Web Topology and Extinction Inferences},
   pdfauthor={Tanya Strydom; Baran Karapunar; Jennifer A. Dunne; Pincelli M. Hull; Crispin T.S. Little; Catalina Pimiento; Andy Ridgwell; Andrew P. Beckerman; Alexander M. Dunhill},
-  pdfkeywords={Network reconstruction, Macroecology, Ecological
-networks, Interaction turnover, Trophic
-organisation, Palaeoecology, Ecosystem resilience},
+  pdfkeywords={\xmpquote{Network
+reconstruction}, \xmpquote{Macroecology}, \xmpquote{Ecological
+networks}, \xmpquote{Interaction turnover}, \xmpquote{Trophic
+organisation}, \xmpquote{Palaeoecology}, \xmpquote{Ecosystem
+resilience}},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -360,7 +366,7 @@ SA28PP, UK%
   \vskip 1em}
 \makeatother
 
-\date{2026-07-13}
+\date{2026-08-26}
 
 \usepackage[nolists,noheads,markers]{endfloat}
 
