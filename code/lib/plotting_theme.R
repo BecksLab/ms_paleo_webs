@@ -76,8 +76,6 @@ metric_lookup <- tibble::tribble(
   "trophic_level", "Max trophic level", "Macro",
   "generality", "Generality", "Micro",
   "vulnerability", "Vulnerability", "Micro",
-  "S1", "No. of linear chains", "Meso",
-  "S2", "No. of omnivory motifs", "Meso",
-  "S4", "No. of direct competition motifs", "Meso",
-  "S5", "No. of apparent competition motifs", "Meso"
+  "NDTI", "Trophic index", "Meso",
+  "NDCI", "Competition index", "Meso"
 )

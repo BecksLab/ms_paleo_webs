@@ -211,13 +211,11 @@ We evaluated six network reconstruction frameworks using the approaches listed i
 We quantified network structure using a suite of network metrics [@tbl-properties], capturing overall network properties, motif structure, and species-level variability. Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with reconstruction approach identity as a fixed factor and the full set of network metrics as response variables. Variance partitioning was further assessed using permutational multivariate analysis of variance (PERMANOVA). Pairwise interaction turnover was quantified using link-based $\beta$-diversity and was calculated following the framework of @poisot2012a among the four of the reconstruction frameworks (ADBM, ATN, body-size ratio, and PFWIM). Random and Niche models were excluded because they are species-agnostic reconstruction approaches that generate networks matching broad topological properties (*e.g.,* connectance and degree distributions) rather than predicting biologically realistic species-specific interactions. Specifically, we looked at interaction rewiring among shared species ($\beta_{OS}$, see S1 for additional details on the decomposition of interaction β-diversity and its implementation), which allows separation of differences arising from altered interaction identities among species common to both networks. Because all networks within a given assemblage are constructed from the same species pool, differences in interaction structure primarily reflect 'rewiring' of trophic links due to stochasticity in the reconstruction approach rather than species turnover. All calculations were performed for all reconstruction combinations within the same assemblage (time bin).
 
 | Metric | Definition | Reference |
-|------------------|-------------------|------------------|
+|------------------------|-------------------------|------------------------|
 | Connectance | $L/S^2$, where $S$ is the number of species and $L$ the number of links | @williams2004 |
 | Maximum trophic level | Prey-weighted trophic level averaged across taxa | @williams2004 |
-| No. of linear chains (S1) | Number of linear chains, normalised by $L/S$ | @milo2002; @stouffer2007 |
-| No. of omnivory motifs (S2) | Number of omnivory motifs, normalised by $L/S$ | @milo2002; @stouffer2007 |
-| No. of apparent competition motifs (S4) | Number of apparent competition motifs, normalised by $L/S$ | @milo2002; @stouffer2007 |
-| No. of direct competition motifs (S5) | Number of direct competition motifs, normalised by $L/S$ | @milo2002; @stouffer2007 |
+| Normalised difference trophic index (NDTI) | Normalised difference between the number of S1 (linear chains) and S2 (omnivory) motifs $(S1 - S2)/(S1 + S2)$ | @milo2002; @dansereau2024 |
+| Normalised difference competition index (NDCI) | Normalised difference between the number of S4 (exploitative competition) and S5 (apparent competition) motifs $(S4 - S5)/(S4 + S5)$ | @milo2002; @dansereau2024 |
 | Generality | Standard deviation of normalised generality of all species within network, normalised by $L/S$ | @williams2000 |
 | Vulnerability | Standard deviation of normalised vulnerability of all species within network, normalised by $L/S$ | @williams2000 |
 

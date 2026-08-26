@@ -45,10 +45,8 @@ topology = DataFrame(
     generality = Float64[],
     vulnerability = Float64[],
     redundancy = Float64[],
-    S1 = Float64[],
-    S2 = Float64[],
-    S4 = Float64[],
-    S5 = Float64[],
+    NDTI = Float64[],          # normalised difference trophic index
+    NDCI = Float64[],          # normalised difference competition index
     resilience = Float64[],
     rep = Int64[],
 );

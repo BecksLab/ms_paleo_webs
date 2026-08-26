@@ -166,7 +166,7 @@ loadings_df <- as.data.frame(cda$structure[, 1:2]) %>%
   ) %>%
   mutate(Level = case_when(
     Metric %in% c("richness", "connectance", "trophic_level") ~ "Macro",
-    Metric %in% c("S1", "S2", "S4", "S5") ~ "Meso",
+    Metric %in% c("NDTI", "NDCI") ~ "Meso",
     Metric %in% c("generality", "vulnerability") ~ "Micro",
     TRUE ~ "Other"
   ))
@@ -209,7 +209,10 @@ ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   figure_theme
 
 # Save figure
-ggsave("../figures/canonical_loadings_plot.png", width = 8, height = 5, dpi = 300)
+ggsave("../figures/canonical_loadings_plot.png", 
+       width = 8, 
+       height = 5, 
+       dpi = 300)
 
 # =========================
 # 6. Pairwise - for supp matt
@@ -220,10 +223,8 @@ run_model_comparisons <- function(data,
                                               "trophic_level",
                                               "generality",
                                               "vulnerability",
-                                              "S1",
-                                              "S2",
-                                              "S4",
-                                              "S5"),
+                                              "NDTI",
+                                              "NDCI"),
                                   random_effect = "time",
                                   p_adjust = "sidak") {
   
@@ -287,10 +288,8 @@ emm_df <- emm_results$emmeans %>%
                            metric == "trophic_level" ~ "Max trophic level",
                            metric == "generality" ~ "Generality",
                            metric == "vulnerability" ~ "Vulnerability",
-                           metric == "S1" ~ "No. of linear chains",
-                           metric == "S2" ~ "No. of omnivory motifs",
-                           metric == "S5" ~ "No. of apparent competition motifs",
-                           metric == "S4" ~ "No. of direct competition motifs"),
+                           metric == "NDTI" ~ "Trophic index",
+                           metric == "NDCI" ~ "Competition index"),
           level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                             stat %in% c("Generality", "Vulnerability") ~ "Micro",
                             TRUE ~ "Meso"))
@@ -341,8 +340,32 @@ plot_list_emm[[1]] /
   plot_list_emm[[3]] +
   plot_layout(
     guides = "collect",
-    heights = c(1, 2, 1)
+    heights = c(1, 1, 1)
   )
 
 # Save figure
-ggsave("../figures/emm_plot.png", width = 9, height = 11, dpi = 600)
+ggsave("../figures/emm_plot.png", 
+       width = 9,
+       height = 9, 
+       dpi = 600)
+
+# create summary table
+
+df %>%
+  vibe_check(-time) %>%
+  pivot_longer(-model) %>%
+  squad_up(model, name) %>%
+  no_cap(mean = mean(value),
+         sd = sd(value)) %>%
+  glow_up(stat_val = paste0(round(mean, 2), " ±", round(sd, 2))) %>%
+  glow_up(Metric = case_when(name == "connectance" ~ "Connectance",
+                           name == "trophic_level" ~ "Max trophic level",
+                           name == "generality" ~ "Generality",
+                           name == "vulnerability" ~ "Vulnerability",
+                           name == "NDTI" ~ "Trophic index",
+                           name == "NDCI" ~ "Competition index")) %>%
+  vibe_check(-c(mean, sd, name)) %>%
+  pivot_wider(names_from = model,
+              values_from = stat_val) %>%
+  write_csv(.,
+            "../notebooks/tables/Table_S1_descriptive_stats.csv")

@@ -27,6 +27,19 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
 
     tls = trophic_level(N)
 
+    S1 = length(
+                findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N))
+            )
+    S2 = length(
+                findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N))
+            )
+    S4 = length(
+                findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N))
+            )
+    S5 = length(
+                findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N))
+            )
+
     D = Dict{Symbol,Any}(
         :richness => richness(N),
         :connectance => SpeciesInteractionNetworks.connectance(N),
@@ -37,22 +50,8 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
         :redundancy => (L - (S - 1))/S,
-        :S1 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S2 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S4 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S5 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N)),
-            )/(richness(N)^2),
+        :NDTI => (S1 - S2)/(S1 + S2),
+        :NDCI => (S4 - S5)/(S4 + S5),
     )
 
     return D
