@@ -73,3 +73,10 @@ cover_lett.docx
 title_pg.docx
 cover_lett.pdf
 ms_final.docx
+data/processed/extinction_seq/adbm.jld2
+data/processed/extinction_seq/bodymassratio.jld2
+data/processed/extinction_seq/lmatrix.jld2
+data/processed/extinction_seq/niche.jld2
+data/processed/extinction_seq/pfim_downsample.jld2
+data/processed/extinction_seq/pfim_metaweb.jld2
+data/processed/extinction_seq/random.jld2
