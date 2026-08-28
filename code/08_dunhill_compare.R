@@ -13,6 +13,12 @@ setwd(here("code"))
 #load script that determines plotting aesthetics
 source("lib/plotting_theme.R")
 
+# Helper function for combining extinction outputs
+read_model_folder <- function(path) {
+  list.files(path, pattern = "\\.csv$", full.names = TRUE) |>
+    map_dfr(read_csv, show_col_types = FALSE)
+}
+
 # import simulated data
 
 df <- read_csv("../data/processed/topology.csv") %>%
@@ -27,7 +33,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   na.omit()
 
 network_stats <- c("connectance", "trophic_level", "generality",
-                   "vulnerability", "S1", "S2", "S4", "S5")
+                   "vulnerability", "NDTI", "NDCI")
 
 # ANOVA function (to make mapping easier)
 fit_anova_per_time <- function(stat_name, time_bin, data) {
@@ -114,23 +120,26 @@ for (i in seq_along(levs)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] +
   plot_layout(guides = "collect") +
-  plot_layout(height = c(1, 2, 1))
+  plot_layout(height = c(1, 1, 1))
 
 ggsave("../figures/anova_sig.png",
        width = 5000,
-       height = 8000,
+       height = 5000,
        units = "px",
        dpi = 600)
 
 # means abs differences between real and extinction simulations
 
-mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
+extinction_topology <- read_model_folder("../data/processed/extinction_topology")
+extinction_tss <- read_model_folder("../data/processed/extinction_tss")
+
+mad_df <- extinction_topology %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
-  vibe_check(-c(rep, distance, redundancy, diameter, resilience, richness, complexity)) %>%
+  vibe_check(-c(rep, distance, redundancy, diameter, richness, complexity, resilience)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
@@ -160,7 +169,7 @@ mad_df <- read_csv("../data/processed/extinction_topology.csv") %>%
                          levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFIM"))) %>%
   lowkey(scenario = extinction_mechanism, metric = stat) %>%
   rbind(.,
-        read_csv("../data/processed/extinction_tss.csv")  %>%
+        extinction_tss %>%
           # remove metaweb pfims
           yeet(model != "pfim_metaweb") %>%
           vibe_check(-n_rep) %>%
@@ -238,22 +247,15 @@ kendal_results %>%
 
 kendal_results <-
   kendal_results %>%
-  glow_up(
-    metric = case_when(
-      metric == "S1" ~ "No. of linear chains",
-      metric == "S2" ~ "No. of omnivory motifs",
-      metric == "S5" ~ "No. of apparent competition motifs",
-      metric == "S4" ~ "No. of direct competition motifs",
-      metric == "trophic_level" ~ "Max trophic level",
-      .default = str_to_sentence(metric)
-    ),
-    level = case_when(
-      metric %in% c("Complexity", "Connectance", "Max trophic level", "Richness", "Diameter") ~ "Macro",
-      metric %in% c("Generality", "Vulnerability") ~ "Micro",
-      metric %in% c("Node", "Link") ~ "TSS",
-      .default = "Meso"
-    )
-  ) %>%
+  left_join(metric_lookup, by = join_by(metric == statistic)) %>%
+  glow_up(metric = str_to_sentence(metric),
+          level = case_when(metric %in% c("Complexity", "Connectance", "Trophic_level", "Richness", "Diameter") ~ "Macro",
+                            metric %in% c("Generality", "Vulnerability") ~ "Micro",
+                            metric %in% c("Node", "Link") ~ "TSS",
+                            .default = "Meso"),
+          stat_label = if_else(is.na(stat_label),
+                               metric,
+                               stat_label)) %>%
   glow_up(
     Model1 = factor(Model1),
     Model2 = factor(Model2, levels = levels(Model1))
@@ -280,7 +282,7 @@ for (i in seq_along(plot_list)) {
       limits = c(-1, 1),
       na.value = "white"
     ) +
-    facet_wrap(vars(metric),
+    facet_wrap(vars(stat_label),
                #scales = 'free',
                ncol = 2) +
     labs(
@@ -299,7 +301,7 @@ for (i in seq_along(plot_list)) {
 
 plot_list[[1]] / plot_list[[2]] / plot_list[[3]] / plot_list[[4]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(1, 2, 1, 1))
+  plot_layout(height = c(1, 1, 1, 1))
 
 ggsave("../figures/kendal_tau.png",
        width = 5000,

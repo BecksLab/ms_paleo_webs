@@ -33,7 +33,7 @@ df <- read_csv("../data/processed/topology.csv") %>%
   na.omit()
 
 network_stats <- c("connectance", "trophic_level", "generality",
-                   "vulnerability", "S1", "S2", "S4", "S5")
+                   "vulnerability", "NDTI", "NDCI")
 
 # summary table for supp matt
 df %>%
@@ -42,10 +42,8 @@ df %>%
     cols = -model,
     names_to = "statistic"
   ) %>%
-  glow_up(statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+  glow_up(statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   squad_up(model, statistic) %>%
@@ -164,10 +162,8 @@ df_plot <- df_anova %>%
     se = sd_val / sqrt(n),
     .groups = "drop"
   ) %>%
-  glow_up(statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+  glow_up(statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
@@ -214,7 +210,7 @@ raw_lines_plot <-
   plot_list_raw[[3]] +
   plot_layout(
     guides = "collect",
-    heights = c(1, 2, 1)
+    heights = c(1, 1, 1)
   )
 
 ggsave("../figures/raw_time_structure.png",
@@ -278,7 +274,7 @@ for (i in seq_along(levs)) {
 
 anova_linear <- linear_plot_list[[1]] / linear_plot_list[[2]] / linear_plot_list[[3]] +
   plot_layout(guides = "collect") +
-  plot_layout(height = c(1, 2, 1))
+  plot_layout(height = c(1, 1, 1))
 
 ggsave("../figures/anova_linear_diff.png",
        anova_linear,
@@ -390,10 +386,8 @@ plot_tukey_data <- all_posthocs %>%
                            time == "2" ~ "During Extinction",
                            time == "3" ~ "Early Recovery",
                            time == "4" ~ "Late Recovery"),
-    statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                          statistic == "S2" ~ "No. of omnivory motifs",
-                          statistic == "S4" ~ "No. of direct competition motifs",
-                          statistic == "S5" ~ "No. of apparent competition motifs",
+    statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                          statistic == "NDCI" ~ "Competition index",
                           statistic == "trophic_level" ~ "Max trophic level",
                           .default = str_to_sentence(statistic))) %>%
   glow_up(time_label = factor(time_label, 
@@ -443,10 +437,8 @@ manuscript_anova_table <- anova_summary_table %>%
     values_from = eta.sq.part
   ) %>%
   glow_up(across(where(is.numeric), ~round(., 3)),
-          statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+          statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   # Rename columns for clarity in the paper

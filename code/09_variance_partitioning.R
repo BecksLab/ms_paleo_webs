@@ -37,8 +37,8 @@ as_time <- adonis2(dist_mat ~ time, data = df)
 
 # time centred PERMANOVA
 
-metric_cols <- c("connectance", "trophic_level", "generality", "vulnerability", "S1",
-                 "S2", "S4", "S5" )
+metric_cols <- c("connectance", "trophic_level", "generality",
+                 "vulnerability", "NDTI", "NDCI")
 
 df_centered <- df
 
