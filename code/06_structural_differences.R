@@ -31,15 +31,17 @@ setwd(here("code"))
 source("lib/plotting_theme.R")
 
 df <- read_csv("../data/processed/topology.csv") %>%
-  vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
   glow_up(model = case_when(
     model == "pfim_downsample" ~ "PFIM",
     model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",
-    TRUE ~ str_to_title(as.character(model))
-  ), trophic_level = round(trophic_level, 0)) %>%
+    TRUE ~ str_to_title(as.character(model))), 
+  trophic_level = case_when(trophic_level < 0 ~ 1,
+                            trophic_level > richness ~ richness,
+                            TRUE ~ round(trophic_level, 0))) %>%
+  vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   na.omit()
 
 # Dependent variable matrix for MANOVA/CDA
