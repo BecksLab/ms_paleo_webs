@@ -1,6 +1,7 @@
 using CSV
 using DataFrames
 using Distributions
+using FoodWebTools
 using JLD2
 using pfim
 using SpeciesInteractionNetworks
@@ -28,6 +29,19 @@ size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 
 # Initialize a central DataFrame to store results of all simulated networks
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
+
+# --- Distributions ---
+global_dist = LogNormal(log(30), 1.5)
+
+size_bounds = Dict(
+    "primary" => (0.01, 0.1),
+    "tiny" => (0.1, 10.0),
+    "small" => (10.0, 50.0),
+    "medium" => (50.0, 100.0),
+    "large" => (100.0, 300.0),
+    "very_large" => (300.0, 500.0),
+    "gigantic" => (500.0, 700.0)
+)
 
 # Simulation Loop: Run 100 repetitions to account for stochasticity in body sizes and models
 n_reps = 100
@@ -101,8 +115,7 @@ for j = 1:n_reps
                 N = nichemodel(df.species, connectance)
             elseif model == "random"
                 # Simple random network based on total possible links and connectance
-                links = floor(Int, connectance * (nrow(df)^2))
-                N = randommodel(df.species, links)
+                N = randommodel(df.species, connectance)
             elseif model == "lmatrix"
                 N = lmatrix(df.species, bodymass, is_producer)
             else
