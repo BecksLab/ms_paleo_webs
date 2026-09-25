@@ -51,15 +51,13 @@ for j = 1:n_reps
     # Step 1: Generate Synthetic Body Mass Data
     # Assigns a random mass within a specific range based on the 'size' category
     y = collect(String, size_classes.size)
-    bodysize = (
-        y ->
-            y == "tiny" ? rand(Uniform(0.1, 10.0)) :
-            y == "small" ? rand(Uniform(10.0, 50.0)) :
-            y == "medium" ? rand(Uniform(50.0, 100.0)) :
-            y == "large" ? rand(Uniform(100.0, 300.0)) :
-            y == "very_large" ? rand(Uniform(300.0, 500.0)) :
-            y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
-    ).(y)
+    bodysize = [
+                begin
+                    lo, hi = size_bounds[s]
+                    rand(truncated(global_dist, lo, hi))
+                end
+                for s in y
+            ]
 
     # Update size_classes with the mass values generated for this specific repetition
     size_classes[!, :bodymass] = bodysize
@@ -109,8 +107,14 @@ for j = 1:n_reps
                 # Probabilistic Feeding Interaction Model (Metaweb version)
                 N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "pfim_downsample"
-                # PFIM with downsampling applied
-                N = pfim.PFIM(df, feeding_rules; y = 30.0, downsample = true)
+                # PFIM with random downsampling applied
+                _N = PFIM(df, feeding_rules)
+                N_Co = SpeciesInteractionNetworks.connectance(_N)
+                adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-0.05, max_iter=300))
+                spp_list = Symbol.(df.species)
+                edges = Binary(.!iszero.(adj_mat))
+                nodes = Unipartite(spp_list)
+                N = SpeciesInteractionNetwork(nodes, edges)
             elseif model == "niche"
                 N = nichemodel(df.species, connectance)
             elseif model == "random"
