@@ -18,19 +18,29 @@ source("lib/plotting_theme.R")
 
 # import simulated data
 
-df <- read_csv("../data/processed/topology.csv") %>%
-  # remove metaweb pfims
+df_int <- read_csv("../data/processed/topology.csv") %>%
+  vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = str_to_title(as.character(model))),
-          #make tiem numeric
+          #make time numeric
           time = as.numeric(str_extract(time, "\\d+")))  %>%
   glow_up(model = as.factor(model)) %>%
-  na.omit()
+  na.omit() %>%
+  glow_up(outlier = if_any(where(is.numeric),
+                           ~ abs(.x - mean(.x, na.rm = TRUE)) > 3 * sd(.x, na.rm = TRUE)))
+
+# Rows removed
+df_removed <- df_int %>% yeet(outlier)
+
+# Clean dataset
+df <- df_int %>%
+  yeet(!outlier) %>%
+  vibe_check(-outlier)
+
 
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "NDTI", "NDCI")
@@ -38,10 +48,8 @@ network_stats <- c("connectance", "trophic_level", "generality",
 # summary table for supp matt
 df %>%
   vibe_check(-c(time, n_rep)) %>%
-  pivot_longer(
-    cols = -model,
-    names_to = "statistic"
-  ) %>%
+  pivot_longer(cols = -model,
+               names_to = "statistic") %>%
   glow_up(statistic = case_when(statistic == "NDTI" ~ "Trophic index",
                                 statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
@@ -285,11 +293,17 @@ ggsave("../figures/anova_linear_diff.png",
 
 cv_analysis <- df_plot %>%
   group_by(statistic, time_fact) %>%
-  summarise(
-    # How much do the 6 models disagree?
-    model_disagreement_cv = (sd(mean_val) / mean(mean_val)) * 100,
-    .groups = "drop"
-  ) %>%
+  no_cap(model_disagreement_cv = if (first(statistic) %in% c("Trophic index", "Competition index")) {
+    sd(mean_val)
+  } else {
+    100 * sd(mean_val) / mean(mean_val)
+  },
+  measure = if (first(statistic) %in% c("Trophic index", "Competition index")) {
+    "SD"
+  } else {
+    "CV (%)"
+  },
+  .groups = "drop") %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
                             statistic %in% c("Generality", "Vulnerability") ~ "Micro",
                             .default = "Meso"))
@@ -321,11 +335,11 @@ for (i in seq_along(cv_plot_list)) {
     # Matching your specific x-axis formatting
     scale_x_discrete(breaks = c(1, 2, 3, 4),
                      labels = c("pre", "during", "early", "late")) +
-    ylim(c(0, max_y)) + 
+    #ylim(c(0, max_y)) + 
     # Styling to match your previous figures
     labs(
       x = NULL,
-      y = "CV (%)",
+      y = "Disagreement",
       title = paste(levs[i])
     ) +
     coord_cartesian(clip = "off") +
@@ -484,17 +498,17 @@ ANOVA_summary <-
               linetype = "dashed",
               linewidth = 0.5,
               colour = colorspace::lighten("#5e5e5e", 0.8)) +
-  # Labels
-  geom_text_repel(size = 3.5, box.padding = 1.2) +
   # The Data Points (overlay the lines)
   geom_point(aes(size = Interaction, 
                  color = mean_cv)) +
+  # Labels
+  geom_text_repel(size = 3.5, box.padding = 1.2) +
   scale_colour_gradientn(colors = col_cont,
-                         name = "Disagreement (CV%)") +
+                         name = "Disagreement") +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   coord_fixed() +
-  scale_size_continuous(range = c(2, 8), name = "Interaction (CV%)") +
+  scale_size_continuous(range = c(2, 8), name = "Interaction") +
   labs(
     x = expression(paste("Importance of reconstruction approach (Partial ", eta[p]^2, ")")),
     y = expression(paste("Importance of time (Partial ", eta[p]^2, ")"))
@@ -510,7 +524,15 @@ ggsave("../figures/ANOVA_summary.png",
 
 # combine linear and ANOVA summary
 
-# linear_all
+df_linear <-
+  df_linear %>%
+  glow_up(stat_label = factor(stat_label,
+                             levels = c("Connectance",
+                                        "Max trophic level",
+                                        "Competition index",
+                                        "Trophic index",
+                                        "Generality",
+                                        "Vulnerability")))
 
 linear_all <- ggplot(
   df_linear,
