@@ -20,9 +20,6 @@ beta_df <- read_csv("../data/processed/beta_div.csv") %>%
   # Simplify identifiers: extract the model name (e.g., "adbm") and strip repetition numbers
   glow_up(left = str_extract(left, "[a-z]+"),
           right = str_extract(right, "[a-z]+")) %>%
-  # Ensure consistent naming for the "Body-size ratio" model
-  glow_up(left = str_replace(left, "bodymassratio", "Body-size ratio"),
-          right = str_replace(right, "bodymassratio", "Body-size ratio")) %>%
   vibe_check(left, right, β_div)
 
 # Standardize column names for the analysis
@@ -63,10 +60,12 @@ tile_df <-
   glow_up(Model1 = case_when(Model1 == "pfim" ~ "PFIM",
                              Model1 == "adbm" ~ "ADBM",
                              Model1 == "lmatrix" ~ "ATN",
+                             Model1 == "bodymassratio" ~ "Body-size ratio",
                              .default = as.character(Model1)),
           Model2 = case_when(Model2 == "pfim" ~ "PFIM",
                              Model2 == "adbm" ~ "ADBM",
                              Model2 == "lmatrix" ~ "ATN",
+                             Model2 == "bodymassratio" ~ "Body-size ratio",
                              .default = as.character(Model2))) %>%
   glow_up(
     Model1 = factor(Model1),
