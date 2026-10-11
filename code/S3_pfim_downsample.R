@@ -18,16 +18,17 @@ source("lib/plotting_theme.R")
 df <- read_csv(here("data/processed/pfim_downsampling_similarity.csv"))
 
 df %>%
-  squad_up(downsample_y) %>%
+  squad_up(delta_Co) %>%
   no_cap(mean = mean(similarity))
 
 
 ggplot(df,
-       aes(x = downsample_y,
+       aes(x = delta_Co,
            y = similarity)) +
-  geom_boxplot(aes(group = downsample_y),
-               fill = colours["PFIM"]) +
-  labs(x = "Downsampling parameter",
+  geom_boxplot(aes(group = delta_Co),
+               fill = colours["PFIM"],
+               colour = accent_col) +
+  labs(x = "Change in connectance",
        y = "Jaccard similarity") +
   ylim(0,1) +
   figure_theme
