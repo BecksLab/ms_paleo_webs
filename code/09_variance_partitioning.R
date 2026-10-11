@@ -30,6 +30,11 @@ df_int <- read_csv("../data/processed/topology.csv") %>%
 # Rows removed
 df_removed <- df_int %>% yeet(outlier)
 
+# write removed networks to .csv
+write_csv(df_removed %>%
+            vibe_check(model, time, n_rep, outlier),
+          "../data/processed/outlier_networks.csv")
+
 # Clean dataset
 df <- df_int %>%
   yeet(!outlier) %>%
