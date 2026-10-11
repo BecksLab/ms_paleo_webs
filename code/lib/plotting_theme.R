@@ -23,6 +23,8 @@ trace(grDevices::png, exit = quote({
   showtext::showtext_begin()
 }), print = FALSE)
 
+accent_col <- "#5e5e5e"
+
 ## 2. General Figure Theme ----
 # A "naked" classic theme with specific professional overrides
 figure_theme = 
@@ -38,7 +40,7 @@ figure_theme =
         panel.background = element_rect(fill = "white", colour = NA),
         legend.background = element_rect(fill = "white", colour = NA),
         legend.key = element_blank(),
-        text = element_text(color = "#5e5e5e", family = "Noto"), # Soft gray text for better readability
+        text = element_text(color = accent_col, family = "Noto"), # Soft gray text for better readability
         plot.margin = margin(10, 5, 5, 10),
         legend.margin = margin(1, 2, 1, 2)
   )
@@ -60,12 +62,10 @@ pal_df <- data.frame(l = names(colours), c = colours)
 # make named vector
 names(pal_df$c) <- pal_df$l
 
-# 2. CONTINUOUS OCEAN RAMP (Tied to Group 1)
-# High-vibrancy transition from ice-blue to PFIM Teal
-col_cont <- c("#DED0BE", "#A9431E")
+# 2. CONTINUOUS OCEAN RAMP
+col_cont <- c("#DED0BE", "#6F263D")
 
-# 3. DIVERGING (Tied to Group 2 & 3)
-# Contrasts the 'ATN' warmth against the 'random' cool violet
+# 3. DIVERGING
 col_div <- c("#6F263D", "#F4F1DE", "#5F249F")
 
 # 4. LOOKUP TABLE (for consistent renaming)
