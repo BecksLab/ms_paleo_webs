@@ -128,11 +128,11 @@ ggplot(plot_lda, aes(x = lda.LD1,
   geom_point(size = 2, alpha = 0.4) +
   labs(x = ld1_lab, y = ld2_lab) +
   scale_colour_manual(values = pal_df$c,
-                      name = "Reconstruction Approach") +
+                      name = "Model") +
   scale_fill_manual(values = pal_df$c,
-                    name = "Reconstruction Approach") +
+                    name = "Model") +
   scale_shape_manual(values = c(15, 19, 17, 23, 8, 3),
-                     name = "Reconstruction Approach") +
+                     name = "Model") +
   guides(
     colour = "none",
     shape = guide_legend(
