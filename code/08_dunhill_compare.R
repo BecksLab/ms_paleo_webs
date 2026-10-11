@@ -327,7 +327,7 @@ ggsave("../figures/kendal_tau.png",
 
 # get summaries for reporting
 kendal_results %>%
-  yeet(level = "TSS") %>%
+  yeet(level != "TSS") %>%
   summary()
 
 kendal_results %>%
