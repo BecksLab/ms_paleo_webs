@@ -259,7 +259,8 @@ for (i in seq_along(levs)) {
         y = relative_change,
         color = model,
         group = model)) +
-    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    geom_hline(yintercept = 0, linetype = "dashed", 
+               color = accent_col) +
     geom_line(linewidth = 1) +
     geom_point(size = 2) +
     facet_wrap(~ stat_label, scales = "free_y") +
@@ -326,8 +327,8 @@ for (i in seq_along(cv_plot_list)) {
                                              group = statistic)) +
     # Adding a subtle area fill to emphasize the 'dip' in disagreement
     geom_area(fill = "grey90", alpha = 0.5) +
-    geom_line(colour = "#36393B", linewidth = 0.8) +
-    geom_point(colour = "#36393B", size = 2) +
+    geom_line(colour = accent_col, linewidth = 0.8) +
+    geom_point(colour = accent_col, size = 2) +
     
     # Faceting by metric within the scale (Macro/Meso/Micro)
     facet_wrap(vars(statistic), scales = "free_y", ncol = 2) +
@@ -497,7 +498,7 @@ ANOVA_summary <-
               intercept = 0, 
               linetype = "dashed",
               linewidth = 0.5,
-              colour = colorspace::lighten("#5e5e5e", 0.8)) +
+              colour = colorspace::lighten(accent_col, 0.8)) +
   # The Data Points (overlay the lines)
   geom_point(aes(size = Interaction, 
                  color = mean_cv)) +
@@ -540,7 +541,8 @@ linear_all <- ggplot(
       y = relative_change,
       color = model,
       group = model)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  geom_hline(yintercept = 0, linetype = "dashed", 
+             color = accent_col) +
   geom_line(linewidth = 0.8) +
   geom_point(size = 1.7) +
   facet_wrap(~ stat_label, 
@@ -550,7 +552,9 @@ linear_all <- ggplot(
     breaks = 1:4,
     labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
   scale_color_manual(values = pal_df$c, breaks = pal_df$l,
-                     name = "Reconstruction Approach") +
+                     name = "Model") +
+  scale_alpha_manual(values = c(1, 0.3, 1, 0.3, 1, 0.3), 
+                     breaks = pal_df$l) +
   labs(
     x = NULL,
     y = "Change from Pre-extinction (Δ)"
@@ -576,3 +580,4 @@ ggsave("../figures/combined_ANOVA_time.png",
        height = 3800,
        units = "px",
        dpi = 300)
+

@@ -121,8 +121,8 @@ ggplot(plot_lda, aes(x = lda.LD1,
                      colour = model,
                      fill = model,
                      shape = model))  +
-  geom_hline(yintercept = 0, colour = "#A5ACAF") +
-  geom_vline(xintercept = 0, colour = "#A5ACAF") + 
+  geom_hline(yintercept = 0, colour = accent_col) +
+  geom_vline(xintercept = 0, colour = accent_col) + 
   stat_ellipse(aes(colour = model), 
                level = 0.95, linetype = 2) +
   geom_point(size = 2, alpha = 0.4) +
@@ -175,45 +175,51 @@ loadings_df <- as.data.frame(cda$structure[, 1:2]) %>%
     abs_loading = pmax(abs(CV1), abs(CV2)),
     keep = abs_loading >= 0.4
   ) %>%
-  mutate(Level = case_when(
-    Metric %in% c("richness", "connectance", "trophic_level") ~ "Macro",
-    Metric %in% c("NDTI", "NDCI") ~ "Meso",
-    Metric %in% c("generality", "vulnerability") ~ "Micro",
-    TRUE ~ "Other"
-  ))
+  mutate(stat = case_when(Metric == "connectance" ~ "Connectance",
+                          Metric == "trophic_level" ~ "Max trophic level",
+                          Metric == "generality" ~ "Generality",
+                          Metric == "vulnerability" ~ "Vulnerability",
+                          Metric == "NDTI" ~ "Trophic index",
+                          Metric == "NDCI" ~ "Competition index"),
+         Level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
+                           stat %in% c("Generality", "Vulnerability") ~ "Micro",
+                           TRUE ~ "Meso"))
 
 # =========================
 # 7. Canonical Loadings Plot
 # =========================
 
-ggplot(loadings_df, 
-       aes(x = CV1, y = CV2)) +
-  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey70") +
-  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey70") +
-  geom_segment(
-    aes(x = 0, y = 0, xend = CV1, yend = CV2),
-    arrow = arrow(length = unit(0.02, "npc")),
-    linewidth = 0.8,
-    alpha = 0.8
-  ) +
-  geom_segment(
-    aes(x = 0, y = 0, xend = CV1, yend = CV2, colour = Level),
-    arrow = arrow(length = unit(0.02, "npc")),
-    linewidth = 0.9
-  ) +
-  scale_colour_manual(values = c(
-    Macro = "#D9C589",
-    Meso  = "#6B4E3D",
-    Micro = "#A63D2D"
-  )) +
+loadings_plot <-
+  ggplot(subset(loadings_df, keep), 
+       aes(x = CV1, 
+           y = CV2)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = accent_col) +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = accent_col) +
+  geom_segment(aes(x = 0, 
+                   y = 0, 
+                   xend = CV1, 
+                   yend = CV2),
+               arrow = arrow(length = unit(0.02, "npc")),
+               linewidth = 0.8,
+               alpha = 0.8) +
+  geom_segment(aes(x = 0, 
+                   y = 0, 
+                   xend = CV1, 
+                   yend = CV2, 
+                   colour = Level),
+               arrow = arrow(length = unit(0.02, "npc")),
+               linewidth = 0.9) +
+  scale_colour_manual(values = c(Macro = "#D9C589",
+                                 Meso  = "#6B4E3D",
+                                 Micro = "#A63D2D")) +
   geom_text_repel(
-    #data = subset(loadings_df, keep),
-    aes(label = Metric),
+    aes(label = stat),
     size = 4,
     box.padding = 0.4,
     point.padding = 0.3,
     max.overlaps = Inf) +
-  coord_equal(xlim = c(-1, 1), ylim = c(-1, 1)) +
+  coord_equal(xlim = c(-1, 1), 
+              ylim = c(-1, 1)) +
   labs(
     x = "CV1",
     y = "CV2"
@@ -222,6 +228,7 @@ ggplot(loadings_df,
 
 # Save figure
 ggsave("../figures/canonical_loadings_plot.png", 
+       loadings_plot,
        width = 8, 
        height = 5, 
        dpi = 300)
