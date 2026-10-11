@@ -46,7 +46,7 @@ df <- read_csv(here("data/processed/topology_bodysize.csv")) %>%
 
 df %>%
   squad_up(bodysize_method, model) %>%
-  no_cap(across(connectance:S5, ~ mean(.x, na.rm = TRUE)))
+  no_cap(across(connectance:NDCI, ~ mean(.x, na.rm = TRUE)))
 
 # Extract only metric columns
 dep_vars <- df %>% select(-c(model, time, bodysize_method))
@@ -76,10 +76,8 @@ for (m in unique(df$model)) {
 
 # Map metric names for clarity
 eta_bodysize_df <- eta_bodysize_df %>%
-  glow_up(Variable = case_when(variable == "S1" ~ "No. of linear chains",
-                               variable == "S2" ~ "No. of omnivory motifs",
-                               variable == "S5" ~ "No. of apparent competition motifs",
-                               variable == "S4" ~ "No. of direct competition motifs",
+  glow_up(Variable = case_when(variable == "NDTI" ~ "Trophic index",
+                               variable == "NDCI" ~ "Competition index",
                                variable == "trophic_level" ~ "Max trophic level",
                                TRUE ~ str_to_title(as.character(variable))),
           highlight = ifelse(Eta2 > 0.05, "high", "low")) # highlight only meaningful effect sizes)
