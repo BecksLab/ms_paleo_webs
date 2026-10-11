@@ -31,7 +31,6 @@ size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
 
 # --- Distributions ---
-global_dist = LogNormal(log(30), 1.5)
 
 size_bounds = Dict(
     "primary" => (0.01, 0.1),
@@ -42,6 +41,8 @@ size_bounds = Dict(
     "very_large" => (300.0, 500.0),
     "gigantic" => (500.0, 700.0)
 )
+
+σ = 0.5
 
 # Simulation Loop: Run 100 repetitions to account for stochasticity in body sizes and models
 n_reps = 100
@@ -54,7 +55,8 @@ for j = 1:n_reps
     bodysize = [
                 begin
                     lo, hi = size_bounds[s]
-                    rand(truncated(global_dist, lo, hi))
+                    μ = log((lo + hi)/2)
+                    rand(truncated(LogNormal(μ, σ), lo, hi))
                 end
                 for s in y
             ]
@@ -110,7 +112,7 @@ for j = 1:n_reps
                 # PFIM with random downsampling applied
                 _N = PFIM(df, feeding_rules)
                 N_Co = SpeciesInteractionNetworks.connectance(_N)
-                adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-0.05, max_iter=300))
+                adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-0.01, max_iter=300))
                 spp_list = Symbol.(df.species)
                 edges = Binary(.!iszero.(adj_mat))
                 nodes = Unipartite(spp_list)
