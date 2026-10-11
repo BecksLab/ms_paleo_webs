@@ -1,7 +1,7 @@
 "Metric","Can1","Can2","Can3"
-"connectance",-0.55,0.66,0.28
-"trophic_level",0.25,0.12,-0.01
-"generality",-0.45,-0.89,0
-"vulnerability",-0.78,0.07,0.18
-"NDTI",0.97,-0.21,0.01
-"NDCI",0,0.92,0.12
+"connectance",-0.49,-0.61,0.21
+"trophic_level",0.3,-0.06,0.04
+"generality",-0.61,0.77,0.07
+"vulnerability",-0.69,-0.38,0.28
+"NDTI",0.97,0.2,0.04
+"NDCI",0.17,-0.95,0.08

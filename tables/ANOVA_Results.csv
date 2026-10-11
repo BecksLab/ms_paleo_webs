@@ -1,7 +1,7 @@
 Metric,Model,Time,Interaction
-Connectance,0.781,0.016,0.076
-Max trophic level,0.073,0.001,0.011
-Generality,0.931,0.065,0.319
-Vulnerability,0.764,0.147,0.23
-Trophic index,0.957,0.001,0.013
-Competition index,0.853,0.009,0.349
+Connectance,0.698,0.04,0.071
+Max trophic level,0.097,0.002,0.037
+Generality,0.928,0.107,0.297
+Vulnerability,0.801,0.199,0.234
+Trophic index,0.957,0.01,0.078
+Competition index,0.903,0.011,0.414
