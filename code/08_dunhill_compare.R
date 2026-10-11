@@ -21,7 +21,8 @@ read_model_folder <- function(path) {
 
 # import simulated data
 
-df <- read_csv("../data/processed/topology.csv") %>%
+df <- read_csv("../data/processed/topology.csv")  %>%
+  vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   # remove metaweb pfims
   yeet(model != "pfim_metaweb") %>%
   # rename the remianing pfim col
@@ -30,7 +31,18 @@ df <- read_csv("../data/processed/topology.csv") %>%
           #make tiem numeric
           time = as.numeric(str_extract(time, "\\d+")))  %>%
   glow_up(model = as.factor(model)) %>%
-  na.omit()
+  na.omit() %>%
+  glow_up(outlier = if_any(where(is.numeric),
+                           ~ abs(.x - mean(.x, na.rm = TRUE)) > 3 * sd(.x, na.rm = TRUE))) %>%
+  yeet(!outlier) %>%
+  vibe_check(-outlier)
+
+# outlier networks
+df_removed <- read_csv("../data/processed/outlier_networks.csv") %>%
+  glow_up(model = case_when(model == "Random" ~ "random",
+                            model == "ATN" ~ "lmatrix",
+                            .default = str_to_title(as.character(model)))) %>%
+  yeet(time == 2)
 
 network_stats <- c("connectance", "trophic_level", "generality",
                    "vulnerability", "NDTI", "NDCI")
@@ -139,12 +151,14 @@ mad_df <- extinction_topology %>%
   # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "pfim",
                             .default = as.character(model))) %>%
+  # filter out the outlier networks
+  anti_join(df_removed) %>%
   vibe_check(-c(rep, distance, redundancy, diameter, richness, complexity, resilience)) %>%
   pivot_longer(
     cols = -c(model, extinction_mechanism, n_rep),
     names_to = "stat",
     values_to = "sim_val") %>%
-  full_join(.,
+  left_join(.,
             read_csv("../data/processed/topology.csv") %>%
               # remove metaweb pfims
               yeet(model != "pfim_metaweb") %>%
@@ -172,6 +186,8 @@ mad_df <- extinction_topology %>%
         extinction_tss %>%
           # remove metaweb pfims
           yeet(model != "pfim_metaweb") %>%
+          # filter out the outlier networks
+          anti_join(df_removed) %>%
           vibe_check(-n_rep) %>%
           pivot_longer(!c(model, extinction_mechanism)) %>%
           # get mean (for now might be worth looking at sd as well...)
@@ -309,3 +325,15 @@ ggsave("../figures/kendal_tau.png",
        units = "px",
        dpi = 600)
 
+# get summaries for reporting
+kendal_results %>%
+  yeet(level = "TSS") %>%
+  summary()
+
+kendal_results %>%
+  yeet(metric == "Node") %>%
+  summary()
+
+kendal_results %>%
+  yeet(metric == "Link") %>%
+  summary()
