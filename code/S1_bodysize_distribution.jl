@@ -63,12 +63,19 @@ for j in 1:n_reps
                 elseif model == "pfim_metaweb"
                     N = pfim.PFIM(df, feeding_rules; downsample=false)
                 elseif model == "pfim_downsample"
-                    N = pfim.PFIM(df, feeding_rules; y=30.0, downsample=true)
+                    # PFIM with random downsampling applied
+                    _N = PFIM(df, feeding_rules)
+                    N_Co = SpeciesInteractionNetworks.connectance(_N)
+                    adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-0.01, max_iter=300))
+                    spp_list = Symbol.(df.species)
+                    edges = Binary(.!iszero.(adj_mat))
+                    nodes = Unipartite(spp_list)
+                    N = SpeciesInteractionNetwork(nodes, edges)
                 elseif model == "niche"
                     N = nichemodel(df.species, connectance)
                 elseif model == "random"
                     links = floor(Int, connectance * (nrow(df)^2))
-                    N = randommodel(df.species, links)
+                    N = randommodel(df.species, connectance)
                 elseif model == "lmatrix"
                     N = lmatrix(df.species, bodymass, is_producer)
                 else
@@ -90,7 +97,7 @@ for j in 1:n_reps
     end
 end
 
-# Pre-allocate a DataFrame to store topological features [cite: 15]
+# Pre-allocate a DataFrame to store topological features
 # This defines the schema for the structural analysis of each network
 topology = DataFrame(
     model = String[],
@@ -105,11 +112,9 @@ topology = DataFrame(
     distance = Float64[],      # Mean path length between nodes
     generality = Float64[],    # Average number of resources per consumer
     vulnerability = Float64[], # Average number of consumers per resource
-    redundancy = Float64[],    # Overlap in ecological roles/links
-    S1 = Float64[],            # Structural motif 1
-    S2 = Float64[],            # Structural motif 2
-    S4 = Float64[],            # Structural motif 4 
-    S5 = Float64[],            # Structural motif 5 
+    redundancy = Float64[],        # Overlap in ecological roles/links
+    NDTI = Float64[],          # normalised difference trophic index
+    NDCI = Float64[],          # normalised difference competition index
 );
 
 # Analysis Loop: Process every generated network from the previous step 

@@ -30,20 +30,30 @@ setwd(here("code"))
 
 source("lib/plotting_theme.R")
 
-df <- read_csv("../data/processed/topology.csv") %>%
+df_int <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(
-    model == "pfim_downsample" ~ "PFIM",
-    model == "bodymassratio" ~ "Body-size ratio",
-    model == "adbm" ~ "ADBM",
-    model == "lmatrix" ~ "ATN",
-    TRUE ~ str_to_title(as.character(model))
-  ), trophic_level = round(trophic_level, 0)) %>%
-  na.omit()
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+                            model == "bodymassratio" ~ "Body-size ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
+                            TRUE ~ str_to_title(as.character(model)))) %>%
+  na.omit() %>%
+  glow_up(outlier = if_any(where(is.numeric),
+                           ~ abs(.x - mean(.x, na.rm = TRUE)) > 3 * sd(.x, na.rm = TRUE)))
+
+# Rows removed
+df_removed <- df_int %>% yeet(outlier)
+
+# Clean dataset
+df <- df_int %>%
+  yeet(!outlier) %>%
+  vibe_check(-outlier)
 
 # Dependent variable matrix for MANOVA/CDA
 dep_vars <- as.matrix(df[3:ncol(df)])
+
+# remove outlier networks (specifically trophic level)
 
 # =========================
 # 2. MANOVA + Assumption Checks
@@ -98,7 +108,8 @@ cor(df[3:ncol(df)], lda_scores)
 # 5. LDA Visualization
 # =========================
 plot_lda <- data.frame(
-  model = factor(df$model, levels = c("Niche","Random","ADBM","ATN","Body-size ratio","PFIM")),
+  model = factor(df$model, levels = c("Niche","Random","ADBM","ATN",
+                                      "Body-size ratio", "PFIM")),
   lda = lda_scores,
   time = df$time
 )
@@ -110,18 +121,18 @@ ggplot(plot_lda, aes(x = lda.LD1,
                      colour = model,
                      fill = model,
                      shape = model))  +
-  geom_hline(yintercept = 0, colour = "#A5ACAF") +
-  geom_vline(xintercept = 0, colour = "#A5ACAF") + 
+  geom_hline(yintercept = 0, colour = accent_col) +
+  geom_vline(xintercept = 0, colour = accent_col) + 
   stat_ellipse(aes(colour = model), 
                level = 0.95, linetype = 2) +
   geom_point(size = 2, alpha = 0.4) +
   labs(x = ld1_lab, y = ld2_lab) +
   scale_colour_manual(values = pal_df$c,
-                      name = "Reconstruction Approach") +
+                      name = "Model") +
   scale_fill_manual(values = pal_df$c,
-                    name = "Reconstruction Approach") +
+                    name = "Model") +
   scale_shape_manual(values = c(15, 19, 17, 23, 8, 3),
-                     name = "Reconstruction Approach") +
+                     name = "Model") +
   guides(
     colour = "none",
     shape = guide_legend(
@@ -164,44 +175,51 @@ loadings_df <- as.data.frame(cda$structure[, 1:2]) %>%
     abs_loading = pmax(abs(CV1), abs(CV2)),
     keep = abs_loading >= 0.4
   ) %>%
-  mutate(Level = case_when(
-    Metric %in% c("richness", "connectance", "trophic_level") ~ "Macro",
-    Metric %in% c("S1", "S2", "S4", "S5") ~ "Meso",
-    Metric %in% c("generality", "vulnerability") ~ "Micro",
-    TRUE ~ "Other"
-  ))
+  mutate(stat = case_when(Metric == "connectance" ~ "Connectance",
+                          Metric == "trophic_level" ~ "Max trophic level",
+                          Metric == "generality" ~ "Generality",
+                          Metric == "vulnerability" ~ "Vulnerability",
+                          Metric == "NDTI" ~ "Trophic index",
+                          Metric == "NDCI" ~ "Competition index"),
+         Level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
+                           stat %in% c("Generality", "Vulnerability") ~ "Micro",
+                           TRUE ~ "Meso"))
 
 # =========================
 # 7. Canonical Loadings Plot
 # =========================
 
-ggplot(loadings_df, aes(x = CV1, y = CV2)) +
-  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey70") +
-  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey70") +
-  geom_segment(
-    aes(x = 0, y = 0, xend = CV1, yend = CV2),
-    arrow = arrow(length = unit(0.02, "npc")),
-    linewidth = 0.8,
-    alpha = 0.8
-  ) +
-  geom_segment(
-    aes(x = 0, y = 0, xend = CV1, yend = CV2, colour = Level),
-    arrow = arrow(length = unit(0.02, "npc")),
-    linewidth = 0.9
-  ) +
-  scale_colour_manual(values = c(
-    Macro = "#D9C589",
-    Meso  = "#6B4E3D",
-    Micro = "#A63D2D"
-  )) +
+loadings_plot <-
+  ggplot(subset(loadings_df, keep), 
+       aes(x = CV1, 
+           y = CV2)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = accent_col) +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = accent_col) +
+  geom_segment(aes(x = 0, 
+                   y = 0, 
+                   xend = CV1, 
+                   yend = CV2),
+               arrow = arrow(length = unit(0.02, "npc")),
+               linewidth = 0.8,
+               alpha = 0.8) +
+  geom_segment(aes(x = 0, 
+                   y = 0, 
+                   xend = CV1, 
+                   yend = CV2, 
+                   colour = Level),
+               arrow = arrow(length = unit(0.02, "npc")),
+               linewidth = 0.9) +
+  scale_colour_manual(values = c(Macro = "#D9C589",
+                                 Meso  = "#6B4E3D",
+                                 Micro = "#A63D2D")) +
   geom_text_repel(
-    data = subset(loadings_df, keep),
-    aes(label = Metric),
+    aes(label = stat),
     size = 4,
     box.padding = 0.4,
     point.padding = 0.3,
     max.overlaps = Inf) +
-  coord_equal(xlim = c(-1, 1), ylim = c(-1, 1)) +
+  coord_equal(xlim = c(-1, 1), 
+              ylim = c(-1, 1)) +
   labs(
     x = "CV1",
     y = "CV2"
@@ -209,7 +227,11 @@ ggplot(loadings_df, aes(x = CV1, y = CV2)) +
   figure_theme
 
 # Save figure
-ggsave("../figures/canonical_loadings_plot.png", width = 8, height = 5, dpi = 300)
+ggsave("../figures/canonical_loadings_plot.png", 
+       loadings_plot,
+       width = 8, 
+       height = 5, 
+       dpi = 300)
 
 # =========================
 # 6. Pairwise - for supp matt
@@ -220,10 +242,8 @@ run_model_comparisons <- function(data,
                                               "trophic_level",
                                               "generality",
                                               "vulnerability",
-                                              "S1",
-                                              "S2",
-                                              "S4",
-                                              "S5"),
+                                              "NDTI",
+                                              "NDCI"),
                                   random_effect = "time",
                                   p_adjust = "sidak") {
   
@@ -287,10 +307,8 @@ emm_df <- emm_results$emmeans %>%
                            metric == "trophic_level" ~ "Max trophic level",
                            metric == "generality" ~ "Generality",
                            metric == "vulnerability" ~ "Vulnerability",
-                           metric == "S1" ~ "No. of linear chains",
-                           metric == "S2" ~ "No. of omnivory motifs",
-                           metric == "S5" ~ "No. of apparent competition motifs",
-                           metric == "S4" ~ "No. of direct competition motifs"),
+                           metric == "NDTI" ~ "Trophic index",
+                           metric == "NDCI" ~ "Competition index"),
           level = case_when(stat %in% c("Connectance", "Max trophic level") ~ "Macro",
                             stat %in% c("Generality", "Vulnerability") ~ "Micro",
                             TRUE ~ "Meso"))
@@ -341,8 +359,32 @@ plot_list_emm[[1]] /
   plot_list_emm[[3]] +
   plot_layout(
     guides = "collect",
-    heights = c(1, 2, 1)
+    heights = c(1, 1, 1)
   )
 
 # Save figure
-ggsave("../figures/emm_plot.png", width = 9, height = 11, dpi = 600)
+ggsave("../figures/emm_plot.png", 
+       width = 9,
+       height = 9, 
+       dpi = 600)
+
+# create summary table
+
+df %>%
+  vibe_check(-time) %>%
+  pivot_longer(-model) %>%
+  squad_up(model, name) %>%
+  no_cap(mean = mean(value),
+         sd = sd(value)) %>%
+  glow_up(stat_val = paste0(round(mean, 2), " ±", round(sd, 2))) %>%
+  glow_up(Metric = case_when(name == "connectance" ~ "Connectance",
+                             name == "trophic_level" ~ "Max trophic level",
+                             name == "generality" ~ "Generality",
+                             name == "vulnerability" ~ "Vulnerability",
+                             name == "NDTI" ~ "Trophic index",
+                             name == "NDCI" ~ "Competition index")) %>%
+  vibe_check(-c(mean, sd, name)) %>%
+  pivot_wider(names_from = model,
+              values_from = stat_val) %>%
+  write_csv(.,
+            "../notebooks/tables/Table_S1_descriptive_stats.csv")

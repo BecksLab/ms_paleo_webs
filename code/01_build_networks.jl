@@ -1,6 +1,7 @@
 using CSV
 using DataFrames
 using Distributions
+using FoodWebTools
 using JLD2
 using pfim
 using SpeciesInteractionNetworks
@@ -29,6 +30,20 @@ size_classes = DataFrame(CSV.File("../data/raw/size_classes.csv"))
 # Initialize a central DataFrame to store results of all simulated networks
 networks = DataFrame(model = String[], time = Any[], network = Any[], n_rep = Any[]);
 
+# --- Distributions ---
+
+size_bounds = Dict(
+    "primary" => (0.01, 0.1),
+    "tiny" => (0.1, 10.0),
+    "small" => (10.0, 50.0),
+    "medium" => (50.0, 100.0),
+    "large" => (100.0, 300.0),
+    "very_large" => (300.0, 500.0),
+    "gigantic" => (500.0, 700.0)
+)
+
+σ = 0.5
+
 # Simulation Loop: Run 100 repetitions to account for stochasticity in body sizes and models
 n_reps = 100
 
@@ -37,15 +52,14 @@ for j = 1:n_reps
     # Step 1: Generate Synthetic Body Mass Data
     # Assigns a random mass within a specific range based on the 'size' category
     y = collect(String, size_classes.size)
-    bodysize = (
-        y ->
-            y == "tiny" ? rand(Uniform(0.1, 10.0)) :
-            y == "small" ? rand(Uniform(10.0, 50.0)) :
-            y == "medium" ? rand(Uniform(50.0, 100.0)) :
-            y == "large" ? rand(Uniform(100.0, 300.0)) :
-            y == "very_large" ? rand(Uniform(300.0, 500.0)) :
-            y == "gigantic" ? rand(Uniform(500.0, 700.0)) : y
-    ).(y)
+    bodysize = [
+                begin
+                    lo, hi = size_bounds[s]
+                    μ = log((lo + hi)/2)
+                    rand(truncated(LogNormal(μ, σ), lo, hi))
+                end
+                for s in y
+            ]
 
     # Update size_classes with the mass values generated for this specific repetition
     size_classes[!, :bodymass] = bodysize
@@ -95,14 +109,19 @@ for j = 1:n_reps
                 # Probabilistic Feeding Interaction Model (Metaweb version)
                 N = pfim.PFIM(df, feeding_rules; downsample = false)
             elseif model == "pfim_downsample"
-                # PFIM with downsampling applied
-                N = pfim.PFIM(df, feeding_rules; y = 30.0, downsample = true)
+                # PFIM with random downsampling applied
+                _N = PFIM(df, feeding_rules)
+                N_Co = SpeciesInteractionNetworks.connectance(_N)
+                adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-0.01, max_iter=300))
+                spp_list = Symbol.(df.species)
+                edges = Binary(.!iszero.(adj_mat))
+                nodes = Unipartite(spp_list)
+                N = SpeciesInteractionNetwork(nodes, edges)
             elseif model == "niche"
                 N = nichemodel(df.species, connectance)
             elseif model == "random"
                 # Simple random network based on total possible links and connectance
-                links = floor(Int, connectance * (nrow(df)^2))
-                N = randommodel(df.species, links)
+                N = randommodel(df.species, connectance)
             elseif model == "lmatrix"
                 N = lmatrix(df.species, bodymass, is_producer)
             else

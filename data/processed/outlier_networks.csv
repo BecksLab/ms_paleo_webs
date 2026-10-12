@@ -1,0 +1,14 @@
+model,time,n_rep,outlier
+Random,3,5,TRUE
+Random,2,6,TRUE
+ATN,3,14,TRUE
+Random,4,31,TRUE
+Random,1,32,TRUE
+Random,1,50,TRUE
+ATN,2,52,TRUE
+ATN,3,52,TRUE
+Random,1,56,TRUE
+Random,2,73,TRUE
+Random,4,74,TRUE
+Random,2,80,TRUE
+Random,3,88,TRUE

@@ -12,17 +12,33 @@ setwd(here("code"))
 
 source("lib/plotting_theme.R")
 
-df <- read_csv("../data/processed/topology.csv") %>%
-  vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
+df_int <- read_csv("../data/processed/topology.csv") %>%
+  vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(
-    model == "pfim_downsample" ~ "PFIM",
-    model == "bodymassratio" ~ "Body-size ratio",
-    model == "adbm" ~ "ADBM",
-    model == "lmatrix" ~ "ATN",
-    TRUE ~ str_to_title(as.character(model))
-  ), trophic_level = round(trophic_level, 0)) %>%
-  na.omit()
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+                            model == "bodymassratio" ~ "Body-size ratio",
+                            model == "adbm" ~ "ADBM",
+                            model == "lmatrix" ~ "ATN",
+                            .default = str_to_title(as.character(model))),
+          #make time numeric
+          time = as.numeric(str_extract(time, "\\d+")))  %>%
+  glow_up(model = as.factor(model)) %>%
+  na.omit() %>%
+  glow_up(outlier = if_any(where(is.numeric),
+                           ~ abs(.x - mean(.x, na.rm = TRUE)) > 3 * sd(.x, na.rm = TRUE)))
+
+# Rows removed
+df_removed <- df_int %>% yeet(outlier)
+
+# write removed networks to .csv
+write_csv(df_removed %>%
+            vibe_check(model, time, n_rep, outlier),
+          "../data/processed/outlier_networks.csv")
+
+# Clean dataset
+df <- df_int %>%
+  yeet(!outlier) %>%
+  vibe_check(-outlier)
 
 dist_mat <- dist(scale(df[3:ncol(df)]))
 
@@ -37,8 +53,8 @@ as_time <- adonis2(dist_mat ~ time, data = df)
 
 # time centred PERMANOVA
 
-metric_cols <- c("connectance", "trophic_level", "generality", "vulnerability", "S1",
-                 "S2", "S4", "S5" )
+metric_cols <- c("connectance", "trophic_level", "generality",
+                 "vulnerability", "NDTI", "NDCI")
 
 df_centered <- df
 

@@ -25,7 +25,20 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     S = richness(N)
     l_s = L / S
 
-    tls = trophic_level(N)
+    tls = troph_level(remove_cannibals(N).edges.edges)
+
+    S1 = length(
+                findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N))
+            )
+    S2 = length(
+                findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N))
+            )
+    S4 = length(
+                findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N))
+            )
+    S5 = length(
+                findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N))
+            )
 
     D = Dict{Symbol,Any}(
         :richness => richness(N),
@@ -37,22 +50,8 @@ function _network_summary(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
         :generality => std(gen / l_s),
         :vulnerability => std(vul / l_s),
         :redundancy => (L - (S - 1))/S,
-        :S1 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[1], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S2 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[2], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S4 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[4], remove_cannibals(N)),
-            )/(richness(N)^2),
-        :S5 =>
-            length(
-                findmotif(motifs(Unipartite, 3)[5], remove_cannibals(N)),
-            )/(richness(N)^2),
+        :NDTI => (S1 - S2)/(S1 + S2),
+        :NDCI => (S4 - S5)/(S4 + S5),
     )
 
     return D
@@ -253,29 +252,43 @@ function remove_cannibals(N::SpeciesInteractionNetwork{<:Partiteness,<:Binary})
     return network
 end
 
-"""
-trophic_level(N::SpeciesInteractionNetwork)
+using LinearAlgebra
 
-    Calculates the trophic level of all species in a network using the average 
-    shortest path from the prey of species 𝑖 to a basal species
+function troph_level(A::AbstractMatrix{Bool};
+                       species=nothing,
+                       exclude_cannibalism=true,
+                       cond_tol=1e10)
 
-    Williams, Richard J., and Neo D. Martinez. 2004. “Limits to Trophic Levels 
-    and Omnivory in Complex Food Webs: Theory and Data.” The American Naturalist 
-    163 (3): 458–68. https://doi.org/10.1086/381964.
-"""
-function trophic_level(N::SpeciesInteractionNetwork)
+    A = copy(A)
 
-    A = _get_matrix(N) # Ensure A is dense for inversion.
-    S = size(A, 1) # Species richness.
-    in_degree = sum(A; dims = 2)
-    D = -(A ./ in_degree) # Diet matrix.
-    D[isnan.(D)] .= 0.0
-    D[diagind(D)] .= 1.0 .- D[diagind(D)]
-    # Solve with the inverse matrix.
-    inverse = iszero(det(D)) ? pinv : inv
-    tls = inverse(D) * ones(S)
+    if exclude_cannibalism
+        A[diagind(A)] .= false
+    end
 
-    # create dictionary
-    Dict(zip(species(N),tls))
+    S = size(A,1)
+    D = Matrix{Float64}(I, S, S)
 
+    for i in 1:S
+        nprey = count(A[i,:])
+        if nprey > 0
+            D[i, A[i,:]] .= -1 / nprey
+        end
+    end
+
+    b = ones(S)
+
+    c = cond(D)
+
+    if !isfinite(c) || c > cond_tol
+        @warn "Diet matrix is ill-conditioned (cond = $c). Trophic levels may be undefined."
+
+        tls = pinv(D) * b
+
+        # Replace absurd numerical values with NaN
+        tls[abs.(tls) .> 1e6] .= NaN
+    else
+        tls = D \ b
+    end
+
+    return isnothing(species) ? tls : Dict(zip(species, tls))
 end

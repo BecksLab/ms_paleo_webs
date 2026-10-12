@@ -1,6 +1,7 @@
 using CSV
 using DataFrames
 using Distributions
+using FoodWebTools
 using JLD2
 using pfim
 using Plots
@@ -29,7 +30,7 @@ feeding_rules = DataFrame(CSV.File("../data/raw/feeding_rules.csv"))
 n_reps = 100
 
 # Range of downsampling values to test
-downsample_vals = [5.0, 10.0, 20.0, 30.0, 50.0, 100.0]
+downsample_vals = [0.0, 0.01, 0.05, 0.1, 0.15]
 
 # -----------------------------
 # OUTPUT STORAGE
@@ -37,7 +38,7 @@ downsample_vals = [5.0, 10.0, 20.0, 30.0, 50.0, 100.0]
 networks = DataFrame(
     time = String[],
     n_rep = Int[],
-    downsample_y = Float64[],
+    delta_Co = Float64[],
     network = Any[],
     richness = Int[],
     links = Int[],
@@ -76,15 +77,22 @@ if richness(N_meta) > 0
 end
 
 # --- Then: downsampled versions ---
-for y_val in downsample_vals
+for delta_Co in downsample_vals
 
-    N = pfim.PFIM(df, feeding_rules; y = y_val, downsample = true)
+    # PFIM with random downsampling applied
+                _N = PFIM(df, feeding_rules)
+                N_Co = SpeciesInteractionNetworks.connectance(_N)
+                adj_mat = Matrix(downsample(_N.edges.edges, :random; target_co=N_Co-delta_Co, max_iter=300))
+                spp_list = Symbol.(df.species)
+                edges = Binary(.!iszero.(adj_mat))
+                nodes = Unipartite(spp_list)
+                N = SpeciesInteractionNetwork(nodes, edges)
 
     if richness(N) > 0
         push!(networks, (
             str_cats[1],
             j,
-            y_val,
+            delta_Co,
             N,
             richness(N),
             links(N),
@@ -113,14 +121,14 @@ end
 
 # Store results
 similarity_df = DataFrame(
-    downsample_y = Float64[],
+    delta_Co = Float64[],
     similarity = Float64[]
 )
 
 for g in groupby(networks, [:time, :n_rep])
 
     # baseline network (y = 0)
-    base = filter(:downsample_y => ==(0.0), g)
+    base = filter(:delta_Co => ==(0.0), g)
 
     if nrow(base) == 0
         continue
@@ -130,13 +138,13 @@ for g in groupby(networks, [:time, :n_rep])
 
     for row in eachrow(g)
 
-        if row.downsample_y == 0.0
+        if row.delta_Co == 0.0
             continue
         end
 
         sim = jaccard_similarity(N_base, row.network)
 
-        push!(similarity_df, (row.downsample_y, sim))
+        push!(similarity_df, (row.delta_Co, sim))
     end
 end
 

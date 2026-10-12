@@ -14,7 +14,7 @@ topology = DataFrame(
     model = String[],
     time = Any[],
     n_rep = Any[],
-    richness = Int64[],      # Number of nodes (species/guilds)
+    richness = Int64[],        # Number of nodes (species/guilds)
     connectance = Float64[],   # Realized fraction of possible links
     diameter = Int64[],        # Longest shortest path between any two nodes
     complexity = Float64[],    # Often related to link density or eigenvalue properties
@@ -23,10 +23,8 @@ topology = DataFrame(
     generality = Float64[],    # Average number of resources per consumer
     vulnerability = Float64[], # Average number of consumers per resource
     redundancy = Float64[],    # Overlap in ecological roles/links
-    S1 = Float64[],            # Structural motif 1
-    S2 = Float64[],            # Structural motif 2
-    S4 = Float64[],            # Structural motif 4 
-    S5 = Float64[],            # Structural motif 5 
+    NDTI = Float64[],          # normalised difference trophic index
+    NDCI = Float64[],          # normalised difference competition index
 );
 
 # Analysis Loop: Process every generated network from the previous step 
@@ -45,5 +43,5 @@ for i = 1:nrow(networks)
     push!(topology, d)
 end
 
-# Data Export: Save the final table as a CSV for easy use in plotting or R/Python 
+# Data Export: Save the final table as a CSV for easy use in plotting or R
 CSV.write("../data/processed/topology.csv", topology)

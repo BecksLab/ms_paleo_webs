@@ -18,34 +18,40 @@ source("lib/plotting_theme.R")
 
 # import simulated data
 
-df <- read_csv("../data/processed/topology.csv") %>%
-  # remove metaweb pfims
+df_int <- read_csv("../data/processed/topology.csv") %>%
+  vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  # rename the remianing pfim col
   glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
                             .default = str_to_title(as.character(model))),
-          #make tiem numeric
+          #make time numeric
           time = as.numeric(str_extract(time, "\\d+")))  %>%
   glow_up(model = as.factor(model)) %>%
-  na.omit()
+  na.omit() %>%
+  glow_up(outlier = if_any(where(is.numeric),
+                           ~ abs(.x - mean(.x, na.rm = TRUE)) > 3 * sd(.x, na.rm = TRUE)))
+
+# Rows removed
+df_removed <- df_int %>% yeet(outlier)
+
+# Clean dataset
+df <- df_int %>%
+  yeet(!outlier) %>%
+  vibe_check(-outlier)
+
 
 network_stats <- c("connectance", "trophic_level", "generality",
-                   "vulnerability", "S1", "S2", "S4", "S5")
+                   "vulnerability", "NDTI", "NDCI")
 
 # summary table for supp matt
 df %>%
   vibe_check(-c(time, n_rep)) %>%
-  pivot_longer(
-    cols = -model,
-    names_to = "statistic"
-  ) %>%
-  glow_up(statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+  pivot_longer(cols = -model,
+               names_to = "statistic") %>%
+  glow_up(statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   squad_up(model, statistic) %>%
@@ -164,10 +170,8 @@ df_plot <- df_anova %>%
     se = sd_val / sqrt(n),
     .groups = "drop"
   ) %>%
-  glow_up(statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+  glow_up(statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
@@ -214,7 +218,7 @@ raw_lines_plot <-
   plot_list_raw[[3]] +
   plot_layout(
     guides = "collect",
-    heights = c(1, 2, 1)
+    heights = c(1, 1, 1)
   )
 
 ggsave("../figures/raw_time_structure.png",
@@ -255,7 +259,8 @@ for (i in seq_along(levs)) {
         y = relative_change,
         color = model,
         group = model)) +
-    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+    geom_hline(yintercept = 0, linetype = "dashed", 
+               color = accent_col) +
     geom_line(linewidth = 1) +
     geom_point(size = 2) +
     facet_wrap(~ stat_label, scales = "free_y") +
@@ -278,7 +283,7 @@ for (i in seq_along(levs)) {
 
 anova_linear <- linear_plot_list[[1]] / linear_plot_list[[2]] / linear_plot_list[[3]] +
   plot_layout(guides = "collect") +
-  plot_layout(height = c(1, 2, 1))
+  plot_layout(height = c(1, 1, 1))
 
 ggsave("../figures/anova_linear_diff.png",
        anova_linear,
@@ -289,11 +294,17 @@ ggsave("../figures/anova_linear_diff.png",
 
 cv_analysis <- df_plot %>%
   group_by(statistic, time_fact) %>%
-  summarise(
-    # How much do the 6 models disagree?
-    model_disagreement_cv = (sd(mean_val) / mean(mean_val)) * 100,
-    .groups = "drop"
-  ) %>%
+  no_cap(model_disagreement_cv = if (first(statistic) %in% c("Trophic index", "Competition index")) {
+    sd(mean_val)
+  } else {
+    100 * sd(mean_val) / mean(mean_val)
+  },
+  measure = if (first(statistic) %in% c("Trophic index", "Competition index")) {
+    "SD"
+  } else {
+    "CV (%)"
+  },
+  .groups = "drop") %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
                             statistic %in% c("Generality", "Vulnerability") ~ "Micro",
                             .default = "Meso"))
@@ -316,8 +327,8 @@ for (i in seq_along(cv_plot_list)) {
                                              group = statistic)) +
     # Adding a subtle area fill to emphasize the 'dip' in disagreement
     geom_area(fill = "grey90", alpha = 0.5) +
-    geom_line(colour = "#36393B", linewidth = 0.8) +
-    geom_point(colour = "#36393B", size = 2) +
+    geom_line(colour = accent_col, linewidth = 0.8) +
+    geom_point(colour = accent_col, size = 2) +
     
     # Faceting by metric within the scale (Macro/Meso/Micro)
     facet_wrap(vars(statistic), scales = "free_y", ncol = 2) +
@@ -325,11 +336,11 @@ for (i in seq_along(cv_plot_list)) {
     # Matching your specific x-axis formatting
     scale_x_discrete(breaks = c(1, 2, 3, 4),
                      labels = c("pre", "during", "early", "late")) +
-    ylim(c(0, max_y)) + 
+    #ylim(c(0, max_y)) + 
     # Styling to match your previous figures
     labs(
       x = NULL,
-      y = "CV (%)",
+      y = "Disagreement",
       title = paste(levs[i])
     ) +
     coord_cartesian(clip = "off") +
@@ -390,10 +401,8 @@ plot_tukey_data <- all_posthocs %>%
                            time == "2" ~ "During Extinction",
                            time == "3" ~ "Early Recovery",
                            time == "4" ~ "Late Recovery"),
-    statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                          statistic == "S2" ~ "No. of omnivory motifs",
-                          statistic == "S4" ~ "No. of direct competition motifs",
-                          statistic == "S5" ~ "No. of apparent competition motifs",
+    statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                          statistic == "NDCI" ~ "Competition index",
                           statistic == "trophic_level" ~ "Max trophic level",
                           .default = str_to_sentence(statistic))) %>%
   glow_up(time_label = factor(time_label, 
@@ -443,10 +452,8 @@ manuscript_anova_table <- anova_summary_table %>%
     values_from = eta.sq.part
   ) %>%
   glow_up(across(where(is.numeric), ~round(., 3)),
-          statistic = case_when(statistic == "S1" ~ "No. of linear chains",
-                                statistic == "S2" ~ "No. of omnivory motifs",
-                                statistic == "S4" ~ "No. of direct competition motifs",
-                                statistic == "S5" ~ "No. of apparent competition motifs",
+          statistic = case_when(statistic == "NDTI" ~ "Trophic index",
+                                statistic == "NDCI" ~ "Competition index",
                                 statistic == "trophic_level" ~ "Max trophic level",
                                 .default = str_to_sentence(statistic))) %>%
   # Rename columns for clarity in the paper
@@ -491,20 +498,20 @@ ANOVA_summary <-
               intercept = 0, 
               linetype = "dashed",
               linewidth = 0.5,
-              colour = colorspace::lighten("#5e5e5e", 0.8)) +
-  # Labels
-  geom_text_repel(size = 3.5, box.padding = 1.2) +
+              colour = colorspace::lighten(accent_col, 0.8)) +
   # The Data Points (overlay the lines)
   geom_point(aes(size = Interaction, 
                  color = mean_cv)) +
+  # Labels
+  geom_text_repel(size = 3.5, box.padding = 1.2) +
   scale_colour_gradientn(colors = col_cont,
-                         name = "Disagreement (CV%)") +
+                         name = "Disagreement") +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   coord_fixed() +
-  scale_size_continuous(range = c(2, 8), name = "Interaction (CV%)") +
+  scale_size_continuous(range = c(2, 8), name = "Interaction") +
   labs(
-    x = expression(paste("Importance of reconstruction approach (Partial ", eta[p]^2, ")")),
+    x = expression(paste("Importance of model (Partial ", eta[p]^2, ")")),
     y = expression(paste("Importance of time (Partial ", eta[p]^2, ")"))
   ) +
   figure_theme
@@ -518,7 +525,15 @@ ggsave("../figures/ANOVA_summary.png",
 
 # combine linear and ANOVA summary
 
-# linear_all
+df_linear <-
+  df_linear %>%
+  glow_up(stat_label = factor(stat_label,
+                             levels = c("Connectance",
+                                        "Max trophic level",
+                                        "Competition index",
+                                        "Trophic index",
+                                        "Generality",
+                                        "Vulnerability")))
 
 linear_all <- ggplot(
   df_linear,
@@ -526,7 +541,8 @@ linear_all <- ggplot(
       y = relative_change,
       color = model,
       group = model)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  geom_hline(yintercept = 0, linetype = "dashed", 
+             color = accent_col) +
   geom_line(linewidth = 0.8) +
   geom_point(size = 1.7) +
   facet_wrap(~ stat_label, 
@@ -536,7 +552,9 @@ linear_all <- ggplot(
     breaks = 1:4,
     labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
   scale_color_manual(values = pal_df$c, breaks = pal_df$l,
-                     name = "Reconstruction Approach") +
+                     name = "Model") +
+  scale_alpha_manual(values = c(1, 0.3, 1, 0.3, 1, 0.3), 
+                     breaks = pal_df$l) +
   labs(
     x = NULL,
     y = "Change from Pre-extinction (Δ)"
@@ -562,3 +580,4 @@ ggsave("../figures/combined_ANOVA_time.png",
        height = 3800,
        units = "px",
        dpi = 300)
+
