@@ -1,11 +1,11 @@
 ---
-title: "SuppMat 2: Effects of Network Reconstruction on Food-Web Structure"
+title: "Supplementary Material 2: Effects of Network Reconstruction on Food web structure"
 bibliography: ../references.bib
 ---
 
 # Additional Results and Analyses
 
-## Effects of Network Reconstruction on Food-Web Structure
+## Effects of network reconstruction on food web structure
 
 ### Table S1. Descriptive statistics (mean ± standard deviation) of network metrics by model
 
@@ -99,3 +99,26 @@ readr::read_csv("tables/kendall_tau_coefficients.csv") %>%
 kable()
 
 ```
+
+## Constraining connectance decreases observed differences between models
+
+It has been argued that connectance constrains emerging network properties [@poisot2014; @strydom2021b]. To assess if constraining the connectance of *all* networks would result in similar network structures we actively constrained the connectance of all networks by randomly downsampling them to the target connectance *i.e.,* the PFIM, ATN, ADBM, and Body-size ratio models had links randomly prunes until they reached the target connectance. Note that in some instances the initial connectance of the network may have already been below the target connectance and in these instances the network was used 'as is'. We repeated both the multivariate and temporal trajectory analyses for these connectance constrained networks.
+
+### Figure S5. Constraining connectance decreases observed differences in network structure
+
+Although there is still a significant effect of model type on network structure (Pillai’s trace = 1.64, approximate $F_{30,10080}$ = 164.5, $p<$ 0.001) we can see that the visual clustering is much less dramatic than for the unconstrained networks (Figure 1 in the main text). However we do not see connectance as the *main* driver of differences in network structure in the mulitvariate space -- note the connectance is more strongly correlated with LDA axis 2 than with LDA axis 1 indicating that although it 'reduces' the differences in network structure between models it is not the main driver in the observed differences.
+
+![](figures/S4_multivar.png)
+
+### Figure S6. Connectance increases the signal of time
+
+When we look at the temporal changes in network structure there is qualitatively more agreement with the changes in network structure over time than for the unconstrained networks (Figure 2A in the main text) *i.e.,* we often see most models indicating similar changes in structure over time, although the magnitude of these changes remain different. Note that here we made no assumptions as to the expected changes in connectance over the extinction time and so there is a 'random' connectance signal across time - thus we can assume that the signal of temporal changes in network structure here still retain some sort of time $\times$ model signal. Indeed when we look at the two-way factorial ANOVA (panel B) we can see that model type is still the dominant determinant of network structure, however we see a greater source of variance coming from time (notably for vulnerability time becomes the dominant driver of variance).
+
+![](figures/S4_time_structure.png)
+
+Overall these results suggest that the specification of network connectance will impact the resulting overall network structure, however we still get distinct model-specific signature. This result is two-fold. Firstly it showcases that for any model where connectance is one of the parameters in the model there is a greater risk of enforcing differences or similarities in network structure depending on how connectance is specified -- *e.g.,* in this instance any assumptions we make on expected change in connectance over time will drive at least in part any inferences we make about changes in network structure for both Niche and Random networks. Secondly, despite connectance-driven constraints we still see model-specific differences in structure which re-enforces that these models are still encoding fundamentally different processes that determine where links are present within the network.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
