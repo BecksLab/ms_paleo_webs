@@ -152,7 +152,7 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 |  | γ (scaling / threshold) | −1.90 | @yeakel2014 |  |
 |  | Functional form | Quadratic in log mass ratio | @rohr2010 | Simplified formulation |
 | **PFIM (downsampled)** | Trait rules | Feeding, motility, tiering | @shaw2024 |  |
-|  | Downsampling parameter (y) | 100.0 | This study | Power-law pruning |
+|  | 0.01 change in connectance of metaweb | 100.0 | This study | Power-law pruning |
 | **All models** | Body size classes | Discrete categories (tiny → gigantic) | Empirical data | Mapped to continuous mass |
 |  | Body mass sampling | Uniform within class ranges | This study | Re-sampled per replicate |
 |  | Replicates | (n = 100) | This study | Captures stochastic variation |
@@ -227,7 +227,9 @@ Overall, body size interaction parameters influence emergent food web structure 
 
 ## Downsampling PFIM networks
 
-To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs across the following range: 5.0, 10.0, 20.0, 30.0, 50.0, 100.0. We then calculated the Jaccard similarity of the resulting adjacency matrices. Across the parameter range the similarity of networks tended to remain above 0.6 and a downsampling parameter of 100 had a mean similarity of 0.86. We thus used a downsampling parameter of 100 for all of the PFIM networks for all statistical analyses.
+To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs by having the change in connectance across a range of 0.0, 0.01, 0.05, 0.1, 0.15. We then calculated the Jaccard similarity of the resulting adjacency matrices. As can be seen below a modest change on connectance (0.01) still has a similar network to the metaweb, thus all PFIM networks were downsampled so that linkes were randomly pruned until the connectance of the metaweb decreased by 0.1.
+
+![](figures/pfim_downsample.png)
 
 # Analyses
 
