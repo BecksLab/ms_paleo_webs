@@ -119,7 +119,8 @@ lda_summary <- plot_lda %>%
     .groups = "drop"
   )
 
-ggplot(plot_lda, 
+lda_plot <-
+  ggplot(plot_lda, 
        aes(x = lda.LD1, 
            y = lda.LD2, 
            colour = model,
@@ -142,11 +143,6 @@ ggplot(plot_lda,
   scale_fill_manual(values = pal_df$c,
                     name = "Model") +
   figure_theme
-
-ggsave("../notebooks/figures/S4_MANOVA_lda.png", 
-       width = 5250, 
-       height = 4000, 
-       units = "px", dpi = 700)
 
 # =========================
 # 6. Canonical Loadings Table
@@ -219,10 +215,12 @@ loadings_plot <-
   ) +
   figure_theme
 
+lda_plot + loadings_plot + 
+  plot_annotation(tag_levels = 'A')
+
 # Save figure
-ggsave("../notebooks/figures/S4_loadings.png", 
-       loadings_plot,
-       width = 8, 
+ggsave("../notebooks/figures/S4_multivar.png", 
+       width = 12, 
        height = 5, 
        dpi = 300)
 
@@ -517,7 +515,7 @@ ANOVA_summary <-
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
   coord_fixed() +
   scale_size_continuous(range = c(2, 8), name = "Interaction") +
-  labs(x = expression(paste("Importance of reconstruction approach (Partial ", eta[p]^2, ")")),
+  labs(x = expression(paste("Importance of model (Partial ", eta[p]^2, ")")),
        y = expression(paste("Importance of time (Partial ", eta[p]^2, ")"))) +
   figure_theme
 

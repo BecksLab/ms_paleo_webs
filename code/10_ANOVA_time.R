@@ -511,7 +511,7 @@ ANOVA_summary <-
   coord_fixed() +
   scale_size_continuous(range = c(2, 8), name = "Interaction") +
   labs(
-    x = expression(paste("Importance of reconstruction approach (Partial ", eta[p]^2, ")")),
+    x = expression(paste("Importance of model (Partial ", eta[p]^2, ")")),
     y = expression(paste("Importance of time (Partial ", eta[p]^2, ")"))
   ) +
   figure_theme
