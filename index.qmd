@@ -280,6 +280,28 @@ No single model is universally correct. Rather, each represents a distinct hypot
 
 A more mature modelling paradigm in food web ecology would treat network construction as a testable hypotheses, incorporate probabilistic link inference where possible, and routinely evaluate the sensitivity of ecological conclusions to alternative representations of interaction structure. Such an approach aligns with recent advances in probabilistic and ensemble network modelling and would strengthen the interpretability of network-based inference under global change [@banville2025; @poisot2016].
 
+::: {#ecoeov-box .callout-note title="Matching network models to ecological questions"}
+
+Building on the question–representation framework of @strydom2026, our results suggest three practical considerations for selecting and interpreting reconstructed food webs. These are guidelines rather than prescriptive rules: the appropriate model depends on the ecological question and the type of inference required. As a simple rule of thumb: match the model to the question, test the sensitivity of the answer, and be explicit about what the reconstruction can support.
+
+**Network structure: define the structure you need**
+
+Choose a network representation based on the structural properties relevant to your question. For questions about energy fluxes or realised trophic dynamics, prioritise models that constrain interactions to those likely to occur within the community of interest. For questions about potential diet breadth, generality, or possible competition, metaweb-oriented models may be more appropriate. Do not assume that differences in network structure necessarily reflect ecological differences: first consider whether they arise from the representation itself.
+
+**Pairwise interactions: distinguish potential from realised links**
+
+Decide whether you need to estimate the full set of potential interactions or the subset likely to occur in a particular community. Metaweb-oriented models may be better suited to questions about potential diets, whereas realised-web models may be more appropriate for community-specific interactions. However, neither guarantees accurate link recovery. If individual interactions underpin your conclusions, assess link-level agreement directly rather than relying on similarity in overall network structure. Where appropriate, complementary representations may help constrain predictions, provided their assumptions are explicit.
+
+**Downstream inference: test whether your conclusions hold**
+
+Evaluate model sensitivity at the level of your intended inference. Broad patterns, such as relative species vulnerability, may be consistent across models even when interaction-level predictions and extinction cascades differ. Repeat key analyses across plausible network representations and distinguish conclusions that persist from those that depend on model choice. Treat agreement as evidence of robustness, not proof of accuracy, and seek independent validation where possible. For comparative studies and cross-study syntheses, standardise reconstruction methods or explicitly account for methodological differences.
+
+**Check what the model imposes**
+
+Identify which network properties are prescribed by the model and which emerge from inferred interactions. When connectance or other structural properties are constrained, downstream patterns may reflect those imposed assumptions rather than independently emerging ecological signals. Do not interpret a model-imposed property as independent evidence of ecological organisation and be weary of how this property may impact other emerging structural properties (see *e.g.,* @poisot2014).
+
+:::
+
 # Conclusions
 
 Ecological network reconstruction is not a neutral methodological step, but a theoretical choice that shapes ecological inference. Applying six contrasting models to an identical species pool, we show that model choice systematically influences inferred network structure, interaction identity, and disturbance dynamics. While broad patterns, such as relative species vulnerability, were comparatively robust, fine-scale interactions and extinction cascades were highly model contingent. The reliability of network-based inference is therefore scale dependent.
