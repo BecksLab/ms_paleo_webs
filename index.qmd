@@ -121,13 +121,13 @@ keywords:
   - Palaeoecology
   - Ecosystem resilience
 abstract: |+
-  **1.** Ecological networks are increasingly used to compare community organisation, quantify interaction turnover, and infer responses to environmental change. However, interactions are often incompletely observed and must be reconstructed using models that encode different ecological assumptions. The extent to which these choices shape ecological inference remains underexplored.
+  **1.** Ecological networks are increasingly used to compare community organisation, quantify interaction turnover, and infer responses to environmental change. However, interaction data are often incomplete, requiring researchers to predict network structure using approaches that encode different ecological assumptions. The extent to which these choices influence macroecological inference remains underexplored.
 
-  **2.** We examine this problem by reconstructing four successive marine assemblages spanning the Early Toarcian extinction and recovery in the Cleveland Basin, UK. We compare six food-web models spanning feasibility-based, realised, and structural representations, holding species composition constant within each assemblage. We quantify network topology, pairwise interaction turnover, and inferred extinction dynamics.
+  **2.** We investigate this problem using four successive marine assemblages spanning the Early Toarcian Extinction Event and subsequent recovery. We compare six food-web models representing feasibility-based, realised, and structural approaches to network construction. By quantifying network topology, pairwise interaction turnover, and extinction dynamics while holding species composition constant across models, we assess how model choice influences inferences about ecological change through time.
 
-  **3.** Model choice explained substantially more variation in network structure than temporal turnover across extinction and recovery phases. Models producing similar network-level properties nevertheless inferred substantially different species-level interactions. Extinction scenario rankings were broadly consistent at the species level, but interaction-level outcomes and cascade dynamics were highly model contingent.
+  **3.** Model choice explained substantially more variation in network topology than temporal turnover across extinction and recovery phases. Models also predicted markedly different sets of pairwise interactions, even when their overall network structures were similar. Although species-level vulnerability rankings were comparatively robust across models, link-dependent extinction outcomes were more model-dependent, indicating that conclusions about ecological dynamics can depend on how interactions are reconstructed.
 
-  **4.** These findings demonstrate that the reliability of network-based inference depends on the scale of the ecological question. Similar network structures do not guarantee agreement on individual interactions, and apparently robust aggregate patterns may coexist with substantial uncertainty in inferred mechanisms. Network reconstruction should therefore be treated as an explicit component of hypothesis specification, with approaches matched to inferential goals and conclusions tested across alternative network representations.
+  **4.** Our findings demonstrate that ecological networks are not neutral representations of communities, but model-dependent representations that can shape macroecological inference. Network reconstruction should therefore be treated as part of hypothesis specification rather than a technical step preceding analysis. Matching models to inferential goals and testing conclusions across alternative network representations are essential for distinguishing robust ecological patterns from those contingent on modelling assumptions.
 
 date: last-modified
 bibliography: references.bib
@@ -148,7 +148,7 @@ Deep-time ecosystems provide a particularly useful context in which to examine t
 
 To address this question, we reconstruct ecological networks for four successive assemblages spanning the ETEE using six contrasting prediction approaches that represent feasibility-based, realised, and structural approaches to network construction. By holding species composition constant while varying the prediction method, we isolate the influence of model choice on inferred network structure and the ecological conclusions derived from it. We assess whether conclusions drawn from a single model, including those of @dunhill2024, remain robust across alternative, equally plausible representations of interaction structure, or whether different approaches yield substantially different interpretations of ecological change. More broadly, this case study examines how strongly macroecological conclusions derived from ecological networks depend on the assumptions embedded in the models used to construct them.
 
-# Methods
+# Materials and Methods
 
 ## Study system and fossil data
 
