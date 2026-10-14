@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.11.5">
+    <meta name="generator" content="quarto-1.11.6">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -135,14 +135,19 @@
     window.document.addEventListener("DOMContentLoaded", function () {
 
       var header = window.document.querySelector("#quarto-embed-header");
-      const titleBannerEl = window.document.querySelector("body > #title-block-header");
-      if (titleBannerEl) {
-        titleBannerEl.style.paddingTop = header.clientHeight + "px";
-      }
-      const contentEl = window.document.getElementById('quarto-content');
-      for (const child of contentEl.children) {
-        child.style.paddingTop = header.clientHeight + "px";
-        child.style.marginTop = "1em";
+      // Inside the site header, the site navigation offsets the content
+      // and manages headroom
+      const inSiteHeader = header.parentElement.id === "quarto-header";
+      if (!inSiteHeader) {
+        const titleBannerEl = window.document.querySelector("body > #title-block-header");
+        if (titleBannerEl) {
+          titleBannerEl.style.paddingTop = header.clientHeight + "px";
+        }
+        const contentEl = window.document.getElementById('quarto-content');
+        for (const child of contentEl.children) {
+          child.style.paddingTop = header.clientHeight + "px";
+          child.style.marginTop = "1em";
+        }
       }
 
       // Use the article root if the `back` call doesn't work. This isn't perfect
@@ -159,14 +164,16 @@
         }, 100);
       }
 
-      const headroom = new window.Headroom(header, {
-        tolerance: 5,
-        onPin: function () {
-        },
-        onUnpin: function () {
-        },
-      });
-      headroom.init();
+      if (!inSiteHeader) {
+        const headroom = new window.Headroom(header, {
+          tolerance: 5,
+          onPin: function () {
+          },
+          onUnpin: function () {
+          },
+        });
+        headroom.init();
+      }
     });
     </script>
 
@@ -175,11 +182,12 @@
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3b9ea68436acb9022c2fbce6dbb58b06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-35fc0813589bbfbfa0b8ec974497eeb2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-deb10828e67638621ea84613cdc954fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -195,13 +203,13 @@
       </head>
 
   <body class="quarto-notebook quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
-    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
-      
-      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Supplementary Material 2: Effects of Network Reconstruction on Food web structure</h6>
+    <nav id="quarto-embed-header" class="headroom fixed-top bg-primary" aria-labelledby="quarto-embed-title">
+
+      <a href="../index.html" onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material 2: Effects of Network Reconstruction on Food web structure</h6>
 
             <a href="../notebooks/results_expanded.qmd" class="btn btn-primary quarto-download-embed" download="results_expanded.qmd">Download Source</a>
-          </div>
+          </nav>
 
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
@@ -297,7 +305,7 @@
 <pre><code>Rows: 6 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (7): Metric, ADBM, ATN, Body-size ratio, Niche, PFIM, Random
+chr (7): statistic, ADBM, ATN, Body-size ratio, Niche, PFIM, Random
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -306,16 +314,16 @@ chr (7): Metric, ADBM, ATN, Body-size ratio, Niche, PFIM, Random
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 19%">
-<col style="width: 12%">
+<col style="width: 11%">
 <col style="width: 12%">
 <col style="width: 17%">
-<col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 10%">
 <col style="width: 11%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">statistic</th>
 <th style="text-align: left;">ADBM</th>
 <th style="text-align: left;">ATN</th>
 <th style="text-align: left;">Body-size ratio</th>
@@ -327,57 +335,57 @@ chr (7): Metric, ADBM, ATN, Body-size ratio, Niche, PFIM, Random
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Competition index</td>
-<td style="text-align: left;">-0.03 ±0.12</td>
-<td style="text-align: left;">-0.01 ±0.15</td>
-<td style="text-align: left;">0.06 ±0.1</td>
-<td style="text-align: left;">-0.43 ±0.19</td>
-<td style="text-align: left;">-0.79 ±0.12</td>
-<td style="text-align: left;">0 ±0.09</td>
+<td style="text-align: left;">-0.0322 ±0</td>
+<td style="text-align: left;">-0.00707 ±0</td>
+<td style="text-align: left;">0.0641 ±0</td>
+<td style="text-align: left;">-0.426 ±0</td>
+<td style="text-align: left;">-0.788 ±-1</td>
+<td style="text-align: left;">0.00323 ±0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Trophic index</td>
-<td style="text-align: left;">-1 ±0</td>
-<td style="text-align: left;">-1 ±0</td>
-<td style="text-align: left;">0.69 ±0.08</td>
-<td style="text-align: left;">0.19 ±0.32</td>
-<td style="text-align: left;">-0.15 ±0.11</td>
-<td style="text-align: left;">0.68 ±0.14</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Connectance</td>
-<td style="text-align: left;">0.3 ±0.02</td>
-<td style="text-align: left;">0.22 ±0.02</td>
-<td style="text-align: left;">0.17 ±0.01</td>
-<td style="text-align: left;">0.16 ±0.07</td>
-<td style="text-align: left;">0.13 ±0.02</td>
-<td style="text-align: left;">0.16 ±0.06</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Generality</td>
-<td style="text-align: left;">0.91 ±0.1</td>
-<td style="text-align: left;">1.07 ±0.1</td>
-<td style="text-align: left;">0.61 ±0.07</td>
-<td style="text-align: left;">1.04 ±0.19</td>
-<td style="text-align: left;">1.6 ±0.13</td>
-<td style="text-align: left;">0.43 ±0.15</td>
+<td style="text-align: left;">0.297 ±0</td>
+<td style="text-align: left;">0.224 ±0</td>
+<td style="text-align: left;">0.174 ±0</td>
+<td style="text-align: left;">0.163 ±0</td>
+<td style="text-align: left;">0.13 ±0</td>
+<td style="text-align: left;">0.159 ±0</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Generality</td>
+<td style="text-align: left;">0.913 ±1</td>
+<td style="text-align: left;">1.07 ±1</td>
+<td style="text-align: left;">0.613 ±1</td>
+<td style="text-align: left;">1.04 ±1</td>
+<td style="text-align: left;">1.6 ±2</td>
+<td style="text-align: left;">0.434 ±0</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Max trophic level</td>
-<td style="text-align: left;">3.34 ±0.2</td>
-<td style="text-align: left;">2.85 ±0.09</td>
-<td style="text-align: left;">6.16 ±0.57</td>
-<td style="text-align: left;">5.07 ±1.28</td>
-<td style="text-align: left;">3.08 ±0.29</td>
-<td style="text-align: left;">6 ±10.48</td>
+<td style="text-align: left;">3.34 ±3</td>
+<td style="text-align: left;">2.85 ±3</td>
+<td style="text-align: left;">6.16 ±6.2</td>
+<td style="text-align: left;">5.07 ±5.1</td>
+<td style="text-align: left;">3.08 ±3</td>
+<td style="text-align: left;">6 ±6.0016375188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Trophic index</td>
+<td style="text-align: left;">-1 ±-1</td>
+<td style="text-align: left;">-1 ±-1</td>
+<td style="text-align: left;">0.685 ±1</td>
+<td style="text-align: left;">0.193 ±0</td>
+<td style="text-align: left;">-0.15 ±0</td>
+<td style="text-align: left;">0.678 ±1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Vulnerability</td>
-<td style="text-align: left;">0.88 ±0.05</td>
-<td style="text-align: left;">1.06 ±0.14</td>
-<td style="text-align: left;">0.71 ±0.16</td>
-<td style="text-align: left;">0.58 ±0.16</td>
-<td style="text-align: left;">0.62 ±0.07</td>
-<td style="text-align: left;">0.43 ±0.15</td>
+<td style="text-align: left;">0.878 ±1</td>
+<td style="text-align: left;">1.06 ±1</td>
+<td style="text-align: left;">0.707 ±1</td>
+<td style="text-align: left;">0.578 ±1</td>
+<td style="text-align: left;">0.618 ±1</td>
+<td style="text-align: left;">0.435 ±0</td>
 </tr>
 </tbody>
 </table>
@@ -458,10 +466,10 @@ dbl (3): Can1, Can2, Can3
 </section>
 <section id="permanova-variance-partitioning" class="level3">
 <h3 class="anchored" data-anchor-id="permanova-variance-partitioning">PERMANOVA Variance Partitioning</h3>
-<p>To quantify the relative contributions of reconstruction framework and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Reconstruction framework (‘model’) and extinction phase (‘time’) were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.</p>
+<p>To quantify the relative contributions of model and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Model and extinction phase (‘time’) were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.</p>
 <section id="robustness-of-model-effects-after-temporal-centering" class="level4">
 <h4 class="anchored" data-anchor-id="robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</h4>
-<p>To determine whether the dominance of reconstruction framework reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, reconstruction framework explained 84.8% of multivariate variance (R² = 0.848, p &lt; 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among reconstruction frameworks.</p>
+<p>To determine whether the dominance of model reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, model type explained 84.8% of multivariate variance (R² = 0.848, p &lt; 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among models.</p>
 </section>
 </section>
 </section>
@@ -473,7 +481,7 @@ dbl (3): Can1, Can2, Can3
 </section>
 <section id="figure-s2.-temporal-trajectories-of-network-structure-by-model" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s2.-temporal-trajectories-of-network-structure-by-model">Figure S2. Temporal Trajectories of Network Structure by Model</h3>
-<p>Detailed shifts in network properties across the four extinction phases, categorised by organisational scale (Macro, Meso, Micro). Each line represents the mean value for a specific reconstruction framework, with error bars denoting standard error. This figure illustrates the “baseline” differences between models—such as the Niche model’s tendency to over-estimate motif counts—and their divergent responses to species loss.</p>
+<p>Detailed shifts in network properties across the four extinction phases, categorised by organisational scale (Macro, Meso, Micro). Each line represents the mean value for a specific model, with error bars denoting standard error. This figure illustrates the “baseline” differences between models—such as the Niche model’s tendency to over-estimate motif counts—and their divergent responses to species loss.</p>
 <p><a href="../figures/raw_time_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../figures/raw_time_structure.png" class="img-fluid"></a></p>
 </section>
 <section id="table-s3.-variance-partitioning-of-framework-time-and-interaction-effects." class="level3">
@@ -649,7 +657,7 @@ dbl (4): Pre-extinction, During extinction, Early extinction, Late extinction
 </section>
 <section id="figure-s4.-pairwise-framework-comparisons-tukey-hsd" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s4.-pairwise-framework-comparisons-tukey-hsd">Figure S4. Pairwise Framework Comparisons (Tukey HSD)</h3>
-<p>Heatmap showing significant differences between specific pairs of reconstruction frameworks across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks (<span class="math inline">\(*\)</span>) indicate statistical significance (p&lt;0.05). This identifies which specific models drive the high CV values seen in Figure 2.</p>
+<p>Heatmap showing significant differences between specific pairs of models across each extinction phase. Colours represent the magnitude and direction of the difference (estimate); asterisks (<span class="math inline">\(*\)</span>) indicate statistical significance (p&lt;0.05). This identifies which specific models drive the high CV values seen in Figure 2.</p>
 <p><a href="../figures/ANOVA_tukey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../figures/ANOVA_tukey.png" class="img-fluid"></a></p>
 </section>
 </section>
@@ -2843,6 +2851,9 @@ Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Ro
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;

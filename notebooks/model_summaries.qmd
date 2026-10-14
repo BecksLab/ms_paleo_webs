@@ -85,9 +85,9 @@ Although the body size ratio model is parameterised using empirical estimates de
 
 ### Paleo food web inference model
 
-The Paleo Food Web Inference Model (PFIM; @shaw2024) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.
+The Paleo Food Web Inference Model (PFWIM; @shaw2024) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.
 
-The original implementation of PFIM includes an optional downsampling step adapted from @roopnarine2006, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods [@roopnarine2006] but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by @shaw2024, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.
+The original implementation of PFWIM includes an optional downsampling step adapted from @roopnarine2006, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods [@roopnarine2006] but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by @shaw2024, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.
 
 ## Alternative palaeoecological reconstruction approaches and their exclusion
 
@@ -96,17 +96,18 @@ Expert-knowledge and guild-based assembly approaches
 
 Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (*e.g.,* @roopnarine2006). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.
 
-Conceptually, these approaches align closely with feasibility-based models such as PFIM, which also define interactions based on trait compatibility. However, PFIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.
+Conceptually, these approaches align closely with feasibility-based models such as PFWIM, which also define interactions based on trait compatibility. However, PFWIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.
 
 ## Phylogenetically informed and trait-evolution models
 
 Some recent approaches incorporate phylogenetic information or trait evolution models to constrain interaction probabilities (e.g., methods inspired by modern ecological network inference such as @fricke2022a). These frameworks assume that trophic interactions are structured by shared evolutionary history or conserved traits, and typically require well-resolved phylogenies and trait datasets.
 
-Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (*e.g.,* feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this system and were excluded from the comparative framework.
+Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (*e.g.,* feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this case study.
 
 ## Abundance- and co-occurrence–based inference methods
 
 In modern systems, trophic interactions can be inferred from species co-occurrence patterns, abundance data, or statistical association networks (*e.g.,* joint species distribution models, correlation-based networks). These approaches rely on high-resolution ecological sampling and assume that interaction structure can be inferred from patterns of co-variation in space or time.
+
 Fossil datasets generally do not provide the temporal or spatial resolution required to apply such methods robustly. Occurrence data are often time-averaged, spatially aggregated, and subject to preservation and sampling biases, which violate key assumptions of co-occurrence-based inference. Consequently, these approaches are not appropriate for reconstructing trophic interactions in deep-time assemblages and were not considered here.
 
 # Network construction
@@ -115,7 +116,7 @@ Fossil datasets generally do not provide the temporal or spatial resolution requ
 
 All food-web reconstruction approaches were evaluated within a unified comparative framework in which each model generated ensembles of binary interaction networks under identical species richness and sampling structure. This design allows direct comparison of emergent network properties while controlling for variation in species identity, temporal sampling, and stochastic realisations. Each reconstructed food web is represented as a directed binary adjacency matrix $A_{ij}$, where $A_{ij} = 1$ denotes a trophic interaction from consumer $i$ to resource $j$, and $A_{ij} = 0$ otherwise. Unless otherwise stated, all analyses are based on binary interaction structure.
 
-Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFIM) impose deterministic rule sets derived from discrete ecological traits.
+Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFWIM) impose deterministic rule sets derived from discrete ecological traits.
 
 For each model and time period, multiple stochastic realisations were generated to capture intrinsic variability. Reported results therefore reflect ensemble-level properties rather than single deterministic networks.
 
@@ -125,7 +126,7 @@ Food webs were generated for each reconstruction approach using a consistent sim
 
 For models requiring continuous traits (*e.g.,* ADBM, ATN, and body size ratio models), species body masses were assigned probabilistically for each replicate. Body mass values were drawn from a predefined distribution (log-scaled), and these values served as the primary input governing interaction probabilities or energetic constraints. As a result, each replicate represents a unique realisation of trait space, generating variation in network topology even under identical model parameterisation.
 
-In contrast, feasibility-based approaches (*e.g.,* PFIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.
+In contrast, feasibility-based approaches (*e.g.,* PFWIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.
 
 For each model–time combination, an ensemble of network replicates (n $\approx$ 50 per configuration) was generated. These ensembles form the basis for all downstream analyses, including structural comparisons, beta diversity calculations, and extinction simulations. By maintaining consistent replication across models, the framework captures both deterministic differences among reconstruction approaches and their inherent stochastic variability.
 
@@ -146,12 +147,12 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 | **ATN / L-matrix** | Body mass ($M_i$) | Uniform within size classes | This study | Same as ADBM |
 |  | Producer identity | Binary (from tiering) | Empirical data | Constrains trophic structure |
 |  | Interaction rules | Deterministic size-structured constraints | Schneider et al. (2016) implementation | I |
-| **Body-size ratio (BSR)** | Body mass ($M_i$) | Uniform within size classes | This study |  |
+| **Body-size ratio** | Body mass ($M_i$) | Uniform within size classes | This study |  |
 |  | α (optimum ratio) | 1.41 | @yeakel2014 | Serengeti-derived |
 |  | β (niche width) | 3.73 | @yeakel2014 |  |
 |  | γ (scaling / threshold) | −1.90 | @yeakel2014 |  |
 |  | Functional form | Quadratic in log mass ratio | @rohr2010 | Simplified formulation |
-| **PFIM (downsampled)** | Trait rules | Feeding, motility, tiering | @shaw2024 |  |
+| **PFWIM (downsampled)** | Trait rules | Feeding, motility, tiering | @shaw2024 |  |
 |  | 0.01 change in connectance of metaweb | 100.0 | This study | Power-law pruning |
 | **All models** | Body size classes | Discrete categories (tiny → gigantic) | Empirical data | Mapped to continuous mass |
 |  | Body mass sampling | Uniform within class ranges | This study | Re-sampled per replicate |
@@ -181,13 +182,13 @@ Metrics where $\eta^2$ was notably higher are labelled directly on the bars. The
 
 ## Parameterisation of the body-size ratio model
 
-To evaluate the sensitivity of the body-size ratio (BSR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.
+To evaluate the sensitivity of the body-size ratio reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.
 
-The BSR model defines trophic link probability as a function of predator–prey body-size ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.
+The Body-size ratio model defines trophic link probability as a function of predator–prey body-size ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.
 
 We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.
 
-### Table S2. Parameter perturbation classes for the BSR model
+### Table S2. Parameter perturbation classes for the Body-size ratio model
 
 | Parameter set | $\alpha$ (optimum ratio) | $\beta$ (niche width) | $\gamma$ (threshold / scaling) | Interpretation |
 |--------------|--------------|--------------|--------------|-------------------|
@@ -225,9 +226,9 @@ This choice is justified for three reasons:
 
 Overall, body size interaction parameters influence emergent food web structure in a systematic but constrained manner. Rather than defining fundamentally different network architectures, parameter variation reshapes networks along a single dominant gradient of interaction density and trophic role breadth. This analysis demonstrates that, although parameter choice influences interaction density and trophic breadth, the resulting variation is constrained and does not produce qualitatively different network structures, supporting the applicability of the model to systems that differ from the original calibration context.
 
-## Downsampling PFIM networks
+## Downsampling PFWIM networks
 
-To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs by having the change in connectance across a range of 0.0, 0.01, 0.05, 0.1, 0.15. We then calculated the Jaccard similarity of the resulting adjacency matrices. As can be seen below a modest change on connectance (0.01) still has a similar network to the metaweb, thus all PFIM networks were downsampled so that linkes were randomly pruned until the connectance of the metaweb decreased by 0.1.
+To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFWIM metawebs by having the change in connectance across a range of 0.0, 0.01, 0.05, 0.1, 0.15. We then calculated the Jaccard similarity of the resulting adjacency matrices. As can be seen below a modest change on connectance (0.01) still has a similar network to the metaweb, thus all PFWIM networks were downsampled so that links were randomly pruned until the connectance of the metaweb decreased by 0.1.
 
 ![](figures/pfim_downsample.png)
 

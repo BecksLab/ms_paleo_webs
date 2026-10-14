@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.11.5">
+    <meta name="generator" content="quarto-1.11.6">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -100,14 +100,19 @@
     window.document.addEventListener("DOMContentLoaded", function () {
 
       var header = window.document.querySelector("#quarto-embed-header");
-      const titleBannerEl = window.document.querySelector("body > #title-block-header");
-      if (titleBannerEl) {
-        titleBannerEl.style.paddingTop = header.clientHeight + "px";
-      }
-      const contentEl = window.document.getElementById('quarto-content');
-      for (const child of contentEl.children) {
-        child.style.paddingTop = header.clientHeight + "px";
-        child.style.marginTop = "1em";
+      // Inside the site header, the site navigation offsets the content
+      // and manages headroom
+      const inSiteHeader = header.parentElement.id === "quarto-header";
+      if (!inSiteHeader) {
+        const titleBannerEl = window.document.querySelector("body > #title-block-header");
+        if (titleBannerEl) {
+          titleBannerEl.style.paddingTop = header.clientHeight + "px";
+        }
+        const contentEl = window.document.getElementById('quarto-content');
+        for (const child of contentEl.children) {
+          child.style.paddingTop = header.clientHeight + "px";
+          child.style.marginTop = "1em";
+        }
       }
 
       // Use the article root if the `back` call doesn't work. This isn't perfect
@@ -124,14 +129,16 @@
         }, 100);
       }
 
-      const headroom = new window.Headroom(header, {
-        tolerance: 5,
-        onPin: function () {
-        },
-        onUnpin: function () {
-        },
-      });
-      headroom.init();
+      if (!inSiteHeader) {
+        const headroom = new window.Headroom(header, {
+          tolerance: 5,
+          onPin: function () {
+          },
+          onUnpin: function () {
+          },
+        });
+        headroom.init();
+      }
     });
     </script>
 
@@ -140,11 +147,12 @@
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3b9ea68436acb9022c2fbce6dbb58b06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-35fc0813589bbfbfa0b8ec974497eeb2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-deb10828e67638621ea84613cdc954fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -160,13 +168,13 @@
       </head>
 
   <body class="quarto-notebook quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
-    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
-      
-      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Supplementary Material S1: Expanded descriptions of the food web reconstruction approaches</h6>
+    <nav id="quarto-embed-header" class="headroom fixed-top bg-primary" aria-labelledby="quarto-embed-title">
+
+      <a href="../index.html" onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material S1: Expanded descriptions of the food web reconstruction approaches</h6>
 
             <a href="../notebooks/model_summaries.qmd" class="btn btn-primary quarto-download-embed" download="model_summaries.qmd">Download Source</a>
-          </div>
+          </nav>
 
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
@@ -234,10 +242,10 @@
   </ul></li>
   <li><a href="#parameterisation-of-the-body-size-ratio-model" id="toc-parameterisation-of-the-body-size-ratio-model" class="nav-link" data-scroll-target="#parameterisation-of-the-body-size-ratio-model">Parameterisation of the body-size ratio model</a>
   <ul class="collapse">
-  <li><a href="#table-s2.-parameter-perturbation-classes-for-the-bsr-model" id="toc-table-s2.-parameter-perturbation-classes-for-the-bsr-model" class="nav-link" data-scroll-target="#table-s2.-parameter-perturbation-classes-for-the-bsr-model">Table S2. Parameter perturbation classes for the BSR model</a></li>
+  <li><a href="#table-s2.-parameter-perturbation-classes-for-the-body-size-ratio-model" id="toc-table-s2.-parameter-perturbation-classes-for-the-body-size-ratio-model" class="nav-link" data-scroll-target="#table-s2.-parameter-perturbation-classes-for-the-body-size-ratio-model">Table S2. Parameter perturbation classes for the Body-size ratio model</a></li>
   <li><a href="#effects-of-body-size-interaction-parameterisation-on-network-structure" id="toc-effects-of-body-size-interaction-parameterisation-on-network-structure" class="nav-link" data-scroll-target="#effects-of-body-size-interaction-parameterisation-on-network-structure">Effects of body-size interaction parameterisation on network structure</a></li>
   </ul></li>
-  <li><a href="#downsampling-pfim-networks" id="toc-downsampling-pfim-networks" class="nav-link" data-scroll-target="#downsampling-pfim-networks">Downsampling PFIM networks</a></li>
+  <li><a href="#downsampling-pfwim-networks" id="toc-downsampling-pfwim-networks" class="nav-link" data-scroll-target="#downsampling-pfwim-networks">Downsampling PFWIM networks</a></li>
   </ul></li>
   <li><a href="#analyses" id="toc-analyses" class="nav-link" data-scroll-target="#analyses">Analyses</a>
   <ul class="collapse">
@@ -319,24 +327,25 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <h2 class="anchored" data-anchor-id="feasibility-models">Feasibility models</h2>
 <section id="paleo-food-web-inference-model" class="level3">
 <h3 class="anchored" data-anchor-id="paleo-food-web-inference-model">Paleo food web inference model</h3>
-<p>The Paleo Food Web Inference Model (PFIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.</p>
-<p>The original implementation of PFIM includes an optional downsampling step adapted from <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods <span class="citation" data-cites="roopnarine2006">(<a href="#ref-roopnarine2006" role="doc-biblioref">Roopnarine 2006</a>)</span> but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.</p>
+<p>The Paleo Food Web Inference Model (PFWIM; <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>) infers trophic interactions using a rule-based framework applied to discrete trait categories, such as habitat preference and body size. For a given consumer–resource pair, an interaction is deemed feasible only if all trait-based rules across multiple rule classes are satisfied.</p>
+<p>The original implementation of PFWIM includes an optional downsampling step adapted from <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>, which prunes interactions using a power-law distribution defined by the expected link distribution. This approach is conceptually aligned with earlier feasibility-based methods <span class="citation" data-cites="roopnarine2006">(<a href="#ref-roopnarine2006" role="doc-biblioref">Roopnarine 2006</a>)</span> but does not require explicit assignment of taxa to trophic guilds. We follow the implementation described by <span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span>, as these approaches are based on the same underlying feasibility framework and are expected to generate highly similar network structures.</p>
 </section>
 </section>
 <section id="alternative-palaeoecological-reconstruction-approaches-and-their-exclusion" class="level2">
 <h2 class="anchored" data-anchor-id="alternative-palaeoecological-reconstruction-approaches-and-their-exclusion">Alternative palaeoecological reconstruction approaches and their exclusion</h2>
 <p>A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages. Expert-knowledge and guild-based assembly approaches</p>
 <p>Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (<em>e.g.,</em> <span class="citation" data-cites="roopnarine2006">Roopnarine (<a href="#ref-roopnarine2006" role="doc-biblioref">2006</a>)</span>). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.</p>
-<p>Conceptually, these approaches align closely with feasibility-based models such as PFIM, which also define interactions based on trait compatibility. However, PFIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.</p>
+<p>Conceptually, these approaches align closely with feasibility-based models such as PFWIM, which also define interactions based on trait compatibility. However, PFWIM formalises these rules explicitly and allows stochastic sampling of interaction subsets, thereby enabling replication and statistical comparison across networks. Including both approaches would therefore provide limited additional contrast, as differences would largely reflect implementation rather than underlying ecological assumptions. For this reason, expert-knowledge guild models are not treated as a separate class in this study.</p>
 </section>
 <section id="phylogenetically-informed-and-trait-evolution-models" class="level2">
 <h2 class="anchored" data-anchor-id="phylogenetically-informed-and-trait-evolution-models">Phylogenetically informed and trait-evolution models</h2>
 <p>Some recent approaches incorporate phylogenetic information or trait evolution models to constrain interaction probabilities (e.g., methods inspired by modern ecological network inference such as <span class="citation" data-cites="fricke2022a">Fricke et al. (<a href="#ref-fricke2022a" role="doc-biblioref">2022</a>)</span>). These frameworks assume that trophic interactions are structured by shared evolutionary history or conserved traits, and typically require well-resolved phylogenies and trait datasets.</p>
-<p>Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (<em>e.g.,</em> feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this system and were excluded from the comparative framework.</p>
+<p>Such requirements are not met in most deep-time assemblages, including the Cleveland Basin dataset used here. Phylogenetic relationships among fossil taxa are often incomplete, uncertain, or unresolved at the level required to parameterise these models. Moreover, trait data are typically coarse and discretised (<em>e.g.,</em> feeding mode, tiering), limiting the applicability of continuous trait-evolution frameworks. As a result, phylogenetically informed reconstruction approaches are not currently feasible for this case study.</p>
 </section>
 <section id="abundance--and-co-occurrencebased-inference-methods" class="level2">
 <h2 class="anchored" data-anchor-id="abundance--and-co-occurrencebased-inference-methods">Abundance- and co-occurrence–based inference methods</h2>
-<p>In modern systems, trophic interactions can be inferred from species co-occurrence patterns, abundance data, or statistical association networks (<em>e.g.,</em> joint species distribution models, correlation-based networks). These approaches rely on high-resolution ecological sampling and assume that interaction structure can be inferred from patterns of co-variation in space or time. Fossil datasets generally do not provide the temporal or spatial resolution required to apply such methods robustly. Occurrence data are often time-averaged, spatially aggregated, and subject to preservation and sampling biases, which violate key assumptions of co-occurrence-based inference. Consequently, these approaches are not appropriate for reconstructing trophic interactions in deep-time assemblages and were not considered here.</p>
+<p>In modern systems, trophic interactions can be inferred from species co-occurrence patterns, abundance data, or statistical association networks (<em>e.g.,</em> joint species distribution models, correlation-based networks). These approaches rely on high-resolution ecological sampling and assume that interaction structure can be inferred from patterns of co-variation in space or time.</p>
+<p>Fossil datasets generally do not provide the temporal or spatial resolution required to apply such methods robustly. Occurrence data are often time-averaged, spatially aggregated, and subject to preservation and sampling biases, which violate key assumptions of co-occurrence-based inference. Consequently, these approaches are not appropriate for reconstructing trophic interactions in deep-time assemblages and were not considered here.</p>
 </section>
 </section>
 <section id="network-construction" class="level1">
@@ -344,14 +353,14 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <section id="overview-of-the-comparative-framework" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-the-comparative-framework">Overview of the comparative framework</h2>
 <p>All food-web reconstruction approaches were evaluated within a unified comparative framework in which each model generated ensembles of binary interaction networks under identical species richness and sampling structure. This design allows direct comparison of emergent network properties while controlling for variation in species identity, temporal sampling, and stochastic realisations. Each reconstructed food web is represented as a directed binary adjacency matrix <span class="math inline">\(A_{ij}\)</span>, where <span class="math inline">\(A_{ij} = 1\)</span> denotes a trophic interaction from consumer <span class="math inline">\(i\)</span> to resource <span class="math inline">\(j\)</span>, and <span class="math inline">\(A_{ij} = 0\)</span> otherwise. Unless otherwise stated, all analyses are based on binary interaction structure.</p>
-<p>Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFIM) impose deterministic rule sets derived from discrete ecological traits.</p>
+<p>Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFWIM) impose deterministic rule sets derived from discrete ecological traits.</p>
 <p>For each model and time period, multiple stochastic realisations were generated to capture intrinsic variability. Reported results therefore reflect ensemble-level properties rather than single deterministic networks.</p>
 </section>
 <section id="simulating-networks" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-networks">Simulating networks</h2>
 <p>Food webs were generated for each reconstruction approach using a consistent simulation framework designed to ensure comparability across models. For each model and time period, multiple independent network realisations were constructed (replicates), allowing stochastic variation in link structure to be quantified and propagated through subsequent analyses. All networks were built with identical species richness and based on a shared species pool, ensuring that differences in network structure arise solely from model-specific assumptions about interaction formation.</p>
 <p>For models requiring continuous traits (<em>e.g.,</em> ADBM, ATN, and body size ratio models), species body masses were assigned probabilistically for each replicate. Body mass values were drawn from a predefined distribution (log-scaled), and these values served as the primary input governing interaction probabilities or energetic constraints. As a result, each replicate represents a unique realisation of trait space, generating variation in network topology even under identical model parameterisation.</p>
-<p>In contrast, feasibility-based approaches (<em>e.g.,</em> PFIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.</p>
+<p>In contrast, feasibility-based approaches (<em>e.g.,</em> PFWIM) used discrete trait assignments (e.g., trophic guild, motility, tiering), which were fixed for a given time period. Stochasticity in these models arises primarily through optional link pruning or sampling procedures rather than variation in trait values.</p>
 <p>For each model–time combination, an ensemble of network replicates (n <span class="math inline">\(\approx\)</span> 50 per configuration) was generated. These ensembles form the basis for all downstream analyses, including structural comparisons, beta diversity calculations, and extinction simulations. By maintaining consistent replication across models, the framework captures both deterministic differences among reconstruction approaches and their inherent stochastic variability.</p>
 <section id="table-s1.-summary-of-parameterisation-across-food-web-reconstruction-models" class="level3">
 <h3 class="anchored" data-anchor-id="table-s1.-summary-of-parameterisation-across-food-web-reconstruction-models">Table S1. Summary of parameterisation across food web reconstruction models</h3>
@@ -465,7 +474,7 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <td>I</td>
 </tr>
 <tr class="even">
-<td><strong>Body-size ratio (BSR)</strong></td>
+<td><strong>Body-size ratio</strong></td>
 <td>Body mass (<span class="math inline">\(M_i\)</span>)</td>
 <td>Uniform within size classes</td>
 <td>This study</td>
@@ -500,7 +509,7 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <td>Simplified formulation</td>
 </tr>
 <tr class="odd">
-<td><strong>PFIM (downsampled)</strong></td>
+<td><strong>PFWIM (downsampled)</strong></td>
 <td>Trait rules</td>
 <td>Feeding, motility, tiering</td>
 <td><span class="citation" data-cites="shaw2024">Shaw et al. (<a href="#ref-shaw2024" role="doc-biblioref">2024</a>)</span></td>
@@ -557,11 +566,11 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 </section>
 <section id="parameterisation-of-the-body-size-ratio-model" class="level2">
 <h2 class="anchored" data-anchor-id="parameterisation-of-the-body-size-ratio-model">Parameterisation of the body-size ratio model</h2>
-<p>To evaluate the sensitivity of the body-size ratio (BSR) reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.</p>
-<p>The BSR model defines trophic link probability as a function of predator–prey body-size ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.</p>
+<p>To evaluate the sensitivity of the body-size ratio reconstruction model to assumptions about feeding niche structure and interaction filtering, we defined a set of seven parameter configurations spanning biologically plausible perturbations of the interaction probability function.</p>
+<p>The Body-size ratio model defines trophic link probability as a function of predator–prey body-size ratios and interaction structure is governed by three parameters controlling niche position, niche width, and interaction thresholding.</p>
 <p>We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.</p>
-<section id="table-s2.-parameter-perturbation-classes-for-the-bsr-model" class="level3">
-<h3 class="anchored" data-anchor-id="table-s2.-parameter-perturbation-classes-for-the-bsr-model">Table S2. Parameter perturbation classes for the BSR model</h3>
+<section id="table-s2.-parameter-perturbation-classes-for-the-body-size-ratio-model" class="level3">
+<h3 class="anchored" data-anchor-id="table-s2.-parameter-perturbation-classes-for-the-body-size-ratio-model">Table S2. Parameter perturbation classes for the Body-size ratio model</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -650,9 +659,9 @@ p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_
 <p>Overall, body size interaction parameters influence emergent food web structure in a systematic but constrained manner. Rather than defining fundamentally different network architectures, parameter variation reshapes networks along a single dominant gradient of interaction density and trophic role breadth. This analysis demonstrates that, although parameter choice influences interaction density and trophic breadth, the resulting variation is constrained and does not produce qualitatively different network structures, supporting the applicability of the model to systems that differ from the original calibration context.</p>
 </section>
 </section>
-<section id="downsampling-pfim-networks" class="level2">
-<h2 class="anchored" data-anchor-id="downsampling-pfim-networks">Downsampling PFIM networks</h2>
-<p>To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFIM metawebs by having the change in connectance across a range of 0.0, 0.01, 0.05, 0.1, 0.15. We then calculated the Jaccard similarity of the resulting adjacency matrices. As can be seen below a modest change on connectance (0.01) still has a similar network to the metaweb, thus all PFIM networks were downsampled so that linkes were randomly pruned until the connectance of the metaweb decreased by 0.1.</p>
+<section id="downsampling-pfwim-networks" class="level2">
+<h2 class="anchored" data-anchor-id="downsampling-pfwim-networks">Downsampling PFWIM networks</h2>
+<p>To assess the optimal downsampling parameter to use so as to allow some variation in network structure we downsampled PFWIM metawebs by having the change in connectance across a range of 0.0, 0.01, 0.05, 0.1, 0.15. We then calculated the Jaccard similarity of the resulting adjacency matrices. As can be seen below a modest change on connectance (0.01) still has a similar network to the metaweb, thus all PFWIM networks were downsampled so that links were randomly pruned until the connectance of the metaweb decreased by 0.1.</p>
 <p><a href="figures/pfim_downsample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="figures/pfim_downsample.png" class="img-fluid"></a></p>
 </section>
 </section>
@@ -1140,6 +1149,9 @@ Yeakel, Justin D., Mathias M. Pires, Lars Rudolf, et al. 2014. <span>“Collapse
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
