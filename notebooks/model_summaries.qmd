@@ -114,7 +114,7 @@ Fossil datasets generally do not provide the temporal or spatial resolution requ
 
 ## Overview of the comparative framework
 
-All food-web reconstruction approaches were evaluated within a unified comparative framework in which each model generated ensembles of binary interaction networks under identical species richness and sampling structure. This design allows direct comparison of emergent network properties while controlling for variation in species identity, temporal sampling, and stochastic realisations. Each reconstructed food web is represented as a directed binary adjacency matrix $A_{ij}$, where $A_{ij} = 1$ denotes a trophic interaction from consumer $i$ to resource $j$, and $A_{ij} = 0$ otherwise. Unless otherwise stated, all analyses are based on binary interaction structure.
+All food web reconstruction approaches were evaluated within a unified comparative framework in which each model generated ensembles of binary interaction networks under identical species richness and sampling structure. This design allows direct comparison of emergent network properties while controlling for variation in species identity, temporal sampling, and stochastic realisations. Each reconstructed food web is represented as a directed binary adjacency matrix $A_{ij}$, where $A_{ij} = 1$ denotes a trophic interaction from consumer $i$ to resource $j$, and $A_{ij} = 0$ otherwise. Unless otherwise stated, all analyses are based on binary interaction structure.
 
 Reconstruction approaches differ primarily in their generative assumptions: (i) random models assume interactions occur independently of species identity, (ii) niche- and body-size–based models impose trait-structured constraints in latent or observed trait space, (iii) allometric models incorporate mechanistic energetic or size-ratio constraints on interaction feasibility, and (iv) feasibility-based models (PFWIM) impose deterministic rule sets derived from discrete ecological traits.
 
@@ -204,7 +204,7 @@ These parameterisations represent structured deviations from the empirically cal
 
 ### Effects of body-size interaction parameterisation on network structure
 
-Multivariate analysis revealed that parameterisation of the body-size ratio interaction model significantly influenced emergent food-web structure (PERMANOVA, R^2 = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
+Multivariate analysis revealed that parameterisation of the body-size ratio interaction model significantly influenced emergent food web structure (PERMANOVA, R^2 = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
 
 Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, p = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.
 
@@ -236,7 +236,7 @@ To assess the optimal downsampling parameter to use so as to allow some variatio
 
 ## Multivariate analysis of network structure
 
-We quantified food-web structure using a suite of network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).
+We quantified food web structure using a suite of network metrics capturing global topology, motif composition, and species-level interaction patterns (Table S1). Differences among reconstruction approaches were assessed using a multivariate analysis of variance (MANOVA), with model identity as a fixed factor and the full set of network metrics as response variables. Pillai’s trace was used to assess overall multivariate significance due to its robustness to violations of multivariate normality. To identify the multivariate axes driving differences among models, we performed canonical discriminant analysis (CDA) on the MANOVA model. Canonical variates represent orthogonal linear combinations of network metrics that maximise separation among reconstruction approaches. The contribution of individual metrics to each canonical variate was quantified using canonical structure coefficients (correlations between original metrics and canonical scores).
 
 For visualisation, canonical scores were plotted using linear discriminant analysis (LDA), which yields an equivalent discriminant subspace under equal group priors. Model separation in canonical space was visualised using convex hulls encompassing all network replicates for each reconstruction approach. Univariate analyses of variance and effect sizes (partial η²) were calculated for individual metrics and are reported in the Supplementary Materials for descriptive comparison. Pairwise interaction turnover was quantified using link-based beta diversity, which measures dissimilarity in the identity of trophic interactions between networks and captures differences arising from species turnover or changes in interactions among shared species.
 
@@ -252,7 +252,7 @@ Structural dissimilarity between networks was quantified using interaction-based
 
 These metrics partition differences between networks into contributions arising from species loss versus rewiring of interactions among shared species.
 
-Together, they define a multilevel decomposition of structural divergence in food-web topology across models and time periods.
+Together, they define a multilevel decomposition of structural divergence in food web topology across models and time periods.
 
 ## Quantification of extinction simulation outcomes and model concordance
 
