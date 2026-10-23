@@ -581,3 +581,9 @@ ggsave("../figures/combined_ANOVA_time.png",
        units = "px",
        dpi = 300)
 
+# export plot objects
+saveRDS(linear_all,
+        "../data/outputs/linear_time.rds")
+saveRDS(ANOVA_summary,
+        "../data/outputs/anova_summary.rds")
+

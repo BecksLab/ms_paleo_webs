@@ -2,38 +2,25 @@
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{figures/MANOVA_lda.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/combined_fg1.png}}
 
 }
 
-\caption{\label{fig-structure}Linear discriminant analysis (LDA) of
-ecological network metrics for the six model types. Each point
-represents a replicate (n = 400 per approach), and ellipses indicate
-95\% confidence regions for each model.}
-
-\end{figure}
-\efloatseparator
- 
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures/combined_ANOVA_time.png}}
-
-}
-
-\caption{\label{fig-anova}Temporal changes in food web structure and the
-relative influence of model and ecological turnover on network
-properties. (\textbf{A}) Changes in network metrics through time,
-expressed as deviations from pre-extinction conditions (\(\delta\)).
+\caption{\label{fig-structure}Temporal dynamics of food-web structure
+and the relative effects of model identity and ecological turnover.
+(\textbf{A}) Linear discriminant analysis (LDA) of ecological network
+metrics across the six model types. Each point represents a replicate
+((n = 400) per approach), and ellipses indicate 95\% confidence regions
+for each model. (\textbf{B}) Temporal changes in network metrics,
+expressed as deviations from pre-extinction conditions ((\delta)).
 Metrics are faceted and scaled independently to highlight differences in
-temporal trajectories among network properties. (\textbf{B}) Relative
-influence of model (x-axis) and time (y-axis) on individual network
-metrics. The dashed 1:1 line indicates equal explanatory power. Metrics
-below the line are more strongly influenced by model than by temporal
-turnover. Bubble size represents the model × time interaction, and
-colour indicates disagreement among models (mean CV\%), with darker
-colours indicating greater divergence in metric estimates.}
+their temporal trajectories. (\textbf{C}) Relative influence of model
+identity (x-axis) and temporal turnover (y-axis) on individual network
+metrics. The dashed 1:1 line indicates equal explanatory power; metrics
+below the line are more strongly influenced by model identity than by
+temporal turnover. Bubble size represents the model × time interaction,
+and colour indicates disagreement among models (mean CV\%), with darker
+colours indicating greater divergence in metric estimates..}
 
 \end{figure}
 \efloatseparator
