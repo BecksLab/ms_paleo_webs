@@ -12,6 +12,11 @@ setwd(here("code"))
 
 source("lib/plotting_theme.R")
 
+metric_cols <- c(
+  "connectance", "trophic_level", "generality",
+  "vulnerability", "NDTI", "NDCI"
+)
+
 df_int <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
@@ -40,7 +45,7 @@ df <- df_int %>%
   yeet(!outlier) %>%
   vibe_check(-outlier)
 
-dist_mat <- dist(scale(df[3:ncol(df)]))
+dist_mat <- dist(scale(df[metric_cols]))
 
 # make factor
 df$model <- factor(df$model)
