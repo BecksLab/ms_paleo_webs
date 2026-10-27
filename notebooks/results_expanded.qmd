@@ -102,7 +102,7 @@ kable()
 
 ## Constraining connectance decreases observed differences between models
 
-It has been argued that connectance constrains emerging network properties [@poisot2014; @strydom2021b]. To assess if constraining the connectance of *all* networks would result in similar network structures we actively constrained the connectance of all networks by randomly downsampling them to the target connectance *i.e.,* the PFIM, ATN, ADBM, and Body-size ratio models had links randomly prunes until they reached the target connectance. Note that in some instances the initial connectance of the network may have already been below the target connectance and in these instances the network was used 'as is'. We repeated both the multivariate and temporal trajectory analyses for these connectance constrained networks.
+It has been argued that connectance constrains emerging network properties [@poisot2014; @strydom2021]. To assess if constraining the connectance of *all* networks would result in similar network structures we actively constrained the connectance of all networks by randomly downsampling them to the target connectance *i.e.,* the PFIM, ATN, ADBM, and Body-size ratio models had links randomly prunes until they reached the target connectance. Note that in some instances the initial connectance of the network may have already been below the target connectance and in these instances the network was used 'as is'. We repeated both the multivariate and temporal trajectory analyses for these connectance constrained networks.
 
 ### Figure S5. Constraining connectance decreases observed differences in network structure
 

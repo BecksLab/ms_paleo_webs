@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.11.6">
+    <meta name="generator" content="quarto-1.11.7">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -187,10 +187,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-35fc0813589bbfbfa0b8ec974497eeb2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-768b63afd51a7c6ff1dffc8c85096f30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-deb10828e67638621ea84613cdc954fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6a354d1a00c8b43085a33a14b9bccd7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -2426,7 +2426,7 @@ dbl (1): tau
 </section>
 <section id="constraining-connectance-decreases-observed-differences-between-models" class="level2">
 <h2 class="anchored" data-anchor-id="constraining-connectance-decreases-observed-differences-between-models">Constraining connectance decreases observed differences between models</h2>
-<p>It has been argued that connectance constrains emerging network properties <span class="citation" data-cites="poisot2014 strydom2021b">(<a href="#ref-poisot2014" role="doc-biblioref">Poisot and Gravel 2014</a>; <a href="#ref-strydom2021b" role="doc-biblioref">Strydom et al. 2021</a>)</span>. To assess if constraining the connectance of <em>all</em> networks would result in similar network structures we actively constrained the connectance of all networks by randomly downsampling them to the target connectance <em>i.e.,</em> the PFIM, ATN, ADBM, and Body-size ratio models had links randomly prunes until they reached the target connectance. Note that in some instances the initial connectance of the network may have already been below the target connectance and in these instances the network was used ‘as is’. We repeated both the multivariate and temporal trajectory analyses for these connectance constrained networks.</p>
+<p>It has been argued that connectance constrains emerging network properties <span class="citation" data-cites="poisot2014 strydom2021">(<a href="#ref-poisot2014" role="doc-biblioref">Poisot and Gravel 2014</a>; <a href="#ref-strydom2021" role="doc-biblioref">Strydom et al. 2021</a>)</span>. To assess if constraining the connectance of <em>all</em> networks would result in similar network structures we actively constrained the connectance of all networks by randomly downsampling them to the target connectance <em>i.e.,</em> the PFIM, ATN, ADBM, and Body-size ratio models had links randomly prunes until they reached the target connectance. Note that in some instances the initial connectance of the network may have already been below the target connectance and in these instances the network was used ‘as is’. We repeated both the multivariate and temporal trajectory analyses for these connectance constrained networks.</p>
 <section id="figure-s5.-constraining-connectance-decreases-observed-differences-in-network-structure" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s5.-constraining-connectance-decreases-observed-differences-in-network-structure">Figure S5. Constraining connectance decreases observed differences in network structure</h3>
 <p>Although there is still a significant effect of model type on network structure (Pillai’s trace = 1.64, approximate <span class="math inline">\(F_{30,10080}\)</span> = 164.5, <span class="math inline">\(p&lt;\)</span> 0.001) we can see that the visual clustering is much less dramatic than for the unconstrained networks (Figure 1 in the main text). However we do not see connectance as the <em>main</em> driver of differences in network structure in the mulitvariate space – note the connectance is more strongly correlated with LDA axis 2 than with LDA axis 1 indicating that although it ‘reduces’ the differences in network structure between models it is not the main driver in the observed differences.</p>
@@ -2446,7 +2446,7 @@ dbl (1): tau
 <div id="ref-poisot2014" class="csl-entry" role="listitem">
 Poisot, Timothée, and Dominique Gravel. 2014. <span>“When Is an Ecological Network Complex? Connectance Drives Degree Distribution and Emerging Network Properties.”</span> <em>PeerJ</em> 2 (February): e251. <a href="https://doi.org/10.7717/peerj.251">https://doi.org/10.7717/peerj.251</a>.
 </div>
-<div id="ref-strydom2021b" class="csl-entry" role="listitem">
+<div id="ref-strydom2021" class="csl-entry" role="listitem">
 Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Roadmap Towards Predicting Species Interaction Networks (Across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
 </div>
 </div>
@@ -2530,7 +2530,8 @@ Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Ro
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -2539,8 +2540,69 @@ Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Ro
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -2554,6 +2616,7 @@ Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Ro
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
