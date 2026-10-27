@@ -141,7 +141,7 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 |  | Niche values ($n_i$) | ($U(0,1)$) | Standard niche model |  |
 |  | Range distribution | Beta distribution with mean | Standard niche model | As in @williams2000 |
 | **ADBM** | Body mass ($M_i$) | Uniform within size classes (see below) | This study | Primary varying trait |
-|  | Biomass ($B_i$) | ($M_i\^{-3/4}$) | Metabolic scaling | Used in encounter rates |
+|  | Biomass ($B_i$) | ($M_i^{-3/4}$) | Metabolic scaling | Used in encounter rates |
 |  | Attack rate, handling time, energy scaling | Fixed allometric exponents | @petchey2008 | Default parameter set |
 |  | Resource density ($N_i$) | Derived from biomass | This study | Implicit in encounter term |
 | **ATN / L-matrix** | Body mass ($M_i$) | Uniform within size classes | This study | Same as ADBM |
@@ -204,13 +204,13 @@ These parameterisations represent structured deviations from the empirically cal
 
 ### Effects of body-size interaction parameterisation on network structure
 
-Multivariate analysis revealed that parameterisation of the body-size ratio interaction model significantly influenced emergent food web structure (PERMANOVA, R^2 = 0.227, F = 136.38, p = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
+Multivariate analysis revealed that parameterisation of the body-size ratio interaction model significantly influenced emergent food web structure (PERMANOVA, $R^2$ = 0.227, F = 136.38, $p$ = 0.001). Although statistically highly significant, this effect explains approximately one-fifth of total variation in multivariate network structure, indicating that parameter choice systematically shapes but does not dominate network topology.
 
-Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, p = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.
+Redundancy analysis (RDA) confirmed that this variation is primarily low-dimensional. The first canonical axis captured the majority of explainable variation among parameter sets (RDA1 F = 781.06, p = 0.001), with a secondary axis also contributing meaningfully (RDA2 F = 32.52, $p$ = 0.001), while subsequent axes were comparatively minor (RDA3 F = 4.46, p = 0.031; RDA4 non-significant). This indicates that differences among parameterisations are structured along a small number of dominant gradients rather than reflecting fully distinct multivariate regimes.
 
 Inspection of RDA loadings indicates that this structure is primarily driven by variation in connectance and measures of trophic organisation (notably generality and vulnerability), whereas richness and trophic level contribute comparatively weakly. Thus, parameter variation primarily reshapes interaction density and the distribution of consumer–resource breadth, rather than fundamentally altering overall network organisation.
 
-Despite significant differences in multivariate centroids, there was no evidence that parameter sets differ in multivariate dispersion (betadisper, F = 0.154, p = 0.988). This indicates that while parameter choice shifts the mean position of networks in multivariate space, it does not systematically alter the variability of structures generated within each parameter regime.
+Despite significant differences in multivariate centroids, there was no evidence that parameter sets differ in multivariate dispersion (betadisper, F = 0.154, $p$ = 0.988). This indicates that while parameter choice shifts the mean position of networks in multivariate space, it does not systematically alter the variability of structures generated within each parameter regime.
 
 ### Justification for baseline parameterisation
 
