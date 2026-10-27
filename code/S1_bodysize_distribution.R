@@ -33,7 +33,7 @@ df <- read_csv(here("data/processed/topology_bodysize.csv")) %>%
   yeet(model != "pfim_metaweb") %>%
   # Standardize model names for plots
   glow_up(model = case_when(
-    model == "pfim_downsample" ~ "PFIM",
+    model == "pfim_downsample" ~ "PFWIM",
     model == "bodymassratio" ~ "Body-size ratio",
     model == "adbm" ~ "ADBM",
     model == "lmatrix" ~ "ATN",

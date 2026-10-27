@@ -59,7 +59,7 @@ figure_theme =
 # This ensures a model is always the same colour across all plots
 # 1. DISCRETE MODEL COLORS (Paleo-Safe)
 colours <- c(
-  "PFIM"            = "#1E7548", # Deep Teal
+  "PFWIM"           = "#1E7548", # Deep Teal
   "Random"          = "#5F249F", # Deep Violet
   "Niche"           = "#69B3E7", # Soft Violet
   "ATN"             = "#6F263D", # Rich Rust

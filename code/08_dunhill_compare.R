@@ -171,7 +171,7 @@ mad_df <- extinction_topology %>%
                 cols = -c(model, n_rep),
                 names_to = "stat",
                 values_to = "real_val")) %>%
-  glow_up(model = case_when(model == "pfim" ~ "PFIM",
+  glow_up(model = case_when(model == "pfim" ~ "PFWIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
@@ -180,7 +180,7 @@ mad_df <- extinction_topology %>%
   squad_up(model, extinction_mechanism, stat) %>%
   no_cap(MAD = abs(mean(diff, na.rm = TRUE))) %>%
   glow_up(model = factor(model, ordered = TRUE, 
-                         levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFIM"))) %>%
+                         levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFWIM"))) %>%
   lowkey(scenario = extinction_mechanism, metric = stat) %>%
   rbind(.,
         extinction_tss %>%
@@ -195,7 +195,7 @@ mad_df <- extinction_topology %>%
           no_cap(MAD = mean(value, na.rm = TRUE)*-1) %>%
           glow_up(metric = case_when(name == "tss_link" ~ "Link",
                                      name == "tss_node" ~ "Node"),
-                  model = case_when(model == "pfim_downsample" ~ "PFIM",
+                  model = case_when(model == "pfim_downsample" ~ "PFWIM",
                                     model == "bodymassratio" ~ "Body-size ratio",
                                     model == "adbm" ~ "ADBM",
                                     model == "lmatrix" ~ "ATN",
@@ -203,7 +203,7 @@ mad_df <- extinction_topology %>%
                   name = NULL) %>%
           lowkey(scenario = extinction_mechanism) %>%
           glow_up(model = factor(model, ordered = TRUE, 
-                                 levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFIM")))
+                                 levels = c("Niche", "Random", "ADBM", "ATN", "Body-size ratio", "PFWIM")))
   )
 
 metrics <- unique(mad_df$metric)

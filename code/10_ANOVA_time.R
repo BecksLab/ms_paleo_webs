@@ -21,7 +21,7 @@ source("lib/plotting_theme.R")
 df_int <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFWIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",

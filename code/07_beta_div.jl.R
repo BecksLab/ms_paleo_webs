@@ -57,12 +57,12 @@ tile_df <-
   squad_up(Model1, Model2) %>%
   no_cap(Beta_turnover = mean(Beta_turnover, na.rm = TRUE)) %>%
   # Final polish for plot labels
-  glow_up(Model1 = case_when(Model1 == "pfim" ~ "PFIM",
+  glow_up(Model1 = case_when(Model1 == "pfim" ~ "PFWIM",
                              Model1 == "adbm" ~ "ADBM",
                              Model1 == "lmatrix" ~ "ATN",
                              Model1 == "bodymassratio" ~ "Body-size ratio",
                              .default = as.character(Model1)),
-          Model2 = case_when(Model2 == "pfim" ~ "PFIM",
+          Model2 = case_when(Model2 == "pfim" ~ "PFWIM",
                              Model2 == "adbm" ~ "ADBM",
                              Model2 == "lmatrix" ~ "ATN",
                              Model2 == "bodymassratio" ~ "Body-size ratio",
