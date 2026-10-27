@@ -26,7 +26,7 @@ ggplot(df,
        aes(x = delta_Co,
            y = similarity)) +
   geom_boxplot(aes(group = delta_Co),
-               fill = colours["PFIM"],
+               fill = colours["PFWIM"],
                colour = accent_col) +
   labs(x = "Change in connectance",
        y = "Jaccard similarity") +

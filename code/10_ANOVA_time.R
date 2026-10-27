@@ -21,7 +21,7 @@ source("lib/plotting_theme.R")
 df_int <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFWIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
@@ -580,4 +580,10 @@ ggsave("../figures/combined_ANOVA_time.png",
        height = 3800,
        units = "px",
        dpi = 300)
+
+# export plot objects
+saveRDS(linear_all,
+        "../data/outputs/linear_time.rds")
+saveRDS(ANOVA_summary,
+        "../data/outputs/anova_summary.rds")
 

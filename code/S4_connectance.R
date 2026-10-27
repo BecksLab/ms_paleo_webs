@@ -29,7 +29,7 @@ source("lib/plotting_theme.R")
 df_int <- read_csv("../data/processed/topology_connectance.csv") %>%
   vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFWIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
@@ -96,7 +96,7 @@ cor(df[3:ncol(df)], lda_scores)
 # =========================
 plot_lda <- data.frame(
   model = factor(df$model, levels = c("Niche","Random","ADBM","ATN",
-                                      "Body-size ratio", "PFIM")),
+                                      "Body-size ratio", "PFWIM")),
   lda = lda_scores,
   time = df$time
 )

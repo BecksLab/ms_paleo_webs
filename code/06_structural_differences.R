@@ -33,7 +33,7 @@ source("lib/plotting_theme.R")
 df_int <- read_csv("../data/processed/topology.csv") %>%
   vibe_check(-c(richness, distance, n_rep, redundancy, complexity, diameter)) %>%
   yeet(model != "pfim_metaweb") %>%
-  glow_up(model = case_when(model == "pfim_downsample" ~ "PFIM",
+  glow_up(model = case_when(model == "pfim_downsample" ~ "PFWIM",
                             model == "bodymassratio" ~ "Body-size ratio",
                             model == "adbm" ~ "ADBM",
                             model == "lmatrix" ~ "ATN",
@@ -109,14 +109,15 @@ cor(df[3:ncol(df)], lda_scores)
 # =========================
 plot_lda <- data.frame(
   model = factor(df$model, levels = c("Niche","Random","ADBM","ATN",
-                                      "Body-size ratio", "PFIM")),
+                                      "Body-size ratio", "PFWIM")),
   lda = lda_scores,
   time = df$time
 )
 
 plot_lda$model <- factor(plot_lda$model, levels = pal_df$l)
 
-ggplot(plot_lda, aes(x = lda.LD1, 
+manova_plot <- 
+  ggplot(plot_lda, aes(x = lda.LD1, 
                      y = lda.LD2, 
                      colour = model,
                      fill = model,
@@ -147,9 +148,14 @@ ggplot(plot_lda, aes(x = lda.LD1,
   figure_theme
 
 ggsave("../figures/MANOVA_lda.png", 
+       manova_plot,
        width = 5250, 
        height = 4000, 
        units = "px", dpi = 700)
+
+# export plot object
+saveRDS(manova_plot,
+        "../data/outputs/manova_plot.rds")
 
 # =========================
 # 6. Canonical Loadings Table
@@ -232,6 +238,10 @@ ggsave("../figures/canonical_loadings_plot.png",
        width = 8, 
        height = 5, 
        dpi = 300)
+
+# export plot object
+saveRDS(loadings_plot,
+        "../data/outputs/loadings_plot.rds")
 
 # =========================
 # 6. Pairwise - for supp matt
@@ -334,7 +344,7 @@ for (i in seq_along(levs)) {
     geom_text(aes(label = .group,
                   y = upper.CL),
               vjust = -0.6,
-              size = 3.5,
+              size = 5,
               colour = "black") +
     facet_wrap(
       vars(stat),
@@ -343,7 +353,7 @@ for (i in seq_along(levs)) {
     ) +
     scale_colour_manual(values = pal_df$c,
                         breaks = pal_df$l) +
-    scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
+    scale_y_continuous(expand = expansion(mult = c(0.05, 0.3))) +
     labs(
       x = NULL,
       y = "Estimated marginal mean",
@@ -365,7 +375,7 @@ plot_list_emm[[1]] /
 # Save figure
 ggsave("../figures/emm_plot.png", 
        width = 9,
-       height = 9, 
+       height = 11, 
        dpi = 600)
 
 # create summary table
