@@ -29,7 +29,7 @@ yotes_black <- "#292D32"
 ## 2. General Figure Theme ----
 # A "naked" classic theme with specific professional overrides
 figure_theme =
-  theme_classic(base_size = 14) +
+  theme_classic(base_size = 12) +
   theme(text = element_text(colour = accent_col,
                             family = "Noto"),
         plot.title = element_text(size = rel(1.5), face = "bold"),
