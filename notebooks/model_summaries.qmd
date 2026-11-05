@@ -91,8 +91,7 @@ The original implementation of PFWIM includes an optional downsampling step adap
 
 ## Alternative palaeoecological reconstruction approaches and their exclusion
 
-A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages.
-Expert-knowledge and guild-based assembly approaches
+A range of additional approaches have been developed to reconstruct trophic interactions in palaeoecological systems. These methods were not included in the present analysis because they are either conceptually redundant with the frameworks already implemented, or require data types that are not available or not well-resolved for the Cleveland Basin assemblages. Expert-knowledge and guild-based assembly approaches
 
 Early palaeo food web reconstructions often relied on expert-driven assignment of taxa to trophic guilds, followed by the specification of interactions among guilds (*e.g.,* @roopnarine2006). In these approaches, links are determined by ecological interpretation of functional roles rather than by explicit generative rules applied at the species level. While highly influential, such methods effectively encode expert knowledge as a fixed interaction structure, with limited capacity to propagate uncertainty or explore alternative configurations.
 
@@ -133,7 +132,7 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 ### Table S1. Summary of parameterisation across food web reconstruction models
 
 | Model | Parameter | Value / Distribution | Source / Implementation | Notes |
-|--------------|--------------|------------------|--------------|--------------|
+|---------------|---------------|---------------|---------------|---------------|
 | **Random** | Species richness (S) | Empirical (per community) | Input data | Shared across all models |
 |  | Number of links (L) | ($L = Co \times S^2$), with ($Co \sim U(0.05, 0.25)$) | This study | Connectance randomly drawn per replicate |
 | **Niche** | Species richness (S) | Empirical | Input data |  |
@@ -160,7 +159,24 @@ For each model–time combination, an ensemble of network replicates (n $\approx
 
 ## Extinction simulation framework
 
-To evaluate structural robustness, reconstructed networks were subjected to simulated species removal sequences representing alternative disturbance regimes. These included random extinction, degree-ordered extinction (based on generality and vulnerability), and trait-ordered extinction sequences derived from ecological hierarchies as defined in @dunhill2024.
+To evaluate structural robustness, reconstructed networks were subjected to simulated species removal sequences representing alternative disturbance regimes. These included random extinction, degree-ordered extinction (based on generality and vulnerability), and trait-ordered extinction sequences derived from ecological hierarchies as defined in the table below.
+
+### Table S2. Different extinction scenarios and specific trait hierarchies used/
+
+| Trait | Ordering | Hierarchy |
+|----|----|----|
+| Size | Ascending | tiny $\to$ small $\to$ medium $\to$ large $\to$ very large $\to$ gigantic |
+|  | Descending | gigantic $\to$ very large $\to$ large $\to$ medium $\to$ small $\to$ tiny |
+| Motility | Ascending | non motile $\to$ motile |
+|  | Descending | motile $\to$ non motile |
+| Tiering | Ascending | infaunal $\to$ epifaunal $\to$ pelagic |
+|  | Descending | pelagic $\to$ epifaunal $\to$ infaunal |
+| Calcification | Descending | heavy  $\to$ moderate  $\to$ light |
+|  | Ascending | light  $\to$ moderate  $\to$ heavy |
+| Generality | Ascending | lowest $\to$ highest |
+|  | Descending | highest $\to$ lowest |
+| Vulnerability | Ascending | lowest $\to$ highest |
+|  | Descending | highest $\to$ lowest |
 
 Following each removal event, secondary extinctions were computed dynamically as species losing all incoming trophic resources. This process generates cascading extinction dynamics dependent on underlying network topology.
 
@@ -170,7 +186,7 @@ All extinction regimes were applied consistently across reconstruction models an
 
 To assess whether the choice of body size sampling distribution (uniform, lognormal, or truncated lognormal) influences the estimated structure of ecological networks, we computed partial eta-squared ($\eta^2$) values for each network metric within each reconstruction model. This approach isolates the effect of body size distribution while controlling for model-specific variation.
 
-Across all models and network metrics, the effect of body size sampling method was extremely small. Most $\eta^2$ values were effectively zero (<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects ($\eta^2 \approx$ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.
+Across all models and network metrics, the effect of body size sampling method was extremely small. Most $\eta^2$ values were effectively zero (\<0.01), indicating that the choice of distribution had negligible influence on metrics such as connectance, generality, vulnerability, and various motif counts. Only a few metrics in the ATN and ADBM models showed slightly higher effects ($\eta^2 \approx$ 0.17 for max trophic level and the number of linear chains), but these remained the exception rather than the rule.
 
 These findings justify using any of the tested body size sampling approaches for our simulations, as the structural conclusions drawn from the networks are robust to this methodological choice. Consequently, analyses of network metrics and comparisons across reconstruction models are not confounded by the specific form of the synthetic body size distribution.
 
@@ -178,7 +194,7 @@ These findings justify using any of the tested body size sampling approaches for
 
 ![](figures/effect_size_bodysize_within_model.png)
 
-Metrics where $\eta^2$ was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, $\eta^2$ values are extremely low (<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
+Metrics where $\eta^2$ was notably higher are labelled directly on the bars. The figure highlights that, for the majority of network properties and models, $\eta^2$ values are extremely low (\<0.01), confirming that the body size distribution choice has negligible impact on network structure. A few exceptions appear for the ATN model, but these are limited to specific metrics (*e.g.,* number of linear chains).
 
 ## Parameterisation of the body-size ratio model
 
@@ -188,10 +204,10 @@ The Body-size ratio model defines trophic link probability as a function of pred
 
 We explored seven parameter sets (Table Sx), constructed to isolate distinct mechanistic perturbations of this function.
 
-### Table S2. Parameter perturbation classes for the Body-size ratio model
+### Table S3. Parameter perturbation classes for the Body-size ratio model
 
 | Parameter set | $\alpha$ (optimum ratio) | $\beta$ (niche width) | $\gamma$ (threshold / scaling) | Interpretation |
-|--------------|--------------|--------------|--------------|-------------------|
+|---------------|---------------|---------------|---------------|---------------|
 | baseline | 1.41 | 3.73 | -1.90 | Serengeti-calibrated reference model |
 | narrow_niche | 1.41 | 2.5 | -1.90 | Increased dietary specialization |
 | wide_niche | 1.41 | 5.0 | -1.90 | Relaxed dietary specialization |
@@ -212,7 +228,7 @@ Inspection of RDA loadings indicates that this structure is primarily driven by 
 
 Despite significant differences in multivariate centroids, there was no evidence that parameter sets differ in multivariate dispersion (betadisper, F = 0.154, $p$ = 0.988). This indicates that while parameter choice shifts the mean position of networks in multivariate space, it does not systematically alter the variability of structures generated within each parameter regime.
 
-### Justification for baseline parameterisation
+### Justification for baseline parameterisation
 
 Given that parameter variation induces structured but low-dimensional shifts in network topology, we retain the baseline parameter set ($\alpha$ = 1.41, $\beta$ = 3.73, $\gamma$ = −1.90; derived from empirical Serengeti estimates) for subsequent analyses.
 
