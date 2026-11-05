@@ -265,10 +265,8 @@ kendal_results <-
   kendal_results %>%
   left_join(metric_lookup, by = join_by(metric == statistic)) %>%
   glow_up(metric = str_to_sentence(metric),
-          level = case_when(metric %in% c("Complexity", "Connectance", "Trophic_level", "Richness", "Diameter") ~ "Macro",
-                            metric %in% c("Generality", "Vulnerability") ~ "Micro",
-                            metric %in% c("Node", "Link") ~ "TSS",
-                            .default = "Meso"),
+          level = case_when(metric %in% c("Node", "Link") ~ "TSS",
+                            .default = "MAD - Structure"),
           stat_label = if_else(is.na(stat_label),
                                metric,
                                stat_label)) %>%
@@ -279,10 +277,19 @@ kendal_results <-
   # keep upper triangle + diagonal
   yeet(as.integer(Model1) <= as.integer(Model2)) %>%
   # make diagonal white
-  glow_up(tau = ifelse(Model1 == Model2, NA, tau))
+  glow_up(tau = ifelse(Model1 == Model2, NA, tau),
+          stat_label = factor(stat_label,
+                              levels = c("Connectance",
+                                         "Max trophic level",
+                                         "Competition index",
+                                         "Trophic index",
+                                         "Generality",
+                                         "Vulnerability",
+                                         "Link",
+                                         "Node")))
 
-plot_list <- vector(mode = "list", length = 4)
-levs = c("Macro", "Meso", "Micro", "TSS")
+plot_list <- vector(mode = "list", length = 2)
+levs = c("MAD - Structure", "TSS")
 
 for (i in seq_along(plot_list)) {
   
@@ -309,19 +316,18 @@ for (i in seq_along(plot_list)) {
     ) +
     figure_theme +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
-          strip.text = element_text(face = "bold"),
-          legend.title = element_blank()
+          strip.text = element_text(face = "bold")
     )
   
 }
 
-plot_list[[1]] / plot_list[[2]] / plot_list[[3]] / plot_list[[4]] +
+plot_list[[1]] / plot_list[[2]] +
   plot_layout(guides = 'collect') +
-  plot_layout(height = c(1, 1, 1, 1))
+  plot_layout(height = c(3, 1))
 
 ggsave("../figures/kendal_tau.png",
        width = 5000,
-       height = 8500,
+       height = 7500,
        units = "px",
        dpi = 600)
 

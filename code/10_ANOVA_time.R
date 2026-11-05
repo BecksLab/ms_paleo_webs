@@ -176,55 +176,43 @@ df_plot <- df_anova %>%
                                 .default = str_to_sentence(statistic))) %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
                             statistic %in% c("Generality", "Vulnerability") ~ "Micro",
-                            .default = "Meso"))
+                            .default = "Meso")) %>%
+  glow_up(statistic = factor(statistic,
+                             levels = c("Connectance",
+                                        "Max trophic level",
+                                        "Competition index",
+                                        "Trophic index",
+                                        "Generality",
+                                        "Vulnerability")))
 
-plot_list_raw <- vector("list", length = 3)
-levs <- c("Macro", "Meso", "Micro")
-
-for (i in seq_along(plot_list_raw)) {
-  
-  plot_list_raw[[i]] <-
-    ggplot(
-      df_plot %>% yeet(level == levs[i]),
-      aes(x = time_fact, 
-          y = mean_val, 
-          colour = model, 
-          group = model)
-    ) +
-    geom_line(linewidth = 0.6) +
-    geom_point(size = 1) +
-    # Standard Error bars to show precision
-    geom_errorbar(aes(ymin = mean_val - se, ymax = mean_val + se), width = 0.1) +
-    facet_wrap(
-      vars(statistic),
-      scales = "free_y",
-      ncol = 2
-    ) +
-    scale_x_discrete(breaks = c(1, 2, 3, 4),
-                     labels = c("pre", "during", "early", "late")) +
-    scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
-    labs(
-      x = NULL,
-      y = NULL,
-      title = levs[i]
-    ) +
-    coord_cartesian(clip = "off") +
-    figure_theme
-}
-
-raw_lines_plot <- 
-  plot_list_raw[[1]] /
-  plot_list_raw[[2]] /
-  plot_list_raw[[3]] +
-  plot_layout(
-    guides = "collect",
-    heights = c(1, 1, 1)
-  )
+raw_lines_plot <-
+  ggplot(df_plot,
+         aes(x = time_fact, 
+             y = mean_val, 
+             colour = model, 
+             group = model)) +
+  geom_line(linewidth = 0.6) +
+  geom_point(size = 1) +
+  # Standard Error bars to show precision
+  geom_errorbar(aes(ymin = mean_val - se, ymax = mean_val + se), width = 0.1) +
+  facet_wrap(
+    vars(statistic),
+    scales = "free_y",
+    ncol = 2
+  ) +
+  scale_x_discrete(breaks = c(1, 2, 3, 4),
+                   labels = c("pre", "during", "early", "late")) +
+  scale_colour_manual(values = pal_df$c, breaks = pal_df$l) +
+  labs(
+    x = NULL,
+    y = "Change from Pre-extinction (Δ)") +
+  coord_cartesian(clip = "off") +
+  figure_theme
 
 ggsave("../figures/raw_time_structure.png",
        plot = raw_lines_plot,
        width = 5000,
-       height = 6500,
+       height = 4000,
        units = "px",
        dpi = 600)
 
@@ -245,50 +233,43 @@ df_linear <- df %>%
   disband() %>%
   left_join(metric_lookup, by = "statistic") %>%
   glow_up(
-    level = factor(level, levels = c("Macro", "Meso", "Micro")))
+    level = factor(level, levels = c("Macro", "Meso", "Micro"))) %>%
+  glow_up(stat_label = factor(stat_label,
+                              levels = c("Connectance",
+                                         "Max trophic level",
+                                         "Competition index",
+                                         "Trophic index",
+                                         "Generality",
+                                         "Vulnerability")))
 
-levs <- c("Macro", "Meso", "Micro")
-
-linear_plot_list <- vector("list", length(levs))
-
-for (i in seq_along(levs)) {
-  
-  linear_plot_list[[i]] <- ggplot(
-    df_linear %>% filter(level == levs[i]),
-    aes(x = time_num,
-        y = relative_change,
-        color = model,
-        group = model)) +
-    geom_hline(yintercept = 0, linetype = "dashed", 
-               color = accent_col) +
-    geom_line(linewidth = 1) +
-    geom_point(size = 2) +
-    facet_wrap(~ stat_label, scales = "free_y") +
-    scale_x_continuous(
-      breaks = 1:4,
-      labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
-    scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
-    labs(
-      title = levs[i],
-      x = NULL,
-      y = "Change from Pre-extinction (Δ)"
-    ) +
-    figure_theme +
-    theme(
-      axis.text.x = element_text(angle = 45, hjust = 1),
-      strip.text = element_text(face = "bold"),
-      legend.title = element_blank()
-    )
-}
-
-anova_linear <- linear_plot_list[[1]] / linear_plot_list[[2]] / linear_plot_list[[3]] +
-  plot_layout(guides = "collect") +
-  plot_layout(height = c(1, 1, 1))
+anova_linear <- 
+  ggplot(df_linear,
+         aes(x = time_num,
+             y = relative_change,
+             color = model,
+             group = model)) +
+  geom_hline(yintercept = 0, linetype = "dashed", 
+             color = accent_col) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~ stat_label, 
+             scales = "free_y",
+             ncol = 2) +
+  scale_x_continuous(
+    breaks = 1:4,
+    labels = c("Pre-extinction", "During Extinction", "Early Recovery", "Late Recovery")) +
+  scale_color_manual(values = pal_df$c, breaks = pal_df$l) +
+  labs(x = NULL,
+       y = "Change from Pre-extinction (Δ)") +
+  figure_theme +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        strip.text = element_text(face = "bold"),
+        legend.title = element_blank())
 
 ggsave("../figures/anova_linear_diff.png",
        anova_linear,
-       width = 6000,
-       height = 7000,
+       width = 5000,
+       height = 4000,
        units = "px",
        dpi = 600)
 
@@ -307,57 +288,40 @@ cv_analysis <- df_plot %>%
   .groups = "drop") %>%
   glow_up(level = case_when(statistic %in% c("Connectance", "Max trophic level") ~ "Macro",
                             statistic %in% c("Generality", "Vulnerability") ~ "Micro",
-                            .default = "Meso"))
-
-cv_plot_list <- vector("list", length = 3)
-levs <- c("Macro", "Meso", "Micro")
-
+                            .default = "Meso")) %>%
+  glow_up(statistic = factor(statistic,
+                             levels = c("Connectance",
+                                        "Max trophic level",
+                                        "Competition index",
+                                        "Trophic index",
+                                        "Generality",
+                                        "Vulnerability")))
 #get max val to standardise y axis
 
 max_y = max(cv_analysis$model_disagreement_cv)
 
-# 2. Loop through the levels to create the 3 stacked panels
-for (i in seq_along(cv_plot_list)) {
-  
-  # Filter data for the current level
-  plot_data <- cv_analysis %>% filter(level == levs[i])
-  
-  cv_plot_list[[i]] <- ggplot(plot_data, aes(x = time_fact, 
-                                             y = model_disagreement_cv, 
-                                             group = statistic)) +
-    # Adding a subtle area fill to emphasize the 'dip' in disagreement
-    geom_area(fill = "grey90", alpha = 0.5) +
-    geom_line(colour = accent_col, linewidth = 0.8) +
-    geom_point(colour = accent_col, size = 2) +
-    
-    # Faceting by metric within the scale (Macro/Meso/Micro)
-    facet_wrap(vars(statistic), scales = "free_y", ncol = 2) +
-    
-    # Matching your specific x-axis formatting
-    scale_x_discrete(breaks = c(1, 2, 3, 4),
-                     labels = c("pre", "during", "early", "late")) +
-    #ylim(c(0, max_y)) + 
-    # Styling to match your previous figures
-    labs(
-      x = NULL,
-      y = "Disagreement",
-      title = paste(levs[i])
-    ) +
-    coord_cartesian(clip = "off") +
-    figure_theme
-}
-
-# 3. Assemble the final multi-panel plot
-# Adjust heights based on how many metrics are in each level
-cv_final_plot <- cv_plot_list[[1]] / 
-  cv_plot_list[[2]] / 
-  cv_plot_list[[3]] +
-  plot_layout(heights = c(1, 2, 1))
+cv_final_plot <- 
+  ggplot(cv_analysis, 
+         aes(x = time_fact, 
+             y = model_disagreement_cv, 
+             group = statistic)) +
+  geom_area(fill = "grey90", alpha = 0.5) +
+  geom_line(colour = accent_col, linewidth = 0.8) +
+  geom_point(colour = accent_col, size = 2) +
+  facet_wrap(vars(statistic), 
+             scales = "free_y", 
+             ncol = 2) +
+  scale_x_discrete(breaks = c(1, 2, 3, 4),
+                   labels = c("pre", "during", "early", "late")) +
+  labs(x = NULL,
+       y = "Disagreement") +
+  coord_cartesian(clip = "off") +
+  figure_theme
 
 ggsave("../figures/cv.png",
        plot = cv_final_plot,
        width = 5000,
-       height = 6500,
+       height = 4000,
        units = "px",
        dpi = 600)
 
@@ -528,12 +492,12 @@ ggsave("../figures/ANOVA_summary.png",
 df_linear <-
   df_linear %>%
   glow_up(stat_label = factor(stat_label,
-                             levels = c("Connectance",
-                                        "Max trophic level",
-                                        "Competition index",
-                                        "Trophic index",
-                                        "Generality",
-                                        "Vulnerability")))
+                              levels = c("Connectance",
+                                         "Max trophic level",
+                                         "Competition index",
+                                         "Trophic index",
+                                         "Generality",
+                                         "Vulnerability")))
 
 linear_all <- ggplot(
   df_linear,
