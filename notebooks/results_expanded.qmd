@@ -1,5 +1,5 @@
 ---
-title: "Supplementary Material 2: Effects of Network Reconstruction on Food web structure"
+title: "Supplementary Material S2: Effects of Network Reconstruction on Food web structure"
 bibliography: ../references.bib
 ---
 
@@ -29,17 +29,17 @@ kable()
 
 ### Figure S1. Canonical Loadings
 
-Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Metric labels are shown for the most influential variables.
+Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Referring to properties calculated at either the node-level (micro), network-level (macro), or 
 
 ![](../figures/canonical_loadings_plot.png)
 
 ### PERMANOVA Variance Partitioning
 
-To quantify the relative contributions of model and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Model and extinction phase ('time') were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.
+To quantify the relative contributions of model and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised ($z$-transformed) network metrics. Model and extinction phase ('time') were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.
 
 #### Robustness of model effects after temporal centering
 
-To determine whether the dominance of model reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, model type explained 84.8% of multivariate variance (R² = 0.848, p < 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among models.
+To determine whether the dominance of model reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, model type explained 84.8% of multivariate variance ($R^2$ = 0.704, p < 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among models.
 
 ## Statistical Drivers of Network Variation
 
@@ -66,7 +66,7 @@ kable()
 
 ### Figure S3. Model Disagreement (CV%) Across Extinction Phases
 
-Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic "dip" at the 'during' phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.
+Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic dip at the 'during' phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.
 
 ![](../figures/cv.png)
 
@@ -74,7 +74,7 @@ Trends in inter-model disagreement, quantified as the Coefficient of Variation (
 
 Calculated inter-model CV% for each metric at each time step. These data points underpin the bubble sizes in Figure 2 and the trajectories in Figure S3. Note the reduction in CV% for linear chains and omnivory motifs during the peak extinction phase (During).
 
-```{r}
+```{r  echo=FALSE, message = FALSE, warning = FALSE}
 
 readr::read_csv("../tables/Model_Agreement_CV.csv") %>%
 kable()

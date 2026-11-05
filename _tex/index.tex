@@ -241,7 +241,7 @@ Shape Food Web Inference}
 %
 \textbf{Baran Karapunar}%
 ~\orcidlink{0000-0001-9711-1492}%
-\textsuperscript{2}%
+\textsuperscript{2,6}%
 %
 %
 , %
@@ -318,8 +318,8 @@ University of California, Riverside, CA, USA%
 University, New Haven, CT, USA%
 \\ %
 %
-\textsuperscript{6} Department of Paleontology, University of Zurich,
-Zurich, Switzerland%
+\textsuperscript{6} Department of Palaeontology, University of Zurich,
+Karl-Schmid-Strasse 4, 8006 Zurich, Switzerland%
 \\ %
 %
 \textsuperscript{7} Biosciences Department, Swansea University, Swansea
@@ -382,7 +382,7 @@ SA28PP, UK%
   \vskip 1em}
 \makeatother
 
-\date{2026-10-28}
+\date{2026-11-05}
 
 \usepackage[nolists,noheads,markers]{endfloat}
 
@@ -558,17 +558,17 @@ We used fossil occurrence data from the Cleveland Basin spanning the
 late Pliensbachian to the late Toarcian, encompassing the ETEE and
 subsequent ecological recovery. To characterise changes in network
 structure across this interval, we defined four successive
-paleo-assemblages: pre-extinction (Pliensbachian), post-extinction
-(early Toarcian), early recovery (early--middle Toarcian), and late
-recovery (late Toarcian). For each taxon, we recorded body size and
-characterised ecological traits using Bambach's ecospace framework
-(Bambach et al., 2007), coding tiering, motility, and feeding mode
-following Dunhill et al. (2024). Each paleo-assemblage was treated as a
-community of potentially interacting taxa. The dataset comprised 57 taxa
-representing diverse marine groups, including cephalopods, bivalves, and
-gastropods. Further details on the dataset, including taxonomic
-composition, trait coding, and temporal resolution, are provided in
-Dunhill et al. (2024).
+paleo-assemblages: pre-extinction (Pliensbachian--early Toarcian),
+post-extinction (early Toarcian), early recovery (early--middle
+Toarcian), and late recovery (late Toarcian). For each taxon, we
+recorded body size and characterised ecological traits using Bambach's
+ecospace framework (Bambach et al., 2007), coding tiering, motility, and
+feeding mode following Dunhill et al. (2024). Each paleo-assemblage was
+treated as a community of potentially interacting taxa. The dataset
+comprised 57 taxa representing diverse marine groups, including
+cephalopods, bivalves, gastropods, and vertebrates. Further details on
+the dataset, including taxonomic composition, trait coding, and temporal
+resolution, are provided in Dunhill et al. (2024).
 
 \subsection{Network construction
 models}\label{network-construction-models}
@@ -730,7 +730,7 @@ bin). Of the simulated networks we excluded those that had a network
 metric that was considered an outlier (\(> 3\sigma\) from the mean).
 This resulted in the removal of 13 networks (of which 3 were ATN model
 networks and the rest Random model networks), typically due to very
-large trophic level values. COntinuous body sizes were assigned from the
+large trophic level values. Continuous body sizes were assigned from the
 categorical size classes. This was done by sampling from a truncated
 lognormal distribution, with the upper and lower bounds of each size
 class serving as the boundaries. Alternative body size distributions
@@ -869,11 +869,11 @@ trace = 2.79, approximate \(F_{30,11880}\) = 502.1, \(p<\) 0.001),
 indicating that the model choice systematically alters inferred food web
 topology. Linear discriminant analysis (LDA) identified two dominant
 axes of variation, explaining 95.2\% of the differences between models.
-LDA axis one correlated with trophic index, vulnerability, and
-generality. LDA axis two correlated with competition index, generality,
-and connectance (Panel A Figure~\ref{fig-structure}; Table S1, Figure
-S1). Broadly indicating that structural differences are driven by the
-way in which the models assign links to species as opposed to
+LDA axis 1 (LD1) correlated with trophic index, vulnerability, and
+generality. LDA axis 2 (LD2) correlated with competition index,
+generality, and connectance (Figure~\ref{fig-structure} A; Table S1,
+Figure S1). Broadly indicating that structural differences are driven by
+the way in which the models assign links to species as opposed to
 macro-level network properties such as maximum trophic level.
 
 \begin{figure}
@@ -890,15 +890,16 @@ and the relative effects of model identity and ecological turnover.
 metrics across the six model types. Each point represents a replicate
 ((n = 400) per approach), and ellipses indicate 95\% confidence regions
 for each model. (\textbf{B}) Temporal changes in network metrics,
-expressed as deviations from pre-extinction conditions ((\delta)).
+expressed as deviations from pre-extinction conditions (\(\delta\)).
 Metrics are faceted and scaled independently to highlight differences in
 their temporal trajectories. (\textbf{C}) Relative influence of model
-identity (x-axis) and temporal turnover (y-axis) on individual network
-metrics. The dashed 1:1 line indicates equal explanatory power; metrics
-below the line are more strongly influenced by model identity than by
-temporal turnover. Bubble size represents the model × time interaction,
-and colour indicates disagreement among models (mean CV\%), with darker
-colours indicating greater divergence in metric estimates..}
+identity (\(x\)-axis) and temporal turnover (\(y\)-axis) on individual
+network metrics. The dashed 1:1 line indicates equal explanatory power;
+metrics below the line are more strongly influenced by model identity
+than by temporal turnover. Bubble size represents the model \(\times\)
+time interaction, and colour indicates disagreement among models (mean
+CV\%), with darker colours indicating greater divergence in metric
+estimates..}
 
 \end{figure}%
 
@@ -909,7 +910,7 @@ Permutational multivariate analysis of variance (PERMANOVA) revealed
 that modelling framework accounted for most of the variation in
 multivariate network structure (\(R^2\) = 0.597, \(p\) \textless{}
 0.001), whereas temporal turnover across extinction phases explained a
-near negligable proportion of variance (\(R^2\) = 0.001, \(p\)
+near negligible proportion of variance (\(R^2\) = 0.001, \(p\)
 \textless{} 0.001), alongside the model \(\times\) time interaction
 (\(R^2\) = 0.03, \(p\) \textless{} 0.001), indicating limited but
 significant time-dependent divergence among models. Thus, differences
@@ -921,12 +922,12 @@ To determine whether the dominance of the model reflected absolute mean
 shifts across time, we repeated the analysis after centring network
 metrics within each time bin. This procedure removes between-phase
 differences while retaining within-phase structural variation. Even
-after temporal bin-standardised centring, the model explained the
+after temporal bin-standardised centering, the model explained the
 majority of the observed multivariate variance (\(R^2\) = 0.704, \(p\)
-\textless{} 0.001). These results demonstrate that the influence of
-modelling approach is not driven by temporal mean differences but
-reflects intrinsic divergence among models in how ecological
-interactions are organised.
+\textless{} 0.001, see Supplementary Material S2 for more details).
+These results demonstrate that the influence of modelling approach is
+not driven by temporal mean differences but reflects intrinsic
+divergence among models in how ecological interactions are organised.
 
 \subsubsection{Statistical Drivers of Network
 Variation}\label{statistical-drivers-of-network-variation}
@@ -941,11 +942,11 @@ network metrics models predict different responses across time
 (\emph{e.g.,} connectance). A two-way factorial ANOVA across all eight
 network metrics confirmed that model was the dominant driver of
 variance, with partial eta-squared values (\(\eta^{2}_{p}\)) exceeding
-0.7 (Figure~\ref{fig-structure}, panel C; Table S3), except for maximum
-trophic level for which \(\eta^{2}_{p} = 0.1\). While time significantly
-altered network structure (\(p<0\).001), its relative importance
-remained secondary, typically explaining a smaller fraction of the
-strucutral variation. This is clear in panel C of
+0.7 for most metrics (Figure~\ref{fig-structure} C; Table S3), except
+for maximum trophic level for which \(\eta^{2}_{p} = 0.1\). While time
+significantly altered network structure (\(p<0\).001), its relative
+importance remained secondary, typically explaining a smaller fraction
+of the structural variation. This is clear in panel C of
 Figure~\ref{fig-structure} where all metrics are within the bottom-right
 (model-dominated) triangle (below the dashed line), emphasising that
 model assumptions outweigh the ecological signal of extinction-driven
@@ -970,16 +971,16 @@ striking is that the two size-based models (ADBM, ATN) that were broadly
 similar in structure still showcase a high degree of interaction
 turnover, demonstrating that agreement in overall network structure does
 not guarantee agreement in species-level interactions. As the PFWIM is a
-metaweb model one would expect that is should have the greatest
+metaweb model, one would expect that it should have the greatest
 dissimilarity with the other body-size constrained models. However,
-although there is a high degree of turnover this is not notably higher
+although there is a high degree of turnover, this is not notably higher
 than turnover between the body size models. Overall, we see that at the
-pairwise level we see that each model tends to have a distinct set of
-pairwise interaction from the other. Note that the moderate degree of
+pairwise level each model tends to have a distinct set of pairwise
+interaction from the other. Note that the moderate degree of
 within-model interaction turnover can be ascribed to noise during the
-network construction process. For the PFIM networks this is due to the
-random downsampling, wheres for the body-size constrained models this is
-due to to bodysizes being re-simulated for every network.
+network construction process. For the PFWIM networks this is due to the
+random downsampling, whereas for the body-size constrained models, this
+is due to body sizes being re-simulated for every network.
 
 \begin{figure}
 
@@ -1011,13 +1012,13 @@ positively correlated (Kendall's \(\tau \approx\) 0.122 across the
 structural metrics), indicating weak but generally positive agreement on
 the relative importance of extinction mechanisms despite the substantial
 differences observed between modelled network structure. The exception
-to this is maximum trophic level where we see more disagreement between
+to this is maximum trophic level, where we see more disagreement between
 the model rankings of extinction mechanisms.
 
 Node-level TSS rankings were similarly consistent across models
 (Kendall's \(\tau \approx\) 0.528), reflecting broadly comparable
-node-level removal sequences. In contrast, link-level outcomes were far
-more variable (Kendall's \(\tau \approx\) 0.143), highlighting that
+node-level inferences. In contrast, link-level outcomes were far more
+variable (Kendall's \(\tau \approx\) 0.143), highlighting that
 inferences about which interactions are lost or retained during collapse
 and recovery are highly model contingent. However, we see that models
 tend to converge on similar species-level extinction patterns, whereas
@@ -1034,13 +1035,14 @@ interaction loss and cascading dynamics depend strongly on the model.
 
 \caption{\label{fig-mad}Heatmaps showing pairwise Kendall rank
 correlation coefficients (\(\tau\)) between models for each network
-metric. Each panel corresponds to a different metric and displays the
-degree of agreement in extinction-scenario rankings across models based
-on mean absolute differences (MAD) between observed and predicted
-network values as well as differences in species links (TSS). Positive
-\(\tau\) values (purple) indicate concordant rankings between models,
-whereas negative \(\tau\) values (sienna) indicate opposing rankings.
-Paler colours approaching zero represent little or no agreement.}
+metric in simulated post-extinction communities. Each panel corresponds
+to a different metric and displays the degree of agreement in
+extinction-scenario rankings across models based on mean absolute
+differences (MAD) between observed and predicted network values as well
+as differences in species links (TSS). Positive \(\tau\) values (purple)
+indicate concordant rankings between models, whereas negative \(\tau\)
+values (sienna) indicate opposing rankings. Paler colours approaching
+zero represent little or no agreement.}
 
 \end{figure}%
 
@@ -1073,8 +1075,8 @@ variation in food web topology than temporal turnover across extinction
 and recovery phases. Despite sharing an identical regional taxon pool,
 alternative models generated distinct structural signatures occupying
 non-overlapping regions of multivariate space
-(Figure~\ref{fig-structure}). Model type remained the dominant driver of
-structural variation even after accounting for differences between
+(Figure~\ref{fig-structure} A). Model type remained the dominant driver
+of structural variation even after accounting for differences between
 phases, indicating that models impose distinct `structural priors' that
 shape emergent topology, species roles, and predictions of extinction
 dynamics. Network structure is therefore determined not solely by
@@ -1093,8 +1095,8 @@ identical across all replicates retained structural differences between
 models, albeit to a lesser degree (Supplementary Material S2). Notably,
 the properties exhibiting the strongest temporal signals also showed the
 greatest inter-model disagreement, suggesting that temporal trends are
-hardest to resolve where models diverge most strongly (panel C,
-Figure~\ref{fig-structure}).
+hardest to resolve where models diverge most strongly
+(Figure~\ref{fig-structure} C).
 
 Model disagreement was even more pronounced at the level of individual
 pairwise interactions. Models producing structurally similar networks
@@ -1108,16 +1110,16 @@ comparison concerns agreement between predictions, not their accuracy.
 This pattern is evident in the ATN and ADBM models. Both showed
 substantial variation along LDA axis 2, strongly correlated with the
 competition index, but relatively little variation along axis 1,
-strongly correlated with the trophic index and vulnerability (Panel A
-Figure~\ref{fig-structure}). Together with the limited variation in
-trophic index across extinction and recovery phases (panel B,
-Figure~\ref{fig-structure}), this suggests that these models constrain
-aspects of trophic structure, including the balance of linear chains and
-omnivory, despite variation in competitive structure. However, their
-structural similarity does not translate into agreement on individual
-interactions (Figure~\ref{fig-beta_div}). Thus, models shape not only
-the overall structure of inferred food webs but also the ecological
-interactions through which that structure is realised.
+strongly correlated with the trophic index and vulnerability
+(Figure~\ref{fig-structure} A). Together with the limited variation in
+trophic index across extinction and recovery phases
+(Figure~\ref{fig-structure} B), this suggests that these models
+constrain aspects of trophic structure, including the balance of linear
+chains and omnivory, despite variation in competitive structure.
+However, their structural similarity does not translate into agreement
+on individual interactions (Figure~\ref{fig-beta_div}). Thus, models
+shape not only the overall structure of inferred food webs but also the
+ecological interactions through which that structure is realised.
 
 \subsection{Node- vs link-based
 inference}\label{node--vs-link-based-inference}
@@ -1128,17 +1130,17 @@ extinction rankings were broadly consistent among models, whereas
 link-level outcomes were model contingent (TSS panel,
 Figure~\ref{fig-mad}). This likely reflects the fact that, for
 node-specific specifications, primary extinction order is determined by
-species traits and is therefore consistent across network types. The
-similarity in TSS scores, which evaluate the identity of surviving
-species, further suggests that secondary extinctions were also broadly
-consistent. However, when primary extinction sequences are determined by
-link-level traits, which depend on the inferred network structure, we
-see model-specific differences. This suggests that broad species-level
-inferences may be robust across plausible interaction architectures, and
-that models are broadly assigning species to the same trophic positions.
-However, conclusions about interaction loss, retention, and
-reorganisation are more depend on how specifc links are assigned to
-species.
+species traits and is therefore consistent across network types, while
+link recovery is model dependent. The similarity in TSS scores, which
+evaluate the identity of surviving species, further suggests that
+secondary extinctions were also broadly consistent. However, when
+primary extinction sequences are determined by link-level traits, which
+depend on the inferred network structure, we see model-specific
+differences. This suggests that broad species-level inferences may be
+robust across plausible interaction architectures, and that models are
+broadly assigning species to the same trophic positions. However,
+conclusions about interaction loss, retention, and reorganisation depend
+more on how specific links are assigned to species.
 
 This distinction challenges a central ambition of food web ecology
 related to using interaction structure to identify the mechanisms
@@ -1211,13 +1213,13 @@ routinely evaluating the sensitivity of conclusions to alternative
 representations of interaction structure. Such an approach aligns with
 recent advances in probabilistic and ensemble network modelling
 (Banville et al., 2025; Poisot et al., 2016; Wootton et al., 2021). More
-fundamentally, it recognises that ecological networks are not simply
-representations of communities, but model-dependent representations
-through which ecological patterns are identified and interpreted. Their
-value as macroecological state variables therefore depends not only on
-their capacity to capture ecological organisation, but also on whether
-the patterns they reveal persist across plausible representations of
-interaction structure.
+fundamentally, it recognises that reconstructed ecological networks are
+not simply representations of communities, but model-dependent
+representations through which ecological patterns are identified and
+interpreted. Their value as macroecological state variables therefore
+depends not only on their capacity to capture ecological organisation,
+but also on whether the patterns they reveal persist across plausible
+representations of interaction structure.
 
 \begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Matching network models to ecological questions}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
 

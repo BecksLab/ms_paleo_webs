@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.11.7">
+    <meta name="generator" content="quarto-1.12.0">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-    <title>Supplementary Material 2: Effects of Network Reconstruction on Food web structure</title>
+    <title>Supplementary Material S2: Effects of Network Reconstruction on Food web structure</title>
     <style>
       /* Default styles provided by pandoc.
       ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -187,10 +187,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-768b63afd51a7c6ff1dffc8c85096f30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f0688f390a76b21125ecd060a3d0a4db.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0932a89a4d5699f4f0035fc500decb3b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7243993cd8e8d3307898efd20dade3cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -206,7 +206,7 @@
     <nav id="quarto-embed-header" class="headroom fixed-top bg-primary" aria-labelledby="quarto-embed-title">
 
       <a href="../index.html" onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material 2: Effects of Network Reconstruction on Food web structure</h6>
+      <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material S2: Effects of Network Reconstruction on Food web structure</h6>
 
             <a href="../notebooks/results_expanded.qmd" class="btn btn-primary quarto-download-embed" download="results_expanded.qmd">Download Source</a>
           </nav>
@@ -214,7 +214,7 @@
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Supplementary Material 2: Effects of Network Reconstruction on Food web structure</h1>
+      <h1 class="title">Supplementary Material S2: Effects of Network Reconstruction on Food web structure</h1>
           </div>
 
     
@@ -461,15 +461,15 @@ dbl (3): Can1, Can2, Can3
 </section>
 <section id="figure-s1.-canonical-loadings" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s1.-canonical-loadings">Figure S1. Canonical Loadings</h3>
-<p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Metric labels are shown for the most influential variables.</p>
+<p>Canonical loadings for the first two canonical variates (CV1, CV2) from the canonical discriminant analysis of network metrics. Arrows indicate the contribution of each metric to the multivariate separation among reconstruction models. Colours denote the scale of each metric: Macro (light brown), Meso (brown), Micro (sienna). Referring to properties calculated at either the node-level (micro), network-level (macro), or</p>
 <p><a href="../figures/canonical_loadings_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../figures/canonical_loadings_plot.png" class="img-fluid"></a></p>
 </section>
 <section id="permanova-variance-partitioning" class="level3">
 <h3 class="anchored" data-anchor-id="permanova-variance-partitioning">PERMANOVA Variance Partitioning</h3>
-<p>To quantify the relative contributions of model and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (z-transformed) network metrics. Model and extinction phase (‘time’) were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.</p>
+<p>To quantify the relative contributions of model and temporal turnover to variation in inferred network structure, we conducted permutational multivariate analysis of variance (PERMANOVA). Euclidean distance matrices were calculated from standardised (<span class="math inline">\(z\)</span>-transformed) network metrics. Model and extinction phase (‘time’) were analysed separately to estimate their total contributions to variance, and in combination to assess interaction effects. Significance was assessed using 999 permutations.</p>
 <section id="robustness-of-model-effects-after-temporal-centering" class="level4">
 <h4 class="anchored" data-anchor-id="robustness-of-model-effects-after-temporal-centering">Robustness of model effects after temporal centering</h4>
-<p>To determine whether the dominance of model reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, model type explained 84.8% of multivariate variance (R² = 0.848, p &lt; 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among models.</p>
+<p>To determine whether the dominance of model reflected absolute structural shifts among extinction phases, we repeated the analysis after centering network metrics within each time bin. This procedure removes mean temporal differences while preserving within-phase structural variation. Even after temporal centering, model type explained 84.8% of multivariate variance (<span class="math inline">\(R^2\)</span> = 0.704, p &lt; 0.001), exceeding the variance explained in the uncentered analysis. Thus, the strong influence of model identity is not attributable to temporal mean differences, but reflects intrinsic structural divergence among models.</p>
 </section>
 </section>
 </section>
@@ -554,7 +554,7 @@ dbl (3): Model, Time, Interaction
 </section>
 <section id="figure-s3.-model-disagreement-cv-across-extinction-phases" class="level3">
 <h3 class="anchored" data-anchor-id="figure-s3.-model-disagreement-cv-across-extinction-phases">Figure S3. Model Disagreement (CV%) Across Extinction Phases</h3>
-<p>Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic “dip” at the ‘during’ phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.</p>
+<p>Trends in inter-model disagreement, quantified as the Coefficient of Variation (CV%) between framework means. The Y-axis is standardised across panels to facilitate comparison between organisational scales. A characteristic dip at the ‘during’ phase in several meso-scale metrics illustrates the structural canalisation effect, where severe species loss forces a temporary convergence in model predictions.</p>
 <p><a href="../figures/cv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../figures/cv.png" class="img-fluid"></a></p>
 </section>
 <section id="table-s4.-percentage-disagreement-between-frameworks-across-extinction-phases." class="level3">
@@ -2779,44 +2779,54 @@ Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Ro
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
