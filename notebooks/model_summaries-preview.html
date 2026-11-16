@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.12.1">
+    <meta name="generator" content="quarto-1.12.2">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -44,6 +44,26 @@
       }
       div.csl-indent {
         margin-left: 2em;
+      }@media print {
+        html {
+          color-scheme: light only;
+        }
+        html, body, pre, code {
+          background-color: transparent;
+        }
+        body, a, a:visited, blockquote {
+          color: black;
+        }
+        pre, code {
+          padding: 0;
+        }
+        p, h2, h3 {
+          orphans: 3;
+          widows: 3;
+        }
+        h2, h3, h4 {
+          page-break-after: avoid;
+        }
       }    </style>
 
     <style>
@@ -60,12 +80,15 @@
         border-bottom: solid 1px;
       }
 
+      /* The title sits on the theme's primary background, so it inherits the
+         header's contrasting text color instead of the theme heading color */
       #quarto-embed-header h6 {
         font-size: 1.1em;
         padding-top: 0.6em;
         margin-left: 1em;
         margin-right: 1em;
         font-weight: 400;
+        color: inherit;
       }
 
       #quarto-embed-header a.quarto-back-link,
@@ -152,10 +175,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a34e72179bd910c3a0d1c193f042680d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-61ac5bf2e772475afc0e17dd7ea7c344.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-808fa2b54be4417f9355fb1d1925d19c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -168,7 +191,7 @@
       </head>
 
   <body class="quarto-notebook quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
-    <nav id="quarto-embed-header" class="headroom fixed-top bg-primary" aria-labelledby="quarto-embed-title">
+    <nav id="quarto-embed-header" class="headroom fixed-top text-bg-primary" aria-labelledby="quarto-embed-title">
 
       <a href="../index.html" onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
       <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material S1: Expanded descriptions of the food web reconstruction approaches</h6>
@@ -286,43 +309,29 @@
 <h3 class="anchored" data-anchor-id="allometric-diet-breadth-model">Allometric diet breadth model</h3>
 <p>The Allometric Diet Breadth Model (ADBM; <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>) is grounded in optimal foraging theory and predicts trophic interactions based on energetic considerations. In this framework, consumers select prey to maximize their rate of energy intake, such that diet composition is determined by the energetic profitability of potential resources. The model therefore predicts both the number of trophic links and their arrangement based on species-level traits, specifically consumer diet breadth.</p>
 <p>The energy intake rate (<span class="math inline">\(K\)</span>) of a consumer is defined as:</p>
-<p><span class="math display">\[
-K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}
-\]</span></p>
+<p><span class="math display">\[K = \frac{\sum_{i=1}^{k}\lambda_{ij}E_{i}}{1+\sum_{i=1}^{k}\lambda_{ij}H_{ij}}\]</span></p>
 <p>where <span class="math inline">\(\lambda_{ij}\)</span> is the encounter rate between consumer <span class="math inline">\(j\)</span> and resource <span class="math inline">\(i\)</span>, defined as the product of attack rate (<span class="math inline">\(A_i\)</span>) and resource density (<span class="math inline">\(N_i\)</span>), <span class="math inline">\(E_i\)</span> is the energy content of the resource, and <span class="math inline">\(H_{ij}\)</span> is the handling time. Handling time depends on the ratio of consumer to resource body mass and is defined as:</p>
-<p><span class="math display">\[
-H_{ij} = \frac{h}{b - \frac{M_{i}}{M_{j}}} if \frac{M_{i}}{M_{j}} &lt; b
-\]</span></p>
+<p><span class="math display">\[H_{ij} = \frac{h}{b - \frac{M_{i}}{M_{j}}} if \frac{M_{i}}{M_{j}} &lt; b\]</span></p>
 <p>and</p>
-<p><span class="math display">\[
-H_{ij} = \infty \geq b
-\]</span></p>
+<p><span class="math display">\[H_{ij} = \infty \geq b\]</span></p>
 <p>All bioenergetic and allometric parameters were fixed to the default values reported in <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span> and were not estimated from data. Attack rates, handling times, and resource densities were parameterised as power-law functions of body mass using empirically derived scaling exponents, while energy content was assumed to scale linearly with prey body mass. Body mass was therefore the sole varying biological input to the model across replicates, with all other parameters held constant.</p>
 </section>
 <section id="allometric-trophic-network-model" class="level3">
 <h3 class="anchored" data-anchor-id="allometric-trophic-network-model">Allometric trophic network model</h3>
 <p>The Allometric Trophic Network (ATN; <span class="citation" data-cites="brose2006">Brose et al. (<a href="#ref-brose2006" role="doc-biblioref">2006</a>)</span>) model also uses body mass to infer trophic interactions but places greater emphasis on mechanical constraints associated with consumer–resource size relationships. Interactions are determined by allometric rules based on the ratio of consumer (<span class="math inline">\(M_i\)</span>) to resource (<span class="math inline">\(M_j\)</span>) body mass and are further constrained to produce networks that resemble realized food webs <span class="citation" data-cites="schneider2016 gauzens2023">(<a href="#ref-schneider2016" role="doc-biblioref">Schneider et al. 2016</a>; <a href="#ref-gauzens2023" role="doc-biblioref">Gauzens et al. 2023</a>)</span>.</p>
 <p>The probability of a trophic interaction (<span class="math inline">\(P_{ij}\)</span>) between consumer <span class="math inline">\(i\)</span> and resource <span class="math inline">\(j\)</span> is defined using a Ricker function parameterized by the optimal body-size ratio (<span class="math inline">\(R_{opt}\)</span>) and the shape parameter <span class="math inline">\(\gamma\)</span>:</p>
-<p><span class="math display">\[
-P_{ij} = (L \times \exp(1 - L))^{\gamma}
-\]</span></p>
+<p><span class="math display">\[P_{ij} = (L \times \exp(1 - L))^{\gamma}\]</span></p>
 <p>where</p>
-<p><span class="math display">\[
-L = \frac{M_{i}}{M_{j} \times R_{opt}}
-\]</span></p>
+<p><span class="math display">\[L = \frac{M_{i}}{M_{j} \times R_{opt}}\]</span></p>
 <p>An optional threshold can be applied to <span class="math inline">\(P_{ij}\)</span>, such that interaction probabilities below the threshold are set to zero, further constraining network structure.</p>
 <p>All bioenergetic and allometric parameters were fixed to the default values reported in <span class="citation" data-cites="petchey2008">Petchey et al. (<a href="#ref-petchey2008" role="doc-biblioref">2008</a>)</span>, which were originally evaluated across a range of empirical food webs spanning both terrestrial and aquatic systems. Although these parameterisations are not derived specifically from paleo communities, previous work has shown that ADBM structural predictions are relatively robust to variation in scaling exponents across ecosystem types. As our analyses focus on comparative differences among reconstruction approaches rather than absolute parameter calibration, using a consistent, empirically grounded parameter set provides a standardised baseline for comparison.</p>
 </section>
 <section id="body-size-ratio-model" class="level3">
 <h3 class="anchored" data-anchor-id="body-size-ratio-model">Body size ratio model</h3>
 <p>The body size ratio model <span class="citation" data-cites="rohr2010">(<a href="#ref-rohr2010" role="doc-biblioref">Rohr et al. 2010</a>)</span> infers trophic interactions probabilistically based on the ratio of consumer (<span class="math inline">\(M_i\)</span>) to resource (<span class="math inline">\(M_j\)</span>) body mass. To represent predator–prey body-size ratios as a feeding niche, the model modifies this ratio using a quadratic function in log-transformed mass space, producing a unimodal interaction probability distribution. In its simplified form, the probability of an interaction between consumer <span class="math inline">\(i\)</span> and resource <span class="math inline">\(j\)</span> is defined as:</p>
-<p><span class="math display">\[
-P_{ij} = \frac{p}{1+p}
-\]</span></p>
+<p><span class="math display">\[P_{ij} = \frac{p}{1+p}\]</span></p>
 <p>where</p>
-<p><span class="math display">\[
-p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]
-\]</span></p>
+<p><span class="math display">\[p = exp[\alpha + \beta log(\frac{M_{i}}{M_{j}}) + \gamma log^{2}(\frac{M_{i}}{M_{j}})]\]</span></p>
 <p>The original latent-trait formulation introduced by <span class="citation" data-cites="rohr2010">Rohr et al. (<a href="#ref-rohr2010" role="doc-biblioref">2010</a>)</span> included an additional interaction term, <span class="math inline">\(v_i \delta f_j\)</span>. For simplicity, and following <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, this term is omitted here and only the equation above is used. Parameter values are taken directly from <span class="citation" data-cites="yeakel2014">Yeakel et al. (<a href="#ref-yeakel2014" role="doc-biblioref">2014</a>)</span>, which were estimated using Serengeti food web data: <span class="math inline">\(\alpha = 1.41\)</span>, <span class="math inline">\(\beta = 3.75\)</span>, and <span class="math inline">\(\gamma = 1.87\)</span>.</p>
 <p>Although the body size ratio model is parameterised using empirical estimates derived from terrestrial systems (<em>e.g.,</em> Serengeti food webs), its applicability to paleo communities may be less direct. To address this, we explicitly evaluated the sensitivity of network structure (see <em>Parameterisation of the body-size ratio model</em> section) to variation in key parameters governing interaction probabilities.</p>
 </section>
@@ -800,7 +809,7 @@ Brose, Ulrich, Tomas Jonsson, Eric L. Berlow, et al. 2006. <span>“Consumer<spa
 Erdős, P., and A. Rényi. 1959. <span>“On Random Graphs. i.”</span> <em>Publicationes Mathematicae Debrecen</em> 6 (3-4): 290–97. <a href="https://doi.org/10.5486/pmd.1959.6.3-4.12">https://doi.org/10.5486/pmd.1959.6.3-4.12</a>.
 </div>
 <div id="ref-fricke2022a" class="csl-entry" role="listitem">
-Fricke, Evan C., Chia Hsieh, Owen Middleton, et al. 2022. <span>“Collapse of Terrestrial Mammal Food Webs Since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
+Fricke, Evan C., Chia Hsieh, Owen Middleton, et al. 2022. <span>“Collapse of Terrestrial Mammal Food Webs since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
 </div>
 <div id="ref-gauzens2023" class="csl-entry" role="listitem">
 Gauzens, Benoit, Ulrich Brose, Eva Delmas, and Emilio Berti. 2023. <span>“ATNr: Allometric Trophic Network Models in r.”</span> <em>Methods in Ecology and Evolution</em> 14 (11): 2766–73. <a href="https://doi.org/10.1111/2041-210X.14212">https://doi.org/10.1111/2041-210X.14212</a>.

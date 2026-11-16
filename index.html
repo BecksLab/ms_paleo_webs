@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.2">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -15,7 +15,7 @@
 <meta name="author" content="Andy Ridgwell">
 <meta name="author" content="Andrew P. Beckerman">
 <meta name="author" content="Alexander M. Dunhill">
-<meta name="dcterms.date" content="2026-11-06">
+<meta name="dcterms.date" content="2026-11-16">
 <meta name="keywords" content="Network reconstruction, Macroecology, Ecological networks, Interaction turnover, Trophic organisation, paleoecology, Ecosystem resilience">
 
 <title>Are We Mapping Ecosystems or Models? How Reconstruction Choices Shape Food Web Inference</title>
@@ -56,6 +56,26 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
+}@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
 }</style>
 
 
@@ -67,10 +87,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a34e72179bd910c3a0d1c193f042680d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-61ac5bf2e772475afc0e17dd7ea7c344.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-808fa2b54be4417f9355fb1d1925d19c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -125,10 +145,10 @@ window.Quarto = {
 <meta name="citation_author" content="Andy Ridgwell">
 <meta name="citation_author" content="Andrew P. Beckerman">
 <meta name="citation_author" content="Alexander M. Dunhill">
-<meta name="citation_publication_date" content="2026-11-06">
-<meta name="citation_cover_date" content="2026-11-06">
+<meta name="citation_publication_date" content="2026-11-16">
+<meta name="citation_cover_date" content="2026-11-16">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-11-06">
+<meta name="citation_online_date" content="2026-11-16">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Extinction cascades, community collapse, and recovery across a mesozoic hyperthermal event; citation_author=Alexander M. Dunhill; citation_author=Karolina Zarzyczny; citation_author=Jack O. Shaw; citation_author=Jed W. Atkinson; citation_author=Crispin T. S. Little; citation_author=Andrew P. Beckerman; citation_publication_date=2024-10-04; citation_cover_date=2024-10-04; citation_year=2024; citation_fulltext_html_url=https://www.nature.com/articles/s41467-024-53000-2; citation_issue=1; citation_doi=10.1038/s41467-024-53000-2; citation_volume=15; citation_language=en; citation_firstpage=8599; citation_journal_title=Nature Communications;">
 <meta name="citation_reference" content="citation_title=Shortcomings of reusing species interaction networks created by different sets of researchers; citation_author=Chris Brimacombe; citation_author=Korryn Bodner; citation_author=Matthew Michalska-Smith; citation_author=Timothée Poisot; citation_author=Marie-Josée Fortin; citation_publication_date=2023-03; citation_cover_date=2023-03; citation_year=2023; citation_fulltext_html_url=https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002068; citation_issue=4; citation_doi=10.1371/journal.pbio.3002068; citation_volume=21; citation_language=en; citation_firstpage=e3002068; citation_journal_title=PLOS Biology;">
@@ -292,7 +312,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">November 6, 2026</p>
+              <p class="date">November 16, 2026</p>
             </div>
           </div>
           
@@ -703,10 +723,10 @@ Dansereau, Gabriel, Ceres Barros, and Timothée Poisot. 2024. <span>“Spatially
 Delmas, Eva, Mathilde Besson, Marie-Hélène Brice, et al. 2018. <span>“Analysing Ecological Networks of Species Interactions.”</span> <em>Biological Reviews</em>, June 20, 112540. <a href="https://doi.org/10.1111/brv.12433">https://doi.org/10.1111/brv.12433</a>.
 </div>
 <div id="ref-dunhill2024" class="csl-entry" role="listitem">
-Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispin T. S. Little, and Andrew P. Beckerman. 2024. <span>“Extinction Cascades, Community Collapse, and Recovery Across a Mesozoic Hyperthermal Event.”</span> <em>Nature Communications</em> 15 (1): 8599. <a href="https://doi.org/10.1038/s41467-024-53000-2">https://doi.org/10.1038/s41467-024-53000-2</a>.
+Dunhill, Alexander M., Karolina Zarzyczny, Jack O. Shaw, Jed W. Atkinson, Crispin T. S. Little, and Andrew P. Beckerman. 2024. <span>“Extinction Cascades, Community Collapse, and Recovery across a Mesozoic Hyperthermal Event.”</span> <em>Nature Communications</em> 15 (1): 8599. <a href="https://doi.org/10.1038/s41467-024-53000-2">https://doi.org/10.1038/s41467-024-53000-2</a>.
 </div>
 <div id="ref-dunne2014" class="csl-entry" role="listitem">
-Dunne, Jennifer A., Conrad C. Labandeira, and Richard J. Williams. 2014. <span>“Highly Resolved Early Eocene Food Webs Show Development of Modern Trophic Structure After the End-Cretaceous Extinction.”</span> <em>Proceedings of the Royal Society B: Biological Sciences</em> 281 (1782): 20133280. <a href="https://doi.org/10.1098/rspb.2013.3280">https://doi.org/10.1098/rspb.2013.3280</a>.
+Dunne, Jennifer A., Conrad C. Labandeira, and Richard J. Williams. 2014. <span>“Highly Resolved Early Eocene Food Webs Show Development of Modern Trophic Structure after the End-Cretaceous Extinction.”</span> <em>Proceedings of the Royal Society B: Biological Sciences</em> 281 (1782): 20133280. <a href="https://doi.org/10.1098/rspb.2013.3280">https://doi.org/10.1098/rspb.2013.3280</a>.
 </div>
 <div id="ref-dunne2008" class="csl-entry" role="listitem">
 Dunne, Jennifer A., Richard J. Williams, Neo D. Martinez, Rachel A. Wood, and Douglas H. Erwin. 2008. <span>“Compilation and Network Analyses of Cambrian Food Webs.”</span> <em>PLOS Biology</em> 6 (4): e102. <a href="https://doi.org/10.1371/journal.pbio.0060102">https://doi.org/10.1371/journal.pbio.0060102</a>.
@@ -721,7 +741,7 @@ Eisenhauer, Nico, Huimin Yi, and Benjamin Wildermuth. 2026. <span>“From Specie
 Erdős, P., and A. Rényi. 1959. <span>“On Random Graphs. i.”</span> <em>Publicationes Mathematicae Debrecen</em> 6 (3-4): 290–97. <a href="https://doi.org/10.5486/pmd.1959.6.3-4.12">https://doi.org/10.5486/pmd.1959.6.3-4.12</a>.
 </div>
 <div id="ref-fricke2022a" class="csl-entry" role="listitem">
-Fricke, Evan C., Chia Hsieh, Owen Middleton, et al. 2022. <span>“Collapse of Terrestrial Mammal Food Webs Since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
+Fricke, Evan C., Chia Hsieh, Owen Middleton, et al. 2022. <span>“Collapse of Terrestrial Mammal Food Webs since the Late Pleistocene.”</span> <em>Science</em> 377 (6609): 1008–11. <a href="https://doi.org/10.1126/science.abn4012">https://doi.org/10.1126/science.abn4012</a>.
 </div>
 <div id="ref-fründ2016" class="csl-entry" role="listitem">
 Fründ, Jochen, Kevin S. McCann, and Neal M. Williams. 2016. <span>“Sampling Bias Is a Challenge for Quantifying Specialization and Network Structure: Lessons from a Quantitative Niche Model.”</span> <em>Oikos</em> 125 (4): 502–13. <a href="https://doi.org/10.1111/oik.02256">https://doi.org/10.1111/oik.02256</a>.
@@ -733,16 +753,16 @@ Gauzens, Benoit, Ulrich Brose, Eva Delmas, and Emilio Berti. 2023. <span>“ATNr
 Gauzens, Benoit, Lise Thouvenot, Diane S. Srivastava, et al. 2025. <span>“Tailoring Interaction Network Types to Answer Different Ecological Questions.”</span> <em>Nature Reviews Biodiversity</em>, June 13, 1–10. <a href="https://doi.org/10.1038/s44358-025-00056-7">https://doi.org/10.1038/s44358-025-00056-7</a>.
 </div>
 <div id="ref-gilman2010" class="csl-entry" role="listitem">
-Gilman, Sarah E., Mark C. Urban, Joshua Tewksbury, George W. Gilchrist, and Robert D. Holt. 2010. <span>“A Framework for Community Interactions Under Climate Change.”</span> <em>Trends in Ecology &amp; Evolution</em> 25 (6): 325–31. <a href="https://doi.org/10.1016/j.tree.2010.03.002">https://doi.org/10.1016/j.tree.2010.03.002</a>.
+Gilman, Sarah E., Mark C. Urban, Joshua Tewksbury, George W. Gilchrist, and Robert D. Holt. 2010. <span>“A Framework for Community Interactions under Climate Change.”</span> <em>Trends in Ecology &amp; Evolution</em> 25 (6): 325–31. <a href="https://doi.org/10.1016/j.tree.2010.03.002">https://doi.org/10.1016/j.tree.2010.03.002</a>.
 </div>
 <div id="ref-gravel2019" class="csl-entry" role="listitem">
 Gravel, Dominique, Benjamin Baiser, Jennifer A. Dunne, et al. 2019. <span>“Bringing Elton and Grinnell Together: A Quantitative Framework to Represent the Biogeography of Ecological Interaction Networks.”</span> <em>Ecography</em> 42 (3): 401–15. https://doi.org/<a href="https://doi.org/10.1111/ecog.04006">https://doi.org/10.1111/ecog.04006</a>.
 </div>
 <div id="ref-guimarães2020" class="csl-entry" role="listitem">
-Guimarães, Paulo R. 2020. <span>“The Structure of Ecological Networks Across Levels of Organization.”</span> <em>Annual Review of Ecology, Evolution, and Systematics</em> 51 (1). <a href="https://doi.org/10.1146/annurev-ecolsys-012220-120819">https://doi.org/10.1146/annurev-ecolsys-012220-120819</a>.
+Guimarães, Paulo R. 2020. <span>“The Structure of Ecological Networks across Levels of Organization.”</span> <em>Annual Review of Ecology, Evolution, and Systematics</em> 51 (1). <a href="https://doi.org/10.1146/annurev-ecolsys-012220-120819">https://doi.org/10.1146/annurev-ecolsys-012220-120819</a>.
 </div>
 <div id="ref-hao2025" class="csl-entry" role="listitem">
-Hao, Xiyang, Marcel Holyoak, Zhicheng Zhang, and Chuan Yan. 2025. <span>“Global Projection of Terrestrial Vertebrate Food Webs Under Future Climate and Land-Use Changes.”</span> <em>Global Change Biology</em> 31 (2): e70061. <a href="https://doi.org/10.1111/gcb.70061">https://doi.org/10.1111/gcb.70061</a>.
+Hao, Xiyang, Marcel Holyoak, Zhicheng Zhang, and Chuan Yan. 2025. <span>“Global Projection of Terrestrial Vertebrate Food Webs under Future Climate and Land-Use Changes.”</span> <em>Global Change Biology</em> 31 (2): e70061. <a href="https://doi.org/10.1111/gcb.70061">https://doi.org/10.1111/gcb.70061</a>.
 </div>
 <div id="ref-jordano2016" class="csl-entry" role="listitem">
 Jordano, Pedro. 2016. <span>“Sampling Networks of Ecological Interactions.”</span> <em>Functional Ecology</em>, ahead of print, September. <a href="https://doi.org/10.1111/1365-2435.12763">https://doi.org/10.1111/1365-2435.12763</a>.
@@ -763,7 +783,7 @@ Milo, R., S. Shen-Orr, S. Itzkovitz, N. Kashtan, D. Chklovskii, and U. Alon. 200
 Morales-Castilla, Ignacio, Miguel G. Matias, Dominique Gravel, and Miguel B. Araújo. 2015. <span>“Inferring Biotic Interactions from Proxies.”</span> <em>Trends in Ecology &amp; Evolution</em> 30 (6): 347–56. <a href="https://doi.org/10.1016/j.tree.2015.03.014">https://doi.org/10.1016/j.tree.2015.03.014</a>.
 </div>
 <div id="ref-pellissier2018" class="csl-entry" role="listitem">
-Pellissier, Loïc, Camille Albouy, Jordi Bascompte, et al. 2018. <span>“Comparing Species Interaction Networks Along Environmental Gradients.”</span> <em>Biological Reviews</em> 93 (2): 785–800. <a href="https://doi.org/10.1111/brv.12366">https://doi.org/10.1111/brv.12366</a>.
+Pellissier, Loïc, Camille Albouy, Jordi Bascompte, et al. 2018. <span>“Comparing Species Interaction Networks along Environmental Gradients.”</span> <em>Biological Reviews</em> 93 (2): 785–800. <a href="https://doi.org/10.1111/brv.12366">https://doi.org/10.1111/brv.12366</a>.
 </div>
 <div id="ref-petchey2008" class="csl-entry" role="listitem">
 Petchey, Owen L., Andrew P. Beckerman, Jens O. Riede, and Philip H. Warren. 2008. <span>“Size, Foraging, and Food Web Structure.”</span> <em>Proceedings of the National Academy of Sciences</em> 105 (11): 4191–96. <a href="https://doi.org/10.1073/pnas.0710672105">https://doi.org/10.1073/pnas.0710672105</a>.
@@ -787,7 +807,7 @@ Poisot, Timothée, Alyssa Cirtwill, Kévin Cazelles, Dominique Gravel, Marie-Jos
 Poisot, Timothée, and Dominique Gravel. 2014. <span>“When Is an Ecological Network Complex? Connectance Drives Degree Distribution and Emerging Network Properties.”</span> <em>PeerJ</em> 2 (February): e251. <a href="https://doi.org/10.7717/peerj.251">https://doi.org/10.7717/peerj.251</a>.
 </div>
 <div id="ref-poisot2015" class="csl-entry" role="listitem">
-Poisot, Timothée, Daniel B. Stouffer, and Dominique Gravel. 2015. <span>“Beyond Species: Why Ecological Interaction Networks Vary Through Space and Time.”</span> <em>Oikos</em> 124 (3): 243–51. <a href="https://doi.org/10.1111/oik.01719">https://doi.org/10.1111/oik.01719</a>.
+Poisot, Timothée, Daniel B. Stouffer, and Dominique Gravel. 2015. <span>“Beyond Species: Why Ecological Interaction Networks Vary through Space and Time.”</span> <em>Oikos</em> 124 (3): 243–51. <a href="https://doi.org/10.1111/oik.01719">https://doi.org/10.1111/oik.01719</a>.
 </div>
 <div id="ref-RCoreTeam2024" class="csl-entry" role="listitem">
 R Core Team. 2024. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
@@ -799,7 +819,7 @@ Rohr, Rudolf&nbsp;Philippe, Heike Scherer, Patrik Kehrli, Christian Mazza, and L
 Roopnarine, Peter D. 2006. <span>“Extinction Cascades and Catastrophe in Ancient Food Webs.”</span> <em>Paleobiology</em> 32 (1): 1–19. <a href="https://www.jstor.org/stable/4096814">https://www.jstor.org/stable/4096814</a>.
 </div>
 <div id="ref-sandra2025" class="csl-entry" role="listitem">
-Sandra, Hervías-Parejo, Anna Traveset, Manuel Nogales, Ruben Heleno, John Llewelyn, and Giovanni Strona. 2025. <span>“Sampling Biases Across Interaction Types Affect the Robustness of Ecological Multilayer Networks.”</span> <em>Ecological Informatics</em>, May 2, 103183. <a href="https://doi.org/10.1016/j.ecoinf.2025.103183">https://doi.org/10.1016/j.ecoinf.2025.103183</a>.
+Sandra, Hervías-Parejo, Anna Traveset, Manuel Nogales, Ruben Heleno, John Llewelyn, and Giovanni Strona. 2025. <span>“Sampling Biases across Interaction Types Affect the Robustness of Ecological Multilayer Networks.”</span> <em>Ecological Informatics</em>, May 2, 103183. <a href="https://doi.org/10.1016/j.ecoinf.2025.103183">https://doi.org/10.1016/j.ecoinf.2025.103183</a>.
 </div>
 <div id="ref-schneider2016" class="csl-entry" role="listitem">
 Schneider, Florian D., Ulrich Brose, Björn C. Rall, and Christian Guill. 2016. <span>“Animal Diversity and Ecosystem Functioning in Dynamic Food Webs.”</span> <em>Nature Communications</em> 7 (1): 12718. <a href="https://doi.org/10.1038/ncomms12718">https://doi.org/10.1038/ncomms12718</a>.
@@ -808,28 +828,28 @@ Schneider, Florian D., Ulrich Brose, Björn C. Rall, and Christian Guill. 2016. 
 Shaw, Jack O., Alexander M. Dunhill, Andrew P. Beckerman, Jennifer A. Dunne, and Pincelli M. Hull. 2024. <em>A Framework for Reconstructing Ancient Food Webs Using Functional Trait Data</em>. bioRxiv. <a href="https://doi.org/10.1101/2024.01.30.578036">https://doi.org/10.1101/2024.01.30.578036</a>.
 </div>
 <div id="ref-smith2025" class="csl-entry" role="listitem">
-Smith, Quentin A., Catalina P. Tomé, William Gearty, Felisa A. Smith, Daizaburo Shizuka, and S. Kathleen Lyons. 2025. <span>“Consequences of the Megafauna Extinction: Changes in Food Web Networks on the Edwards Plateau Across the Pleistocene<span></span>holocene Transition.”</span> <em>Global Ecology and Biogeography</em> 34 (12): e70113. <a href="https://doi.org/10.1111/geb.70113">https://doi.org/10.1111/geb.70113</a>.
+Smith, Quentin A., Catalina P. Tomé, William Gearty, Felisa A. Smith, Daizaburo Shizuka, and S. Kathleen Lyons. 2025. <span>“Consequences of the Megafauna Extinction: Changes in Food Web Networks on the Edwards Plateau across the Pleistocene<span></span>holocene Transition.”</span> <em>Global Ecology and Biogeography</em> 34 (12): e70113. <a href="https://doi.org/10.1111/geb.70113">https://doi.org/10.1111/geb.70113</a>.
 </div>
 <div id="ref-stouffer2019" class="csl-entry" role="listitem">
 Stouffer, Daniel B. 2019. <span>“All Ecological Models Are Wrong, but Some Are Useful.”</span> <em>Journal of Animal Ecology</em> 88 (2): 192–95. https://doi.org/<a href="https://doi.org/10.1111/1365-2656.12949">https://doi.org/10.1111/1365-2656.12949</a>.
 </div>
 <div id="ref-strydom2021" class="csl-entry" role="listitem">
-Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Roadmap Towards Predicting Species Interaction Networks (Across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
+Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Roadmap towards Predicting Species Interaction Networks (across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
 </div>
 <div id="ref-strydom2026" class="csl-entry" role="listitem">
-Strydom, Tanya, Alexander M. Dunhill, Jennifer A. Dunne, Timothée Poisot, and Andrew P. Beckerman. 2026. <span>“From Metawebs to Realised Webs: A Framework for Ecological Network Representation Under Global Change.”</span> <em>EcoEvoRxiv</em>, ahead of print, January 21. <a href="https://doi.org/10.32942/X2JW8K">https://doi.org/10.32942/X2JW8K</a>.
+Strydom, Tanya, Alexander M. Dunhill, Jennifer A. Dunne, Timothée Poisot, and Andrew P. Beckerman. 2026. <span>“From Metawebs to Realised Webs: A Framework for Ecological Network Representation under Global Change.”</span> <em>EcoEvoRxiv</em>, ahead of print, January 21. <a href="https://doi.org/10.32942/X2JW8K">https://doi.org/10.32942/X2JW8K</a>.
 </div>
 <div id="ref-thuiller2024" class="csl-entry" role="listitem">
 Thuiller, Wilfried, Irene Calderón-Sanou, Loïc Chalmandrier, et al. 2024. <span>“Navigating the Integration of Biotic Interactions in Biogeography.”</span> <em>Journal of Biogeography</em> 51 (4): 550–59. <a href="https://doi.org/10.1111/jbi.14734">https://doi.org/10.1111/jbi.14734</a>.
 </div>
 <div id="ref-trøjelsgaard2016" class="csl-entry" role="listitem">
-Trøjelsgaard, Kristian, and Jens M. Olesen. 2016. <span>“Ecological Networks in Motion: Micro- and Macroscopic Variability Across Scales.”</span> <em>Functional Ecology</em> 30 (12): 1926–35. https://doi.org/<a href="https://doi.org/10.1111/1365-2435.12710">https://doi.org/10.1111/1365-2435.12710</a>.
+Trøjelsgaard, Kristian, and Jens M. Olesen. 2016. <span>“Ecological Networks in Motion: Micro- and Macroscopic Variability across Scales.”</span> <em>Functional Ecology</em> 30 (12): 1926–35. https://doi.org/<a href="https://doi.org/10.1111/1365-2435.12710">https://doi.org/10.1111/1365-2435.12710</a>.
 </div>
 <div id="ref-tylianakis2008" class="csl-entry" role="listitem">
 Tylianakis, Jason M., Raphael K. Didham, Jordi Bascompte, and David A. Wardle. 2008. <span>“Global Change and Species Interactions in Terrestrial Ecosystems.”</span> <em>Ecology Letters</em> 11 (12): 1351–63. <a href="https://doi.org/10.1111/j.1461-0248.2008.01250.x">https://doi.org/10.1111/j.1461-0248.2008.01250.x</a>.
 </div>
 <div id="ref-tylianakis2017" class="csl-entry" role="listitem">
-Tylianakis, Jason M., and Rebecca J. Morris. 2017. <span>“Ecological Networks Across Environmental Gradients.”</span> <em>Annual Review of Ecology, Evolution, and Systematics</em> 48 (1): 25–48. <a href="https://doi.org/10.1146/annurev-ecolsys-110316-022821">https://doi.org/10.1146/annurev-ecolsys-110316-022821</a>.
+Tylianakis, Jason M., and Rebecca J. Morris. 2017. <span>“Ecological Networks across Environmental Gradients.”</span> <em>Annual Review of Ecology, Evolution, and Systematics</em> 48 (1): 25–48. <a href="https://doi.org/10.1146/annurev-ecolsys-110316-022821">https://doi.org/10.1146/annurev-ecolsys-110316-022821</a>.
 </div>
 <div id="ref-williams2004" class="csl-entry" role="listitem">
 Williams, R. J., and N. D. Martinez. 2004. <span>“Stabilization of Chaotic and Non-Permanent Food-Web Dynamics.”</span> <em>The European Physical Journal B - Condensed Matter</em> 38 (2): 297–303. <a href="https://doi.org/10.1140/epjb/e2004-00122-1">https://doi.org/10.1140/epjb/e2004-00122-1</a>.

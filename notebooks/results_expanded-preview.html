@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.12.1">
+    <meta name="generator" content="quarto-1.12.2">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,6 +79,26 @@
       }
       div.csl-indent {
         margin-left: 2em;
+      }@media print {
+        html {
+          color-scheme: light only;
+        }
+        html, body, pre, code {
+          background-color: transparent;
+        }
+        body, a, a:visited, blockquote {
+          color: black;
+        }
+        pre, code {
+          padding: 0;
+        }
+        p, h2, h3 {
+          orphans: 3;
+          widows: 3;
+        }
+        h2, h3, h4 {
+          page-break-after: avoid;
+        }
       }    </style>
 
     <style>
@@ -95,12 +115,15 @@
         border-bottom: solid 1px;
       }
 
+      /* The title sits on the theme's primary background, so it inherits the
+         header's contrasting text color instead of the theme heading color */
       #quarto-embed-header h6 {
         font-size: 1.1em;
         padding-top: 0.6em;
         margin-left: 1em;
         margin-right: 1em;
         font-weight: 400;
+        color: inherit;
       }
 
       #quarto-embed-header a.quarto-back-link,
@@ -187,10 +210,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a34e72179bd910c3a0d1c193f042680d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-61ac5bf2e772475afc0e17dd7ea7c344.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-808fa2b54be4417f9355fb1d1925d19c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -203,7 +226,7 @@
       </head>
 
   <body class="quarto-notebook quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
-    <nav id="quarto-embed-header" class="headroom fixed-top bg-primary" aria-labelledby="quarto-embed-title">
+    <nav id="quarto-embed-header" class="headroom fixed-top text-bg-primary" aria-labelledby="quarto-embed-title">
 
       <a href="../index.html" onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
       <h6 id="quarto-embed-title"><i class="bi bi-journal-code"></i> Supplementary Material S2: Effects of Network Reconstruction on Food web structure</h6>
@@ -2447,7 +2470,7 @@ dbl (1): tau
 Poisot, Timothée, and Dominique Gravel. 2014. <span>“When Is an Ecological Network Complex? Connectance Drives Degree Distribution and Emerging Network Properties.”</span> <em>PeerJ</em> 2 (February): e251. <a href="https://doi.org/10.7717/peerj.251">https://doi.org/10.7717/peerj.251</a>.
 </div>
 <div id="ref-strydom2021" class="csl-entry" role="listitem">
-Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Roadmap Towards Predicting Species Interaction Networks (Across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
+Strydom, Tanya, Michael D. Catchen, Francis Banville, et al. 2021. <span>“A Roadmap towards Predicting Species Interaction Networks (across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
 </div>
 </div>
 </section>
